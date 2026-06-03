@@ -1,0 +1,28 @@
+# Image Credits
+
+All images are from [Unsplash](https://unsplash.com) under the [Unsplash License](https://unsplash.com/license), which permits free commercial and non-commercial use without attribution. Credits below are provided as a courtesy.
+
+- `paper-contractor_reyes_2025.jpg` — photo by [Vasily Koloda](https://unsplash.com/photos/8CqDvPuo_kI)
+- `paper-bastani_etal_2025.jpg` — photo by [Mufid Majnun](https://unsplash.com/photos/dz5dQ2DjJBM)
+- `paper-de_simone_etal_2025.jpg` — photo by [Annie Spratt](https://unsplash.com/photos/QckxruozjRg)
+- `paper-fan_etal_2025.jpg` — photo by [J. Kelly Brito](https://unsplash.com/photos/PeUJyoylfe4)
+- `paper-hausman_etal_2025.jpg` — photo by [Tim Mossholder](https://unsplash.com/photos/_15Ofvkebvg)
+- `paper-henkel_etal_2024.jpg` — photo by [Sigmund](https://unsplash.com/photos/HsTnjCVQ798)
+- `paper-kalam_etal_2025.jpg` — photo by [National Cancer Institute](https://unsplash.com/photos/W7aXY5F2pBo)
+- `paper-kazemitabaar_etal_2023.jpg` — photo by [James Wheeler](https://unsplash.com/photos/RRZM3cwS1DU)
+- `paper-kestin_etal_2025.jpg` — photo by [Thomas T](https://unsplash.com/photos/_zZWO_T2X0c)
+- `paper-kim_etal_2025.jpg` — photo by [Annie Spratt](https://unsplash.com/photos/QckxruozjRg)
+- `paper-kreijkes_etal_2026.jpg` — photo by [Susan Q Yin](https://unsplash.com/photos/2JIvboGLeho)
+- `paper-kumar_etal_2023.jpg` — photo by [Andrew Neel](https://unsplash.com/photos/cckf4TsHAuw)
+- `paper-learnlm_team_2025.jpg` — photo by [Compare Fibre](https://unsplash.com/photos/4_jhDO54BYg)
+- `paper-lehmann_etal_2024.jpg` — photo by [Christopher Gower](https://unsplash.com/photos/m_HRfLhgABo)
+- `paper-lira_etal_2025.jpg` — photo by [Aaron Burden](https://unsplash.com/photos/y02jEX_B0O0)
+- `paper-nie_etal_2025.jpg` — photo by [Sigmund](https://unsplash.com/photos/uXAW9SLgQfk)
+- `paper-vanzo_etal_2024.jpg` — photo by [Patrick Tomasso](https://unsplash.com/photos/Oaqk7qqNh_c)
+- `paper-wang_etal_2025.jpg` — photo by [Note Thanun](https://unsplash.com/photos/PaC8ohsK_yE)
+- `paper-wiles_etal_2024.jpg` — photo by [Helloquence](https://unsplash.com/photos/5fNmWej4tAA)
+- `paper-xu_etal_2025.jpg` — photo by [Mimi Thian](https://unsplash.com/photos/vdXMSiX-n6M)
+- `paper-chung_etal_2025.jpg` — photo by [Compare Fibre](https://unsplash.com/photos/IiZjcdNHCwk)
+- `paper-liu_etal_2026.jpg` — photo by [Wes Hicks](https://unsplash.com/photos/Y_TKbVHzZdg)
+- `paper-shen_and_tamkin_2026.jpg` — photo by [Markus Spiske](https://unsplash.com/photos/iar-afB0QQw)
+- `paper-barcaui_2025.jpg` — photo by [Annie Spratt](https://unsplash.com/photos/QckxruozjRg)
