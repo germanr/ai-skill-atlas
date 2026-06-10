@@ -8,6 +8,7 @@ Live: https://germanr.github.io/ai-skill-atlas/
 
 - React 19 + Vite 8 single-page app
 - Inline CSS-in-JS (no Tailwind, no separate CSS files)
+- Design system: "evidence journal" — warm paper/ink palette, hairline rules, Newsreader (display serif) + IBM Plex Sans/Mono (UI and data), via Google Fonts
 - Data pipeline: Excel → JSON via Python
 
 ## Local development
@@ -33,10 +34,11 @@ Opens at `http://localhost:5175/ai-skill-atlas/`.
 
 1. Append a row to the `papers` sheet of `papers_for_website.xlsx`.
 2. Append the paper's estimate(s) to the `estimates` sheet (matching `paper_key`).
-3. Add an image to `public/images/paper-{paper_key}.jpg` (target ~800×500, JPG quality ~80).
-4. Add the PDF to `public/pdfs/` (filename matching the `pdf_filename` column).
-5. Run `python code/build_website_data.py`.
-6. Commit and push — GitHub Pages will redeploy automatically.
+3. Add the PDF to `public/pdfs/` (filename matching the `pdf_filename` column).
+4. Run `python code/build_website_data.py`.
+5. Commit and push — GitHub Pages will redeploy automatically.
+
+(Paper images in `public/images/` are no longer displayed since the 2026-06 redesign — the cards are typographic. No image needed for new papers.)
 
 ## Deployment
 
