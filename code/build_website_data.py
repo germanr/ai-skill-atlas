@@ -94,7 +94,9 @@ PAPER_META = {
         country_emoji="🇳🇬",
         population_category="High school",
         lab_vs_field="Field",
-        incentives="Course grade",
+        # [RA-2026-07] Voluntary after-school program; primary outcomes are
+        # ungraded research assessments (Sec 2.2).
+        incentives="None (voluntary; ungraded research assessment)",
         learning_domain_primary="Language",
         summary="Nigerian senior secondary students got after-school sessions with an English-tutoring GPT-4 chatbot. Treatment group gained on English, AI knowledge, and digital skills; gains persisted at retention.",
         image_keywords="Nigerian students English class",
@@ -135,7 +137,7 @@ PAPER_META = {
         lab_vs_field="Field",
         incentives="None",
         learning_domain_primary="Math",
-        summary="WhatsApp-based math tutor (Rori) deployed to grade 3–9 students in Ghana. RCT measured math gains over an academic term.",
+        summary="WhatsApp-based math tutor (Rori) deployed to grades 3–8 students in Ghana. RCT measured math gains over an academic term.",
         image_keywords="African students mobile phone learning",
         pdf_filename="Henkel et al (2024) - AI Math Tutor Ghana.pdf",
     ),
@@ -147,8 +149,8 @@ PAPER_META = {
         population_category="Graduate",
         lab_vs_field="Field",
         incentives="Course grade",
-        learning_domain_primary="General knowledge",
-        summary="First-year Georgetown medical students randomized to ChatGPT vs traditional study for an immunology unit.",
+        learning_domain_primary="Science",
+        summary="First-year Georgetown medical students randomized to ChatGPT vs traditional study for a basic-science quiz (pathology, pharmacology, physiology, anatomy).",
         image_keywords="medical students library studying",
         pdf_filename="Kalam et al (2025) - ChatGPT as Learning Tool Medical Students.pdf",
     ),
@@ -304,8 +306,8 @@ PAPER_META = {
         population_category="Professional",
         lab_vs_field="Field",
         incentives="None",
-        learning_domain_primary="General knowledge",
-        summary="Boston Consulting Group consultants worldwide were randomized to use GPT-4 for knowledge tasks. Measured task performance and skill transfer.",
+        learning_domain_primary="Coding",
+        summary="Boston Consulting Group consultants worldwide were randomized to use GPT-4 for data-science tasks (coding, statistics, prediction). Measured task performance and skill transfer.",
         image_keywords="consultants office laptop",
         pdf_filename="Wiles et al (2024) - GenAI as Exoskeleton.pdf",
     ),
@@ -370,7 +372,7 @@ PAPER_CORRECTIONS = {
     "barcaui_2025": dict(
         venue="Social Sciences & Humanities Open",
         learning_domain_primary="General knowledge",  # AI/ML conceptual content; not coding
-        incentives="None",
+        incentives="None (voluntary participation)",
     ),
     "bastani_etal_2025": dict(
         venue="PNAS, 122(26), e2422633122",
@@ -382,13 +384,24 @@ PAPER_CORRECTIONS = {
         venue="British Journal of Educational Technology",
         title="Beware of metacognitive laziness: Effects of generative artificial intelligence on learning motivation, processes, and performance",
         pdf_filename="Fan et al (2024) - BJET - Metacognitive Laziness.pdf",
-        incentives="None (flat compensation; no performance bonus)",
+        # [RA-2026-07] Paper describes no compensation; sample is 55%
+        # undergraduate / ~45% graduate (Sec 3.1).
+        incentives="None (no performance-based incentive; compensation not reported)",
+        population_category="University (mixed)",
     ),
     "hausman_etal_2025": dict(
         authors_full="Naomi Hausman, Oren Rigbi, Sarit Weisburd",
         venue="CEPR DP 20206 / CESifo WP 11843",
         pdf_filename="Hausman et al (2025) - CESifo - GenAI Impact on Student Achievement.pdf",
-        setting_detail="Israel, Hebrew University Business School; BA/MA/MBA courses across multiple faculties (2018-2024)",
+        # [RA-2026-07] Grade data cover ALL BA/MA/MBA courses university-wide
+        # (only the 91-student adoption survey is business-school); population
+        # spans undergrad + graduate. n_total = ~36,000 unique students (the
+        # paper-card/hero counter counts PEOPLE); the baseline DiD regression
+        # sample of 500,611 student-course-semester observations lives on the
+        # estimate rows. The old 22,806 was the Table 5 advanced-course subsample.
+        setting_detail="Israel, large research university; all BA/MA/MBA courses across faculties (2018-2024)",
+        population_category="University (mixed)",
+        n_total=36000,
     ),
     "henkel_etal_2024": dict(
         authors_full="Owen Henkel, Hannah Horne-Robinson, Nessie Kozhakhmetova, Amanda Lee",
@@ -430,6 +443,11 @@ PAPER_CORRECTIONS = {
         n_total=289,  # 113 + 107 + 69 = 289 combined
         ai_tool="ChatGPT (Study 1: gpt-3.5-turbo-0613; Studies 2-3: gpt-3.5-turbo-0125)",
         incentives="Course grade (Study 1); €10 fixed + €1 per correct post-test answer (Studies 2-3)",
+        # [RA-2026-07] Study 1 is a Dutch university, Studies 2-3 a German lab
+        # pool of enrolled students of mixed level (not graduate-only).
+        country="Netherlands & Germany",
+        country_emoji="🇳🇱🇩🇪",
+        population_category="University (mixed)",
     ),
     "lira_etal_2025": dict(
         authors_full="Benjamin Lira, Todd Rogers, Daniel G. Goldstein, Lyle Ungar, Angela L. Duckworth",
@@ -439,6 +457,9 @@ PAPER_CORRECTIONS = {
         summary="Prolific adults practiced rewriting cover letters with an AI writing tool, without AI, with professional editor feedback, with Google Search, or by viewing an AI-generated example. Practicing with AI improved writing skill more than practicing without AI, with gains persisting one day later.",
         pdf_filename="Lira et al (2026) - Coach Not Crutch.pdf",
         incentives="None (flat Prolific pay)",
+        # [RA-2026-07] Four non-overlapping samples: 2,637 + 2,238 + 2,997 +
+        # 2,003 (the old 1,294 was only the Study 2 follow-up subsample).
+        n_total=9875,
     ),
     "nie_etal_2025": dict(
         venue="ACM L@S 2025 (DOI 10.1145/3698205.3733960)",
@@ -458,6 +479,9 @@ PAPER_CORRECTIONS = {
         venue="Nature Human Behaviour (forthcoming)",
         title="Generative AI and the Temporary Upskilling of Knowledge Workers",
         authors_full="Emma Wiles, Lisa Krayer, Mohamed Abbadi, Urvi Awasthi, Ryan Kennedy, Pamela Mishkin, Daniel Sack, Francois Candelon",
+        # [RA-2026-07] Table B3 reports SEs/CIs, so "no SE/CI" was stale; the
+        # accurate caveat is that effects are raw benchmark-normalized ATEs.
+        quality_flags="no SD effect (raw benchmark-normalized ATEs)",
     ),
     "chung_etal_2025": dict(
         year=2026,
@@ -471,6 +495,9 @@ PAPER_CORRECTIONS = {
         setting_detail="USA, grades 3-8 (Title I schools)",
         n_total=1787,
         authors_full="Rose E. Wang, Ana T. Ribeiro, Carly D. Robinson, Susanna Loeb, Dora Demszky",
+        # [RA-2026-07] Table 2 reports an SE for the main effect, so the old
+        # "no SE/CI" flag was stale.
+        quality_flags="non-standard outcome (binary exit-ticket pass)",
     ),
     "xu_etal_2025": dict(
         authors_full="Xu, X., Qiao, L., Cheng, N., Liu, H., & Zhao, W.",
@@ -485,14 +512,19 @@ PAPER_CORRECTIONS = {
     ),
     "shen_and_tamkin_2026": dict(
         incentives="None (flat $150)",
+        # [RA-2026-07] Sample is freelance/professional software developers
+        # (Sec 5.2.1), not general adults.
+        population_category="Professional",
     ),
     "kazemitabaar_etal_2023": dict(
         incentives="None (flat $50 gift card)",
+        setting_detail="Canada (recruited from coding camps in two North American cities), online via Google Meet; ages 10-17 (M=12.5)",
     ),
     "contractor_reyes_2026": dict(
-        n_total=210,
+        n_total=211,  # 211 attended Session One (Table 1); 204 attended both
         lab_vs_field="Lab",
-        incentives="Lottery tickets ($100 each, 30 drawn) tied to test and essay performance",
+        incentives="$50 for completing both sessions + lottery tickets ($100 each, 30 drawn) tied to test correctness and essay quality",
+        summary="Two-session RCT at Middlebury College randomizing undergraduates to ChatGPT access while learning an unfamiliar topic. Measures effects on test scores and essay quality, immediately and one week later.",
     ),
 }
 
@@ -501,9 +533,9 @@ PAPER_CORRECTIONS = {
 # From 24 subagents that read each paper and produced structured summaries.
 PAPER_SUMMARIES = {
     "contractor_reyes_2026": {
-        "setup": "Field RCT with 210 Middlebury College undergraduates across two in-person sessions one week apart. Students were randomized to AI-allowed (logged-in ChatGPT GPT-4o) or AI-forbidden conditions during a 35-minute learning phase on one of three unfamiliar topics (blockchain, carbon capture, CRISPR), then wrote an analytical essay. Incentives: $50 attendance plus lottery tickets ($100 each, 30 drawn) tied to test correctness and essay quality.",
+        "setup": "In-person computer-lab RCT with 211 Middlebury College undergraduates across two sessions one week apart. Students were randomized to AI-allowed (logged-in ChatGPT GPT-4o) or AI-forbidden conditions during a 35-minute learning phase on one of three unfamiliar topics (blockchain, carbon capture, CRISPR), then wrote an analytical essay. Incentives: $50 for completing both sessions plus lottery tickets ($100 each, 30 drawn) tied to test correctness and essay quality.",
         "empirical_strategy": "ITT estimated via OLS of outcomes on the AI-allowed indicator, with randomization-strata dummies and double-lasso-selected controls. Robust SEs. A complementary TOT/2SLS specification instruments AI use with random assignment to recover the LATE for compliers.",
-        "key_results": "AI access raised immediate Session 1 test scores by 0.25 SD and Session 2 retention test scores (one week later, no AI) by 0.27 SD, with largest gains for middle-performing students. Essay quality gains persisted only for 'augmentation' users who prompted AI to explain concepts; 'automation' users (who used AI to draft) saw Session 1 essay gains fade entirely.",
+        "key_results": "AI access raised immediate Session 1 test scores by 0.27 SD and Session 2 retention test scores (one week later, no AI) by 0.27 SD, with largest gains for middle-performing students. Essay quality gains persisted only for 'augmentation' users who prompted AI to explain concepts; 'automation' users (who used AI to draft) saw Session 1 essay gains fade entirely.",
     },
     "barcaui_2025": {
         "setup": "120 undergraduate business administration students at UFRJ in Rio de Janeiro were randomized (n=60 per arm) to study AI/ML concepts (foundations, methods, applications, ethics) via either ChatGPT (GPT-4, no prompt-engineering guidance) or traditional resources (notes, library databases, non-AI search). Each participant prepared a 10-minute peer-group presentation over two weeks. Participation was voluntary with no course-grade incentive.",
@@ -511,14 +543,14 @@ PAPER_SUMMARIES = {
         "key_results": "AI-assisted students scored substantially lower than traditional learners on retention (57.5% vs 68.5%, d=-0.68, 95% CI [-1.12, -0.24], p=.002). They also spent ~45% less time studying; the AI penalty survives time-on-task adjustment.",
     },
     "bastani_etal_2025": {
-        "setup": "Field RCT with ~1,000 Turkish high-school students (grades 9-11) at a single school, randomized at the classroom level across three arms: GPT Base (unrestricted GPT-4), GPT Tutor (GPT-4 with Socratic guardrails and teacher-designed prompts), or control (textbook only). Students completed four 90-minute sessions, each with a lecture, AI-assisted practice, and an unassisted closed-book exam. Performance counted toward course grades.",
+        "setup": "Field RCT with ~1,000 Turkish high-school students (grades 9-11) at a single school, randomized at the classroom level across three arms: GPT Base (unrestricted GPT-4), GPT Tutor (GPT-4 with guardrails and teacher-designed prompts), or control (course books and notes, no AI). Students completed four 90-minute sessions, each with a lecture, AI-assisted practice, and an unassisted closed-book exam. Performance counted toward course grades.",
         "empirical_strategy": "OLS at the student-session level (N=2,848) regressing normalized 0-1 grades on GPT Base and GPT Tutor indicators (control omitted), with prior GPA and session/grader/grade-level/teacher fixed effects, classroom-clustered SEs. Pre-registered primary outcome is the unassisted exam.",
         "key_results": "On assisted practice, GPT Base raised grades by 0.48 SD and GPT Tutor by 1.26 SD. But on the unassisted exam, GPT Base hurt performance by -0.19 SD (p<0.05) while GPT Tutor was essentially zero. Students used GPT Base as a 'crutch' (copying answers) and overestimated their own learning.",
     },
     "de_simone_etal_2025": {
         "setup": "Student-level RCT in 9 Nigerian public secondary schools in Benin City. 1,328 first-year senior secondary students (~age 15) randomized (657 treatment, 671 control); 759 completed endline. Treatment: 12 after-school sessions (90 min, twice weekly for 6 weeks) in school computer labs using Microsoft Copilot (GPT-4) as a virtual English tutor with teacher-guided prompt toolkit. Control: business-as-usual classroom instruction. No participation incentives reported.",
         "empirical_strategy": "ITT via OLS with school fixed effects and second-term baseline exam score as a control; robust SEs. Robustness via Lee bounds, inverse-probability weighting, and value-added IV/LATE specifications using attendance days.",
-        "key_results": "English skills rose by 0.238 SD and total weighted endline by 0.31 SD. Effects persisted on the third-term school exam (broader curriculum, 0.206 SD). Larger effects for female, higher-baseline, and higher-SES students; benefits across the whole distribution.",
+        "key_results": "English skills rose by 0.238 SD and total weighted endline by 0.31 SD. Effects extended to the broader-curriculum third-term school exam taken the day after the program ended (0.206 SD) - transfer, not delayed retention. Larger effects for female, higher-baseline, and higher-SES students; benefits across the whole distribution.",
     },
     "fan_etal_2025": {
         "setup": "Lab study at Peking University with 117 university students (mean age 22.6; 55% undergraduate, 45% graduate; all L1 Chinese / English L2). Four-arm design with a shared baseline 2-hour reading-and-writing task followed by a 1-hour revision phase under one of four conditions: CN no support (n=30), AI = ChatGPT 4.0 with guardrails restricting it to task content (n=35), HE = human academic-writing expert (n=25), or CL = AI-powered checklist feedback tool (n=27). No course-grade incentive.",
@@ -526,7 +558,7 @@ PAPER_SUMMARIES = {
         "key_results": "AI group's essay improvement significantly exceeded all three other arms (d≈0.73 vs CN; F=4.55, p=0.005). But no significant group differences in knowledge gain (d≈-0.05) or knowledge transfer. Trace-data process mining showed AI students looped through tight 'revising-via-ChatGPT' patterns rather than reading and evaluating - the 'metacognitive laziness' the title warns of.",
     },
     "hausman_etal_2025": {
-        "setup": "Administrative panel data from a large Israeli research university (Hebrew University Business School) covering ~36,000 BA/MA/MBA students in ~6,000 courses across 6 academic years (2018-2019 through 2023-2024), spanning ChatGPT's November 2022 rollout. Treatment: 'AI-compatible' courses (≤60% of grade from in-class/lab work); control: AI-incompatible courses (≥90%). A 91-student survey shows ChatGPT adoption rising from ~30% in 2022-23 to ~80% in 2023-24.",
+        "setup": "Administrative panel data from a large Israeli research university covering ~36,000 BA/MA/MBA students in ~6,000 courses university-wide across 6 academic years (2018-2019 through 2023-2024), spanning ChatGPT's November 2022 rollout. Treatment: 'AI-compatible' courses (≤60% of grade from in-class/lab work); control: AI-incompatible courses (≥90%). A survey of 91 business-school students shows ChatGPT adoption rising from ~30% in 2022-23 to ~80% in 2023-24.",
         "empirical_strategy": "Difference-in-differences event study with student fixed effects, comparing within-student grade changes across AI-compatible vs AI-incompatible courses before/after Nov 2022. Robustness via propensity-score matching. A cohort DiD isolates AI-specific human capital using cohort-2022-23 vs 2021-22 students' second-year advanced-course performance.",
         "key_results": "AI availability raised AI-compatible course grades by 0.6-1.5 points on the 0-100 scale (0.97 in 2022-23, 1.48 in 2023-24). Effects concentrated at the lower tail: 25th-percentile grades rose 2-3 points and failure rates dropped ~30-37%. Grade distribution compresses, eroding signal value. AI exposure in intro courses raised later AI-compatible grades but reduced AI-incompatible advanced-course grades, suggesting some basic human capital substitution.",
     },
@@ -541,7 +573,7 @@ PAPER_SUMMARIES = {
         "key_results": "Week 1 with resources: A=9.60, B=9.08, C=6.64 (p<0.001); ChatGPT and external resources both beat institutional resources, but A vs B not significant. Week 2 retention (no resources): A=6.20, B=5.58, C=4.36 (p=0.118, not significant; Cohen's d≈0.93 for A vs C). Conclusion: ChatGPT improved short-term performance but provided no significant retention advantage.",
     },
     "kazemitabaar_etal_2023": {
-        "setup": "Lab RCT in Canada with 69 novice coders ages 10-17 (mean 12.5) recruited from coding camps. None had prior text-based programming. Three-week, ten-session study learning Python via the Coding Steps platform. Codex group (n=33) had unrestricted OpenAI Codex during training only; Baseline group (n=36) had no AI. $50 gift-card compensation. Outcomes at training, immediate post-test (1 day later), and retention (1 week later) - all on Python authoring and modifying tasks.",
+        "setup": "Online matched-groups RCT (run remotely over Google Meet from Canada) with 69 novice coders ages 10-17 (mean 12.5) recruited from coding camps. None had prior text-based programming. Three-week, ten-session study learning Python via the Coding Steps platform. Codex group (n=33) had unrestricted OpenAI Codex during training only; Baseline group (n=36) had no AI. $50 gift-card compensation. Outcomes at training, immediate post-test (1 day later), and retention (1 week later) - all on Python authoring and modifying tasks.",
         "empirical_strategy": "Matched-groups design: pairs balanced on Scratch pre-test scores, random assignment within pairs. Two-rater independent coding (79% full agreement). Independent-samples t-tests with Cohen's d; Bonferroni-adjusted alpha.",
         "key_results": "Training-phase authoring (with AI): Codex 80.1% vs baseline 44.4% (d=1.67). But on the immediate unassisted post-test, no difference (d=0.05 authoring, d=0.01 modifying). On 1-week retention, modest non-significant Codex advantages (d=0.41 modifying, d=0.38 MCQ overall). Codex-High learners benefited most, suggesting prior competency moderates AI's learning effects.",
     },
@@ -576,9 +608,12 @@ PAPER_SUMMARIES = {
         "key_results": "Study 1 (FE2SLS): higher cumulative ChatGPT use reduces grade on subsequent questions; the contemporaneous boost disappears under IV. Studies 2 & 3: no significant ATE on post-test (Study 2 d≈0.25, Study 3 d≈0.42). Exploratory pooled results: substitutive use (asking for solutions, facilitated by copy-paste) increases topic volume but lowers per-topic understanding; complementary use (asking for explanations) increases understanding. LLMs widen gap between low- and high-prior-knowledge students.",
     },
     "lira_etal_2025": {
-        "setup": "Five pre-registered Prolific studies with US adults examining whether practicing cover-letter writing with a custom GPT-based AI tool helps or hinders writing skill. All participants completed baseline pretest, lesson on five writing principles, then random assignment to practice conditions, then a no-AI test (and 1-day follow-up in Studies 2 and 5). Study 2 (N=2,238) compared practice-with-AI vs practice-without-AI; Study 4 (N=2,997) added expert-editor feedback and Google Search arms; Study 5 (N=2,003) added an example-only condition.",
+        # [RA-2026-07] Renumbered to the 2026 arXiv v4: Study 1 is a
+        # descriptive Gallup survey (not a Prolific experiment); the editors/
+        # Google experiment is Study 3 and the example-only experiment Study 4.
+        "setup": "A descriptive Gallup survey (Study 1, N=2,637 young adults) followed by three pre-registered Prolific experiments with US adults examining whether practicing cover-letter writing with a custom GPT-based AI tool helps or hinders writing skill. Experiment participants completed a baseline pretest, a lesson on five writing principles, random assignment to practice conditions, then a no-AI test (and 1-day follow-up in Studies 2 and 4). Study 2 (N=2,238) compared practice-with-AI vs practice-without-AI; Study 3 (N=2,997) added expert-editor feedback and Google Search arms; Study 4 (N=2,003) added an example-only condition.",
         "empirical_strategy": "RCT with random assignment. Writing quality scored by GPT-4o averaging five-principle ratings (alpha=.81), validated against human RA ratings (r=.70). Effects reported as Cohen's d; BH-corrected heterogeneity by demographics and baseline skill.",
-        "key_results": "Forecasters expected AI to hinder learning (65% vs 35%); the opposite held. Study 2: AI-practice beat no-AI practice on the test phase (d=0.38) and at 1-day follow-up (d=0.41) despite less effort. Study 4: AI-practice beat editor feedback (d=0.20) and Google (d=0.46). Study 5: merely viewing an AI-generated example improved skill as much as practicing with AI (d=0.37 vs no-AI practice). Mechanism: AI teaches by example.",
+        "key_results": "Forecasters expected AI to hinder learning (65% vs 35%); the opposite held. Study 2: AI-practice beat no-AI practice on the test phase (d=0.38) and at 1-day follow-up (d=0.41) despite less effort. Study 3: AI-practice beat editor feedback (d=0.20) and Google (d=0.46). Study 4: merely viewing an AI-generated example improved skill as much as practicing with AI (d=0.37 vs no-AI practice). Mechanism: AI teaches by example.",
     },
     "nie_etal_2025": {
         "setup": "Stanford's free online Code-in-Place 2023 intro Python course. From 8,762 enrollees, 5,831 were active after week 1 and randomized 60/40 (3,581 treated / 2,250 control) across 146 countries. At the start of week 4, treated students received an email and a sidebar button granting access to a custom GPT-4 chat interface with system prompts designed to prevent direct solution-giving. Outcomes: optional 4-hour midterm exam in week 6, weekly homework, section attendance. Only 14.2% of treated actually used the GPT-4 interface.",
@@ -587,8 +622,10 @@ PAPER_SUMMARIES = {
     },
     "vanzo_etal_2024": {
         "setup": "RCT at Istituto Pindemonte, a technical institute in Verona (Italy). Four English-as-L2 classes taught by the same teacher: two 3rd-year (n=39) and two 5th-year (n=37); N=76 total. 3rd-year homework was objective grammar exercises; 5th-year was open-ended essay/literature questions. Treatment replaced standard homework with interactive GPT-4 (gpt-4-0125-preview) sessions via a custom web platform; control submitted standard homework on the same platform. 6-8 week intervention. No incentives (voluntary).",
-        "empirical_strategy": "Stratified randomization within class by self-reported English GPA. Teacher blind to condition. Pre/post-tests with 24 MCQ items. Cohen's d via one-sided t-tests pooled and by cohort. Weekly Likert engagement questionnaires; OLS regression of learning gains on condition, words typed, and year.",
-        "key_results": "Pooled learning gain d=0.251 (not significant). 3rd year d=0.603 (p=0.087, marginal). 5th year d=-0.004 (null). Treatment students reported much higher interestingness (d=0.59) and engaged much more (words-typed d=1.42). Weaker students gained more, consistent with personalized scaffolding. Hallucination rate <1%.",
+        # [RA-2026-07] Updated to the published ACL 2025 version (the old
+        # p=0.087 / words-typed d=1.42 / <1% figures were from the 2024 preprint).
+        "empirical_strategy": "Stratified randomization within class by self-reported English GPA. Teacher blind to condition. Pre/post-tests with 24 MCQ items. Cohen's d via one-sided t-tests pooled and by cohort. Weekly Likert engagement questionnaires; OLS regression of learning gains on condition and words typed.",
+        "key_results": "Pooled learning gain d=0.251 (not significant). 3rd year d=0.603 (p=0.044, significant). 5th year d=-0.004 (null). Treatment students reported significantly higher interestingness (d=0.59), and words typed was positively associated with learning gains (r=0.434, p=0.007). Weaker students gained more, consistent with personalized scaffolding. Hallucination rate <0.5%.",
     },
     "wang_etal_2025": {
         "setup": "Field RCT (Mar-May 2024) with FEV Tutor and a large southern US school district. Nine Title I schools, 1,787 students in grades 3-8 (80% Hispanic, 67% economically disadvantaged) receiving virtual math tutoring; 874 full-time tutors. Treatment tutors received access to Tutor CoPilot, an LLM-based tool built on the Bridge method (GPT-4) that generates real-time pedagogical suggestions during sessions. Final analytic sample: 4,136 sessions with 550,000+ chat messages.",
@@ -601,9 +638,9 @@ PAPER_SUMMARIES = {
         "key_results": "Treated workers scored 49, 20, and 18 percentage points higher than control on coding, statistics, and prediction tasks. On coding, the treated 95% CI included the data scientist benchmark. But on the post-experiment knowledge test (without ChatGPT), no improvement: 'exoskeleton' gains vanish when AI is removed. Treated workers also became more overconfident in ChatGPT and worse at predicting which problems GPT-4 can solve.",
     },
     "xu_etal_2025": {
-        "setup": "Quasi-experiment with 68 Chinese undergraduate sophomores (avg age 19.4) in Educational Technology at a Chinese university, all enrolled in 'Instructional Technology and Media' course. Randomly assigned to experimental (N=35, ChatGPT 4.0 + paper-based metacognitive scaffolding prompts) vs control (N=33, ChatGPT 4.0 alone). Task: 4-week interdisciplinary K-12 lesson design assignment integrating math/IT/biology. Participants told data would not affect course grades (no incentives).",
+        "setup": "Quasi-experiment with Chinese undergraduate sophomores (avg age 19.4) in Educational Technology at a Chinese university, all enrolled in 'Instructional Technology and Media' course. 71 randomized: 36 to experimental (ChatGPT 4.0 + paper-based metacognitive scaffolding prompts), 35 to control (ChatGPT 4.0 alone); 3 non-completers left 35 vs 33 analyzed. Task: 4-week interdisciplinary K-12 lesson design assignment integrating math/IT/biology. Participants told data would not affect course grades (no incentives).",
         "empirical_strategy": "Pretest-posttest design. Academic achievement test (40% theory MC/short-answer, 60% practical instructional design, graded by educators) analyzed via ANCOVA with pretest as covariate. SRL via Barnard et al. (2008) questionnaire across six dimensions; t-tests. Cognitive load and technology acceptance via Likert scales. Semi-structured interviews thematically coded.",
-        "key_results": "Academic achievement: experimental d=0.36 vs control (F=3.94, p=0.051, marginal). SRL: significant gains in task strategy (d=0.69) and self-evaluation (d=0.43); the control group showed declines across five SRL dimensions. Lower cognitive load (d=-0.47) and higher perceived usefulness in experimental. Interviews showed deeper reflection and critical evaluation of ChatGPT outputs in the scaffolded condition.",
+        "key_results": "Academic achievement: experimental d=0.36 vs control (F=3.94, p=0.051, marginal). SRL: significant gains in task strategy (d=0.69) and self-evaluation (d=0.53); the control group showed declines across five SRL dimensions. Lower cognitive load (d=-0.47) and higher perceived usefulness in experimental. Interviews showed deeper reflection and critical evaluation of ChatGPT outputs in the scaffolded condition.",
     },
     "chung_etal_2025": {
         "setup": "Five-month 'AI for Python Learning' course (Jan-Jun 2025) in partnership with Taipei City Government across 10 Taipei high schools (8 public, 2 private). 1,047 enrolled; 770 met pre-registration inclusion criteria. Platform combined lecture videos, browser-based coding practice, and an LLM-powered chatbot tutor (both arms); copy-paste was disabled. Students earned a government-endorsed certificate (valid for college applications) by completing modules and passing a proctored final written exam.",
@@ -611,9 +648,9 @@ PAPER_SUMMARIES = {
         "key_results": "Adaptive sequencing raised exam performance by 0.156 SD without controls and 0.150 SD with baseline controls and FE — about 6-9 months of additional schooling. Heterogeneity: beginners gained 0.215 SD; students with prior Python skill gained ~0 SD. Lower-tier schools gained 0.173 SD; higher-tier 0.039 SD. Mediation: engagement (time, attempts) accounts for essentially the full effect; chat quality (LLM-as-judge) was significantly higher in treatment.",
     },
     "liu_etal_2026": {
-        "setup": "Three pre-registered RCTs on Prolific (US adults). Exp 1 (N=307 post-exclusions) gives 12 fraction problems with a GPT-5 sidebar (or no AI) followed by 3 unassisted test problems. Exp 2 (N=585) replicates with a pretest-based exclusion and a matched control sidebar (worked pretest solutions) to remove interface asymmetry. Exp 3 (N=168) extends to SAT reading comprehension (5 learning + 3 test passages); control sidebar contains test-taking tips. AI was pre-prompted with each problem and solution, allowing one-word answer requests. Skipping was costless. Pay: $2.60-$3.40.",
+        "setup": "Three RCTs on Prolific (US adults; the paper reports no pre-registration). Exp 1 (N=307 post-exclusions) gives 12 fraction problems with a GPT-5 sidebar (or no AI) followed by 3 unassisted test problems. Exp 2 (N=585) replicates with a pretest-based exclusion and a matched control sidebar (worked pretest solutions) to remove interface asymmetry. Exp 3 (N=168) extends to SAT reading comprehension (5 learning + 3 test passages); control sidebar contains test-taking tips. AI was pre-prompted with each problem and solution, allowing one-word answer requests. Skipping was costless. Pay: $2.60-$3.40.",
         "empirical_strategy": "Random assignment to AI vs control at study entry. Primary outcomes: mean solve rate and skip rate on the final 3 unassisted test problems. Two-sample t-tests on participant means with Cohen's d. Exp 2 adds heterogeneity by self-reported AI usage type (direct answer vs hints vs no use).",
-        "key_results": "AI access lowers unassisted solve rates: Exp 1 d=-0.42, Exp 2 d=-0.19, Exp 3 d=-0.42. Skip rates rise (Exp 1 d=0.25, Exp 3 d=0.42). Decline concentrates among the 61% who used AI for direct solutions; hint-users (27%) and non-users (12%) look like controls. Effects emerge after only ~10-15 minutes of exposure.",
+        "key_results": "AI access lowers unassisted solve rates: Exp 1 d=-0.42, Exp 2 d=-0.19, Exp 3 d=-0.42. Skip rates rise (Exp 1 d=0.25, Exp 3 d=0.42). Decline concentrates among the 61% who used AI for direct solutions; hint-users (27%) scored like controls (0.76 vs 0.77) and non-users (12%) slightly above (0.89). Effects emerge after only ~10-15 minutes of exposure.",
     },
     "shen_and_tamkin_2026": {
         "setup": "Between-subjects online RCT with 52 experienced Python developers (≥1 year Python, no prior Trio library experience) recruited through a crowdwork platform. Flat $150 fee. After a warm-up coding task to calibrate Python familiarity, participants had up to 35 minutes to complete two Trio asynchronous-programming tasks on an online coding-interview platform. Treatment (n=26): chat-based GPT-4o coding assistant prompted to produce full correct solutions. Control (n=26): no AI. Both groups then took a 14-question, 27-point Trio quiz with no AI permitted.",
@@ -623,8 +660,11 @@ PAPER_SUMMARIES = {
 }
 
 
-# ── Per-estimate overrides (from version-refresh verification) ──────────────
-# Override specific fields per estimate_id (e.g., refresh SE units, n_total)
+# ── Per-estimate overrides (verification passes) ────────────────────────────
+# Override specific fields per estimate_id. Entries below marked [RA-2026-07]
+# come from the July 2026 RA verification workbook, re-verified against each
+# paper's PDF. Policy: effect_size_sd/se/ci hold SD-unit values ONLY; raw
+# (points / pp / grade-point) coefficients live in `notes` with explicit units.
 ESTIMATE_OVERRIDES = {
     # Bastani: PNAS version uses SD-standardized SEs throughout; current xlsx
     # has Table 1 raw SEs for the practice estimates. Override to SD units.
@@ -632,8 +672,285 @@ ESTIMATE_OVERRIDES = {
     "bastani_etal_2025__est2": {"se": 0.112, "n_total": 2848},
     "bastani_etal_2025__est3": {"n_total": 2848},
     "bastani_etal_2025__est4": {"n_total": 2848},
-    # Nie: refresh exam participation SE/CI to match Figure 3 caption
-    "nie_etal_2025__est41": {"se": 1.34, "ci_lower": -7.10, "ci_upper": -1.82},
+
+    # [RA-2026-07] Barcaui: analysis is on the 85 completers (43+42), not the
+    # 120 randomized (Table 2, p.6-7).
+    "barcaui_2025__est0": {"n_total": 85},
+
+    # [RA-2026-07] Kazemitabaar post-test: baseline outscored Codex (62.9% vs
+    # 61.3%, Sec 5.2.1), so under the positive-favors-AI convention d = -0.05.
+    # NOTE: literature_effects.csv (paper Figure 5) still carries +0.05.
+    "kazemitabaar_etal_2023__est19": {
+        "effect_size_sd": -0.05, "ci_lower": -0.522, "ci_upper": 0.422,
+        "notes": "Post-test 1 day after training; no AI access. Baseline group "
+                 "scored slightly higher (62.9% vs 61.3%), so the sign is negative "
+                 "under the positive-favors-AI convention. Not significant (p=.838).",
+    },
+
+    # [RA-2026-07] De Simone: regression Ns are 654/654/636 (Tables 2-3), not
+    # the 759 completers; arm split not reported for the analysis samples.
+    # Third-term exam was taken 7/12/24, one day after sessions ended -> immediate.
+    "de_simone_etal_2025__est5": {
+        "n_total": 654, "n_treatment": None, "n_control": None,
+        "notes": "ITT. 6-week intervention, 12 sessions of 90 min. School FE and "
+                 "baseline controls. Regression N=654 (Table 2); 759 completers.",
+    },
+    "de_simone_etal_2025__est6": {
+        "n_total": 654, "n_treatment": None, "n_control": None,
+        "notes": "Main outcome. Equivalent to 1.5 years of business-as-usual "
+                 "schooling. Regression N=654 (Table 3); 759 completers.",
+    },
+    "de_simone_etal_2025__est7": {
+        "n_total": 636, "n_treatment": None, "n_control": None,
+        "outcome_timing": "immediate",
+        "notes": "Broader-curriculum school exam taken the day after sessions "
+                 "ended (Table 14) - transfer, not delayed retention. Regression "
+                 "N=636 (Table 2).",
+    },
+
+    # [RA-2026-07] Fan: n_total should be the two-arm comparison sample
+    # (AI vs CN), not the four-arm study total (Appendix Tables 1-2).
+    "fan_etal_2025__est8": {"n_total": 62},
+    "fan_etal_2025__est9": {"n_total": 58},
+
+    # [RA-2026-07] Hausman: all effects are raw grade points on a 0-100 scale,
+    # not SD units. Keep SD columns empty; raw values documented in notes.
+    "hausman_etal_2025__est10": {
+        "se": None,
+        "notes": "Effect of early AI exposure on subsequent advanced course "
+                 "performance. Raw effect: +0.928 grade points (0-100 scale), "
+                 "SE 0.229 (Table 5 col. 3). Not in SD units.",
+    },
+    "hausman_etal_2025__est11": {
+        "se": None,
+        "notes": "Year 2 after rollout; effect larger than Year 1. ~80% AI "
+                 "adoption in 2023-24. Raw effect: +1.484 grade points (0-100 "
+                 "scale), SE 0.406 (Table 2). Not in SD units.",
+    },
+    "hausman_etal_2025__est12": {
+        "se": None,
+        "notes": "ITT effect (AI availability, not use). Student FE + semester FE "
+                 "+ course controls. ~30% AI adoption in 2022-23. Raw effect: "
+                 "+0.970 grade points (0-100 scale), SE 0.289 (Table 2). Not in "
+                 "SD units.",
+    },
+    "hausman_etal_2025__est13": {
+        "se": None,
+        "notes": "Course-semester level. Largest effects for weakest students. "
+                 "Raw effect: +3.014 grade points at the 25th percentile (0-100 "
+                 "scale), SE 0.933 (Table 4). Not in SD units.",
+    },
+
+    # [RA-2026-07] Henkel: endline is the end-of-intervention post-test (no
+    # retention wave); intervention ran Feb-Aug 2023 (~8 months, not ~6).
+    "henkel_etal_2024__est15": {
+        "outcome_timing": "immediate",
+        "treatment": "Rori AI math tutor (2x30min/week, Feb-Aug 2023)",
+    },
+
+    # [RA-2026-07] Kalam: df-weighted pooled-SD Cohen's d = 2.48 (Table 2 means/
+    # SDs); Week 1 quiz was taken with assigned resources in hand (ChatGPT arm
+    # could query ChatGPT during the quiz) -> outcome_with_ai set in map below.
+    "kalam_etal_2025__est16": {
+        "effect_size_sd": 2.48,
+        "notes": "Quiz WITH assigned resources in hand (ChatGPT arm could query "
+                 "ChatGPT during the proctored quiz). Very small sample. Scores: "
+                 "9.60 vs 6.64; df-weighted pooled-SD Cohen's d.",
+    },
+
+    # [RA-2026-07] Kim: est23 SE 0.01 was the raw log-scale SE next to an empty
+    # effect; move raw values to notes. est24 paired a crude d (0.2) with the
+    # raw SE (0.001); convert SE to the same IQR-based SD units.
+    "kim_etal_2025__est23": {
+        "se": None,
+        "notes": "DiD exploiting staggered rollout. Student and date FEs. 2.1M "
+                 "student-day obs. Raw effect: +0.3057 log points (SE 0.0103, "
+                 "p<0.01) = ~35.8% more problems/day; no SD conversion available.",
+    },
+    "kim_etal_2025__est24": {
+        "se": 0.008, "ci_lower": 0.184, "ci_upper": 0.216,
+        "quality_flags": "not RCT; non-standard outcome; active control",
+        "notes": "DiD design. Raw effect +2.64pp on ~74% base (Table 2: 0.0264, "
+                 "SE 0.0011); d approximated via IQR-based SD 0.133, SE converted "
+                 "to the same units. Low-performing students benefit most.",
+    },
+
+    # [RA-2026-07] Kreijkes: est25/est26 stored the paper's raw-point SE/CI
+    # next to SD-unit effects (CIs did not contain the point estimates).
+    # Converted to SD units via delta method from Table 3 raw B/SE.
+    "kreijkes_etal_2026__est25": {
+        "se": 0.060, "ci_lower": -0.557, "ci_upper": -0.323,
+        "notes": "Within-subject (Group 1). Test 3 days post-learning. Negative = "
+                 "LLM worse than notes. SE/CI converted to SD units from raw "
+                 "B=1.92 (SE 0.26), Table 3.",
+    },
+    "kreijkes_etal_2026__est26": {
+        "se": 0.068, "ci_lower": -0.513, "ci_upper": -0.247,
+        "notes": "Within-subject (Group 1). Test 3 days post-learning. SE/CI "
+                 "converted to SD units from raw B=0.95 (SE 0.17), Table 3.",
+    },
+
+    # [RA-2026-07] Lehmann Study 1: est32 is the FE estimate (Table 2: -0.02,
+    # SE 0.00); its stored SE 0.02 belonged to the IV row (est35, Table 3).
+    # est34's raw coefficient (-1.407, SE 0.525, Table 10) converted to SD
+    # units by the pooled post-test SD 4.6 used for the subgroup rows.
+    # Studies 2/3 arm splits are not reported in the paper.
+    "lehmann_etal_2024__est32": {
+        "se": None,
+        "notes": "Study 1 (field). Continuous treatment. Raw FE coefficient -0.02 "
+                 "per unit of cumulative ChatGPT similarity (SE 0.00, p<0.001, "
+                 "Table 2). 6,594 student-question obs.",
+    },
+    "lehmann_etal_2024__est33": {
+        "n_treatment": None, "n_control": None,
+        "notes": "Study 3 (replication with copy-paste). d~0.42 back-calculated; "
+                 "arm split not reported, SE assumes ~equal split. Marginally "
+                 "significant in t-test, null in regression.",
+    },
+    "lehmann_etal_2024__est34": {
+        "effect_size_sd": -0.306, "se": 0.114,
+        "ci_lower": -0.530, "ci_upper": -0.082,
+        "notes": "Exploratory. Treated subjects only. Copy-paste as exogenous "
+                 "shifter of substitutive use. Raw coefficient -1.407 post-test "
+                 "questions (SE 0.525, p=0.009, Table 10); converted to SD units "
+                 "by post-test SD 4.6.",
+    },
+    "lehmann_etal_2024__est35": {
+        "notes": "FE2SLS using ChatGPT service outages as IV. Raw IV coefficient "
+                 "-0.06 per unit of cumulative similarity (SE 0.02, p=0.002, "
+                 "Table 3). N=6,594 obs. Continuous treatment.",
+    },
+    "lehmann_etal_2024__est36": {
+        "n_treatment": None, "n_control": None,
+        "notes": "Study 2. No copy-paste available (unintended). d~0.25 "
+                 "back-calculated from means/SDs; arm split not reported, SE "
+                 "assumes ~equal split. Not significant.",
+    },
+
+    # [RA-2026-07] LearnLM: the stored CIs were percentage-point ATE intervals
+    # sitting in the SD-unit CI columns; moved to notes with pp units.
+    # est31's n_control=91 was the static-hint group, not this contrast's arm.
+    "learnlm_team_2025__est29": {
+        "ci_lower": None, "ci_upper": None,
+        "notes": "Key learning outcome: transfer to new topic. ATE +10.1pp, 95% "
+                 "CI [+4.6, +15.4] (Table F.6; pp units). OR=1.6 [1.2, 2.0]. "
+                 "P(LearnLM>hint)>99.9%.",
+    },
+    "learnlm_team_2025__est30": {
+        "ci_lower": None, "ci_upper": None,
+        "notes": "Bayesian logistic regression. ATE +27.7pp, 95% CI [+24.6, "
+                 "+30.4] (pp units). OR=7.4 [5.1, 11.0]. 165 students. Human "
+                 "tutor supervised LearnLM messages.",
+    },
+    "learnlm_team_2025__est31": {
+        "ci_lower": None, "ci_upper": None, "n_control": None,
+        "notes": "ATE +5.5pp over human tutoring on transfer, 95% CI [-1.4, "
+                 "+12.4] (pp units). OR=1.3 [0.9, 1.7]. P(LearnLM>human)=93.6%. "
+                 "Both arms within the 74 tutoring students (session-level "
+                 "randomization).",
+    },
+
+    # [RA-2026-07] Lira: site links the 2026 arXiv v4, whose numbering merges
+    # the 2025 draft's Study 5 into Study 4 and makes the editors/Google
+    # experiment Study 3.
+    "lira_etal_2025__est38": {
+        "notes": "Study 3 (2026 version). AI beats 49 professional editors "
+                 "(avg 25 yrs experience).",
+    },
+    "lira_etal_2025__est39": {
+        "study_label": "Lira et al., Study 4 (example only)",
+        "notes": "Study 4 (2026 version; labeled Study 5 in the 2025 draft). "
+                 "Example-only as effective as practice with AI (d=0.03 "
+                 "difference). Mechanism: learning by example.",
+    },
+
+    # [RA-2026-07] Nie: raw percentage-point SE/CIs were sitting in SD-unit
+    # columns; LATE intervals are 90% BCa (not 95%). Raw values -> notes.
+    "nie_etal_2025__est41": {
+        "se": None, "ci_lower": None, "ci_upper": None,
+        "notes": "ITT. Only 14.2% of treatment group used GPT-4. Raw effect: "
+                 "-4.4pp exam participation (SE 1.34, 95% CI [-7.10, -1.82], "
+                 "Fig. 3b; pp units). Bonferroni-corrected p=0.020.",
+    },
+    "nie_etal_2025__est42": {
+        "ci_lower": None, "ci_upper": None,
+        "notes": "LATE for adopters (14.2% compliance), imputing for missingness. "
+                 "ES=0.40; raw LATE +6.86pp, 90% BCa CI [0.30, 14.13] (Table 2; "
+                 "pp units). Preferred estimate. Not significant after Bonferroni.",
+    },
+
+    # [RA-2026-07] Shen & Tamkin: exact back-calculated SE/CI; quiz is 14
+    # questions / 27 points (Sec 4.2), not 6.
+    "shen_and_tamkin_2026__est57": {
+        "se": 0.287, "ci_lower": -1.300, "ci_upper": -0.176,
+        "notes": "35-min coding task with AI; 14-question (27-point) quiz w/o AI. "
+                 "No significant productivity gain. SE back-calculated from d "
+                 "and N.",
+    },
+
+    # [RA-2026-07] Vanzo: cohort rows are subgroups of the pooled estimate
+    # (est43); ACL version reports the 3rd-year effect as significant p=0.044.
+    "vanzo_etal_2024__est44": {
+        "is_subgroup": True, "subgroup": "Grade: Younger",
+        "notes": "Significant (one-sided, p=0.044, ACL version). "
+                 "Objective/grammar homework type.",
+    },
+    "vanzo_etal_2024__est45": {
+        "is_subgroup": True, "subgroup": "Grade: Older",
+    },
+
+    # [RA-2026-07] Wang: Table 2 reports SE 0.01 (raw pp) for the main effect;
+    # converted to the same binary-outcome SD units as the stored 0.08.
+    # est46 is the bottom tutor-quality tercile -> subgroup.
+    "wang_etal_2025__est46": {
+        "is_subgroup": True, "subgroup": "Tutor quality: Bottom tercile",
+    },
+    "wang_etal_2025__est47": {
+        "se": 0.021, "ci_lower": 0.040, "ci_upper": 0.120,
+        "quality_flags": "non-standard outcome",
+        "notes": "AI assists the TUTOR, not student directly. Tutor-level "
+                 "randomization (782 tutors). 4,136 sessions. $20/tutor/year. "
+                 "Raw effect +4pp (SE 0.01, Table 2); SE converted to the same "
+                 "binary-outcome SD units as the effect.",
+    },
+
+    # [RA-2026-07] Wiles: knowledge questions are five separate regressions
+    # with Ns 253-573 (Table B7); task scores are raw benchmark-normalized
+    # ATEs (Table B3), not SD units -> raw values in notes.
+    "wiles_etal_2024__est48": {
+        "n_total": None,
+        "notes": "No consistent difference on 5 post-experiment knowledge "
+                 "questions without ChatGPT (two of five marginal at p<0.10, "
+                 "opposite signs). No learning retained. N varies by question: "
+                 "253-573 (Table B7).",
+    },
+    "wiles_etal_2024__est49": {
+        "se": None,
+        "notes": "Raw ATE +0.490 on the benchmark-normalized coding score "
+                 "(SE 0.036, 95% CI [0.42, 0.56], Table B3); not SD units. Score "
+                 "normalized to data-scientist benchmark. Effect during AI use.",
+    },
+
+    # [RA-2026-07] Xu: 0.997 was Table 2's adjusted-mean SE (raw points), not
+    # the SE of Cohen's d; the paper reports no SE for d.
+    "xu_etal_2025__est50": {
+        "se": None,
+        "notes": "Both groups used ChatGPT; treatment = metacognitive prompts. "
+                 "F=3.939, p=0.051; paper reports no SE for Cohen's d (Table 2's "
+                 "0.997 is the adjusted-mean SE in raw points). 4-week experiment.",
+    },
+
+    # [RA-2026-07] Chung: certification exam was the end-of-course terminal
+    # assessment (June 2025), not a delayed retention wave.
+    "chung_etal_2025__est52": {"outcome_timing": "immediate (end of ~5-month course)"},
+    "chung_etal_2025__est53": {"outcome_timing": "immediate (end of ~5-month course)"},
+}
+
+# Estimates removed from the site entirely (duplicates confirmed in the
+# 2026-07 RA verification pass).
+DROP_ESTIMATES: set[str] = {
+    # Duplicate of hausman est12: same Table 2 col (1) coefficient 0.970 (0.289)
+    "hausman_etal_2025__est14",
 }
 
 
@@ -643,7 +960,7 @@ ESTIMATE_OVERRIDES = {
 def _ce(study_label, paper_key, effect, se, treatment, control, outcome,
         timing="immediate", domain="General knowledge",
         comparison="ai_vs_bau", outcome_with_ai=False, n=None,
-        ci_lo=None, ci_hi=None, subgroup=""):
+        ci_lo=None, ci_hi=None, subgroup="", notes=None):
     """Helper to build an additional estimate dict."""
     return dict(
         study_label=study_label,
@@ -660,7 +977,7 @@ def _ce(study_label, paper_key, effect, se, treatment, control, outcome,
         n_total=n,
         treatment=treatment,
         control=control,
-        notes="Subgroup / alternative arm comparison extracted by verification subagent.",
+        notes=notes if notes is not None else "",
         included_in_curated_subset=False,
         quality_label="High",
         quality_flags="none",
@@ -674,31 +991,34 @@ def _ce(study_label, paper_key, effect, se, treatment, control, outcome,
 
 ADDITIONAL_ESTIMATES = [
     # ── Contractor & Reyes — Session 2 essay quality components ────────────
+    # From regression_results_main.dta avg_score1..5_s2 (OLS spec), i.e. paper
+    # Table 6 Panel A ITT betas (human and AI graders averaged) divided by the
+    # control-group SD. Ns are the per-outcome regression Ns.
     _ce("Contractor and Reyes (2026), Writing style & clarity (S2 essay)",
-        "contractor_reyes_2026", 0.342, 0.138,
+        "contractor_reyes_2026", 0.304, 0.125,
         "ChatGPT access during practice", "No AI access",
         "Essay quality component: writing style & clarity (S2)",
         timing="delayed", n=197, subgroup="Essay component"),
     _ce("Contractor and Reyes (2026), Evidence & examples (S2 essay)",
-        "contractor_reyes_2026", 0.251, 0.152,
+        "contractor_reyes_2026", 0.232, 0.145,
         "ChatGPT access during practice", "No AI access",
         "Essay quality component: evidence & examples (S2)",
         timing="delayed", n=197, subgroup="Essay component"),
     _ce("Contractor and Reyes (2026), Structure & organization (S2 essay)",
-        "contractor_reyes_2026", 0.173, 0.142,
+        "contractor_reyes_2026", 0.153, 0.130,
         "ChatGPT access during practice", "No AI access",
         "Essay quality component: structure & organization (S2)",
         timing="delayed", n=197, subgroup="Essay component"),
     _ce("Contractor and Reyes (2026), Relevance to prompt (S2 essay)",
-        "contractor_reyes_2026", 0.162, 0.168,
+        "contractor_reyes_2026", 0.264, 0.128,
         "ChatGPT access during practice", "No AI access",
         "Essay quality component: relevance to prompt (S2)",
-        timing="delayed", n=196, subgroup="Essay component"),
+        timing="delayed", n=195, subgroup="Essay component"),
     _ce("Contractor and Reyes (2026), Factual accuracy (S2 essay)",
-        "contractor_reyes_2026", 0.128, 0.148,
+        "contractor_reyes_2026", 0.229, 0.139,
         "ChatGPT access during practice", "No AI access",
         "Essay quality component: factual accuracy (S2)",
-        timing="delayed", n=197, subgroup="Essay component"),
+        timing="delayed", n=195, subgroup="Essay component"),
 
     # ── Barcaui — topic and prior-AI-experience subgroups ────────────────
     _ce("Barcaui (2025), Technical topics",
@@ -793,55 +1113,71 @@ ADDITIONAL_ESTIMATES = [
         "fan_etal_2025", -0.02, 0.260,
         "ChatGPT 4.0 during revision", "No additional support",
         "Knowledge transfer (AI in healthcare, 10-item MCQ)",
-        domain="Writing", timing="retention", n=60,
-        subgroup="Transfer outcome"),
+        domain="Writing", timing="delayed", n=60,
+        subgroup="Transfer outcome",
+        notes="Post-test within one day of the task (same wave as knowledge "
+              "gain). Transfer domain: AI in healthcare."),
 
     # ── Hausman — heterogeneity by demographics/course type/percentile ──
-    # Note: effects are in raw grade points (0-100 scale), not SD units, but
-    # the original 5 estimates in the dataset are in the same units, so we
-    # keep the convention for consistency.
+    # [RA-2026-07] Effects are raw grade points (0-100 scale), NOT SD units;
+    # per site policy the SD columns stay empty and raw values live in notes
+    # (matching the paper's five main estimates, which are handled the same way).
     _ce("Hausman et al. (2025), Male students (Year 2)",
-        "hausman_etal_2025", 1.374, 0.470,
+        "hausman_etal_2025", None, None,
         "AI-compatible courses post-ChatGPT (male)",
         "AI-incompatible courses (DiD)",
         "Course grade (0-100), male students",
-        domain="Mixed", n=200672, subgroup="Gender: Male"),
+        domain="Mixed", n=200672, subgroup="Gender: Male",
+        notes="Raw DiD effect: +1.374 grade points (0-100 scale), SE 0.470 "
+              "(Table 3). Not in SD units."),
     _ce("Hausman et al. (2025), Young students (<26, Year 2)",
-        "hausman_etal_2025", 2.079, 0.537,
+        "hausman_etal_2025", None, None,
         "AI-compatible courses post-ChatGPT (age<26)",
         "AI-incompatible courses (DiD)",
         "Course grade (0-100), young students",
-        domain="Mixed", n=238466, subgroup="Age: <26"),
+        domain="Mixed", n=238466, subgroup="Age: <26",
+        notes="Raw DiD effect: +2.079 grade points (0-100 scale), SE 0.537 "
+              "(Table 3). Not in SD units."),
     _ce("Hausman et al. (2025), Advanced courses (Year 2)",
-        "hausman_etal_2025", 1.466, 0.511,
+        "hausman_etal_2025", None, None,
         "AI-compatible advanced courses post-ChatGPT",
         "AI-incompatible advanced courses (DiD)",
         "Course grade (0-100), advanced courses",
-        domain="Mixed", n=254662, subgroup="Course level: Advanced"),
+        domain="Mixed", n=254662, subgroup="Course level: Advanced",
+        notes="Raw DiD effect: +1.466 grade points (0-100 scale), SE 0.511 "
+              "(Table 3). Not in SD units."),
     _ce("Hausman et al. (2025), STEM courses (Year 2)",
-        "hausman_etal_2025", 1.269, 0.969,
+        "hausman_etal_2025", None, None,
         "AI-compatible STEM post-ChatGPT", "AI-incompatible STEM (DiD)",
         "Course grade (0-100), STEM courses",
-        domain="Math", n=119260, subgroup="Domain: STEM"),
+        domain="Math", n=119260, subgroup="Domain: STEM",
+        notes="Raw DiD effect: +1.269 grade points (0-100 scale), SE 0.969, "
+              "not significant (Table 3). Not in SD units."),
     _ce("Hausman et al. (2025), Large classes (>25, Year 2)",
-        "hausman_etal_2025", 1.671, 0.453,
+        "hausman_etal_2025", None, None,
         "AI-compatible large courses post-ChatGPT",
         "AI-incompatible large courses (DiD)",
         "Course grade (0-100), classes >25 students",
-        domain="Mixed", n=435675, subgroup="Class size: Large"),
+        domain="Mixed", n=435675, subgroup="Class size: Large",
+        notes="Raw DiD effect: +1.671 grade points (0-100 scale), SE 0.453 "
+              "(Table 3). Not in SD units."),
     _ce("Hausman et al. (2025), Median grade (Year 1)",
-        "hausman_etal_2025", 1.272, 0.612,
+        "hausman_etal_2025", None, None,
         "AI-compatible courses post-ChatGPT",
         "AI-incompatible courses (DiD)",
         "50th percentile grade (Year 1)",
-        domain="Mixed", n=10076, subgroup="Percentile: 50th"),
+        domain="Mixed", n=10076, subgroup="Percentile: 50th",
+        notes="Raw DiD effect: +1.272 grade points at the median (0-100 scale), "
+              "SE 0.612 (Table 4). Not in SD units."),
     _ce("Hausman et al. (2025), AI-incompatible advanced (cohort experience)",
-        "hausman_etal_2025", -0.507, 0.353,
+        "hausman_etal_2025", None, None,
         "2022-23 cohort (post-ChatGPT exposure)",
         "2021-22 cohort (pre-ChatGPT, baseline)",
         "Grade in AI-incompatible advanced courses (Year 2)",
         domain="Mixed", timing="delayed", outcome_with_ai=False,
-        n=34829, subgroup="AI human-capital spillover"),
+        n=34829, subgroup="AI human-capital spillover",
+        notes="Raw DiD effect: -0.507 grade points (0-100 scale), SE 0.353, "
+              "not significant (Table 5 col. 6). Not in SD units."),
 
     # ── Kreijkes — Group 2 (LLM vs LLM+Notes) + free recall outcomes ─────
     _ce("Kreijkes et al. (2026), Free recall (LLM vs Notes)",
@@ -900,81 +1236,122 @@ ADDITIONAL_ESTIMATES = [
         "AI users obtaining direct solutions", "No-AI control",
         "Test solve rate, 3 fraction problems (Exp 2 heterogeneity)",
         domain="Math", n=466, subgroup="AI use: Direct answers"),
-    _ce("Liu et al. (2026), Hint-only AI users (Exp 2)",
+    # [RA-2026-07] The Cohen's d values the paper reports for hint-users and
+    # non-users are contrasts AGAINST DIRECT-ANSWER USERS (t(269)/t(224), p.7),
+    # not against the no-AI control; relabeled accordingly (ai_design,
+    # within-AI-arm descriptive contrasts).
+    _ce("Liu et al. (2026), Direct answers vs hint-seekers (Exp 2)",
         "liu_etal_2026", -0.29, 0.133,
-        "AI users requesting only hints", "No-AI control",
+        "AI users obtaining direct solutions", "AI users requesting only hints",
         "Test solve rate, 3 fraction problems (Exp 2 heterogeneity)",
-        domain="Math", n=359, subgroup="AI use: Hints only"),
-    _ce("Liu et al. (2026), Self-reported no AI use in AI arm (Exp 2)",
+        domain="Math", comparison="ai_design", n=271,
+        subgroup="AI use: Direct vs hints",
+        notes="Descriptive within-AI-arm contrast (t(269)); the paper flags "
+              "these splits as non-causal. Hint-users vs control is ~null "
+              "(0.76 vs 0.77)."),
+    _ce("Liu et al. (2026), Direct answers vs non-users (Exp 2)",
         "liu_etal_2026", -0.66, 0.184,
-        "AI arm participants who did not use AI", "No-AI control",
+        "AI users obtaining direct solutions",
+        "AI-arm participants who did not use AI",
         "Test solve rate, 3 fraction problems (Exp 2 heterogeneity)",
-        domain="Math", n=314, subgroup="AI use: None"),
+        domain="Math", comparison="ai_design", n=226,
+        subgroup="AI use: Direct vs non-users",
+        notes="Descriptive within-AI-arm contrast (t(224)); non-causal. "
+              "Non-users outperformed the no-AI control (0.89 vs 0.77)."),
     _ce("Liu et al. (2026), Exp 1 skip rate",
-        "liu_etal_2026", 0.25, 0.116,
+        "liu_etal_2026", 0.25, 0.117,
         "GPT-5 sidebar access", "No AI access",
         "Skip rate, 3 fraction test problems (Exp 1)",
-        domain="Math", n=307, subgroup="Outcome: Skip rate"),
+        domain="Math", n=307, ci_lo=0.02, ci_hi=0.48,
+        subgroup="Outcome: Skip rate"),
     _ce("Liu et al. (2026), Exp 3 skip rate",
-        "liu_etal_2026", 0.42, 0.158,
+        "liu_etal_2026", 0.42, 0.156,
         "GPT-5 sidebar access", "No-AI control with test-tips",
         "Skip rate, 3 SAT reading test problems (Exp 3)",
         domain="Language", comparison="ai_vs_active",
-        n=168, subgroup="Outcome: Skip rate"),
+        n=168, ci_lo=0.11, ci_hi=0.72, subgroup="Outcome: Skip rate"),
 
     # ── Chung — subgroup heterogeneity by Python skill and school tier ──
+    # [RA-2026-07] Split is self-reported prior Python skill (53% beginners /
+    # 39% experienced, p.13), not a prior-achievement median split. Subgroup Ns
+    # from Table 7: beginners 411, experienced 299; per-tier Ns are not
+    # reported (combined N=716, Table 15). Exam = end-of-course terminal
+    # assessment -> immediate.
     _ce("Chung et al. (2026), Python beginners",
         "chung_etal_2025", 0.215, None,
         "RL adaptive sequencing + GenAI tutor", "Fixed sequence + GenAI tutor",
         "Standardized Python exam (beginners only)",
-        domain="Coding", timing="delayed", comparison="ai_design",
-        n=380, ci_lo=0.048, ci_hi=0.382, subgroup="Prior achievement: Below median"),
+        domain="Coding", timing="immediate", comparison="ai_design",
+        n=411, ci_lo=0.048, ci_hi=0.382,
+        subgroup="Prior Python skill: Beginner",
+        notes="Self-identified first-time learners/beginners (53% of sample, "
+              "N=411 per Table 7). 0.215 SD, p=0.012."),
     _ce("Chung et al. (2026), Python experienced",
         "chung_etal_2025", 0.008, None,
         "RL adaptive sequencing + GenAI tutor", "Fixed sequence + GenAI tutor",
         "Standardized Python exam (experienced)",
-        domain="Coding", timing="delayed", comparison="ai_design",
-        n=300, ci_lo=-0.21, ci_hi=0.226, subgroup="Prior achievement: Above median"),
+        domain="Coding", timing="immediate", comparison="ai_design",
+        n=299, ci_lo=-0.21, ci_hi=0.226,
+        subgroup="Prior Python skill: Experienced",
+        notes="Self-identified intermediate/proficient coders (39% of sample, "
+              "N=299 per Table 7). 0.008 SD, p=0.941."),
     _ce("Chung et al. (2026), Lower-tier schools",
         "chung_etal_2025", 0.173, None,
         "RL adaptive sequencing + GenAI tutor", "Fixed sequence + GenAI tutor",
         "Standardized Python exam (lower-tier schools)",
-        domain="Coding", timing="delayed", comparison="ai_design",
-        n=400, ci_lo=0.004, ci_hi=0.342, subgroup="School tier: Lower"),
+        domain="Coding", timing="immediate", comparison="ai_design",
+        n=716, ci_lo=0.004, ci_hi=0.342, subgroup="School tier: Lower",
+        notes="N=716 is the combined school-tier interaction sample (Table 15); "
+              "per-tier N is not reported. 0.173 SD, p=0.045."),
     _ce("Chung et al. (2026), Higher-tier schools",
         "chung_etal_2025", 0.039, None,
         "RL adaptive sequencing + GenAI tutor", "Fixed sequence + GenAI tutor",
         "Standardized Python exam (higher-tier schools)",
-        domain="Coding", timing="delayed", comparison="ai_design",
-        n=316, ci_lo=-0.205, ci_hi=0.283, subgroup="School tier: Higher"),
+        domain="Coding", timing="immediate", comparison="ai_design",
+        n=716, ci_lo=-0.205, ci_hi=0.283, subgroup="School tier: Higher",
+        notes="N=716 is the combined school-tier interaction sample (Table 15); "
+              "per-tier N is not reported. 0.039 SD, p=0.752."),
 
     # ── Wiles — task-specific effects ────────────────────────────────────
+    # [RA-2026-07] Table B3 coefficients are raw benchmark-normalized ATEs,
+    # not SD units; SD columns stay empty, raw values in notes.
     _ce("Wiles et al. (2026), Statistics task with AI",
-        "wiles_etal_2024", 0.201, 0.026,
+        "wiles_etal_2024", None, None,
         "ChatGPT access + training", "Google/Stack Overflow training",
         "Statistics task score (with AI access)",
-        domain="General knowledge", comparison="ai_vs_active",
-        outcome_with_ai=True, n=330, subgroup="Task: Statistics"),
+        domain="Coding", comparison="ai_vs_active",
+        outcome_with_ai=True, n=330, subgroup="Task: Statistics",
+        notes="Raw ATE +0.201 on the benchmark-normalized statistics score "
+              "(SE 0.026, 95% CI [0.15, 0.25], Table B3); not SD units."),
     _ce("Wiles et al. (2026), Prediction task with AI",
-        "wiles_etal_2024", 0.172, 0.042,
+        "wiles_etal_2024", None, None,
         "ChatGPT access + training", "Google/Stack Overflow training",
         "Prediction task score (with AI access)",
-        domain="General knowledge", comparison="ai_vs_active",
-        outcome_with_ai=True, n=298, subgroup="Task: Prediction"),
+        domain="Coding", comparison="ai_vs_active",
+        outcome_with_ai=True, n=298, subgroup="Task: Prediction",
+        notes="Raw ATE +0.172 on the benchmark-normalized prediction score "
+              "(SE 0.042, 95% CI [0.09, 0.25], Table B3); not SD units."),
 
     # ── Nie — alternative ITT/LATE specs ─────────────────────────────────
+    # [RA-2026-07] LATE intervals are 90% BCa on the raw pp effect (not 95%
+    # SD-unit CIs); homework effect is raw pp. Raw values in notes.
     _ce("Nie et al. (2025), Exam score LATE (ignore missingness)",
         "nie_etal_2025", 0.23, None,
         "GPT-4 access (adopters, LATE)", "No GPT-4 access",
         "Exam score LATE (ignore missingness)",
-        domain="Coding", n=5831, ci_lo=-0.34, ci_hi=8.98,
-        subgroup="Spec: LATE ignore missingness"),
+        domain="Coding", n=5831,
+        subgroup="Spec: LATE ignore missingness",
+        notes="ES=0.23; raw LATE +4.49pp, 90% BCa CI [-0.31, 9.66] (Table 2; "
+              "fn. 4 reports [-0.34, 8.98]; pp units). Paper reports no SE."),
     _ce("Nie et al. (2025), Week 6 homework completion (ITT)",
-        "nie_etal_2025", -4.6, 1.3,
+        "nie_etal_2025", None, None,
         "GPT-4 access", "No GPT-4 access",
         "Week 6 homework completion rate (pp)",
-        domain="Coding", n=5831, ci_lo=-7.2, ci_hi=-1.9,
-        subgroup="Outcome: Homework completion"),
+        domain="Coding", n=5831,
+        subgroup="Outcome: Homework completion",
+        notes="Raw effect: -4.6pp Week-6 homework completion (SE 1.3, 95% CI "
+              "[-7.2, -1.9], p=.01; Fig. 3b reports SE 1.34, CI [-7.20, -1.94]). "
+              "pp units, no SD conversion available."),
 
     # ── Lehmann — prior-knowledge median split (Table 12) ────────────────
     # Coefficients in raw # correct (20-question post-test); converted to SD
@@ -1005,17 +1382,10 @@ ADDITIONAL_ESTIMATES = [
         "Post-test, controlling for learning-phase volume (understanding)",
         domain="Coding", subgroup="Prior achievement: Above median"),
 
-    # ── Vanzo — grade/year split (Cohen's d already in SD units) ──────────
-    _ce("Vanzo et al. (2025), 3rd year students (age ~16)",
-        "vanzo_etal_2024", 0.603, None,
-        "GPT-4 interactive homework", "Traditional homework",
-        "Learning gains (post-test minus pre-test, 24 MCQ on English-as-L2)",
-        domain="Language", n=39, subgroup="Grade: Younger"),
-    _ce("Vanzo et al. (2025), 5th year students (age ~18)",
-        "vanzo_etal_2024", -0.004, None,
-        "GPT-4 interactive homework", "Traditional homework",
-        "Learning gains (post-test minus pre-test, 24 MCQ on English-as-L2)",
-        domain="Language", n=37, subgroup="Grade: Older"),
+    # ── Vanzo — grade/year split ──────────────────────────────────────────
+    # [RA-2026-07] Removed: these duplicated est44/est45 (the 3rd/5th-year
+    # rows from meta_analysis.xlsx), which are now flagged is_subgroup=True
+    # via ESTIMATE_OVERRIDES instead.
 ]
 
 
@@ -1040,6 +1410,10 @@ OUTCOME_WITH_AI = {
     # Contractor and Reyes: per user, "essay 1 could reflect AI performance"
     "contractor_reyes_2026__contractor_and_reyes_2026_session_one_essay": True,
     # session 1 test, session 2 test, session 2 essay → False (unassisted)
+    # Kalam Week-1 quiz: taken with assigned resources in hand; the ChatGPT arm
+    # could query ChatGPT during the proctored quiz (p.3). Week-2 retention
+    # (est17) was closed-book → False.
+    "kalam_etal_2025__est16": True,
 }
 
 
@@ -1157,50 +1531,49 @@ def match_curated(paper_name: str, treatment: str, outcome: str) -> str | None:
 
 
 def load_own_estimates() -> list[dict]:
-    """Load the 4 'This paper' estimates from regression_results_main.dta."""
+    """Load the 4 'This paper' estimates from regression_results_main.dta.
+
+    Test scores match paper Table 4 (ITT columns). Essay quality uses
+    avg_score6 (overall quality, human and AI graders averaged, student
+    level), matching paper Table 6 Panel B "Overall quality (average)",
+    standardized by the control-group SD.
+    """
     try:
         df = pd.read_stata(REG_DTA)
     except Exception as exc:  # pragma: no cover
         print(f"WARN: could not read {REG_DTA}: {exc}")
         return []
 
-    mask = df["outcome"].isin(["test_score1", "test_score2", "score6_essay"])
-    df = df[mask & (df["spec"] == "ols")].copy()
-
-    # apply the same sample restrictions as in 4-figures.do lines 238-241
-    def keep_row(r):
-        oc = r["outcome"]
-        sm = r["sample"]
-        return (
-            (oc == "test_score1" and sm == "s1_student")
-            or (oc == "test_score2" and sm == "s2_student")
-            or (oc == "score6_essay" and sm == "s1_grader")
-            or (oc == "score6_essay" and sm == "s2_grader")
-        )
-
-    df = df[df.apply(keep_row, axis=1)].copy()
+    keep = [
+        ("test_score1", "s1_student"),
+        ("test_score2", "s2_student"),
+        ("avg_score6_s1", "s1_student"),
+        ("avg_score6_s2", "s2_student"),
+    ]
+    df = df[df["spec"] == "ols"].copy()
+    df = df[df.apply(lambda r: (r["outcome"], r["sample"]) in keep, axis=1)].copy()
     df["effect"] = df["beta"] / df["sd_ctrl"]
     df["se_std"] = df["se"] / df["sd_ctrl"]
 
     label_map = {
         ("test_score1", "s1_student"): "Contractor and Reyes (2026), Session one test",
         ("test_score2", "s2_student"): "Contractor and Reyes (2026), Session two test",
-        ("score6_essay", "s1_grader"): "Contractor and Reyes (2026), Session one essay",
-        ("score6_essay", "s2_grader"): "Contractor and Reyes (2026), Session two essay",
+        ("avg_score6_s1", "s1_student"): "Contractor and Reyes (2026), Session one essay",
+        ("avg_score6_s2", "s2_student"): "Contractor and Reyes (2026), Session two essay",
     }
 
     # Human-readable outcome names (replaces raw Stata variable names)
     outcome_pretty = {
         ("test_score1", "s1_student"): "Test score, Session 1 (immediate, no AI)",
         ("test_score2", "s2_student"): "Test score, Session 2 (1 week later, no AI)",
-        ("score6_essay", "s1_grader"): "Essay quality, Session 1 (written with AI access)",
-        ("score6_essay", "s2_grader"): "Essay quality, Session 2 (1 week later, no AI)",
+        ("avg_score6_s1", "s1_student"): "Essay quality, Session 1 (written with AI access)",
+        ("avg_score6_s2", "s2_student"): "Essay quality, Session 2 (1 week later, no AI)",
     }
     timing_for = {
         ("test_score1", "s1_student"): "immediate",
         ("test_score2", "s2_student"): "delayed",
-        ("score6_essay", "s1_grader"): "immediate",
-        ("score6_essay", "s2_grader"): "delayed",
+        ("avg_score6_s1", "s1_student"): "immediate",
+        ("avg_score6_s2", "s2_student"): "delayed",
     }
 
     out = []
@@ -1220,7 +1593,7 @@ def load_own_estimates() -> list[dict]:
                 outcome_timing=timing_for[(r["outcome"], r["sample"])],
                 n_treatment=None,
                 n_control=None,
-                n_total=210 if str(r["sample"]).startswith("s1_") else 204,
+                n_total=int(r["N"]),
                 treatment="AI allowed while learning a new topic",
                 control="No AI allowed",
                 notes="",
@@ -1372,7 +1745,9 @@ def build():
             domain = LIT_DOMAIN.get(study_label, manual.get("learning_domain_primary", "Mixed"))
 
             estimate_id = f"{key}__est{idx}"
-            # Apply per-estimate overrides from version-refresh verification
+            if estimate_id in DROP_ESTIMATES:
+                continue
+            # Apply per-estimate overrides from verification passes
             ov = ESTIMATE_OVERRIDES.get(estimate_id, {})
             if "se" in ov: se = ov["se"]
             if "effect_size_sd" in ov: effect = ov["effect_size_sd"]
@@ -1403,13 +1778,12 @@ def build():
                     is_subgroup=False,
                 )
             )
-            # Apply n_total / CI overrides post-construction
-            if "n_total" in ov:
-                estimates_rows[-1]["n_total"] = ov["n_total"]
-            if "ci_lower" in ov:
-                estimates_rows[-1]["ci_lower"] = ov["ci_lower"]
-            if "ci_upper" in ov:
-                estimates_rows[-1]["ci_upper"] = ov["ci_upper"]
+            # Apply remaining overrides post-construction (any estimate field:
+            # n_total, n_treatment, n_control, ci_lower, ci_upper,
+            # outcome_timing, subgroup, study_label, outcome, notes, ...)
+            estimates_rows[-1].update(
+                {k: v for k, v in ov.items() if k not in ("se", "effect_size_sd")}
+            )
 
     # ── Append ADDITIONAL_ESTIMATES (subgroup / heterogeneity rows) ───────
     # Each gets a synthetic estimate_id keyed to paper_key.

@@ -323,7 +323,7 @@ function Hero({ papers, estimates, defaultEstimates, pooled }) {
     <section style={{ paddingTop: 52, paddingBottom: 8 }}>
       <div style={{ animation: "fadeUp 0.5s cubic-bezier(.22,1,.36,1) both" }}>
         <div style={SC({ fontSize: 10.5, color: C.ink3 })}>
-          Updated June 2026
+          Updated July 2026
         </div>
       </div>
 
@@ -993,7 +993,7 @@ function Footer() {
           marginTop: 36, paddingTop: 16, borderTop: `1px solid ${C.ruleSoft}`,
           display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10,
         }}>
-          <span style={SC({ fontSize: 9, color: C.ink3 })}>Updated June 2026 · Middlebury College</span>
+          <span style={SC({ fontSize: 9, color: C.ink3 })}>Updated July 2026 · Middlebury College</span>
           <span style={SC({ fontSize: 9, color: C.ink3 })}>germanr.github.io/ai-skill-atlas</span>
         </div>
       </div>
@@ -1006,6 +1006,7 @@ function Footer() {
 // ────────────────────────────────────────────────────────────────────────────
 function EstimateRow({ est, domain, last }) {
   const range = 2.0; // [-1, +1]
+  const hasEffect = est.effect_size_sd != null;
   const pct = ((Math.max(-1, Math.min(1, est.effect_size_sd)) + 1) / range) * 100;
   return (
     <div style={{ padding: "16px 22px", borderBottom: last ? "none" : `1px solid ${C.ruleSoft}` }}>
@@ -1013,9 +1014,9 @@ function EstimateRow({ est, domain, last }) {
         <div style={{ fontFamily: F.sans, fontWeight: 600, fontSize: 13.5, color: C.ink, lineHeight: 1.4 }}>{est.outcome}</div>
         <div style={{
           fontSize: 17, fontWeight: 600, fontFamily: F.mono, whiteSpace: "nowrap",
-          color: est.effect_size_sd >= 0 ? C.pos : C.neg,
+          color: !hasEffect ? C.ink3 : est.effect_size_sd >= 0 ? C.pos : C.neg,
         }}>
-          {fmtSD(est.effect_size_sd)} <span style={{ fontSize: 10, color: C.ink3, fontWeight: 400 }}>SD</span>
+          {fmtSD(est.effect_size_sd)} {hasEffect && <span style={{ fontSize: 10, color: C.ink3, fontWeight: 400 }}>SD</span>}
         </div>
       </div>
       <div style={{ fontFamily: F.mono, fontSize: 10.5, color: C.ink3, marginBottom: 12 }}>
@@ -1023,33 +1024,42 @@ function EstimateRow({ est, domain, last }) {
         {est.se != null && <> · SE {fmtSE(est.se)}</>}
         {est.ci_lower != null && <> · 95% CI {fmtCI(est.ci_lower, est.ci_upper)}</>}
       </div>
-      {/* Number line */}
-      <div style={{ position: "relative", height: 16 }}>
-        <div style={{ position: "absolute", left: 0, right: 0, top: 7, height: 1, background: C.rule }} />
-        <div style={{ position: "absolute", left: "50%", top: 2, width: 1, height: 11, background: C.ink3 }} />
-        {est.ci_lower != null && est.ci_upper != null && (
-          <div style={{
-            position: "absolute",
-            left: `${Math.max(0, ((Math.max(-1, est.ci_lower) + 1) / range) * 100)}%`,
-            width: `${Math.min(100, ((Math.min(1, est.ci_upper) - Math.max(-1, est.ci_lower)) / range) * 100)}%`,
-            top: 5.5, height: 4, background: domain.color, opacity: 0.3, borderRadius: 2,
-          }} />
-        )}
-        <div style={{
-          position: "absolute", left: `${pct}%`, top: 2.5, width: 10, height: 10,
-          background: domain.color, borderRadius: domain.symbol === "square" ? 0 : "50%",
-          transform: "translateX(-50%)", border: `1.5px solid ${C.paperHi}`,
-          boxShadow: `0 0 0 1px ${domain.color}`,
-        }} />
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, fontFamily: F.mono, color: C.ink3, marginTop: 2 }}>
-        <span>−1.0</span><span>0</span><span>+1.0</span>
-      </div>
+      {/* Number line (only when an SD-unit effect exists) */}
+      {hasEffect && (
+        <>
+          <div style={{ position: "relative", height: 16 }}>
+            <div style={{ position: "absolute", left: 0, right: 0, top: 7, height: 1, background: C.rule }} />
+            <div style={{ position: "absolute", left: "50%", top: 2, width: 1, height: 11, background: C.ink3 }} />
+            {est.ci_lower != null && est.ci_upper != null && (
+              <div style={{
+                position: "absolute",
+                left: `${Math.max(0, ((Math.max(-1, est.ci_lower) + 1) / range) * 100)}%`,
+                width: `${Math.min(100, ((Math.min(1, est.ci_upper) - Math.max(-1, est.ci_lower)) / range) * 100)}%`,
+                top: 5.5, height: 4, background: domain.color, opacity: 0.3, borderRadius: 2,
+              }} />
+            )}
+            <div style={{
+              position: "absolute", left: `${pct}%`, top: 2.5, width: 10, height: 10,
+              background: domain.color, borderRadius: domain.symbol === "square" ? 0 : "50%",
+              transform: "translateX(-50%)", border: `1.5px solid ${C.paperHi}`,
+              boxShadow: `0 0 0 1px ${domain.color}`,
+            }} />
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, fontFamily: F.mono, color: C.ink3, marginTop: 2 }}>
+            <span>−1.0</span><span>0</span><span>+1.0</span>
+          </div>
+        </>
+      )}
       {est.treatment && (
         <div style={{ fontSize: 12, color: C.ink2, marginTop: 10, lineHeight: 1.55, fontFamily: F.sans }}>
           <span style={{ fontWeight: 600, color: C.ink }}>{est.treatment}</span>
           <span style={{ color: C.ink3 }}> vs. </span>
           <span>{est.control}</span>
+        </div>
+      )}
+      {est.notes && (
+        <div style={{ fontSize: 11.5, color: C.ink3, marginTop: 8, lineHeight: 1.55, fontFamily: F.sans, fontStyle: "italic" }}>
+          {est.notes}
         </div>
       )}
       {(est.estimand || est.estimation_method) && (
