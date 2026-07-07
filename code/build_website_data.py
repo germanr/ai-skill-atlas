@@ -373,11 +373,16 @@ PAPER_CORRECTIONS = {
         venue="Social Sciences & Humanities Open",
         learning_domain_primary="General knowledge",  # AI/ML conceptual content; not coding
         incentives="None (voluntary participation)",
+        n_total=120,  # randomized (85 completed the retention test)
     ),
     "bastani_etal_2025": dict(
         venue="PNAS, 122(26), e2422633122",
         authors_full="Hamsa Bastani, Osbert Bastani, Alp Sungu, Haosen Ge, Özge Kabakcı, Rei Mariman",
         # PDF unchanged (PNAS PDF gated; SSRN preprint identical content).
+        n_total=839,  # students (estimate rows carry 2,848 student-session obs)
+    ),
+    "de_simone_etal_2025": dict(
+        n_total=759,  # completers (regression Ns are 636-654; 1,328 randomized)
     ),
     "fan_etal_2025": dict(
         year=2024,
@@ -388,6 +393,7 @@ PAPER_CORRECTIONS = {
         # undergraduate / ~45% graduate (Sec 3.1).
         incentives="None (no performance-based incentive; compensation not reported)",
         population_category="University (mixed)",
+        n_total=117,  # four-arm study total (two-arm comparisons carry 62/58)
     ),
     "hausman_etal_2025": dict(
         authors_full="Naomi Hausman, Oren Rigbi, Sarit Weisburd",
@@ -482,6 +488,7 @@ PAPER_CORRECTIONS = {
         # [RA-2026-07] Table B3 reports SEs/CIs, so "no SE/CI" was stale; the
         # accurate caveat is that effects are raw benchmark-normalized ATEs.
         quality_flags="no SD effect (raw benchmark-normalized ATEs)",
+        n_total=573,  # began the survey (487 completed both tasks; 986 allocated)
     ),
     "chung_etal_2025": dict(
         year=2026,
