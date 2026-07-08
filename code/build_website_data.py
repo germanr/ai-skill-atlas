@@ -479,21 +479,18 @@ PAPER_META = {
         image_keywords='Sierra Leone junior secondary classroom, students sharing tablets, mathematics lesson, West Africa education, Gemini AI',
         pdf_filename='LearnLM Team (2026) - Teaching with Gemini Sierra Leone.pdf',
     ),
-    'Wu et al. (2025)': dict(
-        authors_full='Changhao Wu, Liwen Chen, Min Han, Zhu Li, Nenghong Yang, Chao Yu',
-        venue='Medical Teacher',
-        country='China',
-        country_emoji='🇨🇳',
-        population_category='Undergraduate',
-        lab_vs_field='Field',
-        incentives="Course-embedded clerkship assessments: a 100-point final theory examination and a 100-point clinical-skills assessment scored by an attending-physician panel (graded internship evaluations, so performance was consequential). The teaching-satisfaction and self-assessment questionnaires were explicitly stated to have 'no relationship with their academic performance'. No separate monetary or experimental incentives were offered.",
-        learning_domain_primary='Medicine',
-        summary="Quasi-randomized clerkship study at Guizhou Medical University (China): 61 undergraduate medical students were assigned by odd/even alternation to ChatGPT-based blended teaching (n=31) or traditional instruction (n=30) during a hepatobiliary-surgery internship. The ChatGPT group scored much higher on the unassisted final theory exam (d=1.74) and the clinical-skills assessment (d=0.89). Flagged, not curated: assignment was deterministic alternation the paper mislabels as 'randomization', graders were unblinded, and the theory-exam effect is implausibly large.",
-        image_keywords='hepatobiliary surgery, medical students, clinical clerkship, hospital ward rounds, surgical training, China',
-        pdf_filename='Wu et al (2025) - ChatGPT Blended Teaching Hepatobiliary Surgery.pdf',
-    ),
-
 }
+
+
+# ── Papers excluded from the atlas ──────────────────────────────────────────
+# Rows stay in meta_analysis.xlsx (append-only master; estimate IDs are
+# positional) but are skipped when building the site.
+# Wu et al. (2025): full-text review found assignment by odd/even alternation
+# rather than random allocation (Medical Teacher 47(3), sec. 2.1), which fails
+# the atlas criterion of random assignment or a clean quasi-experimental
+# design. Also excluded from the companion paper's curated meta-analysis;
+# see support_info/meta_analysis/litverify/wu_bassner_fulltext_2026-07-08.md.
+DROP_PAPERS = {"Wu et al. (2025)"}
 
 
 # ── Subagent verification corrections (one verification pass per paper) ────
@@ -850,12 +847,6 @@ PAPER_SUMMARIES = {
         "empirical_strategy": 'Randomization was at the classroom level within school-by-grade blocks (48 classrooms as clusters), with block fixed effects and standard errors clustered at the classroom level (48 clusters). The headline intent-to-treat estimate is an ANCOVA regression of the IRT-scaled endline math score on treatment assignment, controlling for baseline math and reading scores (Table C.4, col 2), on the balanced panel of students present at both waves (N=1,423). Treatment-on-the-treated effects use 2SLS, instrumenting completion of the requested 12 hours (and, separately, total dosage hours) with random assignment (Tables C.6-C.7). Field monitors logged implementation fidelity and spillover; documented spillover was negligible and would only attenuate the estimates.',
         "key_results": 'Guided Learning raised endline math scores by 0.258 SD (ITT; 95% CI [0.027, 0.488], p=0.029), which the authors benchmark at roughly 1.2-1.7 years of additional learning in low- and middle-income countries. Among students who completed the requested 12 hours, the treatment-on-the-treated effect was 0.380 SD (95% CI [0.040, 0.719], p=0.029), with a per-hour dosage effect of 0.016 SD. Uptake was unexpectedly high: 69.0% of the 871 students in treatment classrooms reached the 12-hour threshold, and treatment classrooms averaged about 15 hours. Effects were larger for students with higher baseline math skills (+0.195 SD per baseline SD, p=0.002).',
     },
-    "wu_etal_2025": {
-        "setup": "In the fall semester of 2023, 61 undergraduate clinical medical students doing their hepatobiliary-surgery internship at the Affiliated Hospital of Guizhou Medical University (Guiyang, China) took part in a prospective controlled study. They were split into an experimental group (n=31) taught with a ChatGPT-based blended approach and a control group (n=30) receiving traditional instruction, each supervised by one instructor and three assistants. The experimental arm used ChatGPT -- in place of the usual 'typical case' teaching and post-class discussion -- for independent learning, simulated diagnostic dialogues, differential diagnosis, treatment planning, and literature review under instructor guidance, while the control arm followed the standard syllabus with case-based teaching and ward internship. Class attendance and questionnaire response were 100% in both groups. Outcomes were course-embedded assessments (a 100-point theory exam and a 100-point clinical-skills assessment rated by an attending-physician panel) plus satisfaction and self-assessment questionnaires that students were told had no bearing on their grades.",
-        "empirical_strategy": "Assignment was by deterministic odd/even alternation: students were renumbered 1 to N, with odd numbers sent to the experimental group and even numbers to the control group. The paper labels this 'simple randomization', but it lacks allocation concealment and the basis of the renumbering is unstated, so it is quasi-random at best. Group means were compared with two-sample t-tests (categorical variables with chi-square) in SPSS 26.0 at alpha=0.05, with no regression adjustment or covariate control; grading was by a panel of three or more attending physicians, with no blinding stated. Standardized effect sizes (Cohen's d) and their standard errors were computed by us from the reported means, SDs, and sample sizes and are not reported in the paper (the paper's own t=6.785 for the theory exam reproduces d=1.74).",
-        "key_results": "Baseline theory scores were balanced (experimental 59.88 +/- 4.66 vs control 60.75 +/- 5.01, p=.485), as were gender and age. On the unassisted final theory exam the experimental group scored 86.44 +/- 5.59 versus 77.86 +/- 4.16 (a raw gap of 8.58 points, d=1.74, SE=0.30; paper's t=6.785, reported p<.001), and on the clinical-skills assessment 83.84 +/- 6.13 versus 79.12 +/- 4.27 (raw gap 4.72 points, d=0.89, SE=0.27, p=.001). The theory-exam effect (d~1.74) would be an outlier -- the largest in the curated figure by a wide margin -- which, together with the alternation-based assignment, unblinded grading, and the paper's internally inconsistent exam-timing language, is why the study is flagged and excluded from the curated meta-analysis.",
-    },
-
 }
 
 
@@ -1936,6 +1927,8 @@ def build():
 
     # walk papers in meta_analysis.xlsx
     for paper_name in meta["paper"].unique():
+        if paper_name in DROP_PAPERS:
+            continue
         sub = meta[meta["paper"] == paper_name].copy()
         key = slugify(paper_name)
         first = sub.iloc[0]
@@ -2127,6 +2120,19 @@ def build():
     )
     n_estimand = int((estimates_df["estimand"] != "").sum())
     print(f"Estimand/method attached: {n_estimand}/{len(estimates_df)} estimates labeled")
+
+    # ── public schema: factual coding notes only ──────────────────────────
+    # The internal High/Medium/Low quality_label stays in meta_analysis.xlsx
+    # and is not published; quality_flags ships as coding_notes (how derived
+    # quantities were computed, plus design facts), with "none" blanked.
+    def _notes(v):
+        s = "" if v is None else str(v).strip()
+        return "" if s.lower() in ("", "none", "nan") else s
+
+    papers_df = papers_df.drop(columns=["quality_label"]).rename(columns={"quality_flags": "coding_notes"})
+    estimates_df = estimates_df.drop(columns=["quality_label"]).rename(columns={"quality_flags": "coding_notes"})
+    papers_df["coding_notes"] = papers_df["coding_notes"].map(_notes)
+    estimates_df["coding_notes"] = estimates_df["coding_notes"].map(_notes)
 
     # ── write JSON ────────────────────────────────────────────────────────
     PAPERS_JSON.parent.mkdir(parents=True, exist_ok=True)

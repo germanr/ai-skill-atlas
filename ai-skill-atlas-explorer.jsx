@@ -348,7 +348,7 @@ function Hero({ papers, estimates, defaultEstimates, pooled }) {
             fontSize: "clamp(34px, 4.6vw, 52px)", lineHeight: 1.08, letterSpacing: "-0.02em",
             animation: "fadeUp 0.55s cubic-bezier(.22,1,.36,1) 0.05s both",
           }}>
-            Experimental evidence on AI and human learning
+            Does AI hurt or help learning?
           </h1>
           <p style={{
             fontFamily: F.sans, fontSize: 16, lineHeight: 1.62, color: C.ink2,
@@ -907,7 +907,7 @@ function StudyCard({ paper, onClick, idx }) {
 // ────────────────────────────────────────────────────────────────────────────
 // Inclusion criteria + paper suggestion band
 // ────────────────────────────────────────────────────────────────────────────
-const SUGGEST_MAILTO = "mailto:learning_study@middlebury.edu?subject=The%20AI%20and%20Human%20Skill%20Atlas%20%E2%80%94%20paper%20suggestion&body=Citation%3A%20%0APaper%20PDF%2Flink%3A%20%0AEffect%20size%20(SD)%3A%20%0AStandard%20error%3A%20%0ASample%20size%3A%20%0AOutcome%20%2B%20timing%3A%20%0AComparison%3A%20%0ANotes%3A%20";
+const SUGGEST_MAILTO = "mailto:learning_study@middlebury.edu?subject=The%20AI%20and%20Human%20Skill%20Atlas%20%E2%80%94%20paper%20suggestion&body=Citation%20(or%20link%2FPDF)%3A%20%0ANotes%20(optional)%3A%20";
 
 function NotesBand() {
   const cell = { padding: "20px 24px" };
@@ -929,7 +929,7 @@ function NotesBand() {
       <div style={cell}>
         <div style={{ ...SC({ fontSize: 9.5, color: C.accent }), marginBottom: 9 }}>Suggest a paper</div>
         <p style={{ fontFamily: F.sans, fontSize: 13, lineHeight: 1.62, color: C.ink2 }}>
-          Know of a study we missed? Send the citation, effect size, SE, and sample size to{" "}
+          Know of a study we missed? Send the paper or citation to{" "}
           <a href={SUGGEST_MAILTO} style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             learning_study@middlebury.edu
           </a>{" "}and it will be reviewed against the criteria.
@@ -1005,7 +1005,7 @@ function Footer() {
           marginTop: 36, paddingTop: 16, borderTop: `1px solid ${C.ruleSoft}`,
           display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10,
         }}>
-          <span style={SC({ fontSize: 9, color: C.ink3 })}>Updated July 2026 · Middlebury College</span>
+          <span style={SC({ fontSize: 9, color: C.ink3 })}>Updated July 2026</span>
           <span style={SC({ fontSize: 9, color: C.ink3 })}>germanr.github.io/ai-skill-atlas</span>
         </div>
       </div>
@@ -1152,7 +1152,7 @@ function ReportCard({ paper, estimates, onBack }) {
     ["AI tool", paper.ai_tool],
     ["AI design", paper.ai_design],
     ["Learning domain", paper.learning_domain_primary],
-    ["Quality rating", [paper.quality_label, paper.quality_flags && paper.quality_flags !== "none" ? `(${paper.quality_flags})` : null].filter(Boolean).join(" ")],
+    ["Coding notes", paper.coding_notes || null],
   ].filter(([, v]) => v != null && v !== "");
 
   const summaryBlocks = [
@@ -1285,7 +1285,7 @@ function ReportCard({ paper, estimates, onBack }) {
               ))}
             </div>
             <p style={{ fontSize: 11.5, color: C.ink3, marginTop: 9, fontStyle: "italic", fontFamily: F.sans, lineHeight: 1.5 }}>
-              Subgroup rows are excluded from the main forest plot by default; overlay them with the Subgroups filter on the browse page.
+              Subgroup rows are excluded from the main forest plot and the pooled estimates.
             </p>
           </Section>
         )}
@@ -1408,7 +1408,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         <div style={{ marginTop: 4 }}>
           {[
             ["The pooled mean hides real variation.", "Effects differ by subject, by population, and above all by whether the outcome was measured with or without AI in hand. Read the spread, not only the average."],
-            ["Precision varies.", "Some estimates come from large pre-registered field experiments, others from small single-site studies over short horizons. Each study carries a quality label and flags in the data."],
+            ["Precision varies.", "Some estimates come from large pre-registered field experiments, others from small single-site studies over short horizons. The coding notes on each record state how derived quantities were computed and note design features relevant to interpretation."],
             ["Independence varies.", "Some studies were conducted by, or in collaboration with, the companies whose tools they evaluate. The study records note this where it applies."],
             ["Intervals overlap.", "Most pairs of studies cannot be reliably ranked against each other. The forest plot describes a distribution, not a leaderboard."],
           ].map(([t, d]) => (
@@ -1455,12 +1455,12 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         {rule}
         <div style={{ marginTop: 4 }}>
           {[
-            "Standardization. Effects are expressed in SD units of the control group. Where papers reported raw effects, standard errors were back-calculated from sample sizes or recomputed from control-group SDs.",
+            "Standardization. Effects are expressed in SD units of the control group. Where papers report only raw effects, effect sizes and standard errors were derived from the reported means, SDs, and sample sizes; each derivation is recorded in the estimate's coding notes.",
             "Pooling. The pooled mean uses the DerSimonian–Laird random-effects estimator; the shaded band in the forest plot is its 95% confidence interval, which reflects between-study heterogeneity.",
             "Samples. The default view shows student samples (elementary school through university). Studies of adult online-panel and professional samples are in the atlas but shown only when the Sample filter is set to Non-students or All samples.",
             "Learning vs. assisted performance. The default view excludes outcomes measured with AI access (e.g., assisted-practice scores), which capture AI-augmented performance rather than learning. The Outcome filter adds them back.",
             "Comparisons. AI vs. business-as-usual is the default and never pooled with the others. AI vs. active control and off-the-shelf vs. scaffolded AI can each be viewed separately.",
-            "Subgroups. Heterogeneity estimates (by gender, prior achievement, topic) are hidden by default to keep the plot readable, and can be overlaid with the Subgroups filter.",
+            "Subgroups. Heterogeneity estimates (by gender, prior achievement, topic) are excluded from the forest plot and the pooled estimates; they appear on each study's record.",
           ].map((t, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "12px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
               <span style={{ color: C.accent, fontFamily: F.mono, fontSize: 13, lineHeight: 1.5 }}>—</span>
@@ -1490,7 +1490,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
               ["estimand / estimation_method", "Parameter identified (ITT, LATE…) and how it was estimated."],
               ["outcome_with_ai", "Whether the outcome was measured with AI in hand."],
               ["is_subgroup / subgroup", "Whether the row is a heterogeneity estimate, and its label."],
-              ["quality_label / quality_flags", "Study-quality rating and any caveats."],
+              ["coding_notes", "How derived quantities were computed (e.g., back-calculated SEs) and design features relevant to interpretation."],
             ].map(([col, desc]) => (
               <div key={col} style={{ display: "grid", gridTemplateColumns: "190px 1fr", gap: 12, alignItems: "baseline" }} className="facts-grid">
                 <code style={{ fontFamily: F.mono, fontSize: 11, color: C.ink, fontWeight: 500 }}>{col}</code>
@@ -1508,7 +1508,8 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         </p>
         <div style={{ marginTop: 12 }}>
           {[
-            ["June 2026", `Initial public version: ${nPapers} studies and ${nEstimates} effect sizes, with an interactive forest plot, individual study records, CSV export, and this methodology page.`],
+            ["July 2026", `A research assistant re-verified every estimate against the underlying papers and coding errors were corrected. A literature sweep added 9 studies (20 effect sizes); a tenth candidate was excluded after full-text review found non-random assignment. Subjective quality ratings were replaced with factual coding notes. The atlas now covers ${nPapers} studies and ${nEstimates} effect sizes.`],
+            ["June 2026", "Initial public version: 24 studies and 116 effect sizes, with an interactive forest plot, individual study records, CSV export, and this methodology page."],
           ].map(([date, text]) => (
             <div key={date} style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 14, padding: "10px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
               <span style={{ fontFamily: F.mono, fontSize: 10.5, color: C.ink3, letterSpacing: "0.04em", paddingTop: 2 }}>{date}</span>
@@ -1523,9 +1524,8 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
           If a study is missing, or a number looks wrong, email{" "}
           <a href={SUGGEST_MAILTO} style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             learning_study@middlebury.edu
-          </a>{" "}with the citation and a link or PDF. If available, include the effect size in SD units,
-          its standard error, the sample size, the outcome and its timing, and the comparison condition.
-          Suggestions are evaluated against the inclusion criteria above and nothing else.
+          </a>{" "}with the paper or citation. Suggestions are evaluated against the inclusion
+          criteria above and nothing else.
         </p>
 
         <h2 style={h2}>Authorship and independence</h2>
@@ -1534,9 +1534,10 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
           The atlas is maintained by{" "}
           <a href="https://www.germanr.com" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             Germán Reyes
-          </a>{" "}(Middlebury College), with research assistance from Nam Nguyen. One included study,
-          Contractor and Reyes (2026), is by the maintainer. It receives no special treatment: the same
-          inclusion rules, the same coding, and the same display as every other study.
+          </a>{" "}(Middlebury College), with research assistance from Nam Nguyen. One included study,{" "}
+          <a href="https://germanr.com/papers/cr_ai_learning.pdf" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
+            Contractor and Reyes (2026)
+          </a>, is by the maintainer.
         </p>
 
         <h2 style={h2}>How to cite this resource</h2>
@@ -1743,7 +1744,7 @@ function downloadCSV(estimates, papers) {
     "ci_lower", "ci_upper", "n_total", "learning_domain", "outcome",
     "outcome_timing", "treatment", "control", "comparison_type",
     "estimand", "estimation_method",
-    "outcome_with_ai", "is_subgroup", "subgroup",
+    "outcome_with_ai", "is_subgroup", "subgroup", "coding_notes",
     "country", "population_category", "lab_vs_field", "study_design",
     "ai_tool", "ai_design", "incentives", "venue",
   ];
@@ -1990,7 +1991,7 @@ export default function App() {
         <section id="evidence" style={{ marginTop: 64 }}>
           <SectionHead
             index="01"
-            title="The evidence, estimate by estimate"
+            title="The evidence"
             sub="Every effect size on one axis. Markers are sized by precision (inverse variance); the blue band is the random-effects pooled estimate. Hover for details; click any row to open the study."
           />
 
@@ -2061,8 +2062,10 @@ export default function App() {
               active={new Set([outcomeMode])}
               onToggle={(v) => setOutcomeMode(v)}
               isRadio
-              last={availableSubgroupValues.length === 0}
+              last
             />
+            {/* Subgroups filter removed for now (2026-07-08); subgroup rows stay
+                hidden from the plot. Restore the FilterRow below to re-enable.
             {availableSubgroupValues.length > 0 && (
               <FilterRow
                 label="Subgroups"
@@ -2071,7 +2074,7 @@ export default function App() {
                 onToggle={(v) => toggleSet(activeSubgroupValues, v, setActiveSubgroupValues)}
                 last
               />
-            )}
+            )} */}
           </div>
 
           {/* Toolbar */}
