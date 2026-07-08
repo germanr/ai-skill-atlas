@@ -974,10 +974,8 @@ ESTIMATE_OVERRIDES = {
 }
 
 # [RA-2026-07 r2] Additions to entries defined above.
-# De Simone: the third-term exam is an immediate broader-curriculum transfer
-# outcome, so the curated label "retention" was stale on the site (the label
-# is unchanged in literature_effects.csv, which feeds the paper figure).
-ESTIMATE_OVERRIDES["de_simone_etal_2025__est7"]["study_label"] = "De Simone et al., third-term exam"
+# (De Simone's "third-term exam" label now flows from CURATED_MAP and
+# literature_effects.csv, which were renamed from the stale "retention".)
 # Lehmann Studies 2/3: the post-test is 20 CODING questions (write & submit
 # code, p.13), not multiple choice; est35's raw-scale IV SE leaves the
 # SD-unit column (its note already carries the raw value).
@@ -1521,7 +1519,7 @@ LIT_DOMAIN = {
     "Bastani et al., GPT Base": "Math",
     "Bastani et al., GPT Tutor": "Math",
     "De Simone et al., English": "Language",
-    "De Simone et al., retention": "Language",
+    "De Simone et al., third-term exam": "Language",
     "Lehmann et al., Study 3": "Coding",
     "Lehmann et al., Study 2": "Coding",
     "Lira et al., retention": "Writing",
@@ -1550,7 +1548,7 @@ CURATED_MAP = [
     ("Bastani et al. (2025)", "GPT Base", "unassisted exam", "Bastani et al., GPT Base"),
     ("Bastani et al. (2025)", "GPT Tutor", "unassisted exam", "Bastani et al., GPT Tutor"),
     ("De Simone et al. (2025)", "", "English skills", "De Simone et al., English"),
-    ("De Simone et al. (2025)", "", "Third-term", "De Simone et al., retention"),
+    ("De Simone et al. (2025)", "", "Third-term", "De Simone et al., third-term exam"),
     ("Lehmann et al. (2024)", "no copy-paste", "Post-test", "Lehmann et al., Study 2"),
     ("Lehmann et al. (2024)", "copy-paste enabled; Access", "Post-test", "Lehmann et al., Study 3"),
     ("Lira et al. (2025)", "Practice with AI writing tool", "1-day follow-up", "Lira et al., retention"),
