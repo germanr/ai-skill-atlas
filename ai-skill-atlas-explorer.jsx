@@ -39,8 +39,16 @@ const DOMAIN_ORDER = ["Math", "Coding", "Writing", "Language", "Science", "Gener
 
 const POPULATION_ORDER = [
   "Elementary", "Middle school", "High school",
-  "Undergraduate", "Graduate", "Adults general", "Professional",
+  "Undergraduate", "Graduate", "University (mixed)",
+  "Adults general", "Professional",
 ];
+
+// Sample scope: the default view shows student samples (matching the paper's
+// curated meta-analysis). Adult online-panel and professional samples sit
+// behind the Sample filter. Any population category not listed here counts
+// as a student sample.
+const NON_STUDENT_POPULATIONS = new Set(["Adults general", "Professional"]);
+const isStudentPaper = (p) => !NON_STUDENT_POPULATIONS.has(p.population_category);
 
 const F = {
   serif: "'Newsreader', Georgia, 'Times New Roman', serif",
@@ -372,8 +380,10 @@ function Hero({ papers, estimates, defaultEstimates, pooled }) {
                 95% CI {fmtCI(pooled.lo, pooled.hi)}
               </div>
               <p style={{ fontFamily: F.sans, fontSize: 12, lineHeight: 1.6, color: C.ink3, marginTop: 12 }}>
-                Random-effects pooled estimate across {pooled.k} primary estimates:
-                AI vs. business-as-usual, learning measured without AI in hand.
+                Random-effects pooled estimate across {pooled.k} primary estimates
+                from student samples: AI vs. business-as-usual, learning measured
+                without AI in hand. Adult and professional samples are behind the
+                Sample filter below.
               </p>
             </>
           ) : (
@@ -385,7 +395,7 @@ function Hero({ papers, estimates, defaultEstimates, pooled }) {
       {/* Strip plot */}
       <div style={{ marginTop: 40, animation: "fadeUp 0.55s cubic-bezier(.22,1,.36,1) 0.24s both" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, flexWrap: "wrap", gap: 8 }}>
-          <span style={SC({ fontSize: 9.5, color: C.ink3 })}>Each dot is one estimate · effect on learning, in standard deviations</span>
+          <span style={SC({ fontSize: 9.5, color: C.ink3 })}>Each dot is one estimate from a student sample · effect on learning, in standard deviations</span>
           <span style={{ display: "inline-flex", gap: 14, flexWrap: "wrap" }}>
             {DOMAIN_ORDER.filter(d => defaultEstimates.some(e => e.learning_domain === d)).map(d => (
               <span key={d} style={{ display: "inline-flex", alignItems: "center", gap: 5, fontFamily: F.sans, fontSize: 11, color: C.ink2 }}>
@@ -1445,6 +1455,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
           {[
             "Standardization. Effects are expressed in SD units of the control group. Where papers reported raw effects, standard errors were back-calculated from sample sizes or recomputed from control-group SDs.",
             "Pooling. The pooled mean uses the DerSimonian–Laird random-effects estimator; the shaded band in the forest plot is its 95% confidence interval, which reflects between-study heterogeneity.",
+            "Samples. The default view shows student samples (elementary school through university). Studies of adult online-panel and professional samples are in the atlas but shown only when the Sample filter is set to Non-students or All samples.",
             "Learning vs. assisted performance. The default view excludes outcomes measured with AI access (e.g., assisted-practice scores), which capture AI-augmented performance rather than learning. The Outcome filter adds them back.",
             "Comparisons. AI vs. business-as-usual is the default and never pooled with the others. AI vs. active control and off-the-shelf vs. scaffolded AI can each be viewed separately.",
             "Subgroups. Heterogeneity estimates (by gender, prior achievement, topic) are hidden by default to keep the plot readable, and can be overlaid with the Subgroups filter.",
@@ -1773,6 +1784,7 @@ export default function App() {
   const [section, setSection] = useState(initialParams.get("section") === "creativity" ? "creativity" : "learning");
   const [selectedPaper, setSelectedPaper] = useState(null);
   const [search, setSearch] = useState("");
+  const [sampleMode, setSampleMode] = useState("students"); // "students" | "nonstudents" | "all"
   const [activeDomains, setActiveDomains] = useState(new Set());
   const [activePopulations, setActivePopulations] = useState(new Set());
   const [activeSettings, setActiveSettings] = useState(new Set());
@@ -1825,12 +1837,23 @@ export default function App() {
   const papers = PAPERS_RAW;
   const estimates = ESTIMATES_RAW;
 
-  // Default-view estimates (hero strip + pooled headline): primary, no-AI outcomes, vs. BAU
-  const defaultEstimates = useMemo(() => estimates.filter(e =>
-    (e.comparison_type || "ai_vs_bau") === "ai_vs_bau" &&
-    e.outcome_with_ai !== true &&
-    e.is_subgroup !== true
-  ), [estimates]);
+  // Papers in the current sample scope (Students by default)
+  const sampledPapers = useMemo(() => papers.filter(p =>
+    sampleMode === "all" ? true :
+    sampleMode === "students" ? isStudentPaper(p) : !isStudentPaper(p)
+  ), [papers, sampleMode]);
+
+  // Default-view estimates (hero strip + pooled headline): student samples,
+  // primary, no-AI outcomes, vs. BAU — matching the paper's curated subset
+  const defaultEstimates = useMemo(() => {
+    const studentKeys = new Set(papers.filter(isStudentPaper).map(p => p.paper_key));
+    return estimates.filter(e =>
+      studentKeys.has(e.paper_key) &&
+      (e.comparison_type || "ai_vs_bau") === "ai_vs_bau" &&
+      e.outcome_with_ai !== true &&
+      e.is_subgroup !== true
+    );
+  }, [papers, estimates]);
   const pooledDefault = useMemo(() => randomEffectsMean(defaultEstimates), [defaultEstimates]);
 
   const allDomains = useMemo(() => {
@@ -1841,18 +1864,18 @@ export default function App() {
 
   const allPopulations = useMemo(() => {
     const s = new Set();
-    papers.forEach(p => p.population_category && s.add(p.population_category));
+    sampledPapers.forEach(p => p.population_category && s.add(p.population_category));
     return POPULATION_ORDER.filter(x => s.has(x)).concat(
       Array.from(s).filter(x => !POPULATION_ORDER.includes(x))
     );
-  }, [papers]);
+  }, [sampledPapers]);
 
   const allSettings = useMemo(() => ["Lab", "Field", "Online", "Hybrid"].filter(x =>
     papers.some(p => p.lab_vs_field === x)
   ), [papers]);
 
   const filteredPapers = useMemo(() => {
-    return papers.filter(p => {
+    return sampledPapers.filter(p => {
       if (search) {
         const q = search.toLowerCase();
         if (!(p.title?.toLowerCase().includes(q) ||
@@ -1866,7 +1889,7 @@ export default function App() {
       if (activeSettings.size > 0 && !activeSettings.has(p.lab_vs_field)) return false;
       return true;
     });
-  }, [papers, search, activeDomains, activePopulations, activeSettings]);
+  }, [sampledPapers, search, activeDomains, activePopulations, activeSettings]);
 
   const filteredEstimates = useMemo(() => {
     const paperKeys = new Set(filteredPapers.map(p => p.paper_key));
@@ -1917,9 +1940,17 @@ export default function App() {
     setter(next);
   };
 
+  const setSample = (mode) => {
+    setSampleMode(mode);
+    // population chips depend on the sample scope; clear to avoid impossible combos
+    setActivePopulations(new Set());
+  };
+
   const nActiveFilters = activeDomains.size + activePopulations.size + activeSettings.size + activeSubgroupValues.size
+    + (sampleMode !== "students" ? 1 : 0)
     + (comparisonType !== "ai_vs_bau" ? 1 : 0) + (outcomeMode !== "without_ai" ? 1 : 0);
   const resetFilters = () => {
+    setSampleMode("students");
     setActiveDomains(new Set());
     setActivePopulations(new Set());
     setActiveSettings(new Set());
@@ -1978,6 +2009,17 @@ export default function App() {
                 }}>Reset all ({nActiveFilters})</button>
               )}
             </div>
+            <FilterRow
+              label="Sample"
+              options={[
+                { value: "students",    label: "Students" },
+                { value: "nonstudents", label: "Non-students" },
+                { value: "all",         label: "All samples" },
+              ]}
+              active={new Set([sampleMode])}
+              onToggle={(v) => setSample(v)}
+              isRadio
+            />
             <FilterRow
               label="Domain"
               options={allDomains}
