@@ -70,7 +70,7 @@ PAPER_META = {
         lab_vs_field="Field",
         incentives="Course grade",
         learning_domain_primary="General knowledge",
-        summary="Compares ChatGPT-assisted learning vs traditional learning on knowledge retention 45 days after a business administration course unit.",
+        summary="Compares ChatGPT-assisted learning vs traditional learning on knowledge retention 45 days after undergraduate business students studied AI/ML concepts.",
         image_keywords="business school classroom Brazil",
         pdf_filename="Barcaui (2025) - ChatGPT as Cognitive Crutch.pdf",
     ),
@@ -98,7 +98,7 @@ PAPER_META = {
         # ungraded research assessments (Sec 2.2).
         incentives="None (voluntary; ungraded research assessment)",
         learning_domain_primary="Language",
-        summary="Nigerian senior secondary students got after-school sessions with an English-tutoring GPT-4 chatbot. Treatment group gained on English, AI knowledge, and digital skills; gains persisted at retention.",
+        summary="Nigerian senior secondary students got after-school sessions with an English-tutoring GPT-4 chatbot. Treatment group gained on English, AI knowledge, and digital skills; gains extended to a broader-curriculum school exam taken right after the program.",
         image_keywords="Nigerian students English class",
         pdf_filename="De Simone et al (2025) - From Chalkboards to Chatbots.pdf",
     ),
@@ -111,7 +111,7 @@ PAPER_META = {
         lab_vs_field="Lab",
         incentives="Monetary fixed",
         learning_domain_primary="Writing",
-        summary="University students wrote essays with ChatGPT vs traditional resources. AI users produced better essays but had lower knowledge retention afterward (\"metacognitive laziness\").",
+        summary="University students wrote essays with ChatGPT vs checklist, expert, or no support. AI users produced better essays but showed no significant knowledge gain or transfer advantage; process data suggest \"metacognitive laziness\".",
         image_keywords="university students writing essay China",
         pdf_filename="Fan et al (2025) - Metacognitive Laziness.pdf",
     ),
@@ -137,7 +137,7 @@ PAPER_META = {
         lab_vs_field="Field",
         incentives="None",
         learning_domain_primary="Math",
-        summary="WhatsApp-based math tutor (Rori) deployed to grades 3–8 students in Ghana. RCT measured math gains over an academic term.",
+        summary="WhatsApp-based math tutor (Rori) deployed to grades 3–8 students in Ghana. RCT measured math gains over the Feb–Aug 2023 school year (~8 months).",
         image_keywords="African students mobile phone learning",
         pdf_filename="Henkel et al (2024) - AI Math Tutor Ghana.pdf",
     ),
@@ -163,7 +163,7 @@ PAPER_META = {
         lab_vs_field="Online",
         incentives="Monetary fixed",
         learning_domain_primary="Coding",
-        summary="Children ages 10–17 learned Python with vs without OpenAI Codex code-generator assistance. Treatment showed higher gains during training; near-equal at retention.",
+        summary="Children ages 10–17 learned Python with vs without OpenAI Codex code-generator assistance. Treatment showed higher gains during training, near-equal immediate post-test scores, and a modest non-significant edge at 1-week retention.",
         image_keywords="kids learning to code laptop",
         pdf_filename="Kazemitabaar et al (2023) - AI Code Generators Novice Learners.pdf",
         setting_detail="Canada (recruited from coding camps in two North American cities), online via Google Meet; ages 10-17 (M=12.5)",
@@ -190,7 +190,7 @@ PAPER_META = {
         lab_vs_field="Field",
         incentives="None",
         learning_domain_primary="Math",
-        summary="Quasi-experimental study at Squirrel AI learning centers in China, K-12 students. Compared AI-supported sessions to traditional tutoring.",
+        summary="Quasi-experimental study at Squirrel AI learning centers in China, K-12 students. Compared the post-solution GenAI tutor mode to the baseline digital practice mode (correctness feedback + static solutions).",
         image_keywords="China classroom tablets students",
         pdf_filename="Kim et al (2025) - GenAI Can Improve Performance Without Harming Learning.pdf",
     ),
@@ -242,7 +242,7 @@ PAPER_META = {
         lab_vs_field="Field",
         incentives="Course grade",
         learning_domain_primary="Coding",
-        summary="Dutch graduate students learning Python; two studies used ChatGPT outages as instrumental variables to identify the causal effect of AI access.",
+        summary="University students learning Python in the Netherlands (Study 1: Dutch graduate courses, ChatGPT outages as instrument) and Germany (Studies 2-3: lab RCTs randomizing ChatGPT access).",
         image_keywords="programming students laptop coding",
         pdf_filename="Lehmann et al (2024) - When Does ChatGPT Harm Learning.pdf",
     ),
@@ -432,6 +432,10 @@ PAPER_CORRECTIONS = {
         lab_vs_field="Field",
         incentives="Participation credit (not graded)",
     ),
+    "kim_etal_2025": dict(
+        # [RA-2026-07 r2] Exact paper title (card had dropped "and Engagement").
+        title="Generative AI Can Improve Performance and Engagement without Harming Learning",
+    ),
     "kreijkes_etal_2026": dict(
         title="Effects of LLM use and note-taking on reading comprehension and memory: A randomised experiment in secondary schools",
         authors_full="Pia Kreijkes, Viktor Kewenig, Martina Kuvalja, Mina Lee, Jake M. Hofman, Sylvia Vitello, Abigail Sellen, Sean Rintel, Daniel G. Goldstein, David Rothschild, Lev Tankelevitch, Tim Oates",
@@ -462,7 +466,9 @@ PAPER_CORRECTIONS = {
         venue="Working paper (arXiv v4, Feb 2026)",
         summary="Prolific adults practiced rewriting cover letters with an AI writing tool, without AI, with professional editor feedback, with Google Search, or by viewing an AI-generated example. Practicing with AI improved writing skill more than practicing without AI, with gains persisting one day later.",
         pdf_filename="Lira et al (2026) - Coach Not Crutch.pdf",
-        incentives="None (flat Prolific pay)",
+        # [RA-2026-07 r2] The writing tests were performance-incentivized
+        # ("a 7-minute incentivized test of writing skill", Methods p.9).
+        incentives="Prolific pay; performance-incentivized writing tests",
         # [RA-2026-07] Four non-overlapping samples: 2,637 + 2,238 + 2,997 +
         # 2,003 (the old 1,294 was only the Study 2 follow-up subsample).
         n_total=9875,
@@ -595,7 +601,7 @@ PAPER_SUMMARIES = {
         "key_results": "Treated students solve ~35.8% more problems daily (log coefficient 0.31, SE 0.01), spend 3.9% less time per problem, and have correctness rates 2.6 percentage points higher (~3.6% relative). Gains concentrated among low-baseline-performance students; diminishing returns to very intensive AI use; long-run correctness trajectories steeper for treated, consistent with skill accumulation.",
     },
     "kreijkes_etal_2026": {
-        "setup": "Pre-registered RCT in 7 English secondary schools with Year 10 students (ages 14-15). 405 recruited, 344 analyzed. Two sessions: a learning session studying two history passages under different conditions, then a test session three days later assessing literal retention, comprehension, and free recall. Three conditions: LLM only (GPT-3.5 Turbo via Azure, unrestricted), Notes only, and LLM + Notes. No incentives.",
+        "setup": "Pre-registered RCT in 7 English secondary schools with Year 10 students (ages 14-15). 405 recruited, 344 analyzed. Two sessions: a learning session studying two history passages under different conditions, then a test session three days later assessing literal retention, comprehension, and free recall. Three conditions: LLM only (GPT-3.5 Turbo via Azure; up to 20 prompts, hidden meta-prompt, usage strategy unrestricted), Notes only, and LLM + Notes. No incentives.",
         "empirical_strategy": "Mixed within- and between-participant design. Group 1 (n=184) experienced LLM vs Notes; Group 2 (n=160) LLM vs LLM+Notes. Passage and condition order randomized. Linear mixed-effects models with student random effects; Cohen's d from paired differences.",
         "key_results": "Notes significantly outperformed LLM-only on all three outcomes: literal retention d=0.44, comprehension d=0.38, free recall d=0.21. LLM+Notes also beat LLM-only on retention and comprehension (d=0.13-0.14) but not free recall. Yet students preferred the LLM, rated it more helpful, found it less effortful, and spent less time with it.",
     },
@@ -951,7 +957,33 @@ ESTIMATE_OVERRIDES = {
     # assessment (June 2025), not a delayed retention wave.
     "chung_etal_2025__est52": {"outcome_timing": "immediate (end of ~5-month course)"},
     "chung_etal_2025__est53": {"outcome_timing": "immediate (end of ~5-month course)"},
+
+    # ── [RA-2026-07 r2] Round-2 adversarial re-check findings ──────────────
+    # Kestin: 0.73-1.3 is a RANGE of quantile-regression estimates, not a CI.
+    "kestin_etal_2025__est22": {
+        "ci_lower": None, "ci_upper": None,
+        "notes": "Preferred estimate: quantile-regression effect-size RANGE "
+                 "0.73-1.3 SD (not a confidence interval; the paper reports no "
+                 "SE/CI for it). Midpoint ~1.0 shown as the point value. Avoids "
+                 "ceiling effect in the post-test.",
+    },
+    "vanzo_etal_2024__est43": {
+        "notes": "Not significant. Pooled across 3rd and 5th year. One-sided "
+                 "t-test. ACL 2025 published version.",
+    },
 }
+
+# [RA-2026-07 r2] Additions to entries defined above.
+# De Simone: the third-term exam is an immediate broader-curriculum transfer
+# outcome, so the curated label "retention" was stale on the site (the label
+# is unchanged in literature_effects.csv, which feeds the paper figure).
+ESTIMATE_OVERRIDES["de_simone_etal_2025__est7"]["study_label"] = "De Simone et al., third-term exam"
+# Lehmann Studies 2/3: the post-test is 20 CODING questions (write & submit
+# code, p.13), not multiple choice; est35's raw-scale IV SE leaves the
+# SD-unit column (its note already carries the raw value).
+ESTIMATE_OVERRIDES["lehmann_etal_2024__est33"]["outcome"] = "Post-test score (Python programming, 20 coding questions)"
+ESTIMATE_OVERRIDES["lehmann_etal_2024__est36"]["outcome"] = "Post-test score (Python programming, 20 coding questions)"
+ESTIMATE_OVERRIDES["lehmann_etal_2024__est35"]["se"] = None
 
 # Estimates removed from the site entirely (duplicates confirmed in the
 # 2026-07 RA verification pass).
@@ -1000,7 +1032,8 @@ ADDITIONAL_ESTIMATES = [
     # ── Contractor & Reyes — Session 2 essay quality components ────────────
     # From regression_results_main.dta avg_score1..5_s2 (OLS spec), i.e. paper
     # Table 6 Panel A ITT betas (human and AI graders averaged) divided by the
-    # control-group SD. Ns are the per-outcome regression Ns.
+    # control-group SD. Ns follow the paper's Table 6, which reports a single
+    # Session Two N (197) for all dimensions.
     _ce("Contractor and Reyes (2026), Writing style & clarity (S2 essay)",
         "contractor_reyes_2026", 0.304, 0.125,
         "ChatGPT access during practice", "No AI access",
@@ -1020,12 +1053,12 @@ ADDITIONAL_ESTIMATES = [
         "contractor_reyes_2026", 0.264, 0.128,
         "ChatGPT access during practice", "No AI access",
         "Essay quality component: relevance to prompt (S2)",
-        timing="delayed", n=195, subgroup="Essay component"),
+        timing="delayed", n=197, subgroup="Essay component"),
     _ce("Contractor and Reyes (2026), Factual accuracy (S2 essay)",
         "contractor_reyes_2026", 0.229, 0.139,
         "ChatGPT access during practice", "No AI access",
         "Essay quality component: factual accuracy (S2)",
-        timing="delayed", n=195, subgroup="Essay component"),
+        timing="delayed", n=197, subgroup="Essay component"),
 
     # ── Barcaui — topic and prior-AI-experience subgroups ────────────────
     _ce("Barcaui (2025), Technical topics",
@@ -1074,8 +1107,11 @@ ADDITIONAL_ESTIMATES = [
         "bastani_etal_2025", 0.101, 0.043,
         "GPT Tutor (with guardrails)", "GPT Base (unrestricted)",
         "Normalized grade on unassisted exam (pairwise AI arms)",
-        domain="Math", comparison="ai_design", n=2848,
-        subgroup="AI design comparison"),
+        domain="Math", comparison="ai_design", n=None,
+        subgroup="AI design comparison",
+        notes="Pairwise GPT Tutor vs GPT Base contrast (Table 4, raw diff 0.028 "
+              "[0.005, 0.052] / exam SD 0.277); two-arm N not reported (2,848 "
+              "is the three-arm regression sample)."),
 
     # ── De Simone — alternative outcomes (AI knowledge, digital skills) ──
     _ce("De Simone et al. (2025), AI knowledge subscore",
@@ -1098,8 +1134,10 @@ ADDITIONAL_ESTIMATES = [
         "Essay score improvement (post-revision minus pre-revision)",
         domain="Writing", comparison="ai_vs_active", outcome_with_ai=True,
         n=60, subgroup="AI vs Human Expert"),
+    # [RA-2026-07 r2] SE from the standard SE(d) formula with N=35/30 (0.2574);
+    # the old 0.252 was a ~2% low outlier vs the sibling rows.
     _ce("Fan et al. (2024), Essay improvement, AI vs Checklist tool",
-        "fan_etal_2025", 0.75, 0.252,
+        "fan_etal_2025", 0.75, 0.257,
         "ChatGPT 4.0 during revision", "Checklist writing analytics tool",
         "Essay score improvement (post-revision minus pre-revision)",
         domain="Writing", comparison="ai_vs_active", outcome_with_ai=True,
@@ -1187,12 +1225,16 @@ ADDITIONAL_ESTIMATES = [
               "not significant (Table 5 col. 6). Not in SD units."),
 
     # ── Kreijkes — Group 2 (LLM vs LLM+Notes) + free recall outcomes ─────
+    # [RA-2026-07 r2] SE via the same delta-method conversion as est25/est26
+    # (0.43 x 0.21/1.02 = 0.089); the old 0.10 was a coarser rounding.
     _ce("Kreijkes et al. (2026), Free recall (LLM vs Notes)",
-        "kreijkes_etal_2026", -0.21, 0.10,
+        "kreijkes_etal_2026", -0.21, 0.089,
         "LLM chatbot only", "Note-taking only",
         "Free recall (open response)",
         domain="Language", timing="delayed", comparison="ai_vs_active",
-        n=184, subgroup="Outcome: Free recall"),
+        n=184, subgroup="Outcome: Free recall",
+        notes="Within-subject (Group 1). SE converted to SD units by the delta "
+              "method from raw B=1.02 (SE 0.43), Table 3."),
     _ce("Kreijkes et al. (2026), Literal retention (LLM vs LLM+Notes)",
         "kreijkes_etal_2026", -0.13, 0.064,
         "LLM chatbot only", "LLM + note-taking",
@@ -1375,7 +1417,10 @@ ADDITIONAL_ESTIMATES = [
         "ChatGPT access during 45-min Python learning phase",
         "No LLM access",
         "Post-test score (20-question Python coding test)",
-        domain="Coding", subgroup="Prior achievement: Above median"),
+        domain="Coding", subgroup="Prior achievement: Above median",
+        notes="Above-median level effect = (main + interaction)/4.6 from Table "
+              "12; the SE shown is the interaction-term SE as a proxy (the "
+              "exact level-effect SE needs the unreported covariance)."),
     _ce("Lehmann et al. (2024), prior knowledge below median (understanding)",
         "lehmann_etal_2024", -0.950/4.6, 0.466/4.6,
         "ChatGPT access during 45-min Python learning phase",
@@ -1387,7 +1432,10 @@ ADDITIONAL_ESTIMATES = [
         "ChatGPT access during 45-min Python learning phase",
         "No LLM access",
         "Post-test, controlling for learning-phase volume (understanding)",
-        domain="Coding", subgroup="Prior achievement: Above median"),
+        domain="Coding", subgroup="Prior achievement: Above median",
+        notes="Above-median level effect = (main + interaction)/4.6 from Table "
+              "12; the SE shown is the interaction-term SE as a proxy (the "
+              "exact level-effect SE needs the unreported covariance)."),
 
     # ── Vanzo — grade/year split ──────────────────────────────────────────
     # [RA-2026-07] Removed: these duplicated est44/est45 (the 3rd/5th-year
