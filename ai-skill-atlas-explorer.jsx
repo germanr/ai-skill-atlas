@@ -366,10 +366,10 @@ function Hero({ papers, estimates, defaultEstimates, pooled }) {
             maxWidth: 560, marginTop: 22,
             animation: "fadeUp 0.55s cubic-bezier(.22,1,.36,1) 0.12s both",
           }}>
-            A meta-analysis of randomized experiments on how generative AI affects learning.
-            Effect sizes are standardized in standard-deviation units so studies can be
-            compared; every estimate links to its source study, and the full dataset is
-            downloadable.
+            This site presents a meta-analysis of randomized experiments on how generative
+            AI affects learning. To make studies comparable, we compute standardized effect
+            sizes in standard-deviation units. Each estimate links to its source study, and
+            the full dataset is downloadable.
           </p>
         </div>
 
@@ -1521,7 +1521,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         </p>
         <div style={{ marginTop: 12 }}>
           {[
-            ["July 2026", `A research assistant re-verified every estimate against the underlying papers and coding errors were corrected. A literature sweep added 9 studies (20 effect sizes); a tenth candidate was excluded after full-text review found non-random assignment. Subjective quality ratings were replaced with factual coding notes, and a Design filter now separates lab, field, and online experiments from observational studies (the default view covers randomized experiments only). The atlas now covers ${nPapers} studies and ${nEstimates} effect sizes.`],
+            ["July 2026", `A research assistant re-verified every estimate against the underlying papers and coding errors were corrected. A literature sweep added 9 studies (20 effect sizes); a tenth candidate was excluded after full-text review found non-random assignment. Subjective quality ratings were replaced with factual coding notes, and a Design filter now separates lab, field, and online experiments from observational studies (the default view covers randomized experiments only). Strömberg, Lei & Wu (2026), a 26,811-student observational panel study, was added under the observational design class. The atlas now covers ${nPapers} studies and ${nEstimates} effect sizes.`],
             ["June 2026", "Initial public version: 24 studies and 116 effect sizes, with an interactive forest plot, individual study records, CSV export, and this methodology page."],
           ].map(([date, text]) => (
             <div key={date} style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 14, padding: "10px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>

@@ -479,6 +479,20 @@ PAPER_META = {
         image_keywords='Sierra Leone junior secondary classroom, students sharing tablets, mathematics lesson, West Africa education, Gemini AI',
         pdf_filename='LearnLM Team (2026) - Teaching with Gemini Sierra Leone.pdf',
     ),
+    'Stromberg et al. (2026)': dict(
+        authors_full='David Strömberg, Victor Lei, Yanhui Wu',
+        venue='CEPR Discussion Paper 21577',
+        country='China',
+        country_emoji='🇨🇳',
+        population_category='High school',
+        setting_detail='China, one county; grades 7-12 (junior and senior secondary)',
+        lab_vs_field='Field',
+        incentives='High-stakes coursework: monthly closed-book exams and the Zhongkao/Gaokao entrance exams (observational data; no experimental incentives)',
+        learning_domain_primary='Mixed',
+        summary="Thirty months of administrative panel data on 26,811 students in grades 7-12 in one Chinese county, analyzed with staggered-adoption difference-in-differences around each student's self-reported first use of generative AI (observational, not randomized). Homework scores jump (+1.9 SD) while closed-book monthly exam scores fall 20% of the baseline mean (-1.4 SD) within six months; entrance-exam scores fall 18-24% for students with 2+ years of exposure, and 81% of experienced AI users show homework-outsourcing patterns.",
+        image_keywords='Chinese secondary school classroom, students taking exam, homework smartphone chatbot, gaokao exam hall China',
+        pdf_filename='Stromberg et al (2026) - Generative AI Learning Penalty.pdf',
+    ),
 }
 
 
@@ -514,6 +528,7 @@ DESIGN_CLASS = {
     "hausman_etal_2025": "observational",
     "kim_etal_2025": "observational",
     "xu_etal_2025": "observational",
+    "stromberg_etal_2026": "observational",
 }
 DESIGN_CLASS_DEFAULT = "field_rct"
 DESIGN_CLASS_OVERRIDES = {
@@ -876,6 +891,11 @@ PAPER_SUMMARIES = {
         "setup": "The LearnLM Team (Google DeepMind and Fab AI) ran a preregistered two-arm cluster randomized controlled trial (AEARCTR-0016651) across 12 government-supported junior secondary schools in Port Loko District, Sierra Leone, from 6 October to 5 December 2025. The trial enrolled 1,763 grade 7 and 8 students (aged 13 or older) in 48 mathematics classrooms. In treatment classrooms, teachers integrated Gemini's Guided Learning feature into two of four weekly math periods (90 minutes per week, a requested ~12 hours over eight weeks), with students working in pairs at a 2:1 student-to-device ratio; control classrooms continued standard instruction with no AI. Both arms received identical 5-6 hour teacher training via a cascade model. Students received no incentives; the endline math assessment, developed and scored blind to assignment by Oxford MeasurEd, was itself the outcome and was taken unassisted.",
         "empirical_strategy": 'Randomization was at the classroom level within school-by-grade blocks (48 classrooms as clusters), with block fixed effects and standard errors clustered at the classroom level (48 clusters). The headline intent-to-treat estimate is an ANCOVA regression of the IRT-scaled endline math score on treatment assignment, controlling for baseline math and reading scores (Table C.4, col 2), on the balanced panel of students present at both waves (N=1,423). Treatment-on-the-treated effects use 2SLS, instrumenting completion of the requested 12 hours (and, separately, total dosage hours) with random assignment (Tables C.6-C.7). Field monitors logged implementation fidelity and spillover; documented spillover was negligible and would only attenuate the estimates.',
         "key_results": 'Guided Learning raised endline math scores by 0.258 SD (ITT; 95% CI [0.027, 0.488], p=0.029), which the authors benchmark at roughly 1.2-1.7 years of additional learning in low- and middle-income countries. Among students who completed the requested 12 hours, the treatment-on-the-treated effect was 0.380 SD (95% CI [0.040, 0.719], p=0.029), with a per-hour dosage effect of 0.016 SD. Uptake was unexpectedly high: 69.0% of the 871 students in treatment classrooms reached the 12-hour threshold, and treatment classrooms averaged about 15 hours. Effects were larger for students with higher baseline math skills (+0.195 SD per baseline SD, p=0.002).',
+    },
+    "stromberg_etal_2026": {
+        "setup": "The authors assemble 30 months (January 2023 to June 2025) of administrative panel data covering 26,811 students in grades 7-12 across all nine secondary schools of one county in central China (~90% of the county's secondary students; 524 classes). A June 2025 survey with >96% valid response recorded the month each student first adopted generative AI (teachers instructed students to check AI-tool registration dates) and weekly hours of use; roughly 80% had adopted by June 2025, using general-purpose chatbots (Doubao, DeepSeek, ChatGLM, Ernie Bot, Qwen), most often for math (66%) and English (55%). The education bureau's grade system supplies weekly platform-timestamped homework scores and completion times, monthly closed-book in-class exams in 7-9 subjects, county-wide joint exams, and centrally graded Zhongkao and Gaokao entrance-exam scores. All scores are rescaled to percent of the pre-adoption baseline mean.",
+        "empirical_strategy": "Staggered difference-in-differences in each student's self-reported first-adoption month, estimated with the Callaway-Sant'Anna (2021) regression-adjustment estimator against never-AI students (robustness: not-yet-treated controls; OLS and extended TWFE give near-identical results), with standard errors clustered at the class level. Identification rests on parallel trends rather than random assignment; the paper documents covariate balance (standardized differences below 0.1 with one exception at 0.103), flat pre-trends, a falsification showing only 5 of thousands of never-AI students ever experience a comparable six-month score drop, a placebo on the pre-AI 2022 Zhongkao (0.104, SE 0.351), and null spillovers onto classmates. Entrance-exam effects come from OLS with pre-AI scores, demographics, and class fixed effects; the authors note this identification is weaker because each entrance exam is observed once. Adoption timing is self-reported and retrospective, the design's main vulnerability.",
+        "key_results": "Homework productivity jumps while learning falls. Six to ten months after adoption, homework scores are up 18.13% of the baseline mean (SE 0.19; the authors' stated 1.9 SD) and completion time is down about 19 minutes, but monthly closed-book exam scores are down 20.05% (SE 0.41), a 1.4 SD decline that stabilizes after six months. Entrance-exam regressions with full controls show adopters scoring 5.2% lower on the Zhongkao (SE 0.38) and 5.3% lower on the Gaokao (SE 0.62); dynamic estimates reach -24% and -18% (about -1.5 and -1.2 SD) for students who adopted 2+ years before the exam. Losses are largest in social sciences, then STEM, and are bigger for junior, high-achieving, and male students. 81% of students using AI for 5+ months show homework-outsourcing patterns (very short completion times with high homework scores), and the learning losses concentrate among them.",
     },
 }
 
@@ -1654,6 +1674,8 @@ ADDITIONAL_ESTIMATES = [
 # transferable learning). Default for any not listed is False (unassisted).
 # These reflect the AI vs No-AI distinction the user wants to filter.
 OUTCOME_WITH_AI = {
+    # Stromberg: homework completed with AI in hand (productivity outcome)
+    "stromberg_etal_2026__est83": True,
     # Bastani: "assisted practice problems" outcomes are WITH AI
     "bastani_etal_2025__est1": True,   # GPT Base, assisted practice
     "bastani_etal_2025__est2": True,   # GPT Tutor, assisted practice
