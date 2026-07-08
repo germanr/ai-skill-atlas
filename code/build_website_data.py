@@ -493,6 +493,36 @@ PAPER_META = {
 DROP_PAPERS = {"Wu et al. (2025)"}
 
 
+# ── Design class (drives the site's Design filter) ──────────────────────────
+# lab_rct / field_rct / online_rct = randomized experiments by setting;
+# observational = no random assignment (DiD, FE2SLS/IV, cohort comparisons).
+# Paper-level default with per-estimate overrides for mixed-design papers.
+DESIGN_CLASS = {
+    "contractor_reyes_2026": "lab_rct",
+    "fan_etal_2025": "lab_rct",
+    "fischer_etal_2025": "lab_rct",
+    "hou_etal_2026": "lab_rct",
+    # Lehmann Studies 2-3 (the plotted estimates) are pre-registered lab
+    # experiments; Study 1 rows are overridden to observational below.
+    "lehmann_etal_2024": "lab_rct",
+    "kazemitabaar_etal_2023": "online_rct",
+    "kumar_etal_2023": "online_rct",
+    "lira_etal_2025": "online_rct",
+    "nie_etal_2025": "online_rct",
+    "liu_etal_2026": "online_rct",
+    "shen_and_tamkin_2026": "online_rct",
+    "hausman_etal_2025": "observational",
+    "kim_etal_2025": "observational",
+    "xu_etal_2025": "observational",
+}
+DESIGN_CLASS_DEFAULT = "field_rct"
+DESIGN_CLASS_OVERRIDES = {
+    # Lehmann Study 1: FE2SLS field study (ChatGPT-outage IV), not randomized
+    "lehmann_etal_2024__est32": "observational",
+    "lehmann_etal_2024__est35": "observational",
+}
+
+
 # ── Subagent verification corrections (one verification pass per paper) ────
 # These override values in PAPER_META based on what each paper actually reports.
 PAPER_CORRECTIONS = {
@@ -2120,6 +2150,17 @@ def build():
     )
     n_estimand = int((estimates_df["estimand"] != "").sum())
     print(f"Estimand/method attached: {n_estimand}/{len(estimates_df)} estimates labeled")
+
+    # ── attach design_class (paper default + per-estimate overrides) ──────
+    estimates_df["design_class"] = estimates_df.apply(
+        lambda r: DESIGN_CLASS_OVERRIDES.get(
+            r["estimate_id"], DESIGN_CLASS.get(r["paper_key"], DESIGN_CLASS_DEFAULT)
+        ),
+        axis=1,
+    )
+    papers_df["design_class"] = papers_df["paper_key"].map(
+        lambda k: DESIGN_CLASS.get(k, DESIGN_CLASS_DEFAULT)
+    )
 
     # ── public schema: factual coding notes only ──────────────────────────
     # The internal High/Medium/Low quality_label stays in meta_analysis.xlsx

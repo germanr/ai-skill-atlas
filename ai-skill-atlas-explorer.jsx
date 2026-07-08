@@ -52,6 +52,17 @@ const POPULATION_ORDER = [
 const NON_STUDENT_POPULATIONS = new Set(["Adults general", "Professional"]);
 const isStudentPaper = (p) => !NON_STUDENT_POPULATIONS.has(p.population_category);
 
+// Design filter: estimate-level design_class is lab_rct / field_rct /
+// online_rct / observational. "rct" = any randomized experiment.
+const matchesDesign = (e, mode) => {
+  const c = e.design_class || "field_rct";
+  if (mode === "rct") return c !== "observational";
+  if (mode === "lab") return c === "lab_rct";
+  if (mode === "field") return c === "field_rct";
+  if (mode === "online") return c === "online_rct";
+  return c === "observational"; // mode === "obs"
+};
+
 const F = {
   serif: "'Newsreader', Georgia, 'Times New Roman', serif",
   sans: "'IBM Plex Sans', 'Helvetica Neue', Helvetica, sans-serif",
@@ -470,7 +481,7 @@ function FilterRow({ label, options, active, onToggle, colorMap, isRadio, last }
             <Chip key={value} label={optLabel} active={active.has(value)} onClick={() => onToggle(value)} color={color} />
           );
         })}
-        {!isRadio && active.size > 0 && (
+        {!isRadio && [...active].some(v => v !== "__all") && (
           <button
             onClick={() => options.forEach(o => active.has(typeof o === "string" ? o : o.value) && onToggle(typeof o === "string" ? o : o.value))}
             style={{
@@ -1457,6 +1468,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
           {[
             "Standardization. Effects are expressed in SD units of the control group. Where papers report only raw effects, effect sizes and standard errors were derived from the reported means, SDs, and sample sizes; each derivation is recorded in the estimate's coding notes.",
             "Pooling. The pooled mean uses the DerSimonian–Laird random-effects estimator; the shaded band in the forest plot is its 95% confidence interval, which reflects between-study heterogeneity.",
+            "Design. Every estimate is classed as a lab, field, or online randomized experiment, or as observational (credible quasi-experimental variation without random assignment). The default view and the headline pooled estimate cover randomized experiments only; observational studies appear under the Design filter.",
             "Samples. The default view shows student samples (elementary school through university). Studies of adult online-panel and professional samples are in the atlas but shown only when the Sample filter is set to Non-students or All samples.",
             "Learning vs. assisted performance. The default view excludes outcomes measured with AI access (e.g., assisted-practice scores), which capture AI-augmented performance rather than learning. The Outcome filter adds them back.",
             "Comparisons. AI vs. business-as-usual is the default and never pooled with the others. AI vs. active control and off-the-shelf vs. scaffolded AI can each be viewed separately.",
@@ -1491,6 +1503,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
               ["outcome_with_ai", "Whether the outcome was measured with AI in hand."],
               ["is_subgroup / subgroup", "Whether the row is a heterogeneity estimate, and its label."],
               ["coding_notes", "How derived quantities were computed (e.g., back-calculated SEs) and design features relevant to interpretation."],
+              ["design_class", "lab_rct, field_rct, or online_rct (randomized experiments by setting), or observational (no random assignment)."],
             ].map(([col, desc]) => (
               <div key={col} style={{ display: "grid", gridTemplateColumns: "190px 1fr", gap: 12, alignItems: "baseline" }} className="facts-grid">
                 <code style={{ fontFamily: F.mono, fontSize: 11, color: C.ink, fontWeight: 500 }}>{col}</code>
@@ -1508,7 +1521,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         </p>
         <div style={{ marginTop: 12 }}>
           {[
-            ["July 2026", `A research assistant re-verified every estimate against the underlying papers and coding errors were corrected. A literature sweep added 9 studies (20 effect sizes); a tenth candidate was excluded after full-text review found non-random assignment. Subjective quality ratings were replaced with factual coding notes. The atlas now covers ${nPapers} studies and ${nEstimates} effect sizes.`],
+            ["July 2026", `A research assistant re-verified every estimate against the underlying papers and coding errors were corrected. A literature sweep added 9 studies (20 effect sizes); a tenth candidate was excluded after full-text review found non-random assignment. Subjective quality ratings were replaced with factual coding notes, and a Design filter now separates lab, field, and online experiments from observational studies (the default view covers randomized experiments only). The atlas now covers ${nPapers} studies and ${nEstimates} effect sizes.`],
             ["June 2026", "Initial public version: 24 studies and 116 effect sizes, with an interactive forest plot, individual study records, CSV export, and this methodology page."],
           ].map(([date, text]) => (
             <div key={date} style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 14, padding: "10px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
@@ -1744,7 +1757,7 @@ function downloadCSV(estimates, papers) {
     "ci_lower", "ci_upper", "n_total", "learning_domain", "outcome",
     "outcome_timing", "treatment", "control", "comparison_type",
     "estimand", "estimation_method",
-    "outcome_with_ai", "is_subgroup", "subgroup", "coding_notes",
+    "outcome_with_ai", "is_subgroup", "subgroup", "coding_notes", "design_class",
     "country", "population_category", "lab_vs_field", "study_design",
     "ai_tool", "ai_design", "incentives", "venue",
   ];
@@ -1787,6 +1800,7 @@ export default function App() {
   const [section, setSection] = useState(initialParams.get("section") === "creativity" ? "creativity" : "learning");
   const [selectedPaper, setSelectedPaper] = useState(null);
   const [search, setSearch] = useState("");
+  const [designMode, setDesignMode] = useState("rct");     // "rct" | "lab" | "field" | "online" | "obs"
   const [sampleMode, setSampleMode] = useState("students"); // "students" | "nonstudents" | "all"
   const [activeDomains, setActiveDomains] = useState(new Set());
   const [activePopulations, setActivePopulations] = useState(new Set());
@@ -1852,6 +1866,7 @@ export default function App() {
     const studentKeys = new Set(papers.filter(isStudentPaper).map(p => p.paper_key));
     return estimates.filter(e =>
       studentKeys.has(e.paper_key) &&
+      matchesDesign(e, "rct") &&
       (e.comparison_type || "ai_vs_bau") === "ai_vs_bau" &&
       e.outcome_with_ai !== true &&
       e.is_subgroup !== true
@@ -1898,6 +1913,7 @@ export default function App() {
     const paperKeys = new Set(filteredPapers.map(p => p.paper_key));
     return estimates.filter(e => {
       if (!paperKeys.has(e.paper_key)) return false;
+      if (!matchesDesign(e, designMode)) return false;
       if ((e.comparison_type || "ai_vs_bau") !== comparisonType) return false;
       if (outcomeMode === "without_ai" && e.outcome_with_ai === true) return false;
       if (e.is_subgroup === true) {
@@ -1905,7 +1921,7 @@ export default function App() {
       }
       return true;
     });
-  }, [filteredPapers, estimates, comparisonType, outcomeMode, activeSubgroupValues]);
+  }, [filteredPapers, estimates, designMode, comparisonType, outcomeMode, activeSubgroupValues]);
 
   const availableSubgroupValues = useMemo(() => {
     const papersByValue = new Map();
@@ -1950,9 +1966,10 @@ export default function App() {
   };
 
   const nActiveFilters = activeDomains.size + activePopulations.size + activeSettings.size + activeSubgroupValues.size
-    + (sampleMode !== "students" ? 1 : 0)
+    + (designMode !== "rct" ? 1 : 0) + (sampleMode !== "students" ? 1 : 0)
     + (comparisonType !== "ai_vs_bau" ? 1 : 0) + (outcomeMode !== "without_ai" ? 1 : 0);
   const resetFilters = () => {
+    setDesignMode("rct");
     setSampleMode("students");
     setActiveDomains(new Set());
     setActivePopulations(new Set());
@@ -2013,6 +2030,19 @@ export default function App() {
               )}
             </div>
             <FilterRow
+              label="Design"
+              options={[
+                { value: "rct",    label: "RCTs (all experiments)" },
+                { value: "lab",    label: "Lab experiments" },
+                { value: "field",  label: "Field experiments" },
+                { value: "online", label: "Online experiments" },
+                { value: "obs",    label: "Observational data" },
+              ]}
+              active={new Set([designMode])}
+              onToggle={(v) => setDesignMode(v)}
+              isRadio
+            />
+            <FilterRow
               label="Sample"
               options={[
                 { value: "students",    label: "Students" },
@@ -2025,16 +2055,16 @@ export default function App() {
             />
             <FilterRow
               label="Domain"
-              options={allDomains}
-              active={activeDomains}
-              onToggle={(v) => toggleSet(activeDomains, v, setActiveDomains)}
+              options={[{ value: "__all", label: "All" }, ...allDomains]}
+              active={activeDomains.size === 0 ? new Set(["__all"]) : activeDomains}
+              onToggle={(v) => v === "__all" ? setActiveDomains(new Set()) : toggleSet(activeDomains, v, setActiveDomains)}
               colorMap={Object.fromEntries(Object.entries(DOMAIN).map(([k, v]) => [k, v.color]))}
             />
             <FilterRow
               label="Population"
-              options={allPopulations}
-              active={activePopulations}
-              onToggle={(v) => toggleSet(activePopulations, v, setActivePopulations)}
+              options={[{ value: "__all", label: "All" }, ...allPopulations]}
+              active={activePopulations.size === 0 ? new Set(["__all"]) : activePopulations}
+              onToggle={(v) => v === "__all" ? setActivePopulations(new Set()) : toggleSet(activePopulations, v, setActivePopulations)}
             />
             <FilterRow
               label="Setting"
