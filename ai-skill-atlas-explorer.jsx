@@ -1804,7 +1804,6 @@ export default function App() {
   const [sampleMode, setSampleMode] = useState("students"); // "students" | "nonstudents" | "all"
   const [activeDomains, setActiveDomains] = useState(new Set());
   const [activePopulations, setActivePopulations] = useState(new Set());
-  const [activeSettings, setActiveSettings] = useState(new Set());
   const [comparisonType, setComparisonType] = useState("ai_vs_bau"); // "ai_vs_bau" | "ai_vs_active" | "ai_design"
   const [outcomeMode, setOutcomeMode] = useState("without_ai");      // "without_ai" | "all"
   const [activeSubgroupValues, setActiveSubgroupValues] = useState(new Set());
@@ -1888,9 +1887,6 @@ export default function App() {
     );
   }, [sampledPapers]);
 
-  const allSettings = useMemo(() => ["Lab", "Field", "Online", "Hybrid"].filter(x =>
-    papers.some(p => p.lab_vs_field === x)
-  ), [papers]);
 
   const filteredPapers = useMemo(() => {
     return sampledPapers.filter(p => {
@@ -1904,10 +1900,9 @@ export default function App() {
       }
       if (activeDomains.size > 0 && !activeDomains.has(p.learning_domain_primary)) return false;
       if (activePopulations.size > 0 && !activePopulations.has(p.population_category)) return false;
-      if (activeSettings.size > 0 && !activeSettings.has(p.lab_vs_field)) return false;
       return true;
     });
-  }, [sampledPapers, search, activeDomains, activePopulations, activeSettings]);
+  }, [sampledPapers, search, activeDomains, activePopulations]);
 
   const filteredEstimates = useMemo(() => {
     const paperKeys = new Set(filteredPapers.map(p => p.paper_key));
@@ -1965,7 +1960,7 @@ export default function App() {
     setActivePopulations(new Set());
   };
 
-  const nActiveFilters = activeDomains.size + activePopulations.size + activeSettings.size + activeSubgroupValues.size
+  const nActiveFilters = activeDomains.size + activePopulations.size + activeSubgroupValues.size
     + (designMode !== "rct" ? 1 : 0) + (sampleMode !== "students" ? 1 : 0)
     + (comparisonType !== "ai_vs_bau" ? 1 : 0) + (outcomeMode !== "without_ai" ? 1 : 0);
   const resetFilters = () => {
@@ -1973,7 +1968,6 @@ export default function App() {
     setSampleMode("students");
     setActiveDomains(new Set());
     setActivePopulations(new Set());
-    setActiveSettings(new Set());
     setActiveSubgroupValues(new Set());
     setComparisonType("ai_vs_bau");
     setOutcomeMode("without_ai");
@@ -2065,12 +2059,6 @@ export default function App() {
               options={[{ value: "__all", label: "All" }, ...allPopulations]}
               active={activePopulations.size === 0 ? new Set(["__all"]) : activePopulations}
               onToggle={(v) => v === "__all" ? setActivePopulations(new Set()) : toggleSet(activePopulations, v, setActivePopulations)}
-            />
-            <FilterRow
-              label="Setting"
-              options={allSettings}
-              active={activeSettings}
-              onToggle={(v) => toggleSet(activeSettings, v, setActiveSettings)}
             />
             <FilterRow
               label="Comparison"
