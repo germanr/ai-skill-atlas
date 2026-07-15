@@ -980,7 +980,7 @@ function Footer() {
               Built by{" "}
               <a href="https://www.germanr.com" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
                 Germán Reyes
-              </a>, Middlebury College, with research assistance from Nam Nguyen.
+              </a>, Middlebury College, with research assistance from Nam Nguyen and Wills Erda.
             </p>
           </div>
           <div>
@@ -1547,7 +1547,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
           The atlas is maintained by{" "}
           <a href="https://www.germanr.com" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             Germán Reyes
-          </a>{" "}(Middlebury College), with research assistance from Nam Nguyen. One included study,{" "}
+          </a>{" "}(Middlebury College), with research assistance from Nam Nguyen and Wills Erda. One included study,{" "}
           <a href="https://germanr.com/papers/cr_ai_learning.pdf" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             Contractor and Reyes (2026)
           </a>, is by the maintainer.
