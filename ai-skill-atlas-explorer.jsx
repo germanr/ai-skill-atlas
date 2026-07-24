@@ -1317,7 +1317,9 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
     window.scrollTo({ top: 0 });
   }, []);
 
-  const sortedPapers = [...papers].sort((a, b) => (b.year || 0) - (a.year || 0));
+  const sortedPapers = [...papers].sort((a, b) =>
+    (b.year || 0) - (a.year || 0) || (a.authors_short || "").localeCompare(b.authors_short || "")
+  );
   const nCountries = new Set(papers.map(p => p.country).filter(Boolean)).size;
 
   const h2 = {
