@@ -552,7 +552,8 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
   const xMin = -1.0, xMax = 1.0;
   const plotW = width - labelW - valueW - padL - padR;
   const xScale = (x) => labelW + padL + ((x - xMin) / (xMax - xMin)) * plotW;
-  const yScale = (i) => padTop + (i + 0.5) * rowH;
+  // The pooled summary row sits at the TOP of the plot; study rows follow.
+  const yScale = (i) => padTop + pooledH + (i + 0.5) * rowH;
   const xTicks = [-1.0, -0.5, 0, 0.5, 1.0];
   const axisTop = padTop + plotH + pooledH;
 
@@ -575,13 +576,13 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
 
             {/* Zebra striping across the full row (label, plot, value) */}
             {sorted.map((_e, i) => i % 2 === 1 && (
-              <rect key={`zebra-${i}`} x={0} y={padTop + i * rowH} width={width} height={rowH} fill="#F7F6F3" />
+              <rect key={`zebra-${i}`} x={0} y={padTop + pooledH + i * rowH} width={width} height={rowH} fill="#F7F6F3" />
             ))}
 
             {/* Pooled-estimate band across study rows */}
             {re && (
               <rect
-                x={xScale(re.lo)} y={padTop}
+                x={xScale(re.lo)} y={padTop + pooledH}
                 width={Math.max(0, xScale(re.hi) - xScale(re.lo))} height={plotH}
                 fill={C.accent} opacity={0.07}
               />
@@ -643,12 +644,11 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
               );
             })}
 
-            {/* Pooled diamond row */}
+            {/* Pooled diamond row (top of the plot, above the study rows) */}
             {re && (() => {
-              const cy = padTop + plotH + 30;
+              const cy = padTop + 24;
               return (
                 <g>
-                  <line x1={0} y1={padTop + plotH + 6} x2={width} y2={padTop + plotH + 6} stroke={C.rule} strokeWidth={1} />
                   <text x={labelW - 6} y={cy + 3.5} fontSize={11.5} fontFamily={F.sans} fontWeight={600} fill={C.ink} textAnchor="end">
                     Pooled estimate (random effects)
                   </text>
@@ -659,6 +659,7 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
                   <text x={width - padR} y={cy + 3.5} fontSize={11.5} fontFamily={F.mono} fill={C.accent} fontWeight={600} textAnchor="end">
                     {fmtSD(re.mean)}
                   </text>
+                  <line x1={0} y1={padTop + pooledH - 8} x2={width} y2={padTop + pooledH - 8} stroke={C.rule} strokeWidth={1} />
                 </g>
               );
             })()}
