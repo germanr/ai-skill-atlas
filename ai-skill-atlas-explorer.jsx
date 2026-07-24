@@ -32,12 +32,13 @@ const DOMAIN = {
   "Writing":           { color: "#1F5A2F", symbol: "triangle" },
   "Language":          { color: "#24509E", symbol: "cross"    },
   "Science":           { color: "#50555E", symbol: "diamond"  },
+  "Engineering":       { color: "#155E75", symbol: "square"   },
   "Economics":         { color: "#5B2E83", symbol: "triangle" },
   "Medicine":          { color: "#0E7C5B", symbol: "circle"   },
   "General knowledge": { color: "#3D3A35", symbol: "diamond"  },
   "Mixed":             { color: "#8E8678", symbol: "circle"   },
 };
-const DOMAIN_ORDER = ["Math", "Coding", "Writing", "Language", "Economics", "Medicine", "Science", "General knowledge", "Mixed"];
+const DOMAIN_ORDER = ["Math", "Coding", "Writing", "Language", "Economics", "Medicine", "Science", "Engineering", "General knowledge", "Mixed"];
 
 const POPULATION_ORDER = [
   "Elementary", "Middle school", "High school",

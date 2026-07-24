@@ -435,7 +435,7 @@ PAPER_META = {
         population_category='Undergraduate',
         lab_vs_field='Lab',
         incentives='None stated',
-        learning_domain_primary='Science',
+        learning_domain_primary='Engineering',
         summary='An online three-arm RCT with 95 undergraduates testing whether a five-step prompting framework changes what students learn from a course-grounded (RAG) generative-AI assistant. Guided AI use raised unassisted post-test scores (d~0.86), entirely through open-ended reasoning items, while free-form AI use was no better than slide-only review.',
         image_keywords='construction engineering education, generative AI assistant, chatbot tutoring, undergraduate students, online learning, laptop study',
         pdf_filename='Hou et al (2026) - Instructional Guidance in GenAI-Assisted Learning.pdf',
@@ -541,6 +541,11 @@ DESIGN_CLASS_OVERRIDES = {
 # ── Subagent verification corrections (one verification pass per paper) ────
 # These override values in PAPER_META based on what each paper actually reports.
 PAPER_CORRECTIONS = {
+    # [RA-2026-07 W. Erda] Card showed only the Iris arm's tool; the study
+    # also has an unrestricted-ChatGPT arm.
+    "bassner_etal_2026": dict(
+        ai_tool="Iris tutor and ChatGPT (both GPT-4.0)",
+    ),
     "barcaui_2025": dict(
         venue="Social Sciences & Humanities Open",
         learning_domain_primary="General knowledge",  # AI/ML conceptual content; not coding
@@ -766,7 +771,7 @@ PAPER_SUMMARIES = {
     "kazemitabaar_etal_2023": {
         "setup": "Online matched-groups RCT (run remotely over Google Meet from Canada) with 69 novice coders ages 10-17 (mean 12.5) recruited from coding camps. None had prior text-based programming. Three-week, ten-session study learning Python via the Coding Steps platform. Codex group (n=33) had unrestricted OpenAI Codex during training only; Baseline group (n=36) had no AI. $50 gift-card compensation. Outcomes at training, immediate post-test (1 day later), and retention (1 week later) - all on Python authoring and modifying tasks.",
         "empirical_strategy": "Matched-groups design: pairs balanced on Scratch pre-test scores, random assignment within pairs. Two-rater independent coding (79% full agreement). Independent-samples t-tests with Cohen's d; Bonferroni-adjusted alpha.",
-        "key_results": "Training-phase authoring (with AI): Codex 80.1% vs baseline 44.4% (d=1.67). But on the immediate unassisted post-test, no difference (d=0.05 authoring, d=0.01 modifying). On 1-week retention, modest non-significant Codex advantages (d=0.41 modifying, d=0.38 MCQ overall). Codex-High learners benefited most, suggesting prior competency moderates AI's learning effects.",
+        "key_results": "Training-phase authoring (with AI): Codex 80.1% vs baseline 44.4% (d=1.67). But on the immediate unassisted post-test, no difference (d=-0.05 authoring, d=0.01 modifying; positive favors Codex). On 1-week retention, modest non-significant Codex advantages (d=0.41 modifying, d=0.38 MCQ overall). Codex-High learners benefited most, suggesting prior competency moderates AI's learning effects.",
     },
     "kestin_etal_2025": {
         "setup": "Crossover RCT in Harvard's PS2 introductory physics for life sciences, Fall 2023, N=194 of 233 enrolled. Two lessons (surface tension, fluid flow) in weeks 9-10. AI tutor 'PS2 Pal' (GPT-4 with engineered system prompts, scaffolded sequential problem-guidance, and pre-written step-by-step solutions to mitigate hallucination) versus in-class active learning (peer instruction, group work, instructor feedback). Both arms used identical content. Pre/post-test performance did not affect course grades (participation credit only).",
@@ -1042,18 +1047,25 @@ ESTIMATE_OVERRIDES = {
                  "Table 2). 6,594 student-question obs.",
     },
     "lehmann_etal_2024__est33": {
-        "n_treatment": None, "n_control": None,
-        "notes": "Study 3 (replication with copy-paste). d~0.42 back-calculated; "
-                 "arm split not reported, SE assumes ~equal split. Marginally "
-                 "significant in t-test, null in regression.",
+        "n_treatment": 38, "n_control": 31,
+        "notes": "Study 3 (replication with copy-paste). d~0.42 back-calculated "
+                 "from Table 6 means/SDs. Arm Ns 38/31 are not printed in "
+                 "Table 6; recovered from Table 15 covariate proportions "
+                 "cross-checked with Table 10's treated N=94 (the stored SE "
+                 "0.245 reproduces only under this split). Marginally "
+                 "significant in t-test, null in regression. "
+                 "[2026-07 W. Erda verification round]",
     },
     "lehmann_etal_2024__est34": {
         "effect_size_sd": -0.306, "se": 0.114,
         "ci_lower": -0.530, "ci_upper": -0.082,
         "notes": "Exploratory. Treated subjects only. Copy-paste as exogenous "
                  "shifter of substitutive use. Raw coefficient -1.407 post-test "
-                 "questions (SE 0.525, p=0.009, Table 10); converted to SD units "
-                 "by post-test SD 4.6.",
+                 "questions (SE 0.525, p=0.009, Table 10 col 2); converted to "
+                 "SD units by the pooled post-test SD 4.6 across all four arms "
+                 "of Studies 2-3 (arm SDs 4.2/4.7/4.4/5.1, Ns 51/56/31/38; "
+                 "n-weighted pooled SD = 4.60). The treated-only post-test SD "
+                 "would be ~4.9. [provenance documented 2026-07, W. Erda round]",
     },
     "lehmann_etal_2024__est35": {
         "notes": "FE2SLS using ChatGPT service outages as IV. Raw IV coefficient "
@@ -1061,33 +1073,45 @@ ESTIMATE_OVERRIDES = {
                  "Table 3). N=6,594 obs. Continuous treatment.",
     },
     "lehmann_etal_2024__est36": {
-        "n_treatment": None, "n_control": None,
+        "n_treatment": 56, "n_control": 51,
         "notes": "Study 2. No copy-paste available (unintended). d~0.25 "
-                 "back-calculated from means/SDs; arm split not reported, SE "
-                 "assumes ~equal split. Not significant.",
+                 "back-calculated from Table 4 means/SDs. Arm Ns 56/51 are not "
+                 "printed in Table 4; recovered from Table 15 covariate "
+                 "proportions cross-checked with Table 10's treated N=94. Not "
+                 "significant. [2026-07 W. Erda verification round]",
     },
 
-    # [RA-2026-07] LearnLM: the stored CIs were percentage-point ATE intervals
-    # sitting in the SD-unit CI columns; moved to notes with pp units.
-    # est31's n_control=91 was the static-hint group, not this contrast's arm.
+    # [RA-2026-07] LearnLM UK: the stored CIs were percentage-point ATE
+    # intervals sitting in the SD-unit CI columns; moved to notes with pp
+    # units. [W. Erda round] Ns are session-level analyzed samples (Tables
+    # F.1/F.4): the two-level design randomized 165 STUDENTS to static hints
+    # (91) vs tutoring (74), then each tutoring SESSION to human tutor vs
+    # supervised LearnLM within the 74 -- so the old 74/91/165 student counts
+    # were not this contrast's analyzed sample.
     "learnlm_team_2025__est29": {
         "ci_lower": None, "ci_upper": None,
         "notes": "Key learning outcome: transfer to new topic. ATE +10.1pp, 95% "
                  "CI [+4.6, +15.4] (Table F.6; pp units). OR=1.6 [1.2, 2.0]. "
-                 "P(LearnLM>hint)>99.9%.",
+                 "P(LearnLM>hint)>99.9%. Ns are session-level analyzed samples "
+                 "(Table F.4: LearnLM 328, static hints 2,385) from the "
+                 "two-level design (91 students static hints vs 74 tutoring; "
+                 "sessions randomized within the 74).",
     },
     "learnlm_team_2025__est30": {
         "ci_lower": None, "ci_upper": None,
         "notes": "Bayesian logistic regression. ATE +27.7pp, 95% CI [+24.6, "
-                 "+30.4] (pp units). OR=7.4 [5.1, 11.0]. 165 students. Human "
-                 "tutor supervised LearnLM messages.",
+                 "+30.4] (pp units). OR=7.4 [5.1, 11.0]. Human tutor supervised "
+                 "LearnLM messages. Ns are session-level analyzed samples "
+                 "(Table F.1: LearnLM 467, static hints 3,301); 165 students "
+                 "in the trial overall.",
     },
     "learnlm_team_2025__est31": {
-        "ci_lower": None, "ci_upper": None, "n_control": None,
+        "ci_lower": None, "ci_upper": None,
         "notes": "ATE +5.5pp over human tutoring on transfer, 95% CI [-1.4, "
                  "+12.4] (pp units). OR=1.3 [0.9, 1.7]. P(LearnLM>human)=93.6%. "
                  "Both arms within the 74 tutoring students (session-level "
-                 "randomization).",
+                 "randomization); Ns are analyzed sessions (Table F.4: LearnLM "
+                 "328, human tutor 376).",
     },
 
     # [RA-2026-07] Lira: site links the 2026 arXiv v4, whose numbering merges
@@ -1101,7 +1125,13 @@ ESTIMATE_OVERRIDES = {
         "study_label": "Lira et al., Study 4 (example only)",
         "notes": "Study 4 (2026 version; labeled Study 5 in the 2025 draft). "
                  "Example-only as effective as practice with AI (d=0.03 "
-                 "difference). Mechanism: learning by example.",
+                 "difference). Mechanism: learning by example. Effect/SE from "
+                 "the test-phase writing-quality table, main GPT-4o spec "
+                 "(See-AI-example vs Practice-without-AI = .36, SE .056; Table "
+                 "S27 in the Sep-2025 draft = S29 in arXiv v4): the in-text "
+                 "d=.37 is rounded, and the previously stored SE .057 belonged "
+                 "to the adjacent contrast. Arm Ns 679/672 (balance table). "
+                 "[corrected 2026-07, W. Erda round]",
     },
 
     # [RA-2026-07] Nie: raw percentage-point SE/CIs were sitting in SD-unit
@@ -1215,6 +1245,9 @@ ESTIMATE_OVERRIDES["lehmann_etal_2024__est35"]["se"] = None
 DROP_ESTIMATES: set[str] = {
     # Duplicate of hausman est12: same Table 2 col (1) coefficient 0.970 (0.289)
     "hausman_etal_2025__est14",
+    # [RA-2026-07 W. Erda] Lira "Google vs editor feedback": both arms non-AI
+    # (the GenAI arm is a separate third arm); off-topic for an AI-vs-X atlas.
+    "lira_etal_2025__sg3",
 }
 
 
@@ -1224,7 +1257,8 @@ DROP_ESTIMATES: set[str] = {
 def _ce(study_label, paper_key, effect, se, treatment, control, outcome,
         timing="immediate", domain="General knowledge",
         comparison="ai_vs_bau", outcome_with_ai=False, n=None,
-        ci_lo=None, ci_hi=None, subgroup="", notes=None):
+        ci_lo=None, ci_hi=None, subgroup="", notes=None,
+        nt=None, nc=None):
     """Helper to build an additional estimate dict."""
     return dict(
         study_label=study_label,
@@ -1236,8 +1270,8 @@ def _ce(study_label, paper_key, effect, se, treatment, control, outcome,
         learning_domain=domain,
         outcome=outcome,
         outcome_timing=timing,
-        n_treatment=None,
-        n_control=None,
+        n_treatment=nt,
+        n_control=nc,
         n_total=n,
         treatment=treatment,
         control=control,
@@ -1304,18 +1338,29 @@ ADDITIONAL_ESTIMATES = [
         "Retention test (Other Topics subset)",
         timing="delayed", n=85, ci_lo=-1.04, ci_hi=-0.16,
         subgroup="Topic: Other"),
+    # [RA-2026-07 W. Erda check] The stratum Ns below are BOTH-ARM completer
+    # counts (31%/62% of the 85 completers; Fig 6), i.e., AI-vs-traditional
+    # comparisons within each prior-experience stratum -- not treatment-only
+    # subsets against the full control arm.
     _ce("Barcaui (2025), Recent/initial AI users",
         "barcaui_2025", -0.89, None,
         "ChatGPT (GPT-4)", "Traditional study (no AI)",
         "Retention test (recent/initial AI users)",
         timing="delayed", n=26, ci_lo=-1.56, ci_hi=-0.22,
-        subgroup="Prior AI exposure: Recent"),
+        subgroup="Prior AI exposure: Recent",
+        notes="Within-stratum AI-vs-traditional comparison; n=26 counts "
+              "completers in BOTH arms of the recent/initial-user stratum "
+              "(31% of the 85 completers). d=0.89 confirmed in the paper's "
+              "Fig 7 caption (sign flipped to the atlas convention)."),
     _ce("Barcaui (2025), Frequent AI users",
         "barcaui_2025", -0.41, None,
         "ChatGPT (GPT-4)", "Traditional study (no AI)",
         "Retention test (frequent AI users)",
         timing="delayed", n=53, ci_lo=-0.90, ci_hi=0.08,
-        subgroup="Prior AI exposure: Frequent"),
+        subgroup="Prior AI exposure: Frequent",
+        notes="Within-stratum AI-vs-traditional comparison; n=53 counts "
+              "completers in BOTH arms of the frequent-user stratum (62% of "
+              "the 85 completers)."),
 
     # ── Bastani — heterogeneity and pairwise arm comparison ──────────────
     _ce("Bastani et al. (2025), GPT Base, below-median GPA (unassisted exam)",
@@ -1353,12 +1398,15 @@ ADDITIONAL_ESTIMATES = [
         domain="Language", n=654, subgroup="Subscore: Digital skills"),
 
     # ── Fan — alternative arm comparisons ────────────────────────────────
+    # [RA-2026-07 W. Erda] Arm Ns filled from Appendix Tables A1-A3 analyzed
+    # samples; knowledge/transfer tests taken within one day of the task
+    # (single session), so timing is immediate, not delayed.
     _ce("Fan et al. (2024), Essay improvement, AI vs Human Expert",
         "fan_etal_2025", 0.66, 0.269,
         "ChatGPT 4.0 during revision", "Human expert support",
         "Essay score improvement (post-revision minus pre-revision)",
         domain="Writing", comparison="ai_vs_active", outcome_with_ai=True,
-        n=60, subgroup="AI vs Human Expert"),
+        n=60, nt=35, nc=25, subgroup="AI vs Human Expert"),
     # [RA-2026-07 r2] SE from the standard SE(d) formula with N=35/30 (0.2574);
     # the old 0.252 was a ~2% low outlier vs the sibling rows.
     _ce("Fan et al. (2024), Essay improvement, AI vs Checklist tool",
@@ -1366,27 +1414,29 @@ ADDITIONAL_ESTIMATES = [
         "ChatGPT 4.0 during revision", "Checklist writing analytics tool",
         "Essay score improvement (post-revision minus pre-revision)",
         domain="Writing", comparison="ai_vs_active", outcome_with_ai=True,
-        n=65, subgroup="AI vs Checklist"),
+        n=65, nt=35, nc=30, subgroup="AI vs Checklist"),
     _ce("Fan et al. (2024), Knowledge gain, AI vs Human Expert",
         "fan_etal_2025", 0.45, 0.275,
         "ChatGPT 4.0 during revision", "Human expert support",
         "Knowledge gain (pre-post test on AI in education)",
-        domain="Writing", comparison="ai_vs_active", timing="delayed",
-        n=56, subgroup="AI vs Human Expert"),
+        domain="Writing", comparison="ai_vs_active",
+        n=56, nt=33, nc=23, subgroup="AI vs Human Expert"),
     _ce("Fan et al. (2024), Knowledge gain, AI vs Checklist",
         "fan_etal_2025", 0.22, 0.269,
         "ChatGPT 4.0 during revision", "Checklist writing analytics tool",
         "Knowledge gain (pre-post test on AI in education)",
-        domain="Writing", comparison="ai_vs_active", timing="delayed",
-        n=57, subgroup="AI vs Checklist"),
+        domain="Writing", comparison="ai_vs_active",
+        n=57, nt=33, nc=24, subgroup="AI vs Checklist"),
     _ce("Fan et al. (2024), Knowledge transfer, AI vs CN",
         "fan_etal_2025", -0.02, 0.260,
         "ChatGPT 4.0 during revision", "No additional support",
         "Knowledge transfer (AI in healthcare, 10-item MCQ)",
-        domain="Writing", timing="delayed", n=60,
+        domain="Writing", n=60, nt=34, nc=26,
         subgroup="Transfer outcome",
         notes="Post-test within one day of the task (same wave as knowledge "
-              "gain). Transfer domain: AI in healthcare."),
+              "gain; coded immediate). Transfer domain: AI in healthcare. "
+              "The paper's Table A3 caption is generic ('posttest score'); "
+              "body text p.16 identifies it as the transfer test."),
 
     # ── Hausman — heterogeneity by demographics/course type/percentile ──
     # [RA-2026-07] Effects are raw grade points (0-100 scale), NOT SD units;
@@ -1485,6 +1535,11 @@ ADDITIONAL_ESTIMATES = [
         "Writing quality (test phase, GPT-4o, no AI)",
         domain="Writing", comparison="ai_vs_active",
         n=2997, subgroup="AI vs Google Search"),
+    # [RA-2026-07 W. Erda] "Study 3, Google vs editor feedback" is DROPPED at
+    # build time (see DROP_ESTIMATES): both arms are non-AI (Google Search vs
+    # human editors; the generative-AI arm is a separate third arm), so the
+    # contrast does not belong in an AI-vs-comparison atlas. The entry stays
+    # here so the positional __sgN ids of later Lira rows do not renumber.
     _ce("Lira et al. (2026), Study 3, Google vs editor feedback",
         "lira_etal_2025", -0.26, 0.049,
         "Practice with Google Search", "Practice with editor feedback",
@@ -1559,7 +1614,10 @@ ADDITIONAL_ESTIMATES = [
         n=411, ci_lo=0.048, ci_hi=0.382,
         subgroup="Prior Python skill: Beginner",
         notes="Self-identified first-time learners/beginners (53% of sample, "
-              "N=411 per Table 7). 0.215 SD, p=0.012."),
+              "N=411). 0.215 SD, p=0.012 reported in sec 4.2; the paper "
+              "prints no numeric SE/CI for this subgroup (Fig. 3 shows CIs "
+              "visually), so the CI here is reconstructed by p-value "
+              "inversion. [2026-07 W. Erda verification]"),
     _ce("Chung et al. (2026), Python experienced",
         "chung_etal_2025", 0.008, None,
         "RL adaptive sequencing + GenAI tutor", "Fixed sequence + GenAI tutor",
@@ -1568,7 +1626,10 @@ ADDITIONAL_ESTIMATES = [
         n=299, ci_lo=-0.21, ci_hi=0.226,
         subgroup="Prior Python skill: Experienced",
         notes="Self-identified intermediate/proficient coders (39% of sample, "
-              "N=299 per Table 7). 0.008 SD, p=0.941."),
+              "N=299). 0.008 SD, p=0.941 reported in sec 4.2; the paper "
+              "prints no numeric SE/CI for this subgroup (Fig. 3 shows CIs "
+              "visually), so the CI here is reconstructed by p-value "
+              "inversion. [2026-07 W. Erda verification]"),
     _ce("Chung et al. (2026), Lower-tier schools",
         "chung_etal_2025", 0.173, None,
         "RL adaptive sequencing + GenAI tutor", "Fixed sequence + GenAI tutor",
@@ -1696,6 +1757,8 @@ OUTCOME_WITH_AI = {
     # could query ChatGPT during the proctored quiz (p.3). Week-2 retention
     # (est17) was closed-book → False.
     "kalam_etal_2025__est16": True,    "bassner_etal_2026__est63": True,
+    # Iris-arm exercise performance, added 2026-07 (W. Erda verification)
+    "bassner_etal_2026__est84": True,
 
 }
 
@@ -1769,8 +1832,8 @@ LIT_DOMAIN = {
     'Fischer et al., unrestricted AI': 'Economics',
     'Fischer et al., restricted AI': 'Economics',
     'Gan et al., orthopedics': 'Medicine',
-    'Hou et al., guided AI': 'Science',
-    'Hou et al., unguided AI': 'Science',
+    'Hou et al., guided AI': 'Engineering',
+    'Hou et al., unguided AI': 'Engineering',
     'Huang et al., dental skills': 'Medicine',
     'Kavadella et al., dentistry': 'Medicine',
     'LearnLM, Sierra Leone': 'Math',
@@ -1886,6 +1949,12 @@ def load_own_estimates() -> list[dict]:
         ("avg_score6_s1", "s1_student"): "immediate",
         ("avg_score6_s2", "s2_student"): "delayed",
     }
+    # Arm splits for the test-score samples, paper Table 4 (ITT columns).
+    # [RA-2026-07 verification: W. Erda]
+    arm_ns = {
+        ("test_score1", "s1_student"): (107, 104),
+        ("test_score2", "s2_student"): (102, 102),
+    }
 
     out = []
     for _, r in df.iterrows():
@@ -1902,8 +1971,8 @@ def load_own_estimates() -> list[dict]:
                 learning_domain="General knowledge",
                 outcome=outcome_pretty[(r["outcome"], r["sample"])],
                 outcome_timing=timing_for[(r["outcome"], r["sample"])],
-                n_treatment=None,
-                n_control=None,
+                n_treatment=arm_ns.get((r["outcome"], r["sample"]), (None, None))[0],
+                n_control=arm_ns.get((r["outcome"], r["sample"]), (None, None))[1],
                 n_total=int(r["N"]),
                 treatment="AI allowed while learning a new topic",
                 control="No AI allowed",
@@ -2105,6 +2174,10 @@ def build():
         pkey = est["paper_key"]
         sg_counter[pkey] = sg_counter.get(pkey, 0) + 1
         est_id = f"{pkey}__sg{sg_counter[pkey]}"
+        # Positional ids: dropped entries still advance the counter above so
+        # later __sgN ids never renumber.
+        if est_id in DROP_ESTIMATES:
+            continue
         # Fill in missing CI if needed
         eff = est.get("effect_size_sd")
         se = est.get("se")
