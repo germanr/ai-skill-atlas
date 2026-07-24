@@ -121,6 +121,10 @@ button { font: inherit; }
 function randomEffectsMean(estimates) {
   const valid = estimates.filter(e => e.effect_size_sd != null && e.se != null && e.se > 0);
   if (valid.length === 0) return null;
+  if (valid.length === 1) {
+    const e = valid[0];
+    return { mean: e.effect_size_sd, se: e.se, lo: e.effect_size_sd - 1.96 * e.se, hi: e.effect_size_sd + 1.96 * e.se, k: 1, tau2: 0, Q: 0 };
+  }
 
   const w = valid.map(e => 1 / (e.se ** 2));
   const sumW = w.reduce((a, b) => a + b, 0);

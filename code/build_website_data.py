@@ -970,14 +970,20 @@ ESTIMATE_OVERRIDES = {
         "se": None,
         "notes": "Year 2 after rollout; effect larger than Year 1. ~80% AI "
                  "adoption in 2023-24. Raw effect: +1.484 grade points (0-100 "
-                 "scale), SE 0.406 (Table 2). Not in SD units.",
+                 "scale), SE 0.406 (Table 2). Not in SD units. n_total is the "
+                 "course-enrollment observation count of the full regression "
+                 "sample; arm Ns come from a narrower specification and do not "
+                 "sum to n_total by design. [Codex audit note, 2026-07]",
     },
     "hausman_etal_2025__est12": {
         "se": None,
         "notes": "ITT effect (AI availability, not use). Student FE + semester FE "
                  "+ course controls. ~30% AI adoption in 2022-23. Raw effect: "
                  "+0.970 grade points (0-100 scale), SE 0.289 (Table 2). Not in "
-                 "SD units.",
+                 "SD units. n_total is the course-enrollment observation count "
+                 "of the full regression sample; arm Ns come from a narrower "
+                 "specification and do not sum to n_total by design. [Codex "
+                 "audit note, 2026-07]",
     },
     "hausman_etal_2025__est13": {
         "se": None,
@@ -1211,9 +1217,11 @@ ESTIMATE_OVERRIDES = {
     },
 
     # [RA-2026-07] Chung: certification exam was the end-of-course terminal
-    # assessment (June 2025), not a delayed retention wave.
-    "chung_etal_2025__est52": {"outcome_timing": "immediate (end of ~5-month course)"},
-    "chung_etal_2025__est53": {"outcome_timing": "immediate (end of ~5-month course)"},
+    # assessment (June 2025) at the end of the ~5-month course, not a delayed
+    # retention wave. (Codex audit 2026-07: keep the enum strictly
+    # immediate/delayed; the course-length nuance lives in the xlsx notes.)
+    "chung_etal_2025__est52": {"outcome_timing": "immediate"},
+    "chung_etal_2025__est53": {"outcome_timing": "immediate"},
 
     # ── [RA-2026-07 r2] Round-2 adversarial re-check findings ──────────────
     # Kestin: 0.73-1.3 is a RANGE of quantile-regression estimates, not a CI.
@@ -2196,6 +2204,15 @@ def build():
         full["ci_lower"] = ci_lo
         full["ci_upper"] = ci_hi
         estimates_rows.append(full)
+
+    # ── recompute n_estimates over the FINAL estimate set ─────────────────
+    # (own + xlsx + synthetic subgroup rows, after drops; the values set at
+    # construction counted only xlsx rows — Codex audit 2026-07)
+    final_counts: dict[str, int] = {}
+    for e in estimates_rows:
+        final_counts[e["paper_key"]] = final_counts.get(e["paper_key"], 0) + 1
+    for row in papers_rows:
+        row["n_estimates"] = final_counts.get(row["paper_key"], 0)
 
     # ── write XLSX ────────────────────────────────────────────────────────
     papers_df = pd.DataFrame(papers_rows)
