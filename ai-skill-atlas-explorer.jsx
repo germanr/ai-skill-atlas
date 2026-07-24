@@ -1350,12 +1350,12 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
           science, and psychology, and each reports results in its own format. This site puts them in
           one place. It currently covers <strong style={{ color: C.ink }}>{nPapers} studies</strong> and{" "}
           <strong style={{ color: C.ink }}>{nEstimates} effect sizes</strong> from randomized experiments
-          (plus a small number of well-identified quasi-experiments) in {nCountries} countries, with
-          participants ranging from elementary students to working professionals.
+          (plus a few quasi-experiments) in {nCountries} countries, with
+          participants ranging from elementary students to professionals.
         </p>
         <p style={body}>
           Effect sizes are expressed in standard-deviation units of each study's control group wherever
-          the underlying paper allows it, so results can be compared across settings. The pooled estimate
+          the paper allows it, so results can be compared across settings. The pooled estimate
           uses the DerSimonian–Laird random-effects model. Every estimate links to a study record that
           documents the design, sample, incentives, and AI tool, and the full dataset can be downloaded
           as a CSV.
@@ -1369,7 +1369,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         </p>
         <div style={{ marginTop: 16, border: `1px solid ${C.rule}`, borderRadius: 2, background: C.paperHi }}>
           {[
-            ["1 · Source of variation", "The study randomly assigns access to generative AI against a no-AI comparison group, or exploits a clean quasi-experiment with an AI-free assessment."],
+            ["1 · Source of variation", "The study randomly assigns access to generative AI against a no-AI comparison group, or exploits a credible quasi-experiment with an AI-free assessment."],
             ["2 · Sample size", "The study reports at least 50 participants in total."],
           ].map(([t, d], i, arr) => (
             <div key={t} style={{ padding: "15px 20px", borderBottom: i === arr.length - 1 ? "none" : `1px solid ${C.ruleSoft}` }}>
@@ -1388,14 +1388,14 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         {rule}
         <p style={body}>
           Studies measure learning in different ways, and the differences matter when comparing effect
-          sizes. A useful organizing device is <strong style={{ color: C.ink }}>Bloom's taxonomy</strong>,
+          sizes. One organizing device is <strong style={{ color: C.ink }}>Bloom's taxonomy</strong>,
           which orders cognitive skills from lower to higher: remembering, understanding, applying,
           analyzing, evaluating, and creating.
         </p>
         <div style={{ marginTop: 16, border: `1px solid ${C.rule}`, borderRadius: 2, background: C.paperHi }}>
           {[
             ["Lower-order · remember, understand, apply", "Typically measured with test scores (multiple-choice or short-answer items). These are easy to standardize and grade, and they dominate the literature."],
-            ["Higher-order · analyze, evaluate, create", "Measured with essays, open-ended problems, or transfer tasks. These are noisier and harder to grade, but closer to the skills education ultimately targets."],
+            ["Higher-order · analyze, evaluate, create", "Measured with essays, open-ended problems, or transfer tasks. These are noisier and harder to grade, but closer to the skills education targets."],
           ].map(([t, d], i, arr) => (
             <div key={t} style={{ padding: "15px 20px", borderBottom: i === arr.length - 1 ? "none" : `1px solid ${C.ruleSoft}` }}>
               <div style={{ ...SC({ fontSize: 10, color: C.accent }), marginBottom: 5 }}>{t}</div>
@@ -1406,17 +1406,17 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         <p style={body}>
           An effect on a multiple-choice quiz and an effect on essay quality are therefore different
           constructs, even when both are expressed in SD units. The outcome column in the data records
-          exactly what each study measured.
+          what each study measured.
         </p>
 
         <h2 style={h2}>How to read the estimates</h2>
         {rule}
         <div style={{ marginTop: 4 }}>
           {[
-            ["The pooled mean hides real variation.", "Effects differ by subject, by population, and above all by whether the outcome was measured with or without AI in hand. Read the spread, not only the average."],
+            ["The pooled mean masks variation.", "Effects differ by subject, by population, and above all by whether the outcome was measured with or without AI in hand. Read the spread, not only the average."],
             ["Precision varies.", "Some estimates come from large pre-registered field experiments, others from small single-site studies over short horizons. The coding notes on each record state how derived quantities were computed and note design features relevant to interpretation."],
             ["Independence varies.", "Some studies were conducted by, or in collaboration with, the companies whose tools they evaluate. The study records note this where it applies."],
-            ["Intervals overlap.", "Most pairs of studies cannot be reliably ranked against each other. The forest plot describes a distribution, not a leaderboard."],
+            ["Intervals overlap.", "Most pairs of studies cannot be reliably ranked. The forest plot describes a distribution, not a leaderboard."],
           ].map(([t, d]) => (
             <div key={t} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "13px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
               <span style={{ color: C.accent, fontFamily: F.mono, fontSize: 13, lineHeight: 1.5 }}>—</span>
@@ -1463,17 +1463,19 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         {rule}
         <div style={{ marginTop: 4 }}>
           {[
-            "Standardization. Effects are expressed in SD units of the control group. Where papers report only raw effects, effect sizes and standard errors were derived from the reported means, SDs, and sample sizes; each derivation is recorded in the estimate's coding notes.",
-            "Pooling. The pooled mean uses the DerSimonian–Laird random-effects estimator; the shaded band in the forest plot is its 95% confidence interval, which reflects between-study heterogeneity.",
-            "Design. Every estimate is classed as a lab, field, or online randomized experiment, or as observational (credible quasi-experimental variation without random assignment). The default view and the headline pooled estimate cover randomized experiments only; observational studies appear under the Design filter.",
-            "Samples. The default view shows student samples (elementary school through university). Studies of adult online-panel and professional samples are in the atlas but shown only when the Sample filter is set to Non-students or All samples.",
-            "Learning vs. assisted performance. The default view excludes outcomes measured with AI access (e.g., assisted-practice scores), which capture AI-augmented performance rather than learning. The Outcome filter adds them back.",
-            "Comparisons. AI vs. business-as-usual is the default and never pooled with the others. AI vs. active control and off-the-shelf vs. scaffolded AI can each be viewed separately.",
-            "Subgroups. Heterogeneity estimates (by gender, prior achievement, topic) are excluded from the forest plot and the pooled estimates; they appear on each study's record.",
-          ].map((t, i) => (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "12px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
+            ["Standardization.", "Effects are expressed in SD units of the control group. Where papers report only raw effects, effect sizes and standard errors were derived from the reported means, SDs, and sample sizes; each derivation is recorded in the estimate's coding notes."],
+            ["Pooling.", "The pooled mean uses the DerSimonian–Laird random-effects estimator; the shaded band in the forest plot is its 95% confidence interval, which reflects between-study heterogeneity."],
+            ["Design.", "Every estimate is classed as a lab, field, or online randomized experiment, or as observational (credible quasi-experimental variation without random assignment). The default view and the headline pooled estimate cover randomized experiments only; observational studies appear under the Design filter."],
+            ["Samples.", "The default view shows student samples (elementary school through university). Studies of adult online-panel and professional samples are in the atlas but shown only when the Sample filter is set to Non-students or All samples."],
+            ["Learning vs. assisted performance.", "The default view excludes outcomes measured with AI access (e.g., assisted-practice scores), which capture AI-augmented performance rather than learning. The Outcome filter adds them back."],
+            ["Comparisons.", "AI vs. business-as-usual is the default and never pooled with the others. AI vs. active control and off-the-shelf vs. scaffolded AI can each be viewed separately."],
+            ["Subgroups.", "Heterogeneity estimates (by gender, prior achievement, topic) are excluded from the forest plot and the pooled estimates; they appear on each study's record."],
+          ].map(([t, d]) => (
+            <div key={t} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "12px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
               <span style={{ color: C.accent, fontFamily: F.mono, fontSize: 13, lineHeight: 1.5 }}>—</span>
-              <p style={{ fontFamily: F.sans, fontSize: 13.5, lineHeight: 1.65, color: C.ink2, margin: 0 }}>{t}</p>
+              <p style={{ fontFamily: F.sans, fontSize: 13.5, lineHeight: 1.65, color: C.ink2, margin: 0 }}>
+                <strong style={{ color: C.ink }}>{t}</strong> {d}
+              </p>
             </div>
           ))}
         </div>
