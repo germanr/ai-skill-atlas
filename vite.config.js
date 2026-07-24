@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  base: '/ai-skill-atlas/',
+  base: '/',
   plugins: [react()],
   server: {
     host: '0.0.0.0',

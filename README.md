@@ -2,7 +2,7 @@
 
 A living atlas of randomized experiments on how generative AI affects human skill formation. Currently focused on learning outcomes; built on top of the meta-analysis in Contractor & Reyes (2026).
 
-Live: https://germanr.github.io/ai-skill-atlas/
+Live: https://aiskillatlas.org/ (previously germanr.github.io/ai-skill-atlas, which now redirects)
 
 ## Stack
 

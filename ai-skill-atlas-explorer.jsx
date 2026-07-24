@@ -950,7 +950,7 @@ const BIBTEX_SITE = `@misc{reyes_atlas_ai_human_skill,
   title  = {The AI and Human Skill Atlas},
   author = {Reyes, Germán},
   year   = {2026},
-  url    = {https://germanr.github.io/ai-skill-atlas/}
+  url    = {https://aiskillatlas.org/}
 }`;
 
 function Footer() {
@@ -1010,7 +1010,7 @@ function Footer() {
           display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10,
         }}>
           <span style={SC({ fontSize: 9, color: C.ink3 })}>Updated July 2026</span>
-          <span style={SC({ fontSize: 9, color: C.ink3 })}>germanr.github.io/ai-skill-atlas</span>
+          <span style={SC({ fontSize: 9, color: C.ink3 })}>aiskillatlas.org</span>
         </div>
       </div>
     </footer>
