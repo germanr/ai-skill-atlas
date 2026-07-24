@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import { AboutPage, GCSS } from '../ai-skill-atlas-explorer.jsx'
+import { AboutPage, GCSS, ErrorBoundary } from '../ai-skill-atlas-explorer.jsx'
 import PAPERS_RAW from './papers.json'
 import ESTIMATES_RAW from './estimates.json'
 
@@ -28,6 +28,8 @@ function AboutStandalone() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AboutStandalone />
+    <ErrorBoundary>
+      <AboutStandalone />
+    </ErrorBoundary>
   </React.StrictMode>
 )

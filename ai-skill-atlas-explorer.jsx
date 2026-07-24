@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import PAPERS_RAW from "./src/papers.json";
 import ESTIMATES_RAW from "./src/estimates.json";
 import CREATIVITY_DATA from "./src/creativity_papers.json";
+import { randomEffectsMean, ciOf, bibtexAuthors } from "./src/shared.mjs";
 
 // ─── Formatters ───
 const fmt = (n) => (n == null ? "—" : n.toLocaleString());
@@ -16,7 +17,7 @@ const C = {
   paperDeep: "#F5F4F1",    // recessed surface (hovers, table headers)
   ink: "#1B1A18",          // primary text
   ink2: "#5B5751",         // secondary text
-  ink3: "#9B968E",         // tertiary text
+  ink3: "#847E74",         // tertiary text (AA contrast on white)
   rule: "#DDDAD3",         // hairline rules
   ruleSoft: "#ECEAE5",     // softer rules
   accent: "#1D4E89",       // scholarly blue — pooled estimate, links, active
@@ -28,7 +29,7 @@ const C = {
 // ─── Domain palette (continuous with paper Figure 5) ───
 const DOMAIN = {
   "Math":              { color: "#7B1F1F", symbol: "circle"   },
-  "Coding":            { color: "#B36412", symbol: "square"   },
+  "Coding":            { color: "#9A5410", symbol: "square"   },
   "Writing":           { color: "#1F5A2F", symbol: "triangle" },
   "Language":          { color: "#24509E", symbol: "cross"    },
   "Science":           { color: "#50555E", symbol: "diamond"  },
@@ -36,7 +37,7 @@ const DOMAIN = {
   "Economics":         { color: "#5B2E83", symbol: "triangle" },
   "Medicine":          { color: "#0E7C5B", symbol: "circle"   },
   "General knowledge": { color: "#3D3A35", symbol: "diamond"  },
-  "Mixed":             { color: "#8E8678", symbol: "circle"   },
+  "Mixed":             { color: "#6E6759", symbol: "circle"   },
 };
 const DOMAIN_ORDER = ["Math", "Coding", "Writing", "Language", "Economics", "Medicine", "Science", "Engineering", "General knowledge", "Mixed"];
 
@@ -80,7 +81,7 @@ const SC = (extra = {}) => ({
   textTransform: "uppercase", color: C.ink2, fontWeight: 500, ...extra,
 });
 
-export const GCSS = `@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+export const GCSS = `
 * { box-sizing: border-box; margin: 0; }
 html { scroll-behavior: smooth; }
 body { background: ${C.paper}; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: ${F.sans}; color: ${C.ink}; }
@@ -112,35 +113,13 @@ button { font: inherit; }
   .nav-links { gap: 12px !important; }
   .toolbar { flex-direction: column; align-items: stretch !important; }
 }
+@media (max-width: 460px) {
+  .grid-cards { grid-template-columns: 1fr !important; }
+}
 `;
 
-// ────────────────────────────────────────────────────────────────────────────
-// DerSimonian–Laird random-effects meta-analysis
-// (same formula as 4-figures.do lines 295-320)
-// ────────────────────────────────────────────────────────────────────────────
-function randomEffectsMean(estimates) {
-  const valid = estimates.filter(e => e.effect_size_sd != null && e.se != null && e.se > 0);
-  if (valid.length === 0) return null;
-  if (valid.length === 1) {
-    const e = valid[0];
-    return { mean: e.effect_size_sd, se: e.se, lo: e.effect_size_sd - 1.96 * e.se, hi: e.effect_size_sd + 1.96 * e.se, k: 1, tau2: 0, Q: 0 };
-  }
-
-  const w = valid.map(e => 1 / (e.se ** 2));
-  const sumW = w.reduce((a, b) => a + b, 0);
-  const muFE = valid.reduce((acc, e, i) => acc + w[i] * e.effect_size_sd, 0) / sumW;
-  const Q = valid.reduce((acc, e, i) => acc + w[i] * (e.effect_size_sd - muFE) ** 2, 0);
-  const k = valid.length;
-  const sumW2 = w.reduce((a, b) => a + b * b, 0);
-  const tau2 = Math.max(0, (Q - (k - 1)) / (sumW - sumW2 / sumW));
-
-  const wRE = valid.map(e => 1 / (e.se ** 2 + tau2));
-  const sumWRE = wRE.reduce((a, b) => a + b, 0);
-  const grandMean = valid.reduce((acc, e, i) => acc + wRE[i] * e.effect_size_sd, 0) / sumWRE;
-  const grandSE = 1 / Math.sqrt(sumWRE);
-
-  return { mean: grandMean, se: grandSE, lo: grandMean - 1.96 * grandSE, hi: grandMean + 1.96 * grandSE, k, tau2, Q };
-}
+// DerSimonian–Laird pooling, shared CI, and BibTeX helpers live in
+// src/shared.js so the smoke tests exercise the exact production logic.
 
 // ────────────────────────────────────────────────────────────────────────────
 // Atoms
@@ -433,7 +412,7 @@ function Hero({ papers, estimates, defaultEstimates, pooled }) {
         marginTop: 36, overflow: "hidden",
         animation: "fadeUp 0.55s cubic-bezier(.22,1,.36,1) 0.3s both",
       }}>
-        {stat("Randomized studies", fmt(papers.length))}
+        {stat("Studies", fmt(papers.length))}
         {stat("Effect sizes", fmt(estimates.length))}
         {stat("Participants", fmt(nParticipants))}
         {stat("Countries", fmt(nCountries))}
@@ -472,7 +451,7 @@ function Chip({ label, active, onClick, color }) {
 function FilterRow({ label, options, active, onToggle, colorMap, isRadio, last }) {
   if (!options || options.length === 0) return null;
   return (
-    <div style={{
+    <div role={isRadio ? "radiogroup" : "group"} aria-label={`${label} filter`} style={{
       display: "flex", alignItems: "baseline", gap: 14, flexWrap: "wrap",
       padding: "11px 0", borderBottom: last ? "none" : `1px solid ${C.ruleSoft}`,
     }}>
@@ -533,27 +512,29 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
   const [hovered, setHovered] = useState(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
+  // Rows need an effect plus either a usable SE (pooled, precision-sized) or
+  // a stored CI (drawn at fixed size, excluded from pooling).
   const plotable = estimates
-    .filter(e => e.effect_size_sd != null && e.se != null && e.se > 0)
-    .map(e => ({
-      ...e,
-      ci_lo: e.ci_lower != null ? e.ci_lower : e.effect_size_sd - 1.96 * e.se,
-      ci_hi: e.ci_upper != null ? e.ci_upper : e.effect_size_sd + 1.96 * e.se,
-    }));
+    .filter(e => e.effect_size_sd != null && ((e.se != null && e.se > 0) || (e.ci_lower != null && e.ci_upper != null)))
+    .map(e => {
+      const { lo, hi } = ciOf(e);
+      return { ...e, ci_lo: lo, ci_hi: hi, hasSE: e.se != null && e.se > 0 };
+    });
 
   const yearOf = (e) => (papers.find(p => p.paper_key === e.paper_key)?.year) || 0;
   const sorted = [...plotable].sort((a, b) => {
-    if (sortMode === "precision") return a.se - b.se;
+    if (sortMode === "precision") return (a.se ?? Infinity) - (b.se ?? Infinity);
     if (sortMode === "year") return yearOf(b) - yearOf(a) || b.effect_size_sd - a.effect_size_sd;
     return b.effect_size_sd - a.effect_size_sd;
   });
 
   const re = randomEffectsMean(plotable);
 
-  // Precision-weighted marker sizes
-  const sqrtW = plotable.map(e => Math.sqrt(1 / (e.se ** 2)));
+  // Precision-weighted marker sizes (SE-less rows get a fixed neutral size)
+  const sqrtW = plotable.filter(e => e.hasSE).map(e => Math.sqrt(1 / (e.se ** 2)));
   const wLo = Math.min(...sqrtW), wHi = Math.max(...sqrtW);
   const sizeOf = (e) => {
+    if (!e.hasSE) return 4.2;
     if (wHi === wLo) return 5;
     return 3.4 + 3.6 * ((Math.sqrt(1 / (e.se ** 2)) - wLo) / (wHi - wLo));
   };
@@ -623,8 +604,8 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
               const cx = xScale(Math.max(xMin, Math.min(xMax, e.effect_size_sd)));
               const cy = yScale(i);
               const loClamped = e.ci_lo < xMin, hiClamped = e.ci_hi > xMax;
-              const ciLoX = xScale(Math.max(xMin, e.ci_lo));
-              const ciHiX = xScale(Math.min(xMax, e.ci_hi));
+              const ciLoX = xScale(Math.min(xMax, Math.max(xMin, e.ci_lo)));
+              const ciHiX = xScale(Math.max(xMin, Math.min(xMax, e.ci_hi)));
               const isHl = hovered === e.estimate_id;
               let label = e.study_label || e.paper_key;
               if (label.length > 42) label = label.slice(0, 40) + "…";
@@ -634,7 +615,12 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
                   onMouseEnter={() => { setHovered(e.estimate_id); setTooltipPos({ x: cx, y: cy }); }}
                   onMouseLeave={() => setHovered(null)}
                   onClick={() => { const p = papers.find(p => p.paper_key === e.paper_key); if (p) onSelectPaper(p); }}
-                  style={{ cursor: "pointer" }}
+                  onFocus={() => { setHovered(e.estimate_id); setTooltipPos({ x: cx, y: cy }); }}
+                  onBlur={() => setHovered(null)}
+                  onKeyDown={(ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); const p = papers.find(p => p.paper_key === e.paper_key); if (p) onSelectPaper(p); } }}
+                  tabIndex={0} role="button"
+                  aria-label={`${e.study_label}: ${fmtSD(e.effect_size_sd)} SD. Open study record.`}
+                  style={{ cursor: "pointer", outline: "none" }}
                 >
                   <rect x={0} y={cy - rowH / 2} width={width} height={rowH} fill={isHl ? "#EDEBE6" : "transparent"} />
                   <text x={labelW - 6} y={cy + 3.5} fontSize={11} fontFamily={F.sans} fill={isHl ? C.ink : C.ink2} fontWeight={isHl ? 600 : 400} textAnchor="end">
@@ -646,8 +632,8 @@ function ForestPlot({ estimates, papers, onSelectPaper, width = 1084, sortMode =
                   {!hiClamped && <line x1={ciHiX} y1={cy - 3.5} x2={ciHiX} y2={cy + 3.5} stroke={dom.color} strokeWidth={1.4} opacity={0.55} />}
                   {loClamped && <polygon points={`${ciLoX},${cy} ${ciLoX + 6},${cy - 3.5} ${ciLoX + 6},${cy + 3.5}`} fill={dom.color} opacity={0.55} />}
                   {hiClamped && <polygon points={`${ciHiX},${cy} ${ciHiX - 6},${cy - 3.5} ${ciHiX - 6},${cy + 3.5}`} fill={dom.color} opacity={0.55} />}
-                  {/* Marker, sized by precision */}
-                  <Marker shape={dom.symbol} color={dom.color} size={isHl ? sizeOf(e) + 1.2 : sizeOf(e)} cx={cx} cy={cy} />
+                  {/* Marker, sized by precision (fixed + faded when no SE) */}
+                  <Marker shape={dom.symbol} color={dom.color} size={isHl ? sizeOf(e) + 1.2 : sizeOf(e)} cx={cx} cy={cy} opacity={e.hasSE ? 1 : 0.65} />
                   {/* Value column */}
                   <text x={width - padR} y={cy + 3.5} fontSize={11} fontFamily={F.mono}
                     fill={e.effect_size_sd >= 0 ? C.pos : C.neg} fontWeight={isHl ? 600 : 500} textAnchor="end">
@@ -809,11 +795,12 @@ function EstimatesTable({ estimates, papers, onSelectPaper }) {
           {sorted.map((e) => {
             const p = paperByKey[e.paper_key];
             const dom = DOMAIN[e.learning_domain] || DOMAIN.Mixed;
-            const lo = e.ci_lower != null ? e.ci_lower : (e.effect_size_sd != null && e.se != null ? e.effect_size_sd - 1.96 * e.se : null);
-            const hi = e.ci_upper != null ? e.ci_upper : (e.effect_size_sd != null && e.se != null ? e.effect_size_sd + 1.96 * e.se : null);
+            const { lo, hi } = ciOf(e);
             return (
               <tr key={e.estimate_id} className="hover-row"
                 onClick={() => p && onSelectPaper(p)}
+                tabIndex={p ? 0 : -1}
+                onKeyDown={(ev) => { if (p && (ev.key === "Enter" || ev.key === " ")) { ev.preventDefault(); onSelectPaper(p); } }}
                 style={{ cursor: p ? "pointer" : "default", background: "transparent", transition: "background 0.1s" }}
               >
                 <td style={{ ...td, minWidth: 200 }}>
@@ -857,9 +844,9 @@ function EffectBar({ value, color }) {
   );
 }
 
-function StudyCard({ paper, onClick, idx }) {
+function StudyCard({ paper, onClick, idx, viewEffect }) {
   const [h, setH] = useState(false);
-  const eff = paper.avg_effect;
+  const eff = viewEffect !== undefined ? viewEffect : paper.avg_effect;
   const domain = paper.learning_domain_primary || "Mixed";
   const dom = DOMAIN[domain] || DOMAIN.Mixed;
 
@@ -870,7 +857,7 @@ function StudyCard({ paper, onClick, idx }) {
       onMouseLeave={() => setH(false)}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter") onClick(paper); }}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(paper); } }}
       style={{
         background: C.paperHi,
         borderLeft: `1px solid ${h ? C.ink : C.rule}`,
@@ -1036,6 +1023,8 @@ function EstimateRow({ est, domain, last }) {
   const range = 2.0; // [-1, +1]
   const hasEffect = est.effect_size_sd != null;
   const pct = ((Math.max(-1, Math.min(1, est.effect_size_sd)) + 1) / range) * 100;
+  const { lo: ciLo, hi: ciHi } = ciOf(est);
+  const clamp = (x) => Math.max(-1, Math.min(1, x));
   return (
     <div style={{ padding: "16px 22px", borderBottom: last ? "none" : `1px solid ${C.ruleSoft}` }}>
       <div style={{ display: "flex", justifyContent: "space-between", gap: 18, alignItems: "baseline", marginBottom: 4 }}>
@@ -1050,7 +1039,7 @@ function EstimateRow({ est, domain, last }) {
       <div style={{ fontFamily: F.mono, fontSize: 10.5, color: C.ink3, marginBottom: 12 }}>
         {est.outcome_timing} · n = {fmt(est.n_total)}
         {est.se != null && <> · SE {fmtSE(est.se)}</>}
-        {est.ci_lower != null && <> · 95% CI {fmtCI(est.ci_lower, est.ci_upper)}</>}
+        {ciLo != null && <> · 95% CI {fmtCI(ciLo, ciHi)}</>}
       </div>
       {/* Number line (only when an SD-unit effect exists) */}
       {hasEffect && (
@@ -1058,11 +1047,11 @@ function EstimateRow({ est, domain, last }) {
           <div style={{ position: "relative", height: 16 }}>
             <div style={{ position: "absolute", left: 0, right: 0, top: 7, height: 1, background: C.rule }} />
             <div style={{ position: "absolute", left: "50%", top: 2, width: 1, height: 11, background: C.ink3 }} />
-            {est.ci_lower != null && est.ci_upper != null && (
+            {ciLo != null && ciHi != null && (
               <div style={{
                 position: "absolute",
-                left: `${Math.max(0, ((Math.max(-1, est.ci_lower) + 1) / range) * 100)}%`,
-                width: `${Math.min(100, ((Math.min(1, est.ci_upper) - Math.max(-1, est.ci_lower)) / range) * 100)}%`,
+                left: `${((clamp(ciLo) + 1) / range) * 100}%`,
+                width: `${Math.max(0, ((clamp(ciHi) - clamp(ciLo)) / range) * 100)}%`,
                 top: 5.5, height: 4, background: domain.color, opacity: 0.3, borderRadius: 2,
               }} />
             )}
@@ -1141,7 +1130,7 @@ function ReportCard({ paper, estimates, onBack }) {
 
   const bibtex = `@article{${paper.paper_key},
   title   = {${paper.title}},
-  author  = {${paper.authors_full || paper.authors_short}},
+  author  = {${bibtexAuthors(paper.authors_full || paper.authors_short)}},
   year    = {${paper.year || ""}},
   journal = {${paper.venue || "Working paper"}}
 }`;
@@ -1446,6 +1435,8 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
               <div key={p.paper_key}
                 onClick={() => onSelectPaper(p)}
                 className="hover-row"
+                role="button" tabIndex={0}
+                onKeyDown={(ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); onSelectPaper(p); } }}
                 style={{ padding: "13px 10px 13px 0", borderBottom: `1px solid ${C.ruleSoft}`, cursor: "pointer", transition: "background 0.1s" }}
               >
                 <div style={{ fontFamily: F.sans, fontSize: 13.5, fontWeight: 600, color: C.ink, lineHeight: 1.45 }}>
@@ -1489,8 +1480,8 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         <h2 style={h2}>Data</h2>
         {rule}
         <p style={body}>
-          Every estimate can be downloaded as a CSV from the browse page. The export reflects the active
-          filters, so clear them to get the complete dataset. The main columns:
+          Two CSV exports are available from the browse page: the current filtered slice, and the
+          complete dataset (every estimate, including subgroup rows, with every field). The main columns:
         </p>
         <div style={{ marginTop: 16, border: `1px solid ${C.rule}`, borderRadius: 2, background: C.paperHi, padding: "16px 20px" }}>
           <div style={{ ...SC({ fontSize: 9.5, color: C.ink3 }), marginBottom: 12 }}>Data dictionary</div>
@@ -1526,7 +1517,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper }
         </p>
         <div style={{ marginTop: 12 }}>
           {[
-            ["July 2026", `A research assistant re-verified every estimate against the underlying papers and coding errors were corrected. A literature sweep added 9 studies (20 effect sizes); a tenth candidate was excluded after full-text review found non-random assignment. Subjective quality ratings were replaced with factual coding notes, and a Design filter now separates lab, field, and online experiments from observational studies (the default view covers randomized experiments only). Strömberg, Lei & Wu (2026), a 26,811-student observational panel study, was added under the observational design class. The atlas now covers ${nPapers} studies and ${nEstimates} effect sizes.`],
+            ["July 2026", `A research assistant re-verified every estimate against the underlying papers and coding errors were corrected. A literature sweep added 9 studies (20 effect sizes); a tenth candidate was excluded after full-text review found non-random assignment. Subjective quality ratings were replaced with factual coding notes, and a Design filter now separates lab, field, and online experiments from observational studies (the default view covers randomized experiments only). Strömberg, Lei & Wu (2026), a 26,811-student observational panel study, was added under the observational design class. A stress test of the interface led to a batch of fixes: study cards and Effect sorting now reflect the current filtered view, a full-dataset CSV export was added alongside the filtered one, estimates reporting only a CI now appear in the plot, section links, the Back button, keyboard navigation, and Copy-BibTeX behave correctly, and automated checks now run before every deployment. The atlas now covers ${nPapers} studies and ${nEstimates} effect sizes.`],
             ["June 2026", "Initial public version: 24 studies and 116 effect sizes, with an interactive forest plot, individual study records, CSV export, and this methodology page."],
           ].map(([date, text]) => (
             <div key={date} style={{ display: "grid", gridTemplateColumns: "110px 1fr", gap: 14, padding: "10px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
@@ -1755,21 +1746,22 @@ function CreativityPage({ onSection }) {
 // ────────────────────────────────────────────────────────────────────────────
 // CSV download helper
 // ────────────────────────────────────────────────────────────────────────────
-function downloadCSV(estimates, papers) {
+function downloadCSV(estimates, papers, { full = false } = {}) {
   const paperByKey = Object.fromEntries(papers.map(p => [p.paper_key, p]));
   const cols = [
-    "paper_key", "authors", "year", "study_label", "effect_size_sd", "se",
-    "ci_lower", "ci_upper", "n_total", "learning_domain", "outcome",
+    "estimate_id", "paper_key", "authors", "year", "study_label", "effect_size_sd", "se",
+    "ci_lower", "ci_upper", "n_treatment", "n_control", "n_total", "learning_domain", "outcome",
     "outcome_timing", "treatment", "control", "comparison_type",
     "estimand", "estimation_method",
     "outcome_with_ai", "is_subgroup", "subgroup", "coding_notes", "design_class",
+    "included_in_curated_subset", "notes",
     "country", "population_category", "lab_vs_field", "study_design",
     "ai_tool", "ai_design", "incentives", "venue",
   ];
   const escape = (v) => {
     if (v == null) return "";
     const s = String(v);
-    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
   };
   const rows = estimates.map(e => {
     const p = paperByKey[e.paper_key] || {};
@@ -1778,8 +1770,7 @@ function downloadCSV(estimates, papers) {
       if (c === "year") return escape(p.year);
       if (["country", "population_category", "lab_vs_field", "study_design",
            "ai_tool", "ai_design", "incentives", "venue"].includes(c)) return escape(p[c]);
-      const lo = e.ci_lower != null ? e.ci_lower : (e.effect_size_sd != null && e.se != null ? e.effect_size_sd - 1.96 * e.se : null);
-      const hi = e.ci_upper != null ? e.ci_upper : (e.effect_size_sd != null && e.se != null ? e.effect_size_sd + 1.96 * e.se : null);
+      const { lo, hi } = ciOf(e);
       if (c === "ci_lower") return escape(lo);
       if (c === "ci_upper") return escape(hi);
       return escape(e[c]);
@@ -1790,7 +1781,7 @@ function downloadCSV(estimates, papers) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `ai-skill-atlas-estimates-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.download = `ai-skill-atlas-estimates-${full ? "full" : "filtered"}-${new Date().toISOString().slice(0, 10)}.csv`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1800,7 +1791,36 @@ function downloadCSV(estimates, papers) {
 // ────────────────────────────────────────────────────────────────────────────
 // Main app
 // ────────────────────────────────────────────────────────────────────────────
-export default function App() {
+// Error boundary: a runtime failure should show a message, not a blank page.
+export class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#FFFFFF", fontFamily: "Georgia, serif", color: "#1B1A18", padding: 24 }}>
+          <div style={{ maxWidth: 480, textAlign: "center" }}>
+            <div style={{ fontSize: 22, fontWeight: 650, marginBottom: 10 }}>Something went wrong.</div>
+            <div style={{ fontSize: 14, lineHeight: 1.6, color: "#5B5751", marginBottom: 18 }}>
+              The atlas hit an unexpected error while rendering. Reloading usually fixes it; if it persists, please email learning_study@middlebury.edu.
+            </div>
+            <button onClick={() => window.location.reload()} style={{ font: "inherit", fontSize: 13, padding: "8px 18px", cursor: "pointer", background: "#1B1A18", color: "#FFFFFF", border: "none", borderRadius: 2 }}>
+              Reload
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function AppInner() {
   const initialParams = new URLSearchParams(window.location.search);
   const [section, setSection] = useState(initialParams.get("section") === "creativity" ? "creativity" : "learning");
   const [selectedPaper, setSelectedPaper] = useState(null);
@@ -1813,7 +1833,10 @@ export default function App() {
   const [outcomeMode, setOutcomeMode] = useState("without_ai");      // "without_ai" | "all"
   const [activeSubgroupValues, setActiveSubgroupValues] = useState(new Set());
   const [sortBy, setSortBy] = useState("effect");
-  const [view, setView] = useState("chart");        // "chart" | "table"
+  // On narrow screens the wide forest plot is mostly off-screen; start on the
+  // responsive table instead (the Chart toggle stays available).
+  const [view, setView] = useState(() =>
+    (typeof window !== "undefined" && window.innerWidth < 640) ? "table" : "chart");
   const [plotSort, setPlotSort] = useState("effect"); // "effect" | "precision" | "year"
 
   // Inject global CSS once
@@ -1841,13 +1864,36 @@ export default function App() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  // Scroll to #evidence / #studies anchors: the browser's native anchor pass
+  // runs before React renders the sections, so handle it after mount.
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    };
+    const t = setTimeout(scrollToHash, 80);
+    window.addEventListener("hashchange", scrollToHash);
+    return () => { clearTimeout(t); window.removeEventListener("hashchange", scrollToHash); };
+  }, []);
+
+  const lastFocusRef = useRef(null);
   const openPaper = (p) => {
+    lastFocusRef.current = document.activeElement;
     setSelectedPaper(p);
-    window.history.pushState({}, "", `${window.location.pathname}?paper=${p.paper_key}`);
+    window.history.pushState({ inApp: true }, "", `${window.location.pathname}?paper=${p.paper_key}`);
   };
   const closePaper = () => {
-    setSelectedPaper(null);
-    window.history.pushState({}, "", window.location.pathname);
+    // If this record was opened in-app, closing = going back, so the Back
+    // button afterwards does not reopen it. Deep links get a clean replace.
+    if (window.history.state && window.history.state.inApp) {
+      window.history.back();
+    } else {
+      setSelectedPaper(null);
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+    setTimeout(() => { if (lastFocusRef.current && lastFocusRef.current.focus) lastFocusRef.current.focus(); }, 60);
   };
   const goSection = (s) => {
     setSection(s);
@@ -1942,16 +1988,32 @@ export default function App() {
     return filteredPapers.filter(p => keysInView.has(p.paper_key));
   }, [filteredPapers, filteredEstimates]);
 
+  // Per-paper average effect over the estimates in the CURRENT view, so
+  // cards and Effect sorting match what the plot shows (not the all-outcome
+  // static average).
+  const viewStats = useMemo(() => {
+    const acc = new Map();
+    filteredEstimates.forEach(e => {
+      if (e.effect_size_sd == null) return;
+      const s = acc.get(e.paper_key) || { sum: 0, n: 0 };
+      s.sum += e.effect_size_sd; s.n += 1;
+      acc.set(e.paper_key, s);
+    });
+    const out = {};
+    acc.forEach((s, k) => { out[k] = { mean: s.sum / s.n, n: s.n }; });
+    return out;
+  }, [filteredEstimates]);
+
   const sortedPapers = useMemo(() => {
     const arr = [...papersWithEstimates];
     arr.sort((a, b) => {
-      if (sortBy === "effect") return (b.avg_effect ?? -999) - (a.avg_effect ?? -999);
+      if (sortBy === "effect") return (viewStats[b.paper_key]?.mean ?? -999) - (viewStats[a.paper_key]?.mean ?? -999);
       if (sortBy === "year") return (b.year || 0) - (a.year || 0);
       if (sortBy === "n") return (b.n_total || 0) - (a.n_total || 0);
       return a.authors_short?.localeCompare(b.authors_short);
     });
     return arr;
-  }, [papersWithEstimates, sortBy]);
+  }, [papersWithEstimates, sortBy, viewStats]);
 
   const toggleSet = (set, val, setter) => {
     const next = new Set(set);
@@ -2138,7 +2200,8 @@ export default function App() {
               <span style={SC({ fontSize: 9.5, color: C.ink3 })}>
                 {filteredEstimates.length} estimates · {papersWithEstimates.length} studies
               </span>
-              <GhostBtn small onClick={() => downloadCSV(filteredEstimates, papers)}>↓ CSV</GhostBtn>
+              <GhostBtn small onClick={() => downloadCSV(filteredEstimates, papers)}>↓ CSV (filtered)</GhostBtn>
+              <GhostBtn small onClick={() => downloadCSV(estimates, papers, { full: true })}>↓ CSV (full dataset)</GhostBtn>
             </div>
           </div>
 
@@ -2148,6 +2211,7 @@ export default function App() {
               <p style={{ fontFamily: F.sans, fontSize: 11.5, color: C.ink3, lineHeight: 1.6, marginTop: 10, fontStyle: "italic" }}>
                 Note: Random-effects pooling (DerSimonian–Laird){fePlot ? ` over k = ${fePlot.k} estimates; τ̂² = ${fePlot.tau2.toFixed(3)}` : ""}.
                 Horizontal lines are 95% confidence intervals; arrowheads mark intervals truncated at ±1 SD.
+                Estimates reporting a CI but no SE are drawn at a fixed size and excluded from pooling.
                 Positive values favor the AI condition.
               </p>
             </>
@@ -2167,6 +2231,7 @@ export default function App() {
                 <input
                   type="text"
                   placeholder="Search title, author, country…"
+                  aria-label="Search studies by title, author, or country"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   style={{
@@ -2205,7 +2270,8 @@ export default function App() {
               display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: 14,
             }}>
               {sortedPapers.map((p, idx) => (
-                <StudyCard key={p.paper_key} paper={p} onClick={openPaper} idx={idx} />
+                <StudyCard key={p.paper_key} paper={p} onClick={openPaper} idx={idx}
+                  viewEffect={viewStats[p.paper_key] ? viewStats[p.paper_key].mean : null} />
               ))}
             </div>
           )}
@@ -2216,5 +2282,13 @@ export default function App() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <AppInner />
+    </ErrorBoundary>
   );
 }
