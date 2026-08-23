@@ -61,6 +61,19 @@ def authors_short(paper: str) -> str:
 # the raw meta_analysis.xlsx. Germán can override these in the output XLSX.
 
 PAPER_META = {
+    "Franco et al. (2026)": dict(
+        authors_full="Catalina Franco, Natalie Irmert, Siri Isaksson",
+        venue="Working paper (SSRN)",
+        country="UK",
+        country_emoji="🇬🇧",
+        population_category="Undergraduate",
+        lab_vs_field="Lab",
+        incentives="GBP 5 show-up + GBP 7 practice threshold + GBP 1 per correct exam answer (max GBP 27)",
+        learning_domain_primary="Language",
+        summary="Pre-registered lab experiment at Nottingham randomizing 572 students to browsing-only, ChatGPT, or ChatGPT-plus-guidance while studying Esperanto. No average effect on an unaided exam; AI crowds out practice questions, and heavy copy-pasters learn least.",
+        image_keywords="university computer lab students UK",
+        pdf_filename="Franco et al (2026) - Does AI Help or Hurt Learning.pdf",
+    ),
     "Barcaui (2025)": dict(
         authors_full="Andre Barcaui",
         venue="Working paper",
@@ -513,6 +526,7 @@ DROP_PAPERS = {"Wu et al. (2025)"}
 # Paper-level default with per-estimate overrides for mixed-design papers.
 DESIGN_CLASS = {
     "contractor_reyes_2026": "lab_rct",
+    "franco_etal_2026": "lab_rct",
     "fan_etal_2025": "lab_rct",
     "fischer_etal_2025": "lab_rct",
     "hou_etal_2026": "lab_rct",
@@ -541,6 +555,10 @@ DESIGN_CLASS_OVERRIDES = {
 # ── Subagent verification corrections (one verification pass per paper) ────
 # These override values in PAPER_META based on what each paper actually reports.
 PAPER_CORRECTIONS = {
+    "franco_etal_2026": dict(
+        pdf_url="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6425840",
+        n_total=572,  # randomized sample across all three arms (572 analyzed)
+    ),
     # [RA-2026-07 W. Erda] Card showed only the Iris arm's tool; the study
     # also has an unrestricted-ChatGPT arm.
     "bassner_etal_2026": dict(
@@ -728,6 +746,11 @@ PAPER_CORRECTIONS = {
 # ── 3-part paper summaries (setup / empirical strategy / key results) ──────
 # From 24 subagents that read each paper and produced structured summaries.
 PAPER_SUMMARIES = {
+    "franco_etal_2026": {
+        "setup": "Pre-registered lab RCT at the University of Nottingham (CedEX lab, December 2024) with 572 analyzed students (604 randomized) from all fields of study. Students studied Esperanto for 15 minutes, then worked practice questions for about 20 minutes under one of three arms: browsing-only control (Google allowed, AI sites blocked), AI-assisted (logged-in premium ChatGPT), or AI-guided (ChatGPT plus brief written guidance on learning-oriented use). All students then took an unaided 15-question exam. Incentives: GBP 5 show-up, GBP 7 for at least 20 correct practice questions, GBP 1 per correct exam answer.",
+        "empirical_strategy": "Pre-registered OLS of exam score on treatment indicators with baseline covariates (age, degree level, field of study, prior AI use, paid AI subscription); pre-registered heterogeneity by gender and high-GPA status and binary top-score (>10) and low-score (<5) outcomes. Exploratory prompt analysis links a copy-paste index (share of prompts containing verbatim practice-question text) to study behavior and exam scores.",
+        "key_results": "No average effect on exam scores in either AI arm (about 8 of 15 correct in all arms; 0.04 SD AI-assisted, -0.12 SD AI-guided). AI arms attempted 4.2-5.8 fewer practice questions (12-17 percent less) at a higher per-question success rate. Suggestive heterogeneity: high-GPA women gain under guided access while low-GPA students face a higher bottom-tail risk. The heaviest copy-pasters score 16 percent below the control mean; high-GPA women copy-paste least.",
+    },
     "contractor_reyes_2026": {
         "setup": "In-person computer-lab RCT with 211 Middlebury College undergraduates across two sessions one week apart. Students were randomized to AI-allowed (logged-in ChatGPT GPT-4o) or AI-forbidden conditions during a 35-minute learning phase on one of three unfamiliar topics (blockchain, carbon capture, CRISPR), then wrote an analytical essay. Incentives: $50 for completing both sessions plus lottery tickets ($100 each, 30 drawn) tied to test correctness and essay quality.",
         "empirical_strategy": "ITT estimated via OLS of outcomes on the AI-allowed indicator, with randomization-strata dummies and double-lasso-selected controls. Robust SEs. A complementary TOT/2SLS specification instruments AI use with random assignment to recover the LATE for compliers.",
@@ -1845,6 +1868,8 @@ LIT_DOMAIN = {
     'Huang et al., dental skills': 'Medicine',
     'Kavadella et al., dentistry': 'Medicine',
     'LearnLM, Sierra Leone': 'Math',
+    'Franco et al., AI-assisted': 'Language',
+    'Franco et al., AI-guided': 'Language',
 
 }
 
@@ -1860,6 +1885,8 @@ def load_lit_csv() -> pd.DataFrame:
 # SD-converted SEs for Bastani; effect-only matching is also ambiguous for Lira (multiple
 # very close effects). Listed in the order of literature_effects.csv.
 CURATED_MAP = [
+    ("Franco et al. (2026)", "AI-assisted", "", "Franco et al., AI-assisted"),
+    ("Franco et al. (2026)", "AI-guided", "", "Franco et al., AI-guided"),
     ("Bastani et al. (2025)", "GPT Base", "unassisted exam", "Bastani et al., GPT Base"),
     ("Bastani et al. (2025)", "GPT Tutor", "unassisted exam", "Bastani et al., GPT Tutor"),
     ("De Simone et al. (2025)", "", "English skills", "De Simone et al., English"),
