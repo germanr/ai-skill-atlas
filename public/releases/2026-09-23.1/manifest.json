@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "id": "2026-09-23.1",
+  "date": "2026-09-23",
+  "label": "Shareable views, timing filters, and explicit sample and source labels",
+  "kind": "release",
+  "description": "Adds immutable release tracking, separate study and estimate sample units, source-review metadata, URL-based views, and immediate/delayed filtering. Raw data, effect estimates, and timing classifications are unchanged. Sample checks use existing local coding; source reviews remain pending where indicated. Local release prepared for publication; not yet deployed.",
+  "previous_release_id": "2026-09-23-baseline",
+  "counts": {
+    "learning_papers": 35,
+    "learning_estimates": 139,
+    "creativity_papers": 20,
+    "creativity_estimates": 189
+  },
+  "source_review": {
+    "status": "record_level_status_in_metadata",
+    "note": "The release date records this archive, not the original extraction date or a verified historical paper version. Unchanged legacy records remain unreviewed unless their annotations say otherwise. Free-text source and derivation notes are preserved.",
+    "newly_reviewed_estimate_ids": []
+  },
+  "reproducibility": {
+    "scope": "Frozen website data plus calculation, filtering, export and build source available at capture.",
+    "raw_csv": "Raw CSVs preserve stored fields. Object/array cells use JSON. Null and absent fields are empty CSV cells; use JSON for a lossless distinction. Creativity theme order remains in creativity_papers.json.",
+    "joined_learning_csv": "The shared export joins study fields, derives missing CI limits using the captured ciOf helper, and appends metadata and release context. No filtering is applied.",
+    "limitations": "Underlying research workbooks, analysis outputs, PDFs and historical paper versions are not bundled or retrospectively verified. This archive reproduces website calculations from its frozen JSON, not extraction from primary documents.",
+    "restore": "For calculations and exports, use code/src/shared.mjs with data/*.json; snapshot-tools contains the exact CSV generator and its dependencies. This is not a complete standalone website backup. For the app, copy data/code files to their manifest source_path in a separate directory, copy this entire archive to public/releases/<id>, reconstruct src/release.json from this release's published index entry, and create public/releases/index.json with that entry/current_release_id/schema_version. The reconstructed pointer/index are intentionally outside their own hash manifest to avoid a circular digest. Historical archive lists, PDFs, images and other site assets are not bundled. Install with the archived package-lock.json using npm ci. Do not overwrite a live checkout to reproduce an older release."
+  },
+  "files": [
+    {
+      "path": "data/papers.json",
+      "role": "data",
+      "source_path": "src/papers.json",
+      "records": 35,
+      "bytes": 108842,
+      "sha256": "d771c0e0b28f212a2817986e656134f6114a02b01f102ff0968dc0d26bd23f63",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "359390977fe21a971a5bc3b763d595039f383518828c02b901d5787ff2224ac0"
+    },
+    {
+      "path": "data/papers.csv",
+      "role": "raw_csv",
+      "records": 35,
+      "bytes": 84017,
+      "sha256": "687e198ec99350a9170e050cac0e3c4db709226a942b119fa2b96c59510c0730"
+    },
+    {
+      "path": "data/estimates.json",
+      "role": "data",
+      "source_path": "src/estimates.json",
+      "records": 139,
+      "bytes": 172717,
+      "sha256": "4a96305706b4a8503fa59c7a51468b64a356d6b1d3c283f08659f74b78990f09",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "415727e7ee1ab4260110cb1802f8d447b1cf3c90a48cbcf3c438f060d670234f"
+    },
+    {
+      "path": "data/estimates.csv",
+      "role": "raw_csv",
+      "records": 139,
+      "bytes": 90621,
+      "sha256": "e7e9ba7c1b6cacb4c4deb75d4922c0a8f970ad2b37a800f87289ee3a0d40112f"
+    },
+    {
+      "path": "data/creativity_papers.json",
+      "role": "data",
+      "source_path": "src/creativity_papers.json",
+      "records": 20,
+      "bytes": 13652,
+      "sha256": "add60d663302c4c8ace91cf3564401891e72837bf202f716db96fb173d1d5723",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "548003dfd741245eb65fdc61d3dbfd7534cba9525ba368b1eeecbef70adc17da"
+    },
+    {
+      "path": "data/creativity_papers.csv",
+      "role": "raw_csv",
+      "records": 20,
+      "bytes": 6660,
+      "sha256": "4d4009fb85bfa0a9d735e50120f25516d242c0bbc7a047b0692f0e680124a359"
+    },
+    {
+      "path": "data/creativity_estimates.json",
+      "role": "data",
+      "source_path": "src/creativity_estimates.json",
+      "records": 189,
+      "bytes": 89278,
+      "sha256": "637a539f60c33fb6dd75ef6faebbc7abfd6c9bfd203a310a4d2dc0578508810c",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "39c3b73aa2e25c0e83200158d247b43a9e01ddaf501d8a151c0a662d79d03e64"
+    },
+    {
+      "path": "data/creativity_estimates.csv",
+      "role": "raw_csv",
+      "records": 189,
+      "bytes": 32609,
+      "sha256": "7d450fb0e1a712e47673e9023207b0d2ed703ba34312462714d27266795020bf"
+    },
+    {
+      "path": "data/evidence_metadata.json",
+      "role": "metadata",
+      "source_path": "src/evidence_metadata.json",
+      "bytes": 9099,
+      "sha256": "3988e3d9690b56ade92ac8af989c9019349fb067a8e3e833b9e3e15123cbe560",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "3988e3d9690b56ade92ac8af989c9019349fb067a8e3e833b9e3e15123cbe560"
+    },
+    {
+      "path": "exports/learning-estimates.csv",
+      "role": "joined_learning_csv",
+      "records": 139,
+      "bytes": 191700,
+      "sha256": "36bc4eed870e43967545c73f9c5f0e3c8245a9f627df7f2c977257c899a282d5"
+    },
+    {
+      "path": "code/ai-skill-atlas-explorer.jsx",
+      "role": "code",
+      "source_path": "ai-skill-atlas-explorer.jsx",
+      "bytes": 136347,
+      "sha256": "68d39bd95f7d55f472c10fb0c67cbd6228a0455b9d076f5d72d4c4cbcdad7663",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "68d39bd95f7d55f472c10fb0c67cbd6228a0455b9d076f5d72d4c4cbcdad7663"
+    },
+    {
+      "path": "code/src/main.jsx",
+      "role": "code",
+      "source_path": "src/main.jsx",
+      "bytes": 234,
+      "sha256": "b9bfc4f73a67d5ed88083d38f3a137ef1365ebe0956a44bf8741d24cdbef41ee",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "b9bfc4f73a67d5ed88083d38f3a137ef1365ebe0956a44bf8741d24cdbef41ee"
+    },
+    {
+      "path": "code/src/about-main.jsx",
+      "role": "code",
+      "source_path": "src/about-main.jsx",
+      "bytes": 1139,
+      "sha256": "0b0d0d307ee50c2f168203ebffdbeb27c4e996a7ffdb22015779e1917590a6cc",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "0b0d0d307ee50c2f168203ebffdbeb27c4e996a7ffdb22015779e1917590a6cc"
+    },
+    {
+      "path": "code/src/shared.mjs",
+      "role": "code",
+      "source_path": "src/shared.mjs",
+      "bytes": 3823,
+      "sha256": "4190bd0e6a92a22e7c84deaa1181816f8ab2739cbbc57a9beff5aa523a156820",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "4190bd0e6a92a22e7c84deaa1181816f8ab2739cbbc57a9beff5aa523a156820"
+    },
+    {
+      "path": "code/src/export.mjs",
+      "role": "code",
+      "source_path": "src/export.mjs",
+      "bytes": 2407,
+      "sha256": "e5cfdff078a360d080b073c20e2d5be9ac229e438071f20799035f89974dfc82",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "e5cfdff078a360d080b073c20e2d5be9ac229e438071f20799035f89974dfc82"
+    },
+    {
+      "path": "code/src/evidence-metadata.mjs",
+      "role": "code",
+      "source_path": "src/evidence-metadata.mjs",
+      "bytes": 13428,
+      "sha256": "19be870f46b28be041c7f2bfbfb186f820ab3ada46c14b2f86825c4e40cf2685",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "19be870f46b28be041c7f2bfbfb186f820ab3ada46c14b2f86825c4e40cf2685"
+    },
+    {
+      "path": "code/src/view-state.mjs",
+      "role": "code",
+      "source_path": "src/view-state.mjs",
+      "bytes": 6251,
+      "sha256": "387c8a85bf46ae4e8b823075dc3785c699927a3e5b6bb129c88bf5237a74722e",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "387c8a85bf46ae4e8b823075dc3785c699927a3e5b6bb129c88bf5237a74722e"
+    },
+    {
+      "path": "code/code/build_website_data.py",
+      "role": "code",
+      "source_path": "code/build_website_data.py",
+      "bytes": 176106,
+      "sha256": "cfba17a9ff127bbd852e790896fb0d4970cf3859231eac4dfac3ca68023bae61",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "cfba17a9ff127bbd852e790896fb0d4970cf3859231eac4dfac3ca68023bae61"
+    },
+    {
+      "path": "code/code/build_creativity_data.py",
+      "role": "code",
+      "source_path": "code/build_creativity_data.py",
+      "bytes": 15998,
+      "sha256": "e39456ebe07dff957fe6d46b7166f3d847de93ae1c4557dbffe226b76754c218",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "e39456ebe07dff957fe6d46b7166f3d847de93ae1c4557dbffe226b76754c218"
+    },
+    {
+      "path": "code/code/patch_subgroups.py",
+      "role": "code",
+      "source_path": "code/patch_subgroups.py",
+      "bytes": 3586,
+      "sha256": "3c461316c2bf07cd55554347b67e7d403e7847a62673f2978faf4bccc78bc742",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "3c461316c2bf07cd55554347b67e7d403e7847a62673f2978faf4bccc78bc742"
+    },
+    {
+      "path": "code/code/estimand_method.json",
+      "role": "code",
+      "source_path": "code/estimand_method.json",
+      "bytes": 21857,
+      "sha256": "3c9a5595ee701e796c2370f5f0bf994d9b212edfbc19656aa3cdd53004e8fca1",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "25da48d9594133a467892180e22944d1412aa7b9ca12661532f81cdf12feb869"
+    },
+    {
+      "path": "code/scripts/release.mjs",
+      "role": "code",
+      "source_path": "scripts/release.mjs",
+      "bytes": 18197,
+      "sha256": "86be5e5b5eefff2c8d4b4929d4e744cb4fbb5c3b1ff10f04ed3314efed9ae1df",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "86be5e5b5eefff2c8d4b4929d4e744cb4fbb5c3b1ff10f04ed3314efed9ae1df"
+    },
+    {
+      "path": "code/scripts/smoke.mjs",
+      "role": "code",
+      "source_path": "scripts/smoke.mjs",
+      "bytes": 9279,
+      "sha256": "00a470858340db3d774c3f62e70e6b477a02032f155ec5bb5256ab36ff8e1e4a",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "00a470858340db3d774c3f62e70e6b477a02032f155ec5bb5256ab36ff8e1e4a"
+    },
+    {
+      "path": "code/scripts/browser-smoke.mjs",
+      "role": "code",
+      "source_path": "scripts/browser-smoke.mjs",
+      "bytes": 35416,
+      "sha256": "14a8439b199b68a4ad81fba9c6c923d3893f4643c931a0b09dfed9276153d1d5",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "14a8439b199b68a4ad81fba9c6c923d3893f4643c931a0b09dfed9276153d1d5"
+    },
+    {
+      "path": "code/scripts/view-state-smoke.mjs",
+      "role": "code",
+      "source_path": "scripts/view-state-smoke.mjs",
+      "bytes": 5980,
+      "sha256": "ce45b9f5958fa5101824a590cbfa4678b7d31816111b6b21f2e3f32c1a217775",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "ce45b9f5958fa5101824a590cbfa4678b7d31816111b6b21f2e3f32c1a217775"
+    },
+    {
+      "path": "code/scripts/metadata-smoke.mjs",
+      "role": "code",
+      "source_path": "scripts/metadata-smoke.mjs",
+      "bytes": 7284,
+      "sha256": "6559d2c8d40e42010f09fe599721fb0506ec8b7e8d75e1c610798012d81c9546",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "6559d2c8d40e42010f09fe599721fb0506ec8b7e8d75e1c610798012d81c9546"
+    },
+    {
+      "path": "code/scripts/release-smoke.mjs",
+      "role": "code",
+      "source_path": "scripts/release-smoke.mjs",
+      "bytes": 5944,
+      "sha256": "fc45917d5e3548960f226bdae7c0b0970e85751f0a7fbad132e2a2220f1876f7",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "fc45917d5e3548960f226bdae7c0b0970e85751f0a7fbad132e2a2220f1876f7"
+    },
+    {
+      "path": "code/package.json",
+      "role": "code",
+      "source_path": "package.json",
+      "bytes": 1078,
+      "sha256": "2ab38f65c22c50bf0d13ca6d2ade0d02847729faf5887e62da94821dd3d63102",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "2ab38f65c22c50bf0d13ca6d2ade0d02847729faf5887e62da94821dd3d63102"
+    },
+    {
+      "path": "code/package-lock.json",
+      "role": "code",
+      "source_path": "package-lock.json",
+      "bytes": 45576,
+      "sha256": "13c6e400e2a253d71ba197cd92b61099b5224af2803168de9b009f7347949476",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "13c6e400e2a253d71ba197cd92b61099b5224af2803168de9b009f7347949476"
+    },
+    {
+      "path": "code/vite.config.js",
+      "role": "code",
+      "source_path": "vite.config.js",
+      "bytes": 780,
+      "sha256": "2a6ab4829b182ef53bac69ba8e3e2b9502d9fecf25f728aee71c7f25766aa0ad",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "2a6ab4829b182ef53bac69ba8e3e2b9502d9fecf25f728aee71c7f25766aa0ad"
+    },
+    {
+      "path": "code/index.html",
+      "role": "code",
+      "source_path": "index.html",
+      "bytes": 2842,
+      "sha256": "d3015b1c795f009ef7794cff433f10a0ff18e3d05fe5327a277d5620311d667c",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "d3015b1c795f009ef7794cff433f10a0ff18e3d05fe5327a277d5620311d667c"
+    },
+    {
+      "path": "code/about/index.html",
+      "role": "code",
+      "source_path": "about/index.html",
+      "bytes": 2775,
+      "sha256": "9cbb88e722573385a993e7f75ad6b992afc4c3e4e1c315daa8130031dea77433",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "9cbb88e722573385a993e7f75ad6b992afc4c3e4e1c315daa8130031dea77433"
+    },
+    {
+      "path": "code/README.md",
+      "role": "code",
+      "source_path": "README.md",
+      "bytes": 10938,
+      "sha256": "8d93ba9f5623c01890b19544628d435581cd505a9d8ff543192f07f009bfe874",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "8d93ba9f5623c01890b19544628d435581cd505a9d8ff543192f07f009bfe874"
+    },
+    {
+      "path": "code/.gitattributes",
+      "role": "code",
+      "source_path": ".gitattributes",
+      "bytes": 110,
+      "sha256": "029f99d21ed6f79df8f7aa9e8d1164ac7ed337bf152090230ed89d0042200fa9",
+      "source_hash_normalization": "utf8_crlf_to_lf",
+      "source_sha256": "029f99d21ed6f79df8f7aa9e8d1164ac7ed337bf152090230ed89d0042200fa9"
+    },
+    {
+      "path": "snapshot-tools/scripts/release.mjs",
+      "role": "snapshot_tool",
+      "bytes": 18197,
+      "sha256": "86be5e5b5eefff2c8d4b4929d4e744cb4fbb5c3b1ff10f04ed3314efed9ae1df"
+    },
+    {
+      "path": "snapshot-tools/src/export.mjs",
+      "role": "snapshot_tool",
+      "bytes": 2407,
+      "sha256": "e5cfdff078a360d080b073c20e2d5be9ac229e438071f20799035f89974dfc82"
+    },
+    {
+      "path": "snapshot-tools/src/shared.mjs",
+      "role": "snapshot_tool",
+      "bytes": 3823,
+      "sha256": "4190bd0e6a92a22e7c84deaa1181816f8ab2739cbbc57a9beff5aa523a156820"
+    },
+    {
+      "path": "snapshot-tools/src/evidence-metadata.mjs",
+      "role": "snapshot_tool",
+      "bytes": 13428,
+      "sha256": "19be870f46b28be041c7f2bfbfb186f820ab3ada46c14b2f86825c4e40cf2685"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import {
+  CSV_METADATA_COLUMNS, evidenceEstimateKey, flattenEstimateMetadata, formatSample,
+  resolveEstimateMetadata, resolveStudyMetadata, validateMetadataRelease,
+} from "../src/evidence-metadata.mjs";
+
+const read = name => JSON.parse(readFileSync(new URL(`../src/${name}`, import.meta.url), "utf8"));
+const papers = read("papers.json");
+const estimates = read("estimates.json");
+const metadata = read("evidence_metadata.json");
+const paper = key => papers.find(p => p.paper_key === key);
+const estimate = id => estimates.find(e => e.estimate_id === id);
+const before = JSON.stringify({ papers, estimates, metadata });
+
+const learnlm = paper("learnlm_team_2025");
+const learning = resolveStudyMetadata(learnlm, metadata);
+assert.equal(learnlm.n_total, 2713);
+assert.equal(learning.raw_n_total, 2713);
+assert.equal(learning.sample.n, 165);
+assert.equal(formatSample(learning.sample), "165 students");
+assert.equal(learning.sample.randomized_n, null);
+assert.equal(learning.sample.recruited_n, null);
+assert.equal(learning.provenance.review_status, "unreviewed");
+for (const [id, n] of [["est29", 2713], ["est30", 3768], ["est31", 704]]) {
+  const record = estimate(`learnlm_team_2025__${id}`);
+  const resolved = resolveEstimateMetadata(record, learnlm, metadata);
+  assert.equal(resolved.sample.n, n);
+  assert.equal(resolved.sample.unit, "sessions");
+  assert.match(formatSample(resolved.sample), /sessions$/);
+  assert.equal(resolved.provenance.review_status, "unreviewed");
+}
+
+const contractor = paper("contractor_reyes_2026");
+for (const [session, n] of [["one", 211], ["two", 204]]) {
+  const record = estimate(`contractor_reyes_2026__contractor_and_reyes_2026_session_${session}_test`);
+  const resolved = resolveEstimateMetadata(record, contractor, metadata);
+  assert.equal(resolved.sample.n, n);
+  assert.equal(resolved.sample.unit, "participants");
+  assert.equal(resolved.provenance.review_basis, "local_coding");
+}
+
+const unreviewed = estimates.find(e => !metadata.estimates[e.estimate_id]);
+const unresolved = resolveEstimateMetadata(unreviewed, paper(unreviewed.paper_key), metadata);
+assert.equal(unresolved.sample.unit, "unknown");
+assert.equal(unresolved.sample.review_status, "unreviewed");
+assert.match(formatSample(unresolved.sample), /unit unreviewed/);
+assert.equal(unresolved.provenance.source_version, null);
+assert.equal(unresolved.provenance.review_date, null);
+assert.equal(resolveEstimateMetadata(unreviewed).sample.unit, "unknown");
+assert.equal(resolveStudyMetadata(papers[0]).sample.unit, "unknown");
+
+const flat = flattenEstimateMetadata(estimate("learnlm_team_2025__est29"), learnlm, metadata);
+assert.deepEqual(Object.keys(flat), [...CSV_METADATA_COLUMNS]);
+assert.equal(flat.study_sample_n, 165);
+assert.equal(flat.estimate_analyzed_n, 2713);
+assert.equal(flat.estimate_sample_unit, "sessions");
+assert.equal(flat.provenance_review_status, "unreviewed");
+
+// Release tests mutate copies of real records only. Their test-only review
+// statuses below are inputs for exercising validation, not source attestations.
+const baseline = validateMetadataRelease({ papers, estimates, previousEstimates: estimates, metadata });
+assert.equal(baseline.valid, true, baseline.errors.join("\n"));
+assert.deepEqual(baseline.requiredReviewIds, []);
+const reordered = estimates.map(e => Object.fromEntries(Object.entries(e).reverse()));
+assert.equal(validateMetadataRelease({ papers, estimates: reordered, previousEstimates: estimates, metadata }).valid, true);
+
+const existing = estimates[0];
+const revised = { ...existing, notes: `${existing.notes || ""} Review-required edit.` };
+let result = validateMetadataRelease({ papers, estimates: [revised], previousEstimates: [existing], metadata });
+assert.equal(result.valid, false);
+assert.deepEqual(result.requiredReviewIds, [existing.estimate_id]);
+assert.ok(result.errors.some(error => error.includes("not been reviewed")));
+assert.equal(validateMetadataRelease({ papers, estimates: [unreviewed], metadata }).valid, false);
+
+const testOnlyMetadata = structuredClone(metadata);
+testOnlyMetadata.estimates = { [existing.estimate_id]: testOnlyMetadata.estimates[existing.estimate_id] };
+const annotation = testOnlyMetadata.estimates[existing.estimate_id];
+annotation.sample.review_basis = "primary_source";
+annotation.provenance.review_status = "reviewed";
+annotation.provenance.review_basis = "primary_source";
+annotation.provenance.source_version = null;
+annotation.provenance.extraction_date = null;
+annotation.provenance.missing_reasons = {
+  source_version: "Not reported in this validation test input.",
+  extraction_date: "Not reported in this validation test input.",
+};
+result = validateMetadataRelease({ papers, estimates: [revised], previousEstimates: [existing], metadata: testOnlyMetadata });
+assert.equal(result.valid, true, result.errors.join("\n"));
+delete annotation.provenance.missing_reasons.source_version;
+assert.equal(validateMetadataRelease({ papers, estimates: [revised], previousEstimates: [existing], metadata: testOnlyMetadata }).valid, false);
+annotation.provenance.source_version = "Test-only version marker";
+annotation.provenance.review_date = "2026-02-30";
+assert.equal(validateMetadataRelease({ papers, estimates: [revised], previousEstimates: [existing], metadata: testOnlyMetadata }).valid, false);
+annotation.provenance.review_date = "2026-09-23";
+annotation.sample.n = existing.n_total - 1;
+assert.ok(validateMetadataRelease({ papers, estimates: [revised], previousEstimates: [existing], metadata: testOnlyMetadata }).errors.some(e => e.includes("does not match")));
+
+const creativePapers = read("creativity_papers.json").papers;
+const creativeEstimates = read("creativity_estimates.json");
+assert.equal(new Set(creativeEstimates.map(evidenceEstimateKey)).size, creativeEstimates.length);
+assert.equal(validateMetadataRelease({ papers: creativePapers, estimates: creativeEstimates, previousEstimates: creativeEstimates, metadata: { schema_version: 1 } }).valid, true);
+const creative = creativeEstimates[0];
+assert.equal(resolveEstimateMetadata(creative, creativePapers.find(p => p.paper_key === creative.paper_key), metadata).raw_n_total, creative.n);
+assert.equal(JSON.stringify({ papers, estimates, metadata }), before, "Resolvers must not mutate evidence or metadata.");
+assert.equal(metadata.timing_audit.flags.length, 3);
+for (const corrupt of [
+  data => { data.studies.learnlm_team_2025.sample.n = -1; },
+  data => { data.studies.learnlm_team_2025.sample.unit = "people_maybe"; },
+  data => { data.studies.learnlm_team_2025.sample.review_status = "verified_ish"; },
+  data => { data.studies.learnlm_team_2025.provenance.review_date = "yesterday"; },
+  data => { data.estimates.unknown_estimate = {}; },
+  data => { data.studies.unknown_paper = {}; },
+]) {
+  const broken = structuredClone(metadata);
+  corrupt(broken);
+  assert.equal(validateMetadataRelease({ papers, estimates, previousEstimates: estimates, metadata: broken }).valid, false, "Malformed metadata must fail even when raw estimates are unchanged.");
+}
+console.log(`Metadata smoke checks passed (${papers.length} learning studies, ${estimates.length} learning estimates, ${creativeEstimates.length} creativity estimates).`);
