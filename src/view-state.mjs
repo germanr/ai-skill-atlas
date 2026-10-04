@@ -3,7 +3,7 @@
 const SCALARS = Object.freeze({
   designMode: { key: "design", values: ["rct", "lab", "field", "online", "obs"], fallback: "rct" },
   sampleMode: { key: "sample", values: ["students", "nonstudents", "all"], fallback: "students" },
-  comparisonType: { key: "comparison", values: ["ai_vs_bau", "ai_vs_active", "ai_design"], fallback: "ai_vs_bau" },
+  comparisonType: { key: "comparison", values: ["ai_vs_bau", "ai_vs_active", "ai_design", "ai_bundled"], fallback: "ai_vs_bau" },
   outcomeMode: { key: "outcome", values: ["without_ai", "all"], fallback: "without_ai" },
   timingMode: { key: "timing", values: ["all", "immediate", "delayed"], fallback: "all" },
   sortBy: { key: "sort", values: ["effect", "year", "author"], fallback: "effect" },

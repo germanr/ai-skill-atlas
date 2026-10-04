@@ -104,6 +104,71 @@ PAPER_META = {
         image_keywords="university computer lab students UK",
         pdf_filename="Franco et al (2026) - Does AI Help or Hurt Learning.pdf",
     ),
+    "Maier et al. (2026)": dict(
+        authors_full="Sebastian Maier, Kai Schwabe, Manuel Schneider, Stefan Feuerriegel",
+        venue="arXiv preprint 2609.20143 (v1, September 2026)",
+        country="UK",
+        country_emoji="🇬🇧",
+        population_category="Adults general",
+        lab_vs_field="Online",
+        incentives="Fixed Prolific payment independent of performance; symbolic points in the reward arms",
+        learning_domain_primary="Math",
+        summary="Preregistered online experiment with 704 UK adults who practiced fraction arithmetic with or without an LLM assistant that gave full answers only on request, then took an unaided test. Access to the assistant did not lower unaided scores; metacognitive feedback on the learner's own requests reduced answer offloading and raised unaided scores, while an effort-based reward changed neither.",
+        image_keywords="online experiment fractions laptop",
+        pdf_filename="Maier et al (2026) - Designing Against Deskilling.pdf",
+    ),
+    "Ates (2026)": dict(
+        authors_full="Huseyin Ates",
+        venue="International Journal of Educational Technology in Higher Education, 23, article 38",
+        country="Not stated",
+        country_emoji="",
+        population_category="Undergraduate",
+        lab_vs_field="Field",
+        incentives="Instructional activities were course requirements; research participation was voluntary and unpaid",
+        learning_domain_primary="Science",
+        summary="Cluster-randomized field experiment in 48 first-year science course sections at four universities (1,176 students analyzed) comparing peer feedback with three GPT-5 feedback designs across three argumentation cycles. Reflective and hybrid designs raised conceptual learning and AI-free transfer relative to peer feedback; direct AI feedback did not.",
+        image_keywords="university science lecture students writing",
+        pdf_filename="Ates (2026) - Human-Centered GenAI Feedback Design.pdf",
+    ),
+    "Oreopoulos et al. (2026)": dict(
+        authors_full="Philip Oreopoulos, Michael Liut, Alp Sungu, Nina Low",
+        venue="EdWorkingPaper No. 26-1552 (Annenberg Institute, August 2026)",
+        country="USA",
+        country_emoji="🇺🇸",
+        population_category="Middle school",
+        lab_vs_field="Field",
+        incentives="None (classroom review activity before the state assessment)",
+        learning_domain_primary="Math",
+        summary="Randomized field experiment with 6,997 middle-school students in Tennessee who completed one NUMI math practice session with or without an embedded guardrailed AI tutor, crossed with mastery or non-mastery progression, followed by an in-class test one week later. AI slowed practice and improved post-mistake recovery; delayed-test gains were small and concentrated among mastery students on the practiced Exercise 1 item.",
+        image_keywords="middle school math classroom laptops",
+        pdf_filename="Oreopoulos et al (2026) - Making AI Tutoring Productive.pdf",
+    ),
+    "Oreopoulos and Low (2026)": dict(
+        authors_full="Philip Oreopoulos, Nina Low",
+        venue="EdWorkingPaper No. 26-1551 (Annenberg Institute, August 2026)",
+        country="USA",
+        country_emoji="🇺🇸",
+        population_category="Middle school",
+        lab_vs_field="Field",
+        incentives="None (delivered within existing remedial math sessions)",
+        learning_domain_primary="Math",
+        summary="Two-year cluster-randomized trial in 18 Tennessee middle schools that replaced business-as-usual remedial math sessions with Khan Academy practice plus the Khanmigo AI tutor in randomly assigned grades. Assignment raised end-of-term MAP math scores by about 0.05 control SD per term, similar to gains from Khan Academy practice without AI; the design does not isolate the tutor from the platform.",
+        image_keywords="middle school remedial math tutoring",
+        pdf_filename="Oreopoulos and Low (2026) - One Click Away Khanmigo.pdf",
+    ),
+    "Cruces et al. (2026)": dict(
+        authors_full="Guillermo Cruces, Diego Fernández Meijide, Sebastian Galiani, Ramiro H. Gálvez, María Lombardi",
+        venue="NBER Working Paper 34851 (May 2026 version; arXiv 2608.04198)",
+        country="Argentina",
+        country_emoji="🇦🇷",
+        population_category="Adults general",
+        lab_vs_field="Online",
+        incentives="Up to AR$25,000 (about US$18) in gift cards by performance tier",
+        learning_domain_primary="General knowledge",
+        summary="Preregistered online experiment with 1,174 Argentine adults aged 25-45, stratified by education, who solved a business problem with or without an embedded GPT-4.1 assistant and then answered incentivized follow-up questions without AI. AI raised task performance for both groups and narrowed the education gap; follow-up scores without AI did not fall and rose modestly for lower-education adults.",
+        image_keywords="adults laptop office task Argentina",
+        pdf_filename="Cruces et al (2026) - Does Generative AI Narrow Education-Based Productivity Gaps.pdf",
+    ),
     "Barcaui (2025)": dict(
         authors_full="Andre Barcaui",
         venue="Working paper",
@@ -579,6 +644,8 @@ DESIGN_CLASS = {
     "nie_etal_2025": "online_rct",
     "liu_etal_2026": "online_rct",
     "shen_and_tamkin_2026": "online_rct",
+    "maier_etal_2026": "online_rct",
+    "cruces_etal_2026": "online_rct",
     "hausman_etal_2025": "observational",
     "kim_etal_2025": "observational",
     "xu_etal_2025": "observational",
@@ -595,6 +662,34 @@ DESIGN_CLASS_OVERRIDES = {
 # ── Subagent verification corrections (one verification pass per paper) ────
 # These override values in PAPER_META based on what each paper actually reports.
 PAPER_CORRECTIONS = {
+    # October 2026 additions. Study-level counts are pinned so the card does not
+    # inherit the first estimate row's contrast count. Not yet verified by a
+    # human research assistant (see docs/ra-verification-queue.md).
+    "maier_etal_2026": dict(
+        pdf_url="https://arxiv.org/abs/2609.20143",
+        n_total=704,  # analyzed; 720 recruited, 5 non-completers, 11 honesty-check exclusions
+        quality_flags="Five-arm online experiment with one shared no-AI control; arm-versus-control rows are dependent. Numbers extracted by Claude from the arXiv v1 PDF on 2026-10-03; not yet verified by a human research assistant.",
+    ),
+    "ates_2026": dict(
+        pdf_url="https://doi.org/10.1186/s41239-026-00614-9",
+        n_total=1176,  # analyzed; 1,248 enrolled across 48 sections
+        quality_flags="Four-arm cluster RCT with one shared peer-feedback control; mixed-effects contrasts with section random intercepts. Numbers extracted by Claude from the Research Square v1 preprint on 2026-10-03; journal version not byte-checked; not yet verified by a human research assistant.",
+    ),
+    "oreopoulos_etal_2026": dict(
+        pdf_url="https://doi.org/10.26300/01qv-6c22",
+        n_total=6997,  # week-1 analysis sample; 6,327 took the delayed test
+        quality_flags="Only the binary delayed-test items within the mastery arm are standardized (Bernoulli SD of the CAL-only arm); the non-mastery AI effect on the two-item total is raw only. Numbers extracted by Claude from the August 2026 EdWorkingPaper PDF on 2026-10-03; not yet verified by a human research assistant.",
+    ),
+    "oreopoulos_and_low_2026": dict(
+        pdf_url="https://doi.org/10.26300/kner-hv33",
+        n_total=2472,  # students ever entering the estimating sample (2,708 ever scheduled minus 236 never observed, Figure 1 note); 6,902 student-terms
+        quality_flags="Bundled intervention (Khan Academy practice plus Khanmigo) versus business-as-usual remediation; grade-within-school cluster randomization with 53 clusters. Numbers extracted by Claude from the August 2026 EdWorkingPaper PDF on 2026-10-03; not yet verified by a human research assistant.",
+    ),
+    "cruces_etal_2026": dict(
+        pdf_url="https://www.nber.org/papers/w34851",
+        n_total=1174,  # completers; 1,795 randomized
+        quality_flags="Two education strata entered as separate full-sample rows because the paper reports no pooled follow-up effect. Numbers extracted by Claude from the May 2026 arXiv PDF on 2026-10-03; not yet verified by a human research assistant.",
+    ),
     "franco_etal_2026": dict(
         pdf_url="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6425840",
         n_total=572,  # analyzed across all three arms, out of 604 randomized
@@ -787,6 +882,31 @@ PAPER_CORRECTIONS = {
 # ── 3-part paper summaries (setup / empirical strategy / key results) ──────
 # From 24 subagents that read each paper and produced structured summaries.
 PAPER_SUMMARIES = {
+    "maier_etal_2026": {
+        "setup": "Preregistered online experiment (August 2026) with 720 UK adults recruited on Prolific, of whom 704 were analyzed after five non-completions and eleven honesty-check exclusions. Participants reviewed fraction rules, worked ten practice items, and then took a six-item unaided test with new operands. Five arms: no AI; an LLM assistant (GPT-OSS-120B) that gave guidance by default and complete answers only on request; the assistant plus metacognitive feedback on the learner's own requests; the assistant plus an effort-based point reward; and both interventions. Pay did not depend on performance.",
+        "empirical_strategy": "Preregistered one-sided item-level mixed-effects logistic regressions with participant random intercepts and item fixed effects for the three confirmatory hypotheses, plus participant-level t-tests and two-factor ANOVAs as robustness checks (Appendix H, Table 8). The atlas standardizes the participant-level percentage-point differences by the pooled SD of the relevant arms from Table 2.",
+        "key_results": "Unaided test scores did not differ between the AI-only and no-AI arms (0.62 versus 0.65 of items correct; about -0.08 SD, not statistically significant). Metacognitive feedback reduced answer offloading and raised unaided scores by 5.3 percentage points across the AI arms (one-sided p = .028); the effort-based reward reduced overall assistant use but did not improve unaided scores. Participants who requested complete answers more often scored lower on the unaided test.",
+    },
+    "ates_2026": {
+        "setup": "Multisite cluster-randomized field experiment in 48 compulsory first-year biology, chemistry, and physics sections at four universities (country not stated). Of 1,248 enrolled students, 1,176 were analyzed. Sections were assigned, blocked by institution and discipline, to peer feedback only, direct GPT-5 feedback, reflective GPT-5 feedback preceded by a rubric-aligned self-evaluation, or a hybrid of self-evaluation, two peer reviews, GPT-5 critique, and a revision memo. Students completed three draft-feedback-revision cycles over Weeks 3 to 8, a conceptual post-test in Week 9, and a supervised AI-free transfer task in Week 10.",
+        "empirical_strategy": "Linear mixed-effects models with section random intercepts, institution fixed effects, and baseline covariates; Holm-adjusted pairwise contrasts; intention-to-treat with multiple imputation. Preregistered focal contrasts compare the reflective and hybrid designs with direct AI feedback. The atlas reports the paper's Cohen's d values and converts each raw-scale SE by the same ratio.",
+        "key_results": "On the delayed AI-free transfer task, direct AI feedback did not beat peer feedback (d = -0.12, p = .149), while reflective (d = 0.27) and hybrid (d = 0.36) feedback outperformed both peer feedback and direct AI feedback (d = 0.39 and 0.48 against direct AI). Conceptual learning showed the same ordering with smaller gaps. All three AI designs raised draft-to-revision argument quality, which was produced with the feedback in hand.",
+    },
+    "oreopoulos_etal_2026": {
+        "setup": "Randomized field experiment in 20 Hamilton County (Tennessee) middle schools in March 2026. During one math class period, 6,997 students in grades 6 to 8 completed a NUMI practice assignment (video, two exercises, exit ticket). Students were individually randomized at registration to the embedded guardrailed AI tutor or the same platform without it, to mastery or non-mastery progression, and to one of two topic bundles. One week later, 6,327 students took a short in-class test with paper and pencil covering practiced and unpracticed items.",
+        "empirical_strategy": "Intent-to-treat OLS of delayed-test outcomes on mastery, AI, and their interaction with robust SEs (Table 5), and AI-versus-CAL-only comparisons within the mastery arm, where students shared the same progression rule (Table 9). The atlas standardizes the binary Exercise 1 and Exercise 2 items by the CAL-only arm's Bernoulli SD; the two-item totals have no reported SD and remain raw.",
+        "key_results": "Mastery progression raised three-correct-in-a-row attainment but not delayed learning. The AI effect on the practiced two-item total was -0.041 questions (SE 0.028) in the non-mastery arm, with a Mastery x AI interaction of +0.085 (SE 0.039). Within the mastery arm, AI raised the practiced Exercise 1 item by 3.2 percentage points (p = .065; about 0.07 SD) with no change on the unpracticed item. AI students attempted fewer questions but recovered from mistakes with fewer attempts.",
+    },
+    "oreopoulos_and_low_2026": {
+        "setup": "Two-year cluster-randomized trial (2024-25 and 2025-26) in 18 Hamilton County (Tennessee) middle schools. Within each school, one or two grades were randomly assigned to replace the mathematics content of daily Response-to-Intervention sessions with Khan Academy practice plus the Khanmigo tutor (coach mode); control grades continued business-as-usual remediation, often with non-AI adaptive software. The design yields 53 grade-within-school clusters (28 treated) and 6,902 student-term observations from about 2,472 students who ever entered the estimating sample.",
+        "empirical_strategy": "Pre-registered intent-to-treat OLS on the stacked student-term panel with school, grade, and term fixed effects and the beginning-of-term MAP score, SEs clustered at the grade-within-school cell, with wild cluster bootstrap checks. Annual and per-hour effects are reported alongside. The contrast bundles the platform with its tutor, so the atlas codes it as AI bundled with other changes rather than AI versus business-as-usual.",
+        "key_results": "Assignment raised end-of-term MAP math scores by 1.26 national percentile ranks per term, or 0.050 control-group SD (SE 0.023; wild bootstrap p = .051). Effects were near zero in Year 1 (0.016 control SD) and 0.116 control SD in Year 2, tracking realized practice. The authors note the gains resemble those from Khan Academy practice without AI, and that the median student messaged Khanmigo on only a third of practice days.",
+    },
+    "cruces_etal_2026": {
+        "setup": "Preregistered online experiment in Argentina (September to November 2025) with adults aged 25 to 45 recruited through three survey panels in two education strata. Of 1,795 randomized adults, 1,174 completed (520 lower-education, 654 higher-education). Participants answered a realistic business problem by email, with or without an embedded GPT-4.1 assistant, and then completed incentivized follow-up questions without AI: an open-ended root-cause explanation and two recall questions. Pay of up to about US$18 depended on performance.",
+        "empirical_strategy": "OLS with robust SEs interacting treatment with the education stratum; outcomes standardized by the lower-education control group's mean and SD. Open-ended answers were graded by GPT-5-mini averaged over ten runs, with robustness to alternative graders. The atlas enters the two strata as separate rows because the paper reports no pooled follow-up effect.",
+        "key_results": "With AI, task scores rose by 1.24 SD for lower-education and 0.83 SD for higher-education adults, closing three-quarters of the education gap. On the follow-up without AI, treated participants did not score lower than controls: the effect was +0.171 SD (SE 0.087) for lower-education and +0.071 SD (SE 0.080) for higher-education adults, driven by the open-ended explanation. The authors describe this as short-run carry-over, not durable learning.",
+    },
     "franco_etal_2026": {
         "setup": "Pre-registered lab RCT at the University of Nottingham (CedEX lab, December 2024) with 572 analyzed students (604 randomized) from all fields of study. Students studied Esperanto for 15 minutes, then worked practice questions for about 20 minutes under one of three arms: browsing-only control (Google allowed, AI sites blocked), AI-assisted (logged-in premium ChatGPT), or AI-guided (ChatGPT plus brief written guidance on learning-oriented use). All students then took an unaided 15-question exam. Incentives: GBP 5 show-up, GBP 7 for at least 20 correct practice questions, GBP 1 per correct exam answer.",
         "empirical_strategy": "Pre-registered OLS of exam score on treatment indicators with baseline covariates (age, degree level, field of study, prior AI use, paid AI subscription); pre-registered heterogeneity by gender and high-GPA status and binary top-score (>10) and low-score (<5) outcomes. Exploratory prompt analysis links a copy-paste index (share of prompts containing verbatim practice-question text) to study behavior and exam scores.",
@@ -975,6 +1095,32 @@ PAPER_SUMMARIES = {
 # paper's PDF. Policy: effect_size_sd/se/ci hold SD-unit values ONLY; raw
 # (points / pp / grade-point) coefficients live in `notes` with explicit units.
 ESTIMATE_OVERRIDES = {
+    # October 2026 additions: short plot/table labels instead of the builder's
+    # 40-character outcome truncation. Numbers are untouched.
+    "maier_etal_2026__est87": {"study_label": "Maier et al., AI-only vs no AI"},
+    "maier_etal_2026__est88": {"study_label": "Maier et al., AI + metacognitive feedback vs no AI"},
+    "maier_etal_2026__est89": {"study_label": "Maier et al., AI + effort reward vs no AI"},
+    "maier_etal_2026__est90": {"study_label": "Maier et al., AI + feedback + reward vs no AI"},
+    "maier_etal_2026__est91": {"study_label": "Maier et al., metacognitive feedback (main effect)"},
+    "maier_etal_2026__est92": {"study_label": "Maier et al., effort reward (main effect)"},
+    "ates_2026__est93": {"study_label": "Ates, direct AI vs peer, delayed transfer"},
+    "ates_2026__est94": {"study_label": "Ates, reflective AI vs peer, delayed transfer"},
+    "ates_2026__est95": {"study_label": "Ates, hybrid vs peer, delayed transfer"},
+    "ates_2026__est96": {"study_label": "Ates, reflective vs direct AI, delayed transfer"},
+    "ates_2026__est97": {"study_label": "Ates, hybrid vs direct AI, delayed transfer"},
+    "ates_2026__est98": {"study_label": "Ates, direct AI vs peer, conceptual learning"},
+    "ates_2026__est99": {"study_label": "Ates, reflective AI vs peer, conceptual learning"},
+    "ates_2026__est100": {"study_label": "Ates, hybrid vs peer, conceptual learning"},
+    "ates_2026__est101": {"study_label": "Ates, direct AI vs peer, revision gain (with AI)"},
+    "ates_2026__est102": {"study_label": "Ates, reflective AI vs peer, revision gain (with AI)"},
+    "ates_2026__est103": {"study_label": "Ates, hybrid vs peer, revision gain (with AI)"},
+    "oreopoulos_etal_2026__est104": {"study_label": "Oreopoulos et al., practiced Exercise 1 (mastery arm)"},
+    "oreopoulos_etal_2026__est105": {"study_label": "Oreopoulos et al., practiced Exercise 2 (mastery arm)"},
+    "oreopoulos_etal_2026__est106": {"study_label": "Oreopoulos et al., practiced total (non-mastery arm)"},
+    "oreopoulos_and_low_2026__est107": {"study_label": "Oreopoulos and Low, MAP math (Khan Academy + Khanmigo)"},
+    "cruces_etal_2026__est108": {"study_label": "Cruces et al., follow-up, lower-education adults"},
+    "cruces_etal_2026__est109": {"study_label": "Cruces et al., follow-up, higher-education adults"},
+
     # Bastani: PNAS version uses SD-standardized SEs throughout; current xlsx
     # has Table 1 raw SEs for the practice estimates. Override to SD units.
     "bastani_etal_2025__est1": {"se": 0.108, "n_total": 2848},
@@ -1807,6 +1953,32 @@ ADDITIONAL_ESTIMATES = [
     # [RA-2026-07] Removed: these duplicated est44/est45 (the 3rd/5th-year
     # rows from meta_analysis.xlsx), which are now flagged is_subgroup=True
     # via ESTIMATE_OVERRIDES instead.
+
+    # ── October 2026 additions (secondary records; never pooled) ──────────
+    _ce("Oreopoulos et al. (2026), Unpracticed Exercise 1 item (mastery arm)",
+        "oreopoulos_etal_2026", 0.0042, 0.0359,
+        "NUMI AI tutor (mastery-progression arm)", "CAL-only NUMI without the AI tutor (mastery-progression arm)",
+        "Delayed test, unpracticed Exercise 1 item (other topic bundle), one week later",
+        timing="delayed", domain="Math", n=3209, subgroup="Outcome: unpracticed topic",
+        notes="Table 9: AI-minus-CAL-only difference 0.002 (robust SE 0.017), CAL-only mean 0.339; standardized by the Bernoulli SD sqrt(0.339 x 0.661) = 0.473. Material the student did not practice, reported by the authors as a placebo-style check."),
+    _ce("Oreopoulos and Low (2026), School year 2024-25",
+        "oreopoulos_and_low_2026", 0.016, 0.043,
+        "Khan Academy practice with Khanmigo (KWiK)", "Business-as-usual remedial instruction",
+        "End-of-year MAP mathematics score, control-SD units (Year 1)",
+        timing="immediate", domain="Math", comparison="ai_bundled", n=1214, subgroup="School year 1 (2024-25)",
+        notes="Table 7, Panel A (RTI control SD), Base column: 0.016 (SE 0.043); 1,214 student-years, 53 clusters. Participation rate 0.84."),
+    _ce("Oreopoulos and Low (2026), School year 2025-26",
+        "oreopoulos_and_low_2026", 0.116, 0.053,
+        "Khan Academy practice with Khanmigo (KWiK)", "Business-as-usual remedial instruction",
+        "End-of-year MAP mathematics score, control-SD units (Year 2)",
+        timing="immediate", domain="Math", comparison="ai_bundled", n=1545, subgroup="School year 2 (2025-26)",
+        notes="Table 7, Panel A (RTI control SD), Base column: 0.116 (SE 0.053), significant at 5 percent; 1,545 student-years, 51 clusters. Participation rate 0.61; implied effect on participants 0.142 population SD."),
+    _ce("Oreopoulos and Low (2026), Stacked school years",
+        "oreopoulos_and_low_2026", 0.066, 0.043,
+        "Khan Academy practice with Khanmigo (KWiK)", "Business-as-usual remedial instruction",
+        "End-of-year MAP mathematics score, control-SD units (both years stacked)",
+        timing="immediate", domain="Math", comparison="ai_bundled", n=2759, subgroup="Stacked school years",
+        notes="Table 7, Panel A (RTI control SD), stacked Base column: 0.066 (SE 0.043); 0.062 (SE 0.035) in full-population SD; 2,759 student-years, 53 clusters."),
 ]
 
 
@@ -1839,7 +2011,10 @@ OUTCOME_WITH_AI = {
     "kalam_etal_2025__est16": True,    "bassner_etal_2026__est63": True,
     # Iris-arm exercise performance, added 2026-07 (W. Erda verification)
     "bassner_etal_2026__est84": True,
-
+    # Ates: draft-to-revision gain produced with the assigned feedback in hand
+    "ates_2026__est101": True,
+    "ates_2026__est102": True,
+    "ates_2026__est103": True,
 }
 
 
@@ -1883,6 +2058,23 @@ COMPARISON_TYPES = {
     "liu_etal_2026__est56": "ai_vs_active",  # vs test-tips sidebar
     # shen_and_tamkin_2026: ai_vs_bau
     # contractor_reyes_2026: all ai_vs_bau
+    # October 2026 additions
+    "maier_etal_2026__est91": "ai_design",  # metacognitive feedback main effect among AI arms
+    "maier_etal_2026__est92": "ai_design",  # effort-based reward main effect among AI arms
+    "ates_2026__est93": "ai_vs_active",  # AI feedback designs vs peer feedback (active non-AI control)
+    "ates_2026__est94": "ai_vs_active",
+    "ates_2026__est95": "ai_vs_active",
+    "ates_2026__est96": "ai_design",  # reflective vs direct AI feedback
+    "ates_2026__est97": "ai_design",  # hybrid vs direct AI feedback
+    "ates_2026__est98": "ai_vs_active",
+    "ates_2026__est99": "ai_vs_active",
+    "ates_2026__est100": "ai_vs_active",
+    "ates_2026__est101": "ai_vs_active",
+    "ates_2026__est102": "ai_vs_active",
+    "ates_2026__est103": "ai_vs_active",
+    # oreopoulos_etal_2026: ai_vs_bau (same platform without the tutor)
+    "oreopoulos_and_low_2026__est107": "ai_bundled",  # Khan Academy + Khanmigo vs usual remediation
+    # cruces_etal_2026: ai_vs_bau
 }
 
 

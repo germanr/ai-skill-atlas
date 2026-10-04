@@ -23,7 +23,7 @@ check(estimates.every(e => paperKeys.has(e.paper_key)), "estimate with unknown p
 
 const DESIGNS = new Set(["lab_rct", "field_rct", "online_rct", "observational"]);
 const TIMINGS = new Set(["immediate", "delayed"]);
-const COMPARISONS = new Set(["ai_vs_bau", "ai_vs_active", "ai_design"]);
+const COMPARISONS = new Set(["ai_vs_bau", "ai_vs_active", "ai_design", "ai_bundled"]);
 check(estimates.every(e => DESIGNS.has(e.design_class)), "invalid design_class");
 check(estimates.every(e => TIMINGS.has(e.outcome_timing)), "invalid outcome_timing");
 check(estimates.every(e => COMPARISONS.has(e.comparison_type || "ai_vs_bau")), "invalid comparison_type");

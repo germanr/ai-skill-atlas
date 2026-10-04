@@ -77,7 +77,7 @@ assert.deepEqual(parseViewState("?sort=n", options).invalidParams, ["sort"]);
 // Every control value used in the app must survive a link round trip.
 const choices = {
   designMode: ["rct", "lab", "field", "online", "obs"], sampleMode: ["students", "nonstudents", "all"],
-  comparisonType: ["ai_vs_bau", "ai_vs_active", "ai_design"], outcomeMode: ["without_ai", "all"],
+  comparisonType: ["ai_vs_bau", "ai_vs_active", "ai_design", "ai_bundled"], outcomeMode: ["without_ai", "all"],
   timingMode: ["all", "immediate", "delayed"], sortBy: ["effect", "year", "author"],
   view: ["chart", "table"], plotSort: ["effect", "precision", "year"], section: ["learning", "creativity"],
 };

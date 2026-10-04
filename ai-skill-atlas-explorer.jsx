@@ -328,7 +328,7 @@ function StripPlot({ estimates, pooled, height = 92 }) {
 // Hero
 // ────────────────────────────────────────────────────────────────────────────
 function Hero({ papers, estimates, defaultEstimates, pooled }) {
-  const nCountries = new Set(papers.map(p => p.country).filter(Boolean)).size;
+  const nCountries = new Set(papers.map(p => p.country).filter(c => c && !/^not stated$/i.test(c))).size;
   const nStandardized = estimates.filter(e => Number.isFinite(e.effect_size_sd)).length;
 
   const stat = (label, value) => (
@@ -1423,7 +1423,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
   const sortedPapers = [...papers].sort((a, b) =>
     (b.year || 0) - (a.year || 0) || (a.authors_short || "").localeCompare(b.authors_short || "")
   );
-  const nCountries = new Set(papers.map(p => p.country).filter(Boolean)).size;
+  const nCountries = new Set(papers.map(p => p.country).filter(c => c && !/^not stated$/i.test(c))).size;
   const nStandardized = estimates.filter(e => Number.isFinite(e.effect_size_sd)).length;
 
   const h2 = {
@@ -1583,7 +1583,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
             ["Learning vs. assisted performance.", "The default view excludes outcomes measured with AI access (e.g., assisted-practice scores), which capture AI-augmented performance rather than learning. The Outcome filter adds them back."],
             ["Outcome timing.", "All timings is the default. Immediate and Delayed use the existing outcome codes, independently of AI availability during assessment. These are broad categories, not common follow-up intervals. Comparisons across filtered subsets do not identify learning decay because the studies can differ. Some classifications, including LearnLM next-topic assessments, still need source review."],
             ["Sample counts.", "Study sample counts and analyzed observations are separate. They may count people, sessions, or other units. Unreviewed units are labeled explicitly. Counts are not summed across outcomes or studies, since units and sample overlap can differ."],
-            ["Comparisons.", "AI vs. business-as-usual is the default and never pooled with the others. AI vs. active control and off-the-shelf vs. scaffolded AI can each be viewed separately."],
+            ["Comparisons.", "AI vs. business-as-usual is the default and never pooled with the others. AI vs. active control, off-the-shelf vs. scaffolded AI, and AI bundled with other changes (a platform or program introduced together with its AI tutor, so the contrast does not isolate the AI component) can each be viewed separately."],
             ["Subgroups.", "Heterogeneity estimates (by gender, prior achievement, topic) are excluded from the forest plot and the pooled estimates; they appear on each study's record."],
           ].map(([t, d]) => (
             <div key={t} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "12px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
@@ -1618,7 +1618,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
               ["release_id / selection", "Atlas data release and the filter choices used for an export. A full export identifies its full-dataset scope."],
               ["learning_domain", "Subject area (math, coding, writing, language, science…)."],
               ["outcome / outcome_timing", "What was measured, and whether immediate or delayed."],
-              ["comparison_type", "AI vs. business-as-usual, AI vs. active control, or off-the-shelf vs. scaffolded AI."],
+              ["comparison_type", "AI vs. business-as-usual, AI vs. active control, off-the-shelf vs. scaffolded AI, or AI bundled with other changes."],
               ["estimand / estimation_method", "Parameter identified (ITT, LATE…) and how it was estimated."],
               ["outcome_with_ai", "Whether participants had access to AI during the assessment."],
               ["is_subgroup / subgroup", "Whether the row is a heterogeneity estimate, and its label."],
@@ -2233,7 +2233,7 @@ function AppInner() {
     { students: "student samples", nonstudents: "non-student samples", all: "all samples" }[sampleMode],
     activeDomains.size ? [...activeDomains].join(" / ") : "all learning domains",
     activePopulations.size ? [...activePopulations].join(" / ") : null,
-    { ai_vs_bau: "AI vs business-as-usual", ai_vs_active: "AI vs active control", ai_design: "off-the-shelf vs scaffolded AI" }[comparisonType],
+    { ai_vs_bau: "AI vs business-as-usual", ai_vs_active: "AI vs active control", ai_design: "off-the-shelf vs scaffolded AI", ai_bundled: "AI bundled with other changes" }[comparisonType],
     outcomeMode === "without_ai" ? "assessed without AI" : "including AI-assisted assessments",
     { all: "all timings", immediate: "immediate outcomes", delayed: "delayed outcomes" }[timingMode],
     search.trim() ? `search: “${search.trim()}”` : null,
@@ -2320,6 +2320,7 @@ function AppInner() {
                 { value: "ai_vs_bau",    label: "AI vs business-as-usual" },
                 { value: "ai_vs_active", label: "AI vs active control" },
                 { value: "ai_design",    label: "Off-the-shelf vs scaffolded AI" },
+                { value: "ai_bundled",   label: "AI bundled with other changes" },
               ]}
               active={new Set([comparisonType])}
               onToggle={(v) => setComparisonType(v)}
