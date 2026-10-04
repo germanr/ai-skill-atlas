@@ -1496,7 +1496,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
           ))}
         </div>
         <p style={body}>
-          These criteria exclude studies that compare AI users with non-users without random or quasi-random
+          These criteria exclude studies that compare AI users and non-users without random or quasi-random
           variation. Kalam et al. (2025) randomized 33 participants and is therefore excluded from the current
           dataset. Its records remain in the archived baseline release. Some older records are marked unreviewed
           because we have not yet checked what their reported sample size counts.
