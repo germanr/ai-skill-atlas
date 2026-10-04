@@ -19,7 +19,7 @@ Two later passes were done by models, not people: the July 24 Codex audit and th
 | Paper | Added | By | Status |
 | --- | --- | --- | --- |
 | Maier, Schwabe, Schneider, and Feuerriegel (2026), Designing Against Deskilling | October 3, 2026 | Claude | Not verified |
-| Ates (2026), Human-centered GenAI feedback design | October 3, 2026 | Claude | Not verified; journal version not byte-checked |
+| Ates (2026), Human-centered GenAI feedback design | October 3, 2026 | Claude | Not verified; Claude checked the journal version of record on October 3 and it matches the preprint |
 | Oreopoulos, Liut, Sungu, and Low (2026), Making AI Tutoring Productive (NUMI) | October 3, 2026 | Claude | Not verified |
 | Oreopoulos and Low (2026), One Click Away (Khanmigo) | October 3, 2026 | Claude | Not verified |
 | Cruces, Fernández Meijide, Galiani, Gálvez, and Lombardi (2026) | October 3, 2026 | Claude | Not verified |
@@ -38,10 +38,10 @@ Every record for these papers carries this sentence in its provenance notes: "Ex
 4. Whether the anonymized repository (footnote 4) now gives exact per-arm statistics or a public dataset. If so, replace the rounded-input d values with exact ones.
 5. Whether a later arXiv version or a published version exists.
 
-**Ates (2026).** Source: Research Square preprint v1, local PDF `Ates (2026) - Human-Centered GenAI Feedback Design.pdf`; version of record at DOI 10.1186/s41239-026-00614-9.
+**Ates (2026).** Source: journal version of record, local PDF `Ates (2026) - IJETHE - Human-Centered GenAI Feedback Design.pdf` (DOI 10.1186/s41239-026-00614-9). The Research Square v1 preprint stays in `public/pdfs` because release 2026-10-03.1 cites it; the journal renumbered its tables (preprint Tables 3, 4, 5 are journal Tables 2, 3, 4).
 
-1. Obtain the journal PDF and supplement and confirm that Table 4 Panel B and Table 5 Panels A and B match the preprint values used here (b, SE, Cohen's d, CI for every contrast).
-2. Confirm the arm sizes in Table 3 (293, 295, 294, 294) and the 1,248 enrolled / 1,176 analyzed counts.
+1. Done on October 3, 2026 (Claude, from the journal HTML and PDF): journal Tables 2 to 4 match the preprint values used here for every contrast (b, SE, Cohen's d, CI). The supplementary DOCX (Tables S1 to S7, robustness models) has not been opened; check it if the ICC or the baseline-adjusted sensitivity model matters.
+2. Confirm the arm sizes in Table 2 (293, 295, 294, 294) and the 1,248 enrolled / 1,176 analyzed counts.
 3. Check the conversion rule: the atlas uses the paper's d as the effect and multiplies the raw SE and CI by d/b. Confirm this matches the standardizer the paper used.
 4. Confirm the Week 10 transfer task was AI-free and supervised (Section 4.7.3) and that the Week 9 conceptual post-test was taken without AI.
 5. Record the country of the four universities if the journal version states it.

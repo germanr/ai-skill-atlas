@@ -128,7 +128,7 @@ PAPER_META = {
         learning_domain_primary="Science",
         summary="Cluster-randomized field experiment in 48 first-year science course sections at four universities (1,176 students analyzed) comparing peer feedback with three GPT-5 feedback designs across three argumentation cycles. Reflective and hybrid designs raised conceptual learning and AI-free transfer relative to peer feedback; direct AI feedback did not.",
         image_keywords="university science lecture students writing",
-        pdf_filename="Ates (2026) - Human-Centered GenAI Feedback Design.pdf",
+        pdf_filename="Ates (2026) - IJETHE - Human-Centered GenAI Feedback Design.pdf",
     ),
     "Oreopoulos et al. (2026)": dict(
         authors_full="Philip Oreopoulos, Michael Liut, Alp Sungu, Nina Low",
@@ -673,7 +673,7 @@ PAPER_CORRECTIONS = {
     "ates_2026": dict(
         pdf_url="https://doi.org/10.1186/s41239-026-00614-9",
         n_total=1176,  # analyzed; 1,248 enrolled across 48 sections
-        quality_flags="Four-arm cluster RCT with one shared peer-feedback control; mixed-effects contrasts with section random intercepts. Numbers extracted by Claude from the Research Square v1 preprint on 2026-10-03; journal version not byte-checked; not yet verified by a human research assistant.",
+        quality_flags="Four-arm cluster RCT with one shared peer-feedback control; mixed-effects contrasts with section random intercepts. Numbers extracted by Claude from the journal version of record on 2026-10-03 (identical to the Research Square v1 preprint); not yet verified by a human research assistant.",
     ),
     "oreopoulos_etal_2026": dict(
         pdf_url="https://doi.org/10.26300/01qv-6c22",
