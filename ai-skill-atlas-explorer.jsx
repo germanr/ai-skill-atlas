@@ -1011,7 +1011,7 @@ function Footer() {
               <span style={{ fontFamily: F.serif, fontSize: 15.5, fontWeight: 650 }}>The AI <span style={{ fontStyle: "italic", fontWeight: 500 }}>&</span> Human Skill Atlas</span>
             </div>
             <p style={{ fontFamily: F.sans, fontSize: 12.5, lineHeight: 1.65, color: C.ink2, maxWidth: 330 }}>
-              The Atlas collects randomized and observational studies of how generative AI
+              The atlas collects randomized and observational studies of how generative AI
               affects learning. It builds on the meta-analysis in Contractor &amp; Reyes (2026).
             </p>
             <p style={{ fontFamily: F.sans, fontSize: 12.5, lineHeight: 1.65, color: C.ink2, marginTop: 10 }}>
@@ -1460,8 +1460,8 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         </p>
 
         <p style={{ ...body, marginTop: 26 }}>
-          Research on how generative AI affects learning is growing fast, and it is spread across economics,
-          education, computer science, and psychology, with results reported in different units. We built the
+          Research on how generative AI affects learning is growing fast. It is spread across economics,
+          education, computer science, and psychology, and results are reported in different units. We built the
           atlas so that readers can compare these studies. We are a research team at Middlebury College: Germán
           Reyes and the research assistants named at the end of this page. The atlas currently covers{" "}
           <strong style={{ color: C.ink }}>{nPapers} studies</strong> and{" "}
@@ -1481,8 +1481,8 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         <h2 style={h2}>Inclusion criteria</h2>
         {rule}
         <p style={body}>
-          A study enters the atlas if it satisfies two criteria. We apply both before reading the results, so what
-          a study found does not affect whether it is included.
+          A study enters the atlas if it satisfies two criteria. We apply both before reading the results, so the
+          results cannot affect whether a study is included.
         </p>
         <div style={{ marginTop: 16, border: `1px solid ${C.rule}`, borderRadius: 2, background: C.paperHi }}>
           {[
@@ -1498,8 +1498,8 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         <p style={body}>
           These criteria exclude studies that compare AI users with non-users without random or quasi-random
           variation. Kalam et al. (2025) randomized 33 participants and is therefore excluded from the current
-          dataset. Its records remain in the archived baseline release. For some older records we have not yet
-          checked what the reported sample size counts, and those records are marked unreviewed.
+          dataset. Its records remain in the archived baseline release. Some older records are marked unreviewed
+          because we have not yet checked what their reported sample size counts.
         </p>
 
         <h2 style={h2}>What counts as learning</h2>
@@ -1540,12 +1540,12 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         {rule}
         <div style={{ marginTop: 4 }}>
           {[
-            ["Standardization.", "Effects are in standard deviations where the source permits. When a paper reports its effect in raw units, we divide by the standard deviation the paper reports or by one we can compute from it, usually the control group's or the pooled standard deviation across arms, and the notes say which. Where the source version, page, or derivation has not yet been checked, the field is marked unreviewed."],
+            ["Standardization.", "Effects are in standard deviations where the source permits. When a paper reports its effect in raw units, we divide by the standard deviation the paper reports or by one we can compute from it, usually the control group's or the pooled standard deviation across arms. The notes say which. If the source version, page, or derivation has not yet been checked, the field is marked unreviewed."],
             ["Pooling.", "The pooled mean is the DerSimonian and Laird (1986) random-effects estimate. The shaded band in the forest plot is its 95 percent confidence interval, which accounts for between-study heterogeneity. By default the pool contains randomized experiments with student samples."],
             ["Design.", "Each study is a lab, field, or online randomized experiment, or an observational study with credible quasi-experimental variation and no random assignment. The default view and the headline pooled estimate use randomized experiments only. The Design filter adds the observational studies."],
             ["Samples.", "The default view shows student samples, from elementary school through university. Studies of adults from online panels and of professionals are in the atlas and appear when the Sample filter is set to Non-students or All samples."],
             ["Outcomes measured with AI.", "Some studies measure the outcome while participants still have AI access, for example the score on the practice exercise itself. These outcomes measure performance with AI rather than learning, so the default view excludes them. The Outcome filter adds them back."],
-            ["Outcome timing.", "The default shows all timings. Immediate and Delayed are the study's own outcome codes and are independent of whether AI was available at the assessment. The two categories are broad and do not correspond to a common follow-up interval. Comparing the immediate and delayed subsets does not measure how much learning fades, because different studies sit in each subset. Some codes, including the LearnLM next-topic assessments, still need a source check."],
+            ["Outcome timing.", "The default shows all timings. Immediate and Delayed follow each study's own timing and are independent of whether AI was available at the assessment. The two categories are broad and do not correspond to a common follow-up interval. Comparing the immediate and delayed subsets does not measure how much learning fades, because the two subsets contain different studies. Some codes, including the LearnLM next-topic assessments, still need a source check."],
             ["Sample counts.", "A study's sample count and an estimate's analyzed count are stored separately, and either can count people, sessions, or other units. When we have not checked the unit, it is labeled unreviewed. We do not sum counts across outcomes or studies, because the units differ and the samples overlap."],
             ["Comparisons.", "The default comparison is AI vs business-as-usual, and it is never pooled with the other three. The other three are AI vs active control, off-the-shelf vs scaffolded AI, and AI bundled with other changes, where a platform or program is introduced together with its AI tutor, so the contrast does not isolate the AI. Each can be viewed on its own."],
             ["Subgroups.", "Heterogeneity estimates, by gender, prior achievement, or topic, are left out of the forest plot and the pooled estimates. They appear on each study's record."],
@@ -1634,7 +1634,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         <p style={body}>
           Current release: <strong>{RELEASE.id}</strong> ({releaseDate()}). A shared link to a filtered view always
           loads the current data. Each release is an archive of the data as of its date, together with the calculation
-          and interface code and a manifest of file hashes. The archives are for download. The site cannot display an
+          and interface code, plus a manifest of file hashes. The archives are for download. The site cannot display an
           older release interactively.
         </p>
         {releaseLinks(RELEASE)}
@@ -1678,9 +1678,9 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         <p style={body}>
           <a href="https://www.germanr.com" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             Germán Reyes
-          </a>, an economist at Middlebury College, maintains the atlas. Nam Nguyen and Wills Erda, research
-          assistants, checked the data against the source papers in July 2026. Studies added since then have not yet
-          been checked by a research assistant. One included study,{" "}
+          </a>, an economist at Middlebury College, maintains the atlas. Research assistants Nam Nguyen and Wills
+          Erda checked the data against the source papers in July 2026. Studies added since then have not yet been
+          checked by a research assistant. One included study,{" "}
           <a href="https://germanr.com/papers/cr_ai_learning.pdf" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             Contractor and Reyes (2026)
           </a>, is Reyes's own paper with Zara Contractor.
