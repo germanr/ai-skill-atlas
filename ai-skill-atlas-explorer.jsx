@@ -1456,40 +1456,38 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
           About the Atlas
         </h1>
         <p style={{ fontFamily: F.serif, fontSize: 17.5, lineHeight: 1.6, color: C.ink2, marginTop: 18, fontStyle: "italic" }}>
-          The atlas collects studies of how generative AI affects learning and reports their results on one scale.
+          The atlas collects studies of how generative AI affects learning and puts their results on one scale.
         </p>
 
         <p style={{ ...body, marginTop: 26 }}>
           Research on how generative AI affects learning is growing fast, and it is spread across economics,
-          education, computer science, and psychology. Each paper reports its results in its own units. I built the
-          atlas to put these studies in one place, with every effect expressed in standard deviations. It currently
-          covers <strong style={{ color: C.ink }}>{nPapers} studies</strong> and{" "}
+          education, computer science, and psychology, with results reported in different units. We built the
+          atlas so that readers can compare these studies. We are a research team at Middlebury College: Germán
+          Reyes and the research assistants named at the end of this page. The atlas currently covers{" "}
+          <strong style={{ color: C.ink }}>{nPapers} studies</strong> and{" "}
           <strong style={{ color: C.ink }}>{nEstimates} estimate records</strong>, including{" "}
           <strong style={{ color: C.ink }}>{nStandardized} standardized effects</strong>. The studies are randomized
           or observational and come from {nCountries} study locations, where a multi-country sample counts as one
           location. Their participants range from elementary school students to working professionals.
         </p>
         <p style={body}>
-          An effect in standard deviations is the difference in mean outcomes between the two groups being compared,
-          divided by a standard deviation of the outcome. When a paper reports its effect in raw units, I divide by the
-          standard deviation the paper reports or by one I can compute from it, usually the control group's or the
-          pooled standard deviation across arms, and the estimate's notes say which. When no standard deviation can be
-          recovered, the record stays in the dataset without a standardized effect. The forest plot pools the
-          standardized effects with the random-effects estimator of DerSimonian and Laird (1986). By default the pool
-          contains randomized experiments with student samples. Every estimate links to a study record with the design,
-          sample, incentives, and AI tool, and the full dataset can be downloaded as a CSV.
+          Effects are in standard deviations: the difference in mean outcomes between the two arms, divided by a
+          standard deviation of the outcome. When a paper's statistics do not allow this conversion, the record
+          stays in the dataset without a standardized effect. The browse page shows the standardized effects in a
+          forest plot with a pooled mean, and every estimate links to a study record with the design, sample,
+          incentives, and AI tool. The full dataset can be downloaded as a CSV.
         </p>
 
         <h2 style={h2}>Inclusion criteria</h2>
         {rule}
         <p style={body}>
-          A study enters the atlas if it satisfies two criteria. I apply both before reading the results, so what a
-          study found does not affect whether it is included.
+          A study enters the atlas if it satisfies two criteria. We apply both before reading the results, so what
+          a study found does not affect whether it is included.
         </p>
         <div style={{ marginTop: 16, border: `1px solid ${C.rule}`, borderRadius: 2, background: C.paperHi }}>
           {[
-            ["1 · Source of variation", "The study randomly assigns access to generative AI and compares it with a group that works without AI, or it uses a credible quasi-experiment and measures the outcome on an assessment taken without AI."],
-            ["2 · Sample size", "The study reports at least 50 participants across all arms."],
+            ["1 · Source of variation", "Random assignment of access to generative AI, with a comparison group that works without AI or with a different AI configuration. A credible quasi-experiment also qualifies if the outcome is measured on an assessment taken without AI."],
+            ["2 · Sample size", "At least 50 participants across all arms, counting people rather than sessions or outcome observations."],
           ].map(([t, d], i, arr) => (
             <div key={t} style={{ padding: "15px 20px", borderBottom: i === arr.length - 1 ? "none" : `1px solid ${C.ruleSoft}` }}>
               <div style={{ ...SC({ fontSize: 10, color: C.accent }), marginBottom: 5 }}>{t}</div>
@@ -1498,27 +1496,22 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
           ))}
         </div>
         <p style={body}>
-          These criteria exclude adoption and observational studies with no random or quasi-random variation, studies
-          with no comparison group that worked without AI (or with a different AI configuration), and studies with
-          fewer than 50 participants.
-        </p>
-        <p style={body}>
-          The threshold of 50 counts participants. Sessions and outcome observations do not count toward it.
-          Kalam et al. (2025) randomized 33 participants and is therefore excluded from the current dataset. Its
-          records remain in the archived baseline release. For some older records I have not yet checked what the
-          reported sample size counts, and those records are marked unreviewed.
+          These criteria exclude studies that compare AI users with non-users without random or quasi-random
+          variation. Kalam et al. (2025) randomized 33 participants and is therefore excluded from the current
+          dataset. Its records remain in the archived baseline release. For some older records we have not yet
+          checked what the reported sample size counts, and those records are marked unreviewed.
         </p>
 
         <h2 style={h2}>What counts as learning</h2>
         {rule}
         <p style={body}>
-          Studies measure learning in different ways, and the differences matter when comparing effect sizes. A useful
-          way to order the outcomes is Bloom's taxonomy, which ranks cognitive skills from lower to higher: remembering,
+          Studies measure learning in different ways, and the measure changes what an effect size means. One way
+          to order the outcomes is Bloom's taxonomy, which ranks cognitive skills from lower to higher: remembering,
           understanding, applying, analyzing, evaluating, and creating.
         </p>
         <div style={{ marginTop: 16, border: `1px solid ${C.rule}`, borderRadius: 2, background: C.paperHi }}>
           {[
-            ["Lower-order · remember, understand, apply", "Usually measured with test scores, that is, multiple-choice or short-answer items. These are easy to grade and to standardize, and most of the literature uses them."],
+            ["Lower-order · remember, understand, apply", "Usually measured with test scores, that is, multiple-choice or short-answer items. These are easy to grade and to standardize, and most studies in the atlas use them."],
             ["Higher-order · analyze, evaluate, create", "Measured with essays, open-ended problems, or transfer tasks. These are noisier and harder to grade."],
           ].map(([t, d], i, arr) => (
             <div key={t} style={{ padding: "15px 20px", borderBottom: i === arr.length - 1 ? "none" : `1px solid ${C.ruleSoft}` }}>
@@ -1535,17 +1528,36 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         <h2 style={h2}>How to read the estimates</h2>
         {rule}
         <p style={body}>
-          The estimates differ in what they measure. They come from different subjects, populations, and assessments,
-          and some assessments were taken with AI available. They also differ in precision: some come from large
-          preregistered field experiments, others from small single-site studies with short horizons. The coding notes
-          on each record say how any derived quantity was computed and point out design features that matter for
-          interpretation.
-        </p>
-        <p style={body}>
-          Some studies were run by, or together with, the companies whose tools they evaluate. The study record says so
-          where it applies. The forest plot shows each estimate with its confidence interval. It does not test whether
+          The estimates differ in precision. Some come from large preregistered field experiments, others from
+          small single-site studies with short horizons. The coding notes on each record say how we computed any
+          derived quantity and point out design features that matter for interpretation. Some studies were run
+          by, or together with, the companies whose tools they evaluate, and the study record says so where it
+          applies. The forest plot shows each estimate with its confidence interval. It does not test whether
           effects differ across studies.
         </p>
+
+        <h2 style={h2}>Methods</h2>
+        {rule}
+        <div style={{ marginTop: 4 }}>
+          {[
+            ["Standardization.", "Effects are in standard deviations where the source permits. When a paper reports its effect in raw units, we divide by the standard deviation the paper reports or by one we can compute from it, usually the control group's or the pooled standard deviation across arms, and the notes say which. Where the source version, page, or derivation has not yet been checked, the field is marked unreviewed."],
+            ["Pooling.", "The pooled mean is the DerSimonian and Laird (1986) random-effects estimate. The shaded band in the forest plot is its 95 percent confidence interval, which accounts for between-study heterogeneity. By default the pool contains randomized experiments with student samples."],
+            ["Design.", "Each study is a lab, field, or online randomized experiment, or an observational study with credible quasi-experimental variation and no random assignment. The default view and the headline pooled estimate use randomized experiments only. The Design filter adds the observational studies."],
+            ["Samples.", "The default view shows student samples, from elementary school through university. Studies of adults from online panels and of professionals are in the atlas and appear when the Sample filter is set to Non-students or All samples."],
+            ["Outcomes measured with AI.", "Some studies measure the outcome while participants still have AI access, for example the score on the practice exercise itself. These outcomes measure performance with AI rather than learning, so the default view excludes them. The Outcome filter adds them back."],
+            ["Outcome timing.", "The default shows all timings. Immediate and Delayed are the study's own outcome codes and are independent of whether AI was available at the assessment. The two categories are broad and do not correspond to a common follow-up interval. Comparing the immediate and delayed subsets does not measure how much learning fades, because different studies sit in each subset. Some codes, including the LearnLM next-topic assessments, still need a source check."],
+            ["Sample counts.", "A study's sample count and an estimate's analyzed count are stored separately, and either can count people, sessions, or other units. When we have not checked the unit, it is labeled unreviewed. We do not sum counts across outcomes or studies, because the units differ and the samples overlap."],
+            ["Comparisons.", "The default comparison is AI vs business-as-usual, and it is never pooled with the other three. The other three are AI vs active control, off-the-shelf vs scaffolded AI, and AI bundled with other changes, where a platform or program is introduced together with its AI tutor, so the contrast does not isolate the AI. Each can be viewed on its own."],
+            ["Subgroups.", "Heterogeneity estimates, by gender, prior achievement, or topic, are left out of the forest plot and the pooled estimates. They appear on each study's record."],
+          ].map(([t, d]) => (
+            <div key={t} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "12px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
+              <span style={{ color: C.accent, fontFamily: F.mono, fontSize: 13, lineHeight: 1.5 }}>—</span>
+              <p style={{ fontFamily: F.sans, fontSize: 13.5, lineHeight: 1.65, color: C.ink2, margin: 0 }}>
+                <strong style={{ color: C.ink }}>{t}</strong> {d}
+              </p>
+            </div>
+          ))}
+        </div>
 
         <h2 style={h2}>Included studies · {sortedPapers.length}</h2>
         {rule}
@@ -1579,29 +1591,6 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
           })}
         </div>
 
-        <h2 style={h2}>Methods</h2>
-        {rule}
-        <div style={{ marginTop: 4 }}>
-          {[
-            ["Standardization.", "Effects are in standard deviations where the source permits. Each estimate's coding and source notes record the derivation. Where the source version, page, or derivation has not yet been checked, the field is marked unreviewed."],
-            ["Pooling.", "The pooled mean uses the DerSimonian and Laird (1986) random-effects estimator. The shaded band in the forest plot is its 95 percent confidence interval, which accounts for between-study heterogeneity."],
-            ["Design.", "Each study is a lab, field, or online randomized experiment, or an observational study with credible quasi-experimental variation and no random assignment. The default view and the headline pooled estimate use randomized experiments only. The Design filter adds the observational studies."],
-            ["Samples.", "The default view shows student samples, from elementary school through university. Studies of adults from online panels and of professionals are in the atlas and appear when the Sample filter is set to Non-students or All samples."],
-            ["Outcomes measured with AI.", "Some studies measure the outcome while participants still have AI access, for example the score on the practice exercise itself. These outcomes measure performance with AI rather than learning, so the default view excludes them. The Outcome filter adds them back."],
-            ["Outcome timing.", "The default shows all timings. Immediate and Delayed follow each study's outcome code and say nothing about whether AI was available at the assessment. The two categories are broad and do not correspond to a common follow-up interval. Comparing the immediate and delayed subsets does not measure how much learning fades, because different studies sit in each subset. Some codes, including the LearnLM next-topic assessments, still need a source check."],
-            ["Sample counts.", "A study's sample count and an estimate's analyzed count are stored separately, and either can count people, sessions, or other units. When the unit has not been checked, it is labeled unreviewed. Counts are not summed across outcomes or studies, because the units differ and the samples overlap."],
-            ["Comparisons.", "The default comparison is AI vs business-as-usual, and it is never pooled with the other three. The other three are AI vs active control, off-the-shelf vs scaffolded AI, and AI bundled with other changes, where a platform or program arrives together with its AI tutor and the contrast does not isolate the AI. Each can be viewed on its own."],
-            ["Subgroups.", "Heterogeneity estimates, by gender, prior achievement, or topic, are left out of the forest plot and the pooled estimates. They appear on each study's record."],
-          ].map(([t, d]) => (
-            <div key={t} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "12px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
-              <span style={{ color: C.accent, fontFamily: F.mono, fontSize: 13, lineHeight: 1.5 }}>—</span>
-              <p style={{ fontFamily: F.sans, fontSize: 13.5, lineHeight: 1.65, color: C.ink2, margin: 0 }}>
-                <strong style={{ color: C.ink }}>{t}</strong> {d}
-              </p>
-            </div>
-          ))}
-        </div>
-
         <h2 style={h2}>Data</h2>
         {rule}
         <p style={body}>
@@ -1629,7 +1618,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
               ["estimand / estimation_method", "The parameter (ITT, LATE, and so on) and how it was estimated."],
               ["outcome_with_ai", "Whether participants had AI access during the assessment."],
               ["is_subgroup / subgroup", "Whether the row is a heterogeneity estimate, and for which subgroup."],
-              ["coding_notes", "How derived quantities were computed, such as back-calculated standard errors, and design features that matter for interpretation."],
+              ["coding_notes", "How we computed derived quantities, such as back-calculated standard errors, and design features that matter for interpretation."],
               ["design_class", "lab_rct, field_rct, or online_rct for randomized experiments by setting, or observational for studies without random assignment."],
             ].map(([col, desc]) => (
               <div key={col} style={{ display: "grid", gridTemplateColumns: "190px 1fr", gap: 12, alignItems: "baseline" }} className="facts-grid">
@@ -1651,17 +1640,18 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         {releaseLinks(RELEASE)}
         <p style={body}>
           Each estimate's source version, page or table reference, and derivation are recorded separately from the
-          release date. A new estimate, or a change to an existing number, is not released until its source and sample
-          information have been reviewed. Wording-only corrections are recorded separately and do not count as source
-          verification. Some older records still lack source details and are marked unreviewed while the audit continues.
+          release date. We do not release a new estimate, or a change to an existing number, until we have reviewed
+          its source and sample information. Wording-only corrections are recorded separately and do not count as
+          source verification. Some older records still lack source details and are marked unreviewed while the
+          audit continues.
         </p>
         <p style={body}>
           The list below shows the releases that changed the data: studies added or removed, numbers corrected, or
           methods changed. Releases that only changed wording, links, or source details are left out, but each one is
           archived and listed in the{" "}
           <a href={asset("/releases/index.json")} target="_blank" rel="noreferrer" style={{ color: C.accent, textDecoration: "underline" }}>release index</a>.
-          The first public version of the atlas went up in July 2026, before the archive existed, so no snapshot of it
-          is available.
+          The atlas first went online in July 2026, before the archive existed, so no snapshot of that version is
+          available.
         </p>
         <div style={{ marginTop: 15 }}>
           {majorReleases.map(release => (
@@ -1680,21 +1670,20 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
           If a study is missing or a number looks wrong, email{" "}
           <a href={SUGGEST_MAILTO} style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             learning_study@middlebury.edu
-          </a>{" "}with the paper or a citation. I check every suggestion against the inclusion criteria above.
+          </a>{" "}with the paper or a citation. We check every suggestion against the inclusion criteria above.
         </p>
 
         <h2 style={h2}>Authorship and independence</h2>
         {rule}
         <p style={body}>
-          I am{" "}
           <a href="https://www.germanr.com" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             Germán Reyes
-          </a>, an economist at Middlebury College, and I maintain the atlas. Nam Nguyen and Wills Erda, my research
+          </a>, an economist at Middlebury College, maintains the atlas. Nam Nguyen and Wills Erda, research
           assistants, checked the data against the source papers in July 2026. Studies added since then have not yet
           been checked by a research assistant. One included study,{" "}
           <a href="https://germanr.com/papers/cr_ai_learning.pdf" target="_blank" rel="noreferrer" style={{ color: C.ink, fontWeight: 600, borderBottom: `1px solid ${C.ink}` }}>
             Contractor and Reyes (2026)
-          </a>, is my own paper, with Zara Contractor.
+          </a>, is Reyes's own paper with Zara Contractor.
         </p>
 
         <h2 style={h2}>How to cite this resource</h2>
