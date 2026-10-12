@@ -1,0 +1,448 @@
+{
+ "cid": "c385",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Jeon Limqueco Chang Chen (2026) - HALO.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Jeon Limqueco Chang Chen (2026) - HALO.pdf",
+  "version": "arXiv:2607.18564v2 [cs.HC], 22 Jul 2026 (stamp on p. 1), in ACM conference template; complete markdown read, including references and Appendix A, with numerical claims and correction passages checked against the PDF",
+  "title_on_document": "HALO: Interactive Co-abductive Reasoning in Scientific Hypothesis Generation",
+  "authors_on_document": [
+   "Youngseung Jeon",
+   "Kat Limqueco",
+   "JiaSyuan Chang",
+   "Xiang 'Anthony' Chen"
+  ],
+  "pages": 22,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendix A is included in this PDF, pp. 16-22; no separate supplement is referenced.",
+   "holds": "Molecule-generation pipeline and model-only computational evaluation (pp. 16-17, Sections A.1-A.2, Figures 6-8 and Table 2); property definitions, baseline interface and technical details (pp. 17-20, Sections A.3-A.6, Figures 9-12 and Table 3); participant demographics and sample overlap (p. 21, Table 4); generation prompts (p. 22, Figure 13)."
+  }
+ },
+ "paper_design_summary": "Five medicinal chemistry researchers took part in formative interviews and workflow observation, with a conflicting count elsewhere in the paper (pp. 4-5, Sections 2.3 and 4.1-4.2; p. 21, Table 4). In a counterbalanced within-subjects study, ten medicinal chemists each used HALO and a baseline with the same molecule generator and an LLM; submitted molecules were scored for target-property improvement and similarity within each participant's set, with random assignment not stated (pp. 8-10, Section 6). A separate model-only evaluation generated 1,024 candidates per task to assess generator reliability under scaffold constraints (pp. 16-17, Section A.2 and Table 2).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "User study (ligand optimization, HALO vs baseline, within-subjects)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Every participant used both interfaces (HALO and baseline). The order of conditions and the pairing of Tasks A and B with conditions were counterbalanced; the paper does not say the order was assigned at random.",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "To control for potential order effects, we counterbalanced the sequence of conditions so that half of the participants began with the experimental condition and the other half with the baseline.",
+    "locator": "p. 8, Section 6.1.2 Procedure; p. 8, Section 6 ('We conducted a within-subjects experiment')",
+    "preregistered": "not_stated",
+    "prereg_locator": "No preregistration statement or registration link found in the complete text and Appendix A (pp. 1-22); p. 9, Section 6.1.4 reports IRB approval, which is not preregistration."
+   },
+   "arms": [
+    {
+     "name": "HALO",
+     "description": "Full HALO interface: AI molecule generator plus MolCluster, MolStrategy, and MolSynthesis (LLM explanations and strategy suggestions)",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 10
+    },
+    {
+     "name": "Baseline",
+     "description": "Same trajectory map, AI/manual molecule generator, molecular information, and LLM search, without the three co-abductive features",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 10
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 10,
+    "counts_are": "people",
+    "exclusions": "",
+    "population": "professionals",
+    "who": "Ten professional medicinal chemists from nine drug discovery labs (postdocs and senior researchers, 8 to 15 years of experience), recruited by snowball sampling; each did both conditions. The paper reports no exclusions; Figure 5 and Table 4 list ten user-study participants (P3 to P12).",
+    "country": "",
+    "quote": "We recruited ten professional medicinal chemists working in nine different drug discovery labs.",
+    "locator": "p. 9, Section 6.1.4 Participants; p. 21, Table 4; p. 10, Figure 5"
+   },
+   "ai_tool": {
+    "name_model": "HALO: Llama 3.1 8B-Instruct fine-tuned on C-MuMOInstruct (molecule generation) and Gemini 3 Flash (cluster explanations and strategies); baseline keeps the generator and an LLM side panel",
+    "role": "other",
+    "how_used": "Participants generated candidate molecules with AI or by hand, then in the HALO condition grouped them by property profile, read LLM-suggested optimization strategies, and recombined strategies into new molecules."
+   },
+   "task": {
+    "type": "other",
+    "description": "Ligand optimization: improve an initial lead molecule on four ADMET properties with trade-offs and submit the top seven candidate molecules (molecular hypothesis generation in drug discovery). Two tasks (A and B), one per condition.",
+    "duration": "30 minutes per task, with a five-minute break; 10-minute instruction and five-minute practice before each task; remote via Zoom"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Quality: number of the four target properties improved per submitted molecule (ADMET-AI predictions, after minus before)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Number of target properties improved per submitted compound (p. 9, Section 6.1.3). Section 6.2.4 (p. 10) attributes evaluation to ADMET-AI and specifies a Wilcoxon signed-rank test, but does not state whether compound scores were averaged within participants or how observations were paired. The quality analysis unit and its observation count are unconfirmed; unit and n_units are null, and participant-level precision cannot be assumed. Section A.1 (p. 16) separately describes ADMET-AI for carcinogenicity, hERG and DILI, Therapeutic Data Commons oracles for DRD2 and pLogP, and RDKit descriptors; the form retains these implementation distinctions. These are model-based scores, without wet-lab validation (p. 11, Section 7.4).",
+     "unit": null,
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "HALO",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "Table 1, mean ± SD: Baseline 2.25 ± 0.48 vs HALO 3.16 ± 0.37; p = 0.0039** (Wilcoxon signed-rank test). The observation count and aggregation used for the quality test are not stated; the ten people completing both conditions do not establish the quality analysis unit. No standardized effect, confidence interval, standard error, or numerical Wilcoxon statistic is printed.",
+       "locator": "p. 9, Table 1 and Section 6.1.3; p. 10, Section 6.2.4; p. 11, Section 7.4; p. 8, Section 6 and Section 6.1.2; p. 17, Section A.5"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Diversity: average pairwise Tanimoto similarity among each participant's seven submitted molecules (lower = more diverse; computed within one participant's set, not across people)",
+     "construct": "flexibility",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Computed molecular structural similarity, using Tanimoto similarity averaged within each participant's set of seven submitted molecules (p. 10, Section 6.2.4 and Equation 1). The molecular representation or fingerprint used for Tanimoto is not specified. One submitted-set score is compared per participant per condition; the same ten participants completed both conditions (p. 8, Section 6.1.2; p. 11, Section 7.4). This is within-person flexibility, not lexical overlap or diversity across people. Lower raw similarity means greater flexibility; direction is coded on that favorable orientation. The paper explicitly labels this comparison a Wilcoxon rank-sum test; that label is retained despite the within-subjects design.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "HALO",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "p_value_only"
+       ],
+       "reported": "Table 1 row Diversity, mean ± SD of average similarity: Baseline 58.27% ± 11.01% vs HALO 46.07% ± 7.68%; p = 0.0039** (text says Wilcoxon rank-sum test). The same ten participants completed both conditions, with one within-set similarity score per participant per condition. Sign reversed for direction: lower similarity under HALO means greater flexibility, hence treatment_higher. No standardized effect, confidence interval, standard error, or numerical Wilcoxon statistic is printed.",
+       "locator": "p. 9, Table 1; p. 10, Section 6.2.4 and Equation 1; p. 8, Section 6 and Section 6.1.2; p. 11, Section 7.4; p. 17, Section A.5"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Formative study (interviews and observation of ligand-optimization workflows)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No assigned assistance contrast. Researchers were interviewed and observed while using their preferred AI tools; thematic analysis of the interviews informed HALO design. This is a qualitative formative study, with no scored creativity or diversity outcome.",
+    "unit": "other",
+    "structure": null,
+    "quote": "as participants used their preferred AI tools to optimize molecules they were currently working on.",
+    "locator": "pp. 4-5, Sections 4.1-4.2",
+    "preregistered": "not_stated",
+    "prereg_locator": "No preregistration statement found in the complete text and appendix; p. 4, Section 4.1 reports IRB approval."
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 5,
+    "counts_are": "people",
+    "exclusions": "No exclusions reported. Section 4.1 and Table 4 support five formative participants; Section 2.3 instead says ten, a source discrepancy retained here.",
+    "population": "mixed",
+    "who": "Medicinal chemistry researchers working on ligand optimization, recruited through personal referrals and research labs. Table 4 marks P1-P5 as formative participants, including senior researchers, a postdoctoral researcher and a Ph.D. candidate. Section 4.1 describes four senior researchers and one Ph.D. candidate, while Table 4 labels P3 a postdoc. P3, P4 and P5 also participated in S1; the formative sample must not be added to the user-study count.",
+    "country": null,
+    "quote": "We recruited five participants with backgrounds in medicinal chemistry for the formative study:",
+    "locator": "p. 4, Sections 2.3, 4.1 and 4.2; p. 5, continuation of Section 4.2; p. 21, Table 4"
+   },
+   "ai_tool": {
+    "name_model": "Participants' preferred AI tools; no assigned model. Section 4.3.2 discusses GeLLM4O-C, DrugGen, ChatGPT and Gemini, without versions for the tools used during observation.",
+    "role": "other",
+    "how_used": "Participants described their AI-assisted ligand-optimization practice and used preferred AI tools to optimize molecules they were working on during workflow observation (pp. 4-5, Sections 4.2-4.3.2)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Interviews on workflows, AI use and difficulties, plus observation of optimization of participants' current molecules. Interview transcripts underwent thematic analysis and iterative open coding; no output creativity score or assistance comparison was reported (pp. 4-5, Section 4.2).",
+    "duration": "A 30-minute initial interview, 20-minute workflow observation and 20-minute post-task interview; sessions described as 1 to 1.5 hours (p. 4, Section 4.2)."
+   },
+   "outcomes": []
+  },
+  {
+   "study_id": "S3",
+   "label": "Model-only computational evaluation of molecule generation",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No human assignment: a fine-tuned generator was evaluated on optimization tasks and scaffold constraints. The random prompt-template selection described in Figure 13 concerns model prompting, not allocation of people or user-study condition order.",
+    "unit": "other",
+    "structure": null,
+    "quote": "We generated 1,024 candidates per task and measured hallucination rate (RDKit parsing failures), scaffold preservation, and any-property success across three scaffold constraints: Bemis-Murcko, ring system, and complete molecular structure.",
+    "locator": "pp. 16-17, Section A.2, Figures 7-8 and Table 2; p. 22, Figure 13",
+    "preregistered": "not_stated",
+    "prereg_locator": "No preregistration statement found in the complete text and Appendix A."
+   },
+   "arms": [
+    {
+     "name": "Task A",
+     "description": "Out-of-distribution property combination, evaluated under Bemis-Murcko, ring-system and complete-structure scaffold constraints (pp. 16-17, Section A.2 and Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Task B",
+     "description": "In-distribution property combination, evaluated under the same scaffold constraints (pp. 16-17, Section A.2 and Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No human sample. Per-scaffold and valid-output denominators are not stated; generated candidates must not be counted as participants.",
+    "population": null,
+    "who": "Molecular candidates generated by the model, not people. The per-task generation count is recorded in the reliability outcomes' n_units fields.",
+    "country": null,
+    "quote": "We generated 1,024 candidates per task",
+    "locator": "p. 16, Section A.2 and Figure 7; p. 17, Table 2"
+   },
+   "ai_tool": {
+    "name_model": "Llama 3.1 8B-Instruct fine-tuned on C-MuMOInstruct",
+    "role": "other",
+    "how_used": "The generator produced molecular candidates for computational reliability assessment across optimization tasks and scaffold constraints (pp. 16-17, Sections A.1-A.2)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Generate 1,024 candidates per task for out-of-distribution Task A and in-distribution Task B; assess RDKit parsing failures, scaffold preservation, any-property success and seed-candidate structural similarity (pp. 16-17, Section A.2, Figures 7-8 and Table 2).",
+    "duration": null
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Any-property success of generated candidates",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "The reported 1,024 is the number of candidates generated per task, separately for Task A and Task B (p. 16, Section A.2 and Figure 7). Here n_units records that per-task generation count, not a pooled count or a confirmed denominator of valid molecules for each scaffold-specific rate. These are descriptive model-only results, with no human assistance contrast. Table 2, Any Property Success (%), Task A / Task B: Bemis-Murcko 72.3 / 100.0; Ring System 79.3 / 100.0; Exact Structure 73.8 / 100.0 (p. 17, Table 2; p. 16, Section A.2). Table 2 reports no numerical uncertainty statistics.",
+     "unit": "output",
+     "n_units": 1024,
+     "ai_available_when_produced": "yes",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O2",
+     "name": "Hallucination rate (RDKit parsing failures)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "The reported 1,024 is the number of candidates generated per task, separately for Task A and Task B (p. 16, Section A.2 and Figure 7). Here n_units records that per-task generation count, not a pooled count or a confirmed denominator of valid molecules for each scaffold-specific rate. These are descriptive model-only results, with no human assistance contrast. Table 2, Hallucination Rate (%), Task A / Task B: Bemis-Murcko 0.0 / 38.3; Ring System 0.0 / 29.7; Exact Structure 0.0 / 39.8 (p. 17, Table 2; p. 16, Section A.2 and Figure 7). The term hallucination denotes parsing failure, not a human creativity rating. Table 2 reports no numerical uncertainty statistics.",
+     "unit": "output",
+     "n_units": 1024,
+     "ai_available_when_produced": "yes",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O3",
+     "name": "Scaffold preservation of generated candidates",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "The reported 1,024 is the number of candidates generated per task, separately for Task A and Task B (p. 16, Section A.2 and Figure 7). Here n_units records that per-task generation count, not a pooled count or a confirmed denominator of valid molecules for each scaffold-specific rate. These are descriptive model-only results, with no human assistance contrast. Table 2, Scaffold Preservation (%), Task A / Task B: Bemis-Murcko 89.8 / 100.0; Ring System 93.8 / 100.0; Exact Structure 90.6 / 100.0 (p. 17, Table 2; p. 16, Section A.2 and Figure 7). Table 2 reports no numerical uncertainty statistics.",
+     "unit": "output",
+     "n_units": 1024,
+     "ai_available_when_produced": "yes",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O4",
+     "name": "Structural similarity between seed and generated molecules",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Tanimoto similarity of generated molecules to the seed, not a comparison of outputs from different people. Figure 8 shows distributions; the prose says Task A is centered at 0.8 and Task B has peaks at 0.6 and 1.0 (p. 16, Figure 8; p. 17, continuation of Section A.2). The representation/fingerprint and the number of valid seed-candidate comparisons contributing to these distributions are not stated, so n_units is null. The 1,024 generated candidates per task is not assumed to be the number of plotted valid pairs. Section A.2 reports no inferential statistics.",
+     "unit": "pair",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "Within this paper, S1 (user study) and S2 (formative study) share P3, P4 and P5, marked in both study columns of Table 4. Do not add the formative sample to the ten-person user-study count. Cross-paper participant reuse is not stated.",
+  "quote": "𝑃3 36–45 Postdoc 10 ✓ ✓ 𝑃4 36–45 Senior R. 14 ✓ ✓ 𝑃5 26–35 Senior R. 15 ✓ ✓",
+  "locator": "p. 21, Table 4; p. 9, Section 6.1.4"
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "unclear",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "S1 analyzed ten medicinal chemists who completed both conditions, below the 50-person threshold (p. 9, Section 6.1.4; p. 11, Section 7.4). Condition order and task pairing were counterbalanced, but random assignment is not stated; both arms included generative AI, so this is an AI-configuration comparison (p. 8, Sections 6 and 6.1.2; p. 17, Section A.5). Quality and within-person molecular similarity were scored on submitted outputs, although the quality analysis unit is unconfirmed (pp. 9-10, Sections 6.1.3 and 6.2.4). S2 is qualitative, with no scored creativity outcome or assigned assistance contrast (pp. 4-5, Sections 4.1-4.2); Table 4 marks P3, P4 and P5 in both human studies, so their samples cannot be added (p. 21). S3 is model-only; its 1,024 candidates per task are not participants (pp. 16-17, Section A.2). Retain other/none pending clarification of allocation; no eligible randomized people study or qualifying context class is established."
+ },
+ "one_line_finding": "With HALO, ten medicinal chemists submitted molecules that improved more target properties (3.16 vs 2.25 of four) and were less similar to each other within a participant's set (46.07% vs 58.27% average Tanimoto similarity) than with a baseline AI interface, p = 0.0039 for both (p. 9, Table 1).",
+ "open_questions": [
+  "Was the counterbalanced user-study condition order assigned at random? The paper does not state the allocation mechanism (p. 8, Section 6.1.2).",
+  "What observation count and pairing were used for the quality Wilcoxon signed-rank test, and were scores averaged across each participant's submitted molecules? These details are not reported (pp. 9-10, Table 1 and Sections 6.1.3 and 6.2.4).",
+  "Which molecular representation or fingerprint underlies Tanimoto similarity? It is not specified, and the within-person similarity comparison is explicitly labeled rank-sum despite the within-subjects design (p. 10, Section 6.2.4).",
+  "The formative sample is five in Section 4.1 and Table 4, but ten in Section 2.3; Table 4 also identifies P3 as a postdoc whereas Section 4.1 describes four senior researchers and one Ph.D. candidate (p. 4; p. 21, Table 4)."
+ ],
+ "notes": "The complete markdown, including references and Appendix A, was read; retained and added numerical claims were checked on the cited PDF pages. S1 survey responses and self-reported abductive leaps describe experience or process rather than scored creative outputs (pp. 9-10, Sections 6.1.3 and 6.2.5). Changes in AI use after an insight do not establish AI withdrawal or an after_ai outcome. The within-participant similarity outcome is flexibility, not across-people diversity. S2 interview themes are not output creativity scores. S3 reliability outcomes are retained descriptively with question=none; their per-task generated-candidate counts are not people or confirmed per-scaffold valid-output denominators.",
+ "fix": {
+  "applied": [
+   {
+    "field": "source.supplement.exists",
+    "old": "{\"exists\": \"no\", \"holds\": \"Baseline interface description, technical details of HALO, task molecules (Figure 12), participant demographics (Table 4)\", \"in_this_pdf\": true, \"where\": \"Appendix inside the same PDF (A.5 baseline interface p. 17; Table 4 participant demographics p. 21); no separate supplement is referenced\"}",
+    "new": "{\"exists\": \"yes\", \"holds\": \"Molecule-generation pipeline and model-only computational evaluation (pp. 16-17, Sections A.1-A.2, Figures 6-8 and Table 2); property definitions, baseline interface and technical details (pp. 17-20, Sections A.3-A.6, Figures 9-12 and Table 3); participant demographics and sample overlap (p. 21, Table 4); generation prompts (p. 22, Figure 13).\", \"in_this_pdf\": true, \"where\": \"Appendix A is included in this PDF, pp. 16-22; no separate supplement is referenced.\"} Source.version now also records complete markdown reading and PDF verification.",
+    "quote": "Table 2: Computational evaluation of compound generation across scaffold types and tasks.",
+    "locator": "pp. 16-22, Appendix A; p. 17, Table 2; p. 21, Table 4; p. 22, Figure 13"
+   },
+   {
+    "field": "studies (omitted formative study)",
+    "old": "Only S1 was listed; sample_overlap was empty.",
+    "new": "Added S2: qualitative formative interviews and workflow observation, five analyzed people per Section 4.1 and Table 4, no assigned assistance comparison and no scored output outcome. Documented the conflicting ten-person statement in Section 2.3 and shared participants P3, P4 and P5 in sample_overlap. Updated paper_design_summary, eligibility.reason, open_questions and notes to reflect the study and discrepancies.",
+    "quote": "We recruited five participants with backgrounds in medicinal chemistry for the formative study:",
+    "locator": "p. 4, Sections 2.3 and 4.1-4.2; p. 5, continuation of Section 4.2; p. 21, Table 4"
+   },
+   {
+    "field": "studies (omitted model-only computational evaluation)",
+    "old": "Only S1 was listed; no model-only evaluation was recorded.",
+    "new": "Added S3 (model_only), with human counts null. Recorded 1,024 generated candidates separately per task in n_units for the reliability outcomes, with the scope and unresolved per-scaffold denominators explicit. Recorded Table 2 success, parsing-failure and scaffold-preservation rates plus Figure 8 seed-candidate similarity, all as question=none. Updated the summary, eligibility reason and notes; no computational candidate is counted as a person.",
+    "quote": "We generated 1,024 candidates per task and measured hallucination rate (RDKit parsing failures), scaffold preservation, and any-property success across three scaffold constraints: Bemis-Murcko, ring system, and complete molecular structure.",
+    "locator": "pp. 16-17, Section A.2, Figures 7-8 and Table 2"
+   },
+   {
+    "field": "studies[0].assignment.preregistered",
+    "old": "yes | no | not_stated",
+    "new": "not_stated; prereg_locator explains the absence of a registration statement and distinguishes IRB approval.",
+    "quote": "Participants were asked to complete both the experimental and control tasks.",
+    "locator": "p. 8, Section 6.1.2; p. 9, Section 6.1.4; complete text and Appendix A, pp. 1-22"
+   },
+   {
+    "field": "studies[0].outcomes[0].unit",
+    "old": "{\"measure_detail\": \"\", \"unit\": \"participant\"}",
+    "new": "{\"measure_detail\": \"Number of target properties improved per submitted compound (p. 9, Section 6.1.3). Section 6.2.4 (p. 10) attributes evaluation to ADMET-AI and specifies a Wilcoxon signed-rank test, but does not state whether compound scores were averaged within participants or how observations were paired. The quality analysis unit and its observation count are unconfirmed; unit and n_units are null, and participant-level precision cannot be assumed. Section A.1 (p. 16) separately describes ADMET-AI for carcinogenicity, hERG and DILI, Therapeutic Data Commons oracles for DRD2 and pLogP, and RDKit descriptors; the form retains these implementation distinctions. These are model-based scores, without wet-lab validation (p. 11, Section 7.4).\", \"n_units\": null, \"unit\": null}",
+    "quote": "Quality, measured by how many of the four properties were improved in each submitted compound;",
+    "locator": "p. 9, Section 6.1.3 and Table 1; p. 10, Section 6.2.4; p. 11, Section 7.4; p. 16, Section A.1"
+   },
+   {
+    "field": "studies[0].outcomes[1].measure and measure_detail",
+    "old": "{\"measure\": \"lexical_overlap\", \"measure_detail\": \"\"}",
+    "new": "{\"measure\": \"automated_score\", \"measure_detail\": \"Computed molecular structural similarity, using Tanimoto similarity averaged within each participant's set of seven submitted molecules (p. 10, Section 6.2.4 and Equation 1). The molecular representation or fingerprint used for Tanimoto is not specified. One submitted-set score is compared per participant per condition; the same ten participants completed both conditions (p. 8, Section 6.1.2; p. 11, Section 7.4). This is within-person flexibility, not lexical overlap or diversity across people. Lower raw similarity means greater flexibility; direction is coded on that favorable orientation. The paper explicitly labels this comparison a Wilcoxon rank-sum test; that label is retained despite the within-subjects design.\"}",
+    "quote": "For diversity, we computed the average pairwise similarity within each set (where each participant submitted seven molecules), and then compared between conditions using the Wilcoxon rank-sum test [111].",
+    "locator": "p. 9, Section 6.1.3; p. 10, Section 6.2.4 and Equation 1; p. 11, Section 7.4; creativity-codebook.md, Section 6"
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced, timing, and primary",
+    "old": "[{\"ai_available_when_produced\": \"yes | no | mixed\", \"primary\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"timing\": \"immediate | delayed\"}, {\"ai_available_when_produced\": \"yes | no | mixed\", \"primary\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"timing\": \"immediate | delayed\"}]",
+    "new": "[{\"ai_available_when_produced\": \"yes\", \"primary\": \"not_stated\", \"timing\": \"immediate\"}, {\"ai_available_when_produced\": \"yes\", \"primary\": \"not_stated\", \"timing\": \"immediate\"}]",
+    "quote": "Each task was limited to 30 minutes, with a five-minute break between tasks.",
+    "locator": "p. 8, Sections 6 and 6.1.2; p. 9, Section 6.1.3; p. 17, Section A.5; complete text checked for a primary-outcome designation"
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0] (unfinished contrast fields)",
+    "old": "{\"comparison_type\": \"ai_vs_bau | ai_vs_active | ai_design | ai_vs_human | before_after | other\", \"control_arm\": \"\", \"direction\": \"treatment_higher | treatment_lower | no_clear_difference | mixed\", \"locator\": \"p. 9, Table 1; p. 10, Section 6.2.4\", \"reported\": \"Table 1, mean ± SD: Baseline 2.25 ± 0.48 vs HALO 3.16 ± 0.37; p = 0.0039** (Wilcoxon signed-rank test)\", \"statistics_available\": [], \"treatment_arm\": \"\"}",
+    "new": "{\"comparison_type\": \"ai_design\", \"control_arm\": \"Baseline\", \"direction\": \"treatment_higher\", \"locator\": \"p. 9, Table 1 and Section 6.1.3; p. 10, Section 6.2.4; p. 11, Section 7.4; p. 8, Section 6 and Section 6.1.2; p. 17, Section A.5\", \"reported\": \"Table 1, mean ± SD: Baseline 2.25 ± 0.48 vs HALO 3.16 ± 0.37; p = 0.0039** (Wilcoxon signed-rank test). The observation count and aggregation used for the quality test are not stated; the ten people completing both conditions do not establish the quality analysis unit. No standardized effect, confidence interval, standard error, or numerical Wilcoxon statistic is printed.\", \"statistics_available\": [\"p_value_only\"], \"treatment_arm\": \"HALO\"}",
+    "quote": "Quality 2.25 ± 0.48 3.16 ± 0.37 0.0039∗∗",
+    "locator": "p. 8, Section 6; p. 9, Table 1; p. 10, Section 6.2.4; p. 17, Section A.5"
+   },
+   {
+    "field": "studies[0].outcomes[1].contrasts[0] (unfinished contrast fields)",
+    "old": "{\"comparison_type\": \"ai_vs_bau | ai_vs_active | ai_design | ai_vs_human | before_after | other\", \"control_arm\": \"\", \"direction\": \"treatment_higher | treatment_lower | no_clear_difference | mixed\", \"locator\": \"p. 9, Table 1; p. 10, Section 6.2.4 and Equation 1\", \"reported\": \"Table 1 row 'Diversity', mean ± SD of average similarity: Baseline 58.27% ± 11.01% vs HALO 46.07% ± 7.68%; p = 0.0039** (text says Wilcoxon rank-sum test). Sign reversed: lower similarity under HALO means more varied molecules.\", \"statistics_available\": [], \"treatment_arm\": \"\"}",
+    "new": "{\"comparison_type\": \"ai_design\", \"control_arm\": \"Baseline\", \"direction\": \"treatment_higher\", \"locator\": \"p. 9, Table 1; p. 10, Section 6.2.4 and Equation 1; p. 8, Section 6 and Section 6.1.2; p. 11, Section 7.4; p. 17, Section A.5\", \"reported\": \"Table 1 row Diversity, mean ± SD of average similarity: Baseline 58.27% ± 11.01% vs HALO 46.07% ± 7.68%; p = 0.0039** (text says Wilcoxon rank-sum test). The same ten participants completed both conditions, with one within-set similarity score per participant per condition. Sign reversed for direction: lower similarity under HALO means greater flexibility, hence treatment_higher. No standardized effect, confidence interval, standard error, or numerical Wilcoxon statistic is printed.\", \"statistics_available\": [\"arm_means_sds_ns\", \"p_value_only\"], \"treatment_arm\": \"HALO\"}",
+    "quote": "Diversity 58.27% ± 11.01% 46.07% ± 7.68% 0.0039∗∗",
+    "locator": "p. 9, Table 1; p. 10, Section 6.2.4 and Equation 1; p. 11, Section 7.4; creativity-codebook.md, Section 7"
+   }
+  ],
+  "rejected": []
+ }
+}

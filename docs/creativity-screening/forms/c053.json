@@ -1,0 +1,325 @@
+{
+ "cid": "c053",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Disley et al (2026) - Designing cognitive friction with concept suppression in large language models.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Disley et al (2026) - Designing cognitive friction with concept suppression in large language models.pdf",
+  "version": "Journal version of record, Human-Computer Interaction (Taylor & Francis), open access, published online 21 Sep 2026, DOI 10.1080/07370024.2026.2708617 (received 3 Feb 2026, revised 7 Jul 2026, accepted 11 Jul 2026); entire markdown conversion read, including the implementation/behavioral-validation appendix and references; recorded numerical claims checked against the PDF",
+  "title_on_document": "Designing cognitive friction with concept suppression in large language models",
+  "authors_on_document": [
+   "Martin Disley",
+   "Murad Khan"
+  ],
+  "pages": 43,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "The implementation and behavioral-validation appendix is included at PDF p. 37 (printed p. 36), Sections 8.1-8.2.4. Table 5 (repair-training hyperparameters) is on PDF p. 24 (printed p. 23); Tables 6-9 (behavioral-validation excerpts) are on PDF pp. 24-25 (printed pp. 23-24). A separate pipeline reproducibility package is linked at https://github.com/martindisley/utr-concept-suppression-method in PDF p. 14 (printed p. 13), Section 4.1.5 and footnote 4; the repository was not independently inspected.",
+   "holds": "The included appendix describes matched behavioral checks of the baseline model and Unlearning to Rest; the associated tables report repair-training hyperparameters and representative model-output excerpts. The separately linked reproducibility package is described as containing full pipeline code, final configuration, concept definition, and an example data schema. No participant-level outcome dataset is identified."
+  }
+ },
+ "paper_design_summary": "Design students and academics (N = 37 analyzed) each spent 15 minutes developing 'proto-concepts' for radically new chairs, written as image-generation prompts, under three within-subject conditions: unaided, with an unmodified Llama 3.2 3B chatbot, and with 'Unlearning to Rest', a Llama 3.2 3B model with the concept 'chair' suppressed. Condition order was randomized by a Latin square. The quantitative outcomes are self-reported NASA-TLX-like workload items and a single perceived-ownership item; the authors state they do not report any empirical analysis of the concept prompts or images.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Within-subject chair-ideation study (three conditions)",
+   "design_class": "lab_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Order of three conditions (unaided, Llama3.2:3b, Unlearning to Rest), each completed by every participant",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "In order to counterbalance learning effects, participants were assigned these sessions in a random order by the web application, based on a Latin square of conditions and the expected number of participants.",
+    "locator": "PDF p. 17 (printed p. 16), Section 5.3 (Ideation task)",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Unaided",
+     "description": "Working alone; chat panel replaced by an open text field for drafting ideas",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 37
+    },
+    {
+     "name": "Llama3.2:3b",
+     "description": "Unmodified Llama 3.2 3B chat model, hosted locally via Ollama",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 37
+    },
+    {
+     "name": "Unlearning to Rest",
+     "description": "Llama-3.2-3B-Instruct with weight-level suppression of the concept 'chair' (saliency pruning, vocabulary pruning, repair finetuning)",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 37
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 37,
+    "counts_are": "people",
+    "exclusions": "47 recruited; 38 completed every part, with drop-off attributed to first-cohort students disengaging midway. User 44 from the second cohort was additionally excluded for activity indicating potential misunderstanding or response bias, yielding 37 analyzed. Section 5.2 prints first-cohort N = 31 to N = 26 and second-cohort N = 11; Section 6.2 describes the transcript subset as 11 of the final 37. The paper does not fully reconcile this cohort flow, and the second-cohort count does not establish how many were recruited. The number randomized is not stated.",
+    "population": "mixed",
+    "who": "Design students and academics: first cohort, undergraduates in the Diploma in Creative Computing at the Creative Computing Institute, University of the Arts London (in-person classroom workshop); second cohort, postgraduates (MA Interior Design, MA and PhD Design Informatics) at the University of Edinburgh (one-on-one video sessions with think-aloud)",
+    "country": "United Kingdom",
+    "quote": "Of the 47 participants that were recruited, only 38 of them completed every part of the study. [...] This yielded a final sample of 37 participants.",
+    "locator": "PDF pp. 16-17 (printed pp. 15-16), Section 5.2 (Participants); PDF p. 20 (printed p. 19), Section 6.1 and Table 1 (N = 37 across three conditions); PDF p. 23 (printed p. 22), Section 6.2, final paragraph (transcript subset); PDF p. 35 (printed p. 34), Section 7.8 (sample composition)"
+   },
+   "ai_tool": {
+    "name_model": "Llama 3.2 3B (meta-llama/Llama-3.2-3B-Instruct) unmodified, and 'Unlearning to Rest', the same model with the concept 'chair' suppressed; served through Ollama",
+    "role": "open_chat",
+    "how_used": "Participants chatted with the model as a conversational ideation partner and could take whole concepts or elements of the conversation; concepts were saved as text-to-image prompts, and images were shown only after the round."
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Develop a series of 'proto-concepts' for the design of radically new chairs, formatted as prompts for an image generator",
+    "duration": "15 minutes per condition"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Mental Demand (NASA-TLX-like item, 21-point scale)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Self-reported workload after each session; analyzed by repeated-measures ANOVA and BH-corrected paired t-tests. Not scored on the output.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Unlearning to Rest",
+       "control_arm": "Llama3.2:3b",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic",
+        "standardized_effect"
+       ],
+       "reported": "Llama3.2:3b 7.24 (3.90) vs Unlearning To Rest 10.19 (4.45) vs Unaided 11.49 (3.80), N = 37; omnibus F = 12.62, df 2, 72, p < .001, partial eta squared = 0.254; Llama3.2:3b < Unlearning To Rest: t = -3.29, pFDR = 0.0050, g = -0.697",
+       "locator": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Effort (NASA-TLX-like item, 21-point scale)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Self-reported effort after each session. Not scored on the output.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Unlearning to Rest",
+       "control_arm": "Llama3.2:3b",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic",
+        "standardized_effect"
+       ],
+       "reported": "Llama3.2:3b 7.65 (4.63) vs Unlearning To Rest 10.76 (3.51) vs Unaided 10.70 (3.36), N = 37; omnibus F = 7.95, df 2, 72, p < .001, partial eta squared = 0.177; Llama3.2:3b < Unlearning To Rest: t = -3.74, pFDR = 0.0019, g = -0.749",
+       "locator": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Perceived ownership (single item, 21-point scale)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Single self-report ownership item after each session. Not scored on the output.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Unlearning to Rest",
+       "control_arm": "Llama3.2:3b",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic",
+        "standardized_effect"
+       ],
+       "reported": "Llama3.2:3b 6.38 (4.86) vs Unlearning To Rest 9.16 (4.96) vs Unaided 11.49 (5.83), N = 37; omnibus F = 12.43, df 2, 72, p < .001, partial eta squared = 0.251; Llama3.2:3b < Unlearning To Rest: t = -2.77, pFDR = 0.0132, g = -0.561; Unlearning To Rest < Unaided: t = -2.47, pFDR = 0.0234, g = -0.425",
+       "locator": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": "https://github.com/martindisley/utr-concept-suppression-method"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "none",
+  "reason": "Within-subject design with randomized Latin-square condition order meets criterion 1 (PDF p. 17, printed p. 16, Section 5.3). Only 37 people were analyzed (47 recruited, 38 completed, one further participant excluded; PDF p. 16, printed p. 15, Section 5.2), below 50; the three conditions used the same participants. No creativity or diversity outcome is scored on their outputs: quantitative outcomes are self-reported workload and ownership (PDF p. 18, printed p. 17, Section 5.4). The authors explicitly report no empirical analysis of activity outputs (PDF p. 28, printed p. 27, Section 6.4) and state that fixation, novelty, and diversity were not operationalized (PDF p. 35, printed p. 34, Section 7.8). List in the screening report as a small randomized experiment with self-report outcomes; no eligible context class applies."
+ },
+ "one_line_finding": "With 37 participants, the concept-suppressed model raised self-reported mental demand (10.19 vs 7.24), effort (10.76 vs 7.65), and ownership (9.16 vs 6.38) relative to unmodified Llama 3.2 3B, with no output creativity scored (PDF p. 20, printed p. 19, Tables 1-3; PDF p. 23, printed p. 22, Section 6.1; PDF p. 28, printed p. 27, Section 6.4).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "source.supplement",
+    "old": "{\"exists\": \"yes\", \"in_this_pdf\": false, \"where\": \"The text cites a 'behavioral validation appendix' (p. 13, Section 4.1.6) and a reproducibility package at https://github.com/martindisley/utr-concept-suppression-method (p. 13, footnote 4); Tables 6-9 with behavioral-validation excerpts are printed on pp. 23-24 of the PDF.\", \"holds\": \"Model behavioral checks and pipeline code; no participant-level outcome data are described.\"}",
+    "new": "{\"exists\": \"yes\", \"in_this_pdf\": true, \"where\": \"The implementation and behavioral-validation appendix is included at PDF p. 37 (printed p. 36), Sections 8.1-8.2.4. Table 5 (repair-training hyperparameters) is on PDF p. 24 (printed p. 23); Tables 6-9 (behavioral-validation excerpts) are on PDF pp. 24-25 (printed pp. 23-24). A separate pipeline reproducibility package is linked at https://github.com/martindisley/utr-concept-suppression-method in PDF p. 14 (printed p. 13), Section 4.1.5 and footnote 4; the repository was not independently inspected.\", \"holds\": \"The included appendix describes matched behavioral checks of the baseline model and Unlearning to Rest; the associated tables report repair-training hyperparameters and representative model-output excerpts. The separately linked reproducibility package is described as containing full pipeline code, final configuration, concept definition, and an example data schema. No participant-level outcome dataset is identified.\"}",
+    "quote": "Here, we report a compact set of matched behavioral comparisons between the baseline model and Unlearning to Rest.",
+    "locator": "PDF p. 37 (printed p. 36), Sections 8.1-8.2.4; PDF pp. 24-25 (printed pp. 23-24), Tables 5-9; PDF p. 14 (printed p. 13), Sections 4.1.5-4.1.6 and footnote 4"
+   },
+   {
+    "field": "studies[0].participants.population",
+    "old": "students",
+    "new": "mixed",
+    "quote": "Our sample comprised design students and early-career academics,",
+    "locator": "PDF p. 35 (printed p. 34), Section 7.8 (Limitations); also PDF p. 16 (printed p. 15), Section 5.2 (Participants)"
+   },
+   {
+    "field": "studies[0].participants.exclusions",
+    "old": "47 recruited; 38 completed every part (drop-off from first-cohort students disengaging midway); one more participant (User 44, second cohort) excluded for a pattern indicating misunderstanding or response bias; final sample 37. Cohort counts printed as first cohort N = 31 -> N = 26 and second cohort N = 11, which sum to 42 recruited rather than 47; the paper does not reconcile this. The paper gives no count at assignment.",
+    "new": "47 recruited; 38 completed every part, with drop-off attributed to first-cohort students disengaging midway. User 44 from the second cohort was additionally excluded for activity indicating potential misunderstanding or response bias, yielding 37 analyzed. Section 5.2 prints first-cohort N = 31 to N = 26 and second-cohort N = 11; Section 6.2 describes the transcript subset as 11 of the final 37. The paper does not fully reconcile this cohort flow, and the second-cohort count does not establish how many were recruited. The number randomized is not stated.",
+    "quote": "Of the 47 participants that were recruited, only 38 of them completed every part of the study.",
+    "locator": "PDF p. 16 (printed p. 15), Section 5.2 (Participants); PDF p. 23 (printed p. 22), Section 6.2, final paragraph"
+   },
+   {
+    "field": "studies[0].assignment.locator",
+    "old": "p. 16, Section 5.3 (Ideation task)",
+    "new": "PDF p. 17 (printed p. 16), Section 5.3 (Ideation task)",
+    "quote": "In order to counterbalance learning effects, participants were assigned these sessions in a random order by the web application, based on a Latin square of conditions and the expected number of participants.",
+    "locator": "PDF p. 17 (printed p. 16), Section 5.3 (Ideation task)"
+   },
+   {
+    "field": "studies[0].participants.locator",
+    "old": "p. 15, Section 5.2 (Participants); N = 37 across three conditions also stated in p. 19, Section 6.1, text above Table 1; cohort counts on pp. 15-16",
+    "new": "PDF pp. 16-17 (printed pp. 15-16), Section 5.2 (Participants); PDF p. 20 (printed p. 19), Section 6.1 and Table 1 (N = 37 across three conditions); PDF p. 23 (printed p. 22), Section 6.2, final paragraph (transcript subset); PDF p. 35 (printed p. 34), Section 7.8 (sample composition)",
+    "quote": "This yielded a final sample of 37 participants.",
+    "locator": "PDF pp. 16-17 (printed pp. 15-16), Section 5.2; PDF p. 20 (printed p. 19), Section 6.1 and Table 1; PDF p. 23 (printed p. 22), Section 6.2; PDF p. 35 (printed p. 34), Section 7.8"
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0].locator",
+    "old": "p. 19, Tables 1-3; p. 22, Section 6.1",
+    "new": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1",
+    "quote": "Table 1. NASA-TLX and ownership ratings by condition (mean (SD) [IQR]).",
+    "locator": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1"
+   },
+   {
+    "field": "studies[0].outcomes[1].contrasts[0].locator",
+    "old": "p. 19, Tables 1-3; p. 22, Section 6.1",
+    "new": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1",
+    "quote": "Table 2. Omnibus test results by questionnaire dimension (repeated-measures ANOVA).",
+    "locator": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1"
+   },
+   {
+    "field": "studies[0].outcomes[2].contrasts[0].locator",
+    "old": "p. 19, Tables 1-3; p. 22, Section 6.1",
+    "new": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1",
+    "quote": "Table 3. Pairwise summary of significant post-hoc comparisons for outcomes with significant omnibus effects.",
+    "locator": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1"
+   },
+   {
+    "field": "eligibility.reason",
+    "old": "Within-subject design with randomized (Latin-square) condition order, so criterion 1 is met. Only 37 people were analyzed (47 recruited, 38 completed, 1 excluded; p. 15, Section 5.2), below 50. No creativity or diversity outcome is scored on the output: the quantitative outcomes are self-reported workload and ownership, and the authors state 'we do not report any empirical analysis of the activity outputs' (p. 27, Section 6.4). List in the screening report as a small randomized experiment.",
+    "new": "Within-subject design with randomized Latin-square condition order meets criterion 1 (PDF p. 17, printed p. 16, Section 5.3). Only 37 people were analyzed (47 recruited, 38 completed, one further participant excluded; PDF p. 16, printed p. 15, Section 5.2), below 50; the three conditions used the same participants. No creativity or diversity outcome is scored on their outputs: quantitative outcomes are self-reported workload and ownership (PDF p. 18, printed p. 17, Section 5.4). The authors explicitly report no empirical analysis of activity outputs (PDF p. 28, printed p. 27, Section 6.4) and state that fixation, novelty, and diversity were not operationalized (PDF p. 35, printed p. 34, Section 7.8). List in the screening report as a small randomized experiment with self-report outcomes; no eligible context class applies.",
+    "quote": "We did not operationalize fixation, novelty, or diversity directly.",
+    "locator": "PDF pp. 16-18 (printed pp. 15-17), Sections 5.2-5.4; PDF p. 28 (printed p. 27), Section 6.4; PDF p. 35 (printed p. 34), Section 7.8"
+   },
+   {
+    "field": "one_line_finding",
+    "old": "With 37 participants, the concept-suppressed model raised self-reported mental demand (10.19 vs 7.24), effort (10.76 vs 7.65), and ownership (9.16 vs 6.38) relative to unmodified Llama 3.2 3B, with no output creativity scored (p. 19, Tables 1-3; p. 22).",
+    "new": "With 37 participants, the concept-suppressed model raised self-reported mental demand (10.19 vs 7.24), effort (10.76 vs 7.65), and ownership (9.16 vs 6.38) relative to unmodified Llama 3.2 3B, with no output creativity scored (PDF p. 20, printed p. 19, Tables 1-3; PDF p. 23, printed p. 22, Section 6.1; PDF p. 28, printed p. 27, Section 6.4).",
+    "quote": "Table 1. NASA-TLX and ownership ratings by condition (mean (SD) [IQR]).",
+    "locator": "PDF p. 20 (printed p. 19), Tables 1-3; PDF p. 23 (printed p. 22), Section 6.1; PDF p. 28 (printed p. 27), Section 6.4"
+   },
+   {
+    "field": "data_and_code.code_url",
+    "old": "",
+    "new": "https://github.com/martindisley/utr-concept-suppression-method",
+    "quote": "The full pipeline code, final configuration, concept definition, and example data schema are released in a paper-specific reproducibility package.",
+    "locator": "PDF p. 14 (printed p. 13), Section 4.1.5 (Implementation and deployment) and footnote 4; URL confirmed in the PDF, repository not independently inspected"
+   },
+   {
+    "field": "source.version",
+    "old": "Journal version of record, Human-Computer Interaction (Taylor & Francis), open access, published online 21 Sep 2026, DOI 10.1080/07370024.2026.2708617 (received 3 Feb 2026, revised 7 Jul 2026, accepted 11 Jul 2026); PDF on file read pages 1-30 (PDF pages; printed pages 1-29)",
+    "new": "Journal version of record, Human-Computer Interaction (Taylor & Francis), open access, published online 21 Sep 2026, DOI 10.1080/07370024.2026.2708617 (received 3 Feb 2026, revised 7 Jul 2026, accepted 11 Jul 2026); entire markdown conversion read, including the implementation/behavioral-validation appendix and references; recorded numerical claims checked against the PDF",
+    "quote": "Published online: 21 Sep 2026.",
+    "locator": "PDF pp. 1-2, publisher cover and article history; PDF p. 37 (printed p. 36), Sections 8.1-8.2.4; full markdown conversion through the end of References read for this fix"
+   }
+  ],
+  "rejected": []
+ }
+}

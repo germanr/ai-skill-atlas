@@ -1,0 +1,393 @@
+{
+ "cid": "c139",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "",
+  "pdf_file": "",
+  "version": "Journal version of record, Strategic Management Journal special issue article, published online 2026-08-25 (Strat Mgmt J. 2026;1-50, CC BY; received 30 Sep 2024, revised 30 May 2026, accepted 28 Jul 2026). No full text on file and the Wiley PDF and HTML returned HTTP 403; read the same published PDF from the University of St. Gallen repository (alexandria.unisg.ch handle 20.500.14171/135864) in memory with pymupdf. Supporting Information S1-S15 not read.",
+  "title_on_document": "The impact of generative artificial intelligence on innovation: Evidence from software products",
+  "authors_on_document": [
+   "Erdem Doğukan Yılmaz",
+   "Tim Meyer"
+  ],
+  "pages": 50,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": false,
+   "where": "Online Supporting Information section of the Wiley article (p. 35: 'Additional supporting information can be found online in the Supporting Information section at the end of this article'). Appendices A-D are in this PDF.",
+   "holds": "S1 summary statistics (Table S1.4 for the novelty analyses); S2 construction of the LSI, TF-IDF, and semantic-embedding similarity scores and the text neutralization; S3-S15 robustness checks (SDID, classical DiD, trends, AI-detection of source code, alternative fixed effects)."
+  }
+ },
+ "paper_design_summary": "The authors compare Firefox browser add-on activity from June 2022 to May 2023 with the same calendar months one year earlier, before and after ChatGPT's release in November 2022 (a panel-differences design with category-by-period and month fixed effects). Outcomes are counts of new add-ons and updates, the number of categories new add-ons span, user ratings, and the LSI textual similarity of new add-on descriptions to earlier add-ons. No person is assigned to AI and individual AI use is not observed; a survey of 33 developers adds self-reported mechanism evidence.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Firefox add-on corpus, panel differences around ChatGPT release",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "individual | team | class | session | within_person_order | other",
+    "structure": "between | within | crossover | mixed",
+    "quote": "",
+    "locator": "",
+    "preregistered": "yes | no | not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "",
+     "description": "",
+     "ai": "none | generative_ai | other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "mixed",
+    "who": "Corpus of Firefox add-ons (software products) by third-party developers, new and existing: initial data set of 31,265 add-ons (p. 13, Section 4.2). Category-level panel of 15 categories x 12 months x 2 periods = 360 category-months (p. 17, fn. 19); add-on-level update panel of 1,745 add-ons x 12 x 2 = 41,880 add-on-months (p. 14, Section 4.3). Number of developers not stated in the main text.",
+    "country": "not_stated (global platform)",
+    "quote": "",
+    "locator": "p. 13, Section 4.2; p. 14, Section 4.3; p. 17, footnote 19"
+   },
+   "ai_tool": {
+    "name_model": "ChatGPT (release on November 30, 2022, as the event)",
+    "role": "open_chat",
+    "how_used": "Exposure is the public availability of ChatGPT after November 2022; individual developers' use is not observed in the main analysis (an AI-detection check of add-on source code is in Supporting Information S10)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Software product development: introducing new Firefox browser add-ons (original innovation) and updating existing ones (generational innovation).",
+    "duration": "Study window June 2021 to May 2023"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "LSI similarity score of new add-on descriptions to previous add-ons (inverse novelty)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Latent Semantic Indexing similarity of the descriptions of newly introduced add-ons to previously introduced add-ons, averaged to the category-month; higher = more similar = less novel, so the sign is reversed relative to novelty. Variant on 'neutralized' description text adjusted for GAI writing style (Table 6, col. 3). Paper says results hold with TF-IDF scores and semantic embeddings (p. 25, fn. 24; Supporting Information S2, not read).",
+     "unit": "set",
+     "n_units": 360,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate | delayed",
+     "delay": "",
+     "primary": "preregistered_primary | paper_primary | secondary | not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Post-ChatGPT months (Nov 2022 to May 2023) relative to pre months (Jun to Oct 2022)",
+       "control_arm": "Same calendar months one year earlier (Jun 2021 to May 2022)",
+       "comparison_type": "before_after",
+       "direction": "mixed",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table 6, Post x Treatment: col. (2) LSI similarity score 0.0070 (0.0042) [0.1108], constant 0.1514; col. (3) LSI similarity score (neutralized text) 0.0069 (0.0032) [0.0416], constant 0.1989; OLS, Observations 360, SEs clustered at category-treatment group pair, p-values in brackets. Text: 'we even find some evidence that products become more similar to previous products' (col. 3).",
+       "locator": "p. 25, Table 6, cols. (2)-(3); p. 26, Section 5.5"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Category count (average number of categories new add-ons span)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Average number of Firefox categories that newly introduced add-ons span in a category-month; the paper's measure of the scope of knowledge domains (Hypothesis 4).",
+     "unit": "set",
+     "n_units": 360,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate | delayed",
+     "delay": "",
+     "primary": "preregistered_primary | paper_primary | secondary | not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Post-ChatGPT months (Nov 2022 to May 2023) relative to pre months (Jun to Oct 2022)",
+       "control_arm": "Same calendar months one year earlier (Jun 2021 to May 2022)",
+       "comparison_type": "before_after",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table 6 col. (1) Category count, Post x Treatment 0.0568 (0.0239) [0.0241], constant 1.3700, OLS, Observations 360. Text: 'β = 0.057, p = .0241'.",
+       "locator": "p. 25, Table 6, col. (1); p. 25, Section 5.5"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Number of new add-ons introduced (original products)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of new add-ons introduced per category-month; OLS, log-OLS, and Poisson models.",
+     "unit": "set",
+     "n_units": 360,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate | delayed",
+     "delay": "",
+     "primary": "preregistered_primary | paper_primary | secondary | not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Post-ChatGPT months (Nov 2022 to May 2023) relative to pre months (Jun to Oct 2022)",
+       "control_arm": "Same calendar months one year earlier (Jun 2021 to May 2022)",
+       "comparison_type": "before_after",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table 2, Post x Treatment: OLS 7.3657 (2.0216) [0.0010]; Log-OLS 0.2950 (0.0727) [0.0003]; Poisson 0.2476 (0.0524) [0.0000]; Observations 360. Text: 'approximately to a 34.4% increase in the number of new add-ons (exp(0.295) -1 ≈0.344)'.",
+       "locator": "p. 19, Table 2; p. 18, Section 5.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Average user rating of new add-ons by new developers (quality)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "Average Rating of an add-on at data collection, aggregated to category-month; variant Average Rating 30 Days (within 30 days of release). User ratings on the Firefox platform.",
+     "unit": "set",
+     "n_units": 360,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate | delayed",
+     "delay": "",
+     "primary": "preregistered_primary | paper_primary | secondary | not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Post-ChatGPT months (Nov 2022 to May 2023) relative to pre months (Jun to Oct 2022), new developers",
+       "control_arm": "Same calendar months one year earlier (Jun 2021 to May 2022), new developers",
+       "comparison_type": "before_after",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table 4 col. (1) Average rating, new developers, Post x Treatment -0.1027 (0.1536) [0.5090], Observations 360; col. (5) Average rating 30 days -0.2641 (0.1600) [0.1096], Observations 329.",
+       "locator": "p. 23, Table 4, cols. (1) and (5); p. 22, Section 5.2.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Number of updates to existing add-ons (generational innovation)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Number of updates per add-on-month for add-ons introduced before June 2021 with updates in both periods; also an Updated (0/1) dummy.",
+     "unit": "output",
+     "n_units": 41880,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate | delayed",
+     "delay": "",
+     "primary": "preregistered_primary | paper_primary | secondary | not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Post-ChatGPT months (Nov 2022 to May 2023) relative to pre months (Jun to Oct 2022)",
+       "control_arm": "Same calendar months one year earlier (Jun 2021 to May 2022)",
+       "comparison_type": "before_after",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table 5, Post x Treatment: OLS -0.0909 (0.0215) [0.0000]; Log-OLS -0.0481 (0.0095) [0.0000]; Poisson -0.2263 (0.0505) [0.0000]; Logit (Updated) -0.3233 (0.0494) [0.0000]; Observations 41,880 (41,700 Logit). Text: 'a 20.3% (exp(-0.226) -1 ≈-0.203) decrease in the expected count of updates per add-on'.",
+       "locator": "p. 24, Table 5; p. 22, Section 5.3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Exploratory survey of 33 Firefox add-on developers",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "individual | team | class | session | within_person_order | other",
+    "structure": "between | within | crossover | mixed",
+    "quote": "",
+    "locator": "",
+    "preregistered": "yes | no | not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "",
+     "description": "",
+     "ai": "none | generative_ai | other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 33,
+    "counts_are": "people",
+    "exclusions": "Of 37 initial developer responses, 4 were excluded for failing an attention-check question, leaving 33 analyzed developers (p. 44, Appendix D.1).",
+    "population": "professionals",
+    "who": "Firefox add-on developers answering an online survey on their experiences with and perceptions of GAI; supplemented by qualitative developer interviews.",
+    "country": "not_stated",
+    "quote": "we also collected primary data through a survey of 33 Firefox add-on developers",
+    "locator": "p. 13, Section 4.2; Appendix D, pp. 43-50"
+   },
+   "ai_tool": {
+    "name_model": "GAI tools in general (ChatGPT, Claude mentioned by respondents)",
+    "role": "other",
+    "how_used": "Self-reported use for ideation and coding; no AI condition is assigned."
+   },
+   "task": {
+    "type": "other",
+    "description": "Self-report questionnaire on ideation, implementation, timelines, and competition; no creative output is scored.",
+    "duration": ""
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "Neither study randomly assigns people to generative-AI assistance, so criterion 1 is not_met and core remains no. S1 is an observational panel-differences analysis comparing Firefox add-on outputs before and after ChatGPT's release with the same calendar months in the prior year (pp. 15-18, Sections 4.4-4.5). Its distinct-person analysis count is not reported: the 360 category-months and 41,880 add-on-months count panel observations, not people, so criterion 2 is unclear for S1 and at paper level (p. 14, Section 4.3; p. 17, footnote 19). S1 meets criterion 3 through computed novelty scores on actual add-on descriptions (pp. 25-26, Section 5.5 and Table 6). S2 analyzed 33 developers after 4 attention-check exclusions from 37 initial responses, so criterion 2 is not_met for S2; it measures self-reports and has no scored creative output (pp. 43-44, Appendix D and D.1). The paper remains observational context."
+ },
+ "one_line_finding": "After ChatGPT's release, new Firefox add-ons rose about 34.4 percent (log-OLS 0.2950, p = .0003; p. 19, Table 2) and spanned more categories (0.0568, p = .0241), but their description similarity to earlier add-ons did not fall (LSI 0.0070, p = .1108; neutralized text 0.0069, p = .0416; p. 25, Table 6), while updates to existing add-ons fell about 20.3 percent (Poisson -0.2263; p. 24, Table 5).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "source.authors_on_document[0]",
+    "old": "Erdem Dogukan Yılmaz",
+    "new": "Erdem Doğukan Yılmaz",
+    "quote": "Erdem Doğukan Yılmaz",
+    "locator": "p. 1, author byline (visually checked); repository citation_author metadata, https://alexandria.unisg.ch/handle/20.500.14171/135864"
+   },
+   {
+    "field": "studies[1].participants.exclusions",
+    "old": "",
+    "new": "Of 37 initial developer responses, 4 were excluded for failing an attention-check question, leaving 33 analyzed developers (p. 44, Appendix D.1).",
+    "quote": "We received initial responses from 37 developers. [...] After filtering out 4 respondents who failed this check, our final sample consists of 33 developers.",
+    "locator": "p. 44, Appendix D.1, Survey participants"
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0].direction",
+    "old": "no_clear_difference",
+    "new": "mixed",
+    "quote": "In fact, in one of our specifications (column (3)), we even find some evidence that products become more similar to previous products.",
+    "locator": "p. 25, Table 6, cols. (2)-(3); p. 26, Section 5.5; creativity-codebook.md, Section 7 (similarity reversed for novelty)"
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+    "old": "[]",
+    "new": "[\"regression_coefficient_se\"]",
+    "quote": "clustered at the category-treatment group pair level and reported in parentheses. [...] clustered at the add-on-treatment group pair level and reported in parentheses.",
+    "locator": "p. 19, Table 2; p. 23, Table 4; p. 24, Table 5; p. 25, Table 6, Post × Treatment rows and notes (coefficients, standard errors in parentheses, p-values in brackets)"
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced",
+    "old": "yes | no | mixed",
+    "new": "mixed",
+    "quote": "The treatment group covers the period from June 2022 to May 2023, which is centered around the introduction of ChatGPT in November 2022.",
+    "locator": "pp. 15-16, Section 4.4, footnote 13 and Figure 1; Tables 2, 4-6 (pre/post observations and prior-year controls)"
+   },
+   {
+    "field": "eligibility.criterion_1_random_assignment_of_ai",
+    "old": "met | not_met | unclear",
+    "new": "not_met",
+    "quote": "PD has no such group and instead uses the same calendar months from the prior year as the control.",
+    "locator": "p. 15, Section 4.4; pp. 17-18, Section 4.5; pp. 43-44, Appendix D survey methods"
+   },
+   {
+    "field": "eligibility.criterion_2_at_least_50_people",
+    "old": "met | not_met | unclear",
+    "new": "unclear",
+    "quote": "After filtering out 4 respondents who failed this check, our final sample consists of 33 developers.",
+    "locator": "p. 14, Section 4.3 (add-on-month observations); p. 17, footnote 19 (category-month observations); p. 44, Appendix D.1 (33 analyzed people); distinct-person analysis count for S1 not reported"
+   },
+   {
+    "field": "eligibility.criterion_3_outcome_scored_on_output",
+    "old": "met | not_met | unclear",
+    "new": "met",
+    "quote": "To analyze whether new add-ons are novel (i.e., different from add-ons that were previously introduced to the market), we use the textual similarity of descriptions of newly introduced add-ons.",
+    "locator": "pp. 25-26, Section 5.5 and Table 6; pp. 43-50, Appendix D (survey self-reports)"
+   }
+  ],
+  "rejected": []
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "cid": "c676",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "eligibility.criterion_2_at_least_50_people",
+   "form_value": "met",
+   "source_says": "Use unclear for the people count underlying the scored-output analysis. The paper reports 60 randomized people and questionnaire analyses with 30 people per arm, but evaluates nine texts per arm after describing ten teams of three per arm; it does not reconcile these counts or state the number of people contributing to the evaluated texts. Retain 60 only as the explicitly qualified questionnaire analysis count and leave the output-analysis people count null. The PDF does not establish a fewer-than-50 exclusion; retain core=unclear and route the randomized study to the two-screener pipeline.",
+   "quote": "each of the nine texts from the FIERO group was compared with each of the nine texts from the Control group.",
+   "locator": "PDF p. 17, Section 4.5.2; p. 13, Section 4.1; p. 16, Section 4.4; p. 20, Section 5.2; p. 41, Table 1."
+  },
+  {
+   "field": "studies[0].outcomes[*].n_units",
+   "form_value": "null for S1-O1, S1-O2 and S1-O3",
+   "source_says": "Record n_units=81 with unit=pair for each judge and dimension. Section 4.5.2 describes every FIERO text being compared with every Control text, and Section 5.4.1 explicitly prints the denominator 81 for each judge. These are repeated comparisons of the same stories, not 81 independent people, teams or texts; the AB/BA judgments are combined into one win/loss/draw result per pair.",
+   "quote": "Specifically, the FIERO condition achieved win rates of 60.5% (49/81) with Claude, 56.8% (46/81) with Gemini, and 76.5% (62/81) with GPT-5.2.",
+   "locator": "PDF p. 17, Section 4.5.2; p. 27, Sections 5.4.1 and 5.4.2."
+  },
+  {
+   "field": "studies[0].outcomes",
+   "form_value": "Only Creativity, Plot coherence and Overall preference are listed.",
+   "source_says": "The paper scores seven distinct output dimensions, so the form omits Development, Language Use, Anthropomorphism and Character Fidelity. Add these scored narrative-quality outcomes under with_ai with automated_score and unit=pair. Figure 14 prints FIERO net advantages, in Claude/Gemini/GPT-5.2 order: Development 37.0%/54.3%/23.5%; Language Use 49.4%/54.3%/43.2%; Anthropomorphism 13.6%/56.8%/1.2%; Character Fidelity 53.1%/54.3%/54.3%. These are separate scored dimensions rather than robustness variants; the form rules require all relevant scored outcomes.",
+   "quote": "Following previous research [50], we evaluated the generated stories across seven dimensions:",
+   "locator": "PDF pp. 15-16, Section 4.2.2; pp. 27-29, Section 5.4.2; p. 29, Figure 14 (image inspected directly); pp. 45-46, Appendix D."
+  },
+  {
+   "field": "studies[0].outcomes[*].measure_detail; studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing",
+   "form_value": "measure_detail, ai_available_when_produced and timing are empty strings for all three recorded outcomes.",
+   "source_says": "Specify pairwise story judgments by Claude Opus 4.5, Gemini 3 Pro and GPT-5.2, using identical prompts, both presentation orders, and a draw when the two orders disagree. AI was available in the FIERO arm while the final stories were produced (ai_available_when_produced=yes); the scored outputs came from the experimental session (timing=immediate), with no later unassisted task. Human involvement described here is rubric/prompt design, not direct scoring of the final outputs.",
+   "quote": "To mitigate order effects, we conducted each comparison in both AB and BA directions, outputting only a win or loss for each round.",
+   "locator": "PDF p. 12, Section 3.3.3 (Group Story Creation); pp. 13-14, Section 4.1; p. 17, Section 4.5.2; p. 35, Section 6.6.8."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].treatment_arm; control_arm; comparison_type; direction",
+   "form_value": "The treatment_arm, control_arm, comparison_type and direction fields are empty for all three recorded contrasts.",
+   "source_says": "Name FIERO (G) as treatment and Control (C) as comparator; code ai_vs_bau for the AI-assisted game bundle versus ordinary collaborative writing without AI. Code direction=mixed for Creativity and treatment_higher for Plot coherence and Overall preference. These directions follow the printed net advantages, and apply to the complete FIERO bundle rather than an isolated AI component.",
+   "quote": "The three participants in the Story Creation Group co-utilized a single shared Google Docs page.",
+   "locator": "PDF pp. 13-14, Section 4.1; p. 29, Figure 14; p. 34, Section 6.6.1."
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "Record https://github.com/zxioke/FAIero-game as the code repository named by the paper. Appendix H describes the codebase, card files and prompts; it does not explicitly identify a participant-story dataset, so do not infer a data_url from this statement. Repository availability was not independently tested.",
+   "quote": "To support reproducibility and reuse, all FIERO artifacts are made openly accessible in our GitHub repository (https://github.com/zxioke/FAIero-game).",
+   "locator": "PDF p. 12, Section 3.4 and footnote 11; p. 51, Appendix H."
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion, including references and Appendices A-H, and checked numerical claims against the PDF; Figure 14 was inspected as an image rendered in memory. The PDF contains 51 pages.",
+  "source.version is correct: arXiv:2607.11837v1, dated 13 Jul 2026 on PDF p. 1. The title and authors match the document; the ACM template footer is not evidence that this is the journal version of record.",
+  "lab_rct and context_class=none are supported: 60 participants were explicitly randomly assigned to the two conditions and worked face-to-face in three-person groups on a superhero story (PDF p. 13, Section 4.1; p. 16, Section 4.4). The randomization algorithm and initial randomized arm counts are not separately reported.",
+  "The task duration and structure are correctly recorded: 30 minutes, three rounds, each with 5 minutes of individual thinking and 5 minutes of group discussion (PDF p. 13, Section 4.1).",
+  "The paper reports 30 recruited people and ten teams of three per arm, with ages 18-28, mostly students and some non-students; mixed population and non-professional writers are supported (PDF p. 16, Section 4.4; p. 42, Appendix C; pp. 43-44, Tables 3-4).",
+  "Questionnaire analyses report 30 people per arm and N=60; these counts are correctly qualified as questionnaire counts in the form (PDF p. 20, Section 5.2; p. 41, Table 1). The paper does not explain the separate report of nine evaluated texts per arm (PDF p. 17, Section 4.5.2).",
+  "Generative assistance is documented: GPT-4 supplies decision/story support and gpt-4o-image supplies images; the control uses shared Google Docs (PDF pp. 12-14, Sections 3.4 and 4.1; p. 49, Table 5).",
+  "The form correctly flags a bundled comparison: physical cards, AI imagery, decision support and the interface all differ from the Google Docs baseline, so the separate AI contribution is not identified (PDF p. 34, Section 6.6.1).",
+  "S1-O1 reported values match Figure 14 exactly: Creativity net advantages are -27.2% for Claude, 50.6% for Gemini and -7.4% for GPT-5.2; the caption confirms which judges favor each condition (PDF pp. 28-29, Section 5.4.2 and Figure 14).",
+  "S1-O2 reported values match Figure 14 exactly: Plot Coherence net advantages are 65.4% for Claude, 59.3% for Gemini and 67.9% for GPT-5.2 (PDF p. 29, Figure 14; range also stated on p. 27, Section 5.4.2).",
+  "S1-O3 reported values match Figure 14 exactly: Overall net advantages are 45.7% for Claude, 54.3% for Gemini and 65.4% for GPT-5.2 (PDF p. 29, Section 5.4.2 and Figure 14).",
+  "The one-line finding accurately reports the plot-coherence range of 59.3%-67.9% and the opposing creativity judgments. These percentages describe pairwise story judgments, not standardized effects or percentage increases in participant creativity scores (PDF pp. 27-29, Section 5.4.2 and Figure 14).",
+  "The abstract's idea-fluency and novelty-generation claims correspond to creative self-efficacy questionnaire items; they are not output counts or externally scored novelty measures (PDF pp. 14-15, Section 4.2.1; p. 41, Table 2).",
+  "No synthesis is reported: the empirical evidence is the original user experiment, so the synthesis counts and pooled-estimate fields properly remain unfilled (PDF pp. 13-17, Section 4; pp. 27-29, Section 5.4).",
+  "The supplement description is supported: survey tables are on PDF pp. 41-42, demographics on pp. 43-44, model settings on p. 49 and reproducibility artifacts on p. 51 (Appendices A, C, F and H)."
+ ],
+ "summary": "This paper contains an in-person randomized study assigning 60 people to FIERO or Google Docs, with creativity scored on their stories, so it belongs in the two-screener pipeline. The recorded arXiv version and all reported result percentages are correct, but the scored-output people count remains unconfirmed and the form needs the pair count, omitted outcomes, outcome and contrast metadata, and code link."
+}

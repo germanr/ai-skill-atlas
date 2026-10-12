@@ -1,0 +1,67 @@
+{
+  "cid": "c126",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O4",
+      "field": "studies[S1].outcomes[S1-O4].measure",
+      "form_value": "automated_score (measure_detail: 'No listed measure code fits exactly, because there are no raters and no scoring model.')",
+      "source_says": "Codebook Section 6 defines automated_score as a scoring model for creativity: semantic-distance scoring of divergent-thinking tests, or a language model used as judge. The paper uses no scoring model. It counts correct RAT answers and divides by the problems attempted. The form itself says no code fits, so the coded value has support in neither the text nor the codebook. It needs a codebook convention for answer-key accuracy, the same gap the c082 outcome check raised.",
+      "quote": "The accuracy score was calculated as the number of correct responses divided by the total number of problems attempted.",
+      "locator": "PDF p. 2 (printed p. 1771), Section III.C Measures, first paragraph; codebook Section 6 (Measure)"
+    },
+    {
+      "where": "S1-O3",
+      "field": "studies[S1].outcomes[S1-O3] (one record for two metrics)",
+      "form_value": "One outcome, 'DAT mean and maximum semantic distance among a participant's 10 words'; measure_detail: 'Treated as one outcome because neither is reported.'",
+      "source_says": "The paper computes two DAT scores, the mean and the maximum pairwise distance, by the procedure that gives the AUT its 'two primary metrics'. The form codes those two as separate outcomes for the AUT (S1-O1, S1-O2) but merges them for the DAT. Form-spec rule 7 merges only robustness variants, and codebook Section 2 defines an estimate on one outcome, so each S1-O3 contrast covers two outcomes. Low severity, because the paper prints no DAT number.",
+      "quote": "we calculated the mean and maximum pairwise semantic distances between all generated words using the identical computational procedure.",
+      "locator": "PDF p. 3 (printed p. 1772), Section III.C Measures, DAT paragraph; PDF p. 2, Section III.C ('We computed two primary metrics.'); form-spec rule 7; codebook Section 2"
+    },
+    {
+      "where": "S1-O3",
+      "field": "studies[S1].outcomes[S1-O3].name and measure_detail",
+      "form_value": "'among a participant's 10 words'; 'The AUT procedure applied to the 10 words a participant lists'",
+      "source_says": "Each participant did three rounds of the assigned task, and one DAT round asks for ten words. The paper computes distances 'between all generated words' with the AUT procedure, which scores 'each participant's set of responses'. That reads as all of a participant's words across rounds (up to 30), not 10. The paper does not state the pool, so '10 words' is not established. Low severity.",
+      "quote": "In the experiment, participants are asked to complete one of these tasks for three rounds.",
+      "locator": "PDF p. 2 (printed p. 1771), Section III.A Design and Section III.B Procedures ('They complete 3 rounds of the task'); PDF p. 3, Section III.C, DAT paragraph"
+    },
+    {
+      "where": "S1-O4",
+      "field": "studies[S1].outcomes[S1-O4].contrasts (AI users vs RAT_NoAI)",
+      "form_value": "No contrast of its own. The figure sits in the 'reported' text of the contrast 'RAT_High and RAT_Low pooled (AI available)' vs RAT_NoAI: among participants who used the AI, 'accuracy was 64%, p < .001'.",
+      "source_says": "The 64 percent belongs to a different treatment group (AI users only, against the no-AI arm's 45 percent), so it is a separate printed comparison (treatment higher, p-value only). The form codes the other AI-user comparisons (S1-O1 and S1-O4, High vs Low) as contrasts of their own, but not this one, and the pooled contrast's 'reported' field now mixes two treatment groups. Low severity.",
+      "quote": "The effect is even stronger if we look at the subsample of participants who actually used the AI assistant when available (accuracy was 64%, p < .001).",
+      "locator": "PDF p. 3 (printed p. 1772), Section V Discussion, second paragraph"
+    },
+    {
+      "where": "S1-O2",
+      "field": "studies[S1].outcomes[S1-O2].contrasts (AUT_High vs AUT_Low, AI users only)",
+      "form_value": "No contrast of its own. The reported text of the full-sample HighRandomness contrast (direction no_clear_difference) ends: Among AI users only, the Discussion says '(consistent results are found for maximum semantic distance)' and prints no numbers.",
+      "source_says": "The paper says the AI-user result for maximum distance is consistent with the average-distance result (High above Low, marginally significant). The form codes that parallel S1-O1 result as its own contrast (treatment_higher, statistics none). S1-O2 lacks the matching contrast, so its only High-vs-Low direction is the full-sample no_clear_difference. Low severity.",
+      "quote": "While this difference is only marginally significant, it is in the hypothesized direction (consistent results are found for maximum semantic distance).",
+      "locator": "PDF p. 4 (printed p. 1773), Section V Discussion, third paragraph (top of the left column)"
+    }
+  ],
+  "confirmed": [
+    "All four outcomes are computed on what participants typed, and none is self-reported: spaCy en_core_web_md pairwise cosine distances within each participant's own responses for the AUT and DAT, and correct RAT answers divided by problems attempted (PDF p. 2, Section III.C; PDF p. 3, Section III.C, DAT paragraph).",
+    "The self-reported measures (self-rated creativity, satisfaction, effort, ownership, motivation) are rightly left out of the outcomes (PDF p. 2, Section III.B; Table I, PDF p. 4).",
+    "ai_available_when_produced 'yes' holds: the AI cells did all three scored rounds with the assistant beside the task, and its use was optional (PDF p. 2, Section III.B; PDF p. 3, Section IV, first paragraph; Figure 1, PDF p. 5).",
+    "No scored output was produced after AI was removed. The one-minute verbal fluency task came before randomization and is not an outcome, so no after_ai outcome is missing (PDF p. 2, Section III.B).",
+    "Every semantic distance compares one participant's own responses ('For each participant's set of responses'; 'the participant's most divergent response pair'), so flexibility and with_ai follow the codebook rule. The paper has no across-people measure, so no across_people outcome is missing (PDF p. 2, Section III.C).",
+    "RAT accuracy fits the codebook's convergent construct, and with_ai follows the rule (PDF p. 2, Section III.C; codebook Section 6).",
+    "automated_score for S1-O1 to S1-O3 fits the codebook's 'semantic-distance scoring of divergent-thinking tests'. The paper calls the score 'creative performance' on two divergent-thinking tests (PDF p. 2, Section III.C; codebook Section 6).",
+    "Unit 'participant' is supported: the scores are defined per participant's set of responses, and Tables II and III use the same regressors for the once-per-person survey outcomes. The regression N is not printed, as the form's open_questions say (PDF p. 2, Section III.C; PDF pp. 4-5, Tables II and III).",
+    "Table II matches the PDF page. Avg Semantic Distance: (Intercept) 0.623 (0.040)***, HighRandomness -0.008 (0.037), NoAI -0.002 (0.044), duration_seconds -0.000 (0.000)***, AI_used 0.040 (0.039). Max: 0.888 (0.049)***, -0.012 (0.045), -0.003 (0.054), -0.000 (0.000)***, 0.057 (0.048) (PDF p. 4, printed p. 1773).",
+    "Table III matches the PDF page. Accuracy: (Intercept) 0.559 (0.045)***, HighRandomness -0.074 (0.049), NoAI -0.044 (0.055), duration_seconds -0.000 (0.000)**, AI_used 0.207 (0.052)*** (PDF p. 5, printed p. 1774).",
+    "The sign notes are right: Low randomness is the omitted condition in Tables II and III, so each NoAI coefficient is NoAI minus Low (PDF pp. 4-5, Tables II and III).",
+    "The Discussion figures match: RAT 45 to 55 percent (p < .05), 64 percent among AI users (p < .001), Low 72 vs High 57 percent among AI users (p < .05); AUT AI users High 0.51 vs Low 0.31, 'only marginally significant' (PDF p. 3, Section V, second paragraph; PDF p. 4, Section V, third paragraph).",
+    "Direction treatment_higher for the AUT AI-user contrast matches the paper's own reading: 'there is some evidence that high randomness increases the semantic diversity of responses' (PDF p. 4, Section VI Conclusion).",
+    "Both S1-O3 contrasts as no_clear_difference with statistics none rest on 'for the DAT, no coefficients were significant, so we do not report them' (PDF p. 3, Section IV, right column).",
+    "The Holm sentence that S1-O4 cites is verbatim: 'for this and all following results, p-values are Holm-adjusted for multiple comparisons' (PDF p. 3, Section IV, third paragraph).",
+    "The share-of-AI-words correlation (r = -.399, p < .001) is a post-assignment association, not an assigned contrast, so the form rightly keeps it in notes (PDF p. 3, Section IV, right column)."
+  ],
+  "summary": "Eligibility holds: the AUT and DAT scores are spaCy semantic distances computed on each participant's own typed responses, RAT accuracy counts correct answers, AI was available while all scored output was produced, and every Table II, Table III, and Discussion number in the form matches the PDF. The coding is still refuted on details: automated_score does not fit answer-key RAT accuracy under the codebook, S1-O3 merges the two DAT primary metrics and calls the pool '10 words' although each participant did three rounds, and two printed AI-user comparisons (RAT 64 percent vs no AI, AUT maximum distance High vs Low) have no contrast of their own."
+}

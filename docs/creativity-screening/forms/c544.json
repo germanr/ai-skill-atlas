@@ -1,0 +1,671 @@
+{
+ "cid": "c544",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Saghi Huang Chattopadhyay (2026) - Like Taking the Path of Least Resistance.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Saghi Huang Chattopadhyay (2026) - Like Taking the Path of Least Resistance.pdf",
+  "version": "arXiv:2605.13776v1 [cs.HC], 13 May 2026 (PDF on file, 32 pages; footer reads 'Manuscript submitted to ACM')",
+  "title_on_document": "\"Like Taking the Path of Least Resistance\": Exploring the Impact of LLM Interaction on the Creative Process of Programming",
+  "authors_on_document": [
+   "Zeinabsadat Saghi",
+   "Run Huang",
+   "Souti Chattopadhyay"
+  ],
+  "pages": 32,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": false,
+   "where": "p. 8, Sec. 5.2: 'The complete codebook is available in the supplementary materials.' No URL given.",
+   "holds": "The behavioral-coding codebook (51 codes). No outcome statistics are said to sit only there."
+  }
+ },
+ "paper_design_summary": "Twenty programmers (university undergraduate and graduate students) each solved four Python tasks in person, two without any external resources and two with GitHub Copilot in VS Code, with the condition order counterbalanced and task order randomized. The authors scored the 80 solutions for correctness and implementation fidelity (two expert raters), for diversity across participants (pairwise cosine similarity of Voyage Code 3 embeddings, and counts of unique ideas), and coded think-aloud recordings for time in each creative stage and 'aha' moments.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Within-subject lab study: unassisted vs. GitHub Copilot programming tasks",
+   "design_class": "lab_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Order of the two conditions (Unassisted, LLM-assisted) and order of tasks within each person; every participant did both conditions.",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "The order of conditions and task types was randomized.",
+    "locator": "p. 6, Fig. 2 caption; also p. 6, Sec. 4.1: 'we counterbalanced the condition sequence: half of the participants completed the Unassisted condition first'",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Unassisted",
+     "description": "Two tasks (one Algorithmic, one System Design) in VS Code with no external resources.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 20
+    },
+    {
+     "name": "LLM-assisted",
+     "description": "Two tasks (one Algorithmic, one System Design) in VS Code with GitHub Copilot extension; no other external resources.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 20
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 20,
+    "counts_are": "people",
+    "exclusions": "23 recruited; 3 excluded entirely (P8 did not wish to continue with four tasks; recordings of P1 and P2 corrupted). The same 20 people appear in both within-subject conditions.",
+    "population": "students",
+    "who": "Undergraduate and graduate students familiar with LLM code tools and experienced in Python (Table 1 row tally: 11 PhD, 8 MS, 1 BC; ages 21 to 37).",
+    "country": "",
+    "quote": "We recruited 23 participants through snowball and convenience sampling from undergraduate and graduate students with varying academic levels.",
+    "locator": "p. 6, Sec. 4.2; p. 7, Table 1 (N=20)"
+   },
+   "ai_tool": {
+    "name_model": "GitHub Copilot (VS Code extension; underlying model not stated)",
+    "role": "open_chat",
+    "how_used": "Free use of Copilot chat and code completion inside the IDE; participants could prompt, adopt, or ignore suggestions."
+   },
+   "task": {
+    "type": "other",
+    "description": "Python programming problems: four Algorithmic tasks (A1-A4, with time or space complexity requirements) and four System Design tasks (B1-B4, design an application or feature); each person did one of each type per condition.",
+    "duration": "Baseline about 15 minutes per task, participants could exceed it; mean 63.49 minutes per participant across all sessions (p. 11)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Pairwise semantic similarity of solutions within condition",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Voyage Code 3 embeds executable code, pseudocode, and natural-language solutions in a shared semantic space. Pairwise cosine similarity is computed within each condition, separately by task type, after excluding solutions rated Incorrect (p. 10, Sec. 5.3.2). UMAP projections with KDE contours and ECDFs of semantic distance (1 - cosine similarity) visualize the same embedding outcome (pp. 14-15, Secs. 7.2.2-7.2.3, Figs. 4-5).",
+     "unit": "pair",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "Similarity (higher = less diverse; sign reversed for diversity). Algorithmic (16 Unassisted, 19 LLM solutions; 120 and 171 pairs): LLM-assisted mean = 0.532, SD = 0.228 vs Unassisted mean = 0.492, SD = 0.239; Mann-Whitney U = 7880.0, p = 0.0008; permutation observed difference -0.040 (p = 0.161). System Design (11 Unassisted, 14 LLM; 55 and 91 pairs): LLM-assisted mean = 0.505, SD = 0.237 vs Unassisted mean = 0.413, SD = 0.185; U = 1916.0, p = 0.018; permutation difference -0.093, p = 0.016. Only Correct or Partially Correct solutions.",
+       "locator": "p. 10, Sec. 5.3.2 (pair counts); pp. 13-14, Sec. 7.2.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Pairwise cosine similarity; higher similarity means lower diversity, so direction is reversed for diversity.",
+      "embedding_model": "Voyage Code 3; 1024-dimensional embeddings (p. 10, Sec. 5.3.2).",
+      "computed_over": "All pairs of Correct or Partially Correct solutions within each condition, separately for Algorithmic and System Design tasks. Algorithmic: 16 Unassisted and 19 LLM-assisted solutions, with 120 and 171 pairs; System Design: 11 and 14 solutions, with 55 and 91 pairs, respectively (p. 10, Sec. 5.3.2). These Ns count outputs and pairs, not independent people.",
+      "uncertainty": "Mann-Whitney U tests compare the pairwise-similarity distributions, supplemented by permutation tests with 10,000 iterations (pp. 13-14, Sec. 7.2.1). The permutation resampling unit and any adjustment for repeated participants or dependent pairs are not specified. The Algorithmic permutation result is nonsignificant; both tests are significant for System Design.",
+      "notes": "UMAP/KDE and ECDF plots are visualizations of the same outcome, not additional independent outcomes (pp. 14-15, Figs. 4-5). The retained Unassisted counts in Sec. 5.3.2 (16 Algorithmic and 11 System Design, p. 10) do not reconcile with the 29 Correct or Partially Correct Unassisted solutions stated in Sec. 7.1 (p. 13; also p. 12, Table 4); no additional exclusion explanation is given. The discussion separately cites Kruskal-Wallis H = 4.3, p = 0.037 for Algorithmic similarity (p. 27, Sec. 10.3), without explaining its relation to the main Mann-Whitney/permutation analysis."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Number of unique ideas across solutions in each condition",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Two researchers identified unique ideas or strategies across solutions. Counts are reported for each condition, task type, and individual task (p. 16, Table 6 and Sec. 7.2.4). The paper distinguishes the number of distinct strategies from how participants are distributed across those strategies (p. 17, Sec. 7.2.4).",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Both conditions 18 unique ideas (no significant difference, chi-square test of independence; statistic not printed). Algorithmic: Unassisted 9 vs LLM-assisted 6; System Design: Unassisted 11 vs LLM-assisted 13.",
+       "locator": "p. 16, Table 6 and Sec. 7.2.4"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Researcher-coded number of distinct ideas or strategies across solutions.",
+      "embedding_model": "Not applicable; researcher coding.",
+      "computed_over": "Solutions pooled within each condition, with task-type and individual-task breakdowns in Table 6 (p. 16). The exact aggregation/deduplication rule across tasks is not explained.",
+      "uncertainty": "Chi-square tests of independence are described as nonsignificant for condition and task-specific comparisons; no numerical chi-square statistics or p-values are given (pp. 16-17, Sec. 7.2.4).",
+      "notes": "The overall 18 unique ideas per condition comes from the prose of Sec. 7.2.4 (p. 16), not Table 6. Table 6 gives Unassisted versus LLM-assisted counts of 9 versus 6 for Algorithmic tasks and 11 versus 13 for System Design. The paper does not explain how these counts aggregate to the overall count. The described originality-rating procedure (p. 10, Sec. 5.3.2) may refer to the same assessment, but the connection is not explicit; S1-O13 documents that procedure without inventing another numerical effect."
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Correctness of the solution's algorithmic idea (expert-rated)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "",
+     "unit": "output",
+     "n_units": 80,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Correct / Partially Correct / Incorrect: Unassisted 18 / 11 / 11 vs LLM-assisted 32 / 1 / 7 (out of 40 each); chi-square = 13.14, p < 0.01.",
+       "locator": "p. 12, Table 4 and Sec. 7.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Implementation fidelity of the solution (expert-rated)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "Two expert raters independently assessed all 80 solutions, then resolved disagreements through discussion. Fidelity measures implementation completeness independently of correctness: Pseudocode or Natural Language, Incomplete Implementation, Near-Complete Code, and Executable Code (p. 10, Sec. 5.3.1). Higher fidelity indicates a more complete, runnable implementation. The non-executable-file count in Table 3 is retained as a conflicting report, not substituted for the fidelity ratings in Table 5.",
+     "unit": "output",
+     "n_units": 80,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Pseudocode / Natural Language, Incomplete Implementation, Near-Complete Code, Executable Code: Unassisted 7 / 7 / 7 / 19 versus LLM-assisted 0 / 4 / 1 / 35; 40 solutions per condition; chi-square = 17.06, p < 0.001. These are solution counts, not people. Table 3 separately reports Total Number of Non-executable files (out of 40): Unassisted 6 versus LLM-assisted 0. This does not reconcile with the implementation-fidelity distribution; the paper does not explain the discrepancy.",
+       "locator": "p. 10, Sec. 5.3.1; p. 13, Table 5 and Sec. 7.1; p. 12, Table 3, final row."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Number of Function Calls",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Number of function calls in a submitted code artifact; a structural code feature. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 9.676; LLM-assisted mean = 15.472; t = -2.214; p = 0.03022. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Number of External Libraries Used",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Number of imported libraries in a submitted code artifact; a resource-use feature. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 0.088; LLM-assisted mean = 0.167; t = -0.980; p = 0.33075. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O7",
+     "name": "Lines of Code",
+     "construct": "elaboration",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Artifact length in lines of code, described as conciseness versus verbosity. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 50.559; LLM-assisted mean = 71.667; t = -2.200; p = 0.03183. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O8",
+     "name": "Logical Complexity",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Logical complexity measured through branching patterns and independent code paths. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 8.118; LLM-assisted mean = 13.750; t = -1.967; p = 0.05331. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O9",
+     "name": "Code Maintainability",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Composite maintainability score reflecting readability and structural clarity; lower scores indicate poorer maintainability. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 84.924; LLM-assisted mean = 76.987; t = 3.344; p = 0.00135. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O10",
+     "name": "Use of Comprehensions (List/Dict/Set)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Use of Python list, dictionary, and set comprehensions; a structural or stylistic code feature. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 0.206; LLM-assisted mean = 0.611; t = -1.675; p = 0.10004. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O11",
+     "name": "Recursive Functions Used",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Use of recursive functions; a structural code feature. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 0.941; LLM-assisted mean = 1.389; t = -1.104; p = 0.27456. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O12",
+     "name": "Average Function Length (Lines per Function)",
+     "construct": "elaboration",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automatically extracted using Radon and AST (pp. 9-10, Sec. 5.3). Average lines per function within a submitted code artifact; a function-length measure. Table 3 reports a t-test comparing conditions. Direction concerns this code metric; greater length, resource use, or complexity is not equated with greater creativity. Per-metric analyzed sample sizes and SDs are not reported. Table 7 additionally compares the same metric across researcher-coded collaboration modes (p. 24, Sec. 9.2); those modes were identified from use patterns, not randomly assigned (p. 9, Sec. 5.2.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Unassisted mean = 8.691; LLM-assisted mean = 11.171; t = -1.219; p = 0.22722. Per-metric SDs and analyzed Ns are not reported.",
+       "locator": "pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O13",
+     "name": "Originality of each solution approach (researcher ratings described; separate results not reported)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "Two researchers extracted the main idea of each solution through negotiated agreement and rated how original its approach was relative to other solutions to the same task; the methods say these ratings were compared across conditions (p. 10, Sec. 5.3.2, Idea Novelty Assessment). The paper describes expert raters for qualitative coding (p. 28, Sec. 11, Internal Validity). No separate rating scale, rating-specific analyzed sample size, or numerical originality-rating results are reported. It is unclear whether these ratings and the unique-idea counts in S1-O2 are the same operationalization (pp. 16-17, Sec. 7.2.4); no separate numerical effect or direction is inferred.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": null,
+       "statistics_available": [
+        "none"
+       ],
+       "reported": null,
+       "locator": "p. 10, Sec. 5.3.2, Idea Novelty Assessment; pp. 16-17, Sec. 7.2.4; p. 28, Sec. 11, Internal Validity."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O14",
+     "name": "Comment density (mentioned; results not reported)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Comment density is mentioned among the assessed code-quality characteristics in Sec. 6 (pp. 11-12), whose code features were extracted automatically. No separate operational definition, analyzed sample size, or numerical results are provided, and neither Table 3 nor Table 7 has a comment-density row. No condition difference or creativity interpretation is inferred.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "LLM-assisted",
+       "control_arm": "Unassisted",
+       "comparison_type": "ai_vs_bau",
+       "direction": null,
+       "statistics_available": [
+        "none"
+       ],
+       "reported": null,
+       "locator": "pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3; p. 24, Table 7."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "Within-person experiment with randomized (counterbalanced) condition order, but only 20 people analyzed (23 recruited, 3 excluded), below the 50-person rule (p. 6, Sec. 4.2; p. 7, Table 1). Listed in the screening report as a small randomized experiment."
+ },
+ "one_line_finding": "With GitHub Copilot, 20 student programmers produced more correct solutions (32 vs 18 of 40 fully correct, p. 12, Table 4) that were more similar to each other (System Design mean similarity 0.505 vs 0.413, U = 1916.0, p = 0.018; Algorithmic 0.532 vs 0.492, p = 0.0008, pp. 13-14), with the same total of 18 unique ideas in each condition (p. 16, Sec. 7.2.4).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].participants.who",
+    "old": "Undergraduate and graduate students familiar with LLM code tools and experienced in Python (Table 1: 12 PhD, 7 MS, 1 BC; ages 21 to 37).",
+    "new": "Undergraduate and graduate students familiar with LLM code tools and experienced in Python (Table 1 row tally: 11 PhD, 8 MS, 1 BC; ages 21 to 37).",
+    "quote": "21 Female 30 5 PhD Always 22 Male 24 4 MS Sometimes 23 Male 26 10 PhD Always",
+    "locator": "p. 7, Table 1, all participant rows. Education counts are fixer tallies of the Education Level column; the quote reproduces the final three rows. Inclusion criteria: p. 6, Sec. 4.2."
+   },
+   {
+    "field": "studies[0].outcomes (missing implementation fidelity)",
+    "old": "Only semantic similarity, unique-idea counts, and correctness are listed; implementation fidelity appears only in paper_design_summary.",
+    "new": "{\"added_outcome\": \"S1-O4\", \"construct\": \"usefulness\", \"unit\": \"output\", \"n_units\": 80, \"reported\": \"Pseudocode / Natural Language, Incomplete Implementation, Near-Complete Code, Executable Code: Unassisted 7 / 7 / 7 / 19 versus LLM-assisted 0 / 4 / 1 / 35; 40 solutions per condition; chi-square = 17.06, p < 0.001. These are solution counts, not people. Table 3 separately reports Total Number of Non-executable files (out of 40): Unassisted 6 versus LLM-assisted 0. This does not reconcile with the implementation-fidelity distribution; the paper does not explain the discrepancy.\"}",
+    "quote": "Fidelity captures how completely a participant’s idea was translated into working code, independent of whether the underlying approach is correct.",
+    "locator": "p. 10, Sec. 5.3.1; p. 13, Table 5 and Sec. 7.1 (quote from Table 5 caption); p. 12, Table 3, final row (conflicting non-executable-file count)."
+   },
+   {
+    "field": "studies[0].outcomes (missing code-artifact measures)",
+    "old": "No artifact-length, maintainability, or other automated code-characteristic outcomes are listed.",
+    "new": "{\"added_outcomes\": [{\"outcome_id\": \"S1-O5\", \"name\": \"Number of Function Calls\", \"construct\": \"other\", \"n_units\": null, \"reported\": \"Unassisted mean = 9.676; LLM-assisted mean = 15.472; t = -2.214; p = 0.03022. Per-metric SDs and analyzed Ns are not reported.\"}, {\"outcome_id\": \"S1-O6\", \"name\": \"Number of External Libraries Used\", \"construct\": \"other\", \"n_units\": null, \"reported\": \"Unassisted mean = 0.088; LLM-assisted mean = 0.167; t = -0.980; p = 0.33075. Per-metric SDs and analyzed Ns are not reported.\"}, {\"outcome_id\": \"S1-O7\", \"name\": \"Lines of Code\", \"construct\": \"elaboration\", \"n_units\": null, \"reported\": \"Unassisted mean = 50.559; LLM-assisted mean = 71.667; t = -2.200; p = 0.03183. Per-metric SDs and analyzed Ns are not reported.\"}, {\"outcome_id\": \"S1-O8\", \"name\": \"Logical Complexity\", \"construct\": \"other\", \"n_units\": null, \"reported\": \"Unassisted mean = 8.118; LLM-assisted mean = 13.750; t = -1.967; p = 0.05331. Per-metric SDs and analyzed Ns are not reported.\"}, {\"outcome_id\": \"S1-O9\", \"name\": \"Code Maintainability\", \"construct\": \"usefulness\", \"n_units\": null, \"reported\": \"Unassisted mean = 84.924; LLM-assisted mean = 76.987; t = 3.344; p = 0.00135. Per-metric SDs and analyzed Ns are not reported.\"}, {\"outcome_id\": \"S1-O10\", \"name\": \"Use of Comprehensions (List/Dict/Set)\", \"construct\": \"other\", \"n_units\": null, \"reported\": \"Unassisted mean = 0.206; LLM-assisted mean = 0.611; t = -1.675; p = 0.10004. Per-metric SDs and analyzed Ns are not reported.\"}, {\"outcome_id\": \"S1-O11\", \"name\": \"Recursive Functions Used\", \"construct\": \"other\", \"n_units\": null, \"reported\": \"Unassisted mean = 0.941; LLM-assisted mean = 1.389; t = -1.104; p = 0.27456. Per-metric SDs and analyzed Ns are not reported.\"}, {\"outcome_id\": \"S1-O12\", \"name\": \"Average Function Length (Lines per Function)\", \"construct\": \"elaboration\", \"n_units\": null, \"reported\": \"Unassisted mean = 8.691; LLM-assisted mean = 11.171; t = -1.219; p = 0.22722. Per-metric SDs and analyzed Ns are not reported.\"}], \"also_documented\": {\"outcome_id\": \"S1-O14\", \"name\": \"Comment density (mentioned; results not reported)\", \"reported\": null, \"reason\": \"Sec. 6 also mentions comment density, but supplies no numerical results.\"}, \"coding_note\": \"Structural metrics are other; length measures are elaboration; maintainability is usefulness. Per-metric analyzed Ns and SDs are unreported; no effect sizes are computed.\"}",
+    "quote": "Using Python frameworks Radon and AST, we extracted eight metrics across syntactic, structural, and stylistic dimensions:",
+    "locator": "pp. 9-10, Sec. 5.3 (quote); pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3. Secondary mode comparisons: p. 24, Table 7."
+   },
+   {
+    "field": "studies[0].outcomes (described originality ratings not documented)",
+    "old": "No novelty-rating outcome or note about the described originality assessment is recorded.",
+    "new": "{\"added_outcome\": \"S1-O13\", \"construct\": \"novelty\", \"n_units\": null, \"reported\": null, \"direction\": null, \"statistics_available\": [\"none\"], \"limitation\": \"No separate scale or numerical rating results are printed; possible overlap with unique-idea counts is unresolved.\"}",
+    "quote": "Through negotiated agreement, they extracted the main idea of each solution, then rated how original each approach was within each task relative to others who completed the same task. These originality ratings were compared across conditions.",
+    "locator": "p. 10, Sec. 5.3.2, Idea Novelty Assessment; pp. 16-17, Sec. 7.2.4."
+   },
+   {
+    "field": "studies[0].outcomes[0].diversity_detail",
+    "old": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+    "new": "{\"metric\": \"Pairwise cosine similarity; higher similarity means lower diversity, so direction is reversed for diversity.\", \"embedding_model\": \"Voyage Code 3; 1024-dimensional embeddings (p. 10, Sec. 5.3.2).\", \"computed_over\": \"All pairs of Correct or Partially Correct solutions within each condition, separately for Algorithmic and System Design tasks. Algorithmic: 16 Unassisted and 19 LLM-assisted solutions, with 120 and 171 pairs; System Design: 11 and 14 solutions, with 55 and 91 pairs, respectively (p. 10, Sec. 5.3.2). These Ns count outputs and pairs, not independent people.\", \"uncertainty\": \"Mann-Whitney U tests compare the pairwise-similarity distributions, supplemented by permutation tests with 10,000 iterations (pp. 13-14, Sec. 7.2.1). The permutation resampling unit and any adjustment for repeated participants or dependent pairs are not specified. The Algorithmic permutation result is nonsignificant; both tests are significant for System Design.\", \"notes\": \"UMAP/KDE and ECDF plots are visualizations of the same outcome, not additional independent outcomes (pp. 14-15, Figs. 4-5). The retained Unassisted counts in Sec. 5.3.2 (16 Algorithmic and 11 System Design, p. 10) do not reconcile with the 29 Correct or Partially Correct Unassisted solutions stated in Sec. 7.1 (p. 13; also p. 12, Table 4); no additional exclusion explanation is given. The discussion separately cites Kruskal-Wallis H = 4.3, p = 0.037 for Algorithmic similarity (p. 27, Sec. 10.3), without explaining its relation to the main Mann-Whitney/permutation analysis.\"}",
+    "quote": "For each of the 80 solutions, we generated a 1024-dimensional embedding vector and computed pairwise cosine similarity between all solution pairs within each condition, separately for Algorithmic tasks and System Design tasks.",
+    "locator": "p. 10, Sec. 5.3.2 (quote, embedding method and retained counts); pp. 13-15, Secs. 7.2.1-7.2.3 and Figs. 4-5 (tests and visualizations); pp. 12-13, Table 4 and Sec. 7.1 (conflicting retained-count total); p. 27, Sec. 10.3 (additional discussion statistic)."
+   },
+   {
+    "field": "studies[0].outcomes[1].diversity_detail",
+    "old": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+    "new": "{\"metric\": \"Researcher-coded number of distinct ideas or strategies across solutions.\", \"embedding_model\": \"Not applicable; researcher coding.\", \"computed_over\": \"Solutions pooled within each condition, with task-type and individual-task breakdowns in Table 6 (p. 16). The exact aggregation/deduplication rule across tasks is not explained.\", \"uncertainty\": \"Chi-square tests of independence are described as nonsignificant for condition and task-specific comparisons; no numerical chi-square statistics or p-values are given (pp. 16-17, Sec. 7.2.4).\", \"notes\": \"The overall 18 unique ideas per condition comes from the prose of Sec. 7.2.4 (p. 16), not Table 6. Table 6 gives Unassisted versus LLM-assisted counts of 9 versus 6 for Algorithmic tasks and 11 versus 13 for System Design. The paper does not explain how these counts aggregate to the overall count. The described originality-rating procedure (p. 10, Sec. 5.3.2) may refer to the same assessment, but the connection is not explicit; S1-O13 documents that procedure without inventing another numerical effect.\"}",
+    "quote": "Both conditions were associated with 18 unique ideas (with no significant difference when compared using the chi-square test of independence).",
+    "locator": "p. 16, Table 6 and Sec. 7.2.4 (quote from prose); p. 17, continuation of Sec. 7.2.4; p. 10, Sec. 5.3.2 (described originality assessment)."
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+    "old": "{\"S1-O1\": [], \"S1-O2\": [], \"S1-O3\": []}",
+    "new": "{\"S1-O1\": [\"arm_means_sds_ns\", \"test_statistic\"], \"S1-O2\": [\"none\"], \"S1-O3\": [\"test_statistic\"]}",
+    "quote": "A chi-square test confirmed a significant association between condition and correctness (𝜒2 = 13.14, 𝑝< 0.01).",
+    "locator": "p. 10, Sec. 5.3.2 (pair counts); pp. 13-14, Sec. 7.2.1 (means, SDs and tests); p. 16, Sec. 7.2.4 (verbal nonsignificance); p. 12, Table 4 (quote and correctness test). S1-O1 Ns count pairs, not people."
+   },
+   {
+    "field": "one_line_finding (locator for the overall unique-idea count)",
+    "old": "With GitHub Copilot, 20 student programmers produced more correct solutions (32 vs 18 of 40 fully correct, p. 12, Table 4) that were more similar to each other (System Design mean similarity 0.505 vs 0.413, U = 1916.0, p = 0.018; Algorithmic 0.532 vs 0.492, p = 0.0008, pp. 13-14), with the same total of 18 unique ideas in each condition (p. 16, Table 6).",
+    "new": "With GitHub Copilot, 20 student programmers produced more correct solutions (32 vs 18 of 40 fully correct, p. 12, Table 4) that were more similar to each other (System Design mean similarity 0.505 vs 0.413, U = 1916.0, p = 0.018; Algorithmic 0.532 vs 0.492, p = 0.0008, pp. 13-14), with the same total of 18 unique ideas in each condition (p. 16, Sec. 7.2.4).",
+    "quote": "Both conditions were associated with 18 unique ideas (with no significant difference when compared using the chi-square test of independence).",
+    "locator": "p. 16, Sec. 7.2.4, first paragraph immediately below Table 6; the overall count is in the prose, not the table."
+   }
+  ],
+  "rejected": []
+ }
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "citations-00-1",
+    "cid": "c246",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:263-269, c041 Version read and Sample overlap note rendering from source.version and sample_overlap.shares_participants_with",
+    "correct_value": "Chen et al. (2026)",
+    "evidence": "Independently read creativity-screening-2026-10-04.md lines 306 and 308: both c041 notes contain \"Chen, Huang, Han, Zhang, Lou, and Zhong (2026)\". The citation rule in audit/2026-10-09_1345/jobs/find-citations-00/brief.md line 7 (also tools/codex_audit.py lines 96-100) requires first family name plus et al. for four or more authors. Opened retrieval.json c246.pdf_path with PyMuPDF: PDF page 1 (printed page 165) lists Yixuan Chen, Changqin Huang, Zhongmei Han, Di Zhang, Yiheng Lou, and Yihua Zhong in that order and gives the journal year as 2026; PDF page 19 (printed page 183) repeats the six-author 2026 citation and DOI 10.14742/ajet.11512. A fresh Python GET of https://api.crossref.org/works/10.14742/ajet.11512 independently confirms the same six authors and published-online date 2026-09-17. forms/citations/c246.json latest_version.authors_family and year are correct. The two full-author strings originate in forms/c041.json source.version and sample_overlap.shares_participants_with; their names and year are source-supported. tools/build_report.py lines 263-269 copies those strings into the notes without the abbreviation used by join_names/short_cite at lines 46-71. The same strings appear in report-generated.md lines 259 and 261 and are absent from report-prose.md. Apply the exact replacement \"Chen et al. (2026)\" to both rendered author-year labels. This is a report-formatting correction, not a bibliographic factual correction."
+  }
+]

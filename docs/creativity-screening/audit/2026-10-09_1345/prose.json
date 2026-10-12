@@ -1,0 +1,32 @@
+[
+  {
+    "id": "prose-1",
+    "cid": null,
+    "section": "How the screening was done",
+    "location": "Line 21, Short-form pipeline: \"went through one screener, an independent checker who found every passage again\"; line 33 reports 186 short forms.",
+    "claim": "The short-form papers went through an independent checker after the initial screener.",
+    "problem": "The recorded review coverage does not support this description for the whole short-form set. Of 186 short forms, only 129 have a corresponding checker file; 57 have neither a checker file nor any job recorded in the supplied Codex job logs. The prose should distinguish those 57 from the documented checked forms.",
+    "evidence": "forms/c*.json: 186 forms have a screener value beginning with \"single\". Matching those cids to forms/checks/<cid>.json yields 129 existing files and 57 missing files. codex-jobs/jobs-*.jsonl contains no job for any of the 57 missing cids. The missing cids are c027, c046, c048, c049, c050, c053, c058, c062, c066, c069, c074, c076, c080, c083, c084, c085, c086, c087, c090, c092, c093, c095, c102, c104, c105, c110, c111, c113, c114, c115, c118, c124, c125, c129, c133, c134, c138, c139, c142, c143, c144, c145, c146, c149, c151, c152, c154, c155, c156, c157, c160, c162, c163, c164, c166, c167, c169. For example, forms/c027.json and forms/c066.json have screener=\"single\", but neither has a corresponding checker record. tools/codex_pipeline.py, light_check_prompt, specifies forms/checks/<cid>.json as the checker output.",
+    "severity": "serious"
+  },
+  {
+    "id": "prose-2",
+    "cid": null,
+    "section": "Decisions for Review 1",
+    "location": "Item 2, line 52: \"7 of them report only the number randomized\".",
+    "claim": "Seven of the 27 small experiments report a randomized count but no analyzed count.",
+    "problem": "Seven is the number lacking an analyzed count, not the number reporting a randomized count. Only five of those seven have a randomized count recorded for the randomized study. The other two report recruited participants and leave both randomized and analyzed counts null.",
+    "evidence": "report-data.json: n_small_without_analyzed_count=7; the seven small-status cids absent from small_n are c018, c250, c614, c644, c683, c983 and c996. forms/c018.json studies[0].participants has n_randomized=null and n_analyzed=null; its exclusions explicitly say that 38 were recruited and the assignment-stage count is not separately reported. forms/c996.json studies[0].participants also has both counts null; its quote reports 20 recruits and one incomplete participant. The other five randomized studies record n_randomized as 20 (c250/S1), 48 (c614/S2), 27 (c644/S1), 40 (c683/S2), and 12 (c983/S1). The report table likewise shows \"not reported\" without a randomized count for c018 and c996.",
+    "severity": "serious"
+  },
+  {
+    "id": "prose-3",
+    "cid": null,
+    "section": "Experiments with full text not obtained",
+    "location": "Line 1436: \"These 225 papers\" and \"docs/creativity-screening/to-download.html lists the same papers\".",
+    "claim": "The linked download list contains the same 225 papers as the report's full-text-not-obtained section.",
+    "problem": "The download list contains a different set: 264 distinct papers, only 224 of which belong to the report's 225-paper set. It omits c493 and adds 40 papers in other report statuses, including the core paper c044. Readers following the download instructions therefore receive a different worklist.",
+    "evidence": "to-download.html contains 264 li entries with 264 distinct cids; its heading counts are 181 experiments, 54 small experiments, and 29 context papers. report-data.json status_by_cid contains 225 no_fulltext cids, matching the 225 report table rows. Comparing the sets yields missing c493 and 40 extra cids: c027, c028, c029, c044, c046, c048, c049, c058, c061, c062, c063, c069, c071, c077, c085, c086, c090, c092, c095, c102, c104, c110, c111, c113, c115, c125, c129, c134, c138, c139, c143, c144, c146, c149, c151, c152, c155, c163, c164, c604. report-data.json status_by_cid.c044=\"core\"; c493 appears in the report at line 1569 but is absent from to-download.html.",
+    "severity": "blocker"
+  }
+]

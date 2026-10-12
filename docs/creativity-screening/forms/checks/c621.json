@@ -1,0 +1,44 @@
+{
+ "cid": "c621",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].design_class",
+   "form_value": "lab_rct",
+   "source_says": "The paper reports a within-subject, counterbalanced comparison but does not state that participants or condition order were randomized. Under the codebook, replace lab_rct with other (within-subject comparison, randomization not stated); retain assignment.randomized='not_stated' and criterion_1_random_assignment_of_ai='unclear'. Counterbalancing alone does not establish an RCT.",
+   "quote": "Task order and condition assignments were balanced within two groups:",
+   "locator": "p. 8, Section 5.2.3; p. 6, Section 5; creativity-codebook.md, Sections 3-4"
+  },
+  {
+   "field": "studies",
+   "form_value": "Only S1: User study (within-subject, NexusAI vs. baseline)",
+   "source_says": "Add the two formative studies as separate entries, classified as other: semi-structured interviews in Section 3.1 and a qualitative FigJam workshop in Section 3.2. The interview count is internally inconsistent: eight participants in Section 3.1, but seven designers in Section 3.1.1 and seven rows in Table 1; an unambiguous analyzed count cannot be confirmed, so leave it null and describe the discrepancy. The workshop reports six creative practitioners, also listed in Table 2. Neither formative study reports random assignment or creativity/diversity scores on output, and their samples must not be added to the main user study's 14 participants.",
+   "quote": "we conducted two IRB-approved formative studies with LLM-experienced creators to identify current practices, challenges, and expectations for LLM-assisted design tools.",
+   "locator": "pp. 3-4, Sections 3, 3.1, 3.1.1 and 3.2; p. 13, Appendix A.1, Tables 1-2; form-spec.md, rule 6"
+  },
+  {
+   "field": "source.supplement",
+   "form_value": "{\"exists\": \"\", \"in_this_pdf\": false, \"where\": \"\", \"holds\": \"\"}",
+   "source_says": "Record the included appendices with exists='yes' and in_this_pdf=true. Appendices A-G appear on pp. 13-19, with the interaction-event figure on p. 21; they contain participant tables, prompts, implementation details, questionnaires, the interview guide, and additional findings. Appendix G, Table 4 provides structural-network means, p-values and r effect sizes, including the maximum-width result used in the form; it does not provide standard errors or confidence intervals.",
+   "quote": "Table 4: Comparison of Structural Network Metrics between NexusAI and Baseline (N=14)",
+   "locator": "pp. 13-19, Appendices A-G; p. 19, Appendix G, Table 4; p. 21, Figure 14"
+  }
+ ],
+ "confirmed": [
+  "Read the complete markdown, including appendices, and checked the relevant PDF pages directly. The source is the 22-page arXiv:2604.10575v1 [cs.HC] preprint dated 12 Apr 2026, with ACM template placeholders; the title and author list in the form match the title page (PDF p. 1).",
+  "The main user study analyzes 14 people in a paired comparison, with the same people using both systems; the two groups of seven specify task-condition pairings, not separate participant samples for each arm. Randomized counts and post-assignment exclusions are not reported, and the analyzed sample is below 50 (pp. 7-8, Sections 5.1 and 5.2.3; p. 19, Table 4).",
+  "Section 5.1 reports 10 female and 4 male participants, aged 24-33, M=27.1 and SD=2.66. Table 3 really has 13 participant rows and omits ID 9, as the form notes; this does not justify replacing the explicitly reported analysis N=14 with 13 (p. 7, Section 5.1; p. 18, Table 3; p. 19, Table 4).",
+  "Participants completed the personal focus assistant and community memory archive tasks, each within 20 minutes, in a session lasting approximately 90 minutes (pp. 7-8, Sections 5.2.1 and 5.2.3).",
+  "Both conditions used the same underlying LLM, prompt templates and turn-based generation mechanism; the detailed baseline is a node-based diagramming canvas with basic AI node generation. The form correctly preserves the conflict with the earlier dialogue-based description (p. 6, Section 5; pp. 7-8, Section 5.2.2; p. 18, Figure 12).",
+  "The model-description discrepancy is real: Section 4.3 names Qwen-Plus and text-embedding-v4 through DashScope, while Appendix F names GPT-5.2 and text-embedding-ada-002 through Microsoft Azure for system implementation. The PDF does not resolve which implementation supplied the user-study results (p. 6, Section 4.3; p. 19, Appendix F).",
+  "S1-O1 reported values match exactly: average out degree, M_Nx=0.98 versus M_base=0.30, p=0.004**, r=0.781, N=14 (p. 19, Table 4; also p. 9, Section 6.2).",
+  "S1-O2 reported values match exactly: maximum width, M_Nx=66.93 versus M_base=4.21, p=0.001***, r=0.881, N=14 (p. 19, Table 4).",
+  "S1-O3 reported values match the printed CSI passage: M_Nx=96.50 versus M_baseline=66.10, p=0.020*. CSI measures participants' perceived creativity support; the source's phrase overall creative quality does not establish independently rated design quality (p. 9, Section 6.2; p. 8, Section 5.2.4).",
+  "Wilcoxon signed-rank tests compare paired subjective and structural scores, and the graph metrics come from behavioral interaction logs reconstructed as exploration trajectories (p. 8, Section 5.2.5).",
+  "The one-line finding reproduces the cited sample count, graph-metric means and p-values, and CSI means and p-value without numerical discrepancies (pp. 7-9, Sections 5.1, 5.2.3 and 6.2; p. 19, Table 4).",
+  "Core exclusion and context_class=none remain supported: random assignment is not established, the main analysis includes fewer than 50 people, and the reported evaluations concern perceived support and exploration behavior rather than direct design-creativity ratings or diversity across different people's outputs (pp. 3-4, Sections 3.1-3.2; pp. 7-10, Sections 5-6; p. 19, Table 4).",
+  "This is an empirical system-design paper with formative studies and a user study, not a review or meta-analysis; leaving synthesis counts and pooled estimates empty is appropriate (p. 1, Abstract; pp. 3-4, Section 3; pp. 6-10, Sections 5-6)."
+ ],
+ "summary": "The 14-person user study is below the eligibility threshold, and its reported numerical findings match the PDF. Correct the unsupported lab_rct label, omitted formative studies, and appendix metadata; no randomized people study with scored creativity or diversity is established."
+}

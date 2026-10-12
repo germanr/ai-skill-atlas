@@ -1,0 +1,50 @@
+{
+  "cid": "c109",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O4",
+      "field": "diversity_detail.computed_over, diversity_detail.metric, measure_detail, name (centroid definition)",
+      "form_value": "Each idea against its condition's centroid: 'the average embedding of all ideas in each condition (Cue, NoCue; pooled across dyads and modalities)'.",
+      "source_says": "The paper describes the centroid two ways. Sec. 6.3 says 'the average embedding of all ideas within each condition'. App. A.4.1 describes one 'average embedding based on ideas across groups', with distances to ideas 'from both Cue and NoCue groups'. App. A.4.2 says the cue analysis was set up 'similar to' the idea analysis and pooled both sets into one centroid. No passage says the centroid pools the two modalities. The form records the per-condition reading as fact and does not flag the conflict. This matters because a pooled centroid measures distance to the grand mean, not spread within an arm.",
+      "quote": "We implemented the same technique used in [4] by getting the average embedding based on ideas across groups, and calculate pairwise distances between the average embedding and idea embeddings from both Cue and NoCue groups",
+      "locator": "PDF p. 16 (printed p. 311), App. A.4.1 and A.4.2; compare PDF p. 11 (printed p. 306), Sec. 6.3"
+    },
+    {
+      "where": "S2-O1",
+      "field": "measure_detail, name (centroid definition)",
+      "form_value": "Cosine distance between each cue embedding and 'the average embedding of all cues in its version (regular vs pipeline)'.",
+      "source_says": "App. A.4.2 says one average embedding was built by aggregating the study cues and the pipeline cues, and distances to both groups were taken from it. Only Sec. 6.3 ('within each condition') supports a per-version centroid. The form does not mention the conflict.",
+      "quote": "we calculated the average embedding of cues, by aggregating cues generated during the study, and by the new pipeline. Then, we calculated pairwise distances to both groups from the average embedding of cues",
+      "locator": "PDF p. 16 (printed p. 311), App. A.4.2; compare PDF p. 11 (printed p. 306), Sec. 6.3"
+    },
+    {
+      "where": "source (provenance only, no outcome depends on it)",
+      "field": "source.version",
+      "form_value": "The markdown conversion stops at reference [77] (printed p. 308), so Appendix A (printed pp. 310-316) and Figs. 6 to 11 were read from the PDF.",
+      "source_says": "The markdown on file was written on 10/4/2026, before the form (10/5/2026). It runs through reference [137] (md line 668) and holds Appendix A.1 to A.6 with the captions of Figs. 6 to 11 (md lines 671-1080).",
+      "quote": "A.4.1 Using pairwise distances from average semantic embedding of ideas generated across groups to calculate homogenization.",
+      "locator": "Rayan et al (2025) - Cueing the Crowd.md, line 785 (Appendix A starts at line 671)"
+    }
+  ],
+  "confirmed": [
+    "Criterion 3 holds: S1-O1, S1-O3 and S1-O4 are scored on the ideas the dyads listed as bullet points in the shared notes. The scores are computed (BERTopic entropy, idea embeddings) or counted by team members, and none is self-reported (PDF p. 7, Secs. 4.1.3-4.1.4; PDF p. 11, Sec. 6.3).",
+    "S1-O1 is not scored on cues despite Sec. 5.1.1 saying 'The topic diversity of cues served as the dependent variable'. NoCue dyads received no cues yet have a score (μ = 2.1), and Sec. 4.1.4 defines the measure on the pooled ideas (PDF p. 7).",
+    "AI was available while the outputs were produced: GPT-4o-mini sent a cue about once a minute through the 20-minute conversation, 18 +/- 2 cues per group. NoCue arms got no cues (PDF p. 5, Secs. 4.1.1-4.1.2). ai_available_when_produced = yes and timing = immediate fit every S1 outcome.",
+    "The question codes follow the rule. S1-O1 (flexibility), S1-O2 (other) and S1-O3 (fluency) are with_ai, and S1-O4 (diversity) is across_people. S2-O1 scores AI cues only, so 'none' is correct, which form-spec.md allows.",
+    "S1-O1 construct = flexibility is supported. The paper frames the gain as within-group: 'cues lead dyads to more diverse topics, both in their ideas and conversation transcripts' and 'net positive effects within groups' (PDF pp. 10-11, Sec. 6.3). Caveat: Sec. 4.1.4 says the entropy gives 'each idea's topic diversity score'. The form flags this as an open question.",
+    "S1-O1 measure = category_count is the nearest code, because the topics come from HDBSCAN clustering. The score itself is a Shannon entropy, as the form says (PDF p. 7, Sec. 4.1.4).",
+    "Unit = team for S1-O1 to S1-O3: the covariates are coded per group (0/1/2, Sec. 5.1), the text says 'the number of ideas each group generated' and 'the conversation's topic diversity', and the Fig. 5 captions compare groups (PDF pp. 7-8). Unit = output for S1-O4 and S2-O1: 'between each idea [cue] and the average embedding' (PDF p. 11, Sec. 6.3).",
+    "S1-O1 numbers match the PDF: F(1, 67.03) = 6.51, p = 0.013; Cue μ = 2.3, SD = 0.3 vs 2.1, SD = 0.4; modality F(1, 67.17) = 0.79, p = 0.38; Tukey p ≈ 0.012 (PDF p. 7, Sec. 5.1.1). The Fig. 5a labels also match: Cue 2.784/2.525/2.351/2.095/1.494 and Without Cue 2.805/2.322/2.098/1.839/1.075 (PDF p. 8).",
+    "S1-O2 numbers match the PDF: F(1, 50.76) = 6.25, p = 0.016; μ = 9.6, SD = 2.2 vs 8.0, SD = 2.5; modality F(1, 50.79) = 0.25, p = 0.62; Tukey p ≈ 0.015 (PDF p. 9, Sec. 5.1.2). The Fig. 5b labels also match: 14/11/9/7.5/6 and 14/9/8/6/3 (PDF p. 8).",
+    "S1-O3: the paper says 'None of the factors showed a significant difference based on the REML model' and prints no statistics. The 19.4 ideas per dyad is correct (PDF p. 9, Sec. 5.1.3; PDF p. 7, Sec. 5).",
+    "S1-O4: no test result for ideas is printed. Pixel measurement of the Fig. 6 raster against its axis ticks gives Cue median 0.553 (IQR 0.467-0.643) and No Cue median 0.562 (IQR 0.463-0.671), matching the form's readings. The heavy overlap supports no_clear_difference among the allowed direction codes (PDF p. 17, Fig. 6).",
+    "S1-O4 embedding model: none is named anywhere in the paper. The text says 'cosine similarity' (footnote 16, scikit-learn pairwise_distances), but Fig. 6 plots distance (PDF p. 11; PDF p. 17).",
+    "S2-O1 numbers match the PDF: μ=0.46, SD=0.11 vs μ=0.54, SD=0.23, p < 0.0001; 182 of 578 divergence cues were repeated verbatim (PDF p. 11, Sec. 6.3). Fig. 10 plots 'Cosine Distance' by Cue Type, Regular vs Pipeline (PDF p. 19).",
+    "S1-O2 scored_on_output = true: the score is computed from the participants' own utterances, and recordings of the researcher only were excluded (footnote 12, PDF p. 7). Whether a discussion transcript counts as 'output' is a judgment the form leaves open. Eligibility does not rest on it.",
+    "No outcome is missing. Nobody rated the ideas ('We did not use expert raters ... due to the large number of ideas', PDF p. 7, Sec. 5.1). There is no phase after AI is removed. The Spearman correlations are not randomized contrasts (PDF p. 9, Sec. 5.2), and the survey items are self-reports given only in words (PDF pp. 9-10, Sec. 5.3)."
+  ],
+  "summary": "The core coding holds: every outcome's question, construct, unit, AI availability and printed numbers match the PDF, and S1-O1 and S1-O3 are computed or counted on the ideas the dyads wrote, so criterion 3 stands. The conclusion is still refuted on detail: the form gives the S1-O4 and S2-O1 centroids as per-condition, although App. A.4.1-A.4.2 describe one centroid pooled over both groups, and it wrongly says the markdown lacks the appendix."
+}

@@ -1,0 +1,77 @@
+{
+ "cid": "c145",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].outcomes[3].contrasts[0]",
+   "form_value": "{\"treatment_arm\": \"High-AI-writing authors (2023-2025 mean AI-writing fraction above 0.15; n = 244,062)\", \"control_arm\": \"Low-AI-writing authors (below 0.05; n = 211,911), CEM-matched on career stage, primary field, country group, productivity\", \"reported\": \"Rao-Stirling index correlated with AI-writing rate (r = 0.237, p < 0.001); authors in the first Rao-Stirling decile have mean AI-writing rate 0.143, tenth decile 0.230; pivot size 0.172 (first decile) to 0.295 (tenth), r = 0.230, p < 0.001. Matched high-AI-writing authors were already more interdisciplinary before 2023 and the gap widened after (Fig. 2f inset; Fig. S9 event study, figure only).\"}",
+   "source_says": "This entry combines two different analyses. The correlations and decile summaries on p. 6 describe associations with author AI-writing rates; they are not estimates of the CEM-matched high-versus-low contrast. Separate that association from the matched comparison in Fig. 2f and Fig. S9. The 244,062 high-AI and 211,911 low-AI authors are the groups defined before annual matching, not reported retained matched-sample sizes. Label those counts accordingly and retain null for the matched sample count; the matched estimates and their intervals are figure-only.",
+   "quote": "Strata are retained only when they contain both high- and low-AI-writing authors. CEM weights are then assigned so that the total matched weight of the high- and low-AI-writing groups is balanced within retained strata.",
+   "locator": "PDF p. 6, AI-writing intensity and portfolio breadth; p. 7, Fig. 2b and 2f; pp. 16-17, High- and Low-AI-Writing Author Matching; p. 36 (S15), Fig. S9; p. 45 (S24), Table S4"
+  },
+  {
+   "field": "open_questions (AI-writing group cutoff boundaries)",
+   "form_value": "[]; the exclusions and contrast-arm labels use above 0.15 and below 0.05.",
+   "source_says": "Flag an internal source inconsistency. The form accurately follows the Results wording on p. 6 (exceeded 0.15 and below 0.05), but the Methods, Fig. S9 caption, and Table S4 specify inclusive boundaries: at least 0.15 and at most 0.05. Do not present the strict boundaries as an unambiguous definition of the matched analysis.",
+   "quote": "The high-AI-writing group includes authors whose 2023–2025 author-level AI-writing rate is at least 0.15; the low-AI-writing group includes authors whose rate is at most 0.05.",
+   "locator": "PDF p. 6, group definitions; p. 16, High- and Low-AI-Writing Author Matching; p. 36 (S15), Fig. S9 caption; p. 45 (S24), Table S4 note"
+  },
+  {
+   "field": "open_questions (decile definitions in studies[0].outcomes[3].contrasts[0].reported)",
+   "form_value": "[]; authors in the first Rao-Stirling decile have mean AI-writing rate 0.143, tenth decile 0.230; pivot size 0.172 (first decile) to 0.295 (tenth).",
+   "source_says": "The numerical values and Rao-Stirling-decile wording match the Results paragraph, but Fig. 2b labels its horizontal axis Author AI-writing-rate decile and its caption also specifies AI-writing-rate deciles. Flag this inconsistency rather than treating the conditioning variable as settled. Retain the numbers only as reported in the text; do not silently reverse which quantity defines the deciles.",
+   "quote": "linking author AI-writing-rate deciles with portfolio and exploration measures.",
+   "locator": "PDF p. 6, AI-writing intensity and portfolio breadth, second paragraph; p. 7, Fig. 2b horizontal-axis label and caption"
+  },
+  {
+   "field": "studies[0].outcomes (omitted output-based outcomes)",
+   "form_value": "[\"Interdisciplinarity of an author's publication portfolio (Rao-Stirling index on papers' primary fields)\", \"Exploration: share of authors publishing in at least one field where they had not published before\", \"Research pivot size (cosine distance between a paper's reference fields and the author's prior three-year reference profile)\", \"Portfolio interdisciplinarity (Rao-Stirling) by author AI-writing rate, high vs low AI-writing authors (CEM-matched)\", \"Topic concentration of papers within broad fields (Gini index over OpenAlex primary topics)\"]",
+   "source_says": "The outcome list omits the coefficient of variation in out-of-field publishing destinations, which the Results report as falling after 2022 (Fig. S6b): this is a separate collective-dispersion measure, with no exact endpoint values printed. It also omits average distance between a paper field and the author primary field (0.255 in 2025, 13.0% above the extrapolated pre-2023 trend; Fig. 1e), and the count/share of new-agenda lead publications based on bibliographic coupling (Fig. S2, figure-only). Record these outcomes, or explicitly document a justified robustness grouping; Fig. S2 uses authors with at least 10 publications, not a reported count of 10 participants.",
+   "quote": "The coefficient of variation in the destinations of authors’ out-of-field publications fell after 2022",
+   "locator": "PDF pp. 3 and 5, Research portfolios and exploration expanded after 2022; p. 4, Fig. 1e; p. 28 (S7), Fig. S2; pp. 32-33 (S11-S12), Fig. S6b; form-spec.md, rule 7"
+  },
+  {
+   "field": "studies[0].outcomes[4].diversity_detail; studies[0].outcomes[4].contrasts[0].statistics_available",
+   "form_value": "{\"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}, \"statistics_available\": []}",
+   "source_says": "Fill the required diversity details: the metric is the Gini index of annual paper counts across OpenAlex primary topics within each broad field; the fixed topic set contains 3,731 topics observed in every sample year. These are topics, not people or outputs. The figure presents five separate field series. No embedding model is used for this metric, and Fig. S6a and its caption do not report numerical uncertainty or an uncertainty-estimation procedure. Mark uncertainty as not stated and statistics_available as figure_only; lower Gini means greater topic dispersion.",
+   "quote": "Each paper is assigned to a primary topic by OpenAlex. This figure contains 3,731 topics that appear as primary topics every year in our sample.",
+   "locator": "PDF p. 32 (S11), Fig. S6a; p. 33 (S12), Fig. S6a caption; form-spec.md, diversity_detail field note"
+  },
+  {
+   "field": "studies[0].outcomes[4].contrasts[0].direction",
+   "form_value": "treatment_higher",
+   "source_says": "Use mixed for an entry combining all five field series, or separate their directions. Although p. 5 describes a decline in topic Gini in major fields, Fig. S6a does not show a uniform increase in diversity: Environmental Science ends above its 2022 Gini level, whereas Medicine and Agricultural and Biological Sciences end below theirs. No pooled across-field change is reported. Preserve the authors textual statement as such, without coding all field series as treatment_higher; these are qualitative readings of the plotted trajectories, not digitized effect estimates.",
+   "quote": "higher values indicate that papers are more concentrated in fewer topics, while lower values indicate broader topic dispersion.",
+   "locator": "PDF p. 5, topic-diversity paragraph; p. 32 (S11), Fig. S6a, field-specific trajectories; p. 33 (S12), Fig. S6a caption"
+  },
+  {
+   "field": "eligibility.reason",
+   "form_value": "Descriptive bibliometric study with no random assignment and no observed AI use: it compares scientists' publication portfolios across time (pre-2023 trend vs 2023-2025) and between matched high- and low-AI-writing authors (p. 3, p. 6, p. 16). Outcomes are research breadth and exploration of new fields, plus topic concentration across papers (Fig. S6a), not rated creativity or idea novelty, so the fit to the observational diversity/novelty category is borderline. The CRediT role analysis (S2) has no creativity or diversity outcome.",
+   "source_says": "Keep core=no and context_class=observational, but revise the explanation that the fit is borderline because creativity or idea novelty was not rated. Under the supplied codebook, computed diversity of real papers across time is sufficient for observational context. The field-level topic Gini and cross-field dispersion measures directly provide that evidence. The absence of random assignment excludes the paper from the core and two-screener randomized-people pipeline; it does not make these collective-diversity outcomes ineligible as observational context.",
+   "quote": "It measures how concentrated publications within a field are across primary topics;",
+   "locator": "PDF p. 3, design statement; p. 5, topic and cross-field diversity results; pp. 32-33 (S11-S12), Fig. S6a-b; creativity-codebook.md, section 3, Observational context definition"
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown, including references and all supplementary material. The PDF has 46 pages and identifies arXiv:2607.20923v1 [cs.DL], 23 Jul 2026; the title and four authors match the form (PDF p. 1).",
+  "The supplement occupies PDF pp. 22-46, numbered S1-S25, and includes Notes 1-2, Figures S1-S13, and Tables S1-S4 (PDF pp. 22 and 46).",
+  "Both datasets are observational, with no people assigned to AI assistance. The randomized within-paper baseline reshuffles existing contribution roles; it is not a human experiment. Core exclusion is correct, and no small randomized experiment or synthesis is present (PDF pp. 3, 12, 14-17).",
+  "The first dataset contains 775,323 seed authors, from 3,959,771 candidates. The exclusions of papers with more than 20 authors and the top 2% of candidate authors, and both minimum-three-publication requirements, match the form (PDF p. 15, Data).",
+  "The Data section reports 26,057,772 works and 18,499,462 distinct coauthors across the seed authors publication histories; these are not additional randomized participants (PDF p. 15).",
+  "China accounts for 27.2% and the United States for 14.8% of seed authors, not the collaborator percentages (PDF p. 43/S22, Table S2).",
+  "The Results print 244,062 high-AI-writing authors and 211,911 low-AI-writing authors before describing annual matching; the matched contrast participant count is not supplied (PDF pp. 6, 16-17; Table S4, p. 45/S24).",
+  "The second dataset has 137,120 multi-author papers: 128,613 PLOS and 8,507 other PMC papers, with 945,989 paper-author observations after excluding 2,683 solo-authored papers. Its distinct-person count is not stated, so n_analyzed=null is appropriate (PDF p. 15, Data).",
+  "The author panel analyzes 2011-2025; the contribution-role data cover 2018-2025 and use 14 CRediT categories (PDF p. 24/S3, Note 2; p. 15, Data; p. 41/S20, Table S1).",
+  "S1-O1 matches the Results: Rao-Stirling 0.176 in 2022 to 0.199 in 2025, 13.0% above trend; distinct fields 2.3 to 2.8, 15.6% above trend; Shannon entropy 0.55 to 0.71 (PDF p. 3; Fig. 1a-c, p. 4).",
+  "S1-O2 matches the Results: 35.5% entered at least one new field in 2025 versus 30.4% in 2022, with the 2025 level 23.2% above the extrapolated trend (PDF p. 3; Fig. 1d, p. 4).",
+  "S1-O3 matches the Results: pivot size 0.236 in 2011, 0.226 in 2022, and 0.242 in 2025. Pivot is cosine distance from the previous three publication years reference-field profile, averaged across eligible papers per author (PDF pp. 5 and 16).",
+  "S1-O4 numerical transcription matches p. 6: r=0.237 and r=0.230, both p<0.001; 0.143 and 0.230 for the stated AI-writing-rate means; 0.172 and 0.295 for the stated pivot sizes. Decile definitions and contrast attribution need the corrections above (PDF pp. 6-7).",
+  "S1-O5 accurately reproduces the main-text claim that Gini declined across over 3,000 topics; the caption specifies 3,731 topics. Exact Gini endpoint estimates are not printed (PDF p. 5; Fig. S6a and caption, pp. 32-33/S11-S12).",
+  "Figures 1 and 2 specify 95% bootstrap confidence intervals. The event-study models use author-year observations, author-clustered standard errors, and a 2022 reference year; Figures S5 and S9 show 95% intervals (PDF pp. 4, 7, 24/S3, 31/S10, 36/S15).",
+  "AI exposure is a writing-pattern proxy, not observed tool use: the estimator uses a human/AI sentence-distribution mixture and maximum likelihood with bioRxiv word probabilities (PDF p. 14, Limitations; pp. 23-24/S2-S3, Note 1).",
+  "The one-line finding matches the printed author count, Rao-Stirling values and trend comparison, new-field shares, and pre-existing then widening high/low group gaps; it is descriptive rather than causal (PDF pp. 3, 6, 15).",
+  "Leaving S2 without eligible creativity/diversity outcomes is appropriate: its similarity measure compares reported contributor role sets rather than creative outputs (PDF pp. 10 and 17, Pairwise Role-Set Similarity)."
+ ],
+ "summary": "The full arXiv v1 supports observational context evidence, with no randomized people study, and the recorded headline numbers match the PDF. Corrections concern matched-comparison labeling, source inconsistencies, omitted outcomes, and the coding and description of collective diversity."
+}

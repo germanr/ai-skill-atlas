@@ -1,0 +1,654 @@
+{
+ "schema": 1,
+ "paper_key": "gordetzki_etal_2026",
+ "cid": "c060",
+ "status": "verified",
+ "status_reason": null,
+ "paper": {
+  "authors_short": "Gordetzki et al.",
+  "authors_full": "Philipp Gordetzki, Ivo Blohm, Melanie Clegg, Felix Schakols, Reto Hofstetter",
+  "year": 2026,
+  "title": "Agency Configurations in Generative AI Ideation: How Textual and Visual Idea Concretizations Shape Idea Creativity and Ideator Effort",
+  "venue": "Information Systems Research",
+  "doi": "10.1287/isre.2024.0952",
+  "url": "https://doi.org/10.1287/isre.2024.0952",
+  "pdf_filename": "Gordetzki et al (2026) - Agency Configurations in Generative AI Ideation.pdf",
+  "version_read": "Corrected version of record, Information Systems Research, Articles in Advance, printed pp. 1–15. PDF p. 2 (printed p. 1) dates Articles in Advance publication to July 15, 2026, updated July 20, 2026. The cover sheet (PDF p. 1) instead says June 19, 2026. The correction on PDF p. 16 (printed p. 15) changes the Acknowledgments only.",
+  "is_own_paper": false,
+  "one_line_finding": "Among 276 analyzed Prolific ideators (428 refinements), textual AI concretizations raised automated idea creativity by 0.29 SD over visual AI concretizations (Model 1a, SE 0.11) and by a reported, statistically significant 30% over the no-AI control (no coefficient printed), while visual versus control was 0.13 SD (SE 0.10, not significant) (PDF p. 9, article p. 8, Section 4.2 for the sample; PDF p. 10, article p. 9, Table 2 and Section 5).",
+  "shared_samples": null
+ },
+ "provenance": {
+  "source_document": "Gordetzki et al (2026) - Agency Configurations in Generative AI Ideation.pdf",
+  "source_url": "https://doi.org/10.1287/isre.2024.0952",
+  "source_version": "Corrected version of record, Information Systems Research, Articles in Advance, printed pp. 1–15. PDF p. 2 (printed p. 1) dates Articles in Advance publication to July 15, 2026, updated July 20, 2026. The cover sheet (PDF p. 1) instead says June 19, 2026. The correction on PDF p. 16 (printed p. 15) changes the Acknowledgments only.; PDF SHA-256 86275cc0256ef498ecdb245d45ee2203db39d4eefb50f0a8c6592e7c2036d3b5",
+  "extraction_date": "2026-10-10",
+  "review_date": "2026-10-10",
+  "review_basis": "primary_source",
+  "checked_by": "two Codex extractors, a reconciler, a mechanical check, a verifier, and, where flagged, a fixer and a second verifier",
+  "statement": "Extracted and checked by Codex jobs (gpt-6-astra): two independent extractions, a reconciliation against the source PDF, a script that matched every number to its quote and every quote to the cited page, and a verifier; not yet verified by a human research assistant."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Main online experiment: AI textual vs AI visual concretization vs no-AI control (crowded-train ideation)",
+   "design_class": "online_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": {},
+   "cluster_se_treatment": "The paper uses iteration-level OLS with clustered robust standard errors to account for ideator differences and autocorrelation among successive refinements of the same idea. Figure 3 states that each participant provided one idea, so the described clustering is at the participant level (se_basis=participant; regression.se_type=clustered_participant). Assignment itself is individual. The exact software cluster variable is not named. PDF p. 10 (printed p. 9), Section 5, first paragraph; PDF p. 9 (printed p. 8), Figure 3 note.",
+   "n_randomized": null,
+   "n_analyzed": 276,
+   "counts_source": {
+    "locator": "PDF p. 9 (printed p. 8), Section 4.2; PDF p. 14 (printed p. 13), endnote 5",
+    "quote": "We recruited 276 U.S.-based participants ... who contributed a total of 428 idea refinements."
+   },
+   "arms": [
+    {
+     "name": "Textual concretization",
+     "description": "After an initial idea description, the platform supplied an AI-written usage scenario of that idea. The participant refined the description and could repeat the cycle until satisfied.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Visual concretization",
+     "description": "After an initial idea description, the platform supplied an AI-generated image of that idea. The participant refined the description and could repeat the cycle until satisfied.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Control (no concretization)",
+     "description": "The same iterative task, with instructions to imagine the idea and its outcomes in a usage context instead of receiving an AI concretization.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "population": "online_panel",
+   "country": "United States",
+   "task_type": "idea_generation",
+   "task": "Describe and iteratively refine an idea for improving the experience on a crowded train from boarding to alighting.",
+   "ai_role": "refinement",
+   "ai_tool": {
+    "name": "gpt-3.5-turbo-0613 (textual concretizations and prompts for the image model); DALL-E 3 (visual concretizations)",
+    "year": null,
+    "locator": "PDF p. 8 (printed p. 7), Section 4.1; PDF p. 14 (printed p. 13), endnote 2. Model release years are not stated."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": "No preregistration is stated in the supplied article.",
+    "primary_outcome": null
+   },
+   "shared_sample": null,
+   "sample_id": "gordetzki_etal_2026__s1"
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_creativity_textual_vs_visual_model_1a",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Idea creativity (average of automated novelty and usefulness)",
+   "question": "with_ai",
+   "construct": "overall_creativity",
+   "measure": "automated_score",
+   "measure_detail": "Creativity is the arithmetic mean of novelty and usefulness. Novelty uses all-mpnet-base-v2 embeddings and three-nearest-neighbor similarity among ideas at the same refinement stage; greater distance indicates greater novelty. Usefulness averages feasibility, elaboration, and inclusivity rated by gpt-4o-2024-05-13, with three scores per iteration averaged. Creativity is z-standardized at the iteration level. PDF p. 9 (printed p. 8), Section 4.3.2; PDF p. 14 (printed p. 13), endnote 4.",
+   "unit": "output",
+   "n_units": 428,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Textual concretization",
+   "control_arm": "Visual concretization",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": 0.23,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": -0.06,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.29,
+     "se": 0.11,
+     "se_type": "clustered_participant",
+     "outcome_scale": "standardized",
+     "model": "Table 2, Model (1a): OLS on idea refinements with backward-difference condition coding; condition contrasts only. Clustered robust SEs account for repeated refinements within each ideator's single idea (Section 5 and Figure 3 note)."
+    },
+    "test": null,
+    "p_value": "≤0.01",
+    "paper_effect": {
+     "type": "other",
+     "value": 18,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "Reported percentage increase in percentile ranks of simulated adjusted predictions, relative to the visual-concretization percentile rank; not a standardized mean difference."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Table 2, Idea creativity, Model (1a), Textual Concretization row",
+     "quote": "Textual Concretization 0.29** (0.11) 0.23* (0.10) 0.20* (0.08)"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 9 (printed p. 8), Section 4.2; N also stated in PDF p. 10 (printed p. 9), Table 2",
+     "quote": "who contributed a total of 428 idea refinements."
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Table 2, significance legend interpreted with the marked condition coefficient in Model (1a)",
+     "quote": "*p ≤0.05; **p ≤0.01; ***p≤0.001; †p ≤0.10."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 14 (printed p. 13), endnote 6, simulated adjusted prediction for textual concretizations",
+     "quote": "Ideators receiving textual concretizations created ideas that were 0.23 SDs above the mean (i.e., the 60th percentile)."
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 14 (printed p. 13), endnote 6, simulated adjusted prediction for visual concretizations",
+     "quote": "0.06 SDs below the mean (i.e., the 51st percentile)."
+    },
+    {
+     "fields": [
+      "paper_effect.value"
+     ],
+     "locator": "PDF p. 14 (printed p. 13), endnote 6",
+     "quote": "increase of nine percentiles or approximately 18%"
+    },
+    {
+     "fields": [
+      "regression.se_type"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph",
+     "quote": "To capture differences at the ideator level and to account for potential autocorrelations at the idea level (e.g., idea refinements that reflected variations of the idea in the previous iteration), we employed clustered robust standard errors."
+    },
+    {
+     "fields": [
+      "regression.outcome_scale"
+     ],
+     "locator": "PDF p. 14 (printed p. 13), endnote 4",
+     "quote": "We standardized all idea creativity scores at the iteration level."
+    },
+    {
+     "fields": [
+      "se_basis"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph; PDF p. 9 (printed p. 8), Figure 3 note",
+     "quote": "Each participant provided one idea, and GenAI created its concretizations."
+    }
+   ],
+   "notes": "The regression uses refinements from all study arms. n_units is the full regression observation count, not the number of observations in the two contrasted arms. The paper does not print arm-specific participant counts or the number of people in this arm pair; n_treatment, n_control, and n_total remain null. The analyzed outputs follow the initial idea descriptions and the assigned concretization or control instructions. Each person remains in one assigned condition while refining one idea, so within_person is null. The composite scores the creativity of each refinement; its embedding-based novelty component does not make it an across-people diversity outcome. Creativity is standardized at the iteration level, not across participant averages. Section 5 reports clustered robust SEs to account for ideator differences and autocorrelation among refinements of the same idea (PDF p. 10, printed p. 9). Figure 3 states that each participant provided one idea (PDF p. 9, printed p. 8), identifying this dependence as within the randomized participant. Accordingly, regression.se_type=clustered_participant and se_basis=participant. The regression observation unit remains output, and creativity remains standardized at the iteration level. The exact software clustering variable is not named; the participant-level codes follow the stated dependence structure and the one-idea-per-participant design. Alternate specifications reuse the same sample and are not independent estimates. The arm levels are the simulated adjusted predictions explicitly printed in endnote 6 for the main textual-versus-visual result, not observed descriptive means. The signed control value transcribes the words below the mean; no mean or effect was computed. The printed claim that the visual prediction is below the mean yet at the 51st percentile is internally inconsistent and is preserved, not corrected. paper_effect is the authors’ approximate percentage increase in percentile ranks, not a standardized mean difference or a percentage increase in the raw score. The directly estimated contrast is regression.coef.",
+   "named_primary": "paper",
+   "primary_override": true,
+   "primary_override_reason": "Rule 2: The abstract’s textual-versus-visual result is explicitly tied to Model (1a) in Section 5 and endnote 6. Model (1b) adds controls and is presented as confirming that the effect holds. (PDF p. 2 (printed p. 1), Abstract; PDF p. 10 (printed p. 9), Section 5 and Table 2, Model (1a); PDF p. 14 (printed p. 13), endnote 6.: \"In an online experiment, we found that AI-generated textual concretizations improved idea creativity by 18% relative to AI-generated visual concretizations but required 30% greater effort from ideators.\")"
+  },
+  {
+   "slug": "s1_creativity_textual_vs_visual_model_1b",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Idea creativity (average of automated novelty and usefulness)",
+   "question": "with_ai",
+   "construct": "overall_creativity",
+   "measure": "automated_score",
+   "measure_detail": "Creativity is the arithmetic mean of novelty and usefulness. Novelty uses all-mpnet-base-v2 embeddings and three-nearest-neighbor similarity among ideas at the same refinement stage; greater distance indicates greater novelty. Usefulness averages feasibility, elaboration, and inclusivity rated by gpt-4o-2024-05-13, with three scores per iteration averaged. Creativity is z-standardized at the iteration level. PDF p. 9 (printed p. 8), Section 4.3.2; PDF p. 14 (printed p. 13), endnote 4.",
+   "unit": "output",
+   "n_units": 428,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Textual concretization",
+   "control_arm": "Visual concretization",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.23,
+     "se": 0.1,
+     "se_type": "clustered_participant",
+     "outcome_scale": "standardized",
+     "model": "Table 2, Model (1b): OLS on idea refinements with backward-difference condition coding; controls for trait creativity, perceived mental outcome simulation, perceived ease of use, iterations, and ideator age. Clustered robust SEs account for repeated refinements within each ideator's single idea (Section 5 and Figure 3 note)."
+    },
+    "test": null,
+    "p_value": "≤0.05",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Table 2, Idea creativity, Model (1b), Textual Concretization row",
+     "quote": "Textual Concretization 0.29** (0.11) 0.23* (0.10) 0.20* (0.08)"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 9 (printed p. 8), Section 4.2; N also stated in PDF p. 10 (printed p. 9), Table 2",
+     "quote": "who contributed a total of 428 idea refinements."
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Table 2, significance legend interpreted with the marked condition coefficient in Model (1b)",
+     "quote": "*p ≤0.05; **p ≤0.01; ***p≤0.001; †p ≤0.10."
+    },
+    {
+     "fields": [
+      "regression.se_type"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph",
+     "quote": "To capture differences at the ideator level and to account for potential autocorrelations at the idea level (e.g., idea refinements that reflected variations of the idea in the previous iteration), we employed clustered robust standard errors."
+    },
+    {
+     "fields": [
+      "regression.outcome_scale"
+     ],
+     "locator": "PDF p. 14 (printed p. 13), endnote 4",
+     "quote": "We standardized all idea creativity scores at the iteration level."
+    },
+    {
+     "fields": [
+      "se_basis"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph; PDF p. 9 (printed p. 8), Figure 3 note",
+     "quote": "Each participant provided one idea, and GenAI created its concretizations."
+    }
+   ],
+   "notes": "The regression uses refinements from all study arms. n_units is the full regression observation count, not the number of observations in the two contrasted arms. The paper does not print arm-specific participant counts or the number of people in this arm pair; n_treatment, n_control, and n_total remain null. The analyzed outputs follow the initial idea descriptions and the assigned concretization or control instructions. Each person remains in one assigned condition while refining one idea, so within_person is null. The composite scores the creativity of each refinement; its embedding-based novelty component does not make it an across-people diversity outcome. Creativity is standardized at the iteration level, not across participant averages. Section 5 reports clustered robust SEs to account for ideator differences and autocorrelation among refinements of the same idea (PDF p. 10, printed p. 9). Figure 3 states that each participant provided one idea (PDF p. 9, printed p. 8), identifying this dependence as within the randomized participant. Accordingly, regression.se_type=clustered_participant and se_basis=participant. The regression observation unit remains output, and creativity remains standardized at the iteration level. The exact software clustering variable is not named; the participant-level codes follow the stated dependence structure and the one-idea-per-participant design. Alternate specifications reuse the same sample and are not independent estimates. Model (1b), with controls, is retained as a secondary specification to the main-effects Model (1a).",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_creativity_visual_vs_control_model_1a",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Idea creativity (average of automated novelty and usefulness)",
+   "question": "with_ai",
+   "construct": "overall_creativity",
+   "measure": "automated_score",
+   "measure_detail": "Creativity is the arithmetic mean of novelty and usefulness. Novelty uses all-mpnet-base-v2 embeddings and three-nearest-neighbor similarity among ideas at the same refinement stage; greater distance indicates greater novelty. Usefulness averages feasibility, elaboration, and inclusivity rated by gpt-4o-2024-05-13, with three scores per iteration averaged. Creativity is z-standardized at the iteration level. PDF p. 9 (printed p. 8), Section 4.3.2; PDF p. 14 (printed p. 13), endnote 4.",
+   "unit": "output",
+   "n_units": 428,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Visual concretization",
+   "control_arm": "Control (no concretization)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.13,
+     "se": 0.1,
+     "se_type": "clustered_participant",
+     "outcome_scale": "standardized",
+     "model": "Table 2, Model (1a): OLS on idea refinements with backward-difference condition coding; condition contrasts only. Clustered robust SEs account for repeated refinements within each ideator's single idea (Section 5 and Figure 3 note)."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Table 2, Idea creativity, Model (1a), Visual Concretization row",
+     "quote": "Visual Concretization 0.13 (0.10) 0.17† (0.10) 0.14 (0.10)"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 9 (printed p. 8), Section 4.2; N also stated in PDF p. 10 (printed p. 9), Table 2",
+     "quote": "who contributed a total of 428 idea refinements."
+    },
+    {
+     "fields": [
+      "regression.se_type"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph",
+     "quote": "To capture differences at the ideator level and to account for potential autocorrelations at the idea level (e.g., idea refinements that reflected variations of the idea in the previous iteration), we employed clustered robust standard errors."
+    },
+    {
+     "fields": [
+      "regression.outcome_scale"
+     ],
+     "locator": "PDF p. 14 (printed p. 13), endnote 4",
+     "quote": "We standardized all idea creativity scores at the iteration level."
+    },
+    {
+     "fields": [
+      "se_basis"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph; PDF p. 9 (printed p. 8), Figure 3 note",
+     "quote": "Each participant provided one idea, and GenAI created its concretizations."
+    }
+   ],
+   "notes": "The regression uses refinements from all study arms. n_units is the full regression observation count, not the number of observations in the two contrasted arms. The paper does not print arm-specific participant counts or the number of people in this arm pair; n_treatment, n_control, and n_total remain null. The analyzed outputs follow the initial idea descriptions and the assigned concretization or control instructions. Each person remains in one assigned condition while refining one idea, so within_person is null. The composite scores the creativity of each refinement; its embedding-based novelty component does not make it an across-people diversity outcome. Creativity is standardized at the iteration level, not across participant averages. Section 5 reports clustered robust SEs to account for ideator differences and autocorrelation among refinements of the same idea (PDF p. 10, printed p. 9). Figure 3 states that each participant provided one idea (PDF p. 9, printed p. 8), identifying this dependence as within the randomized participant. Accordingly, regression.se_type=clustered_participant and se_basis=participant. The regression observation unit remains output, and creativity remains standardized at the iteration level. The exact software clustering variable is not named; the participant-level codes follow the stated dependence structure and the one-idea-per-participant design. Alternate specifications reuse the same sample and are not independent estimates. The coefficient has no significance marker. No exact p-value or numerical bound is inferred from its absence.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_creativity_visual_vs_control_model_1b",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Idea creativity (average of automated novelty and usefulness)",
+   "question": "with_ai",
+   "construct": "overall_creativity",
+   "measure": "automated_score",
+   "measure_detail": "Creativity is the arithmetic mean of novelty and usefulness. Novelty uses all-mpnet-base-v2 embeddings and three-nearest-neighbor similarity among ideas at the same refinement stage; greater distance indicates greater novelty. Usefulness averages feasibility, elaboration, and inclusivity rated by gpt-4o-2024-05-13, with three scores per iteration averaged. Creativity is z-standardized at the iteration level. PDF p. 9 (printed p. 8), Section 4.3.2; PDF p. 14 (printed p. 13), endnote 4.",
+   "unit": "output",
+   "n_units": 428,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Visual concretization",
+   "control_arm": "Control (no concretization)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.17,
+     "se": 0.1,
+     "se_type": "clustered_participant",
+     "outcome_scale": "standardized",
+     "model": "Table 2, Model (1b): OLS on idea refinements with backward-difference condition coding; controls for trait creativity, perceived mental outcome simulation, perceived ease of use, iterations, and ideator age. Clustered robust SEs account for repeated refinements within each ideator's single idea (Section 5 and Figure 3 note)."
+    },
+    "test": null,
+    "p_value": "≤0.10",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Table 2, Idea creativity, Model (1b), Visual Concretization row",
+     "quote": "Visual Concretization 0.13 (0.10) 0.17† (0.10) 0.14 (0.10)"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 9 (printed p. 8), Section 4.2; N also stated in PDF p. 10 (printed p. 9), Table 2",
+     "quote": "who contributed a total of 428 idea refinements."
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Table 2, significance legend interpreted with the marked condition coefficient in Model (1b)",
+     "quote": "*p ≤0.05; **p ≤0.01; ***p≤0.001; †p ≤0.10."
+    },
+    {
+     "fields": [
+      "regression.se_type"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph",
+     "quote": "To capture differences at the ideator level and to account for potential autocorrelations at the idea level (e.g., idea refinements that reflected variations of the idea in the previous iteration), we employed clustered robust standard errors."
+    },
+    {
+     "fields": [
+      "regression.outcome_scale"
+     ],
+     "locator": "PDF p. 14 (printed p. 13), endnote 4",
+     "quote": "We standardized all idea creativity scores at the iteration level."
+    },
+    {
+     "fields": [
+      "se_basis"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, first paragraph; PDF p. 9 (printed p. 8), Figure 3 note",
+     "quote": "Each participant provided one idea, and GenAI created its concretizations."
+    }
+   ],
+   "notes": "The regression uses refinements from all study arms. n_units is the full regression observation count, not the number of observations in the two contrasted arms. The paper does not print arm-specific participant counts or the number of people in this arm pair; n_treatment, n_control, and n_total remain null. The analyzed outputs follow the initial idea descriptions and the assigned concretization or control instructions. Each person remains in one assigned condition while refining one idea, so within_person is null. The composite scores the creativity of each refinement; its embedding-based novelty component does not make it an across-people diversity outcome. Creativity is standardized at the iteration level, not across participant averages. Section 5 reports clustered robust SEs to account for ideator differences and autocorrelation among refinements of the same idea (PDF p. 10, printed p. 9). Figure 3 states that each participant provided one idea (PDF p. 9, printed p. 8), identifying this dependence as within the randomized participant. Accordingly, regression.se_type=clustered_participant and se_basis=participant. The regression observation unit remains output, and creativity remains standardized at the iteration level. The exact software clustering variable is not named; the participant-level codes follow the stated dependence structure and the one-idea-per-participant design. Alternate specifications reuse the same sample and are not independent estimates. Model (1b), with controls, is retained as a secondary specification to the main-effects Model (1a).",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_creativity_textual_vs_control_reported_percent",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Idea creativity (average of automated novelty and usefulness)",
+   "question": "with_ai",
+   "construct": "overall_creativity",
+   "measure": "automated_score",
+   "measure_detail": "Creativity is the arithmetic mean of novelty and usefulness. Novelty uses all-mpnet-base-v2 embeddings and three-nearest-neighbor similarity among ideas at the same refinement stage; greater distance indicates greater novelty. Usefulness averages feasibility, elaboration, and inclusivity rated by gpt-4o-2024-05-13, with three scores per iteration averaged. Creativity is z-standardized at the iteration level. PDF p. 9 (printed p. 8), Section 4.3.2; PDF p. 14 (printed p. 13), endnote 4.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Textual concretization",
+   "control_arm": "Control (no concretization)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": {
+     "type": "other",
+     "value": 30,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "Reported percentage increase in idea creativity relative to control; the denominator and calculation are not specified."
+    }
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "paper_effect.value"
+     ],
+     "locator": "PDF p. 10 (printed p. 9), Section 5, paragraph discussing Model (1a)",
+     "quote": "a 30% increase in idea creativity compared with the control condition, which is a statistically significant difference."
+    }
+   ],
+   "notes": "The prose reports a statistically significant increase and says the effect held after adding controls, but supplies no coefficient, SE, confidence interval, or p-value for this contrast. The percentage is retained exactly as printed and is not interpreted as a standardized effect. No separate analysis count is printed for this prose comparison. Figure 4 presents maturity-conditional fitted lines and intervals, not a labeled unconditional contrast; no figure values or sums of adjacent coefficients are used.",
+   "named_primary": "paper",
+   "primary_override": true,
+   "primary_override_reason": "Rule 5: Rules 1–4 do not select between the two AI arms against control. The textual arm directly returns GPT-generated text for iterative human refinement, making it closer to general-chatbot use than the visual arm’s DALL-E images, although both use scripted prompts. (PDF p. 14 (printed p. 13), endnote 2; PDF p. 8 (printed p. 7), Section 4.1, models and iterative procedure; PDF p. 10 (printed p. 9), Section 5, reported textual-versus-control contrast.: \"To create the textual concretization, we used a similar prompt for the GPT model but displayed the textual concretization directly to the ideator.\")"
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "S2: separate Prolific sample freely using ChatGPT versus S1 concretization arms",
+   "reason": "No random assignment between the separate sample and S1 arms is established. The main text gives a direction-only creativity comparison, with sample size, scoring, and numerical results referred to unavailable Online Appendix E2. PDF p. 12 (printed p. 11), Section 5."
+  },
+  {
+   "what": "S1 ideator effort, including keystrokes and time spent",
+   "reason": "A measure of work expended, not creativity or diversity scored on produced output. Keystrokes include deletions and edits and are not a clean output-length measure. PDF p. 9 (printed p. 8), Section 4.3.3; PDF p. 10 (printed p. 9), Table 2, effort models; PDF p. 11 (printed p. 10), Figure 5."
+  },
+  {
+   "what": "S1 idea-maturity effects, treatment-by-maturity interactions, maturity-specific marginal predictions, and low-maturity bootstrap comparisons",
+   "reason": "Moderator associations, treatment-by-maturity interactions, conditional marginal predictions, and low-maturity bootstrap results are excluded by rule 5. The condition coefficients in Model (1c) are also conditional on the reference value of standardized maturity, not separately reported unconditional contrasts. No numerical values are read from Figure 4. PDF p. 10 (printed p. 9), Table 2 and Section 5; PDF p. 11 (printed p. 10), Figure 4 and the robustness discussion; PDF p. 12 (printed p. 11), Section 6. Online Appendix E1 is unavailable."
+  },
+  {
+   "what": "S1 initial-idea creativity comparison",
+   "reason": "A baseline balance check on ideas written before receiving AI, not an outcome of AI assistance. No numerical contrast is printed. PDF p. 10 (printed p. 9), Section 5; PDF p. 14 (printed p. 13), endnote 4."
+  },
+  {
+   "what": "S1 novelty as a separate outcome",
+   "reason": "Measured as a component of idea creativity, but no separate full-sample treatment contrast is printed. It scores novelty of an individual idea relative to the reference pool and is not reported as an across-people diversity effect. PDF p. 9 (printed p. 8), Section 4.3.2; PDF p. 14 (printed p. 13), endnote 4."
+  },
+  {
+   "what": "S1 usefulness as a separate outcome",
+   "reason": "Measured as a component of the extracted creativity composite, but no separate full-sample treatment contrast is printed. PDF p. 9 (printed p. 8), Section 4.3.2."
+  },
+  {
+   "what": "S1 feasibility as a separate outcome",
+   "reason": "Scored as a component of usefulness; no separate treatment contrast is reported. PDF p. 9 (printed p. 8), Section 4.3.2."
+  },
+  {
+   "what": "S1 elaboration as a separate outcome",
+   "reason": "Scored as a component of usefulness; no separate treatment contrast is reported. PDF p. 9 (printed p. 8), Section 4.3.2."
+  },
+  {
+   "what": "S1 inclusivity as a separate outcome",
+   "reason": "Scored as a component of usefulness; no separate treatment contrast is reported. PDF p. 9 (printed p. 8), Section 4.3.2."
+  },
+  {
+   "what": "Human-rating and alternative-LLM scoring validation",
+   "reason": "Agreement and correlation statistics validate the measure and do not contrast randomized AI-assistance arms. The validation raters are not additional randomized ideators. PDF p. 9 (printed p. 8), Section 4.3.2; PDF p. 14 (printed p. 13), endnote 3."
+  },
+  {
+   "what": "Trait creativity, perceived mental outcome simulation, and perceived ease of use",
+   "reason": "Survey-based characteristics or perceptions used as controls, not creativity scored on outputs; their regression coefficients are not randomized condition contrasts. PDF p. 10 (printed p. 9), Section 4.3.5 and Table 2."
+  },
+  {
+   "what": "Number of refinement iterations",
+   "reason": "A process control predicting creativity and effort, not a reported treatment contrast on idea fluency. Participants refine their original idea rather than contribute a new idea at each iteration. PDF p. 9 (printed p. 8), Figure 3 note; PDF p. 10 (printed p. 9), Section 4.3.5 and Table 2."
+  },
+  {
+   "what": "s1_creativity_textual_vs_visual_model_1c: Textual concretization versus Visual concretization, Model (1c)",
+   "reason": "Only extractor B included this coefficient. Model (1c) interacts this condition contrast with idea maturity; its condition coefficient is a maturity-conditional effect, excluded under rule 5. The full-sample main-effects and controlled contrasts are retained as Models (1a) and (1b). PDF p. 10 (printed p. 9), Table 2 and Section 5."
+  },
+  {
+   "what": "s1_creativity_visual_vs_control_model_1c: Visual concretization versus Control (no concretization), Model (1c)",
+   "reason": "Only extractor B included this coefficient. Model (1c) interacts this condition contrast with idea maturity; its condition coefficient is a maturity-conditional effect, excluded under rule 5. The full-sample main-effects and controlled contrasts are retained as Models (1a) and (1b). PDF p. 10 (printed p. 9), Table 2 and Section 5."
+  },
+  {
+   "what": "S1 alternative outcome operationalizations and modeling approaches referred to Online Appendix E3",
+   "reason": "The main text reports robustness only in words, without identifying all alternative outcomes or printing their contrast statistics. The separate appendix is unavailable; no unverified alternative estimate is invented. PDF p. 12 (printed p. 11), Section 5."
+  }
+ ],
+ "open_items": [
+  "The supplied markdown was read in full, including endnotes, references, and the correction notice. The separate Online Appendix A-E is absent from the PDF, which has no embedded files, and no supplement was located beside the supplied paper. Requests to the named DOI source and the St. Gallen repository using urllib with User-Agent atlas-screening/0.1 both failed with WinError 10013 (socket access denied). The appendix remains uninspected.",
+  "The number randomized, exclusions between recruitment and analysis, arm-level randomized and analyzed counts, and two-arm participant counts are not printed. The recruitment/contribution statement supports the study-level analyzed participant count only; no arm counts are reconstructed.",
+  "The exact software clustering variable is not named. The uncertainty basis is nevertheless identified by Section 5's account of ideator-level differences and dependence among successive refinements, together with Figure 3's one-idea-per-participant design. The regression records therefore use se_basis=participant and regression.se_type=clustered_participant; the earlier provisional output coding is superseded. PDF p. 10 (printed p. 9), Section 5; PDF p. 9 (printed p. 8), Figure 3 note.",
+  "No observed descriptive arm means, arm SDs, or participant-level creativity SDs are printed. Endnote 6 provides simulated adjusted predictions for the main textual-versus-visual comparison; they are labeled as such in the estimate notes. The iteration-level standardization is not used to invent an SD.",
+  "The textual-versus-control coefficient, SE, confidence interval, numerical p-value or bound, and the denominator of its reported percentage increase are absent. No contrast is computed by adding backward-difference coefficients.",
+  "Endnote 6 describes its visual adjusted prediction as below the mean while labeling it with a percentile above the midpoint. The printed signed direction and percentile wording are retained without recalculation.",
+  "Online Appendix D may contain missing descriptives, and Online Appendix E3 may report separate novelty, usefulness, component outcomes, or alternate full-sample specifications. Their contents cannot be confirmed from the available article.",
+  "S2 sample size, assignment and comparison procedures, scoring method, analysis unit, and numerical statistics require the unavailable Online Appendix E2. Randomization between the separate sample and S1 arms is not established.",
+  "Release years of the named assistance models are not printed, so ai_tool.year remains null."
+ ],
+ "chain": {
+  "mech_problems": 1,
+  "verify_problems": 8,
+  "mech2_problems": 1,
+  "fixes": 8,
+  "kept": 1,
+  "reverify_problems": 0,
+  "n_estimates": 5,
+  "finished_at": "2026-10-10T00:35:32"
+ },
+ "review_corrections": [],
+ "review_resolutions": []
+}

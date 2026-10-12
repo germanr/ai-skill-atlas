@@ -1,0 +1,57 @@
+{
+ "findings": 3,
+ "confirmed": 1,
+ "refuted": 2,
+ "cannot_tell": 0,
+ "by_lane": {
+  "prose": {
+   "findings": 1,
+   "confirmed": 1
+  },
+  "coverage": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "links": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "tables": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "classes": {
+   "findings": 1,
+   "confirmed": 0
+  },
+  "sources": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "citations": {
+   "findings": 1,
+   "confirmed": 0
+  }
+ },
+ "confirmed_items": [
+  {
+   "id": "prose-1",
+   "cid": "c066",
+   "section": "The diversity measure",
+   "location": "Line 2051: \"The two published syntheses show why the choice matters.\"",
+   "claim": "Both syntheses discussed in this paragraph, including Holzner, Maier, and Feuerriegel (2025), are published papers.",
+   "problem": "The citation check identifies Holzner et al. only as an arXiv preprint, so the description of both syntheses as published is unsupported. Remove \"published\" or identify the preprint separately.",
+   "evidence": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/citations/c066.json: latest_version.status = \"preprint\", latest_version.venue = \"arXiv\", latest_version.date = \"2025-05-22\", and other_versions = []. The checked record reports no journal or proceedings version. forms/c066.json, source.version, identifies arXiv 2505.17241v1 dated 22 May 2025. By comparison, forms/citations/c049.json, latest_version.status, is \"journal\".",
+   "severity": "serious",
+   "verdict": {
+    "id": "prose-1",
+    "cid": "c066",
+    "verdict": "confirmed",
+    "fix_target": "prose",
+    "field": "report-prose.md:39, opening sentence of the synthesis comparison in The diversity measure: how it could be displayed",
+    "correct_value": "The two syntheses show why the choice matters.",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:2051 and report-prose.md:39 both say \"The two published syntheses show why the choice matters.\" I read forms/citations/c066.json directly: latest_version.status is \"preprint\", venue is \"arXiv\", date is \"2025-05-22\", and other_versions is empty. The record reports no journal reference and qualifies the absence of a later journal version as based on its 2026-10-05 checks. I opened C:/Dropbox/Research/ai-lab/literature/creativity/Holzner Maier Feuerriegel (2025) - Generative AI and Creativity.pdf with PyMuPDF: PDF page 1 identifies the title and all three authors and bears \"arXiv:2505.17241v1 [cs.HC] 22 May 2025\" (whitespace normalized). This agrees with forms/c066.json, source.version. By comparison, forms/citations/c049.json classifies de Rooij and Biskjaer as \"journal\" in Behaviour & Information Technology. The supplied sources therefore support describing c066 as an arXiv preprint, rather than classifying both syntheses as published papers. The correction removes that unsupported publication-status implication without changing the numerical claims. tools/assemble_report.py:194-198 inserts this hand-written passage into the report, so the fix belongs in prose. A live arXiv request was blocked by network permissions; no claim about a subsequently published version is made."
+   }
+  }
+ ]
+}

@@ -1,0 +1,371 @@
+{
+ "cid": "c526",
+ "extractor": "A",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rottger Hackenburg Kirk Summerfield (2026) - Measuring and Mitigating Persona Distortions from AI Writing Assistance.pdf",
+  "version": "arXiv:2604.22503v2 [cs.CL], 29 Jun 2026, as printed on PDF p. 1; saved 20-page preprint.",
+  "supplement_used": null
+ },
+ "studies": [
+  {
+   "study_id": "S3",
+   "label": "Study 3: Randomized AI mitigation configurations",
+   "design_class": "online_rct",
+   "assignment_unit": "within_person_order",
+   "clusters_per_arm": null,
+   "cluster_se_treatment": null,
+   "n_randomized": null,
+   "n_analyzed": 769,
+   "counts_source": {
+    "locator": "PDF p. 11, Section 4.1 (study completers); PDF p. 13, Section 4.10",
+    "quote": "Study 1 was completed by 1,501 writers and 10,017 readers, Study 2 by 669 writers, Study 3 by 769 writers and 2,543 readers"
+   },
+   "arms": [
+    {
+     "name": "No Intervention",
+     "description": "Default AI generation of an opinion paragraph from the writer’s bullet points, followed by optional writer editing; experienced in random order alongside both mitigation conditions (PDF pp. 12-14, Sections 4.4-4.5 and 4.10).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Prompting",
+     "description": "The generation prompt asks the model to preserve the writer’s issue stance; writers can edit the generated paragraph (PDF p. 14, Section 4.10).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Reranking",
+     "description": "Reward models select the generated paragraph predicted to minimize stance distortion relative to the writer’s own paragraph, with greater penalty for polarizing distortion; writers can edit the selected paragraph (PDF p. 14, Section 4.10).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Own paragraph (unaided reference)",
+     "description": "The writer composes this paragraph before AI generation. It supplies the distortion reference and is not a randomized no-AI condition (PDF pp. 12-14, Sections 4.4-4.5 and 4.10).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "population": "online_panel",
+   "country": "United Kingdom",
+   "task_type": "creative_writing",
+   "task": "For three randomly selected political propositions, writers compose their own opinion paragraphs and then edit AI drafts generated from their bullet points under three AI configurations presented in random order (PDF pp. 11-14, Sections 4.2, 4.4-4.5 and 4.10).",
+   "ai_role": "other",
+   "ai_tool": {
+    "name": "Claude Sonnet 4, DeepSeek V3, and ChatGPT-4o (the ChatGPT version of GPT-4o); GPT-4.1-based fine-tuned reward models for Reranking",
+    "year": null,
+    "locator": "PDF pp. 11-12, Section 4.3; PDF p. 14, Section 4.10. No single release year is stated for this multi-model intervention."
+   },
+   "preregistration": {
+    "exists": "yes",
+    "where": "https://osf.io/sf7rg (reported in PDF p. 11, Section 4 Methods; the registration could not be accessed in this run)",
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s3_clarity_reranking_vs_no_intervention",
+   "study_id": "S3",
+   "form_outcome_id": "S3-O2",
+   "outcome": "Paragraph clarity: relative attenuation of AI-induced distortion",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "human_raters",
+   "measure_detail": "Blinded lay readers rate the paragraph on the original 0-100 scale. The paper uses mixed-effects beta regressions with a logit link after mapping scores to the (0,1) interval; the intervention-condition model includes reader random effects only. The reported outcome is attenuation of the AI-induced shift relative to unaided writing, compared between Reranking and No Intervention. It is not a standardized creativity effect. See PDF pp. 12-14, Sections 4.6-4.7 and 4.10; the complete results are referred to SI:8.4.",
+   "unit": "rating",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Reranking",
+   "control_arm": "No Intervention",
+   "within_person": "paired",
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": "<.001",
+    "paper_effect": {
+     "type": "other",
+     "value": -26.9,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "Reported percentage reduction in AI-induced clarity distortion for Reranking versus No Intervention; no participant SD is used. The exact normalization formula is not printed in the accessible main paper."
+    }
+   },
+   "se_basis": "rating",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "paper_effect.value",
+      "p_value"
+     ],
+     "locator": "PDF p. 8, Section 2.5 continuation below Figure 4",
+     "quote": "such as appearing more confident, clearer, and more knowledgeable (-27.3%, -26.9%, and -16.7% reduction in distortion from Reranking vs No Intervention, all p<.001)."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 14, Section 4.10 (analysis unit and random effects)",
+     "quote": "with an intervention condition regressor and reader random effects to each of the 29 rating attributes."
+    }
+   ],
+   "notes": "This is the randomized within-writer configuration comparison, using observations across conditions; no first-round-only contrast is printed. The preceding unaided paragraph is a nonrandomized distortion reference. The printed study-completer total is not substituted for the unreported distinct-writer counts in this outcome analysis, and the paragraph pool is not used as a rating count. The main analysis framework includes writer edits and restricts to cases where AI text is not strictly dispreferred (PDF p. 4, Section 2.2; PDF p. 14, Section 4.10 says analysis follows Study 1); the exact Study 3 restriction and final counts require SI:8.4. Reader random effects do not account for repeated outputs from the randomized writers, so se_basis is rating. The paper calls these non-targeted outcomes, but their preregistered primary/secondary status cannot be verified from the accessible document. The negative percentage describes attenuation of the AI-induced increase in clarity. It is kept in the paper’s percentage units, not entered as a raw rating-point difference, divided by a standard deviation, or converted to a proportion. No arm means, SDs, numeric SEs or interval limits are printed for this contrast; the p-value is a bound, not an exact value."
+  },
+  {
+   "slug": "s3_informativeness_reranking_vs_no_intervention",
+   "study_id": "S3",
+   "form_outcome_id": "S3-O3",
+   "outcome": "Paragraph informativeness: relative attenuation of AI-induced distortion",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "human_raters",
+   "measure_detail": "Blinded lay readers rate the paragraph on the original 0-100 scale. The paper uses mixed-effects beta regressions with a logit link after mapping scores to the (0,1) interval; the intervention-condition model includes reader random effects only. The reported outcome is attenuation of the AI-induced shift relative to unaided writing, compared between Reranking and No Intervention. It is not a standardized creativity effect. See PDF pp. 12-14, Sections 4.6-4.7 and 4.10; the complete results are referred to SI:8.4.",
+   "unit": "rating",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Reranking",
+   "control_arm": "No Intervention",
+   "within_person": "paired",
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "rating",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 8, Figure 4D and its caption (outcome label in figure)",
+     "quote": "While Reranking succeeded in reducing distortion in writer stance polarity, it also attenuated a range of non-targeted distortions that writers in Study 1 found acceptable (green) and unacceptable (red)."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 14, Section 4.10 (analysis unit and random effects)",
+     "quote": "with an intervention condition regressor and reader random effects to each of the 29 rating attributes."
+    }
+   ],
+   "notes": "This is the randomized within-writer configuration comparison, using observations across conditions; no first-round-only contrast is printed. The preceding unaided paragraph is a nonrandomized distortion reference. The printed study-completer total is not substituted for the unreported distinct-writer counts in this outcome analysis, and the paragraph pool is not used as a rating count. The main analysis framework includes writer edits and restricts to cases where AI text is not strictly dispreferred (PDF p. 4, Section 2.2; PDF p. 14, Section 4.10 says analysis follows Study 1); the exact Study 3 restriction and final counts require SI:8.4. Reader random effects do not account for repeated outputs from the randomized writers, so se_basis is rating. The paper calls these non-targeted outcomes, but their preregistered primary/secondary status cannot be verified from the accessible document. The named contrast appears in Figure 4D, but its numerical percentage and outcome-specific significance marker are only in the figure. Following extraction-spec.md Rule 1, figure-only numbers are not transcribed; all statistical values remain null. The text extraction and find_tables() on this PDF page recover no numeric result table. The figure indicates attenuation, but neither coordinates nor interval endpoints are estimated."
+  },
+  {
+   "slug": "s3_relevance_reranking_vs_no_intervention",
+   "study_id": "S3",
+   "form_outcome_id": "S3-O4",
+   "outcome": "Paragraph relevance: relative attenuation of AI-induced distortion",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "human_raters",
+   "measure_detail": "Blinded lay readers rate the paragraph on the original 0-100 scale. The paper uses mixed-effects beta regressions with a logit link after mapping scores to the (0,1) interval; the intervention-condition model includes reader random effects only. The reported outcome is attenuation of the AI-induced shift relative to unaided writing, compared between Reranking and No Intervention. It is not a standardized creativity effect. See PDF pp. 12-14, Sections 4.6-4.7 and 4.10; the complete results are referred to SI:8.4.",
+   "unit": "rating",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Reranking",
+   "control_arm": "No Intervention",
+   "within_person": "paired",
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "rating",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 8, Figure 4D and its caption (outcome label in figure)",
+     "quote": "While Reranking succeeded in reducing distortion in writer stance polarity, it also attenuated a range of non-targeted distortions that writers in Study 1 found acceptable (green) and unacceptable (red)."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 14, Section 4.10 (analysis unit and random effects)",
+     "quote": "with an intervention condition regressor and reader random effects to each of the 29 rating attributes."
+    }
+   ],
+   "notes": "This is the randomized within-writer configuration comparison, using observations across conditions; no first-round-only contrast is printed. The preceding unaided paragraph is a nonrandomized distortion reference. The printed study-completer total is not substituted for the unreported distinct-writer counts in this outcome analysis, and the paragraph pool is not used as a rating count. The main analysis framework includes writer edits and restricts to cases where AI text is not strictly dispreferred (PDF p. 4, Section 2.2; PDF p. 14, Section 4.10 says analysis follows Study 1); the exact Study 3 restriction and final counts require SI:8.4. Reader random effects do not account for repeated outputs from the randomized writers, so se_basis is rating. The paper calls these non-targeted outcomes, but their preregistered primary/secondary status cannot be verified from the accessible document. The named contrast appears in Figure 4D, but its numerical percentage and outcome-specific significance marker are only in the figure. Following extraction-spec.md Rule 1, figure-only numbers are not transcribed; all statistical values remain null. The text extraction and find_tables() on this PDF page recover no numeric result table. The figure indicates attenuation, but neither coordinates nor interval endpoints are estimated."
+  },
+  {
+   "slug": "s3_formality_reranking_vs_no_intervention",
+   "study_id": "S3",
+   "form_outcome_id": "S3-O5",
+   "outcome": "Paragraph formality: relative attenuation of AI-induced distortion",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "human_raters",
+   "measure_detail": "Blinded lay readers rate the paragraph on the original 0-100 scale. The paper uses mixed-effects beta regressions with a logit link after mapping scores to the (0,1) interval; the intervention-condition model includes reader random effects only. The reported outcome is attenuation of the AI-induced shift relative to unaided writing, compared between Reranking and No Intervention. It is not a standardized creativity effect. See PDF pp. 12-14, Sections 4.6-4.7 and 4.10; the complete results are referred to SI:8.4.",
+   "unit": "rating",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Reranking",
+   "control_arm": "No Intervention",
+   "within_person": "paired",
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "rating",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 8, Figure 4D and its caption (outcome label in figure)",
+     "quote": "While Reranking succeeded in reducing distortion in writer stance polarity, it also attenuated a range of non-targeted distortions that writers in Study 1 found acceptable (green) and unacceptable (red)."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 14, Section 4.10 (analysis unit and random effects)",
+     "quote": "with an intervention condition regressor and reader random effects to each of the 29 rating attributes."
+    }
+   ],
+   "notes": "This is the randomized within-writer configuration comparison, using observations across conditions; no first-round-only contrast is printed. The preceding unaided paragraph is a nonrandomized distortion reference. The printed study-completer total is not substituted for the unreported distinct-writer counts in this outcome analysis, and the paragraph pool is not used as a rating count. The main analysis framework includes writer edits and restricts to cases where AI text is not strictly dispreferred (PDF p. 4, Section 2.2; PDF p. 14, Section 4.10 says analysis follows Study 1); the exact Study 3 restriction and final counts require SI:8.4. Reader random effects do not account for repeated outputs from the randomized writers, so se_basis is rating. The paper calls these non-targeted outcomes, but their preregistered primary/secondary status cannot be verified from the accessible document. The named contrast appears in Figure 4D, but its numerical percentage and outcome-specific significance marker are only in the figure. Following extraction-spec.md Rule 1, figure-only numbers are not transcribed; all statistical values remain null. The text extraction and find_tables() on this PDF page recover no numeric result table. The figure indicates attenuation, but neither coordinates nor interval endpoints are estimated. Higher ratings mean more formal writing; this is a style attribute and is not interpreted as greater creativity."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "Study 1 pooled AI-assisted versus unaided comparisons: all writing-quality/originality outcomes and all attribute-dispersion outcomes (including S1-O1 through S1-O10)",
+   "reason": "The same writers produce their own paragraphs before the AI paragraphs, with no randomized AI-versus-unaided order. These pooled comparisons are nonrandomized and outside Phase 2 extraction (PDF p. 3, Figure 1; PDF p. 4, Section 2.1; PDF p. 12, Sections 4.4-4.5). The exclusion covers all dispersion attributes, including those omitted from the screening form under its outcome cap."
+  },
+  {
+   "what": "Study 1 randomized AI-model and input-format configuration contrasts for originality, clarity, informativeness, relevance and formality",
+   "reason": "Model/input pairing is randomized, but the saved main paper gives no outcome-specific pairwise statistics for these eligible writing attributes. Aggregate distortions across heterogeneous persona attributes are not substituted for them. The required individual contrasts are referred to the inaccessible SI:5.7-5.8 (PDF pp. 4-5, Section 2.2; PDF pp. 12-13, Sections 4.4 and 4.7)."
+  },
+  {
+   "what": "Study 2: randomized writer disclaimers",
+   "reason": "The outcomes are writers’ editing behavior and preferences for AI writing, not creativity or diversity scored on the produced output. The paper explicitly says no third-party ratings were collected for this study (PDF p. 12, Section 4.6; PDF p. 13, Section 4.9)."
+  },
+  {
+   "what": "Study 3 perceived paragraph originality (S3-O1)",
+   "reason": "Originality is measured, but no identifiable configuration-specific originality contrast is printed in the main text or labeled in Figure 4. The general statement that all attributes were modeled is insufficient to assign a particular effect or significance test. Full outputs require SI:8.4 (PDF p. 5, Figure 2B; PDF p. 8, Figure 4; PDF p. 14, Section 4.10)."
+  },
+  {
+   "what": "Study 3 Prompting versus No Intervention and Reranking versus Prompting: clarity, informativeness, relevance and formality",
+   "reason": "The accessible paper supplies no separately identifiable writing-outcome results for these contrasts. The Prompting result in the prose concerns perceived political extremity. No contrast is constructed by subtracting other effects (PDF pp. 7-8, Section 2.5 and Figure 4; PDF p. 14, Section 4.10, which refers to SI:8.4)."
+  },
+  {
+   "what": "Study 3 AI configurations versus Own paragraph (unaided reference)",
+   "reason": "Unaided writing is always produced before AI assistance and is a nonrandomized reference. Only the order of the AI configurations is randomized; an AI-versus-unaided contrast does not satisfy the randomized-order requirement (PDF pp. 12-14, Sections 4.4-4.5 and 4.10)."
+  },
+  {
+   "what": "Study 3 perceived writer stance polarity, confidence, issue knowledge and importance, openness, community orientation, optimism, other personality/emotion ratings, and inferred demographics",
+   "reason": "These measure perceived author beliefs, traits, emotions or identity, not creativity, diversity, or an attribute of the produced writing retained by the screening form. The stance-polarity intervention target and related persona changes are not creativity effects (PDF pp. 7-8, Section 2.5 and Figure 4; PDF pp. 13-14, Section 4.10)."
+  },
+  {
+   "what": "Studies 1 and 3 writer preferences, editing rates/edit distances, stated distortion tolerance, and issue-engagement self-reports",
+   "reason": "These are self-reports, choices or writing-process behavior rather than creativity or diversity scored on completed outputs (PDF p. 3, Section 2; PDF p. 7, Section 2.5; PDF pp. 12-14, Sections 4.5, 4.8 and 4.10)."
+  },
+  {
+   "what": "Reward-model prediction accuracy, model/data scaling, and cross-attribute correlation analyses",
+   "reason": "Model-only evaluation and associations across rating attributes are not randomized human-assistance contrasts on creative output (PDF p. 8, Section 2.5 and Figure 4E; PDF p. 14, Section 4.10)."
+  },
+  {
+   "what": "Study 4: reader trust and its distortion interactions",
+   "reason": "Participants are randomized to reading existing paragraphs and allocate money in a Trust Game. They are not assigned AI assistance to produce scored creative output; the texts reuse Study 1 material (PDF pp. 14-15, Section 4.11)."
+  },
+  {
+   "what": "Study 5: reader persuasion and its distortion interactions",
+   "reason": "Participants are randomized to exposure to existing paragraphs, and the outcome is their change in political stance. They do not produce creative output with assigned AI assistance; the texts reuse Study 1 material (PDF p. 15, Section 4.12)."
+  }
+ ],
+ "open_items": [
+  "A version-matched supplement is needed for SI:8.4, including originality and other configuration contrasts, arm levels, numeric uncertainty and exact analysis restrictions. The current run could not inspect the named GitHub repository or OSF registration because Python urllib requests failed with WinError 10013.",
+  "The informativeness, relevance and formality percentages and outcome-specific significance marks are figure-only in the saved main PDF, so their numerical fields are null under extraction Rule 1. A printed text or table source is needed to populate them.",
+  "Study 3 initial randomization and attrition totals are not printed in the main paper; SI:1.4 is cited. The reported study-completer count does not establish final participant counts for each restricted outcome and configuration.",
+  "The paper does not print participant-level arm SDs, numeric effect SEs or interval endpoints for the retained writing contrasts. Its models have reader random effects only, so their reported precision does not account for the randomized writers’ repeated outputs.",
+  "Study 1 randomized AI-model/input writing-outcome contrasts require SI:5.7-5.8. The pooled AI-versus-unaided comparisons remain ineligible regardless of supplement availability.",
+  "The accessible paper reports preregistration and identifies stance polarity as the targeted intervention outcome, but it does not establish a preregistered primary creativity outcome. No first-round-only writing results are printed.",
+  "The local data-availability audit describes a newer supplement with changed title and model specifications. It was not independently inspected in this run, and its results must be version-checked before supplementing this saved-v2 extraction."
+ ],
+ "notes": "Read both specifications and the complete markdown conversion, all 390 lines through the final reference, with Methods read before Results. Checked the text of every cited PDF page using pymupdf; the PDF has no appendix or embedded attachment. Also inspected Figures 2 and 4 in memory to confirm outcome/contrast identities; no figure-only statistic was transcribed. No effects, SDs, SEs, counts or contrasts were computed. The only numerical contrast effect retained is the percentage printed in the Section 2.5 prose. The three figure-only contrasts remain records with null statistical fields. Study-level n_analyzed denotes reported writer completers; reader counts are not added to it, and within-person arm counts are not summed. The ai_role is other because the system drafts complete paragraphs from bullet points followed by writer revision. A single model release year cannot represent the named model bundle, so ai_tool.year is null. No other paper sharing these writers is stated. Within this paper, some readers are reused between Studies 1 and 3, while writers are distinct; reward-model training uses Study 1 data (PDF pp. 11 and 14). There is no after_ai task. GitHub contents API, raw GitHub README and OSF registration API requests used Python urllib with User-Agent atlas-screening/0.1 and no personal identifier; all failed with socket-permission error WinError 10013. No local supplement was found alongside the source PDF or at D:/projects/ai-skill-atlas/creativity-data/c526. No later repository numbers or unverified screening statistics were substituted for the saved paper."
+}

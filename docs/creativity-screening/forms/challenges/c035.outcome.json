@@ -1,0 +1,68 @@
+{
+  "cid": "c035",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O10",
+      "field": "unit",
+      "form_value": "output",
+      "source_says": "Table 1 prints per-text means only, with no SD and no test. The P < 0.001 for length carries footnote 8: p-values come from regressions that control for rater fixed effects. Such a regression has one row per rating. The form-spec defines unit as the unit of the paper's own analysis, read from the regression's rows, so the text supports 'rating', not 'output'. The form's own measure_detail says the test 'may run on rating-level rows'. Fix: code 'rating' with n_units null, or keep 'output' and say that the paper does not print the unit of its test.",
+      "quote": "Unless stated otherwise, we use p-values from the regressions, controlling for rater fixed effects.",
+      "locator": "PDF p. 13 (printed p. 11), sentence below Table 1 and footnote 8; form-spec field note on 'unit'"
+    },
+    {
+      "where": "S1-O10",
+      "field": "measure",
+      "form_value": "automated_score",
+      "source_says": "The measure is a character count (Table 1, Avg Length). Codebook section 6 defines automated_score as 'A scoring model for creativity: semantic-distance scoring of divergent-thinking tests, or a language model used as judge.' A character count is neither. No other code in the codebook or the form-spec list fits, and measure_detail admits this. This is a codebook gap for Review 1, not a misreading of the paper.",
+      "quote": "Avg Length = Average number of characters",
+      "locator": "PDF p. 13 (printed p. 11), Table 1 legend; codebook section 6, Measure"
+    },
+    {
+      "where": "S2-O9",
+      "field": "construct",
+      "form_value": "diversity",
+      "source_says": "The ChatGPT-4 and Bard pools hold 224 and 216 texts from one model each, four answers per isolated chat, and the ratio is computed within each source. For these arms it measures variety among one generator's outputs. Codebook section 6 says 'diversity always compares different people', so only the HumanBaseline pool meets the definition. diversity_detail.notes already says the AI pools are not outputs of different people. The record is context (question none), so no pooled estimate changes. Fix: mark it as a codebook exception, or code 'other'.",
+      "quote": "We prompted both AIs with the following instruction in isolated chats to avoid repetitions: ”Give 4 alternative and creative answers to the following question within 1,000 characters for each answer,”",
+      "locator": "PDF p. 9 (printed p. 7), Section 2.1.1, second paragraph; PDF p. 21 (printed p. 19), Section 3.1.4, third paragraph; codebook section 6, Construct"
+    },
+    {
+      "where": "S2-O9, contrast ChatGPT-4 vs HumanBaseline",
+      "field": "direction",
+      "form_value": "mixed",
+      "source_says": "In Table 7, ChatGPT-4 is below HumanBaseline in five of six cells (28.1 vs 30.2, 36.0 vs 52.0, 7.0 vs 10.0, 35.9 vs 64.5, 7.8 vs 9.7 percent) and equal in one (6.7 vs 6.7). No cell favors ChatGPT-4. The paper calls the all-text levels 'similar' and finds humans more diverse among the top texts. In S1-O9 of this form, 'mixed' means higher in some cells and lower in others. 'treatment_lower', with the all-text similarity stated in 'reported', fits the printed cells better. Minor, context only.",
+      "quote": "However, when focusing on the most creative responses, humans demonstrate greater diversity, even at higher thresholds.",
+      "locator": "PDF p. 22 (printed p. 20), Section 3.1.4, last paragraph; PDF p. 23 (printed p. 21), Table 7"
+    },
+    {
+      "where": "S1-O1 to S1-O9, HumanAgainstAI vs HumanBaseline contrasts",
+      "field": "question and ai_available_when_produced, as inherited by these contrasts",
+      "form_value": "Outcome-level question 'with_ai' ('across_people' in S1-O9) and ai_available_when_produced 'yes'; contrasts coded comparison_type 'other'",
+      "source_says": "Neither arm of these contrasts had AI. Codebook section 2 makes each contrast an estimate, section 1 says each estimate answers one of the three questions, and section 6 records AI availability for the scored output. These estimates therefore inherit a question code and AI availability 'yes' that are false for them. The form says in each 'reported' that they answer none of the three questions, so a reader is not misled, but a script that reads question at the outcome level would be. Fix: move them to separate records with question 'none' and ai_available_when_produced 'no', or to notes.",
+      "quote": "Participants in this group also generated their responses independently. However, they were aware that their entries would be compared not just with those from other individuals but also with texts produced by AI.",
+      "locator": "PDF p. 9 (printed p. 7), Section 2.1.1, HumanAgainstAI arm; codebook sections 1, 2, and 6"
+    }
+  ],
+  "confirmed": [
+    "S1-O1 to S1-O8 and S2-O1 to S2-O8 are 0-10 scores that online raters or five research assistants gave each written text on four questions (creative, new or original, surprising, useful). None is a self-report (PDF p. 10, printed p. 8, Section 2.1.2; PDF p. 11, printed p. 9, last paragraph of Section 2.1.2).",
+    "S1-O9 and S2-O9 are computed on the texts: Sentence-BERT all-mpnet-base-v2 embeddings, cosine distances within each source, Ward clustering, unique ideas divided by texts. category_count fits, because codebook section 6 lists unique ideas found by clustering (PDF p. 21, Section 3.1.4 and footnote 12; PDF p. 22).",
+    "S1-O10 (characters per text) and S1-O11 (each source's texts in the BaselineRaters' top tiers) are computed on the texts (PDF p. 13, Table 1; PDF p. 17, Section 3.1.1; PDF p. 18, Table 4).",
+    "AI was available while each HumanPlusAI text was written: writers 'had the choice to utilize Bard or ChatGPT (3.5 or 4) for help in producing their responses', and all 309 declared a tool (footnote 4: Bard 39, ChatGPT-3.5 184, ChatGPT-4 86). The 2-month follow-up collected self-reports only, so no outcome is after_ai (PDF p. 10, printed p. 8).",
+    "Question codes follow the codebook rule for the core outcomes: with_ai for S1-O1 to S1-O8, S1-O10, and S1-O11, and across_people for S1-O9. 'none' for S2 matches the form-spec's own example, AI output compared with human output (codebook section 1; form-spec field note on 'question').",
+    "Constructs follow codebook section 6: creativity as overall_creativity, originality and surprise as novelty, usefulness as usefulness, length as elaboration. Each writer wrote one text (Table 1 N equals the writer counts), so S1-O9 compares different people and is diversity, not flexibility (PDF p. 9, Section 2.1.1; PDF p. 13, Table 1).",
+    "Units match the paper's regressions for all rating outcomes: OLS on ratings with rater fixed effects (the RA tables add rating-order fixed effects) and SEs clustered by response. N is 63,812 for online raters and 8,423, 8,422, 8,423, and 8,424 for the RA creativity, originality, surprise, and usefulness ratings. Table 7 gives one ratio per source pool, so 'set' fits S1-O9 and S2-O9 (PDF pp. 15, 19, 23, 36, 38).",
+    "Every coefficient, SE, and N that the form takes from Tables 2, 5, 14, 15, and 16 matches the PDF for HumanPlusAI, HumanAgainstAI, ChatGPT4, and Bard. Tables 14 and 16 were read by word-position extraction from the PDF, because the markdown scrambles their rows (PDF pp. 15, 19, 36, 37, 38).",
+    "Table 1 lengths (716, 739, 860), Table 3 means (5.57, 5.93, 5.84, 7.24, 4.46), Table 4 counts and printed shares, and every Table 7 cell match the form (PDF pp. 13, 16, 18, 23).",
+    "Table 2's 63,812 observations, against Table 8's 63,950 ratings from all three rater conditions and Figure 1's 'all raters', support the form's reading that the online-rater regressions pool the rater conditions (PDF p. 14, Figure 1; PDF p. 15, Table 2; PDF p. 24, Table 8).",
+    "The form's arithmetic notes hold: 31/169 is 18.3 percent, not the printed 16.3. HumanAndAI's 29.9 and 7.3 percent cannot come from 309 texts, nor HumanAgainstAI's 35.9 and 6.9 from 253, while HumanBaseline's fit 688. Table 7's top-10 percent ratios fit pools of 31 (HumanBaseline) and 64 (ChatGPT-4), not Table 4's 30 and 96 (PDF p. 18, Table 4; PDF p. 23, Table 7).",
+    "Extra arithmetic, not in the form: HumanAgainstAI's ALL ratios fit 304 texts, the footnote-3 count of complete responses (109 and 21 ideas), and HumanBaseline's also fit 702. HumanAndAI's fit 314 but not 315. Table 7 may count texts before the unexplained exclusions (PDF p. 9, footnote 3; PDF p. 23, Table 7).",
+    "S1-O11's treatment_higher follows the paper's own reading of Table 4 by shares of each source's own texts (43 percent for ChatGPT-4, 4 percent for HumanBaseline). For HumanPlusAI vs HumanBaseline these shares are 10.0 vs 4.4 percent (top 10), 5.5 vs 2.3 (top 5), and 1.0 vs 0.9 (top 1) (PDF p. 17, Section 3.1.1; PDF p. 18, Table 4).",
+    "The S1-O5 text-table conflict is real: the text says HumanPlusAI 'did not yield responses that were statistically more creative', and Table 5 col (1) prints 0.142** (0.067) (PDF p. 18, Section 3.1.2; PDF p. 19, Table 5).",
+    "The RAs are 'two students from an art school in Lausanne and three from business schools', so human_raters is defensible, as the form notes. Listing RA ratings apart from online ratings is also defensible under rule 7, although the paper calls the RA section 'a robustness check': the panel differs, and originality and surprise change sign (-0.416 and -0.338 against 0.335 and 0.193) (PDF p. 11; PDF p. 18; PDF pp. 36, 38).",
+    "No outcome that bears on the three questions is missing. Tables 9 and 10 are perceptions (HumanPlusAI texts guessed AI in 59.4 percent), Tables 6 and 8 cover correlates and rater treatments, the top-10 percent sub-dimension sentence prints no numbers, and the ChatGPT-vs-Bard comparison within HumanPlusAI (P < 0.01) rests on self-chosen tools, with its means already in S1-O1 (PDF p. 15; PDF p. 17; PDF p. 20; PDF p. 24; PDF p. 25).",
+    "Criterion 3 holds: S1-O1 is the online raters' creativity score of each writer's text (PDF p. 10, Section 2.1.2; PDF p. 15, Table 2)."
+  ],
+  "summary": "The outcome coding of c035 holds in substance: every outcome is scored on the written texts by raters or a computed measure, AI was available while the HumanPlusAI texts were written, the core question and construct codes follow the codebook, the rating-level units match the paper's regressions, and every coded number matches Tables 1 to 5, 7, and 14 to 16 of the PDF. The conclusion is still refuted on details: S1-O10's unit (output) conflicts with footnote 8 and its measure code (automated_score) does not fit a character count, S2-O9 codes the one-model AI pools as diversity and ChatGPT-4's direction as mixed although no Table 7 cell favors it, and the no-AI HumanAgainstAI contrasts inherit with_ai and AI-available codes."
+}

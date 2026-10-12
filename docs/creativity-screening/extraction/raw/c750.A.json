@@ -1,0 +1,369 @@
+{
+ "cid": "c750",
+ "extractor": "A",
+ "is_own_paper": true,
+ "source": {
+  "pdf_file": "C:/Dropbox/Admin/website/ai-skill-atlas/public/pdfs/Contractor & Reyes (2026-09) - AI Learning RCT.pdf",
+  "version": "September 2026, as dated on the title page (PDF p. 1); the specific repository PDF required by extraction-spec Rule 6",
+  "supplement_used": "Embedded Appendices A-D in the same September PDF, read in full. The separately linked Supplementary Materials file was not used."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Two-session laboratory experiment: analytical essays with randomized AI access, then unaided writing approximately one week later",
+   "design_class": "lab_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": {
+    "AI-allowed": 8,
+    "AI-forbidden": 8
+   },
+   "cluster_se_treatment": "Students were individually randomized to computers within a chosen time slot; the two parallel labs were then randomly assigned to opposite conditions. The cluster counts describe lab-by-time-slot delivery groups, one per arm in each of the eight slots, rather than distinct buildings (PDF p. 6, Section 2.1; PDF p. 54, Figure A3 notes). The paper uses student-level heteroskedasticity-robust standard errors and time-slot fixed effects; it does not report clustering by lab/time slot or an adjustment for similarity scores sharing essays (PDF p. 12, Section 3.3; PDF p. 41, Table 5 notes).",
+   "n_randomized": 256,
+   "n_analyzed": 211,
+   "counts_source": {
+    "locator": "PDF p. 6, Section 2.1, lab/time-slot arrangement; PDF p. 37, Table 1, Number of students; PDF p. 38, Table 2, N (Students), AI-forbidden/AI-allowed/total; PDF p. 39, Table 3, N, control/total; PDF p. 63, Table A1, N (Students), treated-student analysis",
+    "quote": "We schedule eight time slots with two parallel labs per slot.\nNumber of students 256 211 205\nN (Students) 126 130 256\nN 104 211\nN (Students) 107 102 107 102"
+   },
+   "arms": [
+    {
+     "name": "AI-allowed",
+     "description": "Any generative AI tool permitted during Session One learning and essay writing; a dedicated ChatGPT (GPT-4o) account was supplied. Standard online resources were also permitted. AI and other external resources were prohibited for all knowledge tests and for the Session Two essay (PDF pp. 7-10, Sections 2.1-2.2; PDF p. 53, Figure A2). Arm counts refer to assigned sign-ups and the Session One study sample, not the outcome-specific essay sample.",
+     "ai": "generative_ai",
+     "n_randomized": 130,
+     "n_analyzed": 107
+    },
+    {
+     "name": "AI-forbidden",
+     "description": "Generative AI prohibited during Session One learning and essay writing; standard online resources such as Google, Wikipedia, and the college library website were permitted. AI and other external resources were prohibited for all knowledge tests and for the Session Two essay (PDF pp. 7-10, Sections 2.1-2.2; PDF p. 53, Figure A2). Arm counts refer to assigned sign-ups and the Session One study sample, not the outcome-specific essay sample.",
+     "ai": "none",
+     "n_randomized": 126,
+     "n_analyzed": 104
+    }
+   ],
+   "population": "students",
+   "country": "United States",
+   "task_type": "other",
+   "task": "Middlebury College undergraduates read about randomly assigned blockchain technology, carbon capture, or CRISPR gene editing and write an analytical essay, then write to a complementary prompt on the same topic without AI or other resources in the later session (PDF pp. 7-10, Sections 2.1-3.1).",
+   "ai_role": "open_chat",
+   "ai_tool": {
+    "name": "ChatGPT (GPT-4o); any generative AI tool was permitted",
+    "year": null,
+    "locator": "PDF p. 8, Section 2.1, Treatment; the model release year is not printed"
+   },
+   "preregistration": {
+    "exists": "yes",
+    "where": "AEA RCT Registry, AEARCTR-0015806, https://www.socialscienceregistry.org/trials/15806 (linked on PDF p. 1); pre-analysis plan explicitly discussed on PDF p. 13, Section 3.4. The external registration and plan were not retrieved.",
+    "primary_outcome": "Overall essay quality rating and the average quality index are explicitly identified as the primary essay-based outcomes in the pre-analysis plan (PDF p. 13, Section 3.4). The paper does not identify within-group similarity as a preregistered primary outcome."
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Within-group similarity, Session One essays (AI available)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "A sentence-embedding model fine-tuned from MPNet, with no exact checkpoint stated. For each student's essay, the outcome is its average pairwise cosine similarity with all other essays in the same assigned treatment × topic × prompt cell. The regression has one similarity score per student, with one essay per session; higher values mean greater between-student similarity (PDF p. 14, Section 3.4; PDF p. 41, Table 5, Panel B notes).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI-allowed",
+   "control_arm": "AI-forbidden",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": 104,
+   "n_total": 210,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.773,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "AI-allowed minus AI-forbidden; the adjusted assignment coefficient is recorded under regression",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.004,
+     "se": 0.007,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "OLS intent-to-treat coefficient on assignment to AI-allowed, with Session One time-slot fixed effects and controls selected through double-lasso; outcome is raw average cosine similarity (PDF pp. 11-12, Section 3.3; PDF p. 41, Table 5 notes)."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "control_mean",
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and standard errors, columns 1-2",
+     "quote": "Within−group sim. 0.773 0.004 0.006 0.746 −0.003 −0.004 (0.007) (0.010) (0.016) (0.022)"
+    },
+    {
+     "fields": [
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, N row, columns 1-2",
+     "quote": "N 104 210 210 102 204 204"
+    }
+   ],
+   "notes": "Raw similarity sign is retained. The estimate is the randomized-access ITT contrast; the accompanying instrumental-variable TOT is not a separate arm contrast. Both arms could use standard online resources during Session One, supporting ai_vs_bau. The treatment-arm mean is not printed and is not reconstructed from the adjusted coefficient. The outcome-specific treatment count is not printed separately and is not obtained by subtracting the control count from the total. Figures 6 and A7 show standardized estimates and confidence intervals only graphically; no values were digitized (PDF p. 34; PDF p. 58). The paper reports student-level robust uncertainty without a stated adjustment for dependence between similarity scores that share essays. The outcome was produced with AI available to the treatment arm."
+  },
+  {
+   "slug": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Within-group similarity, Session Two essays (unaided follow-up)",
+   "question": "after_ai",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "A sentence-embedding model fine-tuned from MPNet, with no exact checkpoint stated. For each student's essay, the outcome is its average pairwise cosine similarity with all other essays in the same assigned treatment × topic × prompt cell. The regression has one similarity score per student, with one essay per session; higher values mean greater between-student similarity (PDF p. 14, Section 3.4; PDF p. 41, Table 5, Panel B notes).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "delayed",
+   "delay_days": 6.98,
+   "outcome_with_ai": false,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI-allowed",
+   "control_arm": "AI-forbidden",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": 102,
+   "n_total": 204,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.746,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "AI-allowed minus AI-forbidden; the adjusted assignment coefficient is recorded under regression",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.003,
+     "se": 0.016,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "OLS intent-to-treat coefficient on assignment to AI-allowed, with Session One time-slot fixed effects and controls selected through double-lasso; outcome is raw average cosine similarity (PDF pp. 11-12, Section 3.3; PDF p. 41, Table 5 notes)."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "control_mean",
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and standard errors, columns 4-5",
+     "quote": "Within−group sim. 0.773 0.004 0.006 0.746 −0.003 −0.004 (0.007) (0.010) (0.016) (0.022)"
+    },
+    {
+     "fields": [
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, N row, columns 4-5",
+     "quote": "N 104 210 210 102 204 204"
+    },
+    {
+     "fields": [
+      "delay_days"
+     ],
+     "locator": "PDF p. 9, Section 2.2, footnote 5",
+     "quote": "Among students who attended Session Two, the average gap between sessions was 6.98 days."
+    }
+   ],
+   "notes": "Raw similarity sign is retained. The estimate is the randomized-access ITT contrast; the accompanying instrumental-variable TOT is not a separate arm contrast. Both arms could use standard online resources during Session One, supporting ai_vs_bau. The treatment-arm mean is not printed and is not reconstructed from the adjusted coefficient. The outcome-specific treatment count is not printed separately and is not obtained by subtracting the control count from the total. Figures 6 and A7 show standardized estimates and confidence intervals only graphically; no values were digitized (PDF p. 34; PDF p. 58). The paper reports student-level robust uncertainty without a stated adjustment for dependence between similarity scores that share essays. Both arms wrote without AI or external resources; the comparison retains the original Session One assignment. The delay is the printed mean interval for Session Two attendees, not a fixed interval for every student."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "Overall essay quality, both sessions (S1-O3 and S1-O4), including combined, human-only, and AI-only ratings",
+   "reason": "Analytical-writing proficiency, excluded by the paper-specific Review 1 decision and the writing-proficiency rule; all grader variants are outside this extraction. PDF p. 13, Section 3.4; PDF p. 41, Table 5, Panel C."
+  },
+  {
+   "what": "Quality index, both sessions, including grader variants",
+   "reason": "Analytical-writing proficiency, excluded by the paper-specific Review 1 decision and the writing-proficiency rule; all grader variants are outside this extraction. PDF p. 13, Section 3.4; PDF p. 41, Table 5, Panel C."
+  },
+  {
+   "what": "Accuracy of content (including delayed S1-O11), both sessions",
+   "reason": "Analytical-writing proficiency, excluded by the paper-specific Review 1 decision and the writing-proficiency rule; all grader variants are outside this extraction. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Use of evidence and examples (including delayed S1-O12), both sessions",
+   "reason": "Analytical-writing proficiency, excluded by the paper-specific Review 1 decision and the writing-proficiency rule; all grader variants are outside this extraction. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Relevance to the prompt (including delayed S1-O13), both sessions",
+   "reason": "Analytical-writing proficiency, excluded by the paper-specific Review 1 decision and the writing-proficiency rule; all grader variants are outside this extraction. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Organization and structure (including delayed S1-O14), both sessions",
+   "reason": "Analytical-writing proficiency, excluded by the paper-specific Review 1 decision and the writing-proficiency rule; all grader variants are outside this extraction. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Writing style and clarity (including delayed S1-O15), both sessions",
+   "reason": "Analytical-writing proficiency, excluded by the paper-specific Review 1 decision and the writing-proficiency rule; all grader variants are outside this extraction. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Similarity to the reading material, both sessions (S1-O7 and S1-O8)",
+   "reason": "Compares each essay with a fixed source text, not different participants with one another; excluded by the paper-specific restriction to within-group essay similarity. PDF p. 41, Table 5, Panel B."
+  },
+  {
+   "what": "Essay length index, both sessions (S1-O9 and S1-O10)",
+   "reason": "Excluded by the paper-specific restriction to the two within-group essay-similarity outcomes. PDF p. 66, Table A4."
+  },
+  {
+   "what": "Number of tokens, both sessions",
+   "reason": "Text-length component, excluded by the paper-specific restriction to within-group essay similarity; standardized component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Number of words, both sessions",
+   "reason": "Text-length component, excluded by the paper-specific restriction to within-group essay similarity; standardized component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Number of sentences, both sessions",
+   "reason": "Text-length component, excluded by the paper-specific restriction to within-group essay similarity; standardized component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Readability index, both sessions",
+   "reason": "Excluded by the paper-specific restriction to within-group essay similarity; ease of reading is not a cross-participant diversity outcome. PDF p. 66, Table A4."
+  },
+  {
+   "what": "Mean sentence length, both sessions",
+   "reason": "Readability component, excluded by the paper-specific restriction to within-group essay similarity; component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Syllables per word, both sessions",
+   "reason": "Readability component, excluded by the paper-specific restriction to within-group essay similarity; component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Flesch-Kincaid grade level, both sessions",
+   "reason": "Readability component, excluded by the paper-specific restriction to within-group essay similarity; component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Flesch Reading Ease score, both sessions",
+   "reason": "Readability component, excluded by the paper-specific restriction to within-group essay similarity; component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Lexical diversity index, both sessions (S1-O5 and S1-O6)",
+   "reason": "Describes vocabulary variety within an essay, not diversity across different participants; excluded by the paper-specific restriction. PDF p. 66, Table A4."
+  },
+  {
+   "what": "Type-token ratio, both sessions",
+   "reason": "Within-essay lexical-variety component, excluded by the paper-specific restriction; component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Hapax proportion, both sessions",
+   "reason": "Within-essay lexical-variety component, excluded by the paper-specific restriction; component effects are presented graphically. PDF p. 58, Figure A7; PDF p. 66, Table A4 notes."
+  },
+  {
+   "what": "Fraction of essay text detected as AI-generated, both sessions",
+   "reason": "Measures AI text detection rather than the requested between-person similarity outcome. PDF p. 41, Table 5, Panel A."
+  },
+  {
+   "what": "Fraction of essay text flagged as plagiarized, both sessions",
+   "reason": "Excluded by the paper-specific restriction to within-group essay similarity. PDF p. 41, Table 5, Panel A."
+  },
+  {
+   "what": "Knowledge-test performance, both sessions: fraction correct, standardized scores, score-threshold and item analyses",
+   "reason": "Factual and conceptual subject-knowledge tests, not convergent creativity tests; the paper-specific decision retains only essay similarity. PDF p. 13, Section 3.4; PDF p. 40, Table 4."
+  },
+  {
+   "what": "Self-assessed knowledge, both sessions",
+   "reason": "Self-report, not an outcome scored on the produced essay. PDF p. 40, Table 4."
+  },
+  {
+   "what": "AI adoption, usage intensity, and usage purposes: provided-account use, prompt and conversation counts, self-reported any-AI/ChatGPT/other-tool use, and purpose classifications",
+   "reason": "First-stage or descriptive process measures, not the requested essay-similarity outcomes. PDF p. 12, Section 3.4; PDF p. 15, Section 4.1; PDF p. 39, Table 3."
+  },
+  {
+   "what": "Total learning-phase duration, Qualtrics-recorded and self-reported",
+   "reason": "Process measure, not scored on produced output. PDF p. 42, Table 6, Panel A."
+  },
+  {
+   "what": "Time allocation: research, writing, and other activity shares; drafting, editing, note-taking, organizing, searching, reading, and other activity components",
+   "reason": "Self-reported process measures, not scored on produced output. PDF p. 42, Table 6, Panel B; PDF p. 59, Figure A8."
+  },
+  {
+   "what": "Enjoyment of learning",
+   "reason": "Self-reported experience, not an output-scored outcome. PDF p. 42, Table 6, Panel C."
+  },
+  {
+   "what": "Feeling skilled or effective",
+   "reason": "Self-reported experience, not an output-scored outcome. PDF p. 42, Table 6, Panel C."
+  },
+  {
+   "what": "Academic integrity: caught by proctor, self-reported unauthorized resource use, and any integrity violation",
+   "reason": "Behavioral compliance and self-report measures, not the requested output similarity. PDF p. 65, Table A3."
+  },
+  {
+   "what": "Beliefs about AI gains on own and others’ test scores, and absolute deviations from the estimated effect",
+   "reason": "Self-reported beliefs and their calibration, not output creativity or diversity. PDF p. 69, Table A7."
+  },
+  {
+   "what": "Open-ended beliefs: VADER sentiment, narrative mechanisms and links, multiple-mechanism indicator, augmentation/automation/conditional framing, and narrative clusters",
+   "reason": "These code attitudes and explanations about AI and learning; they do not score creativity of task outputs. Associated correlational analyses are also outside scope. PDF pp. 86-87, Appendix C.1; PDF p. 92, Table C1; PDF p. 93, Narrative Clusters."
+  },
+  {
+   "what": "Subgroup and correlational analyses by automation/augmentation use, baseline characteristics, AI experience, and beliefs",
+   "reason": "Subgroup or moderation analyses; use types were self-selected rather than separately randomized AI configurations. PDF p. 43, Table 7; PDF p. 63, Table A1; PDF p. 92, Table C1."
+  },
+  {
+   "what": "Literature comparison and pooled learning estimates from other papers",
+   "reason": "Synthesis of external studies, not additional participant samples in this paper. PDF p. 82, Appendix B.7 and Table B3."
+  },
+  {
+   "what": "Conceptual model of effort, delegation, essay quality, and knowledge",
+   "reason": "Theoretical framework rather than another empirical randomized study. PDF p. 95, Appendix D."
+  },
+  {
+   "what": "Treatment-on-the-treated re-estimates of within-group similarity, both sessions",
+   "reason": "The same assigned-arm comparisons are recorded once as ITT estimates. The accompanying instrumental-variable TOT targets actual ChatGPT use among compliers, not a distinct randomized arm contrast; it is not added as another similarity record. PDF p. 12, Section 3.3; PDF p. 41, Table 5, Panel B, columns 3 and 6."
+  }
+ ],
+ "open_items": [
+  "Neither treatment-arm mean, arm-level standard deviation, nor arm-mean standard error for within-group similarity is printed. No treatment mean was computed from an adjusted coefficient (PDF p. 41, Table 5, Panel B).",
+  "The outcome-specific treated participant count is not separately printed for either similarity analysis. Only the printed control and total counts are entered; treatment counts are null under the no-computation rule (PDF p. 41, Table 5, Panel B).",
+  "Numerical confidence limits, exact p-values, and numerical standardized similarity effects are not printed for these contrasts. Figures 6 and A7 show standardized effects and intervals graphically (PDF pp. 34 and 58).",
+  "The exact sentence-embedding checkpoint is not stated; only a sentence-embedding model fine-tuned from MPNet is identified (PDF p. 41, Table 5 notes).",
+  "The release year of GPT-4o is not printed in the paper; ai_tool.year is null (PDF p. 8, Treatment).",
+  "No adjustment is described for lab/time-slot delivery groups or for dependence between participant similarity scores sharing essays. se_basis records the paper’s participant-level robust analysis, not an independently verified dependence correction (PDF pp. 11-12, Section 3.3; PDF p. 41, Table 5 notes).",
+  "The paper does not provide a complete account of outcome-specific missing essays. The grading rule for empty or very short essays applies to AI grading and cannot establish the similarity-analysis exclusions (PDF p. 37, Table 1; PDF p. 41, Table 5; PDF p. 75, Appendix B.4).",
+  "The paper names preregistered primary essay-quality outcomes but does not establish preregistered-primary status for either similarity outcome; the linked registry and pre-analysis plan were not independently read (PDF p. 1; PDF p. 13, Section 3.4)."
+ ],
+ "notes": "Extraction is restricted to the two within-group essay-similarity outcomes under Review 1. The is_own_paper flag follows the codebook's explicit decision. All numerical results come from the requested September PDF; the screening form supplies the study/arm names and outcome IDs. An in-memory Markdown conversion of the September PDF was read consecutively from start to end, including all appendices, and every cited page was checked with PyMuPDF text extraction. The study-level analyzed count describes Session One attendees; the estimates use the separate essay-analysis counts printed in Table 5. Table A4 agrees with Table 5 on the essay-text analysis totals in this version (PDF p. 66). Individual assignment follows the documented random allocation of students to computers; the additional lab-by-slot assignment and the paper's unclustered uncertainty are disclosed separately. The task is coded other, consistent with the screening form's analytical-essay task; eligibility is through between-writer similarity. No shared-participant claim with another paper is stated, consistent with sample_overlap in the reconciled form; shared_sample is null. No standardized effects, sample-size differences, confidence limits, or other derived statistics were computed. Repeated-session outcomes are not a randomized within-person crossover."
+}

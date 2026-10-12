@@ -1,0 +1,65 @@
+{
+ "cid": "c058",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_analyzed; studies[0].arms[*].n_analyzed; studies[0].participants.who; eligibility.reason",
+   "form_value": "36 analyzed overall and 36 analyzed in each condition; participants.who explicitly says the analyzed count is inferred.",
+   "source_says": "The source explicitly reports 36 recruited participants and says all completed both sessions. It does not separately report the number of people represented in the design-outcome analysis after five designs were excluded. Under the form rule against inferred counts, use null for that post-exclusion analyzed-person denominator and distinguish it from the 36 recruited/completing participants; no participant exclusion is reported. The study still cannot meet the 50-person threshold.",
+   "quote": "Five designs were filtered out for non-compliance with the study requirements. This resulted in a final count of 105 eligible designs—52 human-only and 53 GenAI-supported—for design evaluation.",
+   "locator": "arXiv 2411.00168v1, p. 3, Introduction (all participants completed both sessions); p. 6, Sections 3 and 3.1; p. 8, Section 4, first paragraph. Form-spec rules 1 and 5 and Counts in prose."
+  },
+  {
+   "field": "studies[0].outcomes[0].unit; studies[0].outcomes[1].unit; studies[0].outcomes[2].unit",
+   "form_value": "output for all three design-rating contrasts",
+   "source_says": "The paper says five reviewers each evaluated the designs and identifies Wilcoxon signed-rank tests, but does not explain aggregation across reviewers or across multiple designs per participant, or give the test observation counts. Thus output is not confirmed as the statistical analysis unit defined by the codebook. Record that unit as unconfirmed/null and preserve 105 as the number of eligible designs, without treating it as a confirmed test denominator or treating the reported SDs as participant-level SDs.",
+   "quote": "The same test was used to evaluate the differences between conditions in design outcomes such as usefulness, creativity, unconventionality, visual appeal, and alignment with the client’s brand.",
+   "locator": "arXiv 2411.00168v1, pp. 7–8, Section 3.3 (expert evaluations); p. 8, Section 3.4 (analysis); pp. 8–9, Section 4.1. Codebook Section 6, Unit; form-spec Unit field note."
+  },
+  {
+   "field": "studies[0].assignment.preregistered; studies[0].assignment.prereg_locator",
+   "form_value": "Both fields are empty strings.",
+   "source_says": "Set preregistered to yes and cite Section 3.4. The source explicitly states preregistration, also describes abandoning the planned analysis by self-reported design skill, and distinguishes primary preregistered analyses from exploratory subgroup analyses. No registration URL or identifier is printed.",
+   "quote": "The study’s protocol was preregistered.",
+   "locator": "arXiv 2411.00168v1, p. 8, Section 3.4, second paragraph; Section 4, second paragraph."
+  },
+  {
+   "field": "studies[0].outcomes (omitted post-session creativity-test outcomes)",
+   "form_value": "Only expert-rated design creativity, unconventionality, and usefulness are listed; AUT and Anagram tests appear only in the design summary.",
+   "source_says": "Add the scored AUT fluency, flexibility, and originality outcomes and Anagram convergent-thinking performance, measured after each design session (immediate after_ai outcomes). Originality is novelty, not across-person diversity. Section 4.2 reports no significant overall condition differences; overall numerical estimates are not printed and should remain null. For participants without prior GenAI design-tool experience, Section 4.2.1 reports post-GenAI fluency M = 14.333, SD = 4.384 versus post-human-only M = 12.500, SD = 4.573, Z = −2.112, p < .05; flexibility M = 12.250, SD = 3.562 versus M = 10.167, SD = 3.131, Z = −2.203, p < .05. Figure 4 prints p = 0.035 and p = 0.028 for these two contrasts, respectively; its prior-experience subgroup panels print p = 0.208 for fluency and p = 0.714 for flexibility. Keep these exploratory subgroup contrasts distinct from the overall results.",
+   "quote": "We found that there were no significant differences between conditions in mood (relaxation, pleasure, energy), self-efficacy, inherent divergent thinking (AUT), or convergent thinking (Anagram).",
+   "locator": "arXiv 2411.00168v1, p. 4, Fig. 2 and Section 2.1 (constructs); p. 6, Section 3.2 (tasks and scoring); p. 7, Section 3.3 (timing); p. 8, Section 3.4 (AUT coding); p. 9, Section 4.2 and Fig. 4; p. 10, Section 4.2.1. Form-spec rule 7."
+  },
+  {
+   "field": "studies[0].outcomes (omitted visual-appeal and brand-alignment ratings)",
+   "form_value": "The two additional expert-rated design outcomes are omitted.",
+   "source_says": "The experts also scored visual appeal and representation of the client organization on 7-point scales. Add these output-scored with_ai outcomes, with no significant difference: visual appeal Z = −0.456, p = .649; alignment with the client organization Z = −1.213, p = .225. Their arm means and SDs are not printed and should remain null.",
+   "quote": "visual appeal (Z = −0.456, p = .649), or alignment with the client’s organization (Z = −1.213, p = .225).",
+   "locator": "arXiv 2411.00168v1, p. 7, Section 3.2, Quality of Design Output Evaluated by Experts; p. 8, Section 4.1. Form-spec rule 7."
+  },
+  {
+   "field": "studies[0].participants.quote",
+   "form_value": "We recruited 36 participants via professional and academic communication channels (Slack, Discord, etc.), email lists, and flyers posted on a large public university campus in the United States.",
+   "source_says": "The PDF says fliers, not flyers. Correct that word in the verbatim quotation; the recruitment facts are otherwise accurate.",
+   "quote": "We recruited 36 participants via professional and academic communication channels (Slack, Discord, etc.), email lists, and fliers posted on a large public university campus in the United States.",
+   "locator": "arXiv 2411.00168v1, p. 6, Section 3.1, first sentence."
+  }
+ ],
+ "confirmed": [
+  "Source provenance is accurate: independently read all 18 pages of arXiv 2411.00168v1 in memory, including References on pp. 15–18; no appendix is included. The arXiv API identifies v1 as published 2024-10-31. The title and eight authors match source.title_on_document and source.authors_on_document (PDF p. 1; https://export.arxiv.org/api/query?id_list=2411.00168). No local full text is listed in retrieval.json.",
+  "The CHI 2026 publisher PDF returned HTTP 403. Its Semantic Scholar abstract independently confirms 36 participants, a within-subjects advertisement-design experiment, and both client and online-volunteer evaluations; the latter are absent from arXiv v1. Thus the form correctly limits its numerical findings to the preprint rather than claiming verification of CHI full-text statistics (https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/3772318.3791329?fields=title,authors,year,abstract,externalIds,openAccessPdf,url).",
+  "has_randomized_people_study is true: a randomly selected half designed individually first and the other half with GenAI first, then they switched conditions; experts scored their actual designs. lab_rct, within_person_order, crossover, and context_class none are appropriate. This belongs in the two-screener pipeline while remaining a small randomized experiment excluded from the core for having fewer than 50 people (pp. 2 and 6–7, Fig. 1 and Sections 3–3.3; codebook Sections 3–4).",
+  "The study reports 36 recruited participants and completion of both conditions by all participants, not two independent groups of 36. There were 110 designs initially (54 human-only, 56 GenAI-supported); five noncompliant designs were excluded, leaving 105 eligible designs (52 human-only, 53 GenAI-supported), with reported means of 1.44 and 1.47 designs per participant. These design counts must not be used as participant counts; a separate post-exclusion person denominator is not stated (p. 3, Introduction; p. 6, Sections 3 and 3.1; p. 8, Section 4).",
+  "The recorded demographics match: 94% under 30, 81% women, and 67% with prior GenAI design experience. Recruitment used professional/academic channels and a large public US university campus; the source does not establish a student-only sample (p. 6, Section 3.1).",
+  "The task and procedure match: two 25-minute sessions, one or two 1080 x 1080-pixel advertisements per session for a newly launched research-group website, approximately 90 minutes overall, and an additional $40 bonus for creators of the top three designs (p. 7, Section 3.3).",
+  "The source names ChatGPT Plus accounts and DALL-E2 for generating/modifying images and permits other tools for text correction or image clipping. Section 6 additionally calls the model GPT-4 powered by DALL-E2; these are the authors’ model descriptions (p. 6, Section 3.2; p. 7, Section 3.3; p. 14, Section 6).",
+  "Five client-organization experts blind to condition evaluated the designs. Creativity and unconventionality used 7-point ratings; usefulness used an 11-point rating (p. 4, Fig. 2; pp. 7–8, Sections 3.2–3.3).",
+  "S1-O1 reported string is numerically accurate: GenAI M = 3.909, SD = 1.389 versus human-only M = 3.457, SD = 1.359; Z = −3.318, p < .001; the prose says 13% more creative (p. 9, Section 4.1 and Fig. 3).",
+  "S1-O2 reported string is numerically accurate: GenAI M = 4.262, SD = 1.328 versus human-only M = 3.457, SD = 1.250; Z = −5.958, p < .001; the prose says 23.3% more unconventional. The Fig. 3 caption separately prints p < 0.0001 for unconventionality; the form accurately follows the Section 4.1 prose (p. 9).",
+  "S1-O3 reported string is accurate: usefulness Z = −0.238, p = .812. Figure 3 prints p-value 0.812 and plots, without labeling exact values, the arm means. The same Z and p are indeed also printed for the self-reported-design-skill analysis, so the duplication is in the source (p. 8, Sections 3.4 and 4.1; p. 9, Fig. 3).",
+  "The one-line finding faithfully reproduces the three design-outcome contrasts in arXiv v1 (pp. 8–9, Section 4.1 and Fig. 3); it does not establish that these are the final CHI numerical results.",
+  "This is an original experiment, not a synthesis; the empty synthesis fields are appropriate. No quantitative across-person homogenization/diversity outcome is reported, and no supplementary-material location is stated in the preprint (full PDF, pp. 1–18)."
+ ],
+ "summary": "The preprint confirms a randomized 36-person crossover study below the core sample-size threshold, and the three reported design contrasts are accurate. Corrections concern unreported analysis denominators/units, omitted outcomes and preregistration, and a nonverbatim quotation."
+}

@@ -1,0 +1,91 @@
+{
+ "cid": "c146",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].assignment; studies[0].arms; eligibility.criterion_1_random_assignment_of_ai",
+   "form_value": "{\"assignment\":{\"randomized\":\"no\",\"what_was_assigned\":\"\",\"unit\":\"individual | team | class | session | within_person_order | other\",\"structure\":\"between | within | crossover | mixed\",\"quote\":\"\",\"locator\":\"\",\"preregistered\":\"yes | no | not_stated\",\"prereg_locator\":\"\"},\"arms\":[{\"name\":\"\",\"description\":\"\",\"ai\":\"none | generative_ai | other_aid\",\"n_randomized\":null,\"n_analyzed\":null}],\"criterion_1_random_assignment_of_ai\":\"met | not_met | unclear\"}",
+   "source_says": "Complete the template fields: no assignment occurred; exposure was classified at the individual creator level in two observed cohorts followed over time. Use assignment.unit = individual, structure = between, and preregistered = not_stated; add the supporting passage. Replace the empty arm with AI adopters (generative_ai) and observed nonadopters (none), retaining unknown arm counts as null. Set criterion_1_random_assignment_of_ai = not_met.",
+   "quote": "Users with any of their publications identified as AI assisted is considered a treatment unit, whereas any user who has never published an artifact with AI assistance is then a control unit.",
+   "locator": "Journal main-text XML (PMC12407059), Materials and Methods, 'Identifying AI adopters'; Introduction, paragraph 4"
+  },
+  {
+   "field": "studies[0].participants.counts_are; studies[0].participants.exclusions; eligibility.criterion_2_at_least_50_people",
+   "form_value": "{\"counts_are\":\"people | teams | other\",\"exclusions\":\"\",\"criterion_2_at_least_50_people\":\"met | not_met | unclear\"}",
+   "source_says": "Set counts_are = people and record that matching can drop unmatched creators, with the number unstated. The reported 31,076 is the creator corpus; the main text does not identify a final matched analysis total or per-arm people counts, so retain n_analyzed and n_randomized as null. Replace the criterion_2 option list with unclear for the strict post-matching analyzed-count criterion pending the inaccessible supplement; do not substitute artwork, permutation, or SemArt counts for people.",
+   "quote": "the matching procedure may drop a few users who are not successfully matched",
+   "locator": "Journal main-text XML (PMC12407059), Introduction, paragraph 4; Results, 'Robustness checks', paragraph beginning 'For each of the main outcome variables'"
+  },
+  {
+   "field": "studies[0].ai_tool.how_used",
+   "form_value": "Creators' own self-selected use of text-to-image tools in their artwork workflow; adoption date is the first AI-tagged publication.",
+   "source_says": "Adoption is the earliest identified AI-assisted publication, detected through an AI-related tag and/or publication in an AI art community. Restricting the adoption date to the first AI-tagged publication omits the community-based identification route.",
+   "quote": "We use the earliest identified publication date for each treatment user as the adoption date.",
+   "locator": "Journal main-text XML (PMC12407059), Materials and Methods, 'Identifying AI adopters'"
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing; studies[0].outcomes[*].primary; eligibility.criterion_3_outcome_scored_on_output",
+   "form_value": "{\"ai_available_when_produced\":\"yes | no | mixed\",\"timing\":\"immediate | delayed\",\"primary\":\"preregistered_primary | paper_primary | secondary | not_stated\",\"criterion_3_outcome_scored_on_output\":\"met | not_met | unclear\"}",
+   "source_says": "These remain unselected template menus for all five outcomes. Code AI availability as mixed across the pre-AI/adopter/nonadopter panel and primary as not_stated because no formally designated primary outcome is stated. The source reports a retrospective artwork panel, not an experimental assessment schedule, so leave timing null rather than inventing an immediate/delayed session. Set criterion_3_outcome_scored_on_output = met: measures are computed on posted artwork content.",
+   "quote": "Thus, we operationalize creative expansion as the expansion of the convex hull of artworks’ core ideas over time.",
+   "locator": "Journal main-text XML (PMC12407059), Introduction, paragraph 4; Materials and Methods, 'Identifying AI adopters', 'Idea feature extraction', and 'Operationalizing the idea frontier'"
+  },
+  {
+   "field": "studies[0].outcomes[0].measure_detail; studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"measure_detail\":\"\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}}",
+   "source_says": "Populate the required diversity methods: cohort-level convex-hull volume, with surface area mentioned as a robustness variant; BLIP-2 captions embedded with a semantic-similarity-fine-tuned BERT model (Sentence-BERT reference 43; exact checkpoint not stated), reduced from 384 dimensions to five with UMAP. Hulls contain cohort artwork idea vectors and the common 21,384-pair SemArt baseline. Uncertainty is presented as event-study difference-in-differences estimates with bootstrapped matching and 95% confidence intervals; numerical endpoints and the supplement's detailed variance procedure were not available. These are set-level novelty/breadth measures, not assessments of artistic value.",
+   "quote": "Thus, we operationalize creative expansion as the expansion of the convex hull of artworks’ core ideas over time.",
+   "locator": "Journal main-text XML (PMC12407059), Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; Fig. 1 caption; Results, 'Robustness checks'; Discussion, limitations"
+  },
+  {
+   "field": "studies[0].outcomes[0:3].contrasts[0].statistics_available",
+   "form_value": "[] for S1-O1, S1-O2, and S1-O3",
+   "source_says": "These outcomes are the three panels of Fig. 1 and its caption explicitly identifies 95% confidence intervals. Record figure_only and confidence_interval rather than leaving availability empty. Keep numerical point estimates, interval endpoints, and standard errors unknown because the accessible text does not supply them and the figure/PDF was not inspected.",
+   "quote": "The error bars represent 95% confidence intervals.",
+   "locator": "Journal main-text XML (PMC12407059), Fig. 1 caption, panels A-C"
+  },
+  {
+   "field": "studies[0].outcomes[4].contrasts[0].direction",
+   "form_value": "treatment_lower",
+   "source_says": "Use mixed for the full observation period, or explicitly restrict treatment_lower to the late period. The top 10% of AI-assisted creators gain market share after Midjourney relative to nonadopters, then lose share after Stable Diffusion 1.5 and by the end of 2023. The reported percentages themselves match the source.",
+   "quote": "However, the top 10% creators lose a large portion of their market share with Stable Diffusion 1.5 and by the end of 2023 relative to the nonadopters.",
+   "locator": "Journal main-text XML (PMC12407059), Results, 'AI-assisted creativity as a stochastic versus persistent process', paragraph beginning 'We plot the difference in interperiod gains'; Fig. 3C"
+  },
+  {
+   "field": "studies[0].outcomes",
+   "form_value": "Five outcomes; raw artwork productivity in Fig. 5A is omitted and measure_detail is empty for S1-O2 and S1-O4.",
+   "source_says": "Add the reported raw artwork productivity outcome (fluency/category_count): Fig. 5A describes AI-assisted masterminds as producing 4.4 times more artifacts on average than hive minds. This is a descriptive comparison within AI adopters, not an AI-versus-no-AI effect. Also document the Fig. 2 contribution-decile analysis as a variant of S1-O2 and the Fig. 5B hypothetical productivity-only discovery-rate subgroup analyses as variants of S1-O4, rather than omitting them. No standardized effect or numerical interval is stated for the 4.4-times comparison.",
+   "quote": "Figure 5A shows that the AI-assisted masterminds are inherently much more productive compared to the hive minds, producing 4.4 times more artifacts on average.",
+   "locator": "Journal main-text XML (PMC12407059), Results, 'AI-assisted creativity as a stochastic versus persistent process', Fig. 2; 'Productivity effects, human-AI effects, and dilution effects', Fig. 5A-B and adjacent paragraphs"
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "Fill code_url with https://doi.org/10.5061/dryad.xpnvx0ksf, which is explicitly given in the article and is already mentioned elsewhere in the form. Archive contents were not inspected.",
+   "quote": "Replication archive with code is available at Dryad at https://doi.org/10.5061/dryad.xpnvx0ksf.",
+   "locator": "Journal main-text XML (PMC12407059), Acknowledgments, 'Data and materials availability'"
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts[0].reported",
+   "form_value": "Figure only (event-study DiD estimates, 95% CIs). Text: 'compared to the nonadopters, the AI-assisted idea frontier is composed of many more artworks post-Stable Diffusion.'",
+   "source_says": "The embedded quotation changes the source's en dash in 'post–Stable Diffusion' to a hyphen. Restore the exact source text or present it as a paraphrase; the substantive result is otherwise supported.",
+   "quote": "compared to the nonadopters, the AI-assisted idea frontier is composed of many more artworks post–Stable Diffusion.",
+   "locator": "Journal main-text XML (PMC12407059), Results, 'Idea frontier expansion following text-to-image releases', paragraph discussing Fig. 1B"
+  }
+ ],
+ "confirmed": [
+  "Independently read the complete journal main-text XML, including all sections, figure captions, acknowledgments, supplementary-material listing, and references: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12407059/fullTextXML. No local markdown/PDF was on file. Main/supplement PDF requests to Europe PMC, PMC, and the publisher were blocked or challenged; the Europe PMC supplement API timed out. The supplement and numerical PDF/figure contents remain unverified.",
+  "source.version, title, authors, and publication metadata are supported: Science Advances 11(36), eadu5800, 3 September 2025, CC BY; the source is the journal version as full-text XML, not a preprint or a PDF read. Locator: XML front matter.",
+  "design_class = observational, context_class = observational, and core = no are supported. AI use is identified from users' own publications; random sampling of artworks and bootstrap permutations are analytic procedures, not random assignment of people to AI. No randomized people experiment, including an experiment with fewer than 50 analyzed people, is reported. Locators: Introduction, paragraph 4; Materials and Methods, 'Identifying AI adopters' and 'Production equalization for AI-assisted creators'.",
+  "The main text reports 31,076 unique creators and states '27 months from August 2021 to December 2023'; these are the source's printed wording and dates, not a recomputed calendar duration. The 21,384 SemArt image-description pairs are a historical-art baseline, not participant observations. Locators: Introduction, paragraph 4; Materials and Methods, 'Operationalizing the idea frontier'.",
+  "S1-O1 and S1-O2 substantive findings match: no significant pre-Midjourney idea-space differences; Midjourney V1 in February 2022 did not immediately expand the frontier; acceleration and more frontier-defining artworks followed Stable Diffusion 1.5, identified as October 2022 in the Introduction. Fig. 1 reports effects as proportions over the starting baseline (intercept plus treatment fixed effect), with 95% confidence intervals, not standardized mean differences. Locators: Introduction, paragraph 5; Results, 'Idea frontier expansion following text-to-image releases'; Fig. 1 caption.",
+  "S1-O3 correctly reports the initial concentration followed by broader participation: more H-creative AI-assisted creators than the nonadopter baseline by the end of 2023. Locator: Results, 'Attributing expansion to the hive mind or masterminds'; Fig. 1C.",
+  "S1-O4 and the one-line finding reproduce the narrative values: average 2.1% fewer frontier-defining artifacts after productivity equalization; 2.2% gains in the unadjusted discussion; approximately 4.3% net productivity contribution; maximum 6.6% by the end of 2023. These are frontier/vertex quantities, not person counts or pooled standardized effects. Locator: Results, 'Productivity effects, human-AI effects, and dilution effects', paragraph beginning 'Figure 4 reveals'; Fig. 4 caption.",
+  "The approximately 48% reduction in sampled AI-adopter artwork production and 200 draws/permutations used for production equalization are stated. These do not imply randomized people. Locator: Materials and Methods, 'Production equalization for AI-assisted creators'.",
+  "S1-O5 numerical wording matches the article: the top 10% of AI creators initially hold nearly 35%, later approximately 23%, described by the authors as 'a decrease of 12%'; nonadopters' top 10% maintain more than 30%. The source's '12%' wording is retained without silently recalculating or relabeling it. Locator: Results, 'AI-assisted creativity as a stochastic versus persistent process', paragraph beginning 'Examining market shares'; Fig. 3A-B.",
+  "Supplement existence and listed contents are confirmed, but the contents themselves were not read: sciadv.adu5800_sm.pdf, Supplementary Text, Figs. S1 to S6, Tables S1 to S4, References. Locator: XML 'Supplementary Materials' and associated media link.",
+  "This is an original observational study, not a synthesis; synthesis counts and pooled estimates are inapplicable. No pooled study count, pooled interval, or standardizing denominator should be supplied. Locators: Introduction; Materials and Methods."
+ ],
+ "summary": "The observational classification and headline numbers match the complete main-text XML, with no randomized people study identified. Ten corrections address incomplete fields, adoption timing, mixed result direction, omitted outcomes/provenance, and quotation fidelity; PDFs and the supplement could not be accessed."
+}

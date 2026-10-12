@@ -1,0 +1,228 @@
+{
+ "cid": "c706",
+ "screener": "single_nonrandom_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Baldini Braccini Roli (2025) - Impact of LLM-Assisted Coding in Creativity and Robustness of Robot Controllers.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Baldini Braccini Roli (2025) - Impact of LLM-Assisted Coding in Creativity and Robustness of Robot Controllers.pdf",
+  "version": "Published workshop paper, CEUR Workshop Proceedings Vol-4072, paper1 (HAIC 2025, First International Workshop on Human-AI Collaborative Systems, October 25, 2025, Bologna); full PDF on file, all 12 pages read",
+  "title_on_document": "Impact of LLM-Assisted Coding in Creativity and Robustness of Robot Controllers",
+  "authors_on_document": [
+   "Paolo Baldini",
+   "Michele Braccini",
+   "Andrea Roli"
+  ],
+  "pages": 12,
+  "supplement": {
+   "exists": "no",
+   "in_this_pdf": false,
+   "where": "",
+   "holds": "No separate supplement is cited. An Appendix inside this PDF (pp. 10-12) holds Figures 6-9 (DAT distribution, Normalized Compression Distance, coding experience, time to working result) and Table 1 (students' comments)."
+  }
+ },
+ "paper_design_summary": "Thirteen male students from the University of Bologna Intelligent Robotic Systems course each wrote a simulated Foot-Bot path-following controller during a three-hour session. Seven used Microsoft Copilot and six coded without it; allocation balanced Divergent Association Task scores, and randomization was not reported. The authors compared controller performance, including under increased noise to simulate a pseudo-reality gap, and pairwise code similarity within each group using Dolos.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Robot-controller coding with vs without Copilot (one course cohort)",
+   "design_class": "quasi_people",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Coding with Microsoft Copilot (with LLM) versus coding without it (without LLM)",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "We use the test to divide the students in the two groups, maintaining as balanced as possible the distribution of the DAT score (see Figure 6).",
+    "locator": "p. 4, Section 3 (Methods), last paragraph",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "with LLM",
+     "description": "Coded the controller with Copilot available through its online interface (incognito); required to query Copilot at least three times; course material, lab code, and documentation allowed",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 7
+    },
+    {
+     "name": "without LLM",
+     "description": "Coded the controller without LLM assistance; course materials, laboratory code, and simulation-environment and programming-language documentation were allowed. Internet access was prohibited except for those resources (p. 3, Section 3).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 6
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 13,
+    "counts_are": "people",
+    "exclusions": "",
+    "population": "students",
+    "who": "Thirteen male University of Bologna students who attended the Intelligent Robotic Systems course; none reported work experience in robotics. The paper gives 7 and 6 per group and reports no exclusions.",
+    "country": "",
+    "quote": "The experiment involved thirteen male students, which we divided in two groups. Seven participants program with the assistance of LLMs, while the remaining six program without (see Figure 1).",
+    "locator": "p. 3, Section 3 (Methods)"
+   },
+   "ai_tool": {
+    "name_model": "Microsoft Copilot, May 2025 version, online interface in incognito mode (Quick Response and Think Deeper modes available)",
+    "role": "open_chat",
+    "how_used": "Students in the LLM group had to query Copilot at least three times during development. Copilot saw only the code that students uploaded (p. 4, Section 3)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Write a Lua controller for a simulated Foot-Bot robot (ARGoS3 simulator) that searches for a black path and follows it as fast as possible; the evaluation function was shown to the students",
+    "duration": "three hours (p. 4)"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Pairwise code similarity within each group (Dolos plagiarism-detection software)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Dolos compares pairs of student controllers within each assistance group while ignoring comments, variable names, and text position (p. 5, Section 4; p. 6, Figure 4). Appendix alternatives are Normalized Compression Distance (NCD) on raw code including comments and spaces and on corresponding Abstract Syntax Trees (ASTs), using all two-student combinations within each group. All controllers contain common evaluation code (p. 10, Figure 7). Exact summary estimates and inferential tests are not reported.",
+     "unit": "pair",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "with LLM",
+       "control_arm": "without LLM",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Greater Dolos similarity with Copilot indicates lower diversity; the qualitative direction is reversed for the diversity construct, with no numerical effect calculated. The paper states: 'the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).' Exact arm medians and numerical effect estimates are not reported. Figure 4 has axis ticks but no printed median values. No test procedure, test statistic, p-value, or confidence interval is reported despite the narrative word 'significantly'. Appendix Figure 7 (p. 10) presents alternative Normalized Compression Distance measures on raw code and abstract syntax trees as box plots only, with no exact summary estimates or tests.",
+       "locator": "p. 5, Section 4 (Results), second paragraph; p. 6, Figure 4; p. 10, Figure 7"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Dolos pairwise code similarity (p. 5, Section 4; p. 6, Figure 4). Appendix alternatives: Normalized Compression Distance (NCD) on raw code and corresponding Abstract Syntax Trees (ASTs) (p. 10, Figure 7).",
+      "embedding_model": "No embedding model is reported for these code-comparison measures.",
+      "computed_over": "Pairs of controllers produced by different students within each assistance group (p. 5, Section 4; p. 6, Figure 4). The NCD caption explicitly specifies all combinations of two students within each group (p. 10, Figure 7). The paper does not print pair counts; n_units remains null.",
+      "uncertainty": "Not reported: no inferential test procedure, test statistic, p-value, standard error, or confidence interval is provided. The word 'significantly' appears in the Dolos results narrative without a supporting test (p. 5, Section 4).",
+      "notes": "Dolos ignores comments, variable names, and text position. The NCD alternatives compare raw code including comments and spaces and corresponding ASTs; the authors state that all controllers contain common evaluation code (p. 10, Figure 7). Figures 4 and 7 provide no exact summary estimates or tests. Greater Dolos similarity is coded as lower diversity; only the qualitative direction is reversed, and no numerical effect is calculated."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Controller performance in simulation (Equation 1 evaluation function, 100 runs per arena; 3 training arenas and 2 test arenas, each at 1x and 5x noise as a pseudo-reality gap)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "with LLM",
+       "control_arm": "without LLM",
+       "comparison_type": "ai_vs_bau",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Mixed, figure only (no numbers or tests printed). Text: 'The group coding without the assistance of the LLM obtained averagely better results in all the arenas. However, the group using Copilot attained the highest performance in the arenas presented to the students'. Under 5x noise 'the performances attained by the group using Copilot drop, while the performances obtained by the other group remain overall stable.'",
+       "locator": "p. 5, Figure 3 and Section 4 (Results), first paragraph"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "unclear",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "The authors used Divergent Association Task scores to balance the assistance groups, but do not report whether allocation involved randomization (p. 4, Section 3; p. 5, Section 4; p. 10, Figure 6), so criterion 1 is unclear. Only 13 people took part, 7 with LLM and 6 without (p. 3, Section 3), so criterion 2 is not met and core eligibility remains no. Code similarity is computed on the controllers the students produced, so criterion 3 is met (p. 5, Section 4; p. 6, Figure 4), although robot-controller programming is a borderline creative task. The comparison is retained as observational context; no randomized people study is documented. Self-reported coding experience and time (p. 11, Figures 8-9) are not output measures."
+ },
+ "one_line_finding": "Among 13 students (7 with Copilot, 6 without; p. 3, Section 3) in groups balanced on DAT scores with randomization unreported (p. 4, Section 3), controllers coded with Copilot were more similar within their group (Dolos, p. 6, Figure 4) and less robust to high noise (p. 5, Figure 3); both comparisons are figure only, with no numerical effect estimates or statistical tests printed.",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].assignment.randomized; eligibility.criterion_1_random_assignment_of_ai; paper_design_summary; eligibility.reason; one_line_finding",
+    "old": "{\"studies[0].assignment.randomized\": \"no\", \"eligibility.criterion_1_random_assignment_of_ai\": \"not_met\", \"paper_design_summary\": \"Thirteen male students of the Intelligent Robotic Systems course at the University of Bologna each wrote a path-following controller for a simulated Foot-Bot robot in about three hours. The authors split them into a group of seven who had to use Microsoft Copilot and a group of six who coded without it, balancing the groups on Divergent Association Task scores rather than assigning at random. The authors scored the controllers' simulated performance (including a high-noise pseudo-reality gap) and the pairwise code similarity within each group (Dolos).\", \"eligibility.reason\": \"The authors divided the students into the Copilot and no-Copilot groups by balancing Divergent Association Task scores, not at random (p. 4, Section 3). Only 13 people took part, 7 with LLM and 6 without (p. 3). Code similarity is a computed measure on the code the students produced, so criterion 3 is met, although the task (robot-controller programming) is a borderline creative task. Self-reported time and coding experience (Figures 8-9) are not output measures.\", \"one_line_finding\": \"In one cohort of 13 students split 7/6 by DAT-score balancing (not random), robot controllers coded with Copilot were more similar to each other (Dolos pairwise similarity, Figure 4, p. 6, figure only, no test printed) and lost more performance under high noise (Figure 3, p. 5).\"}",
+    "new": "{\"studies[0].assignment.randomized\": \"not_stated\", \"eligibility.criterion_1_random_assignment_of_ai\": \"unclear\", \"paper_design_summary\": \"Thirteen male students from the University of Bologna Intelligent Robotic Systems course each wrote a simulated Foot-Bot path-following controller during a three-hour session. Seven used Microsoft Copilot and six coded without it; allocation balanced Divergent Association Task scores, and randomization was not reported. The authors compared controller performance, including under increased noise to simulate a pseudo-reality gap, and pairwise code similarity within each group using Dolos.\", \"eligibility.reason\": \"The authors used Divergent Association Task scores to balance the assistance groups, but do not report whether allocation involved randomization (p. 4, Section 3; p. 5, Section 4; p. 10, Figure 6), so criterion 1 is unclear. Only 13 people took part, 7 with LLM and 6 without (p. 3, Section 3), so criterion 2 is not met and core eligibility remains no. Code similarity is computed on the controllers the students produced, so criterion 3 is met (p. 5, Section 4; p. 6, Figure 4), although robot-controller programming is a borderline creative task. The comparison is retained as observational context; no randomized people study is documented. Self-reported coding experience and time (p. 11, Figures 8-9) are not output measures.\", \"one_line_finding\": \"Among 13 students (7 with Copilot, 6 without; p. 3, Section 3) in groups balanced on DAT scores with randomization unreported (p. 4, Section 3), controllers coded with Copilot were more similar within their group (Dolos, p. 6, Figure 4) and less robust to high noise (p. 5, Figure 3); both comparisons are figure only, with no numerical effect estimates or statistical tests printed.\"}",
+    "quote": "We use the test to divide the students in the two groups, maintaining as balanced as possible the distribution of the DAT score (see Figure 6).",
+    "locator": "PDF p. 4, Section 3 (Methods), final paragraph; p. 5, Section 4, DAT-balance discussion; p. 10, Figure 6. Participant counts: p. 3, Section 3. Output measures: pp. 5-6, Figures 3-4."
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0].reported",
+    "old": "Similarity is higher with LLM, so diversity is lower (sign reversed). Text: 'the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).' No test statistic, p-value, or table is printed. Figure 4 box plot: median pairwise Dolos similarity about 0.36 (with LLM) vs about 0.26 (without LLM), read from the figure. The appendix (Figure 7, p. 10) shows Normalized Compression Distance on raw code and on abstract syntax trees as box plots only, with no numbers in the text.",
+    "new": "Greater Dolos similarity with Copilot indicates lower diversity; the qualitative direction is reversed for the diversity construct, with no numerical effect calculated. The paper states: 'the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).' Exact arm medians and numerical effect estimates are not reported. Figure 4 has axis ticks but no printed median values. No test procedure, test statistic, p-value, or confidence interval is reported despite the narrative word 'significantly'. Appendix Figure 7 (p. 10) presents alternative Normalized Compression Distance measures on raw code and abstract syntax trees as box plots only, with no exact summary estimates or tests.",
+    "quote": "the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).",
+    "locator": "PDF p. 5, Section 4 (Results), code-similarity paragraph; p. 6, Figure 4; p. 10, Figure 7. The complete PDF reports no exact arm medians or inferential test for this comparison."
+   },
+   {
+    "field": "studies[0].arms[1].description",
+    "old": "Coded the controller with course material, lab code, and documentation only; no internet access",
+    "new": "Coded the controller without LLM assistance; course materials, laboratory code, and simulation-environment and programming-language documentation were allowed. Internet access was prohibited except for those resources (p. 3, Section 3).",
+    "quote": "Nevertheless, they are not allowed to access internet except for the aforementioned resources.",
+    "locator": "PDF p. 3, Section 3 (Methods), first paragraph, permitted materials and internet-access restriction."
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0] (structured contrast fields)",
+    "old": "{\"studies[0].outcomes[0].contrasts[0].treatment_arm\": \"\", \"studies[0].outcomes[0].contrasts[0].control_arm\": \"\", \"studies[0].outcomes[0].contrasts[0].comparison_type\": \"\", \"studies[0].outcomes[0].contrasts[0].direction\": \"\", \"studies[0].outcomes[0].contrasts[0].statistics_available\": []}",
+    "new": "{\"studies[0].outcomes[0].contrasts[0].treatment_arm\": \"with LLM\", \"studies[0].outcomes[0].contrasts[0].control_arm\": \"without LLM\", \"studies[0].outcomes[0].contrasts[0].comparison_type\": \"ai_vs_bau\", \"studies[0].outcomes[0].contrasts[0].direction\": \"treatment_lower\", \"studies[0].outcomes[0].contrasts[0].statistics_available\": [\"figure_only\"]}",
+    "quote": "the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).",
+    "locator": "PDF p. 3, Section 3, assistance groups; p. 5, Section 4, code-similarity paragraph; p. 6, Figure 4. Creativity codebook Sections 5 and 7: assistance versus no assistance, with the similarity direction reversed for diversity; these labels do not establish randomization."
+   },
+   {
+    "field": "studies[0].outcomes[1].contrasts[0] (structured contrast fields)",
+    "old": "{\"studies[0].outcomes[1].contrasts[0].treatment_arm\": \"\", \"studies[0].outcomes[1].contrasts[0].control_arm\": \"\", \"studies[0].outcomes[1].contrasts[0].comparison_type\": \"\", \"studies[0].outcomes[1].contrasts[0].direction\": \"\", \"studies[0].outcomes[1].contrasts[0].statistics_available\": []}",
+    "new": "{\"studies[0].outcomes[1].contrasts[0].treatment_arm\": \"with LLM\", \"studies[0].outcomes[1].contrasts[0].control_arm\": \"without LLM\", \"studies[0].outcomes[1].contrasts[0].comparison_type\": \"ai_vs_bau\", \"studies[0].outcomes[1].contrasts[0].direction\": \"mixed\", \"studies[0].outcomes[1].contrasts[0].statistics_available\": [\"figure_only\"]}",
+    "quote": "The group coding without the assistance of the LLM obtained averagely better results in all the arenas. However, the group using Copilot attained the highest performance in the arenas presented to the students",
+    "locator": "PDF p. 3, Section 3, assistance groups; p. 5, Figure 3 and Section 4, first results paragraph. Without LLM has better average performance, Copilot has higher best performance on development arenas, and Copilot performance drops under higher noise; exact arm summaries and inferential tests are not printed."
+   },
+   {
+    "field": "studies[0].outcomes[0].measure_detail; studies[0].outcomes[0].diversity_detail",
+    "old": "{\"studies[0].outcomes[0].measure_detail\": \"\", \"studies[0].outcomes[0].diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+    "new": "{\"studies[0].outcomes[0].measure_detail\": \"Dolos compares pairs of student controllers within each assistance group while ignoring comments, variable names, and text position (p. 5, Section 4; p. 6, Figure 4). Appendix alternatives are Normalized Compression Distance (NCD) on raw code including comments and spaces and on corresponding Abstract Syntax Trees (ASTs), using all two-student combinations within each group. All controllers contain common evaluation code (p. 10, Figure 7). Exact summary estimates and inferential tests are not reported.\", \"studies[0].outcomes[0].diversity_detail\": {\"metric\": \"Dolos pairwise code similarity (p. 5, Section 4; p. 6, Figure 4). Appendix alternatives: Normalized Compression Distance (NCD) on raw code and corresponding Abstract Syntax Trees (ASTs) (p. 10, Figure 7).\", \"embedding_model\": \"No embedding model is reported for these code-comparison measures.\", \"computed_over\": \"Pairs of controllers produced by different students within each assistance group (p. 5, Section 4; p. 6, Figure 4). The NCD caption explicitly specifies all combinations of two students within each group (p. 10, Figure 7). The paper does not print pair counts; n_units remains null.\", \"uncertainty\": \"Not reported: no inferential test procedure, test statistic, p-value, standard error, or confidence interval is provided. The word 'significantly' appears in the Dolos results narrative without a supporting test (p. 5, Section 4).\", \"notes\": \"Dolos ignores comments, variable names, and text position. The NCD alternatives compare raw code including comments and spaces and corresponding ASTs; the authors state that all controllers contain common evaluation code (p. 10, Figure 7). Figures 4 and 7 provide no exact summary estimates or tests. Greater Dolos similarity is coded as lower diversity; only the qualitative direction is reversed, and no numerical effect is calculated.\"}}",
+    "quote": "This considers the similarity of codes ignoring comments, variable names and text position. [...] For each combination, we compute the NCD on the codes comprehensive of comments and spaces, and on their ASTs.",
+    "locator": "PDF p. 5, Section 4, code-similarity paragraph; p. 6, Figure 4; p. 10, Figure 7 and caption (all within-group two-student combinations, NCD alternatives, and common evaluation code)."
+   }
+  ],
+  "rejected": []
+ }
+}

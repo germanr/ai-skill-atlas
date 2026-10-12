@@ -1,0 +1,599 @@
+{
+ "cid": "c076",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Khan and Wester (2026) - Seeing the Hivemind.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Khan and Wester (2026) - Seeing the Hivemind.pdf",
+  "version": "arXiv v1 of 2026-06-08 (arXiv:2606.09587v1 [cs.HC], stamp on p. 1); full PDF read, pages 1-18",
+  "title_on_document": "Seeing the Hivemind: A Consensus-Aware Interaction Technique for Mitigating AI Homogenization",
+  "authors_on_document": [
+   "Muhammad Haris Khan",
+   "Joel Wester"
+  ],
+  "pages": 18,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A-D at the end of the PDF (pp. 11-17) plus Algorithm 1 (p. 18)",
+   "holds": "Full ablation tables 5-8, per-mode lambda-sweep Table 9 (means and SDs of model outputs), Tables 10-11 and metric definitions; all concern the computational evaluation, not the user study"
+  }
+ },
+ "paper_design_summary": "The paper evaluates the Semantic Repulsion Technique (SRT) in three model-only experiments: a five-system comparison, a mechanism ablation, and a lambda sweep (pp. 5–7, Sections 4.1–4.3). A within-subjects user study has 16 participants who regularly use AI for creative tasks review one response from each of four systems across three tasks and rate originality, coherence, creativity, and usefulness on 5-point Likert scales (pp. 7–9, Section 4.4). The procedure does not state who supplied prompts or when outputs were generated, and no participant-produced creative output is reported as scored (p. 8, Section 4.4, Procedure).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "User study (participants rate outputs of four AI systems)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Nothing is described as assigned: every participant reviewed one output from each of the four systems on each of three tasks. The paper does not state whether system order was randomized.",
+    "unit": "other",
+    "structure": "within",
+    "quote": "For each task, they reviewed four AI-generated responses—Baseline-Pure, Baseline-HighTemp, SRT-Mild, SRT-Strong—yielding 12 response evaluations per participant in total (3 tasks × 4 systems).",
+    "locator": "p. 8, Section 4.4 User Study, Procedure",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Baseline-Pure",
+     "description": "Qwen2.5-7B-Instruct output with nucleus sampling; participants read and rated it",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 16
+    },
+    {
+     "name": "Baseline-HighTemp",
+     "description": "Qwen2.5-7B-Instruct output at temperature 1.5; participants read and rated it",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 16
+    },
+    {
+     "name": "SRT-Mild",
+     "description": "SRT output with repulsion strength lambda = 0.6; participants read and rated it",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 16
+    },
+    {
+     "name": "SRT-Strong",
+     "description": "SRT output with repulsion strength lambda = 1.2; participants read and rated it",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 16
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 16,
+    "counts_are": "people",
+    "exclusions": "",
+    "population": null,
+    "who": "16 people who regularly use AI for creative tasks, ages 22–48 (mean 28.1), 4 female and 12 male (p. 7, Section 4.4; Table 4, p. 9). Recruitment and occupational/student status are not stated. Each person rated all four systems, so every arm count refers to the same 16 people (p. 8, Section 4.4, Procedure).",
+    "country": "",
+    "quote": "we conducted a within-subjects exploratory study with N = 16 participants (ages 22–48; 4 female, 12 male) who regularly use AI for creative tasks (Table 4).",
+    "locator": "p. 7, Section 4.4 User Study; Table 4, p. 9"
+   },
+   "ai_tool": {
+    "name_model": "SRT: contrastive decoding with Qwen2.5-7B-Instruct (strong) and Qwen2.5-1.5B-Instruct (weak); baselines: Qwen2.5-7B-Instruct with nucleus sampling (temp 1.0 or 1.5)",
+    "role": "other",
+    "how_used": "For each task, participants reviewed and rated one AI-generated response from each of four systems. The procedure does not state who supplied the prompts or when the outputs were generated. No participant-produced creative output is reported as scored; iterative human–AI co-writing is left to future work (p. 8, Section 4.4, Procedure)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Rating AI outputs for three tasks: (1) Creative Writing (rewriting a sci-fi story premise), (2) Technical Writing (explaining a topic of interest), (3) Brainstorming (generating ideas). Participants rated each output on 5-point Likert scales for originality, coherence, creativity, and usefulness.",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Perceived originality rating (5-point Likert) of system outputs",
+     "construct": "novelty",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "human_raters",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "SRT-Strong",
+       "control_arm": "Baseline-Pure",
+       "comparison_type": "ai_design",
+       "direction": "",
+       "statistics_available": [],
+       "reported": "SRT-Strong M = 3.40 vs Baseline-Pure M = 2.85 (+19%); Friedman test across the four systems chi2(3, N = 16) = 7.34, p = .062, W = .153. Ratings are aggregated over three tasks per participant-system.",
+       "locator": "p. 9, Section 4.4 Results, 'Originality, Coherence, and Transparency'"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Perceived usefulness rating (5-point Likert) of system outputs",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "human_raters",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "SRT-Strong",
+       "control_arm": "Baseline-Pure",
+       "comparison_type": "ai_design",
+       "direction": "",
+       "statistics_available": [],
+       "reported": "SRT-Strong M = 3.60 vs Baseline-Pure M = 3.10 (16% higher); Friedman test across the four systems chi2(3, N = 16) = 9.99, p = .019, Kendall's W = .208. Figure 6a also shows Baseline-HighTemp 2.77 and SRT-Mild 2.94 with 95% CI error bars.",
+       "locator": "p. 8, Section 4.4 Results, 'Perceived Usefulness'; Figure 6a, p. 10"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Perceived coherence rating (5-point Likert) of system outputs",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "human_raters",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "SRT-Strong",
+       "control_arm": "Baseline-Pure",
+       "comparison_type": "ai_design",
+       "direction": "",
+       "statistics_available": [],
+       "reported": "SRT-Strong M = 3.92, Mdn = 4.00 vs Baseline-Pure M = 3.48, Mdn = 3.50; Friedman test across the four systems chi2(3, N = 16) = 12.47, p = .006, Kendall's W = .260.",
+       "locator": "p. 8, Section 4.4 Results, 'Perceived Coherence'"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Computational Experiment 1 (five-system comparison; model outputs only)",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No people. Five generation systems each produced 10 outputs per prompt for 30 prompts (10 per task mode; 1,500 outputs total), with the systems compared on the same prompts (p. 5, Section 4.1, Setup).",
+    "unit": "other",
+    "structure": "within",
+    "quote": "We conducted a controlled comparison across 30 prompts (10 per task mode), comparing five systems",
+    "locator": "p. 5, Section 4.1 Computational Assessment, Setup",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Baseline-Pure",
+     "description": "Nucleus sampling, temp 1.0, top-p 0.9",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Baseline-HighTemp",
+     "description": "Temp 1.5",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Baseline-Beam",
+     "description": "Beam search, num_beams = 5",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "SRT-Mild",
+     "description": "lambda = 0.6",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "SRT-Strong",
+     "description": "lambda = 1.2",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "",
+    "who": "No participants; 1,500 generated outputs (30 prompts x 5 systems x 10 outputs).",
+    "country": "",
+    "quote": "We then generated 10 outputs per system per prompt (1,500 total).",
+    "locator": "p. 5, Section 4.1 Computational Assessment, Setup"
+   },
+   "ai_tool": {
+    "name_model": "Qwen2.5-7B-Instruct (strong) and Qwen2.5-1.5B-Instruct (weak); all-MiniLM-L6-v2 embeddings",
+    "role": "other",
+    "how_used": "Model generates outputs automatically; no human in the loop."
+   },
+   "task": {
+    "type": "other",
+    "description": "30 prompts, 10 each in Creative, Technical, and Brainstorm modes.",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Intra-system diversity: mean pairwise cosine distance among one system's outputs for the same prompt",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "embedding_similarity",
+     "measure_detail": "",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "SRT-Strong",
+       "control_arm": "Baseline-Pure",
+       "comparison_type": "other",
+       "direction": "",
+       "statistics_available": [],
+       "reported": "Creative mode: SRT-Strong diversity 0.49 vs Baseline-Pure 0.40; Baseline-Beam 0.00. Originality (distance from consensus centroid) in Creative mode 0.50 vs 0.27 (85% improvement).",
+       "locator": "p. 6, Section 4.1 Results; Figure 3, p. 7"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S3",
+   "label": "Computational Experiment 2 (mechanism ablation; model outputs only)",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No people. A 2^3 factorial ablation independently toggled Contrastive Decoding (CD), Phrase Penalties (PP), and Fluency Controls (FL), producing 1,200 outputs from 30 prompts, eight conditions, and five samples per prompt-condition (p. 6, Section 4.2).",
+    "unit": "other",
+    "structure": "within",
+    "quote": "1,200 generated outputs (30 prompts × 8 conditions × 5 samples)",
+    "locator": "p. 6, Section 4.2 Mechanism Ablation; p. 11, Appendix A; p. 13, Table 8",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "C0",
+     "description": "Contrastive Decoding OFF; Phrase Penalties OFF; Fluency Controls OFF (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "C1",
+     "description": "Contrastive Decoding ON; Phrase Penalties OFF; Fluency Controls OFF (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "C2",
+     "description": "Contrastive Decoding OFF; Phrase Penalties ON; Fluency Controls OFF (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "C3",
+     "description": "Contrastive Decoding OFF; Phrase Penalties OFF; Fluency Controls ON (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "C4",
+     "description": "Contrastive Decoding ON; Phrase Penalties ON; Fluency Controls OFF (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "C5",
+     "description": "Contrastive Decoding ON; Phrase Penalties OFF; Fluency Controls ON (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "C6",
+     "description": "Contrastive Decoding OFF; Phrase Penalties ON; Fluency Controls ON (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "C7",
+     "description": "Contrastive Decoding ON; Phrase Penalties ON; Fluency Controls ON; full SRT (p. 13, Table 8).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": null,
+    "who": "No human participants; 1,200 generated outputs (30 prompts × 8 conditions × 5 samples). Appendix A states 50 generated observations per condition-mode cell (5 samples × 10 prompts); these are not people.",
+    "country": "",
+    "quote": "1,200 generated outputs (30 prompts × 8 conditions × 5 samples)",
+    "locator": "p. 6, Section 4.2; p. 11, Appendix A; p. 13, Tables 5–8"
+   },
+   "ai_tool": {
+    "name_model": "Qwen2.5-7B-Instruct (strong) and Qwen2.5-1.5B-Instruct (weak); all-MiniLM-L6-v2 embeddings",
+    "role": "other",
+    "how_used": "Model outputs were generated under the eight combinations of the three SRT mechanisms; no human creative-production study is reported (p. 6, Section 4.2; p. 13, Table 8)."
+   },
+   "task": {
+    "type": "other",
+    "description": "30 prompts across Creative, Technical, and Brainstorm modes, with 10 prompts per mode. The ablation measures originality, intra-system diversity, consensus phrase frequency, prompt relevance, and model-based coherence, also expressed as perplexity (p. 6, Section 4.2; p. 11, Appendix A; p. 13, Appendix C).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Computational originality: distance of model output from consensus centroid",
+     "construct": "novelty",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "embedding_similarity",
+     "measure_detail": "Cosine distance between each model-generated output embedding and the consensus centroid, using all-MiniLM-L6-v2 (p. 13, Appendix C). The n_units count is the full ablation corpus of 1,200 generated outputs (p. 6, Section 4.2); the reported C7 versus C0 comparisons use 50 outputs per condition-mode cell (p. 13, Tables 5–7). These are model outputs, not participant-produced creative work.",
+     "unit": "output",
+     "n_units": 1200,
+     "ai_available_when_produced": "yes",
+     "timing": "",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "C7",
+       "control_arm": "C0",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "Originality means, C7 (full SRT) versus C0 (all mechanisms OFF): Creative 0.484 versus 0.293; Technical 0.151 versus 0.054; Brainstorming 0.355 versus 0.158. Tables 5–7 give N = 50 generated outputs per cell. Section 4.2 reports Wilcoxon signed-rank comparisons of C7 versus C0 as p < 0.001 across all metrics and modes; no individual originality test statistics are printed.",
+       "locator": "p. 13, Tables 5–7; p. 6, Section 4.2 Results"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S4",
+   "label": "Computational Experiment 3 (operating-range lambda sweep; model outputs only)",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No people. Repulsion strength was varied over lambda = 0.0, 0.6, 1.2, 1.8, and 2.4 with phrase penalties and fluency controls held fixed, generating 750 outputs (30 prompts × 5 lambda values × 5 samples). Section 4.3 says \"nine values\" on p. 6, but enumerates these five values; the continuation on p. 7 explicitly states five values, as do Tables 3 and 9.",
+    "unit": "other",
+    "structure": "within",
+    "quote": "with phrase penalties and fluency controls held fixed, generating 750 outputs",
+    "locator": "pp. 6–7, Section 4.3 Operating Range Analysis; p. 7, Table 3; p. 14, Table 9",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "lambda = 0.0",
+     "description": "Repulsion strength lambda = 0.0; phrase penalties and fluency controls held fixed (pp. 6–7, Section 4.3; p. 7, Table 3).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "lambda = 0.6",
+     "description": "Repulsion strength lambda = 0.6; phrase penalties and fluency controls held fixed (pp. 6–7, Section 4.3; p. 7, Table 3).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "lambda = 1.2",
+     "description": "Repulsion strength lambda = 1.2; phrase penalties and fluency controls held fixed (pp. 6–7, Section 4.3; p. 7, Table 3).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "lambda = 1.8",
+     "description": "Repulsion strength lambda = 1.8; phrase penalties and fluency controls held fixed (pp. 6–7, Section 4.3; p. 7, Table 3).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "lambda = 2.4",
+     "description": "Repulsion strength lambda = 2.4; phrase penalties and fluency controls held fixed (pp. 6–7, Section 4.3; p. 7, Table 3).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": null,
+    "who": "No human participants; 750 generated outputs (30 prompts × 5 lambda values × 5 samples). Table 3 reports 150 generated outputs per lambda value; Appendix B and Table 9 report 50 generated observations per mode-lambda cell. These counts are not people.",
+    "country": "",
+    "quote": "with phrase penalties and fluency controls held fixed, generating 750 outputs",
+    "locator": "pp. 6–7, Section 4.3 and Table 3; p. 12, Appendix B; p. 14, Table 9"
+   },
+   "ai_tool": {
+    "name_model": "Qwen2.5-7B-Instruct (strong) and Qwen2.5-1.5B-Instruct (weak); all-MiniLM-L6-v2 embeddings",
+    "role": "other",
+    "how_used": "Model outputs were generated while varying repulsion strength and holding phrase penalties and fluency controls fixed; no human creative-production study is reported (pp. 6–7, Section 4.3)."
+   },
+   "task": {
+    "type": "other",
+    "description": "30 prompts across Creative, Technical, and Brainstorm modes, with 10 prompts per mode. The sweep measures originality, intra-system diversity, consensus phrase frequency, prompt relevance, and model-based coherence, also expressed as perplexity (pp. 6–7, Section 4.3; p. 12, Appendix B; pp. 13–14, Appendix C and Table 9).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S4-O1",
+     "name": "Computational originality: distance of model output from consensus centroid",
+     "construct": "novelty",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "embedding_similarity",
+     "measure_detail": "Cosine distance between each model-generated output embedding and the consensus centroid, using all-MiniLM-L6-v2 (p. 13, Appendix C). The n_units count is the full sweep corpus of 750 generated outputs (pp. 6–7, Section 4.3); the reported lambda = 1.2 versus 0.0 comparison uses 150 outputs per lambda value (p. 7, Table 3). Table 9 gives means and SDs by mode (50 generated observations per cell). These are model outputs, not participant-produced creative work.",
+     "unit": "output",
+     "n_units": 750,
+     "ai_available_when_produced": "yes",
+     "timing": "",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "lambda = 1.2",
+       "control_arm": "lambda = 0.0",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "Originality means averaged across modes: lambda = 1.2, 0.325; lambda = 0.0, 0.184 (N = 150 generated outputs per lambda; Table 3). Per-mode mean ± SD, lambda = 1.2 versus 0.0 (N = 50 generated observations per cell; Table 9): Technical 0.179 ± 0.099 versus 0.096 ± 0.084; Creative 0.466 ± 0.099 versus 0.293 ± 0.088; Brainstorming 0.329 ± 0.092 versus 0.162 ± 0.069. Table 11 marks the lambda = 1.2 versus 0.0 Wilcoxon signed-rank originality comparison p < 0.001 (Bonferroni corrected); the omnibus Friedman test across all five lambda values is chi2 = 338.67, p < .001.",
+       "locator": "p. 7, Table 3; p. 14, Tables 9 and 11; p. 13, Appendix D"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "none",
+  "reason": "The user study analyzes 16 people (p. 7, Section 4.4; p. 9, Table 4), below the 50-person eligibility threshold; the same people rate all four systems (p. 8, Procedure). The procedure reports a within-subjects evaluation of AI-generated responses, with no stated random assignment of AI assistance or system order. It does not state who supplied the prompts or when responses were generated, and no participant-produced creative output is reported as scored (p. 8, Section 4.4). The three computational experiments (S2–S4) are model-only (pp. 5–7, Sections 4.1–4.3; pp. 11–14, Appendices A–D). These model-only experiments and the human evaluation of AI-made work do not qualify for the core dataset or any context class. Retain them in the screening report and omit them from the dataset."
+ },
+ "one_line_finding": "In a 16-person within-subjects rating study, SRT-Strong outputs were rated more useful (M = 3.60 vs 3.10 for Baseline-Pure; Friedman p = .019) and more coherent (3.92 vs 3.48; p = .006) than baseline outputs, with a non-significant originality difference (3.40 vs 2.85; p = .062) (pp. 8-9, Section 4.4).",
+ "open_questions": [],
+ "notes": "The three model-only experiments are recorded separately. Their outcomes answer none of the three human-assistance questions; the computational entries retain compact descriptive summaries of originality/diversity. Other reported computational diagnostics include consensus phrase frequency, relevance, and coherence/perplexity (Sections 4.1–4.3; Appendix C). Generated-output totals and per-cell counts are not participant counts. In S3 and S4, n_units records the full experiment corpus, while reported contrast cell sizes are stated separately. The \"nine values\" wording in Section 4.3, p. 6 conflicts with its five-value list, the continuation on p. 7, and Tables 3 and 9; S4 records the five enumerated and tabulated values.",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].participants.population",
+    "old": "general_public",
+    "new": "null; participants.who now retains the stated characteristics and same-person arm counts without a best-fit population inference.",
+    "quote": "who regularly use AI for creative tasks (Table 4).",
+    "locator": "p. 7, Section 4.4 User Study; p. 9, Table 4"
+   },
+   {
+    "field": "studies[0].ai_tool.how_used",
+    "old": "Participants read one pre-generated output per system per task and rated it; they did not prompt or write with the system. The paper states: 'Each system produced a single output per task' and leaves 'iterative human–AI co-writing' to future work (p. 8).",
+    "new": "For each task, participants reviewed and rated one AI-generated response from each of four systems. The procedure does not state who supplied the prompts or when the outputs were generated. No participant-produced creative output is reported as scored; iterative human–AI co-writing is left to future work (p. 8, Section 4.4, Procedure). The same qualification is applied to paper_design_summary and eligibility.reason.",
+    "quote": "Each system produced a single output per task to enable controlled within-subjects comparison across all four conditions simultaneously; iterative human–AI co-writing is an important direction we leave to future work.",
+    "locator": "p. 8, Section 4.4 User Study, Procedure"
+   },
+   {
+    "field": "studies[1]",
+    "old": "Computational evaluation (model outputs only: system comparison, ablation, lambda sweep)",
+    "new": "Split into S2 (Experiment 1: five-system comparison; 1,500 generated outputs), S3 (Experiment 2: mechanism ablation; 1,200 generated outputs), and S4 (Experiment 3: lambda sweep; 750 generated outputs), each model_only with null people counts and experiment-specific assignments, arms, and outcome summaries. Retained the human-rating study as S1; updated paper_design_summary, eligibility.reason, and notes.",
+    "quote": "For reproducibility, we define all six metrics used across Experiments 1–3.",
+    "locator": "pp. 5–7, Sections 4.1–4.3; p. 11, Appendix A; p. 12, Appendix B; p. 13, Appendix C; p. 14, Table 9; form-spec.md, Rule 6"
+   }
+  ],
+  "rejected": []
+ }
+}

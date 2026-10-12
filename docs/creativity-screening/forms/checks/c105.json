@@ -1,0 +1,70 @@
+{
+ "cid": "c105",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0:4].outcomes[0].unit / n_units / measure_detail",
+   "form_value": "unit=\"output\"; n_units=1886, 8198, 60283, 56413; measure_detail=\"\".",
+   "source_says": "The Ns correctly reproduce Model 3 regression observations at the proposal-PI-field-year level. Proposals can contribute multiple rows, so these are not distinct-abstract or people counts. Retain the Ns with this explicit composite-unit qualification; unique-abstract counts for these analysis samples are not stated and should be null if separately recorded.",
+   "quote": "our unit of analysis is defined at the proposal-PI-field-year level, a given proposal or award can be associated with multiple fields.",
+   "locator": "PDF p. 25, SI S2.19; pp. 80-83, Tables S1-S4, Model 3 N."
+  },
+  {
+   "field": "studies[0].outcomes; studies[1].outcomes",
+   "form_value": "Only distinctiveness relative to the agency's prior-year funded abstracts is listed.",
+   "source_says": "Add within-investigator topical distance: cosine distance to the investigator's own proposals in the previous two years within the same agency. This separate output-scored novelty outcome shows no clear association with LLM involvement in either private dataset. Figure S50 plots coefficients with investigator-clustered 95% confidence intervals but prints no exact coefficients, standard errors, interval endpoints, or N; record figure_only and leave those numbers null.",
+   "quote": "In other words, proposals with higher LLM involvement are not systematically farther from an investigator’s own prior proposals.",
+   "locator": "PDF p. 24, SI S2.17; p. 75, Figure S50."
+  },
+  {
+   "field": "studies[0:4].outcomes[0].measure_detail",
+   "form_value": "Empty in all four studies.",
+   "source_says": "Describe SPECTER2 average cosine distance and mention robustness variants, as form-spec rule 7 requires: the prior-two-year window, L2 and raw cosine distances, alternative reference models and preprocessing, AI-vocabulary exclusion, length restrictions, investigator-status controls, standardized predictors, and single-field analyses. Public awards also have field/subagency checks. The stylistic-rewriting check is calibration, not randomized people. Gemini-based distinctiveness results are explicitly not statistically significant.",
+   "quote": "For example, in the semantic distinctiveness analysis, the Gemini-based 𝛼estimates yield no statistically significant results.",
+   "locator": "PDF pp. 5, 17, 19-25, SI S2.1, S2.5-S2.6, S2.8-S2.16, S2.19; p. 26, Figure S1; p. 92, Table S13."
+  },
+  {
+   "field": "studies[0:4].outcomes[0].contrasts[0].statistics_available",
+   "form_value": "[] in all four studies.",
+   "source_says": "Record [\"regression_coefficient_se\"]: each table prints coefficients and investigator-clustered standard errors, already reproduced in the reported strings.",
+   "quote": "* p < 0.05, ** p < 0.01, *** p < 0.001. Standard errors clustered by investigator in parentheses.",
+   "locator": "PDF pp. 80-83, Tables S1-S4."
+  },
+  {
+   "field": "studies[0:4].assignment.randomized",
+   "form_value": "Empty in all four studies.",
+   "source_says": "Record \"no\" for all four observational datasets. Random sampling selects existing abstracts for calibration, not people for AI assistance. The observational design/context and core=\"no\" decisions are correct.",
+   "quote": "Note that this analysis exploits within-investigator variation in LLM involvement, reporting conditional correlations within investigators, not causal estimates.",
+   "locator": "PDF pp. 5, 12-13, Datasets; pp. 15, 17, SI S1.1 and S2.1."
+  },
+  {
+   "field": "data_and_code.data_url",
+   "form_value": "",
+   "source_says": "Record https://northwestern-cssi.github.io/llmfunding/ for de-identified reproducibility data. Raw university proposals require agreements and raw Dimensions data require access from Digital Science; no separate code URL is specified.",
+   "quote": "The de-identified data necessary to reproduce main plots and statistical analyses are freely available at https://northwestern-cssi.github.io/llmfunding/.",
+   "locator": "PDF p. 14, Data and code availability."
+  },
+  {
+   "field": "one_line_finding",
+   "form_value": "In all four grant datasets, abstracts with more detected LLM text are less semantically distinct from the agency's prior-year funded abstracts, with investigator-fixed-effects coefficients on alpha of -11.95 (private NSF), -23.40 (private NIH), -18.02 (public NSF), and -23.62 (public NIH) percentile points (SI Tables S1-S4, pp. 80-83), about a 5-point drop for NSF awards and 4 points for NIH awards from the 25th to the 75th percentile of LLM involvement (p. 5).",
+   "source_says": "For exact transcription, retain the printed Model 3 coefficients: -11.9472, -23.3958, -18.0163, -23.6247 for private NSF, private NIH, public NSF, public NIH, respectively. The form rounds correctly but those two-decimal values are not printed in the cited tables. The approximate 5-point and 4-point interquartile comparisons are correct.",
+   "quote": "-16.456*** -11.2727** -11.9472**",
+   "locator": "PDF pp. 80-83, Tables S1-S4, Model 3 alpha; p. 5."
+  }
+ ],
+ "confirmed": [
+  "The source is arXiv:2601.15485v3 [cs.DL], 5 Jul 2026, marked Forthcoming in PNAS; title and six authors match. The PDF has 97 pages and is not the journal version of record (PDF p. 1).",
+  "The whole markdown conversion was read, including appendices and references. Supporting Information begins on p. 15; Figures S1-S54 and Tables S1-S15 are included (PDF pp. 15, 26-94; references pp. 95-97).",
+  "No randomized people study appears; all four main datasets are observational. Random selection is of calibration abstracts (PDF pp. 3, 5, 12-13, 15, 17). There is no small randomized experiment to assess against the 50-person rule.",
+  "Private corpora contain 1.6K NSF and 4.1K NIH proposal submissions from two US R1 universities, including funded, unfunded and pending proposals with starts in 2021-2025 (PDF p. 12).",
+  "Public corpora contain 57K NSF and 74K NIH awards with starts in 2021-2025 (PDF p. 13). Corpus counts are not people counts; no investigator total is given, so participant counts appropriately remain null.",
+  "The main analysis covers starts in 2023-2025: average SPECTER2 cosine distance to the same agency's prior-year funded abstracts, converted to within-year percentiles from 0 to 100 (PDF pp. 5, 16, SI S1.2).",
+  "GPT-3.5-turbo-0125 generates reference rewrites, not a verified record of grant writers' models. Alpha estimates LLM-modified sentences and ranges from 0 to 1 (PDF pp. 3, 15-17).",
+  "Every coefficient, SE, significance marker, N, and Model 3 R2 in the four reported strings matches Tables S1-S4 (PDF pp. 80-83). Model 3 Ns are 1886/8198/60283/56413 and R2 values are 0.72441/0.53894/0.78893/0.86886, in dataset order.",
+  "Tables S1-S4 control log(funding): Model 1 has no listed fixed effects, Model 2 adds start-year/field effects, and Model 3 adds investigator effects. SEs are clustered by investigator; * p < 0.05, ** p < 0.01, *** p < 0.001 (PDF pp. 80-83).",
+  "The text reports approximately 5 percentile points lower distinctiveness for NSF awards and 4 for NIH awards from the 25th to the 75th percentile of LLM involvement; all four main associations are negative and conditional, not causal (PDF p. 5).",
+  "This is not a synthesis and reports no pooled meta-analytic estimates. Main predictors are unstandardized; Table S13 standardizes predictors to z-scores while retaining the percentile outcome (PDF p. 24, SI S2.16; p. 92)."
+ ],
+ "summary": "This is observational evidence with no randomized people study; the recorded source version and table statistics are correct. Corrections address the analysis unit, omitted outcome and robustness details, incomplete fields, and rounded summary coefficients."
+}

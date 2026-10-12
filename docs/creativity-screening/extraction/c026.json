@@ -1,0 +1,905 @@
+{
+ "cid": "c026",
+ "extractor": "reconciled",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Agarwal Naaman Vashistha (2025) - AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nu.pdf",
+  "version": "arXiv:2409.11360v3 [cs.HC], 12 Mar 2025 (PDF p. 1 margin stamp), with CHI ’25 proceedings format and DOI 10.1145/3706598.3713564. This is the saved arXiv copy; the ACM version of record was not used.",
+  "supplement_used": "Appendices A-C within the same PDF: headings on PDF p. 18 and Tables 6-8 on PDF pp. 19-21. No separate supplement was used."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Cross-cultural writing experiment with GPT-4o autocomplete (India and US, Prolific)",
+   "design_class": "online_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": {},
+   "cluster_se_treatment": null,
+   "n_randomized": null,
+   "n_analyzed": 118,
+   "counts_source": {
+    "locator": "PDF p. 3, Table 1; PDF p. 7, Section 4, opening paragraph",
+    "quote": "Control Indians writing without AI 24 Americans writing without AI 29 Treatment Indians writing with AI 36 Americans writing with AI 29 ... Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays."
+   },
+   "arms": [
+    {
+     "name": "Indians without AI",
+     "description": "Indian participants assigned to write without AI suggestions.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 24
+    },
+    {
+     "name": "Americans without AI",
+     "description": "American participants assigned to write without AI suggestions.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 29
+    },
+    {
+     "name": "Indians with AI",
+     "description": "Indian participants assigned to write with inline GPT-4o autocomplete suggestions.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 36
+    },
+    {
+     "name": "Americans with AI",
+     "description": "American participants assigned to write with inline GPT-4o autocomplete suggestions.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 29
+    }
+   ],
+   "population": "online_panel",
+   "country": "India; United States",
+   "task_type": "creative_writing",
+   "task": "Each participant wrote four short English texts about a favorite food, public figure, and festival or holiday, plus an email requesting leave from a boss, with a minimum of 50 words per task (PDF p. 4, Table 2 and Section 3.3.1).",
+   "ai_role": "suggestions",
+   "ai_tool": {
+    "name": "OpenAI GPT-4o",
+    "year": null,
+    "locator": "PDF p. 4, Sections 3.3.1-3.3.2; prompt continued on PDF p. 5. GPT-4o is named, but the release year and dated model snapshot are not stated."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": "No preregistration is stated in the paper or its appendices.",
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_cross_culture_cosine_similarity_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Cross-culture cosine similarity between Indian and American essays",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Mean cosine similarity of OpenAI text embeddings for every Indian-American essay pair on the same topic, pooled over all writing tasks within each AI condition. The specific embedding model is not named. Higher similarity means less diversity across people.",
+   "unit": "pair",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Indians with AI x Americans with AI (cross-culture pairs, both writers had AI)",
+   "control_arm": "Indians without AI x Americans without AI (cross-culture pairs, neither writer had AI)",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 0.54,
+    "treatment_sd": 0.13,
+    "treatment_se": null,
+    "control_mean": 0.48,
+    "control_sd": 0.11,
+    "control_se": null,
+    "sd_level": "pair",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": -17.89,
+     "df": 6958
+    },
+    "p_value": "<0.001",
+    "paper_effect": {
+     "type": "d",
+     "value": -0.44,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "pair",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 9, Section 4.3.1, Results",
+     "quote": "It shows that without AI, the mean similarity between Indians and Americans was 0.48 (𝑆𝐷= 0.11), but with AI, the similarity score rose to 0.54 (𝑆𝐷= 0.13)."
+    },
+    {
+     "fields": [
+      "test",
+      "p_value"
+     ],
+     "locator": "PDF p. 10, Section 4.3.1, Results continued",
+     "quote": "revealed that this increase was statistically significant, 𝑡(6958) = −17.89, 𝑝< 0.001."
+    },
+    {
+     "fields": [
+      "paper_effect"
+     ],
+     "locator": "PDF p. 10, Section 4.3.1, Results continued",
+     "quote": "Further, the effect size of this increase (Cohen’s 𝑑= −0.44)"
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 9, Section 4.3.1, Setup",
+     "quote": "yielding a distribution of 4 essay topics × (24 × 29) comparisons per topic = 2784 cross-culture similarity scores."
+    }
+   ],
+   "notes": "This is the main full-sample cross-culture similarity contrast. It includes all participants but only cross-country pairs, not all possible pairs within each AI condition. The printed t statistic and Cohen’s d are negative although the AI mean is higher; their direction corresponds to No AI minus AI. Their signs are retained exactly as printed. The paper does not define the standardizer for d. SDs and the t test are over essay pairs, with repeated contributions from each participant and no participant-level clustering reported. Figure 6(b) plots confidence intervals of the arm means, but the endpoints are not printed and are not read from the figure. The combined pair count is not printed, so n_units is null; no count is derived from the degrees of freedom. The pooled No AI participant count is also not printed. The printed No AI pair count is 2784; the AI pair count is not printed. This arm-specific pair count is not a count of people or the combined n_units."
+  },
+  {
+   "slug": "s1_classifier_accuracy_all_tasks_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Classifier accuracy distinguishing Indian from American authorship, all tasks (%)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "automated_score",
+   "measure_detail": "Logistic regression predicts Indian versus American authorship using OpenAI essay embeddings as features, fitted separately for the AI and No AI conditions. The specific embedding model is not named. The mean score is reported in percent; its observations are held-out cross-validation fold scores. Higher classification performance indicates greater distinguishability between cultures, used here as an automated measure of diversity.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI condition (Indians with AI and Americans with AI), all four tasks",
+   "control_arm": "No AI condition (Indians without AI and Americans without AI), all four tasks",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 83.5,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 90.6,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": 7.1,
+    "difference_is": "Decrease from No AI to AI, in percentage points: control minus treatment, as printed.",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 2.25,
+     "df": 38
+    },
+    "p_value": 0.03,
+    "paper_effect": {
+     "type": "d",
+     "value": 0.71,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "set",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "difference"
+     ],
+     "locator": "PDF p. 10, Section 4.3.2, Results",
+     "quote": "On average, the accuracy decreased by 7.1 percentage points, from 90.6% in the No AI condition to 83.5% in the AI condition."
+    },
+    {
+     "fields": [
+      "test",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 10, Section 4.3.2, Results",
+     "quote": "This decrease was statistically significant, 𝑡(38) = 2.25, 𝑝= 0.03, with a medium effect size (Cohen’s 𝑑= 0.71)."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 10, Section 4.3.2, Setup",
+     "quote": "This resulted in a distribution of 20 accuracy and F1 scores in each condition, which we compared using an independent samples t-test."
+    }
+   ],
+   "notes": "This is an output-based cultural-distinguishability measure, not a convergent test taken by participants. The classifier is a scoring method; it is not an AI-treatment regression, so regression is null. The independent-samples t test treats cross-validation fold scores as observations; unit and se_basis are set. No participant-level or participant-clustered uncertainty, fold-score SDs, SEs, or confidence intervals are printed. The printed t statistic and Cohen’s d follow No AI minus AI and are retained without reversing their signs; the standardizer is not defined. The total number of fold-score observations is not printed and is not computed by adding the per-condition counts. The pooled No AI participant count is not printed. Means remain in percent, with no conversion to proportions."
+  },
+  {
+   "slug": "s1_classifier_macro_f1_all_tasks_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Classifier macro F1 distinguishing Indian from American authorship, all tasks (%)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "automated_score",
+   "measure_detail": "Logistic regression predicts Indian versus American authorship using OpenAI essay embeddings as features, fitted separately for the AI and No AI conditions. The specific embedding model is not named. The mean score is reported in percent; its observations are held-out cross-validation fold scores. Higher classification performance indicates greater distinguishability between cultures, used here as an automated measure of diversity. The paper explicitly labels this outcome macro F1.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI condition (Indians with AI and Americans with AI), all four tasks",
+   "control_arm": "No AI condition (Indians without AI and Americans without AI), all four tasks",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 82.9,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 89.9,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": 7,
+    "difference_is": "Decrease from No AI to AI, in percentage points: control minus treatment, as printed.",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 2.07,
+     "df": 38
+    },
+    "p_value": 0.045,
+    "paper_effect": {
+     "type": "d",
+     "value": 0.65,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "set",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "difference",
+      "test",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 10, Section 4.3.2, Results",
+     "quote": "Similarly, the macro F1 score decreased by 7 percentage points on average, from 89.9% in the No AI condition to 82.9% in the AI condition, 𝑡(38) = 2.07, 𝑝= 0.045, also with a medium effect size (Cohen’s 𝑑= 0.65)."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 10, Section 4.3.2, Setup",
+     "quote": "This resulted in a distribution of 20 accuracy and F1 scores in each condition, which we compared using an independent samples t-test."
+    }
+   ],
+   "notes": "This is an output-based cultural-distinguishability measure, not a convergent test taken by participants. The classifier is a scoring method; it is not an AI-treatment regression, so regression is null. The independent-samples t test treats cross-validation fold scores as observations; unit and se_basis are set. No participant-level or participant-clustered uncertainty, fold-score SDs, SEs, or confidence intervals are printed. The printed t statistic and Cohen’s d follow No AI minus AI and are retained without reversing their signs; the standardizer is not defined. The total number of fold-score observations is not printed and is not computed by adding the per-condition counts. The pooled No AI participant count is not printed. Means remain in percent, with no conversion to proportions."
+  },
+  {
+   "slug": "s1_classifier_accuracy_email_task_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Classifier accuracy distinguishing Indian from American authorship, email task (%)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "automated_score",
+   "measure_detail": "Logistic-regression classification of Indian versus American authorship from email-task essay embeddings. Accuracy is reported in percent. Higher accuracy means greater cross-cultural distinguishability. The exact embedding model and the email-only fold count are not named.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI condition, email-writing task only",
+   "control_arm": "No AI condition, email-writing task only",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 60,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 82.9,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 5.63,
+     "df": 8
+    },
+    "p_value": "<0.001",
+    "paper_effect": {
+     "type": "d",
+     "value": 3.56,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "set",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "test",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 11, Section 4.3.3, Performance on Email-Writing Task",
+     "quote": "Accuracy dropped from 82.9% in the No AI condition to 60% in the AI condi- tion, a statistically significant decrease, 𝑡(8) = 5.63, 𝑝< 0.001, with a large effect size (Cohen’s 𝑑= 3.56)."
+    }
+   ],
+   "notes": "The email task was completed by every analyzed participant, so this is a task-specific full-sample outcome, not a participant subgroup. The paper reruns the authorship classifier on email-task essays and does not report new participant exclusions. Counts are the printed study counts, not counts inferred from the test degrees of freedom. The email-only number of folds and total number of fold-score observations are not stated, so n_units is null. The scoring unit and uncertainty basis are coded set, consistent with the cross-validation comparison described for this classifier; the email variant does not separately detail the resampling procedure. No arm SDs, SEs, confidence bounds, or participant-level uncertainty are printed. Positive t and d correspond to No AI minus AI and are retained as printed; the d standardizer is not defined. Means remain in percent. The pooled No AI participant count and the raw mean difference are not printed and are not calculated."
+  },
+  {
+   "slug": "s1_classifier_f1_email_task_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Classifier F1 distinguishing Indian from American authorship, email task (%)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "automated_score",
+   "measure_detail": "Logistic-regression classification of Indian versus American authorship from email-task essay embeddings. F1 is reported in percent. Higher F1 means greater cross-cultural distinguishability. The main analysis specifies macro F1; the email-only paragraph calls this F1 without restating the averaging method.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI condition, email-writing task only",
+   "control_arm": "No AI condition, email-writing task only",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 49.2,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 81.7,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 5.79,
+     "df": 8
+    },
+    "p_value": "<0.001",
+    "paper_effect": {
+     "type": "d",
+     "value": 3.66,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "set",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "test",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 11, Section 4.3.3, Performance on Email-Writing Task",
+     "quote": "The F1 score also declined sharply, from 81.7% to 49.2% AI, 𝑡(8) = 5.79, 𝑝< 0.001, with a large effect size (𝑑= 3.66)."
+    }
+   ],
+   "notes": "The email task was completed by every analyzed participant, so this is a task-specific full-sample outcome, not a participant subgroup. The paper reruns the authorship classifier on email-task essays and does not report new participant exclusions. Counts are the printed study counts, not counts inferred from the test degrees of freedom. The email-only number of folds and total number of fold-score observations are not stated, so n_units is null. The scoring unit and uncertainty basis are coded set, consistent with the cross-validation comparison described for this classifier; the email variant does not separately detail the resampling procedure. No arm SDs, SEs, confidence bounds, or participant-level uncertainty are printed. Positive t and d correspond to No AI minus AI and are retained as printed; the d standardizer is not defined. Means remain in percent. The pooled No AI participant count and the raw mean difference are not printed and are not calculated."
+  },
+  {
+   "slug": "s1_classifier_accuracy_embedding_ablation_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Authorship-classifier accuracy, embedding-dimension ablation (figure only)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "automated_score",
+   "measure_detail": "Logistic-regression authorship classification on randomly selected subsets of the essay-embedding coordinates, using repeated cross-validation on all writing tasks. The paper compares AI and No AI performance across embedding sizes in plotted curves. Higher performance means greater cross-cultural distinguishability.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI condition (Indians with AI and Americans with AI)",
+   "control_arm": "No AI condition (Indians without AI and Americans without AI)",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "set",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; curves in Figure 8(a)-(b), PDF p. 12",
+     "quote": "The results, shown in Figure 8(a, b), reveal a consistent perfor- mance drop in both accuracy and F1 score across all embedding sizes in the AI condition."
+    }
+   ],
+   "notes": "The paper reports consistently lower classifier performance with AI across the embedding ablations, but numerical arm levels and contrasts appear only as curves in Figure 8. No value is read from a figure. This record preserves the reported full-sample outcome with null statistics; it does not average the curves or create an effect for an unreported dimension. Figure 8(a) shows shaded variability bands around both the AI and No AI accuracy curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null. n_units is null because the total number of analyzed fold-score observations is not printed. The same participant sample underlies the main classifier results and these alternative scoring analyses; these are not new AI treatment arms or independent samples. The pooled No AI participant count is not printed."
+  },
+  {
+   "slug": "s1_classifier_f1_embedding_ablation_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Authorship-classifier F1, embedding-dimension ablation (figure only)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "automated_score",
+   "measure_detail": "Logistic-regression authorship classification on randomly selected subsets of the essay-embedding coordinates, using repeated cross-validation on all writing tasks. The paper compares AI and No AI performance across embedding sizes in plotted curves. Higher performance means greater cross-cultural distinguishability.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI condition (Indians with AI and Americans with AI)",
+   "control_arm": "No AI condition (Indians without AI and Americans without AI)",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "set",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; curves in Figure 8(a)-(b), PDF p. 12",
+     "quote": "The results, shown in Figure 8(a, b), reveal a consistent perfor- mance drop in both accuracy and F1 score across all embedding sizes in the AI condition."
+    }
+   ],
+   "notes": "The paper reports consistently lower classifier performance with AI across the embedding ablations, but numerical arm levels and contrasts appear only as curves in Figure 8. No value is read from a figure. This record preserves the reported full-sample outcome with null statistics; it does not average the curves or create an effect for an unreported dimension. Figure 8(b) shows shaded variability bands around both the AI and No AI F1 curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null. n_units is null because the total number of analyzed fold-score observations is not printed. The same participant sample underlies the main classifier results and these alternative scoring analyses; these are not new AI treatment arms or independent samples. The pooled No AI participant count is not printed."
+  },
+  {
+   "slug": "s1_essay_length_ai_vs_no_ai",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O8",
+   "outcome": "Essay length (narrative comparison only)",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "Length of each final essay. The paper states that essays across all experimental groups were of similar length; it does not specify a numeric length measure or whether length was assessed in words or characters.",
+   "unit": "output",
+   "n_units": 472,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI condition (Indians with AI and Americans with AI)",
+   "control_arm": "No AI condition (Indians without AI and Americans without AI)",
+   "within_person": null,
+   "n_treatment": 65,
+   "n_control": null,
+   "n_total": 118,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_total",
+      "n_units"
+     ],
+     "locator": "PDF p. 7, Section 4, opening paragraph",
+     "quote": "Overall, 118 participants completed four tasks each, resulting in a dataset of 472 essays. Among these participants, 65 received AI- generated suggestions to aid their writing—36 in India and 29 in the US."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 6, Section 3.5.2, Type-Token Ratio",
+     "quote": "the essays across all four experimental groups were of similar length, likely due to the minimum word requirement we enforced."
+    }
+   ],
+   "notes": "Higher means a longer essay, without an asserted direction for creativity. The screening form retains this as an elaboration outcome. The paper gives only a narrative statement of similar length, not a numerical equality or a formal null result. No means, dispersions, effect sizes, tests, or uncertainty are printed; all statistics are therefore null. n_units is the printed total essay corpus, not an independently reported sample size for a length test. The pooled No AI participant count is not printed."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "S1-O2: Within-culture cosine similarity, AI versus No AI separately among Indians and Americans",
+   "reason": "Country-specific subgroup estimates rather than the full-sample AI contrast. The paper identifies country as a recruited cohort, while only AI condition is randomized. Excluded under extraction-spec Rule 5. PDF p. 3, Section 3.1 and footnote 4; PDF p. 9, Section 4.2.1; PDF p. 10, Figure 6(a). Means and interval endpoints are graph-only."
+  },
+  {
+   "what": "S1-O2: Country-by-AI difference-in-differences in within-culture similarity",
+   "reason": "Moderation result, excluded under extraction-spec Rule 5. PDF p. 9, Section 4.2.1."
+  },
+  {
+   "what": "S1-O2: Within-culture similarity compared between Indian and American participants without AI",
+   "reason": "Nonrandom comparison between country cohorts with neither group receiving AI, not an eligible AI-versus-comparison contrast. PDF p. 9, Section 4.2.1."
+  },
+  {
+   "what": "S1-O3: Direction of homogenization with only Indian writers using AI, relative to American unassisted reference essays",
+   "reason": "A country-specific AI contrast with the other country held as an unassisted reference corpus; it does not compare the full AI condition against the full No AI condition. Excluded as a subgroup contrast under extraction-spec Rules 4 and 5. PDF p. 10, Section 4.3.1, Direction of Homogenization."
+  },
+  {
+   "what": "S1-O3: Direction of homogenization with only American writers using AI, relative to Indian unassisted reference essays",
+   "reason": "A country-specific AI contrast with the other country held as an unassisted reference corpus; excluded as a subgroup contrast under extraction-spec Rules 4 and 5. PDF p. 10, Section 4.3.1, Direction of Homogenization."
+  },
+  {
+   "what": "S1-O5: Essay type-token ratio (lexical diversity)",
+   "reason": "AI-versus-No-AI results are country-specific and figure-only. Printed tests instead compare Indian with American cohorts within each AI condition; country was not randomized. No numeric full-sample AI contrast is printed. TTR measures lexical variety within an essay, not diversity across people. PDF p. 12, Section 4.3.5 and Figure 9(a)."
+  },
+  {
+   "what": "S1-O6: Grammatical errors per essay",
+   "reason": "Only country-specific AI contrasts are reported; excluded as subgroup results under extraction-spec Rule 5. No full-sample contrast is printed. PDF p. 11, Section 4.3.4; PDF p. 12, Figure 8(c)."
+  },
+  {
+   "what": "S1-O7: Sushi as favorite food",
+   "reason": "Content-choice counts are reported only for Indian participants; excluded as a country subgroup outcome. PDF p. 13, Section 4.4.3."
+  },
+  {
+   "what": "S1-O7: Christmas as favorite festival",
+   "reason": "Content-choice counts and percentages are reported only for Indian participants; excluded as a country subgroup outcome. PDF p. 13, Section 4.4.3."
+  },
+  {
+   "what": "S1-O7: Indian versus non-Indian public figure selected",
+   "reason": "Indian-participant subgroup outcome, excluded under extraction-spec Rule 5. The prose and Table 7 also conflict about the AI-condition aggregate; no alternative total has been computed. PDF p. 13, Section 4.4.3; PDF p. 20, Appendix B, Table 7."
+  },
+  {
+   "what": "Qualitative cultural expression: exoticization, generic phrasing, Westernized descriptions and omitted cultural details",
+   "reason": "Illustrative selected essays and narrative interpretation rather than numerical full-sample outcome statistics. The content analysis focuses on Indian participants. PDF pp. 12-13, Section 4.4.1 and Table 5; PDF p. 21, Appendix C, Table 8."
+  },
+  {
+   "what": "Preliminary prompt comparison and cultural content of AI suggestions",
+   "reason": "Preliminary model-output inspection, common suggestion trigrams and suggestion sequences do not provide a randomized contrast on human-produced creative output. PDF p. 5, Section 3.3.2; PDF p. 8, Table 4; PDF pp. 12-13, Figure 9(b) and Section 4.4.2."
+  },
+  {
+   "what": "AI reliance: proportion of final text generated by AI",
+   "reason": "Usage/composition metric, not creativity or diversity of the output; the reported contrast is between countries within the AI condition, not randomized AI assistance. PDF p. 7, Section 4.1.1 and PDF p. 8, Figure 4(a)."
+  },
+  {
+   "what": "Suggestion exposure, acceptance and rejection, including progression through the task",
+   "reason": "Interaction-log measures of AI usage, not scores on participants’ creative output; country comparisons are not randomized AI contrasts. PDF p. 7, Section 4 opening paragraph and Section 4.1.1; PDF p. 8, Figure 4(b)."
+  },
+  {
+   "what": "Suggestion modification behavior",
+   "reason": "Interaction behavior and an Indian-versus-American comparison within the AI condition, not an eligible creativity or diversity contrast. PDF p. 7, Section 4.1.2; PDF p. 8, Figure 4(c)."
+  },
+  {
+   "what": "Task completion time",
+   "reason": "Process-duration outcome, not creativity or diversity scored on the produced output; country-specific contrasts and country moderation are also outside the full-sample extraction scope. PDF p. 8, Section 4.1.3; PDF p. 9, Figure 5(a)."
+  },
+  {
+   "what": "Writing productivity (words per second)",
+   "reason": "Typing-rate/process-efficiency outcome, not idea fluency or an output creativity score. Only country-specific AI comparisons are reported. PDF p. 8, Section 4.1.3; PDF p. 9, Figure 5(b)."
+  },
+  {
+   "what": "Productivity per accepted suggestion",
+   "reason": "Process-efficiency outcome restricted by suggestion uptake, compared between country cohorts within the AI condition. It is neither a full-sample randomized contrast nor an output creativity/diversity measure. PDF p. 8, Section 4.1.3; PDF p. 9, Figure 5(c)."
+  },
+  {
+   "what": "Short Schwartz Value Survey and self-reported demographics",
+   "reason": "Self-reports used to characterize the country cohorts, not outcomes scored on the writing. PDF pp. 5-6, Sections 3.3.3 and 3.4, Table 3; PDF p. 19, Appendix A, Table 6."
+  }
+ ],
+ "open_items": [
+  "The paper prints analyzed participant counts but no counts at random assignment, noncompletion, or post-assignment exclusion under the lifelong-country-residence rule. Both task completion and the demographic survey were required after assignment at consent (PDF pp. 4-5).",
+  "The combined No AI participant count is not printed. n_control remains null; the country-specific control counts are preserved in the study arms. For all retained full-sample analyses, n_treatment and n_total use the printed completed-study counts (PDF p. 3, Table 1; PDF p. 7, Section 4).",
+  "The paper provides no participant-level SD or participant-level/participant-clustered uncertainty for similarity or classifier outcomes. Similarity uncertainty is over essay pairs; classifier uncertainty is over model-performance scores on sets of essays. These are not participant-level standard errors (PDF pp. 9-11). No data or code repository is identified.",
+  "The AI and combined cross-culture pair counts and the combined all-task classifier fold-score count are not printed. The email-specific fold count is not stated. No counts are inferred from degrees of freedom or calculated by adding per-condition counts (PDF pp. 9-11).",
+  "Numerical confidence-interval endpoints for cross-culture similarity appear only graphically. Classifier arm SDs, SEs, and confidence intervals are not printed. The standardizer for each reported Cohen’s d is undefined (PDF pp. 9-11).",
+  "Embedding-dimension sensitivity results are plotted without numerical contrasts, and essay length is described only narratively. Their full-sample records retain null statistics. The essay-length n_units is the printed complete essay corpus, not a separately reported length-test sample size (PDF p. 6, Section 3.5.2; PDF p. 7, Section 4; PDF p. 11, Section 4.3.3; PDF p. 12, Figure 8).",
+  "The exact OpenAI embedding model, GPT-4o release year, and dated GPT-4o API snapshot are not stated. ai_tool.year remains null (PDF pp. 4-5, Section 3.3.2; PDF p. 7, Section 3.5.2).",
+  "The citation record identifies a later ACM publication version. This reconciliation verifies the saved arXiv v3 only; differences from the ACM version of record remain unverified.",
+  "The Indian public-figure aggregate in the prose is flagged as inconsistent with Appendix B by the screening form. This country-subgroup outcome is excluded under rule 5; no replacement aggregate or share is computed here (PDF p. 13, Section 4.4.3; PDF p. 20, Table 7).",
+  "The full-sample similarity measure uses cross-country pairs only, rather than every possible pair within each AI condition. No pooled within-country AI contrast is printed. The choice of primary across_people record remains a synthesis decision; no preregistered primary outcome is stated (PDF pp. 9-11)."
+ ],
+ "notes": "Reconciled on 2026-10-09 against the saved PDF. The complete markdown conversion was read, including references and Appendices A-C. Every cited PDF page was extracted with pymupdf; Tables 1 and 7 were also checked with find_tables(). Locators use PDF page positions; no different printed page-number sequence is displayed. The screening form, citation record, both independent extractions, and the complete comparison file were checked. Agreement was independently audited: analyzed study and arm counts are printed, randomization counts are not, assignment is individual and between subjects, and within_person is null for every estimate. All retained records concern outputs produced with AI available in the treatment condition during the same writing session; there is no after_ai outcome. Similarity uses pairs and higher_is more_similar. Classifier performance measures cultural distinguishability across writers, so question is across_people, construct is diversity, measure is automated_score, unit is set, and higher_is is more_diverse; it is not participant convergent accuracy. Its logistic regression is the scoring method, not a treatment-effect regression. Essay length is a with_ai elaboration outcome at output level, with higher_is other because greater length does not establish greater creativity. The country-specific contrasts, country moderation, and other excluded outcomes are individually accounted for in not_extracted. The email analyses use a task completed by the whole sample, and the differently named A and B entries are merged once per metric. Full-sample figure-only scoring variants and the narrative length comparison are retained with null statistics under rules 1, 4, and 13; they are not additional randomized AI configurations or independent samples. Study task_type creative_writing follows the screening form for the personal essays and leave-request email; eligibility rests on comparison of writing across people. Sources preserve printed signs and precision, with whitespace collapsed and PDF line-end hyphens retained. No effects, uncertainties, aggregate counts, proportions, or missing standard deviations were computed, and no graph values were digitized. Empty source-field lists document methodological or narrative evidence. All screened outcomes are retained or explicitly excluded; no additional eligible outcome absent from both extractions was found.",
+ "resolutions": [
+  {
+   "where": "S1.clusters_per_arm",
+   "a": null,
+   "b": {},
+   "decision": "Keep {} as the schema’s empty cluster-count map. People were individually assigned; no teams, classes, or sessions were randomized. cluster_se_treatment remains null.",
+   "locator": "PDF p. 4, Section 3.3.1; PDF p. 3, Section 3.1",
+   "quote": "Participants who provided consent were randomly assigned to the AI or No AI condition."
+  },
+  {
+   "where": "s1_classifier_accuracy_email_task_ai_vs_no_ai.inclusion_and_slug",
+   "a": {
+    "slug": "s1_classifier_accuracy_email_task_ai_vs_no_ai",
+    "inclusion": "included"
+   },
+   "b": {
+    "slug": "s1_classifier_accuracy_email_ai_vs_no_ai",
+    "inclusion": "included"
+   },
+   "decision": "These are duplicate names for the same reported email-task accuracy contrast. Retain one estimate under s1_classifier_accuracy_email_task_ai_vs_no_ai. The email task was completed by every participant, so task-specific scoring is a full-sample outcome, not a participant subgroup. Keep the PDF-confirmed statistics and the screening-form arm labels; do not create a second estimate for the B alias.",
+   "locator": "PDF p. 11, Section 4.3.3, Performance on Email-Writing Task; PDF p. 7, Section 4, opening paragraph",
+   "quote": "Accuracy dropped from 82.9% in the No AI condition to 60% in the AI condi- tion, a statistically significant decrease, 𝑡(8) = 5.63, 𝑝< 0.001, with a large effect size (Cohen’s 𝑑= 3.56)."
+  },
+  {
+   "where": "s1_classifier_f1_email_task_ai_vs_no_ai.inclusion_and_slug",
+   "a": {
+    "slug": "s1_classifier_f1_email_task_ai_vs_no_ai",
+    "inclusion": "included"
+   },
+   "b": {
+    "slug": "s1_classifier_f1_email_ai_vs_no_ai",
+    "inclusion": "included"
+   },
+   "decision": "These are duplicate names for the same reported email-task F1 contrast. Retain one estimate under s1_classifier_f1_email_task_ai_vs_no_ai. The email task was completed by every participant, so task-specific scoring is a full-sample outcome, not a participant subgroup. Keep the PDF-confirmed statistics and the screening-form arm labels; do not create a second estimate for the B alias.",
+   "locator": "PDF p. 11, Section 4.3.3, Performance on Email-Writing Task; PDF p. 7, Section 4, opening paragraph",
+   "quote": "The F1 score also declined sharply, from 81.7% to 49.2% AI, 𝑡(8) = 5.79, 𝑝< 0.001, with a large effect size (𝑑= 3.66)."
+  },
+  {
+   "where": "s1_classifier_accuracy_embedding_ablation_ai_vs_no_ai.inclusion",
+   "a": "Included as a full-sample outcome record with null statistics.",
+   "b": "Listed in not_extracted because dimension-specific contrast numbers are figure-only.",
+   "decision": "Retain the reported full-sample sensitivity outcome with null statistics. The classifier scores human essays from the randomized AI and No AI conditions; this is neither a participant subgroup nor a model-only generation study under rules 4-5. Rules 1 and 13 prohibit reading values from the curves, not recording the outcome. Do not calculate an average across embedding sizes or duplicate the main numerical contrast. Figure 8(a) shows shaded variability bands around both the AI and No AI accuracy curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null.",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(a)-(b)",
+   "quote": "The results, shown in Figure 8(a, b), reveal a consistent perfor- mance drop in both accuracy and F1 score across all embedding sizes in the AI condition."
+  },
+  {
+   "where": "s1_classifier_f1_embedding_ablation_ai_vs_no_ai.inclusion",
+   "a": "Included as a full-sample outcome record with null statistics.",
+   "b": "Listed in not_extracted because dimension-specific contrast numbers are figure-only.",
+   "decision": "Retain the reported full-sample sensitivity outcome with null statistics. The classifier scores human essays from the randomized AI and No AI conditions; this is neither a participant subgroup nor a model-only generation study under rules 4-5. Rules 1 and 13 prohibit reading values from the curves, not recording the outcome. Do not calculate an average across embedding sizes or duplicate the main numerical contrast. Figure 8(b) shows shaded variability bands around both the AI and No AI F1 curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null.",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(a)-(b)",
+   "quote": "The results, shown in Figure 8(a, b), reveal a consistent perfor- mance drop in both accuracy and F1 score across all embedding sizes in the AI condition."
+  },
+  {
+   "where": "s1_essay_length_ai_vs_no_ai.inclusion",
+   "a": "Included as S1-O8, with null statistics and n_units 472 for the complete essay corpus.",
+   "b": "Listed in not_extracted because no length measure or numerical contrast is printed.",
+   "decision": "Retain the full-sample output-length comparison mapped as S1-O8 in the screening form. The statement covers all experimental groups and meets rule 4; no rule 5 exclusion applies. Every statistic remains null because similar length is not a numerical equality, effect estimate, or test. n_units is the printed complete essay corpus, with that limitation stated in notes; higher_is remains other (longer), not a claim of greater creativity.",
+   "locator": "PDF p. 6, Section 3.5.2, Type-Token Ratio; PDF p. 7, Section 4, opening paragraph",
+   "quote": "the essays across all four experimental groups were of similar length, likely due to the minimum word requirement we enforced."
+  }
+ ],
+ "fixes": [
+  {
+   "slug": "s1_classifier_accuracy_embedding_ablation_ai_vs_no_ai",
+   "field": "se_basis",
+   "old": "not_reported",
+   "new": "set",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(a)",
+   "quote": "To ensure robustness to random sampling, we repeated the experiment 10 times for each value of 𝑑.",
+   "basis": "Accepted verifier flag. The PDF figure reports variability, so not_reported does not apply under the extraction-spec field notes. The uncertainty unit is inferred from the repeated classifier evaluation on sets of essays described in Section 4.3.3, not from independent participant outcomes. No numerical value or interval definition is inferred from the figure."
+  },
+  {
+   "slug": "s1_classifier_accuracy_embedding_ablation_ai_vs_no_ai",
+   "field": "notes",
+   "old": "The paper reports consistently lower classifier performance with AI across the embedding ablations, but numerical arm levels and contrasts appear only as curves in Figure 8. No value is read from a figure. This record preserves the reported full-sample outcome with null statistics; it does not average the curves or create an effect for an unreported dimension. No numerical uncertainty for the ablation contrast is printed, so se_basis is not_reported. n_units is null because the total number of analyzed fold-score observations is not printed. The same participant sample underlies the main classifier results and these alternative scoring analyses; these are not new AI treatment arms or independent samples. The pooled No AI participant count is not printed.",
+   "new": "The paper reports consistently lower classifier performance with AI across the embedding ablations, but numerical arm levels and contrasts appear only as curves in Figure 8. No value is read from a figure. This record preserves the reported full-sample outcome with null statistics; it does not average the curves or create an effect for an unreported dimension. Figure 8(a) shows shaded variability bands around both the AI and No AI accuracy curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null. n_units is null because the total number of analyzed fold-score observations is not printed. The same participant sample underlies the main classifier results and these alternative scoring analyses; these are not new AI treatment arms or independent samples. The pooled No AI participant count is not printed.",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(a)",
+   "quote": "To ensure robustness to random sampling, we repeated the experiment 10 times for each value of 𝑑.",
+   "basis": "Remove the explanation that incorrectly equated absent printed numerical bounds with absent uncertainty. Document the visible bands and their set-level basis while preserving every null statistic and all other notes."
+  },
+  {
+   "slug": "s1_classifier_accuracy_embedding_ablation_ai_vs_no_ai",
+   "field": "resolutions[3].decision",
+   "old": "Retain the reported full-sample sensitivity outcome with null statistics. The classifier scores human essays from the randomized AI and No AI conditions; this is neither a participant subgroup nor a model-only generation study under rules 4-5. Rules 1 and 13 prohibit reading values from the curves, not recording the outcome. Do not calculate an average across embedding sizes or duplicate the main numerical contrast. se_basis remains not_reported.",
+   "new": "Retain the reported full-sample sensitivity outcome with null statistics. The classifier scores human essays from the randomized AI and No AI conditions; this is neither a participant subgroup nor a model-only generation study under rules 4-5. Rules 1 and 13 prohibit reading values from the curves, not recording the outcome. Do not calculate an average across embedding sizes or duplicate the main numerical contrast. Figure 8(a) shows shaded variability bands around both the AI and No AI accuracy curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null.",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(a)",
+   "quote": "To ensure robustness to random sampling, we repeated the experiment 10 times for each value of 𝑑.",
+   "basis": "Update the repeated se_basis statement in this estimate's reconciliation decision so it agrees with the corrected coding. The inclusion decision, original extractor positions, and null statistics are unchanged."
+  },
+  {
+   "slug": "s1_classifier_f1_embedding_ablation_ai_vs_no_ai",
+   "field": "se_basis",
+   "old": "not_reported",
+   "new": "set",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(b)",
+   "quote": "To ensure robustness to random sampling, we repeated the experiment 10 times for each value of 𝑑.",
+   "basis": "Accepted verifier flag. The PDF figure reports variability, so not_reported does not apply under the extraction-spec field notes. The uncertainty unit is inferred from the repeated classifier evaluation on sets of essays described in Section 4.3.3, not from independent participant outcomes. No numerical value or interval definition is inferred from the figure."
+  },
+  {
+   "slug": "s1_classifier_f1_embedding_ablation_ai_vs_no_ai",
+   "field": "notes",
+   "old": "The paper reports consistently lower classifier performance with AI across the embedding ablations, but numerical arm levels and contrasts appear only as curves in Figure 8. No value is read from a figure. This record preserves the reported full-sample outcome with null statistics; it does not average the curves or create an effect for an unreported dimension. No numerical uncertainty for the ablation contrast is printed, so se_basis is not_reported. n_units is null because the total number of analyzed fold-score observations is not printed. The same participant sample underlies the main classifier results and these alternative scoring analyses; these are not new AI treatment arms or independent samples. The pooled No AI participant count is not printed.",
+   "new": "The paper reports consistently lower classifier performance with AI across the embedding ablations, but numerical arm levels and contrasts appear only as curves in Figure 8. No value is read from a figure. This record preserves the reported full-sample outcome with null statistics; it does not average the curves or create an effect for an unreported dimension. Figure 8(b) shows shaded variability bands around both the AI and No AI F1 curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null. n_units is null because the total number of analyzed fold-score observations is not printed. The same participant sample underlies the main classifier results and these alternative scoring analyses; these are not new AI treatment arms or independent samples. The pooled No AI participant count is not printed.",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(b)",
+   "quote": "To ensure robustness to random sampling, we repeated the experiment 10 times for each value of 𝑑.",
+   "basis": "Remove the explanation that incorrectly equated absent printed numerical bounds with absent uncertainty. Document the visible bands and their set-level basis while preserving every null statistic and all other notes."
+  },
+  {
+   "slug": "s1_classifier_f1_embedding_ablation_ai_vs_no_ai",
+   "field": "resolutions[4].decision",
+   "old": "Retain the reported full-sample sensitivity outcome with null statistics. The classifier scores human essays from the randomized AI and No AI conditions; this is neither a participant subgroup nor a model-only generation study under rules 4-5. Rules 1 and 13 prohibit reading values from the curves, not recording the outcome. Do not calculate an average across embedding sizes or duplicate the main numerical contrast. se_basis remains not_reported.",
+   "new": "Retain the reported full-sample sensitivity outcome with null statistics. The classifier scores human essays from the randomized AI and No AI conditions; this is neither a participant subgroup nor a model-only generation study under rules 4-5. Rules 1 and 13 prohibit reading values from the curves, not recording the outcome. Do not calculate an average across embedding sizes or duplicate the main numerical contrast. Figure 8(b) shows shaded variability bands around both the AI and No AI F1 curves. Repeated cross-validation and embedding-dimension sampling evaluate classifier performance on sets of essays, so se_basis is set. The band type, confidence level, and numerical bounds are not stated; numerical uncertainty fields remain null.",
+   "locator": "PDF p. 11, Section 4.3.3, Ablation on Embedding Dimensions; PDF p. 12, Figure 8(b)",
+   "quote": "To ensure robustness to random sampling, we repeated the experiment 10 times for each value of 𝑑.",
+   "basis": "Update the repeated se_basis statement in this estimate's reconciliation decision so it agrees with the corrected coding. The inclusion decision, original extractor positions, and null statistics are unchanged."
+  }
+ ],
+ "kept": [],
+ "review_corrections": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude (main session)",
+   "slug": "s1_essay_length_ai_vs_no_ai",
+   "field": "construct",
+   "old": "elaboration",
+   "new": "other",
+   "basis": "The task (short personal texts and an email) qualifies through across-writer similarity; its quality, readability, and length scores measure writing, not creativity (Review 1 Decisions 7 and 10; codebook section 1, sentence added 2026-10-11 for review). Construct other: shown on the study page, never primary or pooled."
+  }
+ ]
+}

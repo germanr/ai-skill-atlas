@@ -1,0 +1,715 @@
+{
+  "cid": "c639",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu Kim Lin (2025) - More Ideas, Less Strategic Focus.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu Kim Lin (2025) - More Ideas, Less Strategic Focus.pdf",
+    "version": "INSEAD Working Paper 2026/17/STR (Revised version of 2025/42/STR), dated 22 February 2026; cover says electronic copy at SSRN abstract 5456494",
+    "title_on_document": "More Ideas, Less Strategic Focus: How AI Changes the Alternatives Decision-Makers Consider",
+    "authors_on_document": ["Nety Wu", "Hyunjin Kim", "Chengyi Lin"],
+    "pages": 118,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendices A to G follow the main text in this PDF (PDF pp. 44-118, appendix page numbering restarts at 1). Appendix A says full survey versions for conditions other than full treatment are 'available upon request'.",
+      "holds": "Participant allocation by section (Table A.1), pairwise mean differences with SEs (Table A.3), robustness tables (A.4, A.5, F.2-F.4), attrition (F.1), continue-option outcomes (D.1, D.2), broad-vs-specific options (D.5), problem and option category outcomes (E.5-E.8), problem-statement similarity figure (E.1), heterogeneity (E.10-E.14), pre-registered extra outcomes (F.5), follow-up team study (Appendix G, Table G.2). Nothing needed for extraction appears to sit outside this PDF."
+    }
+  },
+  "paper_design_summary": "In a classroom experiment, 305 MBA students in a core strategy course analyzed a business case (Rated), wrote a problem formulation, generated as many strategic options as they wished, and selected the best one. Students were randomized (stratified by section, gender, and consulting background) to no LLM (control), GPT-4 access from the ideation stage onward (partial treatment), or GPT-4 access from the problem formulation stage onward (full treatment). Outcomes are per-participant counts of options and the share coded strategic versus operational by a fine-tuned GPT-3.5 Turbo classifier; an appendix follow-up study randomized 24 executive teams (96 executives) to full versus partial LLM timing.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Main experiment: 305 MBA students, Rated case, three arms (control, partial LLM, full LLM)",
+      "design_class": "field_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Timing of access to a GPT-4-based LLM during the task: none (control), from ideation onward after problem formulation (partial treatment), or from problem formulation onward (full treatment)",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were randomly assigned to three experimental groups, stratified by their section, gender, and a binary indicator of whether their last job was in consulting.",
+        "locator": "PDF p. 13 (printed p. 12), Section 3.1",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 1 (cover note: 'pre-registered on the AEA RCT registry'); PDF p. 11 (printed p. 10), Section 3; PDF p. 14 (printed p. 13), Section 3.1; PDF p. 105 (appendix p. 62), Appendix F. No registry ID is given."
+      },
+      "arms": [
+        { "name": "Control", "description": "Completed problem formulation, option generation, and selection without LLM assistance", "ai": "none", "n_randomized": null, "n_analyzed": 103 },
+        { "name": "Partial treatment", "description": "GPT-4-based LLM access from the ideation stage onward, after problem formulation (ideation and selection)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 100 },
+        { "name": "Full treatment", "description": "GPT-4-based LLM access from the problem formulation stage onward (problem formulation, ideation, and selection)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 102 }
+      ],
+      "participants": {
+        "n_randomized": 338,
+        "n_analyzed": 305,
+        "counts_are": "people",
+        "exclusions": "Appendix F: 336 students pre-registered, two 'partners' added later, 'bringing the assigned sample to 338. Of these, 305 participated (including the two additions), and 33 were absent' (PDF p. 105, appendix p. 62). Arm-level assignment counts for the 338 are not given; arm counts 103/100/102 are participants. The paper labels its estimates intention-to-treat but analyzes the 305 who participated. Attrition balance in Table F.1 (consulting differs, p = 0.049). Robustness: excluding duration outliers beyond 2 SD leaves 293 (Table A.4); excluding the two additions leaves 303 (Table F.2).",
+        "population": "students",
+        "who": "MBA students in a core strategy course at a leading business school; mean age 30, 32% female, 31% previously in management consulting; four class sections",
+        "country": "not_stated",
+        "quote": "Our sample for the main experiment consists of 305 MBA students enrolled in a core strategy course at a leading business school.",
+        "locator": "PDF p. 11 (printed p. 10), Section 3.1; PDF p. 37 (printed p. 36), Table 1; PDF p. 55 (appendix p. 12), Table A.1"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4: standard ChatGPT web interface in sections 1-2; custom wrapper on OpenAI API (gpt-4) pre-loaded with the case in sections 3-4",
+        "role": "open_chat",
+        "how_used": "Free chat use within the allowed stages. All participants in all conditions received the same optional suggested prompts for problem formulation and ideation (Table A.2). Interaction logs were recorded only for the custom wrapper (88 participants). Option classification used a separate fine-tuned GPT-3.5 Turbo model, not seen by participants."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Pre-distributed business case (Rated, an unprofitable online reviews platform). Participants (i) articulated the strategic reasons for low profitability (problem formulation), (ii) submitted strategic options one at a time, as many as they wished, and (iii) selected the best option. Done individually in class via an online survey with sequential stage instructions.",
+        "duration": "Mean 44.39 minutes (SD 15.29) for the whole task (PDF p. 14, printed p. 13)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Number of options generated",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of options each participant submitted. Robustness variants: excluding duration outliers (Table A.4, N = 293: Full 1.48***, Partial 2.59***), excluding 2 post-registration additions (Table F.2, N = 303), with consulting control (Table F.3) and gender/consulting/age controls (Table F.4); K-S tests in Figure 1(a): Control vs Full p = 0.014, Control vs Partial p = 0.000, Full vs Partial p = 0.332.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 1: Partial Treatment 2.68*** (0.55), N = 305, strata FE, robust SE; Control Group Mean 5.68; text: 'a 47% increase, p < 0.001'. Table 1: Partial 8.41 (SD 5.23, n = 100), Control 5.68 (SD 1.81, n = 103). Table A.3 Control - Partial: b = -2.73, se 0.55, p 0.000.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 37 (printed p. 36), Table 1; PDF p. 17 (printed p. 16), Section 4; PDF p. 56 (appendix p. 13), Table A.3"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 1: Full Treatment 1.55*** (0.43); Control Group Mean 5.68; text: 'a 27% increase over the control group mean, p < 0.001'. Table 1: Full 7.31 (SD 4.05, n = 102), Control 5.68 (SD 1.81, n = 103). Table A.3 Control - Full: b = -1.63, se 0.44, p 0.000.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 37 (printed p. 36), Table 1; PDF p. 17 (printed p. 16); PDF p. 56 (appendix p. 13), Table A.3"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "mean_difference_se"],
+              "reported": "Table 2 col. 1: F-test 2.97, Prob > F 0.086 (H0: Full = Partial coefficient). Table A.3 Partial - Full: b = 1.10, se 0.66, p 0.097.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 56 (appendix p. 13), Table A.3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Proportion of strategic options (strategic focus)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Share of a participant's options coded 'strategic' (vs 'operational') by a fine-tuned GPT-3.5 Turbo classifier trained on 2,269 human-coded options; agreement with human coders on 835 new options 87.90%, Cohen's kappa 0.7350 (Table C.1). Not a creativity rating: it measures composition of the option set. Proportion of operational options is the mirror image (Table 2 col. 5). Robustness: Table A.4 Full -0.06* (0.03); Table F.2 Full -0.07** (0.03); K-S Figure 1(d) Control vs Full p = 0.027, Control vs Partial p = 0.852, Full vs Partial p = 0.02.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 4: Partial Treatment 0.00 (0.03); Control Group Mean 0.57; text p = 0.876. Table 1: Partial 0.58 (SD 0.20, n = 100), Control 0.57 (SD 0.24, n = 103). Table A.3 Control - Partial: b = -0.01, se 0.03, p 0.755.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 18 (printed p. 17); PDF p. 37 (printed p. 36), Table 1; PDF p. 56, Table A.3"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 4: Full Treatment -0.07** (0.03); Control Group Mean 0.57; text '7 percentage points lower ... (p = 0.042)'. Table 1: Full 0.51 (SD 0.23, n = 102), Control 0.57 (SD 0.24, n = 103). Table A.3 Control - Full: b = 0.06, se 0.03, p 0.060.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 18 (printed p. 17); PDF p. 37 (printed p. 36), Table 1; PDF p. 56, Table A.3"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "mean_difference_se"],
+              "reported": "Table 2 col. 4: F-test 5.65, Prob > F 0.018. Table A.3 Partial - Full: b = 0.07, se 0.03, p 0.019.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 56 (appendix p. 13), Table A.3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Number of strategic options",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of a participant's options coded strategic by the fine-tuned GPT-3.5 Turbo classifier. K-S Figure 1(b): Control vs Full p = 0.331, Control vs Partial p = 0.001, Full vs Partial p = 0.058.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 2: Partial Treatment 1.55*** (0.36); Control Group Mean 3.23; text 'a 48% increase, p < 0.001'. Table 1: Partial 4.85 (SD 3.25, n = 100), Control 3.23 (SD 1.65, n = 103). Table A.3 Control - Partial: b = -1.62, se 0.36, p 0.000.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 17 (printed p. 16); PDF p. 37, Table 1; PDF p. 56, Table A.3"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 2: Full Treatment 0.53* (0.31); text 'a 16% increase, p = 0.094'. Table 1: Full 3.83 (SD 2.83, n = 102). Table A.3 Control - Full: b = -0.60, se 0.32, p 0.064.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 17 (printed p. 16); PDF p. 37, Table 1; PDF p. 56, Table A.3"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "mean_difference_se"],
+              "reported": "Table 2 col. 2: F-test 5.79, Prob > F 0.017. Table A.3 Partial - Full: b = 1.02, se 0.43, p 0.019.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 56, Table A.3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Number of operational options",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of a participant's options coded operational by the fine-tuned GPT-3.5 Turbo classifier. K-S Figure 1(c): Control vs Full p = 0.017, Control vs Partial p = 0.0144, Full vs Partial p = 0.712.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 3: Partial Treatment 1.13*** (0.33); Control Group Mean 2.45; text 'a 46% increase, p = 0.001'. Table 1: Partial 3.56 (SD 2.90, n = 100), Control 2.45 (SD 1.53, n = 103).",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 17 (printed p. 16); PDF p. 37, Table 1"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 3: Full Treatment 1.02*** (0.27); text 'a 42% increase, p < 0.001'. Table 1: Full 3.48 (SD 2.24, n = 102). Full vs Partial F-test 0.09, Prob > F 0.766.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 17 (printed p. 16); PDF p. 37, Table 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Best (selected) option is strategic",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Binary: the option the participant selected as best is coded strategic by the fine-tuned GPT-3.5 Turbo classifier. Mirror outcome 'Best Option is Operational' in Table 1. Robustness: Table A.4 Full -0.16** (0.07); Table F.2 Full -0.15** (0.07).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 6: Full Treatment -0.15** (0.07); Control Group Mean 0.65; text '15 percentage points less likely ... (p = 0.032)'. Table 1: Full 0.51 (SD 0.50, n = 102), Control 0.65 (SD 0.48, n = 103). Table A.3 Control - Full: b = 0.14, se 0.07, p 0.041.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 18 (printed p. 17); PDF p. 37, Table 1; PDF p. 56, Table A.3"
+            },
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table 2 col. 6: Partial Treatment -0.01 (0.07). Table 1: Partial 0.65 (SD 0.48, n = 100). Table A.3 Control - Partial: b = 0.00, se 0.07, p 0.994.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 37, Table 1; PDF p. 56, Table A.3"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "mean_difference_se"],
+              "reported": "Table 2 col. 6: F-test 4.47, Prob > F 0.035. Table A.3 Partial - Full: b = 0.14, se 0.07, p 0.044.",
+              "locator": "PDF p. 38 (printed p. 37), Table 2; PDF p. 56, Table A.3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Number of categories covered in options",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Number of the 10 dictionary categories (Table E.4 keywords: competition, growth, exit, financial, cost, sales, product, positioning, user, business model) that a participant's options cover. Related: Table E.6 col. 12 average options per category, Full 0.15* (0.08), Partial 0.21*** (0.08), control mean 1.56. Full-vs-Partial-only regression in Table 5 col. 2: Full -0.27 (0.24), partial mean 4.41, N = 202.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table E.6 col. 1 (Count): Partial Treatment 0.67*** (0.21); Constant 3.63; Control Group Mean 3.74; N = 305.",
+              "locator": "PDF p. 92 (appendix p. 49), Table E.6"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table E.6 col. 1 (Count): Full Treatment 0.38* (0.20); Control Group Mean 3.74; Full vs Partial F-test 1.45, Prob > F 0.230.",
+              "locator": "PDF p. 92 (appendix p. 49), Table E.6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Similarity of problem statements to the group centroid (convergence in problem framing)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity of each participant's problem-formulation embedding to the median embedding of his or her experimental group; higher = more convergent framing (less diverse). Scored on the problem statement, not on the options. At the problem-formulation stage only the full treatment had LLM access; partial and control did not.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["figure_only", "p_value_only"],
+              "reported": "Figure E.1 note: Full Treatment vs. Partial Treatment K-S Test p-value: 0.063. Text: 'Problem statements in the full treatment groups were more similar to one another than in the partial treatment group (Appendix Figure E.1, K-S Test p = 0.063)'. Direction coded on diversity (sign reversed from similarity). Coded ai_vs_bau because partial had no LLM during problem formulation.",
+              "locator": "PDF p. 78 (appendix p. 35), Figure E.1; PDF p. 21 (printed p. 20), Section 5.1"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only", "p_value_only"],
+              "reported": "Figure E.1 note: Control vs. Full Treatment K-S Test p-value: 0.132 (Control vs. Partial 0.68). The text states no direction for this contrast.",
+              "locator": "PDF p. 78 (appendix p. 35), Figure E.1"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine similarity between each problem-statement embedding and the group's median embedding (centroid)",
+            "embedding_model": "bert-base-uncased, mean of last hidden layer over tokens",
+            "computed_over": "Each participant's problem statement against the median embedding of his or her own experimental group",
+            "uncertainty": "Two-sample Kolmogorov-Smirnov tests on the distributions of output-level similarity scores; no means, SEs, or regression reported",
+            "notes": "Group means of the similarity score are not printed; only densities (Figure E.1) and K-S p-values. Whether a problem statement counts as a creative output is a judgment call."
+          }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "Number of categories covered in the problem formulation",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of dictionary categories (Table E.4) mentioned in the participant's answer to 'What are the strategic reasons that could be causing the profit decline of Rated?'. Breadth of the problem statement; only the full treatment had LLM access at this stage. Per-category indicators in Table E.5 cols. 2-11.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table E.5 col. 1 (Count): Full Treatment 0.82*** (0.29); Partial Treatment 0.13 (0.29); Constant 4.64; Control Group Mean 4.95; N = 305; F-test 5.38, Prob > F 0.021.",
+              "locator": "PDF p. 91 (appendix p. 48), Table E.5"
+            },
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 5 col. 1: Full Treatment 0.70** (0.30); Partial Group Mean 5.07; N = 202. Coded ai_vs_bau because partial had no LLM during problem formulation.",
+              "locator": "PDF p. 41 (printed p. 40), Table 5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O9",
+          "name": "Proportion of broad (vs specific) options",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Few-shot classifier: each option labeled broad or specific by Euclidean distance of its BERT (base, uncased) embedding to centroids of three hand-labeled anchor sentences per class (Table D.3); participant-level share of broad options.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table D.5: Full Treatment 0.11*** (0.04); Constant 0.23; Control Group Mean 0.09; N = 305; text p = 0.001.",
+              "locator": "PDF p. 77 (appendix p. 34), Table D.5; PDF p. 76 (appendix p. 33), Section D.2"
+            },
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table D.5: Partial Treatment 0.10** (0.04); text 'p =0.1 for the partial treatment group'; F-test 0.19, Prob > F 0.660.",
+              "locator": "PDF p. 77 (appendix p. 34), Table D.5; PDF p. 76 (appendix p. 33)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O10",
+          "name": "Number of 'continue' options (maintain current strategy)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of options coded 'continue as it is' by the fine-tuned GPT-3.5 Turbo classifier (agreement 87.07%, kappa 0.7373). Pre-registered as an outcome variable (Appendix F). Variants in Table D.2: Proportion of continue options Full 0.06* (0.03), Partial -0.01 (0.03), control mean 0.50, F 4.85 p 0.028; Best option is continue Full 0.13* (0.07), Partial -0.05 (0.07), control mean 0.46, F 7.19 p 0.008.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table D.2 col. 1: Full Treatment 1.10*** (0.30); Control Group Mean 2.84. Table D.1: Full 3.97 (SD 2.49, n = 102), Control 2.84 (SD 1.55, n = 103); Control - Full b = -1.13, se 0.29, p 0.000.",
+              "locator": "PDF p. 75 (appendix p. 32), Table D.2; PDF p. 74 (appendix p. 31), Table D.1"
+            },
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "mean_difference_se"],
+              "reported": "Table D.2 col. 1: Partial Treatment 1.31*** (0.37); F-test 0.27, Prob > F 0.604. Table D.1: Partial 4.15 (SD 3.38, n = 100); Control - Partial b = -1.31, se 0.37, p 0.000.",
+              "locator": "PDF p. 75 (appendix p. 32), Table D.2; PDF p. 74 (appendix p. 31), Table D.1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O11",
+          "name": "Option set is mutually exclusive",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Binary per participant: whether all submitted options are mutually exclusive. Appendix F says this was initially registered as a primary outcome but not analyzed in the main text. The coding method for this variable is not stated (Appendix C describes a human-coder rubric for it; the classifier system message covers only strategic, continue, change pricing, exit).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table F.5 col. 1: Full Treatment -0.01 (0.03); Constant 0.02; Control Group Mean 0.04; N = 305.",
+              "locator": "PDF p. 110 (appendix p. 67), Table F.5; PDF p. 105 (appendix p. 62), Appendix F"
+            },
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table F.5 col. 1: Partial Treatment -0.04* (0.02); F-test 2.91, Prob > F 0.089.",
+              "locator": "PDF p. 110 (appendix p. 67), Table F.5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O12",
+          "name": "Number of exit options (and number of change-pricing options)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Counts of options coded 'exit' (agreement 99.04%, kappa 0.8413) and 'change pricing of ads' (97.72%, kappa 0.8792) by the fine-tuned classifier. The registered primary outcome was whether the best-chosen option reflected exit or expand; Table F.5 reports counts of exit options instead. Change pricing (col. 2): Full -0.14* (0.08), Partial -0.01 (0.09), control mean 0.52, F 2.55 p 0.111.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table F.5 col. 3 (Number of Exit Options): Full Treatment -0.13*** (0.04); Constant 0.13; Control Group Mean 0.16; N = 305.",
+              "locator": "PDF p. 110 (appendix p. 67), Table F.5"
+            },
+            {
+              "treatment_arm": "Partial treatment",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table F.5 col. 3: Partial Treatment -0.12*** (0.04); F-test 0.52, Prob > F 0.472.",
+              "locator": "PDF p. 110 (appendix p. 67), Table F.5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O13",
+          "name": "Average word count per option",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Mean number of words per submitted option. Reported only for full vs partial treatment (control excluded). Footnote 5 says an instruction to avoid long paragraphs applied only to LLM interactions, not to submitted options.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 6 col. 2: Full Treatment -3.48* (2.07); Constant 15.56; Partial Group Mean 21.42; N = 202; strata FE, robust SE.",
+              "locator": "PDF p. 42 (printed p. 41), Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Follow-up team study (Appendix G): 96 executives in 24 teams, full vs partial LLM timing",
+      "design_class": "field_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "People were randomly assigned to 24 teams; LLM access timing (from problem formulation onward vs from ideation onward) was randomly varied at the team level",
+        "unit": "team",
+        "structure": "between",
+        "quote": "Similar to the main experiment, we randomly varied when the custom web interface (based on gpt-4o, temperature 0.7) was available (Figure G. 1): half of the teams received access for both the problem formulation and ideation stages (full treatment)",
+        "locator": "PDF p. 112 (appendix p. 69), Appendix G; PDF p. 25-26 (printed pp. 24-25), Section 5.5",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Full treatment", "description": "Custom gpt-4o interface available from problem formulation onward; 12 teams", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 48 },
+        { "name": "Partial treatment", "description": "Custom gpt-4o interface available from the ideation stage onward; 12 teams", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 48 }
+      ],
+      "participants": {
+        "n_randomized": 96,
+        "n_analyzed": 96,
+        "counts_are": "people",
+        "exclusions": "None reported. Outcomes are team-level (24 teams, 12 per arm); individual-level N = 96 (48 per arm) in Table G.2.",
+        "population": "professionals",
+        "who": "High-level executives enrolled in an executive education program for senior managers; teams of four to five; each team worked on a strategic problem contributed by one member",
+        "country": "not_stated",
+        "quote": "we conducted a supplementary team-level study involving 96 high-level executives enrolled in an executive education program for senior managers. Participants were randomly assigned to 24 teams of four to five members.",
+        "locator": "PDF p. 112 (appendix p. 69), Appendix G; PDF p. 117 (appendix p. 74), Table G.2"
+      },
+      "ai_tool": {
+        "name_model": "Custom web interface based on gpt-4o, temperature 0.7",
+        "role": "open_chat",
+        "how_used": "Team-level access to a chat interface during the stages allowed by the arm"
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Teams formulated the problem, generated alternatives, and selected one for a real strategic challenge from a member's company (Table G.1)",
+        "duration": "Approximately two hours (Table G.2 duration mean 123 min)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Number of options (team)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of options per team. Coding procedure for this study is not described.",
+          "unit": "team",
+          "n_units": 24,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "mean_difference_se"],
+              "reported": "Table G.2: Full 5.08 (SD 1.62, N = 12 teams), Partial 4.58 (SD 0.90, N = 12 teams); column labeled 'Difference (3)-(2)': b = 0.50, se 0.54, p 0.360 (sign matches Full minus Partial despite the label).",
+              "locator": "PDF p. 117 (appendix p. 74), Table G.2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Proportion of strategic options (team)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Share of a team's options coded strategic; coding method for this study not stated. Number of strategic options: Full 3.58 (SD 1.98), Partial 3.17 (SD 1.47), b = 0.42, se 0.71, p 0.563.",
+          "unit": "team",
+          "n_units": 24,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "mean_difference_se"],
+              "reported": "Table G.2: Full 0.68 (SD 0.33, N = 12 teams), Partial 0.69 (SD 0.29, N = 12 teams); 'Difference (3)-(2)': b = -0.01, se 0.13, p 0.958.",
+              "locator": "PDF p. 117 (appendix p. 74), Table G.2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "Number of continue options (team)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of a team's options coded 'continue'; coding method for this study not stated. Proportion of continue options: Full 0.39 (SD 0.34), Partial 0.40 (SD 0.29), b = -0.01, se 0.13, p 0.947.",
+          "unit": "team",
+          "n_units": 24,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Full treatment",
+              "control_arm": "Partial treatment",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "mean_difference_se"],
+              "reported": "Table G.2: Full 1.92 (SD 1.68, N = 12 teams), Partial 1.83 (SD 1.34, N = 12 teams); 'Difference (3)-(2)': b = 0.08, se 0.62, p 0.894.",
+              "locator": "PDF p. 117 (appendix p. 74), Table G.2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": []
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "", "locator": "" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "S1 randomizes 338 assigned MBA students (305 analyzed: 103 control, 100 partial, 102 full) to GPT-4 access versus no LLM on an idea-generation task (strategic options for a business case). The outcomes are computed on the submitted options: number of options (fluency), categories covered (flexibility), and the strategic share coded by a fine-tuned GPT-3.5 classifier. Criterion 3 rests on fluency and flexibility; the paper has no rated novelty, originality, or creativity, and its headline outcome (strategic focus) is a composition measure coded 'other'. S2 (96 executives, 24 teams, full vs partial AI timing, no no-AI arm) also randomizes AI configuration, but the authors use it for qualitative triangulation."
+  },
+  "one_line_finding": "LLM access raised the number of options (Partial +2.68, SE 0.55; Full +1.55, SE 0.43; control mean 5.68), but LLM access from problem formulation onward cut the share of strategic options by 0.07 (SE 0.03; control mean 0.57) and the chance of selecting a strategic option by 0.15 (SE 0.07); partial access did not change either (Table 2, PDF p. 38).",
+  "open_questions": [
+    "Design class: the experiment ran in class sessions of a core MBA strategy course on a course case (and in an executive education program for S2). I coded field_rct (coursework); the paper calls it 'laboratory-style' and 'classroom-based', so lab_rct is a defensible alternative.",
+    "Is 'strategic options for a business case' a creative or ideation task in scope? I treated it as idea_generation (business ideas). No outcome is a novelty, originality, usefulness, or creativity rating; eligibility rests on fluency and flexibility.",
+    "n_randomized: Appendix F gives 338 assigned and 305 participants (33 absent), but arm-level assigned counts are not reported. The text calls the estimates intention-to-treat although absentees are dropped.",
+    "Comparison type for problem-stage outcomes (S1-O7, S1-O8): partial had no LLM at the problem-formulation stage, so I coded full vs partial as ai_vs_bau for those; for option-stage outcomes full vs partial is ai_design.",
+    "S1-O7 (problem-statement convergence) is scored on the problem formulation, not the ideas; whether it belongs under across_people is a judgment call. Only K-S p-values and a density plot are reported."
+  ],
+  "notes": "Inconsistencies in the document: (1) Interaction-log counts: text (PDF p. 14) and Table A.6 / Figure E.2 say 47 full and 41 partial, but Table A.1 Panel (b) (PDF p. 55) lists Partial 47 and Full 41. (2) Table G.2 labels column (4) 'Difference (3)-(2)' (Partial minus Full), but the printed b values equal Full minus Partial (e.g., 5.08 - 4.58 = 0.50). (3) Section D.2 text says partial treatment p = 0.1 for broad options while Table D.5 marks 0.10** (p < 0.05); the text also cites 'Table D.3' for results that sit in Table D.5. (4) Section 3.2 says coding details are in Appendix A; they are in Appendix C. (5) Section 4 text refers to heterogeneity in 'Appendix E.4'; the heterogeneity analysis is Appendix E.5. Strata FE regressions with robust SEs at the participant (randomization) level for all S1 participant-level outcomes. Mechanism outcomes left out: time spent (Table 4, Table 6 cols. 1, 3), math question accuracy (Table 6 col. 4), overlap measures (Tables E.7, E.8), option-level strategic logit (Table 6 col. 7, N = 1,591 options), share of options matched to LLM output by 15-gram (32.7% full vs 55.6% partial, p = 0.0176, interaction-log subsample of 88), and cosine similarity of problem statements to LLM content (Table E.9, 0.064*** (0.016), N = 88); these are process measures or reliance measures, not creativity of the output. Heterogeneity tables E.10-E.14 and interface split Table A.5 not listed as separate outcomes."
+}

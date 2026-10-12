@@ -1,0 +1,20 @@
+[
+  {
+    "id": "citations-10-1",
+    "cid": "c066",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:336; Search record table, seed-meta-analysis-lists row, Limits cell: replace the author label Holzner et al.",
+    "correct_value": "Holzner, Maier, and Feuerriegel",
+    "evidence": "creativity-screening-2026-10-04.md:1815 contains Holzner et al.; report-generated.md:1749 contains the same label. Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Holzner Maier Feuerriegel (2025) - Generative AI and Creativity.pdf with PyMuPDF: PDF page 1 lists exactly Niklas Holzner, Sebastian Maier, and Stefan Feuerriegel, in that order. The DataCite response from https://api.datacite.org/dois/10.48550/arXiv.2505.17241 (HTTP 200) independently lists the same three creators. forms/citations/c066.json, latest_version.authors_family, is already correct. The citation-format requirement is independently present in audit/2026-10-09_1210/jobs/find-citations-10/brief.md:7 and tools/codex_audit.py:97-99: three authors use A, B, and C; et al. is reserved for four or more. tools/build_report.py:67-68 implements that rule for ordinary paper labels, but line 336 copies search/seed-meta-analysis-lists.json.coverage_limits without normalizing its author labels; tools/assemble_report.py:184 inserts the generated Search record table. Apply the exact replacement during table generation."
+  },
+  {
+    "id": "citations-10-2",
+    "cid": "c049",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:336; Search record table, seed-meta-analysis-lists row, Limits cell: replace de Rooij & Biskjaer in the homogenization parenthetical.",
+    "correct_value": "de Rooij and Biskjaer",
+    "evidence": "creativity-screening-2026-10-04.md:1815 contains de Rooij & Biskjaer in the homogenization parenthetical; report-generated.md:1749 contains the same label. Independently requested https://api.crossref.org/works/10.1080/0144929X.2026.2726451 with User-Agent atlas-screening/0.1: the HTTP 200 response identifies the homogenisation meta-analysis and lists exactly two message.author entries, Alwin de Rooij and Michael Mose Biskjaer, with family names de Rooij and Biskjaer. forms/citations/c049.json, latest_version.authors_family, is already correct. audit/2026-10-09_1210/jobs/find-citations-10/brief.md:7 and tools/codex_audit.py:97-99 explicitly require the two-author label A and B. tools/build_report.py:65-66 implements this format for ordinary paper labels, but line 336 copies search/seed-meta-analysis-lists.json.coverage_limits without normalizing the embedded labels; tools/assemble_report.py:184 inserts that generated table. Apply the exact replacement during table generation."
+  }
+]

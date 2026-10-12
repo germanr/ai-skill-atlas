@@ -1,0 +1,1 @@
+The creativity codebook as drafted for Review 1 (October 4, 2026), archived on October 9, 2026, when the Review 1 decisions were written into docs/creativity-codebook.md. The decisions are listed in docs/creativity-screening/RESUME.md and in section 13 of the new codebook.

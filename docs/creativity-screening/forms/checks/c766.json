@@ -1,0 +1,44 @@
+{
+ "cid": "c766",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Fill the exclusions field: seven of 254 enrolled adults were removed for failing attention checks or offering cursory responses, leaving a reported final sample of 247. Section 3.6 also reports screening out scores greater than three standard deviations from the mean and incomplete responses, without specifying any additional count. The timing of exclusions relative to random assignment is not separately established; do not infer a pre-exclusion randomized total.",
+   "quote": "A total of 254 adult participants were initially enrolled, and seven were removed for failing attention checks or offering cursory responses, resulting in a final sample size of 247.",
+   "locator": "PDF p. 3 (printed p. 10282), section 3.1 Participants and Sampling; additional screening description on PDF p. 4 (printed p. 10283), section 3.6 Data Analysis."
+  },
+  {
+   "field": "studies[0].outcomes",
+   "form_value": "Final creativity score; Semantic distance from supplied AI suggestions (anchoring)",
+   "source_says": "The outcome list omits three separately reported expert-rated components of the final ideas: novelty, F(4, 237) = 30.75, p < .001; usefulness, F(4, 237) = 51.64, p < .001; and originality, F(4, 237) = 1.10, p = 0.358. Add these outcomes under form-spec rule 7, with constructs novelty, usefulness, and novelty respectively. These are omnibus condition tests, not component-specific pairwise estimates. Retain the existing overall-creativity and semantic-distance outcomes.",
+   "quote": "Additional component-wise analyses indicated robust differences for novelty (F(4, 237) = 30.75, p < .001) and usefulness (F(4, 237) = 51.64, p < .001), but not for originality (F(4, 237) = 1.10, p = 0.358).",
+   "locator": "PDF p. 4 (printed p. 10283), section 4.1 RQ1, final paragraph; expert ratings defined in section 3.5 Measures on the same page."
+  },
+  {
+   "field": "company_involvement.any",
+   "form_value": "false",
+   "source_says": "Set any to true and describe the documented company affiliation: coauthor Yishan Huang has affiliation 3, Beijing Sankuai Network Technology Co., Ltd. This establishes company-affiliated authorship; the paper does not state company funding or a further company role.",
+   "quote": "Beijing Sankuai Network Technology Co., Ltd",
+   "locator": "PDF p. 1 (printed p. 10280), author list and affiliation 3."
+  }
+ ],
+ "confirmed": [
+  "The entire 320-line markdown and all nine PDF pages were read. source.version correctly identifies the IJCAI-25 published proceedings, Special Track on Human-Centred AI, printed pp. 10280-10288; the title and four authors match. No appendix is present or supplementary material identified in this document (PDF pp. 1-9; title/affiliations on p. 1, References on pp. 7-9).",
+  "The main study explicitly randomly assigns people between five conditions: Control, Early-AI Labeled, Early-AI Unlabeled, Late-AI Labeled, and Late-AI Unlabeled. Participants generate and refine plastic-pollution solutions, with GPT-4 suggestions supplied according to condition; experts score their output. has_randomized_people_study is true, and referral to the two-screener pipeline is warranted (PDF p. 3, sections 3.1-3.4; p. 4, section 3.5).",
+  "The online_rct classification is supported by random assignment and task administration on a custom web platform. The paper describes a convenience sample of adults without naming an online recruitment panel or participant country; the observational, ai_vs_human, and synthesis context classes do not apply (PDF p. 3, sections 3.1-3.3; p. 7, section 5).",
+  "The stated final sample is 247 people: Control 50, Early-AI Labeled 49, Early-AI Unlabeled 49, Late-AI Labeled 50, and Late-AI Unlabeled 49. These are people, not ideas or ratings; the study exceeds the 50-person threshold across arms even though some individual arms have 49 people (PDF p. 3, section 3.1).",
+  "Section 3.1 reports 254 initially enrolled, seven excluded, and a final 247, then describes random assignment using the final arm counts. It does not separately identify a pre-exclusion randomized total or pre-exclusion arm counts, so leaving those counts null avoids equating enrollment with randomization (PDF p. 3, section 3.1).",
+  "The form correctly flags the unreconciled sample-size issue: the stated final sample is 247, while the reported one-way ANOVAs use F(4, 237). Section 3.6 describes outlier and incomplete-response screening without additional counts; no replacement analyzed count should be back-calculated (PDF p. 3, section 3.1; p. 4, sections 3.6 and 4.1).",
+  "GPT-4 supplied two or three suggestions of 30 to 50 words. Early groups received them with the first-round prompt, late groups at the second round, and the control received none; labels were AI-generated ideas or Ideas from others. Each ideation round lasted 5-7 minutes (PDF p. 3, sections 3.3-3.4; p. 4, Figure 1; p. 7, section 5).",
+  "Three domain experts independently scored final ideas on novelty, usefulness, and originality using 7-point scales, with intraclass correlation ? 0.80. These are scored-output measures, so criterion 3 is met; the exact formula combining components into the reported overall creativity score is not specified (PDF p. 4, section 3.5).",
+  "Every number in S1-O1.reported and one_line_finding matches: Early-AI-Labeled M = 6.01, SD = 0.48; Control M = 4.94; omnibus F(4, 237) = 37.54, p < .001, partial ?? = .38. The text also reports both Early-AI groups above the Late-AI groups and Control; the omnibus test is not mislabeled as a pairwise test in the form (PDF p. 4, section 4.1).",
+  "Every number in S1-O2.reported matches the labeled-versus-unlabeled comparison: semantic distance .61 vs. .73, t = ?11.04, p < .001, d = 1.58. The paper prints a positive d despite the negative t; the form preserves that reported value (PDF p. 5, section 4.2).",
+  "Semantic alignment uses text-embedding-ada-002 and cosine similarity between each participant submission and each supplied AI suggestion, with lower distances indicating stronger overlap. It is not a comparison across different participants, so construct other and question with_ai are appropriate; the paper does not explicitly establish removal of previously shown suggestions (PDF p. 4, sections 3.4-3.5).",
+  "The stimulus-development pilot is reported only as n = 15, without an explicit sampling unit, random-assignment statement, assistance comparison, or separate participant-output results. It does not establish an additional randomized people study with fewer than 50 analyzed participants (PDF p. 3, section 3.3).",
+  "This document reports an original experiment, not a synthesis; the empty synthesis fields correctly avoid inventing study counts, pooled effects, intervals, or standardizers (PDF pp. 3-5, sections 3-4)."
+ ],
+ "summary": "The paper reports a randomized five-condition study with 247 analyzed adults and expert-scored ideas, requiring the two-screener pipeline. The source version and recorded main statistics are supported, but the form omits component outcomes, leaves the exclusions field blank, and incorrectly records no company involvement."
+}

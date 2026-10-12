@@ -1,0 +1,20 @@
+[
+  {
+    "id": "citations-05-1",
+    "cid": "c635",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:153, papers[].doi fallback; rendered citation link for c635",
+    "correct_value": "Wiles and Horton (2026), \"More, but Worse: The Marketplace Effects of AI-Generated Job Posts\", Author-hosted working paper (https://www.emmawiles.com/storage/jobot.pdf) [c635]",
+    "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1047 and report-generated.md:999: both attach https://doi.org/10.2139/ssrn.5187344 to the revised 2026 citation. Opened the PDF listed in retrieval.json for c635 with pymupdf: PDF p. 1 gives the revised title, Emma Wiles followed by John J. Horton, and September 4, 2026. Independently downloaded https://www.emmawiles.com/storage/jobot.pdf into memory and extracted p. 1; it is byte-identical to the local PDF (SHA-256 b336565405c280ac59c59b67b054701962de5f4847b00aab3239f92833d11434). Independently retrieved https://api.crossref.org/works/10.2139/ssrn.5187344: title is Generative AI and Labor Market Matching Efficiency, published/issued/posted year is 2025, authors are Wiles and Horton, and relation is empty. forms/citations/c635.json correctly sets latest_version.doi to null, supplies the author-hosted URL, and assigns the DOI to the earlier version; it explicitly leaves applicability of that DOI to the revised draft unverified. tools/build_report.py:153 uses lv.get(\"doi\") or c.get(\"doi\"), replacing that null with the candidate DOI; lines 165-166 then prefer the DOI over the verified latest-version URL. The confirmed error is importing an unverified older-version DOI into the revised citation, not proof that the DOI could never cover a revision. Preserve the explicit null DOI so link(p) uses https://www.emmawiles.com/storage/jobot.pdf."
+  },
+  {
+    "id": "citations-05-2",
+    "cid": "c758",
+    "verdict": "cannot_tell",
+    "fix_target": null,
+    "field": "Author order in the c758 report citation",
+    "correct_value": "",
+    "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1306: the report says Shahzad, Daud, and Mughal (2026), without an author-order qualification. Opened the local PDF listed in retrieval.json with pymupdf and independently downloaded https://journal.50sea.com/index.php/IJIST/article/download/1876/2955 into memory. The downloads are byte-identical (SHA-256 0f5ceaed5194da9286d18f314db25e97a9644cbcc3e74e41dd8f7070938f2370). PDF p. 1, printed p. 924, lists Iqra Shahzad, Marriam Daud, Wajiha Mughal; its recommended citation also places Shahzad first, and its publication year is 2026. Independently retrieved https://api.crossref.org/works/10.33411/ijist/1876: author order is Marriam Daud, Iqra Shahzad, Wajiha Mughal, with Daud marked sequence first. Independently retrieved https://journal.50sea.com/index.php/IJIST/article/view/1876: its visible Authors list, How to Cite entry, and citation_author metadata also place Daud first. forms/citations/c758.json latest_version.authors_family follows the PDF, and unverified_fields[0] records this disagreement. The source conflict and its omission from the report are verified, but the report author order has direct support in the current publisher PDF. These conflicting sources do not establish which author order is erroneous, so a corrected order cannot be supplied and the finding is not confirmed as a report error."
+  }
+]

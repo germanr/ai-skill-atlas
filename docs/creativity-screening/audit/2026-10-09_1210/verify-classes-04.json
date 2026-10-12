@@ -1,0 +1,11 @@
+[
+  {
+    "id": "classes-04-1",
+    "cid": "c002",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "final.open_items[5].affects_eligibility",
+    "correct_value": "false",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, line 1004, places c002 under Candidates that need clarification because the supplied-ideas item affects eligibility; report-generated.md, line 956, has the same row, and report-data.json status_by_cid.c002 is clarify. C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-codebook.md, section 3, explicitly permits within-person designs with randomized condition order; section 6 defines ideas_supplied to include AI-generated ideas or examples handed to participants. Independently read the PDF text with PyMuPDF: C:/Dropbox/Research/ai-lab/literature/creativity/Ashkinaze et al (2025) - How AI Ideas Affect Creativity Diversity Evolution.pdf, PDF p. 2, Figure 1, shows AI-example conditions and a control containing only human examples; PDF p. 5, Figure 2 and section 3.4.2, establishes randomization to a sequence of five condition/item trials with no repeated condition or item. PDF p. 7, Table 2, reports 844 unique participants. PDF p. 7, Table 1, defines creativity scores on submitted responses and global diversity across participants' submitted ideas; PDF pp. 7-8, sections 5.2-5.4, compares these outcomes across conditions. Thus all three core eligibility criteria are supported. forms/c002.json already records eligibility.core=yes, final.core=yes, and all final.criteria as met. Its final.open_items[5] says the codebook covers this intervention and criterion 1 stays met, and settled_by is nothing_needed, but affects_eligibility is incorrectly true; every other final open item has affects_eligibility=false. tools/build_report.py, lines 99-104, routes a finalized core=yes form to clarify when any open item has affects_eligibility=true. Executing only its cell and classify functions in memory reproduced clarify; changing only this flag to the JSON boolean false in an in-memory copy returned core. The correction belongs in the form; rebuilding the generated report should place c002 under Recommended for the core dataset."
+  }
+]

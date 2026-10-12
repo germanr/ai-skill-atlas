@@ -1,0 +1,87 @@
+{
+ "cid": "c173",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[1].participants.n_analyzed; studies[1].arms[*].n_analyzed",
+   "form_value": "75 people analyzed; arm n_analyzed values 24, 26, 25.",
+   "source_says": "These are explicitly recruited/assigned counts: 75 recruited, assigned to hand-crafted incentive (24), GPT-3 incentive (26), and GPT-3 open (25). Separate final analysis counts and participant exclusions are not explicitly reported. Under the instruction not to infer counts, set n_analyzed to null and retain these numbers as recruited/assigned counts in the narrative; n_randomized remains null because actual random assignment is unconfirmed. The main analyses report denominator df=72, but converting degrees of freedom into an analyzed N would be an inference.",
+   "quote": "We recruited 75 4th grade students from three classes in two French primary schools.",
+   "locator": "PDF p. 18, section 6.2.1; p. 24, section 8.2.1; p. 27, section 8.4.1."
+  },
+  {
+   "field": "eligibility.criterion_2_at_least_50_people",
+   "form_value": "met",
+   "source_says": "Use unclear under the strict requirement to confirm people analyzed: the explicit recruited/assigned sample exceeds the threshold, but the analyzed sample size is not separately stated. This is not evidence that fewer than 50 people were analyzed; retain the reported sample of 75 and its count-status qualification in eligibility.reason.",
+   "quote": "We recruited 75 4th grade students from three classes in two French primary schools.",
+   "locator": "PDF p. 18, section 6.2.1; pp. 24 and 27, sections 8.2.1 and 8.4.1. Form-spec: criterion 2 counts people analyzed and counts must not be inferred."
+  },
+  {
+   "field": "studies[1].outcomes",
+   "form_value": "Only training divergent-question percentage and offline divergent-question fluency are listed; question quality is omitted.",
+   "source_says": "Add the output-scored syntactic/semantic question-quality outcome during training (with_ai), analyzed as each participant's average question score and annotated by the same two researcher coders. Section 6.2.3 gives a 2-to-8-point scale and inter-rater reliability of 76.8%; Figure 10(b) instead labels its axis max=9, an internal discrepancy to preserve. Section 8.2.2 reports no significant difference between hand-crafted and GPT-3 incentive agents (t=0.57, p-value=0.57 and power=0.08), between GPT-3 incentive and open agents (t=-0.81, p-value=0.41 and power=0.12), or between hand-crafted incentive and GPT-3 open agents (t=-0.29, p-value=0.77 and power=0.06).",
+   "quote": "We also investigated the quality of the questions generated, following the standardized grid described in 6.2.3. These scores give us an idea about the syntactic and semantic quality of the children’s questions.",
+   "locator": "PDF p. 19, section 6.2.3; p. 24, Figure 10(b), inspected directly; p. 25, section 8.2.2; p. 32, Appendix D."
+  },
+  {
+   "field": "studies[1].outcomes[0].contrasts",
+   "form_value": "GPT-3 open agent versus hand-crafted incentive agent: the open-agent group had a higher percentage of divergent questions; t=-3.17, p-value=0.003 and power=0.82. The sign of t is reproduced as printed.",
+   "source_says": "The existing open-versus-hand-crafted result is correct, but add the other two relevant contrasts from the same passage: GPT-3 incentive versus hand-crafted incentive (t=0.88, p-value=0.38 and power=0.14; no clear difference; ai_vs_active), and GPT-3 open versus GPT-3 incentive (t=-1.88, p=0.04 and power=0.45; open higher; ai_design). The omnibus group comparison is F(2,72)=4.11, p-value=0.02. Preserve test-statistic signs as printed.",
+   "quote": "the group that interacted with the automated open agent had a significantly better performance than the Hand-crafted incentive agent (t=-3.17, p-value=0.003 and power=0.82) and the GPT-3driven incentive agent (t=-1.88, p=0.04 and power=0.45)",
+   "locator": "PDF p. 24, section 8.2.1 and Figure 10(a); pp. 7-8, section 4.1. Quote follows the markdown conversion's joined GPT-3driven word."
+  },
+  {
+   "field": "studies[*].outcomes[*].contrasts[*]: treatment_arm, control_arm, comparison_type, direction, statistics_available",
+   "form_value": "All three existing contrast records leave arm labels, comparison_type and direction empty, and statistics_available is [].",
+   "source_says": "Populate the fields from the comparisons already described in reported. S1-O1: GPT-3 incentive cues versus hand-crafted incentive cues, ai_vs_human, no_clear_difference, test_statistic. S2-O1: GPT-3 open versus hand-crafted incentive, ai_vs_active, treatment_higher, test_statistic; human-generated cues are an active aid. S2-O2: an omnibus condition-by-time comparison across all three named groups, other, no_clear_difference for the interaction, test_statistic; explicitly label it omnibus and do not invent pairwise treatment/control estimates.",
+   "quote": "with no effect of the interaction condition:time on the performances (F(2,72)=2.23, p=0.11)",
+   "locator": "PDF pp. 7-8, section 4.1; p. 23, section 8.1.3; p. 24, section 8.2.1; p. 27, section 8.4.1."
+  },
+  {
+   "field": "studies[1].outcomes[*].ai_available_when_produced; studies[1].outcomes[*].timing; studies[1].outcomes[*].delay",
+   "form_value": "Both child-outcome records leave ai_available_when_produced, timing and delay empty.",
+   "source_says": "For S2-O1, AI-generated cues are supplied while AI-arm children produce the training questions: ai_available_when_produced=yes and timing=immediate; the control uses human-generated cues. For S2-O2, post-training questions are produced without the agent in a separate post-intervention session: ai_available_when_produced=no and timing=delayed under the codebook's later-session definition. The exact delay in days is not stated; retain an unknown delay. The pre-test is a baseline measure, not an after_ai outcome.",
+   "quote": "They also retook the QA fluency test and the curiosity perception questionnaire they had pre-intervention",
+   "locator": "PDF p. 14, section 5; p. 16, section 5, Sessions 2 and 3; p. 20, section 6.4.1; p. 27, section 8.4.1."
+  },
+  {
+   "field": "studies[1].task.duration",
+   "form_value": "Three 1-hour sessions within one week: baseline, training, and post-intervention assessment (p. 14, section 5). Each offline question-generation test lasted 2 minutes (p. 20, section 6.4.1).",
+   "source_says": "The prose states three 1h sessions within the same week, but Figure 4 labels the QA-training session 1h15 and the pre-training and post-training sessions 1h each. Record this internal discrepancy rather than present the training duration as unambiguous. The separate 2-minute offline question-generation test is correctly recorded.",
+   "quote": "QA-training session (1h15)",
+   "locator": "PDF p. 14, section 5; p. 15, Figure 4 (embedded timeline image inspected directly); p. 20, section 6.4.1."
+  },
+  {
+   "field": "studies[1].participants.country",
+   "form_value": "",
+   "source_says": "France; recruitment was in French primary schools.",
+   "quote": "We recruited 75 4th grade students from three classes in two French primary schools.",
+   "locator": "PDF p. 18, section 6.2.1."
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any=true and describe the disclosed EvidenceB funding. The title page also lists EvidenceB and Microsoft research affiliations. The authors' conflict-of-interest declaration does not negate the explicit funding and affiliations; no further commercial role is stated.",
+   "quote": "This work has been funded by the educational technologies start-up EvidenceB and the French National Association of Research and Technology (ANRT).",
+   "locator": "PDF p. 30, Acknowledgements; p. 1, author affiliations; p. 31, Conflict of interest."
+  }
+ ],
+ "confirmed": [
+  "The source is the full 38-page arXiv:2211.14228v6 PDF, stamped 30 May 2023 and dated May 31, 2023 on its title page; Appendices A-E are present on PDF pp. 31-33. The form correctly identifies this version rather than claiming to have read the journal version (p. 1; pp. 31-33).",
+  "S1 compares GPT-3-generated cues with human-generated cues and appropriately has design_class=ai_vs_human; the paper-level ai_vs_human context designation is expressly restricted to this component (p. 5, section 3; pp. 17-18, section 6.1; pp. 21-23, section 8.1).",
+  "S2 is a school intervention in which children receive human-generated incentive cues, GPT-3 incentive cues, or GPT-3 open cues and produce questions scored for divergence and quality (pp. 7-8, section 4.1; pp. 18-20, sections 6.2 and 6.4.1).",
+  "Actual random assignment is not established: the sole allocation description is a pseudo-randomized method after baseline profiling, without an algorithm. Retain design_class=other, assignment.randomized=not_stated and eligibility.core=unclear; has_randomized_people_study=false here means unconfirmed, not proof of non-random assignment (p. 18, section 6.2.1).",
+  "The recruited/assigned sample is 75 children aged 9 to 10.5 years from three classes in two French primary schools, allocated 24/26/25 to hand-crafted incentive/GPT-3 incentive/GPT-3 open; these counts refer to people (p. 18, section 6.2.1).",
+  "Each child was asked to generate six questions for each of three texts, totaling 18 requested questions; these are task requirements, not an analyzed output count or a participant count (p. 16, section 5).",
+  "The AI was GPT-3 text-davinci-002, used offline to generate cues that were checked, translated with DeepL and stored for presentation; children received AI-generated assistance without directly chatting with GPT-3 (pp. 13-14, section 4.4).",
+  "Training divergence is scored on accepted, nonduplicated questions, including relevant questions that did not use the supplied cues; two researcher coders evaluated outputs, and raters must not be counted as intervention participants (pp. 17-19, sections 6.1 and 6.2; pp. 31-32, Appendix C).",
+  "S1-O1 reported exactly matches the cue divergence test: t=0.9, p-value=0.37 and power=0.14 (p. 23, section 8.1.3 and Figure 9(b)).",
+  "S2-O1 reported and the one-line finding correctly give higher divergent-question percentages with GPT-3 open cues versus hand-crafted incentive cues: t=-3.17, p-value=0.003 and power=0.82; the negative t is printed in the source (p. 24, section 8.2.1 and Figure 10(a)).",
+  "S2-O2 reported exactly reproduces condition:time F(2,72)=2.23, p=0.11 and time F(2,72)=46.95, p-value<0.001. These are omnibus repeated-measures results, not a pairwise AI-versus-control estimate; the source's degrees of freedom are retained as printed (p. 27, section 8.4.1 and Figure 12(a)).",
+  "The offline fluency task asks children to write as many questions as possible about a short text within 2 minutes and scores divergent questions on their output, supporting after_ai fluency for the post-test (p. 20, section 6.4.1; p. 27, section 8.4.1).",
+  "The cue component does not explicitly state the number of cue producers or corpus size; null participant and output counts are appropriate there. The two annotators are distinct from cue producers and child participants (pp. 8 and 17-18, sections 4.1 and 6.1).",
+  "This is an empirical cue evaluation plus a school intervention, not a synthesis; no pooled estimate or standardizer needs extraction. Appendices contain annotation rules and curiosity-association analyses, with no additional main-contrast arm means or standard errors (pp. 5-6, section 3; pp. 31-33, Appendices A-E)."
+ ],
+ "summary": "The version and recorded statistics are correct, but the form needs corrections to analyzed-count claims, omitted results, outcome coding, duration, country and company involvement. Random assignment remains unconfirmed because the school study reports only an unspecified pseudo-randomized allocation method."
+}

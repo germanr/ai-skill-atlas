@@ -1,0 +1,85 @@
+{
+ "cid": "c861",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "eligibility.core",
+   "form_value": "unclear",
+   "source_says": "Set core to yes under the supplied codebook: people were randomly assigned to generative-AI assistance, 52 people were analyzed, and category coverage was scored on their produced idea lists. Keep this paper in the two-screener pipeline. The reason should not claim that core must remain unclear for short screening; no such exception appears in the supplied form-spec.",
+   "quote": "Participants were randomly assigned to conditions and were equally distributed across conditions (human-only: 26, human+ai: 26).",
+   "locator": "PDF p. 5 (printed p. 425), Sections 3.3 and 4; PDF pp. 5-6 (printed pp. 425-426), Section 4.1; creativity-codebook.md, Section 3; form-spec.md, eligibility.core field note."
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Fill the exclusion field: the study had 54 participants and excluded two students for incomplete data and a misunderstanding of the task, leaving 52 analyzed, 26 per arm. The reason already mentions this, but the dedicated field is empty. The count at randomization and the excluded students' arm allocation are not separately stated; retain null for n_randomized.",
+   "quote": "Our study had 54 participants. We had to exclude the data of two students (due to incomplete data and due to a misunderstanding with regard to the task).",
+   "locator": "PDF p. 5 (printed p. 425), Section 4, opening paragraph."
+  },
+  {
+   "field": "sample_overlap",
+   "form_value": "{\"shares_participants_with\": \"\", \"quote\": \"\", \"locator\": \"\"}",
+   "source_says": "Record confirmed reuse of the participants/data from an unnamed earlier study, described as under review, on idea quantity and quality. This is already acknowledged in paper_design_summary but missing from sample_overlap. The current PDF does not identify that publication, so it does not establish the candidate record's suggested link to a later B&ISE paper.",
+   "quote": "We collected the data for a different study (under review) with a focus on understanding how AI suggestions affect idea quantity and quality.",
+   "locator": "PDF p. 4 (printed p. 424), Section 3.2, opening sentence; also PDF p. 1 (printed p. 421), Section 1."
+  },
+  {
+   "field": "studies[0].outcomes[0].measure_detail; studies[0].outcomes[1].measure_detail",
+   "form_value": "{\"S1-O1\": \"\", \"S1-O2\": \"\"}",
+   "source_says": "Specify the scoring procedure for both outcomes: a condition-blind student assistant classified ideas using the Specht and Buck category system, which has 13 categories within five clusters. Seven uncategorized ideas and all deleted ideas were excluded. Each participant's score is the number of distinct categories covered; S1-O1 includes accepted/copied AI suggestions, while S1-O2 excludes AI-origin ideas. These are within-participant flexibility scores, not diversity across different people.",
+   "quote": "The system consists of 13 categories within five clusters.",
+   "locator": "PDF p. 5 (printed p. 425), Section 3.3 and Table 1; PDF pp. 5-6 (printed pp. 425-426), Section 4.1."
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing",
+   "form_value": "{\"S1-O1\": {\"ai_available_when_produced\": \"\", \"timing\": \"\"}, \"S1-O2\": {\"ai_available_when_produced\": \"\", \"timing\": \"\"}}",
+   "source_says": "For both listed outcomes, set ai_available_when_produced to yes for the AI-assisted arm and timing to immediate. The scored lists were produced during the brainstorming session with AI suggestions available in that arm. Excluding AI-origin ideas from S1-O2 is an analysis of human contributions made during that same session, not an outcome collected after AI removal; question=with_ai is correct.",
+   "quote": "For our experiment, we had two conditions: a baseline condition (human-only), in which each human brainstormed individually, and a treatment condition (human+AI), in which each human brainstormed together with a GLM.",
+   "locator": "PDF p. 4 (printed p. 424), Section 3.1; PDF p. 6 (printed p. 426), Section 4.1, human-origin category-coverage analysis."
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0] (blank contrast fields)",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "Complete the contrast: treatment_arm=human+AI; control_arm=human-only; comparison_type=ai_vs_bau; direction=treatment_higher; statistics_available includes test_statistic and standardized_effect. The existing reported numbers are correct: human+AI mdn=5, human-only mdn=2, U=546.5, p<.001, rank-biserial correlation rB=.617. Preserve the effect label: this is a rank-biserial correlation, not a standardized mean difference.",
+   "quote": "The test showed a significant difference (U=546.5, p<.001) between the human+AI condition (mdn=5) and the human-only condition (mdn=2), with a strong effect size (rank-biserial correlation rB=.617).",
+   "locator": "PDF p. 6 (printed p. 426), Section 4.1, first paragraph and Figure 3; arm definitions on PDF p. 4 (printed p. 424), Section 3.1."
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts[0] (blank contrast fields)",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "Complete the contrast: treatment_arm=human+AI; control_arm=human-only; comparison_type=ai_vs_bau; direction=no_clear_difference; statistics_available includes test_statistic. The existing reported U=326.0 and p=.830 are correct. The accompanying results text gives no arm-specific mean, median, SD, or effect-size estimate for this comparison; its mean=2.846 describes coverage across participants, not an arm mean.",
+   "quote": "We found no significant difference between the two conditions (U=326.0, p=.830).",
+   "locator": "PDF p. 6 (printed p. 426), Section 4.1, paragraph accompanying Figure 4; arm definitions on PDF p. 4 (printed p. 424), Section 3.1."
+  },
+  {
+   "field": "studies[0].outcomes (omitted within-category fluency outcome)",
+   "form_value": "Only S1-O1 and S1-O2 are listed; within-category fluency is absent.",
+   "source_says": "Add the scored secondary outcome of average human-origin ideas per category covered by each participant (within-category fluency), with zero assigned to participants who had no ideas. The paper reports human-only mdn=2 versus human+ai mdn=1; Mann-Whitney U=119.0, p<.001. This is a participant-level with_ai comparison, with human+AI lower, and is distinct from total idea count and category coverage. No effect size or confidence interval is given for it.",
+   "quote": "shows a significant difference (U=119.0, p<.001) in the average number of ideas per category between human-only (mdn=2) and human+ai (mdn=1) condition.",
+   "locator": "PDF p. 6 (printed p. 426), Section 4.1, last paragraph before Section 4.2."
+  },
+  {
+   "field": "studies[0].outcomes (omitted human-origin idea-count outcome)",
+   "form_value": "Only S1-O1 and S1-O2 are listed; human-origin idea count is absent.",
+   "source_says": "Add the descriptive human-origin fluency comparison in Table 2: human+AI produced 87 human-origin ideas (mean=3.3), and human-only produced 140 (mean=5.4). These totals count ideas; the analyzed people remain 26 per arm. Record question=with_ai and the lower human-origin mean in human+AI. No SD, interval, or test statistic for total human-origin idea count is printed here. Section 4.1 describes the difference as significant, whereas Section 5.1 later refers to no significant difference in human idea counts; flag this internal inconsistency and do not invent a p-value. The U=119.0 test concerns ideas per category, not this total-count outcome.",
+   "quote": "Humans in the human-only condition contributed significantly more ideas compared to humans in the human+AI condition.",
+   "locator": "PDF p. 5 (printed p. 425), Table 2, human column; PDF p. 6 (printed p. 426), Section 4.1; conflicting discussion on PDF p. 8 (printed p. 428), Section 5.1."
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion and all 10 PDF pages, including references; no appendix is included. source.version correctly identifies the published HICSS-57 proceedings paper (2024), by Lucas Memmert and Eva Bittner; PDF p. 1 (printed p. 421), heading and byline, and pp. 9-10 (printed pp. 429-430), end matter.",
+  "The study is a reanalysis of a randomized, between-person AI-assistance experiment conducted during university courses. field_rct and context_class=none are supported; this belongs in the two-screener pipeline, not the AI-versus-human context class. PDF p. 4 (printed p. 424), Sections 3.1-3.2; PDF p. 5 (printed p. 425), Section 4.",
+  "The study reports 54 participants before two exclusions, leaving 52 analyzed students, 26 per arm; it is not an experiment with fewer than 50 analyzed people. The total and arm counts at randomization are not separately identified, so the existing null n_randomized values are appropriate. PDF p. 5 (printed p. 425), Section 4, opening paragraph.",
+  "The participant quote matches: age mean=22.3, min=18, max=37; gender 8 female and 44 male; students enrolled mostly in informatics programs. PDF p. 5 (printed p. 425), Section 4, opening paragraph.",
+  "People brainstormed food-waste solutions for 10 minutes, with approximately 30 minutes for the entire study. The AI arm could request suggestions and copy them into its idea list; only accepted suggestions counted toward its final output. PDF p. 4 (printed p. 424), Section 3.1.",
+  "The tool was gpt-3.5-turbo-0301 at temperature 0.9, returning 3 suggestions at a time through the study app, using the current human and previous AI ideas in its prompt. PDF p. 4 (printed p. 424), Section 3.2 and Figure 2; PDF p. 5 (printed p. 425), Section 3.2 continuation.",
+  "Both existing outcomes correctly use flexibility, with_ai, category_count, and participant: they count distinct categories within each participant's idea list. They do not measure similarity across different participants or creativity after AI removal. PDF pp. 5-6 (printed pp. 425-426), Sections 3.3 and 4.1.",
+  "S1-O1.reported and the corresponding one-line finding match the PDF exactly: human+AI mdn=5 versus human-only mdn=2; U=546.5, p<.001; rank-biserial correlation rB=.617. PDF p. 6 (printed p. 426), Section 4.1, first paragraph and Figure 3.",
+  "S1-O2.reported and the corresponding one-line finding match the PDF: excluding AI-origin ideas, U=326.0, p=.830, with no significant condition difference. The accompanying text does not give arm-specific medians, means, SDs, or an effect size for that comparison. PDF p. 6 (printed p. 426), Section 4.1, paragraph accompanying Figure 4.",
+  "The count of 600 is ideas, not people: Table 2 gives 373 AI-origin and 227 human-origin ideas. The primary final-list flexibility analysis includes 115 accepted/copied AI suggestions, not all 373 AI suggestions. PDF p. 5 (printed p. 425), Table 2 and Section 4.1 continuing on PDF p. 6 (printed p. 426).",
+  "The paper is not a synthesis and reports no pooled meta-analytic estimate; the default synthesis fields are appropriate. Its origin-based exploratory comparisons do not constitute a separate independent randomized study. PDF pp. 4-7 (printed pp. 424-427), Sections 3-4.3.",
+  "No company involvement is disclosed. The named research funder is the German Federal Ministry of Education and Research; using an OpenAI model alone does not establish company participation in the research. PDF p. 9 (printed p. 429), Acknowledgment, and PDF p. 4 (printed p. 424), Section 3.2."
+ ],
+ "summary": "The paper contains a randomized AI-assistance study with 52 analyzed students, and the reported flexibility results match the PDF. Corrections are needed for core eligibility, exclusions, sample overlap, incomplete outcome fields, and omitted fluency outcomes."
+}

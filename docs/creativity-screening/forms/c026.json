@@ -1,0 +1,794 @@
+{
+  "cid": "c026",
+  "screener": "final",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Agarwal Naaman Vashistha (2025) - AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nu.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Agarwal Naaman Vashistha (2025) - AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nu.pdf",
+    "version": "arXiv 2409.11360v3 [cs.HC], 12 Mar 2025 (margin stamp, p. 1), typeset in the CHI '25 (April 26-May 1, 2025, Yokohama, Japan) proceedings format with ACM DOI 10.1145/3706598.3713564 (p. 1). This is the arXiv copy, not the ACM version of record.",
+    "title_on_document": "AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nuances",
+    "authors_on_document": ["Dhruv Agarwal", "Mor Naaman", "Aditya Vashistha"],
+    "pages": 21,
+    "supplement": {
+      "exists": "no",
+      "in_this_pdf": false,
+      "where": "The document refers to no supplementary material or online appendix. Appendices A-C are part of this PDF: the headings are on p. 18 and Tables 6-8 are on pp. 19-21.",
+      "holds": "Descriptive tables only: participant languages and occupations (Table 6), public figures chosen by Indian participants (Table 7), and further essay examples (Table 8). No statistics sit outside the main text. Table 7's AI-column counts conflict with the text's public-figure share (see S1-O7 and open_questions)."
+    }
+  },
+  "paper_design_summary": "Prolific crowdworkers in India and the US were randomly assigned at consent to write four short English essays (favorite food, favorite public figure, favorite festival, and an email asking a boss for two weeks of leave; at least 50 words each) either with inline GPT-4o autocomplete suggestions or without AI. The paper analyzes 118 of them, 60 from India and 58 from the US, and gives no count at assignment. Country is a recruited cohort, so the design is 2 x 2 between subjects (country x condition). The paper compares the essays by pairwise cosine similarity of OpenAI text embeddings within and across cultures, by a logistic-regression classifier of Indian vs American authorship, by type-token ratio and grammar-error counts, and by hand-coded cultural content. Interaction logs give productivity and reliance.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Cross-cultural writing experiment with GPT-4o autocomplete (India and US, Prolific)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Writing with inline GPT-4o autocomplete suggestions (AI condition) vs writing without AI (No AI condition). Country (India or US) is a recruited cohort, not assigned.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants who provided consent were randomly assigned to the AI or No AI condition.",
+        "locator": "p. 4, Section 3.3.1; also p. 3, Section 3.1 and Table 1; p. 15, Section 6",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Indians without AI", "description": "Indian participants writing the four essays without AI suggestions (control)", "ai": "none", "n_randomized": null, "n_analyzed": 24 },
+        { "name": "Americans without AI", "description": "US participants writing the four essays without AI suggestions (control)", "ai": "none", "n_randomized": null, "n_analyzed": 29 },
+        { "name": "Indians with AI", "description": "Indian participants writing the four essays with inline GPT-4o autocomplete suggestions (treatment)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 36 },
+        { "name": "Americans with AI", "description": "US participants writing the four essays with inline GPT-4o autocomplete suggestions (treatment)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 29 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 118,
+        "counts_are": "people",
+        "exclusions": "Two rules define the analyzed sample, and both act after random assignment, which happened at consent before the tasks (p. 4, Section 3.3.1). First, participants had to complete both parts of the study, the writing tasks and the demographic survey that followed them, 'to complete the study and receive payment', and the team checked both parts before paying (p. 4, Section 3.3; p. 5, Section 3.3.3). Second, the paper retained only participants born in and having lived their entire lives in their country of residence (India or US), checked with the same post-task survey (p. 5, Sections 3.3.3 and 3.4). The paper gives no count at assignment and does not say how many people, if any, did not finish or were dropped under the second rule, in total or by arm. No participant failed the attention check (p. 4, Section 3.2). The 118 analyzed participants each wrote four essays, 472 in all (p. 7, Section 4). The analyzed Indian arms are unbalanced (24 No AI vs 36 AI), and the paper does not explain the split. The study launched in India first, and the paper says it then extended the study 'to the same number of participants in the US', but 60 Indian and 58 US participants were analyzed, and the paper does not explain the two-person gap (pp. 5-6, Section 3.4; p. 6, Table 3).",
+        "population": "online_panel",
+        "who": "Identity-verified Prolific crowdworkers over 18 years old residing in India or the US, retained only if born in and lifelong residents of that country. 60 analyzed Indian participants (age 33.38 ± 11.85) and 58 analyzed American participants (age 36.07 ± 13.52), as printed in Table 3. Paid $2 each.",
+        "country": "India; United States",
+        "quote": "In total, we collected responses from 118 participants: 60 from India and 58 from the US.",
+        "locator": "p. 5, Section 3.4; group sizes p. 3, Table 1; demographics p. 6, Table 3"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI GPT-4o",
+        "role": "suggestions",
+        "how_used": "Inline autocomplete. When the writer paused typing for 100 ms, the textbox fetched a GPT-4o suggestion of at most 10 words, prompted with the essay topic, and showed it in light grey next to the writer's text. TAB accepted it, Escape rejected it, and continued typing ignored it. After accepting, the writer had to type at least one character before the next suggestion appeared. AI-condition participants first did a tutorial. The task screen states that copy-paste is disabled. The 65 analyzed AI-condition participants saw 12,015 suggestions and accepted 1,476 (12.3%) (pp. 4-5, Sections 3.3.1-3.3.2 and Figure 3; p. 7, Section 4)."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Four short English writing tasks built on Hofstede's cultural onion (p. 4, Table 2): favorite food and why; favorite celebrity or public figure and why; favorite festival/holiday and how you celebrate it; an email to your boss asking for a two-week leave with information about why you need to be away. The task screen says 'Write an essay on the topic shown in the blue box below' and requires at least 50 words (p. 5, Figure 3, text inside the screenshot image); every task used this interface (p. 4, Section 3.3.1). An attention-check task asking participants to leave the box blank came after the second task (p. 4, Section 3.2). The essays are personal and descriptive, one is an email, and none is judged for creativity. The study enters the scope through the codebook's clause for writing compared across writers for similarity.",
+        "duration": "No time limit stated. Mean task completion time was 278.4 s (SD 134.5) for Indians without AI, 179.6 s (SD 105.8) for Indians with AI, 232.0 s (SD 240.1) for Americans without AI, and 161.1 s (SD 117.7) for Americans with AI (p. 8, Section 4.1.3)."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Cross-culture similarity: pairwise cosine similarity between Indian and American essays on the same topic",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity of 3072-dimensional essay embeddings from OpenAI's text embedding model (model name not given) for every Indian-American pair of essays on the same topic, computed within the No AI condition (both cohorts without AI) and within the AI condition (both cohorts with AI). The paper prints 2784 No AI pairs (4 topics x 24 x 29); the AI-condition pair count is not printed. Figure 6(b) shows means with 95% CIs and Figure 6(c) the two distributions. Sign: higher similarity means lower diversity, so the direction field reverses the printed similarity. The direction-of-homogenization analysis on the same measure is recorded as S1-O3.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Indians with AI x Americans with AI (cross-culture pairs, both writers had AI)",
+              "control_arm": "Indians without AI x Americans without AI (cross-culture pairs, neither writer had AI)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Mean cross-culture similarity No AI 0.48 (SD = 0.11) vs AI 0.54 (SD = 0.13); t(6958) = −17.89, p < 0.001; Cohen's d = −0.44. Pair count printed for No AI only (2784); people per arm in Table 1 (p. 3). 95% CIs only in Figure 6(b). Similarity is higher with AI, so diversity is lower.",
+              "locator": "p. 9, Section 4.3.1 (setup and means); p. 10, Section 4.3.1 (t-test and d); p. 10, Figure 6(b)-(c)"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean pairwise cosine similarity between essays by Indian and by American participants on the same topic",
+            "embedding_model": "OpenAI text embedding model, 3072 dimensions (model name not given)",
+            "computed_over": "All Indian-American pairs of essays on the same topic within one condition, four topics pooled (cross-cohort pairs only)",
+            "uncertainty": "t-test over pairwise similarity scores, pairs treated as independent (the paper says 'A t-test'; df = 6958 fits an independent-samples test over pairs); no clustering by participant; 95% CIs of the pair-level means plotted in Figure 6(b)",
+            "notes": "Each participant writes four essays and enters many pairs. The paper calls Section 4.3 its main investigation of cross-cultural homogenization (p. 9, Section 4.2) and cosine similarity one of its two main experiments (p. 11, Section 4.3.5)."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Within-culture similarity: pairwise cosine similarity among essays by participants of the same cohort and condition",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity of the same OpenAI essay embeddings for all pairs of essays on the same topic within each of the four groups. The paper prints 1104 pairs for Indians without AI (4 topics x C(24,2)); other groups' counts are not printed. Figure 6(a) shows group means with 95% CIs; no means are printed in the text. A difference-in-differences regression tests whether the AI-induced increase differs between cohorts. Sign: higher similarity means lower diversity.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Indians with AI",
+              "control_arm": "Indians without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "standardized_effect", "figure_only"],
+              "reported": "Within-culture similarity rose with AI among Indians: t(3622) = −7.22, p < 0.001, Cohen's d = −0.26. Group means only in Figure 6(a). Higher similarity means lower diversity.",
+              "locator": "p. 9, Section 4.2.1; p. 10, Figure 6(a)"
+            },
+            {
+              "treatment_arm": "Americans with AI",
+              "control_arm": "Americans without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "standardized_effect", "figure_only"],
+              "reported": "Within-culture similarity rose with AI among Americans: t(3246) = −9.45, p < 0.001, Cohen's d = −0.33. Difference-in-differences of the increase between cohorts: p = 0.30, 95% CI = [−0.018, 0.006]. Group means only in Figure 6(a).",
+              "locator": "p. 9, Section 4.2.1; p. 10, Figure 6(a)"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean pairwise cosine similarity among essays within one cohort-condition group",
+            "embedding_model": "OpenAI text embedding model, 3072 dimensions (model name not given)",
+            "computed_over": "All pairs of essays on the same topic within each of the four groups (Indian-Indian or American-American pairs), four topics pooled",
+            "uncertainty": "t-tests over pairwise similarity scores, pairs treated as independent (the paper says 'A t-test'; the dfs fit independent-samples tests over pairs); no clustering by participant; the difference-in-differences comes from 'a regression model' (type not stated) with a 95% CI",
+            "notes": "Context, not an AI contrast: without AI, Indians' essays were more similar to each other than Americans' were, t(2726) = 4.04, p < 0.001, Cohen's d = 0.16 (p. 9, Section 4.2.1). The paper presents this analysis as setting the stage for its main cross-cultural investigation (p. 9, Section 4.2). It never pools all AI participants against all No AI participants in one similarity measure."
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Direction of homogenization: similarity of one cohort's AI-assisted essays to the other cohort's unassisted essays",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity of the same essay embeddings between (a) Americans without AI and Indians with AI and (b) Indians without AI and Americans with AI, each compared with cross-culture similarity when neither cohort used AI. Same measure as S1-O1 on a different set of pairs. No means or pair counts are printed. Sign: higher similarity means lower diversity.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Indians with AI x Americans without AI (only the Indian writer had AI)",
+              "control_arm": "Indians without AI x Americans without AI (neither writer had AI)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "standardized_effect"],
+              "reported": "Similarity significantly higher when one cohort used AI than when neither did (p < 0.001, independent t-tests). AI made Indians write more like Americans' natural styles: Cohen's d = −0.22 (small). No means or test statistics printed.",
+              "locator": "p. 10, Section 4.3.1, 'Direction of Homogenization'"
+            },
+            {
+              "treatment_arm": "Americans with AI x Indians without AI (only the American writer had AI)",
+              "control_arm": "Indians without AI x Americans without AI (neither writer had AI)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "standardized_effect"],
+              "reported": "Similarity significantly higher when one cohort used AI than when neither did (p < 0.001, independent t-tests). The reverse influence had Cohen's d = −0.12 (negligible). No means or test statistics printed.",
+              "locator": "p. 10, Section 4.3.1, 'Direction of Homogenization'"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean pairwise cosine similarity between one cohort's AI-assisted essays and the other cohort's unassisted essays",
+            "embedding_model": "OpenAI text embedding model, 3072 dimensions (model name not given)",
+            "computed_over": "Cross-cohort essay pairs in which only one cohort used AI, compared with cross-cohort pairs in which neither used AI",
+            "uncertainty": "Independent-samples t-tests over pairwise similarity scores ('based on independent t-tests'), pairs treated as independent",
+            "notes": "ai_available_when_produced is mixed because each pair holds one AI-assisted and one unassisted essay. The paper calls this a complementary test (p. 10)."
+          }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Distinguishability of Indian vs American authorship: logistic-regression accuracy and macro F1 on essay embeddings",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Logistic regression predicting the writer's cohort (Indian vs American) from the 3072-dimensional OpenAI essay embeddings, trained separately on No AI essays and on AI essays. Stratified k-fold cross-validation with k = 20 gives 20 accuracy and F1 scores per condition (n_units = 40, 20 in each of the two conditions), compared by independent-samples t-test. Lower accuracy means the two cultures' essays are harder to tell apart, that is, lower cross-cultural diversity. Robustness variants: (i) random subsets of d = 12 to 3072 embedding dimensions in steps of 10, 10 repeats each (Figure 8(a)-(b), figure only); (ii) email task only (second contrast; fold count not stated). Measure code automated_score, the code the forms use for a computed measure that fits no code (as for S1-O6). The classifier uses the embeddings only as features and computes no distance between them, so embedding_similarity (distances between embeddings, codebook Section 6) does not apply.",
+          "unit": "set",
+          "n_units": 40,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI condition (Indians with AI and Americans with AI), all four tasks",
+              "control_arm": "No AI condition (Indians without AI and Americans without AI), all four tasks",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "Accuracy 90.6% (No AI) vs 83.5% (AI), a 7.1 percentage-point decrease, t(38) = 2.25, p = 0.03, Cohen's d = 0.71. Macro F1 89.9% vs 82.9%, t(38) = 2.07, p = 0.045, Cohen's d = 0.65. 20 fold-level scores per condition; their SDs are not printed.",
+              "locator": "p. 10, Section 4.3.2; p. 11, Figure 7"
+            },
+            {
+              "treatment_arm": "AI condition, email-writing task only",
+              "control_arm": "No AI condition, email-writing task only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "Accuracy 82.9% (No AI) vs 60% (AI), t(8) = 5.63, p < 0.001, Cohen's d = 3.56. F1 81.7% vs 49.2%, t(8) = 5.79, p < 0.001, d = 3.66. Number of folds not stated.",
+              "locator": "p. 11, Section 4.3.3, 'Performance on Email-Writing Task'"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cross-validated accuracy and macro F1 of a classifier separating Indian from American essays (lower = less distinguishable = more homogeneous across cultures)",
+            "embedding_model": "OpenAI text embedding model, 3072 dimensions (model name not given)",
+            "computed_over": "All essays in one condition (both cohorts), split into 20 stratified folds",
+            "uncertainty": "Independent-samples t-test over the 20 fold-level scores per condition (df = 38); email-only analysis df = 8",
+            "notes": "The paper names cosine similarity and predictive modeling as its 'two main experiments' (p. 11, Section 4.3.5). Mean accuracy and F1 per condition are printed; their SDs are not. The outcome measures between-cohort distinguishability, not pairwise similarity."
+          }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Lexical diversity of each essay (type-token ratio)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Type-token ratio (unique words / total words) of each essay: lexical variety within one essay, not a comparison across people. The paper uses the convergence of Indian and American TTR as evidence of homogenization; its tests compare Indian with American essays within each condition, not AI with No AI. Box plot in Figure 9(a). The dataset has 472 essays (p. 7); the count in each test is not printed.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Indians with AI",
+              "control_arm": "Indians without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 9 caption: 'On average, AI increases the lexical diversity for Indians, taking it closer to American styles'. No AI-vs-No-AI test printed. Cohort-gap tests: without AI, Indian vs American t(210) = −2.94, p = 0.003, Cohen's d = −0.41; with AI, t(258) = −0.32, p = 0.75, Cohen's d = −0.04.",
+              "locator": "p. 12, Section 4.3.5 and Figure 9(a)"
+            },
+            {
+              "treatment_arm": "Americans with AI",
+              "control_arm": "Americans without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 9 caption: AI 'does not change the lexical diversity for Americans'. Box plot only; no test printed.",
+              "locator": "p. 12, Figure 9(a)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Grammatical errors per essay (LanguageTool, spell-check rules disabled)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of grammar errors flagged by LanguageTool (Python library language_tool_python) with its spell-checking rules disabled, run on all essays. The paper uses it to test whether homogenization is only grammar correction. Bar chart in Figure 8(c); no means printed. The measure code is the nearest available; this is not a creativity score.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Americans with AI",
+              "control_arm": "Americans without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "standardized_effect", "figure_only"],
+              "reported": "Fewer errors with AI: U = 7729.0, p = 0.04, Cliff's Delta D = 0.15.",
+              "locator": "p. 11, Section 4.3.4; p. 12, Figure 8(c)"
+            },
+            {
+              "treatment_arm": "Indians with AI",
+              "control_arm": "Indians without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "figure_only"],
+              "reported": "Reduction not significant: U = 7584.5, p = 0.18. The paper says AI reduced errors in both cohorts descriptively (Figure 8(c)).",
+              "locator": "p. 11, Section 4.3.4; p. 12, Figure 8(c)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Cultural artifacts chosen by Indian participants (sushi as favorite food, Christmas as festival, Indian vs non-Indian public figure)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Hand-coded content of Indian participants' food, festival, and public-figure essays. The paper says it 'focused on essays written by Indian participants' and reports the coding only for them. It does not say whether American essays were coded (p. 12, Section 4.4), and its general description of the content analysis does not limit the coding to one cohort (p. 7, Section 3.5.2). Table 7 marks each chosen public figure as Indian (blue) or non-Indian (yellow); the paper states a citizenship rule only for the celebrities the AI suggested (p. 13, Section 4.4.2). No statistical test; the paper says the small sample limits its conclusions. The separate qualitative content analysis (exoticization, generic phrasing, Westernized descriptions; Tables 5 and 8) has no numbers and is not listed.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Indians with AI",
+              "control_arm": "Indians without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Food and festival choices. Sushi as favorite food: no Indian participant without AI; three essays with AI. Christmas as festival: 12.5% (3/24) without AI vs 13.9% (5/36) with AI. Counts and shares with arm sizes are printed (binary outcome, so the counts fix the SD); no test printed.",
+              "locator": "p. 13, Section 4.4.3"
+            },
+            {
+              "treatment_arm": "Indians with AI",
+              "control_arm": "Indians without AI",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Public-figure choice, as printed in the text: an Indian public figure was chosen by 54% (13/24) without AI vs 44% (16/36) with AI; no test. UNRESOLVED CONFLICT: in Table 7 the counts of Indian (blue) figures sum to 13 of 24 without AI, matching the text, but to 23 of 36 with AI, and 16 is the number of distinct Indian names in the AI column. Under the table's counts the AI share is higher, not lower.",
+              "locator": "p. 13, Section 4.4.3; p. 20, Table 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "Essay length",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Length of each essay. The paper prints no length statistics and does not say whether it counted words or characters. It states the result in one sentence inside its definition of the type-token ratio, to explain why TTR's penalty on longer texts 'was not an issue in our analysis'. The task screen required at least 50 words (p. 4, Section 3.3.1). Measure code automated_score, the nearest code for a computed length; the forms code word counts this way.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI condition (Indians with AI and Americans with AI)",
+              "control_arm": "No AI condition (Indians without AI and Americans without AI)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "No numbers and no test printed. The paper states that 'the essays across all four experimental groups were of similar length, likely due to the minimum word requirement we enforced.' The statement covers all four groups, so it also covers each cohort's AI vs No AI comparison.",
+              "locator": "p. 6, Section 3.5.2, item (1) Type-Token Ratio"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "Funding acknowledged from Infosys and the Microsoft AFMR Program (also Global Cornell and NSF). All three authors list Cornell affiliations, none a company. The AI tool is OpenAI's GPT-4o and the embeddings come from OpenAI's text embedding model; the paper states no OpenAI involvement.",
+    "locator": "p. 15, Acknowledgments; p. 1 (affiliations); p. 4, Section 3.3.2; p. 7, Section 3.5.2"
+  },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Individuals were randomly assigned at consent to write with or without GPT-4o inline suggestions (p. 4, Section 3.3.1; p. 3, Section 3.1). The paper analyzes 118 people: 24 and 29 without AI, 36 and 29 with AI (p. 3, Table 1; p. 5, Section 3.4; p. 7, Section 4), well above 50. The homogenization outcomes are cosine similarity between essay embeddings and the accuracy of a classifier that takes those embeddings as features. Both are computed on the essays, which the AI arm wrote with suggestions available in the same session (p. 4, Section 3.3.1; p. 7, Section 3.5.2; pp. 9-11). The tasks are personal cultural essays and an email, not creativity-judged tasks, so the study enters through the codebook's clause for writing compared across writers for similarity. Every similarity and classifier test treats essay pairs or cross-validation folds as independent, so the paper gives no participant-level standard error. The paper gives no count at assignment. It does not say how many assigned people did not complete both parts of the study or were dropped by the born-and-lived-in-country rule, and it analyzes 58 US participants although it says US recruitment was extended to the same number as India's 60. These gaps leave all three criteria met."
+  },
+  "one_line_finding": "Random assignment to GPT-4o inline suggestions raised the mean cosine similarity between Indian and American essays from 0.48 (SD 0.11) to 0.54 (SD 0.13), t(6958) = −17.89, p < 0.001, d = −0.44 over essay pairs (pp. 9-10, Section 4.3.1), and lowered a classifier's accuracy at telling Indian from American essays from 90.6% to 83.5%, t(38) = 2.25, p = 0.03, d = 0.71 (p. 10, Section 4.3.2).",
+  "open_questions": [
+    "Primary record for across_people: the paper reports no similarity across all participants in each arm. Its cross-culture measure (S1-O1, the paper's main analysis) uses only Indian-American pairs, its within-culture measure (S1-O2) uses only same-cohort pairs, and the classifier outcome (S1-O4) is also paper_primary. Which one serves as the primary record?",
+    "Task scope and code: three personal essays (food, public figure, festival) and a leave-request email, none judged for creativity. Inclusion rests on the codebook's clause for writing compared across writers for similarity. task.type is creative_writing to match the reconciled c018; Review 1 may prefer other, which the paper's own wording would support (it lists email writing beside creative writing, not inside it; p. 3, Section 2.2).",
+    "Assignment and attrition: the paper says only that participants were randomly assigned at consent. It gives no count at assignment and no count of people lost afterward, either by not completing both parts of the study (the writing tasks and the post-task survey, both required for the study to count) or by the born-and-lived-in-country rule, which used that survey. The analyzed Indian groups are 24 (No AI) vs 36 (AI) without explanation, and 58 US participants were analyzed although the paper says US recruitment was extended to the same number as India's 60.",
+    "Precision: all similarity statistics treat essay pairs as independent, and the classifier tests treat cross-validation folds as independent. The paper gives no participant-level or clustered standard errors and no data or code link.",
+    "Is classifier accuracy (S1-O4) a diversity outcome in the codebook's sense, given that its unit is the cross-validation fold and its metric is classification performance, not a distance? Its measure is now coded automated_score, the forms' code for a computed measure that fits no code. Review 1 may want a separate code for classifier separability.",
+    "Public-figure counts conflict inside the paper: the text says 44% (16/36) of AI-condition Indian participants chose an Indian public figure (p. 13), but the Table 7 counts of Indian figures in the AI column sum to 23 of 36 (p. 20); 16 is the number of distinct Indian names there. Only the authors or a corrected version can settle it.",
+    "Grammar errors (S1-O6) and artifact choices (S1-O7) are kept as secondary 'other' outcomes, and essay length (S1-O8, one sentence with no numbers) as a secondary elaboration outcome, because all three are scored on the essays and compared AI vs No AI. None measures creativity, and Review 1 may drop them.",
+    "The ACM CHI '25 version of record could not be opened (HTTP 403 on 2026-10-05), so it was not compared with the arXiv v3 file."
+  ],
+  "notes": "Version on file is arXiv v3 (12 Mar 2025) in CHI '25 format, 21 pages. Outside check on 2026-10-05: the arXiv abstract page lists v1 (17 Sep 2024), v2 (3 Jan 2025), and v3 (12 Mar 2025) with the comment 'Accepted at CHI 2025', so the file is the latest arXiv version. Direction coding: for S1-O1 to S1-O4, higher similarity or classifier accuracy means lower diversity, so treatment_lower means AI reduced diversity across people. Outcomes not listed because they are not scored on the output or have no AI vs No AI contrast: AI reliance, suggestion acceptance rate, and suggestion modification (AI arms only, Indians vs Americans; pp. 7-8, Figure 4); task completion time and words per second (process measures; Indians 278.4 s vs 179.6 s, U = 10356.0, p < 0.001, Cliff's D = 0.5; Americans 232.0 s vs 161.1 s, U = 8936.0, p < 0.001, D = 0.33; productivity Cliff's D = −0.48 for Indians and −0.33 for Americans; p. 8, Figure 5(a)-(b) on p. 9); productivity per suggestion (AI arms only; U = 5424.0, p < 0.001, D = −0.27; p. 8, Figure 5(c)); the Short Schwartz Value Survey, a self-report on which the cohorts differ on eight of ten values (p. 6); and the qualitative content analysis, which gives no numbers (pp. 12-13, Tables 5 and 8). Within-culture similarity means (S1-O2) appear only in Figure 6(a). Consistency check, not recorded values: the printed degrees of freedom match the pair and essay counts implied by the group sizes (for example 1104 + 2520 Indian within-culture pairs give t(3622), and 96 + 116 No AI essays give t(210)), which confirms that the tests run on pairs and essays, not people. Totals: 472 essays; the 65 analyzed AI-arm participants saw 12,015 suggestions and accepted 1,476 (12.3%) (p. 7).",
+  "reconciliation": {
+    "differences": [
+      {
+        "field": "studies[S1].task.type",
+        "a": "creative_writing",
+        "b": "other",
+        "resolved": "creative_writing, as in A. Each task screen told participants to write an essay, the codebook's creative_writing code lists essays (Section 6), and Section 1 admits writing tasks compared across writers for similarity. The reconciled c018 (essays written with AI suggestions and compared across writers) uses the same code, while reconciled papers whose writing is not compared across writers (c059, c025) use other. The description records that one task is an email and none is judged for creativity, and open_questions asks Review 1 to confirm.",
+        "quote": "Write an essay on the topic shown in the blue box below.",
+        "locator": "p. 5, Figure 3 (instruction text inside the screenshot image, not in the PDF text layer); every task used this interface (p. 4, Section 3.3.1); prompts p. 4, Table 2",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes: direction-of-homogenization analysis (A: contrasts 2-3 of S1-O1; B: S1-O3)",
+        "a": "Two extra contrasts inside the cross-culture outcome S1-O1, whose ai_available_when_produced is yes and primary is paper_primary",
+        "b": "Separate outcome S1-O3 with ai_available_when_produced mixed and primary secondary",
+        "resolved": "Separate outcome S1-O3, as in B. Each compared pair holds one essay written with AI and one written without, so the outcome-level AI availability is mixed, which it cannot be inside S1-O1. The paper calls the analysis a complementary test, so it is secondary. The statistics are the same in both forms and match the source.",
+        "quote": "We computed similarity scores when only one of the two cohorts was using AI: (a) between Americans not using AI and Indians using AI, and (b) vice versa, Indians not using AI and Americans using AI.",
+        "locator": "p. 10, Section 4.3.1, 'Direction of Homogenization' (same paragraph: 'To investigate this, we conducted a complementary test.')",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[classifier: A S1-O3, B S1-O4].primary",
+        "a": "secondary",
+        "b": "paper_primary",
+        "resolved": "paper_primary, as in B. The paper names cosine similarity and predictive modeling as its two main experiments, and Section 4.3, which holds both, as its main investigation.",
+        "quote": "Our two main experiments (cosine similarity and predictive modeling) used word embeddings to capture the semantic meaning of participants’ essays, providing a robust yet abstract measure of homogenization.",
+        "locator": "p. 11, Section 4.3.5; also p. 9, Section 4.2",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[classifier: A S1-O3, B S1-O4].n_units",
+        "a": 20,
+        "b": null,
+        "resolved": "40, neither form: 20 fold-level scores in each of the two conditions, which matches t(38). A's 20 is the per-condition count; B's null leaves out a printed count. measure_detail gives the per-condition count and notes that the email-only variant's fold count is not stated.",
+        "quote": "This resulted in a distribution of 20 accuracy and F1 scores in each condition, which we compared using an independent samples t-test.",
+        "locator": "p. 10, Section 4.3.2 (Setup)",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[classifier].contrasts[all tasks].statistics_available",
+        "a": ["test_statistic", "standardized_effect", "figure_only"],
+        "b": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+        "resolved": "[test_statistic, standardized_effect], neither form. The text prints mean accuracy and F1 per condition and the fold count but no SDs, so arm_means_sds_ns does not hold. The contrast's numbers are in the text, so figure_only does not apply; Figure 8(a)-(b) shows only the dimension ablation.",
+        "quote": "On average, the accuracy decreased by 7.1 percentage points, from 90.6% in the No AI condition to 83.5% in the AI condition. This decrease was statistically significant, t(38) = 2.25, p = 0.03",
+        "locator": "p. 10, Section 4.3.2 (Results); ablation p. 12, Figure 8(a)-(b)",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[classifier].contrasts (email-only analysis)",
+        "a": "Folded into the reported text of the single all-task contrast",
+        "b": "Separate contrast: AI vs No AI, email-writing task only",
+        "resolved": "Separate contrast, as in B. It is a robustness variant of the same outcome on a subset of essays, with its own test (t(8)) and section. The numbers are identical in both forms and match the source.",
+        "quote": "Accuracy dropped from 82.9% in the No AI condition to 60% in the AI condition, a statistically significant decrease, t(8) = 5.63, p < 0.001",
+        "locator": "p. 11, Section 4.3.3, 'Performance on Email-Writing Task'",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1].contrasts[both AI vs both No AI].statistics_available",
+        "a": ["test_statistic", "standardized_effect", "figure_only"],
+        "b": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+        "resolved": "[arm_means_sds_ns, test_statistic, standardized_effect], as in B. The text prints both arm means with SDs, so the statistics are not figure-only; only the 95% CIs sit in Figure 6(b). The pair count is printed for No AI only (2784), and people per group are in Table 1; the reported field says so.",
+        "quote": "without AI, the mean similarity between Indians and Americans was 0.48 (SD = 0.11), but with AI, the similarity score rose to 0.54 (SD = 0.13).",
+        "locator": "p. 9, Section 4.3.1 (Results)",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O2].diversity_detail.uncertainty (difference-in-differences model)",
+        "a": "DiD via a regression model (details not given)",
+        "b": "OLS difference-in-differences regression",
+        "resolved": "'A regression model', type not stated, as in A. The paper names OLS only for the completion-time difference-in-differences (p. 8, Section 4.1.3), not for this one.",
+        "quote": "a Difference-in-Difference analysis using a regression model showed that the increase was statistically similar in both cohorts (p = 0.30, 95% CI=[−0.018, 0.006]).",
+        "locator": "p. 9, Section 4.2.1; compare p. 8, Section 4.1.3",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O2].contrasts[Americans].reported",
+        "a": "AI contrast and difference-in-differences only",
+        "b": "Also gives the no-AI cohort gap: without AI, Indians were more similar to each other than Americans, t(2726) = 4.04, p < 0.001, d = 0.16",
+        "resolved": "The cohort gap is printed as B gives it, but it compares Indians with Americans without AI, so it is not part of this AI contrast. It stays in the form as context in S1-O2's diversity_detail.notes.",
+        "quote": "This natural difference between the Indian and American cohorts was significant, t(2726) = 4.04, p < 0.001, though the effect size was negligible (Cohen’s d = 0.16).",
+        "locator": "p. 9, Section 4.2.1",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes: grammatical errors (B: S1-O6; A: not listed)",
+        "a": "Not listed; A's notes call it neither a creativity nor a diversity outcome",
+        "b": "S1-O6: construct other, question with_ai, measure automated_score, secondary, two contrasts",
+        "resolved": "Kept as S1-O6, as in B. The error count is scored on every essay and compared AI vs No AI within each cohort with printed statistics, and the paper uses it inside its homogenization analysis (Section 4.3.4). The codebook's other construct covers outcomes scored on the output that are not creativity measures. It is secondary and not a creativity score.",
+        "quote": "Statistically, the reduction was significant in American essays (U = 7729.0, p = 0.04) with a small effect size (Cliff’s Delta D = 0.15), but not significant in Indian essays (U = 7584.5, p = 0.18).",
+        "locator": "p. 11, Section 4.3.4; p. 12, Figure 8(c)",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes: cultural artifacts chosen by Indian participants (B: S1-O7; A: not listed)",
+        "a": "Not listed; A's notes give Christmas 3/24 vs 5/36, Indian public figures 13/24 vs 16/36, sushi 0 vs 3 essays",
+        "b": "S1-O7: construct other, question with_ai, category_count, unit participant, one contrast with direction mixed (Christmas and public-figure shares)",
+        "resolved": "Kept as S1-O7, as in B, split into two contrasts (food and festival choices; public-figure choice) because B's single contrast bundled shares that move in opposite numeric directions, and with the sushi count added from A's notes. The Christmas and sushi numbers are confirmed. The public-figure numbers conflict with Table 7 (next entry).",
+        "quote": "Without AI suggestions, 12.5% of Indian participants (3/24) wrote about Christmas, but this proportion slightly increased to 13.9% (5/36) in the AI condition.",
+        "locator": "p. 13, Section 4.4.3",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O7].contrasts[public-figure choice].reported and direction",
+        "a": "13/24 No AI vs 16/36 AI (notes only, no direction)",
+        "b": "54% (13/24) No AI vs 44% (16/36) AI, inside a bundled contrast with direction mixed",
+        "resolved": "Recorded as printed in the text, with direction treatment_lower, and flagged. In Table 7 the counts of Indian (blue) figures sum to 13 of 24 without AI, matching the text, but to 23 of 36 with AI (16 distinct Indian names); under the table's counts the AI share is higher, not lower. The document does not settle which is right. Settling it needs the authors' confirmation or a corrected version; the ACM version of record returned HTTP 403.",
+        "quote": "In the public figures task, 54% of Indian participants (13/24) selected Indian public figures in the No AI condition, compared to 44% (16/36) in the AI condition (full list in Appendix B).",
+        "locator": "p. 13, Section 4.4.3; p. 20, Table 7",
+        "status": "unresolved"
+      },
+      {
+        "field": "studies[S1].participants.exclusions (timing of the born-and-lived-in-country check)",
+        "a": "Checked with the demographic survey taken after the writing tasks; number dropped not stated, so post-assignment exclusions cannot be ruled out",
+        "b": "Does not say how many were dropped or whether they had already been assigned",
+        "resolved": "As in A. The check used the demographic survey, which came after the writing tasks, and assignment happened at consent before the tasks, so anyone dropped under the rule was dropped after assignment. Whether anyone was dropped, and how many, is not stated.",
+        "quote": "This was confirmed using data from the demographic survey including age, country of birth and residence, and years lived in the country.",
+        "locator": "p. 5, Section 3.4; survey timing p. 5, Section 3.3.3; assignment p. 4, Section 3.3.1",
+        "status": "resolved"
+      },
+      {
+        "field": "source.supplement.where (appendix pages)",
+        "a": "Appendices A-C (Tables 6-8) inside this PDF, pp. 19-21",
+        "b": "Appendices A-C (Tables 6-8) printed at the end of this PDF, pp. 18-21",
+        "resolved": "Appendix headings A-C on p. 18; Tables 6-8 on pp. 19-21. Both forms agree there is no external supplement.",
+        "quote": "Please refer Table 6.",
+        "locator": "p. 18 (Appendix A heading); p. 19, Table 6; p. 20, Table 7; p. 21, Table 8",
+        "status": "resolved"
+      },
+      {
+        "field": "one_line_finding",
+        "a": "Cross-culture similarity 0.48 to 0.54, t(6958) = −17.89, p < 0.001, d = −0.44, plus within-culture d = −0.26 and −0.33 (pp. 9-10)",
+        "b": "Cross-culture similarity 0.48 to 0.54, t(6958) = −17.89, p < 0.001, d = −0.44 (p. 10, Section 4.3.1)",
+        "resolved": "The cross-culture result with locator pp. 9-10, plus the classifier result, the paper's other main experiment. The means are printed on p. 9 and the test on p. 10, so B's 'p. 10' alone misses the means. A's within-culture effects are secondary and stay in S1-O2.",
+        "quote": "revealed that this increase was statistically significant, t(6958) = −17.89, p < 0.001. This indicates that on average, Indians and Americans wrote more similarly when AI suggestions were used.",
+        "locator": "p. 10, Section 4.3.1 (test); means p. 9, Section 4.3.1; classifier p. 10, Section 4.3.2",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].participants.who (ages)",
+        "a": "mean age 33.4 (India) and 36.1 (US)",
+        "b": "No ages given",
+        "resolved": "Ages as printed: 33.38 ± 11.85 for India (n = 60) and 36.07 ± 13.52 for the US (n = 58). A's values were rounded.",
+        "quote": "33.38 ± 11.85 / 36.07 ± 13.52",
+        "locator": "p. 6, Table 3 (Age (years) column)",
+        "status": "resolved"
+      }
+    ],
+    "agreed_fields_checked": [
+      {
+        "field": "studies[S1].assignment.randomized, unit, what_was_assigned; eligibility.criterion_1_random_assignment_of_ai",
+        "value": "yes; individual; AI vs No AI assigned at consent; country recruited, not assigned; criterion 1 met",
+        "quote": "Participants who provided consent were randomly assigned to the AI or No AI condition.",
+        "locator": "p. 4, Section 3.3.1",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].assignment.structure",
+        "value": "between (2 x 2, country x condition)",
+        "quote": "Participants from both cultures were randomly assigned to complete writing tasks with or without AI suggestions, resulting in a standard 2 × 2 between-subjects study design.",
+        "locator": "p. 3, Section 3.1",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].design_class",
+        "value": "online_rct (Prolific, online study portal)",
+        "quote": "We quantitatively analyzed the data collected from our online experiment by comparing task-level metrics across the four experimental groups",
+        "locator": "p. 6, Section 3.5; Prolific p. 4, Section 3.3",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.n_analyzed; eligibility.criterion_2_at_least_50_people",
+        "value": "118 people analyzed; criterion 2 met",
+        "quote": "In total, we collected responses from 118 participants: 60 from India and 58 from the US.",
+        "locator": "p. 5, Section 3.4; p. 7, Section 4 ('Overall, 118 participants completed four tasks each')",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].arms[].n_analyzed",
+        "value": "24, 29, 36, 29 (53 No AI, 65 AI)",
+        "quote": "Indians writing without AI 24 / Americans writing without AI 29 / Indians writing with AI 36 / Americans writing with AI 29",
+        "locator": "p. 3, Table 1 (cells)",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.n_randomized and arms[].n_randomized",
+        "value": "null: no count at assignment and no count of exclusions is printed",
+        "quote": "Hence, we retained only those participants who were born in and had lived their entire lives in the same country.",
+        "locator": "p. 5, Section 3.4",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.exclusions (attention check)",
+        "value": "No participant failed the attention check",
+        "quote": "None of our participants failed the attention check.",
+        "locator": "p. 4, Section 3.2",
+        "confirmed": true
+      },
+      {
+        "field": "eligibility.criterion_3_outcome_scored_on_output; outcomes[S1-O1 to S1-O4].scored_on_output",
+        "value": "true: cosine similarity and a classifier computed on embeddings of the participants' essays; criterion 3 met",
+        "quote": "We fetched 3072-dimensional embeddings for each essay from OpenAI’s text embedding model. We used these embeddings to calculate similarity scores between pairs of essays by computing the cosine similarity.",
+        "locator": "p. 7, Section 3.5.2",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[].ai_available_when_produced (AI arms) and timing",
+        "value": "yes, immediate: suggestions appeared while the essay was being written in the same session",
+        "quote": "In the AI condition, the textbox fetched an inline autocomplete suggestion from GPT-4o if the user paused typing for 100 ms.",
+        "locator": "p. 4, Section 3.3.1",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].ai_tool.name_model and role",
+        "value": "OpenAI GPT-4o; suggestions",
+        "quote": "We used the following prompt to retrieve autocomplete suggestions from OpenAI’s latest language model at the time, GPT-4o.",
+        "locator": "p. 4, Section 3.3.2",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.population",
+        "value": "online_panel",
+        "quote": "We used Prolific to recruit identity-verified human crowdworkers.",
+        "locator": "p. 5, Section 3.4",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].assignment.preregistered",
+        "value": "not_stated",
+        "quote": "",
+        "locator": "Whole document read (pp. 1-21); a text search finds no preregistration or registry mention",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O1].primary (paper_primary) and outcomes[S1-O2].primary (secondary)",
+        "value": "The cross-culture analysis is the main investigation; the within-culture analysis sets the stage",
+        "quote": "This will set the stage for our main investigation of cross-cultural homogenization in the next section.",
+        "locator": "p. 9, Section 4.2",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O1].contrasts[0].reported (effect size)",
+        "value": "Cohen's d = −0.44",
+        "quote": "Further, the effect size of this increase (Cohen’s d = −0.44) is larger than what was observed in the within-culture homogenization for both cohorts",
+        "locator": "p. 10, Section 4.3.1",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O2].contrasts[].reported",
+        "value": "t(3622) = −7.22, d = −0.26 (Indians); t(3246) = −9.45, d = −0.33 (Americans); DiD p = 0.30, 95% CI [−0.018, 0.006]",
+        "quote": "t(3622) = −7.22, p < 0.001 for Indians (blue line) with a small effect size (Cohen’s d = −0.26), and t(3246) = −9.45, p < 0.001 for Americans",
+        "locator": "p. 9, Section 4.2.1",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O3].contrasts[].reported (A: S1-O1 contrasts 2-3)",
+        "value": "p < 0.001 in both; d = −0.22 (Indians with AI) and d = −0.12 (Americans with AI)",
+        "quote": "AI caused Indians to write more similarly to Americans’ natural styles (Cohen’s d = −0.22; small) than the other way around (Cohen’s d = −0.12; negligible).",
+        "locator": "p. 10, Section 4.3.1",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O4].contrasts[1].reported (email-only)",
+        "value": "82.9% vs 60%, t(8) = 5.63, d = 3.56; F1 81.7% vs 49.2%, t(8) = 5.79, d = 3.66",
+        "quote": "The F1 score also declined sharply, from 81.7% to 49.2% AI, t(8) = 5.79, p < 0.001, with a large effect size (d = 3.66).",
+        "locator": "p. 11, Section 4.3.3",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O5].contrasts[0].reported (type-token ratio cohort gaps) and direction",
+        "value": "t(210) = −2.94, p = 0.003, d = −0.41 without AI; t(258) = −0.32, p = 0.75, d = −0.04 with AI; TTR higher with AI for Indians, unchanged for Americans (figure only)",
+        "quote": "The natural lexical diversity in Indian writing (without AI) was significantly different from that of American participants (the two blue boxes in the plot), t(210) = −2.94, p = 0.003, Cohen’s d = −0.41.",
+        "locator": "p. 12, Section 4.3.5; p. 12, Figure 9(a) caption",
+        "confirmed": true
+      },
+      {
+        "field": "company_involvement.any",
+        "value": "true (Infosys and Microsoft AFMR funding)",
+        "quote": "This work is supported by funding from Infosys, Microsoft AFMR Program, and Global Cornell.",
+        "locator": "p. 15, Acknowledgments",
+        "confirmed": true
+      },
+      {
+        "field": "source.version and source.pages",
+        "value": "arXiv v3 of 12 Mar 2025; 21 pages",
+        "quote": "arXiv:2409.11360v3 [cs.HC] 12 Mar 2025",
+        "locator": "p. 1, left margin; 21 pages in the PDF and in the ACM Reference Format line (p. 1)",
+        "confirmed": true
+      },
+      {
+        "field": "sample_overlap; data_and_code",
+        "value": "None stated: no shared sample, no data link, no code link",
+        "quote": "",
+        "locator": "Whole document read (pp. 1-21)",
+        "confirmed": true
+      },
+      {
+        "field": "Indian public-figure share (A's notes and B's S1-O7: 13/24 vs 16/36)",
+        "value": "Printed in the text, but Table 7's counts give 23 of 36 for the AI condition; see the unresolved difference on S1-O7",
+        "quote": "In the public figures task, 54% of Indian participants (13/24) selected Indian public figures in the No AI condition, compared to 44% (16/36) in the AI condition (full list in Appendix B).",
+        "locator": "p. 13, Section 4.4.3; p. 20, Table 7",
+        "confirmed": false
+      }
+    ],
+    "n_differences": 16,
+    "n_unresolved": 1
+  },
+  "final": {
+    "core": "yes",
+    "criteria": {
+      "random_assignment_of_ai": "met",
+      "at_least_50_people": "met",
+      "outcome_scored_on_output": "met"
+    },
+    "challenge_resolution": [
+      {
+        "lens": "people",
+        "problem": "studies[S1].participants.exclusions stated as fact that US recruitment matched the Indian count, but the paper's own counts are 60 Indian and 58 US participants, and the form did not flag the two-person gap.",
+        "action": "corrected",
+        "what_changed": "The last sentence of studies[S1].participants.exclusions now quotes the paper's claim that the study was extended 'to the same number of participants in the US', states that 60 Indian and 58 US participants were analyzed, and says the paper does not explain the gap. Open question 3 and eligibility.reason name the gap too. The analyzed counts (118, 60, 58, and the four arms) are unchanged, and criterion 2 still holds.",
+        "quote": "In total, we collected responses from 118 participants: 60 from India and 58 from the US. ... extending the study to the same number of participants in the US.",
+        "locator": "p. 5, Section 3.4 (counts); p. 6, Section 3.4 continued ('same number'); p. 6, Table 3 (n=60, n=58); p. 3, Table 1"
+      },
+      {
+        "lens": "people",
+        "problem": "studies[S1].participants.exclusions, eligibility.reason, and open question 3 named the born-and-lived-in-country rule as the only way out of the sample after assignment, but the paper also required participants to complete both parts of the study, so anyone assigned at consent who did not finish is not among the 118 analyzed.",
+        "action": "corrected",
+        "what_changed": "studies[S1].participants.exclusions now opens with both rules that define the analyzed sample: completion of the writing tasks and of the post-task demographic survey, which the team checked before paying, and the born-and-lived-in-country rule. Both act after assignment at consent, and the paper gives no count for either. eligibility.reason and open question 3 say the same. n_randomized stays null and randomized stays yes.",
+        "quote": "Participants had to complete both parts to complete the study and receive payment.",
+        "locator": "p. 4, Section 3.3 (first paragraph); p. 5, Section 3.3.3 (last paragraph); assignment at consent p. 4, Section 3.3.1; analyzed participants 'completed four tasks each' p. 7, Section 4"
+      },
+      {
+        "lens": "outcome",
+        "problem": "S1-O4 (classifier accuracy and macro F1) carried measure embedding_similarity, which the codebook defines as distances between embeddings, but the outcome is the cross-validated performance of a logistic regression that takes the embeddings as features and computes no distance.",
+        "action": "corrected",
+        "what_changed": "studies[S1].outcomes[S1-O4].measure changed from embedding_similarity to automated_score, the code the forms use for a computed measure that fits no code (S1-O6 in this form; the classifier F1 in c118 S3-O1). Its measure_detail says why and keeps the embedding features. Open question 5 records the change and asks Review 1 whether classifier separability needs its own code. Construct, question, unit, n_units, directions, and every number are unchanged.",
+        "quote": "As shown in Figure 7, we used essay embeddings obtained from OpenAI’s text-embedding model as features, with the participant’s cohort (Indian or American) as the label.",
+        "locator": "p. 10, Section 4.3.2 (Setup); p. 11, Figure 7; codebook Section 6 (Measure)"
+      },
+      {
+        "lens": "outcome",
+        "problem": "S1-O7 measure_detail said American participants' essays were not coded, but the paper says only that it focused on essays by Indian participants.",
+        "action": "corrected",
+        "what_changed": "studies[S1].outcomes[S1-O7].measure_detail now says the paper 'focused on essays written by Indian participants' and reports the coding only for them, that it does not say whether American essays were coded, and that its description of the content analysis on p. 7 does not limit the coding to one cohort. Wording only. No code or number changed.",
+        "quote": "We focused on essays written by Indian participants, as the aforementioned quantitative results indicated that homogenization had a greater impact on them compared to the American participants.",
+        "locator": "p. 12, Section 4.4 (first paragraph); p. 7, Section 3.5.2 (content-analysis paragraph)"
+      },
+      {
+        "lens": "outcome",
+        "problem": "The paper's statement that the essays in all four groups were of similar length, an AI vs No AI comparison of an output feature (construct elaboration), was neither listed as an outcome nor named in notes.",
+        "action": "corrected",
+        "what_changed": "Added studies[S1].outcomes[S1-O8], essay length: construct elaboration, question with_ai, measure automated_score, unit output, n_units null, primary secondary, ai_available_when_produced yes, timing immediate. Its one ai_vs_bau contrast (AI condition vs No AI condition, both cohorts) has direction no_clear_difference, statistics_available none, and the paper's sentence as reported. The reconciled c018 records essay length the same way. Open question 7 now covers S1-O8 with S1-O6 and S1-O7.",
+        "quote": "the essays across all four experimental groups were of similar length, likely due to the minimum word requirement we enforced.",
+        "locator": "p. 6, Section 3.5.2, item (1) Type-Token Ratio"
+      }
+    ],
+    "open_items": [
+      {
+        "item": "Primary record for across_people (open question 1): the paper reports no similarity across all participants in each arm, so Review 1 picks among the cross-culture measure (S1-O1, the paper's main analysis), the within-culture measure (S1-O2), and the classifier (S1-O4) under codebook Section 8. Criterion 3 holds whichever is chosen.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Task type (open question 2): creative_writing or other for three personal essays and a leave-request email. Inclusion rests on the codebook's clause for writing compared across writers for similarity, which holds under either code. This is a Review 1 coding decision.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Assignment and attrition (open question 3): no count at assignment, and no count of assigned people who did not finish both parts or were dropped by the born-and-lived-in-country rule. The analyzed Indian split is 24 vs 36, and 58 US participants were analyzed against the paper's stated target of India's 60. Random assignment is stated four times and 118 people were analyzed, so criteria 1 and 2 hold. Attrition by arm would bear on the contrasts, not on eligibility. The document names no posted data.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Precision (open question 4): the similarity tests treat essay pairs as independent and the classifier tests treat cross-validation folds as independent, with no participant-level or clustered standard error and no data or code link. This limits pooling (codebook Section 10), not eligibility.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Classifier outcome (open question 5): whether S1-O4 is a diversity outcome in the codebook's sense, and whether classifier separability needs its own measure code (now automated_score). Criterion 3 also rests on the cosine-similarity outcomes S1-O1 to S1-O3.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Public-figure counts (open question 6 and the unresolved reconciliation difference on S1-O7): the text gives 16/36 (44%) of AI-condition Indian participants choosing an Indian public figure, but the blue cells of Table 7's AI column sum to 23 of 36, and 16 is the number of distinct Indian names there. The No AI column's 13 of 24 matches the text. S1-O7 is a secondary 'other' outcome. The ACM version of record can be checked first (open question 8). If it prints the same numbers, only the authors can settle it.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Secondary outcomes (open question 7): grammar errors (S1-O6), artifact choices (S1-O7), and essay length (S1-O8) stay because they are scored on the essays and compared AI vs No AI. None measures creativity. Review 1 may drop them, and eligibility does not rest on them.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Version (open question 8): the ACM CHI '25 version of record could not be opened (HTTP 403 on 2026-10-05) and was not compared with the arXiv v3 file on disk, which carries the CHI '25 reference format.",
+        "affects_eligibility": false,
+        "settled_by": "journal_version"
+      }
+    ],
+    "n_corrected": 5,
+    "n_rejected": 0,
+    "n_open": 0
+  }
+}

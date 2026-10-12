@@ -1,0 +1,12 @@
+[
+  {
+    "id": "prose-1",
+    "cid": null,
+    "section": "Experiments with full text not obtained",
+    "location": "Line 1403: \"37 papers that appear in other sections because they were screened from their abstracts.\"",
+    "claim": "The 37 additional papers in to-download.html were screened from their abstracts.",
+    "problem": "The count of 37 is correct for download-list entries outside the experiment table, but their screening-source label is wrong. This group includes papers screened from complete remote PDFs or full-text XML, as well as papers screened from metadata without an abstract. Having no full text saved locally does not establish abstract-only screening.",
+    "evidence": "to-download.html contains 264 distinct paper IDs; report-data.json.status_by_cid identifies 227 of them as no_fulltext, leaving 37, including c029, c049, c134, and c061. forms/c029.json.source.version records reading the journal full-text JATS XML (PMC12546817). forms/c049.json.source.version records reading the complete 11-page preprint PDF in memory. forms/c134.json.source.version records reading the 15-page CHI version-of-record PDF in memory. forms/c061.json.source.version says \"metadata only\" and explicitly states that no abstract was available. tools/assemble_report.py, download_sentence(), counts the set difference without checking these source fields.",
+    "severity": "serious"
+  }
+]

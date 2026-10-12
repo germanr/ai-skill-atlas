@@ -1,0 +1,22 @@
+[
+  {
+    "id": "citations-05-1",
+    "cid": "c635",
+    "section": "Candidates that need clarification",
+    "location": "c635 row, citation link (report line 1047)",
+    "claim": "Wiles and Horton (2026), \"More, but Worse: The Marketplace Effects of AI-Generated Job Posts\", Author-hosted working paper (https://doi.org/10.2139/ssrn.5187344).",
+    "problem": "The citation combines the 2026 revised draft with the DOI of the earlier 2025 SSRN version. The citation file explicitly leaves the latest-version DOI null and supplies a verified author-hosted URL; applicability of the older DOI to this revision is unverified. The displayed DOI does not confirm the displayed title or year. Use the verified latest-version URL, https://www.emmawiles.com/storage/jobot.pdf.",
+    "evidence": "forms/citations/c635.json: latest_version.title=\"More, but Worse: The Marketplace Effects of AI-Generated Job Posts\", latest_version.year=2026, latest_version.date=\"2026-09-04\", latest_version.doi=null, latest_version.url=\"https://www.emmawiles.com/storage/jobot.pdf\"; other_versions[0] assigns 10.2139/ssrn.5187344 to the earlier title \"Generative AI and Labor Market Matching Efficiency\". Independently retrieved https://api.crossref.org/works/10.2139/ssrn.5187344: message.title[0]=\"Generative AI and Labor Market Matching Efficiency\", message.published.date-parts=[[2025]], authors Emma Wiles and John J. Horton. The current author-hosted PDF, page 1, confirms the revised title, both authors and September 4, 2026; it is byte-identical to the local PDF listed for c635 in retrieval.json. tools/build_report.py:153 falls back from the null latest DOI to the candidate DOI, and :166 prefers that DOI over the latest URL.",
+    "severity": "serious"
+  },
+  {
+    "id": "citations-05-2",
+    "cid": "c758",
+    "section": "Randomized experiments under 50 participants",
+    "location": "c758 row, author label (report line 1306)",
+    "claim": "Shahzad, Daud, and Mughal (2026), linked to https://doi.org/10.33411/ijist/1876.",
+    "problem": "The displayed first author does not match the required Crossref DOI check: Crossref and the publisher landing page put Daud first. The publisher PDF and citation file put Shahzad first, so the source disagreement is verified but the correct order remains unresolved. The report presents the PDF order without the qualification already recorded in the citation file.",
+    "evidence": "Independently retrieved https://api.crossref.org/works/10.33411/ijist/1876: message.author[0]={given:\"Marriam\", family:\"Daud\", sequence:\"first\"}, followed by Iqra Shahzad and Wajiha Mughal. The current publisher page https://journal.50sea.com/index.php/IJIST/article/view/1876 has citation_author metadata in the same Daud, Shahzad, Mughal order. In contrast, page 1 of the current publisher PDF https://journal.50sea.com/index.php/IJIST/article/download/1876/2955 has both the byline and recommended citation in Shahzad, Daud, Mughal order; that PDF is byte-identical to the local file listed for c758 in retrieval.json. forms/citations/c758.json: latest_version.authors_family=[\"Shahzad\",\"Daud\",\"Mughal\"]; unverified_fields[0] explicitly records this unresolved author-order discrepancy. The evidence supports reporting a source conflict, without asserting that the PDF order is incorrect.",
+    "severity": "serious"
+  }
+]

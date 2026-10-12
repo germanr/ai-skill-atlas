@@ -1,0 +1,76 @@
+{
+ "cid": "c560",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_analyzed; studies[0].arms[0].n_analyzed; studies[0].arms[2].n_analyzed; eligibility.criterion_2_at_least_50_people",
+   "form_value": "879; 625; 254; met",
+   "source_says": "879 is explicitly a recruited count; 625 and 254 are reported human condition Ns. No separate post-exclusion analysis counts are identified. Preserve these numbers as reported sample counts in prose, but use null for unconfirmed analyzed counts; the criterion requiring at least 50 people analyzed should be unclear rather than met. This is not evidence that fewer than 50 were analyzed.",
+   "quote": "In total, we recruited 879 human participants and conducted 996 calls to GPT-4o (Hurst et al., 2024), using the version released on September 3, 2024.",
+   "locator": "PDF p. 3, Method: Participants and Network Experiments on Collective Creativity; p. 2, Figure 1B gives human condition Ns. Form-spec: Counts in prose and eligibility.core."
+  },
+  {
+   "field": "studies[1].participants.n_analyzed; studies[1].arms[0].n_analyzed; studies[1].participants.who",
+   "form_value": "Both analyzed counts are 100; the rater description does not flag a conflicting sample size.",
+   "source_says": "The Methods text describes a separate group of 100 human participants, but Figure 1C labels the evaluation sample N=94 human. The PDF does not reconcile these numbers or identify recruitment versus exclusions. Record both source counts with this conflict and leave n_analyzed null rather than treating 100 as a confirmed analyzed count.",
+   "quote": "N=94 human",
+   "locator": "PDF p. 2, Figure 1C, green sample label beneath the rating interface (visually checked in a PDF rendering); compare p. 4, Measures of Creativity, first paragraph."
+  },
+  {
+   "field": "eligibility.context_class",
+   "form_value": "none",
+   "source_says": "Use ai_vs_human for the explicit AI-only versus human-only output benchmark. The pure human arm receives human stories and the pure AI arm contains only GPT-4o agents. This context comparison coexists with the hybrid comparison whose random allocation remains unconfirmed; do not classify that hybrid contrast as a confirmed RCT or as confirmed non-random assignment.",
+   "quote": "The AI-only condition exhibited the highest creativity rating (M = 3.571, SD = 1.026, 95% CI: [3.491, 3.652]), significantly higher than both Human-only and Human-AI conditions (p < .001).",
+   "locator": "PDF p. 3, Network Experiments on Collective Creativity, condition definitions; p. 4, Results: Creativity and Diversity, first paragraph. Codebook sections 3-4 classify AI-versus-human output comparisons as context and design per estimate."
+  },
+  {
+   "field": "studies[0].task.description",
+   "form_value": "Select and creatively elaborate a neighboring story in a 5?5 network. All networks began with the same story about John, a missing key, and his cat; stories were transmitted over 25 iterations, with each human contributing once (PDF p. 3, Network Experiments on Collective Creativity).",
+   "source_says": "The network is 5×5. Replace the corrupted 5?5 with 5×5 (or 5 by 5); the 25 iterations and single contribution per participant are correctly described.",
+   "quote": "were embedded in a 5×5 social network and engaged in a creative storytelling task.",
+   "locator": "PDF p. 3, Network Experiments on Collective Creativity, first paragraph."
+  },
+  {
+   "field": "studies[0].outcomes[2].contrasts[0].reported",
+   "form_value": "Human-AI diversity gain: M = 0.098, SD = 0.039, 95% CI: [0.064, 0.131]; AI-only diversity change: M = ?0.034, SD = 0.17, 95% CI: [-0.047, -0.021]. The paper states that Human-AI reached the highest diversity in the final iterations. These are separate within-condition changes, not a reported difference-in-changes estimate; the AI-only SD is transcribed as 0.17. This compares a mixed human/AI story pool with an entirely AI-generated pool.",
+   "source_says": "The AI-only diversity change is M = −0.034, not M = ?0.034. Restore the minus sign. SD = 0.17 and 95% CI [-0.047, -0.021] are printed exactly that way and should be retained without repairing the source.",
+   "quote": "M = −0.034, SD = 0.17, 95% CI: [-0.047, -0.021]",
+   "locator": "PDF p. 4, Results: Creativity and Diversity, paragraph beginning However, the evolution; Figure 2D."
+  },
+  {
+   "field": "one_line_finding",
+   "form_value": "Hybrid-network diversity increased (M = 0.098) while AI-only diversity decreased (M = ?0.034), but random allocation to network composition is not explicit (PDF p. 4, Results and Figure 2D; PDF p. 3, Method).",
+   "source_says": "Replace M = ?0.034 with M = −0.034. The stated hybrid diversity increase of M = 0.098 and the qualification about unconfirmed random allocation to network composition are supported.",
+   "quote": "M = −0.034, SD = 0.17, 95% CI: [-0.047, -0.021]",
+   "locator": "PDF p. 4, Results: Creativity and Diversity, final paragraph and Figure 2D; p. 3, Network Experiments on Collective Creativity, assignment statement."
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts (omitted creativity-change results)",
+   "form_value": "Only creativity levels are recorded; the first-to-last creativity gains in Figure 2C are absent.",
+   "source_says": "Add the creativity change analysis to the creativity outcome: GPT/AI-only M = 0.464, SD = 0.154, p < 0.001; Human-AI M = 0.264, SD = 0.175, p < 0.001; Human-only M = −0.133, SD = 0.067, p = 1.000. These are separate within-condition gains, not a reported between-condition effect or difference in changes. The hybrid estimate combines human and AI stories.",
+   "quote": "Human-AI: M = 0.264, SD = 0.175, p < 0.001), but Human-only networks did not improve over time (M = −0.133, SD = 0.067, p = 1.000)",
+   "locator": "PDF p. 4, Results: Creativity and Diversity, first paragraph continued in the right column; Figure 2C and caption."
+  },
+  {
+   "field": "studies[0].outcomes[1].diversity_detail; studies[0].outcomes[2].diversity_detail",
+   "form_value": "All diversity_detail strings are empty for both diversity outcomes.",
+   "source_says": "Fill the required details: TF-IDF vectors; all pairwise cosine similarities among stories within predefined iteration groups; diversity described as the inverse of their mean cosine similarity. Figure 2 groups 25 iterations into five sets of five and describes its error bars as one standard deviation computed across participants. The construction of the reported confidence intervals is not explained. Hybrid summaries include both human and AI stories. The all-MiniLM-L6-v2 embeddings belong to the separate UMAP visualization, not this TF-IDF diversity measure.",
+   "quote": "Diversity was operationalized as the inverse of the mean cosine similarity, with lower similarity indicating greater diversity.",
+   "locator": "PDF p. 4, Measures of Creativity, second paragraph, and Figure 2 caption; pp. 4-5, Semantic Analysis of Stories. Form-spec requires diversity_detail for every diversity outcome."
+  }
+ ],
+ "confirmed": [
+  "Read all 252 markdown lines and all eight PDF pages. The PDF is arXiv:2502.17962v3, 13 May 2025, titled The Dynamics of Collective Creativity in Human-AI Hybrid Societies, with Shiiku, Marjieh, Anglada-Tort and Jacoby as authors; the recorded source.version is correct (PDF p. 1).",
+  "Random assignment is stated only for node location, with each person contributing once. Assignment between human-only and hybrid network composition is not specified; retain other/not_stated for the hybrid assistance contrast and core eligibility unclear. has_randomized_people_study=false means no qualifying random assignment was established from this version, not proof that allocation was non-random (PDF p. 3, Network Experiments on Collective Creativity).",
+  "The reported storytelling sample is 879 people recruited on Prolific from the UK who identified English as their native language; human condition Ns are 625 and 254. The 996 GPT-4o calls overall and 625 AI-only API calls are not people; the stated GPT-4o release date is September 3, 2024 (PDF p. 3, Method; condition Ns also in Figure 1B, p. 2).",
+  "The hybrid condition is described as 50% human and 50% GPT-4o, with origin of stories undisclosed. Its reported outcome summaries combine human and AI stories, rather than identifying a separate human-authored estimate (PDF pp. 3-4, condition definitions, Measures of Creativity and Results).",
+  "Validation uses randomized selections of stories, each rater evaluating 20 stories on a scale from 1 to 5. This is outcome measurement, not random assignment of creative-task participants to AI assistance; raters must not be added to the storytelling sample (PDF p. 4, Measures of Creativity).",
+  "Creativity levels match the PDF: Human-AI M = 2.327, SD = 1.159, 95% CI [2.184, 2.576]; Human-only M = 2.482, SD = 1.026, 95% CI [2.389, 2.576]. The source calls them similar but prints p < .001, as the form notes (PDF p. 4, Results: Creativity and Diversity, first paragraph across columns).",
+  "Diversity levels match the PDF: Human-AI M = 0.860, SD = 0.043, 95% CI [0.806, 0.913]; Human-only M = 0.823, SD = 0.019, 95% CI [0.800, 0.900]. No numerical test of that between-condition difference is given (PDF p. 4, Results: Creativity and Diversity, paragraph beginning Next).",
+  "Diversity change is Human-AI M = 0.098, SD = 0.039, 95% CI [0.064, 0.131], versus AI-only M = −0.034, SD = 0.17, 95% CI [-0.047, -0.021]. These are within-condition changes, with hybrid diversity highest in the final iterations (PDF p. 4, paragraph beginning However and Figure 2D).",
+  "The pure AI benchmark reports creativity M = 3.571, SD = 1.026, 95% CI [3.491, 3.652], and diversity M = 0.880, SD = 0.017, 95% CI [0.859, 0.900] (PDF p. 4, Results: Creativity and Diversity).",
+  "This is an original network experiment with a separate validation sample, not a synthesis; the 106-study meta-analysis mentioned in the introduction is a cited prior paper. No appendix follows the references, and no supplement is identified in this PDF (PDF pp. 1, 3-4 and 7-8)."
+ ],
+ "summary": "The May 2025 arXiv v3 does not establish random assignment to AI assistance, but it includes an AI-versus-human output benchmark. Corrections address unconfirmed analyzed counts, conflicting rater counts (100 in text versus 94 in Figure 1C), corrupted symbols, and omitted creativity-change and diversity-method details."
+}

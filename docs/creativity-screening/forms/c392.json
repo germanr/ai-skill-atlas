@@ -1,0 +1,783 @@
+{
+ "cid": "c392",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Ju and Aral (2026) - Collaborating with AI Agents.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Ju and Aral (2026) - Collaborating with AI Agents.pdf",
+  "version": "arXiv:2503.18238v3 [cs.CY], 5 Feb 2026 (side stamp, p. 1); title page dated February 6, 2026. The title on the document says 'A Field Experiment' (singular); the search record and the PDF metadata title say 'Field Experiments'.",
+  "title_on_document": "Collaborating with AI Agents: A Field Experiment on Teamwork, Productivity, and Performance",
+  "authors_on_document": [
+   "Harang Ju",
+   "Sinan Aral"
+  ],
+  "pages": 59,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A to L, pp. 46-59 of this PDF. No separate online supplement is mentioned. Preregistrations at osf.io/jfzha and osf.io/95dhu (p. 11, footnote 1; p. 18).",
+   "holds": "Table A (Big Five balance), Table B (productivity at team and individual level, with and without demographics), Table C (work actions, including AI image generations in both arms), Table D (message categories), Table E (ad copy completion), Figure F (rating survey interface), Table G (human ratings with work-process covariates), Table H (gpt-4o-mini ratings), Table I (field VTR and VTD, including Human-AI coefficients without quality controls), Appendices J to L (prompts)."
+  }
+ },
+ "paper_design_summary": "US Prolific participants were randomized individually on arrival to work for 40 minutes either with another participant (human-human teams) or with a GPT-4o agent that could chat, write and edit ad copy, select stock images, and generate DALL-E 3 images (human-AI teams), producing display ads for a think tank's annual report; DALL-E 3 image generation was available in both arms, and 2,234 participants were analyzed. The ads were scored by a separate Prolific rater sample (text quality, image appeal, likelihood of clicking), by gpt-4o-mini, by the embedding distance of the ad copy to its condition's centroid (diversity), and in a field campaign on X (cost-per-click, click-through rate, view-through rate and duration).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Pairit ad-creation experiment (human-AI vs human-human teams) with rater evaluation and field ad test on X",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Partner type: a GPT-4o agent teammate (human-AI condition) or another participant (human-human condition). Partner identity was not revealed until the post-task survey.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "As soon as a participant was redirected to our platform from Prolific, they were randomized into either the human-human or the human-AI condition (Figure 2A).",
+    "locator": "p. 14, Section 3.3 (AI randomization and queuing); Figure 2A",
+    "preregistered": "yes",
+    "prereg_locator": "p. 11, Section 3 and footnote 1 (osf.io/jfzha, osf.io/95dhu); p. 18, Section 3.9 (field campaigns pre-registered on osf.io/95dhu)"
+   },
+   "arms": [
+    {
+     "name": "Human-AI",
+     "description": "Participant paired, after a simulated queue of 1 to 5 seconds, with a gpt-4o-2024-08-06 agent that sees the shared workspace and can chat, edit the headline, primary text, and description, select stock images, and generate DALL-E 3 images; only the human can submit ads. The agent's prompt tells it to pretend to be human, and partner identity was revealed only in the post-task survey.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 1258
+    },
+    {
+     "name": "Human-Human",
+     "description": "Participant paired with another participant in the same shared workspace with chat. Both members could also generate images through the DALL-E 3 interface (Table C reports AI image generations in this arm). Submissions required confirmation by both participants.",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": 976
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 2234,
+    "counts_are": "people",
+    "exclusions": "2,500 preregistered participants entered. 23 did not enter the matching queue and were removed; 167 quit or timed out before being matched; 2,310 completed the task. Participants in 83 human-human sessions (14% of HH teams) whose partner did not complete were excluded from all analyses, an exclusion that applies only to the human-human arm. The analyzed sample was 2,234 people (1,258 human-AI, 976 human-human); reported attrition was 8.9% (p. 15, Section 3.4; p. 16, Table 1). These reported flow and team counts are not fully reconciled by the source. The paper gives neither the assignment ratio nor counts by arm at randomization, and does not say in which arm the 23 and the 167 dropouts were, so n_randomized is left null and the analysis is not intention-to-treat. The diversity analysis analyzed 2,034 participants who submitted at least one ad with text (p. 21, Section 3.10). 85% completed the post-task survey (p. 15).",
+    "population": "online_panel",
+    "who": "Prolific participants based in the US, with representative stratification across gender and ethnicity; age 42 ± 14 and 50.8% male (Table 1). Paid $9, with $100 prizes for ad quantity, quality, and field performance (pp. 15-16).",
+    "country": "United States",
+    "quote": "we exclude them from all analyses, yielding a final sample of 2,234 participants (1,258 human-AI, 976 human-human). The overall attrition rate was 8.9%.",
+    "locator": "p. 15, Section 3.4; p. 16, Table 1 (Individuals 2234/1258/976; Teams 1751/1258/493)"
+   },
+   "ai_tool": {
+    "name_model": "OpenAI gpt-4o-2024-08-06 as the agent, with chain-of-thought prompting through structured outputs; DALL-E 3 API for image generation, available to the agent and to participants in both arms.",
+    "role": "other",
+    "how_used": "An autonomous agent teammate in a shared real-time workspace. It is prompted every 10 seconds to choose an action (wait, chat, edit text, select image, generate image), with the task text, previous submissions, current copy, elapsed time, its own action and chain-of-thought history, chat history, and a screenshot of the image as context. It writes and edits the ad copy directly and chats with the participant; its prompt tells it to ask the participant for confirmation before each action; it cannot submit ads (pp. 12-13, Section 3.2; Appendix K)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Create display ads for a think tank's year-end annual report: write the headline, primary text, and description, and select one of seven stock images or generate one with DALL-E 3; submit as many ads as possible, with $100 prizes for quantity and quality (p. 4; pp. 11-16).",
+    "duration": "40 minutes for the ad task; median 46.32 minutes for the whole study (pp. 14-15)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Output diversity (cosine distance of ad copy to own-condition centroid)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Each submission's ad copy (headline, primary text, description) embedded with OpenAI text-embedding-3-small; cosine distance from each submission to the centroid (mean embedding) of its own treatment group; averaged to the participant and regressed on Human-AI with demographic controls (Equation 1). Higher = more diverse. The diversity analysis analyzed 2,034 people who submitted at least one ad with text, out of 2,234 people analyzed overall (p. 21, Section 3.10; p. 22, Table 2).",
+     "unit": "participant",
+     "n_units": 2034,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Output Diversity: Intercept 0.303*** (0.010); Human-AI -0.094*** (0.006); Demographics Yes; Observations 2034; robust SEs. Text: beta = -0.094, p < 0.001.",
+       "locator": "p. 22, Table 2 (Output Diversity); p. 23, Section 4.1; p. 21, Section 3.10 (Output diversity)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Cosine distance from each submission's ad-copy embedding to the centroid of all submissions in its own condition, averaged within participant (higher = more diverse; no sign reversal needed).",
+      "embedding_model": "OpenAI text-embedding-3-small",
+      "computed_over": "Each output against its own condition's centroid, then averaged within participant.",
+      "uncertainty": "OLS on participant-level averages with demographic controls; heteroskedasticity-robust standard errors (Table 2 notes). No clustering by team is stated.",
+      "notes": "Centroids are computed separately per arm, so each arm is measured against its own centroid, and the distance pools variation within and across participants. The paper does not say how an ad confirmed by both members of a human-human team is credited to them. Within human-AI teams, delegation predicts lower diversity (-0.083***, SE 0.012; N = 1,222; p. 30, Table 6 Panel B), a correlational analysis."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Human-rated text quality",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "7-point Likert agreement with 'The text is present, clear, relevant, and engaging', rated on ad mockups by a separate US Prolific sample (40 ads per rater, at least 3 ratings per ad). Rating-level regression with demographic controls; SEs clustered at the ad level. Robustness: Table G adds work-process covariates (submissions, AI images, messages, copy and image edits).",
+     "unit": "rating",
+     "n_units": 45803,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Text: Intercept 5.011*** (0.038); Human-AI 0.327*** (0.024); Demographics Yes; Observations 45803; SEs clustered at the ad level. Table G with covariates: Intercept 5.045*** (0.048); Human-AI 0.432*** (0.052).",
+       "locator": "p. 22, Table 2 (Text); p. 51, Table G"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Human-rated image quality",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "7-point Likert agreement with 'The image is visually appealing', same raters and model as S1-O2; SEs clustered at the ad level. Robustness in Table G.",
+     "unit": "rating",
+     "n_units": 45803,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Image: Intercept 4.666*** (0.034); Human-AI -0.133*** (0.021); Demographics Yes; Observations 45803; SEs clustered at the ad level. Table G with covariates: Intercept 4.413*** (0.045); Human-AI -0.165*** (0.044).",
+       "locator": "p. 22, Table 2 (Image); p. 51, Table G"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Human-rated likelihood of clicking",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "7-point Likert agreement with 'I am likely to click on this ad' (rater-predicted engagement with the whole ad); same raters and model as S1-O2; SEs clustered at the ad level. Robustness in Table G.",
+     "unit": "rating",
+     "n_units": 45803,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Click: Intercept 3.698*** (0.035); Human-AI -0.013 (0.021); Demographics Yes; Observations 45803; SEs clustered at the ad level. Table G with covariates: Intercept 3.539*** (0.044); Human-AI 0.027 (0.044). Text: 'indistinguishable between the two groups'.",
+       "locator": "p. 22, Table 2 (Click); p. 51, Table G; p. 23, Section 4.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Productivity (number of ads submitted per participant)",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Number of ad submissions by the participant in 40 minutes (Table 2 notes). Table B also reports a version without demographics and a team-level version (1,751 teams). The paper's robustness check on ad completeness (Table E) is listed separately as S1-O9.",
+     "unit": "participant",
+     "n_units": 2234,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Productivity: Intercept 4.601*** (0.346); Human-AI 1.954*** (0.197); Demographics Yes; Observations 2234; robust SEs. Table B without demographics: Intercept 3.850*** (0.129), Human-AI 1.925*** (0.197), Observations 2234. Team level: Intercept 7.623*** (0.277), Human-AI -1.847*** (0.315), Observations 1751. Text: '50% more ads per worker'.",
+       "locator": "p. 22, Table 2 (Productivity); p. 47, Table B; pp. 21-22, Section 4.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "AI-rated text quality (gpt-4o-mini)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4o-mini-2024-07-18 rates each ad on the same 7-point item as human raters ('The text is present, clear, relevant, and engaging'); prompt in Appendix L; SEs clustered at the ad level. Two specifications: demographics only, and with work-process covariates. The authors note the ads were co-created with OpenAI's gpt-4o (p. 23, footnote 5).",
+     "unit": "output",
+     "n_units": 11024,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Text: Intercept 5.463*** (0.026), Human-AI 0.128*** (0.015); with covariates Intercept 5.396*** (0.038), Human-AI 0.120*** (0.031); Demographics Yes; Observations 11024; SEs clustered at the ad level.",
+       "locator": "p. 52, Table H (Text); p. 49, Appendix H"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O7",
+     "name": "AI-rated image quality (gpt-4o-mini)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4o-mini-2024-07-18 rating of 'The image is visually appealing' on a 7-point scale; SEs clustered at the ad level. Two specifications: demographics only, and with work-process covariates.",
+     "unit": "output",
+     "n_units": 11024,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "mixed",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Image: Intercept 6.494*** (0.026), Human-AI -0.011 (0.015); with covariates Intercept 6.369*** (0.034), Human-AI -0.114*** (0.030); Demographics Yes; Observations 11024; SEs clustered at the ad level.",
+       "locator": "p. 52, Table H (Image); p. 23, footnote 5"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O8",
+     "name": "AI-rated likelihood of clicking (gpt-4o-mini)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4o-mini-2024-07-18 rating of 'I am likely to click on this ad' on a 7-point scale; SEs clustered at the ad level. Two specifications: demographics only, and with work-process covariates.",
+     "unit": "output",
+     "n_units": 11024,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "mixed",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Click: Intercept 5.281*** (0.022), Human-AI 0.071*** (0.013); with covariates Intercept 5.253*** (0.032), Human-AI 0.040 (0.027); Demographics Yes; Observations 11024; SEs clustered at the ad level.",
+       "locator": "p. 52, Table H (Click)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O9",
+     "name": "Ad copy completion (headline, primary text, description)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": null,
+     "measure_detail": "Completion rate of each ad-copy element (headline, primary text, description) in the submitted ads, one regression per element at the participant level (2,234 observations) with demographic controls; robust SEs. The paper does not define the rate calculation or coding procedure. The category_count code is unsupported because Table E reports completion rates rather than counts of ideas, categories, or unique ideas; measure is null pending clarification. The paper presents this as a robustness check on productivity, testing whether the productivity gap reflects incomplete ads (pp. 22-23, Section 4.1; p. 48, Appendix E; p. 49, Table E).",
+     "unit": "participant",
+     "n_units": 2234,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Headline: Intercept 0.808*** (0.025), Human-AI 0.150*** (0.014); Primary Text: Intercept 0.769*** (0.026), Human-AI 0.169*** (0.014); Description: Intercept 0.719*** (0.027), Human-AI 0.161*** (0.015); Demographics Yes; Observations 2234; robust SEs.",
+       "locator": "p. 49, Table E; p. 48, Appendix E; pp. 22-23, Section 4.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O10",
+     "name": "Field cost-per-click on X",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "CPC in dollars from a stratified sample of 2,000 ads (8 removed for moderation; 37 ads from incomplete human-human sessions excluded) run as 400 five-ad split-test campaigns on X, January 21 to February 9, 2025. Mixed model with campaign random effects, controlling for spend and for the human-rated Image, Text, and Click scores, so the Human-AI coefficient is conditional on rated quality. Excludes ads with zero clicks. Lower CPC is better.",
+     "unit": "output",
+     "n_units": 1822,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "CPC ($): Intercept 11.628*** (0.705); Human-AI 0.122 (0.213); Image -0.290* (0.132); Text -0.149 (0.116); Click 0.209 (0.148); Spend Yes; Campaign RE Yes; Observations 1822.",
+       "locator": "p. 25, Table 3 (CPC); p. 24, Section 4.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O11",
+     "name": "Field click-through rate on X",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "CTR in percent; same field model as S1-O10 (campaign random effects, spend, and the human-rated Text, Image, and Click scores, so the Human-AI coefficient is conditional on rated quality).",
+     "unit": "output",
+     "n_units": 1962,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "CTR (%): Intercept -0.028* (0.013); Human-AI -0.000 (0.004); Image 0.002 (0.003); Text 0.007*** (0.002); Click -0.002 (0.003); Spend Yes; Campaign RE Yes; Observations 1962.",
+       "locator": "p. 25, Table 3 (CTR)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O12",
+     "name": "Field view-through duration (DocSend, log seconds)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "VTD in log-seconds on the annual report through a unique DocSend link per ad; campaign random effects and spend. Table I gives the Human-AI coefficient without (col. 4) and with (col. 6, same as Table 3) the quality ratings. Tables 3 and I print 4,997 observations, although the field sample comprised 2,000 ads before exclusions. Equation 2 indexes ads, but the source does not reconcile that model description with the observation count or define one actual VTD analysis row. Unit is null; n_units retains the printed observation count and must not be interpreted as a count of distinct ads, visits, visitors, or creative-task participants (pp. 18-20, Sections 3.9-3.10; p. 25, Table 3; pp. 49-50, Appendix I; p. 53, Table I).",
+     "unit": null,
+     "n_units": 4997,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "VTD (log-sec), Human-AI and spend only (Table I col. 4): Intercept 0.518*** (0.053), Human-AI 0.012 (0.037). With quality ratings (Table 3; Table I col. 6): Intercept 0.000 (0.121), Human-AI 0.002 (0.038), Text 0.037 with dagger, p < 0.1 (0.019). Campaign RE Yes; Observations 4997.",
+       "locator": "p. 53, Table I (VTD cols. 4 and 6); p. 25, Table 3 (VTD)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O13",
+     "name": "Field view-through rate (fraction of report viewed)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "VTR as the fraction of the DocSend document viewed, tracked with an ad-specific link; campaign random effects and spend; without (col. 1) and with (col. 3) the quality ratings. Table I prints 4,997 observations for a field sample of 2,000 ads before exclusions. Equation 2 indexes ads, but the source does not define one actual VTR analysis row or explain the larger observation count. Unit is null; n_units retains the printed observation count without assuming rows represent distinct ads, visits, visitors, or creative-task participants (pp. 18-20, Sections 3.9-3.10; pp. 49-50, Appendix I; p. 53, Table I, cols. 1-3).",
+     "unit": null,
+     "n_units": 4997,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Human-AI",
+       "control_arm": "Human-Human",
+       "comparison_type": "ai_vs_active",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "VTR, Human-AI and spend only (col. 1): Intercept 0.000 (0.006), Human-AI 0.001 (0.004). With quality ratings (col. 3): Intercept -0.000 (0.012), Human-AI -0.000 (0.004). Campaign RE Yes; Observations 4997.",
+       "locator": "p. 53, Table I (VTR cols. 1 and 3); p. 25, Section 4.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "No company author or company funding stated. Support came from the MIT Initiative on the Digital Economy (p. 39). The study used OpenAI models (gpt-4o agent, gpt-4o-mini ratings, DALL-E 3, text-embedding-3-small) and ran ads on X; the think tank client is not named.",
+  "locator": "p. 1 (affiliations); p. 39, Section 6 (Acknowledgments)"
+ },
+ "data_and_code": {
+  "data_url": "Not posted: 'The code and data are available upon request.' (p. 39)",
+  "code_url": "Rating-survey mockup code: https://github.com/harangju/pairit-survey-mockup/ (hyperlink behind 'GitHub' in p. 17, footnote 3; the URL is not printed). Analysis code: 'available upon request' (p. 39)."
+ },
+ "eligibility": {
+  "core": "yes",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "S1 meets all three criteria. People were individually randomized on arrival to a GPT-4o agent teammate or a human teammate for advertisement creation (p. 14, Section 3.3). The study analyzed 2,234 people (1,258 human-AI, 976 human-human; p. 15, Section 3.4; p. 16, Table 1), including 2,034 people analyzed for output diversity (p. 21, Section 3.10; p. 22, Table 2). Submitted ad copy was scored by cosine distance to its own-condition embedding centroid, a diversity measure across participants; separate raters also evaluated the ads (pp. 17-18, Section 3.8; pp. 21-22, Section 3.10 and Table 2). DALL-E 3 image generation was available in both arms (p. 11, Section 3.1); ai_vs_active describes the randomized agent-versus-human teammate comparison, and there is no human-alone condition (p. 22). The quality items assess clarity and visual appeal rather than creativity or novelty, but the diversity outcome independently meets criterion 3. Unknown completion-measure coding and VTD/VTR observation units do not affect this decision. Pre-exclusion allocation counts remain unconfirmed; the human-human session exclusions mean this is not an intention-to-treat analysis."
+ },
+ "one_line_finding": "Among the 2,234 analyzed participants, assignment to a GPT-4o agent teammate rather than a human teammate was associated with 1.954 more ads per person (SE 0.197; intercept 4.601), higher rated text quality (0.327, SE 0.024) and lower rated image quality (-0.133, SE 0.021) on 7-point scales, and less diverse ad copy among the 2,034 people analyzed for diversity (cosine distance to own-condition centroid -0.094, SE 0.006; intercept 0.303) (p. 22, Table 2).",
+ "open_questions": [
+  "Counts do not reconcile: Table 1 reports 976 analyzed human-human people in 493 teams (493 x 2 = 986; p. 16); 2,310 completed the task and 2,234 were analyzed (76 fewer), while 83 human-human sessions were excluded (p. 15); the reported 8.9% attrition does not equal 1 - 2,234/2,500 (10.6%). These arithmetic checks identify source discrepancies, not replacement participant counts or an inferred attrition rate.",
+  "Counts at randomization by arm and the assignment ratio are not reported, and the 23 who did not enter the queue and the 167 who quit or timed out before matching are not split by arm. Human-human participants waited for a partner while human-AI participants waited 1 to 5 seconds (p. 14), and the 83-session exclusion removes human-human participants only (p. 15).",
+  "Rater sample: the text says 1,995 raters were recruited, then that 1,200 entered and 5 dropped out (p. 17), while 1,300 samples of 40 ads were prepared; the number of raters behind the 45,803 ratings is unclear.",
+  "Field sample: 2,000 ads were drawn 'from a total of 11,138 ads' (p. 18), while the analyzed dataset elsewhere has 11,024 ads (pp. 1, 16). The VTD and VTR tables print 4,997 observations although 2,000 ads were sampled before exclusions (pp. 18-19, 25, 53); the paper does not define one actual analysis row. S1-O12 and S1-O13 now have unit null, retaining n_units 4997 as reported observations.",
+  "Standard errors: rating-level outcomes cluster by ad, not by participant or team, and no participant-level SDs are printed; participant-level outcomes (productivity, diversity, completion) use robust SEs without clustering by team, though human-human partners share one workspace. The paper does not say how an ad confirmed by both human-human members is credited to them.",
+  "Settled design caveat: both arms had DALL-E 3 image generation (p. 11; Table C, p. 47, AI Images intercept 6.067), and there is no human-alone arm (p. 22). The contrast is an LLM agent teammate versus a human teammate, coded ai_vs_active; no further information is needed for eligibility.",
+  "S1-O9: Appendix E and Table E report ad-copy completion rates without defining the calculation or coding procedure (pp. 48-49). The unsupported category_count code has been replaced with null; the measure requires clarification for extraction, but eligibility is established by S1-O1."
+ ],
+ "notes": "Version on file is arXiv v3 (5 Feb 2026). Outcomes are rated quality, embedding diversity, productivity, ad completeness, and field ad performance; there is no creativity or novelty rating. Not listed as outcomes: the randomized contrasts on process measures (messages, task-oriented and interpersonal shares, copy edits, image edits, AI image generations, delegation; Tables 4, C, D), which are not scored on the output, and the mechanism regressions in Table 5 (recognition interaction) and Table 6 (communication and delegation as predictors; Panel B is human-AI only), which the paper calls post hoc and correlational (p. 36). Field outcomes in Table 3 condition on the human quality ratings, which treatment itself shifts; Table I gives unconditional Human-AI coefficients for VTR and VTD only. Raters were a separate Prolific sample, not study participants. Printed page numbers match PDF page numbers. Final review checked the entire markdown conversion, including Appendices A-L, and the relevant PDF passages and tables. The three outcome-checker problems were corrected; assignment and people challenges contained no problems. The historical reconciliation object is unchanged; the final corrections supersede its category_count and VTD/VTR unit decisions. Remaining source questions are assessed in final.open_items and do not affect eligibility.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "studies[S1].outcomes: ad copy completion (Table E)",
+    "a": "Not a separate outcome; mentioned in productivity's measure_detail (headline 0.150***, primary text 0.169***, description 0.161***).",
+    "b": "Separate secondary outcome S1-O9 (construct other, measure category_count, unit participant, n_units 2234, direction treatment_higher).",
+    "resolved": "B. Kept as a separate secondary outcome (final S1-O9). Table E reports its own randomized contrast on a measure of the submitted ads (2,234 observations), distinct from the count of submissions; the paper uses it as a robustness check on productivity, and S1-O5 points to it.",
+    "quote": "As shown in Table E, participants in human-AI teams had consistently higher completion rates for ad copy elements compared to participants in human-human teams.",
+    "locator": "pp. 22-23, Section 4.1; p. 49, Table E",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].outcomes[diversity].diversity_detail.notes; eligibility.reason; open_questions (how human-human ads are credited to the two members)",
+    "a": "The paper does not say how jointly confirmed ads are attributed to the two members.",
+    "b": "Both human-human members share the team's submitted ads, so two participant rows likely draw on the same ads.",
+    "resolved": "A. The paper does not state how an ad confirmed by both members is credited. B's claim has no support in the text: productivity is defined as submissions by participants, and Table B prints a human-human team-level intercept of 7.623 against an individual-level intercept of 3.850 (no demographics). The final form records the attribution as not stated.",
+    "quote": "Productivity is the number of submissions by participants.",
+    "locator": "p. 22, Table 2 notes; p. 15, Section 3.4 ('submissions required confirmation by both participants'); p. 47, Table B",
+    "status": "resolved"
+   },
+   {
+    "field": "notes: why Tables 4 to 6 are not listed as outcomes",
+    "a": "Mechanism analyses (communication, delegation, recognition; Tables 4-6) are correlational or within-arm.",
+    "b": "Tables 4, C, D are contrasts on process measures that are not scored on the output; Tables 5 and 6 are mechanism regressions the paper calls post hoc and correlational.",
+    "resolved": "B. Table 4 regresses process measures on the Human-AI indicator, a randomized contrast, and is excluded because the measures are not scored on the output. Tables 5 and 6 are the moderation and mediation regressions, which the paper calls post hoc and correlational; Table 6 Panel B uses human-AI participants only.",
+    "quote": "Our mediation analyses tracing the pathway from recognition to communication to delegation to quality are post hoc and correlational",
+    "locator": "p. 36, Section 5.2; p. 26, Table 4; p. 30, Table 6 notes",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].outcomes S1-O12 and S1-O13 (VTD, VTR): unit and n_units; open_questions",
+    "a": "unit output, n_units 4997; no question raised about the count.",
+    "b": "unit output, n_units 4997; open question that the 4,997 observations exceed the roughly 2,000 ads run.",
+    "resolved": "Keep unit output and n_units 4,997 as printed, with B's flag in measure_detail and open_questions. Equation 2 indexes ads, but 2,000 ads were sampled and Tables 3 and I print 4,997 observations. The paper does not say what one VTD or VTR observation is (for example, one document visit).",
+    "quote": "We obtained a sample of 2,000 ads from a total of 11,138 ads, sampling between one and two ads from each of the 1,751 teams.",
+    "locator": "p. 18, Section 3.9; p. 20, Equation 2; p. 25, Table 3; p. 53, Table I",
+    "status": "unresolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "studies[S1].assignment (randomized, unit, structure)",
+    "value": "yes; individual; between. Each participant was randomized on arrival, before pairing.",
+    "quote": "As soon as a participant was redirected to our platform from Prolific, they were randomized into either the human-human or the human-AI condition (Figure 2A).",
+    "locator": "p. 14, Section 3.3; also p. 11, Section 3.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].participants.n_analyzed and arms[].n_analyzed",
+    "value": "2,234 people (1,258 human-AI, 976 human-human); 2,034 in the diversity analysis",
+    "quote": "yielding a final sample of 2,234 participants (1,258 human-AI, 976 human-human)",
+    "locator": "p. 15, Section 3.4; p. 16, Table 1; p. 21, Section 3.10",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes S1-O2 to S1-O4: scored_on_output",
+    "value": "true; separate raters rated each ad mockup on text, image, and click likelihood",
+    "quote": "For each ad, we asked participants to provide three ratings regarding the quality of the text, the image, and the estimated click through rate.",
+    "locator": "p. 18, Section 3.8 (Survey items)",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes S1-O1: scored_on_output",
+    "value": "true; embedding of each submitted ad's copy",
+    "quote": "we embed each submission’s ad copy (headline, primary text, and description) using OpenAI’s text-embedding-3-small model.",
+    "locator": "p. 21, Section 3.10 (Output diversity)",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes[].ai_available_when_produced and timing",
+    "value": "yes and immediate for all outcomes: the scored ads were produced in the 40-minute session with the agent; raters and the field test scored them later",
+    "quote": "the AI agent can take the same actions a human participant except for submitting ads.",
+    "locator": "p. 12, Section 3.2 (Actions); pp. 14-15, Section 3.3",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].arms[Human-Human].ai and contrasts comparison_type",
+    "value": "other_aid (human partner); ai_vs_active. DALL-E 3 image generation was also available in this arm, and there is no human-alone arm.",
+    "quote": "the participants (as well as the AI) can also access the Dall-E 3 application programming interface (API) to generate new images.",
+    "locator": "p. 11, Section 3.1; p. 47, Table C; p. 22",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].design_class",
+    "value": "online_rct (US Prolific participants working on the online Pairit platform)",
+    "quote": "We pre-registered a sample of 2,500 participants from Prolific (www.prolific.com) based in the US, with representative stratification across gender and ethnicity.",
+    "locator": "p. 15, Section 3.4",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].task.type (in scope)",
+    "value": "creative_writing: display advertisements, a task type the codebook lists",
+    "quote": "we conducted a large-scale randomized study of human-AI collaboration on advertising design and creation, a task requiring creativity, iteration, and precision.",
+    "locator": "pp. 3-4, Section 1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes S1-O1 to S1-O5: primary",
+    "value": "paper_primary",
+    "quote": "We begin by examining the primary outcomes of human-AI collaboration: productivity, ad quality, and output diversity.",
+    "locator": "p. 21, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].assignment.preregistered",
+    "value": "yes (osf.io/jfzha, osf.io/95dhu); the paper does not say which outcomes the preregistration names as primary",
+    "quote": "Our study was preregistered and approved by the MIT Committee on the Use of Humans as Experimental Subjects.",
+    "locator": "p. 11, Section 3 and footnote 1; p. 18, Section 3.9",
+    "confirmed": true
+   },
+   {
+    "field": "data_and_code.code_url",
+    "value": "No URL is printed; the 'GitHub' hyperlink in footnote 3 points to https://github.com/harangju/pairit-survey-mockup/ (rating-survey code). Added to the final form.",
+    "quote": "The code is available on GitHub.",
+    "locator": "p. 17, footnote 3",
+    "confirmed": true
+   },
+   {
+    "field": "source.version",
+    "value": "arXiv:2503.18238v3, 5 Feb 2026; title page dated February 6, 2026",
+    "quote": "arXiv:2503.18238v3 [cs.CY] 5 Feb 2026",
+    "locator": "p. 1, side stamp",
+    "confirmed": true
+   }
+  ],
+  "n_differences": 4,
+  "n_unresolved": 1
+ },
+ "final": {
+  "core": "yes",
+  "criteria": {
+   "random_assignment_of_ai": "met",
+   "at_least_50_people": "met",
+   "outcome_scored_on_output": "met"
+  },
+  "challenge_resolution": [
+   {
+    "lens": "outcome",
+    "problem": "S1-O9.measure: category_count was unsupported for ad-copy completion rates.",
+    "action": "corrected",
+    "what_changed": "Changed measure from category_count to null. Appendix E reports completion rates, and Table E does not establish counts of ideas, categories, or unique ideas as required by the codebook. Retained the completion-rate description, participant unit, 2,234 observations, and all printed statistics; the unreported calculation and coding procedure remain an extraction question for the authors.",
+    "quote": "Participants in human-AI teams had consistently higher completion rates for all ad copy elements (headline, primary text, and description)",
+    "locator": "p. 48, Appendix E; p. 49, Table E; pp. 22-23, Section 4.1; creativity-codebook.md, Section 6 (Measure)"
+   },
+   {
+    "lens": "outcome",
+    "problem": "S1-O12.unit: output asserted an unconfirmed unit for the 4,997 VTD observations.",
+    "action": "corrected",
+    "what_changed": "Changed unit from output to null. Retained n_units 4997 as the reported observation count and retained all printed estimates and SEs. The field sample contains 2,000 ads before exclusions, while Tables 3 and I report 4,997 VTD observations. Equation 2 indexes ads, but neither it nor Appendix I defines the actual analysis rows or reconciles these counts. The form now makes no claim that the rows represent distinct ads, visits, or visitors.",
+    "quote": "We obtained a sample of 2,000 ads from a total of 11,138 ads, sampling between one and two ads from each of the 1,751 teams.",
+    "locator": "p. 18, Section 3.9; p. 19, exclusions; p. 20, Equation 2; p. 25, Table 3 (VTD); pp. 49-50, Appendix I; p. 53, Table I, cols. 4-6"
+   },
+   {
+    "lens": "outcome",
+    "problem": "S1-O13.unit: output asserted an unconfirmed unit for the 4,997 VTR observations.",
+    "action": "corrected",
+    "what_changed": "Changed unit from output to null. Retained n_units 4997 as reported observations and retained all printed estimates and SEs. Ad-specific DocSend tracking and the ad-indexed Equation 2 do not explain why Table I has 4,997 VTR rows for 2,000 sampled ads before exclusions. The actual row unit and aggregation remain unconfirmed, without guessing that an observation is an ad, visitor, or visit.",
+    "quote": "We tracked VTR and VTD by using a unique link on DocSend for each ad.",
+    "locator": "p. 18, Section 3.9; p. 19, exclusions; p. 20, Equation 2; pp. 49-50, Appendix I; p. 53, Table I, cols. 1-3"
+   }
+  ],
+  "open_items": [
+   {
+    "item": "Participant flow, human-human team totals, and attrition arithmetic (open_questions[0]; pp. 15-16): authors must reconcile the reported counts and denominator. This does not change criterion 2: 2,234 analyzed people are stated explicitly, and 2,034 are analyzed for diversity; both exceed 50.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Counts at randomization, assignment ratio, and attrition by arm (open_questions[1]; pp. 14-15): authors must supply the allocation and exclusion flow. This concerns attrition assessment and intention-to-treat extraction, not whether assignment was randomized (criterion 1, explicitly stated on p. 14) or whether at least 50 people were analyzed (criterion 2, pp. 15 and 21).",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Actual retained rater sample behind the 45,803 rating observations (open_questions[2]; p. 17, Section 3.8; p. 22, Table 2): authors must reconcile the recruitment, entry, completion, and rating totals. Raters are a separate evaluation sample and do not count toward criterion 2; independent output scoring is established for criterion 3 regardless of the exact rater count.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Field corpus counts and actual VTD/VTR analysis rows (open_questions[3] and the unresolved reconciliation difference for S1-O12/S1-O13; pp. 16, 18-20, 25, 49-50, 53): authors must reconcile the 11,138 versus 11,024 ad totals and define the 4,997 observations, repeated observations, and aggregation. Unit is now null for both view outcomes. These field observations are not creative-task people, and S1 output diversity already establishes criterion 3, so no eligibility criterion depends on this.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Attribution of jointly confirmed ads, participant-level SDs, and precision accounting for shared teams and repeated outputs (open_questions[4]; pp. 15, 19, 21-22, 47, 49, 51-52): authors must supply the participant/team-to-output mapping and appropriate variance information or analysis data/code, which the paper offers upon request (p. 39). These affect effect-size extraction and pooling, not any eligibility criterion.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Shared DALL-E 3 access and absence of a human-alone arm (open_questions[5]; pp. 11, 22, 47) are confirmed design features. Criterion 1 is met by randomizing the GPT-4o versus human teammate, coded ai_vs_active under codebook Section 5; nothing remains to be established for this item.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "Ad-copy completion calculation and coding procedure (new open_questions[6]; S1-O9; pp. 48-49, Appendix E and Table E): authors must define the numerator, denominator, and scoring method before a measure code can be assigned. This does not affect criterion 3, which is independently met by the computed diversity of submitted ad copy.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   }
+  ],
+  "n_corrected": 3,
+  "n_rejected": 0,
+  "n_open": 0
+ }
+}

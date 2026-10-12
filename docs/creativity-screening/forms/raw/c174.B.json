@@ -1,0 +1,830 @@
+{
+ "cid": "c174",
+ "screener": "B",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Abdulhai et al (2026) - How LLMs Distort Our Written Language.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Abdulhai et al (2026) - How LLMs Distort Our Written Language.pdf",
+  "version": "arXiv:2603.18161v2 [cs.CL], 26 Aug 2026, printed in the p. 1 margin; title-page header separately reads 2026-03-19. Version on file; latest version not independently checked.",
+  "title_on_document": "How LLMs Distort Our Written Language",
+  "authors_on_document": [
+   "Marwa Abdulhai",
+   "Isadora White",
+   "Yanming Wan",
+   "Ibrahim Qureshi",
+   "Joel Z. Leibo",
+   "Max Kleiman-Weiner",
+   "Natasha Jaques"
+  ],
+  "pages": 95,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Same PDF: contents p. 21, appendices A-I on pp. 22-95. Contents-page section labels are outdated; locators follow body headings.",
+   "holds": "User-study instructions, surveys, consent and demographics (pp. 22-26); editing prompts and semantic, lexical, POS and emotion robustness figures (pp. 26-43); classifier prompts (pp. 44-46); ICLR category percentages, z statistics and p-values in Table 1 (p. 46); essay examples and transcripts (pp. 47-95). No numerical uncertainty or scalar arm-level diversity effect for the human experiment."
+  }
+ },
+ "paper_design_summary": "An online study randomized 100 Prolific participants to write an argumentative essay with or without gpt-4o-mini, then compared controls with observed low- and extensive-use subgroups using embeddings, linguistic classifications and self-reports (pp. 4-5, 8-13). A second study compared automated model revisions of archived essays from 86 university students with their original human revisions, without providing any participant AI help (pp. 5-7). A third study compared 18k naturally occurring ICLR reviews classified as human- or LLM-written, analyzing scientific criteria and recommendation scores (pp. 6, 13-14).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Human user study: argumentative essay writing",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "People were randomized to no LLM access or unrestricted access to an embedded gpt-4o-mini during writing. The reported LLM and LLM-Influenced groups were not randomized arms: the classification rule was decided before analysis, informed by a protocol pilot, and applied to self-reports and transcripts. LLM-Influenced required self-reported generation of less than 40% of the text, corroborated against transcripts (pp. 4-5, Section 3.1).",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "Each participant was randomly assigned to one of two conditions:",
+    "locator": "p. 4, Section 3.1, Human Study; p. 5, usage-group classification",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Control / Human User (no LLM)",
+     "description": "Essay writing without an LLM; AI assistants and internet use prohibited. Count explicitly given at assignment (p. 4, Section 3.1; p. 22, Appendix A.4).",
+     "ai": "none",
+     "n_randomized": 45,
+     "n_analyzed": null
+    },
+    {
+     "name": "AI-assisted condition (gpt-4o-mini available)",
+     "description": "Embedded LLM available for any chosen use. At assignment n = 55. Subsequently, 28 of 55 were classified as LLM-Influenced and 12 of 55 refused to use the LLM to generate the essay. These are usage descriptions, not randomized subarms. An extensive-use subgroup count is not directly printed (pp. 4-5).",
+     "ai": "generative_ai",
+     "n_randomized": 55,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": 100,
+    "n_analyzed": 100,
+    "counts_are": "people",
+    "exclusions": "No exclusions, attrition flow or outcome-specific analyzed Ns are reported. The overall analyzed count records the repeated description of the primary study presented as n = 100, not a verified complete-case denominator for each figure or test. Arm-specific analyzed counts remain null: 45/55 are given at assignment. The protocol pilot (n = 8) is separate and is not added (p. 5).",
+    "population": "online_panel",
+    "who": "Native-English-speaking Prolific participants residing in the United States. The primary sample is reported as 100; Figure 12 acknowledges demographic nonresponse.",
+    "country": "United States",
+    "quote": "We conducted a human user study of 100 participants",
+    "locator": "pp. 4-5, Section 3.1; p. 22, Appendix A.1; p. 26, Figure 12"
+   },
+   "ai_tool": {
+    "name_model": "gpt-4o-mini",
+    "role": "open_chat",
+    "how_used": "Participants could use the embedded LLM however they chose while writing; conversations and final essays were recorded. Other LLMs and internet sources were prohibited. Use intensity was classified from actual use (pp. 4-5; p. 22, Appendix A.3). gpt-4o was a separate outcome-classification judge (p. 7)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Argumentative essay answering Does money lead to happiness? In scope through cross-writer semantic comparisons; there is no independent creativity rating of the essay (p. 4; p. 8, Figure 4).",
+    "duration": "Whole-study estimate 35 minutes, maximum 1 hour; essay-only duration not stated (p. 22, Appendix A.1)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Semantic diversity / clustering of final essays",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Each final essay is embedded with MiniLM-L6-v2 and projected using t-SNE. Group spread/clustering is interpreted as diversity/homogenization. No scalar pairwise-similarity, centroid-distance or dispersion effect is reported. Actual-use subgroups split the randomized AI-access arm; no combined AI-access-versus-control estimate is printed (pp. 8-9).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted condition: LLM (extensive generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Extensive-use essays form a distinct small cluster, whereas control essays occupy a broader region. No numerical diversity effect, SD, SE, CI, test, or plotted analysis N is printed. This selects an actual-use subgroup from the randomized AI-access arm.",
+       "locator": "pp. 8-9, Figure 4b and Section 4.2"
+      },
+      {
+       "treatment_arm": "AI-assisted condition: LLM-Influenced (low generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "LLM-Influenced essays are described as occupying a similar distribution to control essays. Visual comparison only; no numerical difference or equivalence test reported.",
+       "locator": "pp. 8-9, Figure 4b and Section 4.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Qualitative dispersion/clustering in two-dimensional t-SNE; no scalar diversity index.",
+      "embedding_model": "MiniLM-L6-v2",
+      "computed_over": "Final essays from different writers, jointly displayed and labeled Human User, LLM-Influenced or LLM; no all-pairs or centroid calculation reported.",
+      "uncertainty": "No diversity SE, CI, bootstrap, permutation or other inferential uncertainty reported.",
+      "notes": "Lower denotes less diversity, not a direction along an embedding axis. AI was available to both use-defined AI subgroups during writing; random assignment was to access, not use intensity."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Argumentative stance: neutral versus for or against",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4o classifies each essay as for, against or neutral about money leading to happiness. This is content/stance, not rated creativity or a between-person diversity statistic. All stance categories are included in this categorical outcome (p. 7; p. 45, Appendix D.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted condition: LLM (extensive generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Neutral: LLM 66.7%, Human 39.5%; reported increase 68.9%. Figure 6: t(69) = -2.439, p = 0.017; Section 4.3 prose: p < 0.036. Other printed categories: Human for 32.6%, against 27.9%; LLM for 22.2%, against 11.1%. Direction denotes neutral share, not creativity.",
+       "locator": "p. 10, Figure 6 and Section 4.3"
+      },
+      {
+       "treatment_arm": "AI-assisted condition: LLM-Influenced (low generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "LLM-Influenced: neutral 44.8%, for 31.0%, against 24.1%; Human: neutral 39.5%, for 32.6%, against 27.9%. No subgroup test supplied; direction is the printed neutral-share difference only.",
+       "locator": "p. 10, Figure 6"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Argument-type frequency profile",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4o identifies logical, emotional, anecdotal, statistical, philosophical, personal_experience, expert_opinion and hypothetical arguments. Figure 10b plots frequencies and tests expert opinion/statistical arguments. These are content categories, not distinct idea categories per person. Follow Figure 10 captions, which identify this panel as the human study; Section 4.7 prose swaps the datasets (p. 7; pp. 12-13; p. 45, Appendix D.2).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted condition: LLM (extensive generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "mixed",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Figure 10 caption: expert opinion t(69) = -2.78, p < 0.01; statistical arguments t(69) = 4.82, p < 0.0001. The paper describes greater reliance on statistical/logical arguments and less on personal experience. Frequencies are plotted without exact labels; t signs are retained as printed.",
+       "locator": "pp. 12-13, Section 4.7 and Figure 10b"
+      },
+      {
+       "treatment_arm": "AI-assisted condition: LLM-Influenced (low generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "LLM-Influenced essays also cite expert opinions, something human-written essays rarely do; other argument frequencies are plotted. No separate subgroup test is printed.",
+       "locator": "pp. 12-13, Section 4.7 and Figure 10b"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Part-of-speech frequency profile",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Computed POS frequencies: adjectives, adverbs, nouns, verbs, pronouns, determiners, adpositions and conjunctions. The measure code refers to linguistic category counts, not idea-category flexibility. Exact aggregation and plotted error-bar definition are not explained (p. 11).",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted condition: LLM (extensive generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Section 4.5 reports a 50% decrease in pronouns, 14% relative increase in nouns, and 33% relative increase in adjectives for LLM-written versus human-user essays. Other POS frequencies and LLM-Influenced results are plotted; no numerical SE, CI or test supplied.",
+       "locator": "p. 11, Figure 8 left and Section 4.5"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Self-reported creativity while writing the essay",
+     "construct": "overall_creativity",
+     "question": "with_ai",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Post-study question asks how creative the participant felt while writing, with five choices from very creative to not at all creative (p. 24, Appendix A.6). Included to distinguish the headline claim from output-scored creativity; it does not meet criterion 3. It rates the assisted essay rather than a new after-AI task.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted condition: LLM (extensive generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Creativity Level means: Human User 3.95; LLM 3.41; t(69) = 2.110, p = 0.0385. No numerical SD, SE or CI; plotted error bars are undefined.",
+       "locator": "p. 8, Figure 4a and Section 4.1"
+      },
+      {
+       "treatment_arm": "AI-assisted condition: LLM-Influenced (low generative-use subgroup)",
+       "control_arm": "Control / Human User (no LLM)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Creativity Level means: LLM-Influenced 3.83; Human User 3.95. Section 4.1 describes similar self-reports, without a separate test for this comparison.",
+       "locator": "p. 8, Figure 4a and Section 4.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "ArgRewrite-v2: automated LLM revisions versus original human revisions",
+   "design_class": "ai_vs_human",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No person was assigned AI help. Researchers supplied archived initial drafts and expert feedback to three LLMs and compared automated revisions with existing human revisions. Editing/feedback variants manipulate models on the same source essays, not people. Within refers to repeated versions of source documents (pp. 5-6).",
+    "unit": "other",
+    "structure": "within",
+    "quote": "we then construct a dataset of LLM-generated D2 drafts.",
+    "locator": "pp. 5-6, Section 3.1, ArgRewrite-v2",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Human-revised D2 (ArgRewrite-v2)",
+     "description": "Existing human revisions after expert comments, linked to the same students' D1 essays. D1 is a reference, not a second sample (pp. 5-7).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 86
+    },
+    {
+     "name": "gpt-5-mini revisions",
+     "description": "Automated revisions across general, minimal, grammar, completion and expansion instructions, with/without expert feedback. No people in this model condition (p. 6; pp. 26-43).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "gemini-2.5-flash revisions",
+     "description": "Same source drafts and editing/feedback variants; no people assigned to the model (p. 6; pp. 26-43).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "claude-haiku revisions",
+     "description": "Same drafts/variants. Plots label Claude 3.5 Haiku, whereas Appendix I examples label Claude Haiku 4.5; model version is inconsistent (p. 6; pp. 9, 34-37, 61, 81-82).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 86,
+    "counts_are": "people",
+    "exclusions": "No corpus exclusions stated. The paper identifies 86 university students (p. 5) and analyzes 86 essays (p. 7). These are reused people; model revisions are not new participants.",
+    "population": "students",
+    "who": "University students in ArgRewrite-v2; essays collected in 2021 and corpus released in 2022 before widespread LLM writing assistance.",
+    "country": "",
+    "quote": "ArgRewrite-v2 (Kashefi et al., 2022) is a dataset of argumentative writing revisions collected from 86 university students.",
+    "locator": "p. 5, Section 3.1; p. 7, Section 3.2, PCA of Embedding Representations"
+   },
+   "ai_tool": {
+    "name_model": "gpt-5-mini; gemini-2.5-flash; claude-haiku (Claude 3.5 Haiku in plots; Claude Haiku 4.5 in Appendix I examples)",
+    "role": "refinement",
+    "how_used": "Researchers generated revisions of archived drafts under five editing modes with/without existing expert feedback. Completion uses the first paragraph; expansion requests more detail. No participant received AI assistance (p. 6; p. 26, Appendix B.1)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Argumentative op-eds for or against self-driving cars. Human D2 followed expert feedback; models subsequently generated D2 from the same D1 inputs. AI-versus-human output, not after_ai (pp. 5-6).",
+    "duration": "Not stated."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Semantic convergence across revised essays",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "PCA visualizations pair original and revised embeddings and show revision directions. The paper interprets common-direction shifts across writers as homogenization. Robustness variants use MiniLM-L6-v2/gemini-004, different model editors, edit modes and feedback conditions (p. 1, Figure 1; p. 9, Figure 5; pp. 26-34, Figures 13-25). Numeric within-essay shift labels are separate in S2-O2: they are not between-writer diversity effects. The 86 units are source essays per condition (p. 7).",
+     "unit": "output",
+     "n_units": 86,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Automated revisions by the three LLMs",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Human revisions show smaller, more varied directional changes; model revisions shift essays in a common direction toward a different semantic region. No scalar between-writer diversity difference or uncertainty is reported.",
+       "locator": "p. 1, Figure 1; p. 9, Figure 5 and Section 4.2; pp. 26-34, Appendix B.2-B.4, Figures 13-25"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Qualitative convergence/common direction of D1-to-D2 arrows in PCA; no aggregate pairwise similarity or dispersion effect.",
+      "embedding_model": "MiniLM-L6-v2 (Figure 1); gemini-004 (Figure 5); both in Appendix B.2-B.3.",
+      "computed_over": "Embeddings from different students, pairing D1 and D2 within each source essay and inspecting common displacement across essays; not all between-writer pairs.",
+      "uncertainty": "No inferential uncertainty for between-writer diversity reported.",
+      "notes": "Context only: automated revisions of historical drafts, with no human receiving AI help. Mixed availability refers to human and model output sources. Direction follows the authors' homogenization interpretation; large within-essay shift alone does not establish reduced between-writer dispersion."
+     }
+    },
+    {
+     "outcome_id": "S2-O2",
+     "name": "Magnitude of semantic change from the original draft",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Average D1-to-D2 shift labels in PCA plots: departure from the same original essay, not novelty, creativity or cross-writer diversity. Figure 1 uses MiniLM-L6-v2 and gpt-5-mini with expert feedback. Figures 5 and 13-25 give alternate embeddings/editors/prompts as robustness variants. The scalar formula is not fully specified; no standardized effect is inferred (p. 7).",
+     "unit": "pair",
+     "n_units": 86,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gpt-5-mini: General revision with expert feedback",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 1 printed Avg Shift: General revision 0.320; Human Reference (D1 to D2) 0.068. Raw within-essay shift labels, not standardized effects; no SD, SE, CI or test.",
+       "locator": "p. 1, Figure 1, numeric panel labels (PDF image)"
+      },
+      {
+       "treatment_arm": "gpt-5-mini: Minimal edit with expert feedback",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 1 printed Avg Shift: Minimal edit 0.315; Human Reference (D1 to D2) 0.068. Raw within-essay shift labels, not standardized effects; no SD, SE, CI or test.",
+       "locator": "p. 1, Figure 1, numeric panel labels (PDF image)"
+      },
+      {
+       "treatment_arm": "gpt-5-mini: Grammar edits with expert feedback",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 1 printed Avg Shift: Grammar edits 0.140; Human Reference (D1 to D2) 0.068. Raw within-essay shift labels, not standardized effects; no SD, SE, CI or test.",
+       "locator": "p. 1, Figure 1, numeric panel labels (PDF image)"
+      },
+      {
+       "treatment_arm": "gpt-5-mini: Completion with expert feedback",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 1 printed Avg Shift: Completion 0.245; Human Reference (D1 to D2) 0.068. Raw within-essay shift labels, not standardized effects; no SD, SE, CI or test.",
+       "locator": "p. 1, Figure 1, numeric panel labels (PDF image)"
+      },
+      {
+       "treatment_arm": "gpt-5-mini: Expansion with expert feedback",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 1 printed Avg Shift: Expansion 0.393; Human Reference (D1 to D2) 0.068. Raw within-essay shift labels, not standardized effects; no SD, SE, CI or test.",
+       "locator": "p. 1, Figure 1, numeric panel labels (PDF image)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O3",
+     "name": "Lexical change from the original draft (Jensen-Shannon divergence)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "JSD between D1 and D2 unigram distributions over a global vocabulary, evaluated per source essay. Higher means more vocabulary replacement in the same essay, not inter-person lexical diversity. Appendix B.5 varies five editing modes, expert feedback and all three models (pp. 35-37, Figures 26-30).",
+     "unit": "pair",
+     "n_units": 86,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "claude-haiku: general revision with expert feedback",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 7 reports Mean Distance 0.476 for Claude 3.5 Haiku / claude-haiku. Section 4.4 describes the human distribution as centered around 0.2-0.3 JSD; this is not a human mean or SD. It describes gpt-5-mini divergence as nearly triple the human baseline, with many essays above 0.7. No effect or precision is derived.",
+       "locator": "pp. 10-11, Section 4.4 and Figure 7; pp. 35-37, Appendix B.5, Figures 26-30"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O4",
+     "name": "Grammatical revision profile: part-of-speech changes",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Relative POS frequency changes from original human D1, for human D2 and model revisions. Plotted categories: adjectives, adpositions, adverbs, auxiliaries, coordinating conjunctions, determiners, nouns, pronouns and verbs. All edit modes/feedback/models are variants (p. 11, Figure 8 right; pp. 38-42, Figures 31-35). These are linguistic categories, not creative-idea categories.",
+     "unit": "output",
+     "n_units": 86,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Automated revisions by the three LLMs",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Section 4.5 reports human changes typically under 5% per POS category; LLM changes relative to D1: adjectives increase 57-90%, coordinating conjunctions increase 13-90%, pronouns decrease 40-60%, and determiners decrease 25-50%. For minimal edits, adjectives increase 40-87% and pronouns decrease 31-56%. These are prose-reported ranges, not calculated AI-minus-human effects or reconstructed mode-specific values.",
+       "locator": "p. 11, Section 4.5 and Figure 8 right; pp. 38-42, Appendix B.6, Figures 31-35"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O5",
+     "name": "Emotional and sentiment word-density changes",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "NRC densities: anger, anticipation, disgust, fear, joy, sadness, surprise, trust, positive sentiment and negative sentiment, relative to D1. Figure 9 includes general/minimal edits and feedback variants; Appendix B.7 extends to all modes/models. Affective word use, not creativity/diversity (p. 7; pp. 12, 42-43).",
+     "unit": "output",
+     "n_units": 86,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Automated revisions by the three LLMs",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 9 caption: positive sentiment increases 37-54%, trust-related language 17-53%, negative sentiment 24-38%. Section 4.6: human changes typically under 5% per emotion category. These are changes relative to D1; other category/model results are shown graphically without numerical uncertainty.",
+       "locator": "p. 12, Figure 9 and Section 4.6; pp. 42-43, Appendix B.7, Figures 36-40"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O6",
+     "name": "LIWC analytic-language score",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "LIWC analytic feature describing formal/logical/hierarchical language. Figure 10a labels Human D1, Human D2 and gpt-5-mini and identifies ArgRewrite-v2. Entries follow actual plot/caption rather than the swapped dataset names in Section 4.7. Not creativity or a test of participant analytical skill (p. 7; pp. 12-13).",
+     "unit": "output",
+     "n_units": 86,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gpt-5-mini revisions",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 10a and caption report elevated analytic scores in LLM-edited text. No exact group mean, SD, SE, CI or inferential test printed. Values are not estimated from the violin plot.",
+       "locator": "p. 13, Figure 10a; p. 12, Section 4.7"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O7",
+     "name": "Unique-word frequency profiles in human and model revision pools",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Word clouds show words unique to human-edited versus gpt-5-mini-edited pools, sized by relative frequency. This compares pool composition, not an inter-writer diversity index or distinct idea count (p. 6, Figure 3).",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gpt-5-mini revisions",
+       "control_arm": "Human-revised D2 (ArgRewrite-v2)",
+       "comparison_type": "ai_vs_human",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure 3 visualizes different vocabularies; no numerical unique-word count, diversity effect or uncertainty is printed.",
+       "locator": "p. 6, Figure 3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S3",
+   "label": "ICLR 2026: naturally occurring peer reviews classified by AI use",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No aid was assigned. Existing reviews were classified with Pangram AI and papers with one human-written and one entirely LLM-generated review selected. Observational corpus analysis matched by reviewed paper, not an experiment with reviewers (p. 6).",
+    "unit": "other",
+    "structure": "between",
+    "quote": "We selected only those papers with one review written entirely by a human and one written entirely by an LLM",
+    "locator": "p. 6, Section 3.1, Peer Reviews",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Reviews classified as entirely human-written",
+     "description": "9k reviews; not a distinct reviewer count (p. 13, Figure 11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Reviews classified as entirely LLM-generated",
+     "description": "9k reviews detected with Pangram; underlying writing models and actual reviewer use unobserved (pp. 6, 13).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "Only papers with both an entirely human-written and an entirely LLM-generated review selected. Distinct reviewers not counted; the full conference review count is not the analysis sample or a people count (p. 6).",
+    "population": "professionals",
+    "who": "Scientific peer reviewers for ICLR 2026, analyzed through 18k reviews of 9k papers. Figure 11 also says selected papers concerned LLMs. Number of distinct people not stated.",
+    "country": "",
+    "quote": "18k reviews from ICLR 2026 from 9k papers.",
+    "locator": "p. 6, Section 3.1; p. 13, Figure 11"
+   },
+   "ai_tool": {
+    "name_model": "Writing model(s) not stated; Pangram AI detection; gpt-4o analysis judge",
+    "role": "other",
+    "how_used": "Underlying AI workflows are unobserved. Pangram classifies text source; gpt-4o extracts/consolidates strength and weakness categories and classifies each review. The judge is not a writing intervention (pp. 6-7; pp. 44-45, Appendix D.1)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Real peer reviews with strengths, weaknesses and recommendation scores. Mentions of novelty/innovation concern the reviewed research, not the creativity of the review (pp. 6-7, 13-14).",
+    "duration": "Not stated."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Frequency profile of scientific strengths mentioned in reviews",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4o consolidates categories and identifies up to three strengths and three weaknesses per review; all reported categories are enumerated below. This is content distribution, not a scalar diversity measure or a novelty rating of the review itself. Figure 11 describes two-proportion z-tests; Table 1 denominator is three times the number of reviews. No adjustment for repeated reviewers or matched papers is stated. G1/G2 labels are preserved because the table caption does not explicitly define their source mapping (pp. 7, 13, 44-46).",
+     "unit": "output",
+     "n_units": 18000,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Reviews classified as entirely LLM-generated",
+       "control_arm": "Reviews classified as entirely human-written",
+       "comparison_type": "ai_vs_human",
+       "direction": "mixed",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Table 1 printed column order: G1 %, G2 %, % Change, Z-Score, P-Value. Clarity: 5.76, 3.89, -1.87, 14.3704, 0.0000; Practical Application: 2.02, 3.42, 1.40, -14.1956, 0.0000; Reproducibility: 0.62, 1.46, 0.84, -13.6601, 0.0000; Relevance: 3.45, 2.35, -1.10, 10.7794, 0.0000; Theoretical Foundations: 3.10, 4.02, 0.92, -8.1627, 0.0000; Scalability: 0.89, 1.33, 0.44, -6.9699, 0.0000; Technical Soundness: 2.17, 2.80, 0.63, -6.6554, 0.0000; Methodology: 4.62, 3.91, -0.72, 5.8503, 0.0000; Comparative Analysis: 0.11, 0.03, -0.07, 4.5899, 0.0000; Motivation: 2.54, 2.15, -0.39, 4.2626, 0.0000; Impact: 1.05, 0.82, -0.23, 3.8971, 0.0001; Writing and Presentation: 0.03, 0.00, -0.02, 3.3568, 0.0008; Resource Contribution: 2.24, 1.98, -0.26, 3.0387, 0.0024; Innovation: 3.60, 3.90, 0.30, -2.5833, 0.0098; Interpretability: 0.01, 0.03, 0.02, -2.4006, 0.0164; Novelty: 5.64, 5.34, -0.30, 2.1418, 0.0322; Computational Efficiency: 0.36, 0.29, -0.07, 1.9781, 0.0479. Values 0.0000 are rounded printed p-values, not a claim of exact zero. The table normalizes by three possible labels per review; its % Change column is retained verbatim, not substituted for Figure 11 relative percentages.",
+       "locator": "p. 46, Appendix E, Table 1, Strength Dataset; pp. 13-14, Figure 11 and Section 4.8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O2",
+     "name": "Frequency profile of scientific weaknesses mentioned in reviews",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4o consolidates categories and identifies up to three strengths and three weaknesses per review; all reported categories are enumerated below. This is content distribution, not a scalar diversity measure or a novelty rating of the review itself. Figure 11 describes two-proportion z-tests; Table 1 denominator is three times the number of reviews. No adjustment for repeated reviewers or matched papers is stated. G1/G2 labels are preserved because the table caption does not explicitly define their source mapping (pp. 7, 13, 44-46).",
+     "unit": "output",
+     "n_units": 18000,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Reviews classified as entirely LLM-generated",
+       "control_arm": "Reviews classified as entirely human-written",
+       "comparison_type": "ai_vs_human",
+       "direction": "mixed",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Table 1 printed column order: G1 %, G2 %, % Change, Z-Score, P-Value. Writing and Presentation: 4.01, 1.37, -2.64, 26.9113, 0.0000; Clarity: 4.62, 1.93, -2.69, 24.9006, 0.0000; Generalization: 3.57, 6.08, 2.51, -19.3279, 0.0000; Scalability: 1.08, 2.28, 1.20, -15.4265, 0.0000; Computational Efficiency: 2.28, 3.61, 1.32, -12.9235, 0.0000; Assumptions / Simplifications: 1.64, 2.63, 0.99, -11.3135, 0.0000; Reproducibility: 1.00, 1.77, 0.77, -10.8394, 0.0000; Comparative Analysis: 8.59, 6.87, -1.72, 10.6360, 0.0000; Real-World Applicability: 1.55, 2.14, 0.58, -7.1594, 0.0000; Motivation: 0.26, 0.09, -0.17, 6.6250, 0.0000; Relevance: 0.09, 0.01, -0.08, 5.5298, 0.0000; Experimental Validity: 5.84, 5.21, -0.63, 4.5250, 0.0000; Technical Soundness: 0.05, 0.01, -0.03, 3.0875, 0.0020; Theoretical Justification: 4.75, 5.14, 0.38, -2.9223, 0.0035; Overclaiming: 1.10, 0.97, -0.13, 2.0643, 0.0390. Values 0.0000 are rounded printed p-values, not a claim of exact zero. The table normalizes by three possible labels per review; its % Change column is retained verbatim, not substituted for Figure 11 relative percentages.",
+       "locator": "p. 46, Appendix E, Table 1, Weakness Dataset; pp. 13-14, Figure 11 and Section 4.8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "S2 reuses the 86 writers in Kashefi et al. (2022), ArgRewrite v.2: an annotated argumentative revisions corpus, DOI 10.1007/s10579-021-09567-z; it is not a new AI-assistance sample. S1 is separately recruited. S3 reuses public ICLR reviews classified through Pangram/Emi (2025); no distinct-person overlap is stated.",
+  "quote": "ArgRewrite-v2 (Kashefi et al., 2022) is a dataset of argumentative writing revisions collected from 86 university students.",
+  "locator": "pp. 5-6, Section 3.1; p. 18, Kashefi et al. reference; p. 17, Emi reference"
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Google DeepMind affiliation for Joel Z. Leibo, Max Kleiman-Weiner and Natasha Jaques, and Google DeepMind copyright. Acknowledgments include Toyota Research Institute, Character.AI, DoorDash, UW-Amazon Science Gift Hub, Sony Research Award Program and UW-Tsukuba Amazon NVIDIA Cross Pacific AI Initiative. Individual organization roles are not specified.",
+  "locator": "p. 1, affiliations/copyright; p. 16, Acknowledgments"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": "https://github.com/abdulhaim/llm_writing_distortion"
+ },
+ "eligibility": {
+  "core": "yes",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "S1 explicitly randomizes AI access versus no access (p. 4), reports a primary sample of 100 people (pp. 4-5), and computes cross-writer semantic representations of produced essays to assess homogenization (pp. 8-9, Figure 4b). Eligibility is for across_people; self-reported creativity alone would not qualify. Diversity is figure-only and use-defined subgroup contrasts do not randomize intensity: no numerical full-AI-access-versus-control diversity effect or usable precision for pooling is reported. Outcome-specific analyzed Ns are unstated. S2 supplies additional ai_vs_human context; S3 is observational review-content evidence without a direct creativity/diversity score. No after_ai output is reported."
+ },
+ "one_line_finding": "In the reported 100-person experiment, extensive AI users' essays clustered semantically and were neutral in 66.7% of cases versus 39.5% of control essays, a reported 68.9% increase, but use intensity was not randomized (pp. 5, 8-10, Figures 4b and 6).",
+ "open_questions": [
+  "S1 reports n = 100 and assignment 45/55 but no exclusions or outcome-level Ns for figures and t(69) tests; verify analyzed denominators without reconstructing subgroup Ns from percentages or degrees of freedom (pp. 4-5, 8, 10, 13).",
+  "Can a numerical diversity estimate and participant-appropriate uncertainty be obtained for the original randomized AI-access-versus-control contrast? The PDF supplies t-SNE split by actual-use subgroup (pp. 8-9, Figure 4b).",
+  "A priori usage classification does not establish preregistration or randomize low versus extensive use (p. 5).",
+  "Figure 5 plot title says With Feedback but caption says without expert feedback; some appendix top/bottom descriptions also conflict with visible titles. Verify conditions before extracting variants (p. 9; pp. 26-31).",
+  "Claude is generic claude-haiku in methods, Claude 3.5 Haiku in figures and Claude Haiku 4.5 in Appendix I examples; confirm exact version (p. 6; pp. 9, 34-37, 61, 81-82).",
+  "Section 4.7 swaps dataset names for LIWC scores and argument frequencies; entries follow Figure 10a (ArgRewrite-v2) and 10b (human study) captions and plot labels (pp. 12-13).",
+  "Neutral-stance test: Figure 6 reports t(69) = -2.439, p = 0.017; Section 4.3 reports p < 0.036. Both are retained (p. 10).",
+  "ICLR clarity-as-strength: Figure 11 caption gives z = 11.00, p < 0.001 and human baseline 17%; Table 1 gives G1 5.76, G2 3.89 and z = 14.3704 with a tripled-label denominator; Section 4.8 gives z = 14.37. Verify denominator and intended test before extracting precision (pp. 13-14, 46).",
+  "ICLR abstract says scores are a full point higher; Section 4.8 instead gives 4.43 for LLM and 4.13 for human reviews, described as 10% higher. No SD, SE, test or score-analysis N supplied (pp. 1, 14)."
+ ],
+ "notes": "Independent B screening from the complete markdown (all 2240 lines, references and appendices included) and PDF text/figures. No other form was opened. Three substantive studies follow p. 14; the separate protocol pilot (n = 8, p. 5) has no separately scored creativity/diversity result, is described under S1, and is not counted as a fourth outcome study. No counts or effect sizes were derived. S2 n_units = 86 means source essays per condition, not a grand total over revisions. Code URL is printed on pp. 1 and 8; no separate data-download URL is printed, although p. 16 calls archival data public. Categorical profiles are recorded as single outcomes with their categories enumerated; model/prompt/feedback robustness variants are not new outcomes. S1 inventory: semantic clustering (Figure 4b), stance (Figure 6), POS (Figure 8 left), argument types (Figure 10b), and self-reported creativity (Figure 4a). S2 inventory: semantic convergence and within-draft shifts (Figures 1, 5, 13-25), unique words (Figure 3), JSD (Figures 7, 26-30), POS (Figures 8 right, 31-35), emotions (Figures 9, 36-40) and LIWC analytic score (Figure 10a). S3 inventory: strength/weakness profiles (Figure 11, Table 1) and recommendation scores (p. 14). Other Figure 4a self-reports are not separately counted as output outcomes: voice means Human User 4.53, LLM-Influenced 4.48, LLM 3.37, t(69) = 5.799, p < 0.001 for extensive use versus control (p. 8); satisfaction, organization difficulty and writing struggle are described as similar across groups. Appendix A prints attitude/use/perception questions without additional output-scored results. S3 recommendation means 4.43 (LLM) and 4.13 (human) are retained here, outside the outcome array, because they rate submitted research rather than creativity/diversity of the written reviews (p. 14; score scale p. 43, Appendix C). LIWC authenticity is named as a metric (p. 7), but no separate result was found. Figure 2 and Appendices F-I contain qualitative examples/transcripts, not additional scored outcomes. No output after AI withdrawal is reported."
+}

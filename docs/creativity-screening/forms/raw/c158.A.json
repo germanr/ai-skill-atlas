@@ -1,0 +1,502 @@
+{
+  "cid": "c158",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Lai Luchini Lauharatanahirun Beaty (2025) - Creative or Uncreative Partner.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Lai Luchini Lauharatanahirun Beaty (2025) - Creative or Uncreative Partner.pdf",
+    "version": "PsyArXiv preprint. The document itself shows no date or version number; the retrieval record identifies it as PsyArXiv v2 (ey7u4_v2), posted 2025-12-01. No journal version.",
+    "title_on_document": "Creative or Uncreative Partner: Comparing Humans and AI in Collaborative Creative Tasks",
+    "authors_on_document": ["Clin KY Lai", "Simone A Luchini", "Nina Lauharatanahirun", "Roger Beaty"],
+    "pages": 27,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "Referred to as 'supplementary information' with sections SI 1 and SI 2 (p. 4, p. 5, p. 7); no URL given. Preregistration at https://osf.io/tveaf (p. 3).",
+      "holds": "SI 1: protocol for deriving a DAT score for GPT-4o. SI 2: further details of the story diversity analysis. Also deviations from the preregistration and exploratory analyses not described in the main text (p. 4)."
+    }
+  },
+  "paper_design_summary": "Prolific participants (208 people) were randomly assigned to collaborate by alternating turns either with another participant (68 human-human pairs) or with a prompt-engineered GPT-4o partner (72 human-AI pairs), with turn order (Role A first, Role B second) also randomly assigned. Each pair did two Alternate Uses Task trials (book, bottle; 3 minutes each) and one 10-minute three-word short story written one sentence per turn. Outputs were scored automatically for originality (CLAUS for AUT, divergent semantic integration for stories), elaboration (word count), and diversity (variance of originality scores, forward-flow semantic distance between consecutive ideas, and leave-one-out story diversity contribution with Sentence-BERT embeddings).",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Collaborative AUT and short story with a human vs GPT-4o partner (Prolific)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Partner type: human-AI (GPT-4o partner) vs human-human (another participant). Turn role (Role A initiates, Role B goes second) was also randomly assigned and kept across tasks; in the human-AI condition the AI held the other role.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Upon taking part in the study, participants were randomly assigned to either a human-AI (72 pairs) or human-human (68 pairs) condition.",
+        "locator": "p. 4, Methods, Participants; role assignment p. 4, Materials and Procedure; abstract p. 1",
+        "preregistered": "yes",
+        "prereg_locator": "p. 3, Methods: 'pre-registered on the Open Science Framework (OSF)... https://osf.io/tveaf'"
+      },
+      "arms": [
+        {
+          "name": "Human-AI",
+          "description": "Participant takes turns with a prompt-engineered GPT-4o partner in a chat interface built to look like the human-partner interface; AI replies delayed 5 s (AUT) or 10 s (story). Participants were told their partner was AI.",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": 72
+        },
+        {
+          "name": "Human-Human",
+          "description": "Participant takes turns with another Prolific participant matched via SMARTRIQS. Participants were told their partner was human.",
+          "ai": "other_aid",
+          "n_randomized": null,
+          "n_analyzed": 136
+        }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 208,
+        "counts_are": "people",
+        "exclusions": "Data were removed for participants who admitted using external internet or AI resources (p. 6); the number removed is not stated. 208 participants were recruited (p. 4) and Table 1 reports n = 208 (AI 72, Human 136). Assignment counts are given only in pairs (72 human-AI, 68 human-human). The AUT models use 139 groups (137 in the human-only model) rather than 140 pairs (Tables 2 and 3); the story diversity test uses 72 and 68 pairs (p. 15). Whether 208 is before or after exclusions is not stated.",
+        "population": "online_panel",
+        "who": "Prolific participants, mean age 35.18 (SD 12.07), 54.8 percent female, 97.1 percent English first language; paid $6 for 30 minutes.",
+        "country": "not stated",
+        "quote": "A total of 208 participants were recruited from Prolific for the study.",
+        "locator": "p. 4, Participants; pp. 7-8, Table 1"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4o (called 'ChatGPT-4o' in the paper), accessed via the OpenAI API through PythonAnywhere",
+        "role": "other",
+        "how_used": "AI acted as a turn-taking co-creator: it contributed its own AUT ideas and story sentences in alternation with the participant, under prompts with explicit constraints and instructions, with fixed response delays (5 s AUT, 10 s story). It took Role A when the human was Role B and vice versa. Coded 'other' because the AI is a co-creating partner, not an assistant the human controls; closest codes are ideas_supplied and open_chat."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Two collaborative tasks in one session: (1) Alternate Uses Task for 'book' and 'bottle', alternating ideas, 'pass' allowed (divergent_test); (2) creative short story from the words 'stamp-letter-send', one sentence per turn (creative_writing). Afterward each participant did the Divergent Association Task individually, then questionnaires.",
+        "duration": "AUT 3 minutes per object (two objects); story 10 minutes; whole study about 30 minutes"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "AUT originality, all responses in the pair (including AI-generated responses)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Originality scored by CLAUS (Cross-Lingual Alternate Uses Scoring), a transformer fine-tuned to human ratings, on the Creativity Assessment Platform. Book and bottle pooled. Mixed model: originality ~ condition * role + dat_scaled + (1|groupID) + (1|groupID:ResponseId); the preregistered random-slope model failed to converge. Covariates model adds item, fluency (ideas per pair), and word count.",
+          "unit": "output",
+          "n_units": 2970,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "Base model: Condition (Human-Human) B = -0.065 (SE 0.007), t = -9.69, p < .001; Role B 0.018 (0.004); Condition x Role B -0.021 (0.007), t = -2.87, p = .005; reference Condition = AI-Human, Role = A; N observations 2,970, N groups 139.",
+              "locator": "p. 9, Table 2 (Base column); p. 10, text; p. 11, Figure 2a"
+            },
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "Covariates model (adds item, fluency, word count): Condition (Human-Human) B = 0.010 (SE 0.008), t = 1.28, p = .201; Condition x Role B 0.002 (0.006), t = 0.24, p = .814; Word Count 0.009 (0.000), t = 31.61; N observations 2,970, N groups 139.",
+              "locator": "p. 9, Table 2 (Covariates column); p. 10, text; p. 11, Figure 2b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "AUT originality, human responses only (AI-generated responses excluded)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "CLAUS originality as in S1-O1, restricted to human-written responses. The Human-Only model includes item, fluency, and word count covariates (Table 2). Robustness: rerun with one randomly selected human per human-human pair.",
+          "unit": "output",
+          "n_units": 2066,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "Human-Only model: Condition (Human-Human) B = 0.029** (SE 0.010); text B = 0.0293, SE = 0.0104, t = 2.83, p = .005; Condition x Role B 0.012 (0.011), p = .263; N observations 2,066, N groups 137. Random-selection rerun: B = 0.027, SE = 0.011, t(175.5) = 2.518, p = .013.",
+              "locator": "p. 9, Table 2 (Human-Only column); p. 10, text; p. 11, top and Figure 2c"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Variance of AUT originality scores, all responses",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Levene's test (median-centered) for equal variance of CLAUS originality scores between conditions. The paper labels this a diversity measure (hypothesis 2), but it measures the spread of originality scores, not similarity of content across people.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic"],
+              "reported": "Levene F(1, 3036) = 3.72, p = .054 (figure: F = 3.72, p = 0.0538); Human-AI shows the wider range (Discussion p. 16-17: 'a wider range of originality scores for human-AI pairs').",
+              "locator": "p. 11, Diversity; p. 12, Figure 3a; pp. 16-17, Discussion"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Variance of AUT originality scores, human responses only",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Levene's test as in S1-O3 with AI responses removed.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic"],
+              "reported": "Levene F(1, 2132) = 0.15, p = .70 (figure: F = 0.15, p = 0.696).",
+              "locator": "p. 11, Diversity; p. 12, Figure 3b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "AUT forward flow (semantic distance between consecutive ideas in the pair's sequence), all responses",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "1 minus cosine similarity between consecutive responses within each pair, embeddings from paraphrase-multilingual-MiniLM-L12-v2; linear regression of semantic distance on condition, idea sequence position, and their interaction; first 20 ideas per pair; 'pass' kept. Variety within a pair's own sequence (consecutive ideas come from the two partners), not similarity across pairs; coded flexibility at the team level.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "test_statistic", "figure_only"],
+              "reported": "Main effect of condition B = 0.091, SE = 0.094, t = 6.34, p < .001 (Human-Human higher semantic distance, Figure 4a); idea sequence B = 0.003, SE = 0.001, t = 2.43, p = .015; interaction described as not significant '(p = .015)'.",
+              "locator": "p. 12, forward flow paragraph and Figure 4a"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "AUT forward flow, human responses only",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O5, human ideas only, truncated to the first 10 ideas per pair.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "test_statistic", "figure_only"],
+              "reported": "Main effect of condition B = 0.064, SE = 0.024, t = 2.65, 'p < .008'; running sequence p = .47; interaction p = .34. Humans in Human-Human pairs show higher semantic distance (Figure 4b).",
+              "locator": "p. 12, paragraph after forward flow results and Figure 4b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "AUT elaboration (word count per response), all responses",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Word count per AUT response (computed count, not a creativity model; no closer measure code). Mixed model word count ~ condition * role + dat_scaled + (1|groupID) + (1|groupID:ResponseId). Descriptives: human-human pairs 3.34 words per idea, human-AI pairs 12.7 words per idea (p. 9).",
+          "unit": "output",
+          "n_units": 2970,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "Base: Condition (Human-Human) -7.08*** (0.55), t = -12.79; Condition x Role B -2.44*** (0.47). Covariates (item, fluency): Condition (Human-Human) -9.13*** (0.63); Condition x Role B -2.56*** (0.46). N observations 2,970, N groups 139.",
+              "locator": "p. 13, Table 3 (Base and Covariates columns); pp. 13-14, text; p. 14, Figure 5a-b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "AUT elaboration (word count per response), human responses only",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Word count per human-written AUT response; Human-Only model with item and fluency covariates.",
+          "unit": "output",
+          "n_units": 2066,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "Human-Only: Condition (Human-Human) -5.04*** (0.64); Condition x Role B -3.15*** (0.69), t = -4.55, p < .001; N observations 2,066, N groups 137.",
+              "locator": "p. 13, Table 3 (Human-Only column); p. 14, text and Figure 5c"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O9",
+          "name": "AUT fluency (responses per pair)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Number of responses per pair after 'pass' removed; human-AI counts include the AI's responses. Descriptive only, no test reported.",
+          "unit": "team",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["none"],
+              "reported": "Human-human pairs a total of 10 responses (book: 9.81; bottle: 10.20); human-AI pairs 11.7 responses (book: 11.80; bottle: 11.50). Means only, no SD or test.",
+              "locator": "p. 9, AUT Originality, first paragraph"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O10",
+          "name": "Short story originality (divergent semantic integration, DSI)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "DSI: semantic distance between all pairs of words in the story text (Johnson et al., 2022). Linear mixed model with condition, participant role, scaled DAT, random effect of group ID; second model adds word count. The story is co-written by both partners (AI sentences included in human-AI); whether DSI is scored per story or per participant's sentences is not stated.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic", "figure_only"],
+              "reported": "Initial model: intercept B = 0.812 (SE 0.005); condition B = -0.006, SE = 0.008, t = -0.79, p = .431; role B = 0.003, p = .667; condition x role B = -0.019, SE = 0.010, t = -1.83, p = .070. With word count: condition B = 0.006, SE = 0.008, t = 0.72, p = .472; condition x role B = -0.020, SE = 0.010, t = -2.03, p = .045. Coding of condition not stated for this model.",
+              "locator": "p. 14, Creative Short Story Task, Originality; p. 15, top and Figure 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O11",
+          "name": "Short story diversity (diversity contribution score)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Sentence-BERT embeddings; condition diversity = mean pairwise cosine dissimilarity among all stories in the condition; each story's diversity contribution = total diversity minus diversity without that story. Compared with Mann-Whitney U (non-normal distributions) and two-sample Kolmogorov-Smirnov. Stories are co-written by the pair (AI sentences included in human-AI). n = 72 human-AI pairs, 68 human-human pairs.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "figure_only"],
+              "reported": "Mann-Whitney U = 2674, p = 0.347 (Human-AI n = 72 pairs, Human-Human n = 68 pairs); Kolmogorov-Smirnov D = 0.217, p = 0.061. Shapiro-Wilk: Human-Human W = 0.856, p < 0.001; Human-AI W = 0.946, p = 0.004. No arm medians or means printed.",
+              "locator": "p. 15, Diversity paragraph and Figure 7a; p. 7, method"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Leave-one-out diversity contribution: condition mean pairwise cosine dissimilarity (1 - cosine similarity) minus the same quantity computed without the focal story",
+            "embedding_model": "Sentence-BERT paraphrase-multilingual-MiniLM-L12-v2",
+            "computed_over": "All pairs of stories within a condition; each story's contribution to its condition's diversity",
+            "uncertainty": "Mann-Whitney U and Kolmogorov-Smirnov tests on story-level contribution scores; no standard error or interval",
+            "notes": "One story per pair; further details in SI 2 (not in this PDF) and Luchini et al. (2025)."
+          }
+        },
+        {
+          "outcome_id": "S1-O12",
+          "name": "Short story forward flow (semantic distance between consecutive sentences)",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Exploratory forward flow over the sentence sequence; regression on condition, running sequence, and their interaction. Whether AI-written sentences are included is not stated (text describes 'human participants in Human-AI pairs').",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "mixed",
+              "statistics_available": ["regression_coefficient_se", "test_statistic", "figure_only"],
+              "reported": "Condition B = 0.002, SE = 0.016, t = 0.17, p = .90; running sequence B = 0.001, SE = 0.001, t = 1.50, p = .14; condition x sequence B = 0.004, SE = 0.002, t = 2.37, p = .018; R2 = .014, F(3, 1762) = 8.60, p < .001. Human-Human distance rises over sentences, Human-AI stays flat (Figure 7b).",
+              "locator": "p. 15, paragraph after Diversity and Figure 7b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O13",
+          "name": "Short story elaboration (story word count)",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Story word count (computed count); linear mixed model with condition, participant role, scaled DAT, random effect of group ID. Whether the count covers the whole co-written story or each participant's sentences is not stated.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "test_statistic", "figure_only"],
+              "reported": "Intercept B = 133.36 (SE 5.34); condition B = -48.38, SE = 7.68, t = -6.30, p < .001 (human-human fewer words); role B = -12.04, SE = 5.59, p = .033; condition x role B = 7.14, SE = 8.05, p = .377.",
+              "locator": "p. 16, Elaboration paragraph and Figure 8"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O14",
+          "name": "Divergent Association Task score taken individually after the collaborative tasks",
+          "construct": "other",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "DAT: 10 unrelated words, average pairwise GloVe cosine distance x 100. Completed individually, without the partner, after the collaborative tasks. The paper treats it as a baseline covariate of verbal creative ability, not as an outcome; arm means only, no test.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "Same session, after the collaborative tasks",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI",
+              "control_arm": "Human-Human",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "Humans in the paired group average DAT 75.4; humans in the AI group 76.7. No SD or test printed.",
+              "locator": "p. 4, procedure (DAT after tasks); p. 5, DAT description; p. 9, first paragraph"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "Project funded by an APA Division 10 microgrant. Author R.E.B. is supported by grants from Amazon and the National Science Foundation. GPT-4o accessed through the OpenAI API; no OpenAI involvement stated. Authors declare no competing interests.",
+    "locator": "p. 19, Funding and Declaration of competing interest"
+  },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Prolific participants were randomly assigned to collaborate with a GPT-4o partner or with a human partner (no AI) on the AUT and a short story (p. 4); the comparison is AI vs another aid (human partner), coded ai_vs_active. 208 people (Table 1: 72 in the AI arm, 136 in the human arm), well above 50; exclusion count not stated and models use 139 of 140 groups. Outcomes are scored on outputs by automated originality scores (CLAUS, DSI), word counts, and embedding-based diversity. Caveats: no solo or no-AI individual control, outputs in the main AUT and story models include AI-written text, and no human ratings."
+  },
+  "one_line_finding": "Pairing Prolific participants with GPT-4o instead of another participant raised pooled AUT originality only through longer responses (Condition Human-Human B = -0.065, SE 0.007 base; 0.010, SE 0.008 with word count; Table 2, p. 9), lowered the originality of humans' own responses (Human-Only B = 0.029, SE 0.010 favoring human-human; Table 2), and did not change story diversity (Mann-Whitney U = 2674, p = 0.347; p. 15).",
+  "open_questions": [
+    "AUT forward flow: condition reported as B = 0.091, SE = 0.094, t = 6.34 (p. 12); the SE and t are inconsistent, and the interaction is called non-significant with p = .015.",
+    "Table 2 and Table 3 notes say the base model includes 'date' (likely DAT) and give the item reference category as 'Brick' although the items were book and bottle; the Table 3 note says the covariates model adds word count, which is the outcome there.",
+    "Number of participants excluded for using outside internet or AI resources is not stated; models use 139 groups vs 140 pairs assigned (Tables 2-3), and the Levene df (3036, 2132) imply more observations than the 2,970 and 2,066 in the models.",
+    "The human-only originality contrast (S1-O2) controls for word count and fluency, both of which differ by condition (S1-O7, S1-O9).",
+    "The DAT was taken after the collaborative tasks, without the partner (p. 4), yet is used as a baseline covariate; it could serve as an after_ai outcome but only arm means (76.7 vs 75.4) are printed.",
+    "Whether story DSI and story word count are scored per story or per participant's sentences is not stated (the models include participant role).",
+    "Forward flow measures distance between consecutive ideas within a pair; coded flexibility at the team level rather than across_people diversity. The auditor may prefer diversity.",
+    "The control is a human partner, not a solo writer; whether ai_vs_active with a human partner fits the pooled comparisons is a Review 1 question."
+  ],
+  "notes": "One experiment with two tasks done by the same participants; task.type is set to divergent_test, but the short story outcomes (S1-O10 to S1-O13) are creative_writing. Human-human pairs have two humans contributing per pair, human-AI pairs one; the paper reruns the human-only originality model with one randomly selected human per human-human pair (p. 11). Pages cited are PDF page numbers; the document has no printed page numbers."
+}

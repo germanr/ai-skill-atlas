@@ -1,0 +1,67 @@
+{
+ "cid": "c881",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].design_class; eligibility.reason",
+   "form_value": "lab_rct; Listed in the screening report as a randomized-style experiment with fewer than 50 participants and self-reported outcomes only.",
+   "source_says": "Random assignment is not established. The procedure reports counterbalancing of condition and topic order, without saying that order was randomized. Code this as other, described as a counterbalanced within-subjects comparison with randomization not stated, rather than lab_rct; remove randomized-style from the eligibility reason. Keep assignment.randomized = not_stated and criterion_1_random_assignment_of_ai = unclear.",
+   "quote": "We control for the learning and ordering effects by counterbalancing the system condition and task topic order (2×2)",
+   "locator": "PDF p. 12, Sections 5.1.2 Conditions and 5.1.4 Procedure; no randomization statement found elsewhere in the full text or appendices."
+  },
+  {
+   "field": "studies (omitted formative study)",
+   "form_value": "Only Study 1 (comparative lab study) and Study 2 (field deployment) are entered.",
+   "source_says": "Add the formative study described in Section 3: 8 researchers (5M, 3F), with an artifact walkthrough, a Google Docs/Perplexity AI Wizard-of-Oz ideation activity, and interviews analyzed thematically. Use design_class = other, n_analyzed = 8, and n_randomized = null; there is no randomized comparison or qualifying output score. This study does not change the exclusion decision.",
+   "quote": "We conducted a formative study with 8 HCI and NLP researchers (5M, 3F) both to understand the challenges in existing ideation workflows and also to identify design opportunities for enhancing research ideation with AI.",
+   "locator": "PDF p. 4, Section 3 Formative Study; p. 21, Appendix A, Table 1, and Appendices B-C."
+  },
+  {
+   "field": "source.supplement",
+   "form_value": "{\"exists\": \"not_stated\", \"in_this_pdf\": false, \"where\": \"\", \"holds\": \"\"}",
+   "source_says": "The supplied PDF includes Appendices A-I on pp. 21-31. Record the included appendix material with exists = yes and in_this_pdf = true: participant tables, task instructions, qualitative themes, survey questions and Figure 8, and LLM prompts. Appendix G is on pp. 23-25 and contains the full survey results. A separate external supplement is not stated.",
+   "quote": "We separately report full survey questions and results in Appendix G.",
+   "locator": "PDF p. 14, Figure 7 caption; pp. 21-31, Appendices A-I; pp. 23-25, Appendix G, Table 5 and Figure 8."
+  },
+  {
+   "field": "source.version",
+   "form_value": "arXiv 2410.04025v2 (margin stamp 15 Jul 2025), camera-ready text of CHI '25 (April 26-May 1, 2025, Yokohama), DOI 10.1145/3706598.3714057; PDF pages checked directly",
+   "source_says": "The version directly verified is arXiv 2410.04025v2, dated 15 Jul 2025, in CHI 2025 conference format with DOI 10.1145/3706598.3714057. The document does not explicitly identify itself as camera-ready; remove that unverified status claim while retaining the verified arXiv version, date, and conference/DOI information.",
+   "quote": "arXiv:2410.04025v2 [cs.HC] 15 Jul 2025",
+   "locator": "PDF p. 1, arXiv margin stamp and conference/copyright block; p. 2, ACM Reference Format."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "[] for S1-O1, S1-O2, and S1-O3",
+   "source_says": "Populate the available-statistics fields: S1-O1 has figure_only (the novelty plot, without printed numerical means); S1-O2 has arm_means_sds_ns and test_statistic (the latter is the joint MANOVA, not a univariate exploration test); S1-O3 has arm_means_sds_ns. The within-person sample is the same 20 people in both conditions. The printed p-value thresholds remain as recorded in reported; no standardized effect or confidence interval is supplied for these outcomes.",
+   "quote": "We used Wilcoxon signed-rank tests for pairwise two-condition comparisons for independent Likert scale survey questions (Fig. 8) and T-test for temporal data.",
+   "locator": "PDF p. 12, Sections 5.1.1-5.1.2; p. 13, Sections 5.2, 5.3.1 and 5.3.2; p. 14, Figure 7; p. 25, Figure 8, visually inspected."
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced, timing, primary; studies[*].assignment.preregistered",
+   "form_value": "All of these coded fields are empty strings.",
+   "source_says": "For all three listed lab outcomes, ai_available_when_produced = yes and timing = immediate: both systems provide LLM assistance during ideation and the survey follows each task. S1-O2 can be labeled paper_primary because exploration is explicitly one of the pre-selected key measures; use not_stated for the primary status of S1-O1 and S1-O3, which are not explicitly designated primary or secondary. Preregistration is not reported for either entered study, so use preregistered = not_stated, not an empty string. These remain self-reports, not qualifying output scores.",
+   "quote": "After each task, participant filled out a survey to evaluate the quality of their research idea and record their perception about the use experience and the task workload.",
+   "locator": "PDF p. 12, Sections 5.1.2 and 5.1.4; p. 13, Section 5.2; p. 14, Figure 7; p. 16, Section 6; full document and appendices contain no preregistration statement."
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion, including Appendices A-I, and checked the recorded numbers on the corresponding PDF pages; the PDF has 31 pages and carries the arXiv 2410.04025v2 stamp dated 15 Jul 2025 (PDF p. 1).",
+  "The title and all nine authors, in the order recorded in the form, match the document title page (PDF p. 1).",
+  "The comparative study contains 20 people in total, each using both systems: 12 HCI and 8 NLP researchers, with 11 men, 8 women, and 1 nonbinary participant; 20 per condition must not be summed into 40 people. No exclusion count or randomized count is reported (PDF p. 12, Sections 5.1.1-5.1.4; p. 22, Appendix D, Table 3).",
+  "The lab participants are PhD students and postdocs conducting research in the U.S. or Canada, as recorded (PDF p. 12, Section 5.1.1; p. 22, Table 3).",
+  "Both conditions use generative AI with the same underlying LLM setup and system prompt; ai_design is the appropriate comparison type. The baseline has a subset of IdeaSynth features, including literature search/recommendations, Q&A, and AI Assist Writing (PDF p. 12, Section 5.1.2).",
+  "The implementation uses gpt-4-turbo at temperature 0.7, with gpt-3.5-turbo for paper-facet processing (PDF p. 11, Section 4.3; p. 12, Section 4.4).",
+  "Each participant develops ideas on two assigned topics, with 30 minutes per task and a session of around 90 minutes; the task sheet requests a research brief of around 12 sentences (PDF p. 12, Sections 5.1.3-5.1.4; p. 22, Appendix E).",
+  "Exploration is a self-reported survey outcome: IdeaSynth mean = 5.40, SD = 1.50 versus baseline mean = 3.65, SD = 1.60, p < 0.01. All numbers in S1-O2.reported match (PDF p. 13, Section 5.3.1).",
+  "The joint MANOVA on Impact, Feasibility, Literature Grounding, and Sufficient Exploration is F = 3.30, p < 0.05, as recorded; it is not a pooled synthesis or a test of exploration alone (PDF p. 14, Figure 7 caption).",
+  "Expansion is self-reported: IdeaSynth mean = 6.05, SD = 0.89 versus baseline mean = 4.45, SD = 2.04. Figure 8 marks Expanding Research Idea with two asterisks, defined as p < 0.01 for a Wilcoxon signed-rank test treating the item independently; S1-O3.reported matches (PDF p. 13, Section 5.3.2; p. 25, Figure 8, visually inspected).",
+  "The text reports no significant individual condition differences for self-rated novelty, impact, specificity, feasibility, or relevance. Figure 8 gives no printed novelty mean or significance marker; S1-O1.reported and the numerical findings in one_line_finding match (PDF p. 15, Section 5.3.5; p. 25, Figure 8, visually inspected).",
+  "Idea-quality measures are participants' own ratings, and interaction logs measure actions rather than the creativity or diversity of produced briefs. No independent rater or computed outcome measure scores creativity/diversity of the briefs, and no across-person diversity analysis is reported (PDF pp. 12-13, Section 5.2; p. 15, Sections 5.3.4-5.3.5; p. 18, Section 7.4.2; pp. 23-25, Appendix G).",
+  "All 7 deployment participants completed the study: 3 HCI and 4 NLP, drawn from the lab sample. They were asked to use IdeaSynth for at least three days and at least one hour total, followed by a 15-30 minute interview; this is not an independent extra sample to add to the lab count (PDF p. 16, Section 6).",
+  "Core = no, criterion_2_at_least_50_people = not_met, criterion_3_outcome_scored_on_output = not_met, and context_class = none are supported. No confirmed randomized study with qualifying output-scored creativity/diversity occurs in the paper; the quantitative ideation comparison is below 50 people and uses self-reports (PDF p. 4, Section 3; pp. 12-15, Section 5; p. 16, Section 6).",
+  "This is an empirical system/user-study paper rather than a synthesis; leaving the synthesis study/effect counts null and pooled estimates empty is correct (PDF p. 4, Section 3; pp. 12-16, Sections 5-6)."
+ ],
+ "summary": "The reported counts and self-rating statistics match the PDF, and no qualifying randomized study with creativity or diversity scored on participants' output was found. Corrections address the unsupported RCT label, omitted formative study and appendices, unverified camera-ready wording, and incomplete outcome metadata; core exclusion remains correct."
+}

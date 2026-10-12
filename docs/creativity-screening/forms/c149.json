@@ -1,0 +1,360 @@
+{
+ "cid": "c149",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "",
+  "pdf_file": "",
+  "version": "Journal version of record (PNAS Nexus 3(3), pgae052, published March 2024), read as the open-access Europe PMC full-text XML (PMC10914360), which has no page numbers; Supporting Information PDF (24 pages) read in memory from the Europe PMC supplementaryFiles endpoint. No PDF of the main article was on file.",
+  "title_on_document": "Generative artificial intelligence, human creativity, and art",
+  "authors_on_document": [
+   "Eric Zhou",
+   "Dokyun Lee"
+  ],
+  "pages": null,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": false,
+   "where": "PNAS Nexus online, file pgae052_Supplementary_Data.pdf (24 pages); read via Europe PMC supplementaryFiles for PMC10914360",
+   "holds": "Sample counts and user-month summary statistics (Table S1), heterogeneity regression (Table S3), aggregate ATTs under measurement-error simulations (Tables S4 and S5), event-study ATTs with standard errors and 95 percent bounds for productivity, value, and mean/min/max Content and Visual Novelty (Tables S6 to S9), and generalized synthetic control results (Tables S10 to S13). The main text reports the novelty effects only as figures."
+  }
+ },
+ "paper_design_summary": "The authors use the full posting histories (January 2022 to June 2023) of over 53,000 users of a large art-sharing platform, of whom over 5,800 adopted text-to-image AI, identified from AI tags on their posts. An event-study difference-in-differences (Callaway and Sant'Anna, doubly robust) compares adopters with never-treated and not-yet-treated users on monthly posts, favorites per view, and Content and Visual Novelty, defined as the cosine distance of each artwork's BLIP-2/SBERT caption embedding or DINOv2 image embedding from all earlier artworks. No one was assigned to AI.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Art-sharing platform panel, AI adopters vs non-adopters (event-study DiD)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "",
+    "structure": "",
+    "quote": "",
+    "locator": "",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "",
+     "description": "",
+     "ai": "",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "Panel winsorized to drop users with extreme pretreatment activity; Table S1 lists 4,764 adopters and 40,275 non-adopters after winsorizing (SI p. 2). Novelty was computed for all adopters' artworks and a random sample of 10,000 control users (SI p. 3, Section 1C).",
+    "population": "general_public",
+    "who": "Users who declared they produce 'Digital Art' on one of the largest art-sharing platforms (platform not named); over 53,000 users, over 4.3 million artworks, over 5,800 known AI adopters. Analysis panel at the user-month level.",
+    "country": "not_stated",
+    "quote": "We received a panel of the entire publishing histories of over 53,000 unique users on the platform from January of 2022 until June of 2023, consisting of over 4.3 million digital artworks",
+    "locator": "SI p. 2, Section 1A and Table S1; main text Introduction"
+   },
+   "ai_tool": {
+    "name_model": "Text-to-image generative AI (Midjourney, Stable Diffusion, DALL-E, etc.), adoption identified by keyword matching on post titles and tags and by posts in AI art communities",
+    "role": "image_generation",
+    "how_used": "Artists chose to use text-to-image tools in their own work; adoption date is the user's first known AI-generated post."
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Digital artworks posted to an art-sharing platform",
+    "duration": "Panel from January 2022 to June 2023; event windows from 3 months before to 7 months after adoption"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Mean Content Novelty (cosine distance of BLIP-2 caption SBERT embedding to all prior artworks, mean per artwork, user-month)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Content Novelty uses pairwise cosine distances between BLIP-2 caption embeddings from Sentence-BERT and earlier artworks; the panel is aggregated monthly (main article, Materials and methods, Measuring creative novelty and Content feature extraction; SI pp. 2-3, Sections 1A and 1C-1D). Minimum Content Novelty is retained here as a measurement variant: aggregate ATT (original) -0.0154 (SI p. 10, Table S4); event-study month 0 ATT -0.0101* (SE 0.0034; 95% confidence bounds [-0.0197, -0.0005]); Observations 43,126 (SI p. 18, Table S8). The observation count is user-months, not distinct people. Standard errors are clustered at the user level; * marks significance at the 95% confidence level. Generalized synthetic control robustness results appear in SI p. 21, Table S11 (mean), and p. 22, Table S12 (minimum).",
+     "unit": "participant",
+     "n_units": 43126,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "AI adopters, months since first AI-tagged post",
+       "control_arm": "Never-treated and not-yet-treated users (doubly robust event-study DiD)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "mean_difference_se",
+        "confidence_interval"
+       ],
+       "reported": "Aggregate ATT (original) -0.0088 (Table S4). Event-study ATT: month 0 -0.0059* (SE 0.0019); month 6 -0.0161* (SE 0.0028); month 7 -0.0066 (SE 0.0036); Observations 43,126 (Table S7). Main text: 'average Content Novelty decreases over time among adopters' (Fig. 1c).",
+       "locator": "Main text, Results, 'Content Novelty', Fig. 1c; SI p. 10, Table S4; SI p. 17, Table S7"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Maximum Content Novelty (maximum cosine distance of caption embedding to prior artworks, user-month)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": 43126,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "AI adopters, months since first AI-tagged post",
+       "control_arm": "Never-treated and not-yet-treated users (doubly robust event-study DiD)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "mean_difference_se",
+        "confidence_interval"
+       ],
+       "reported": "Aggregate ATT (original) 0.0032 (Table S4). Event-study ATT: month 1 0.0033* (SE 0.0011); month 6 0.0033 (SE 0.0021); Observations 43,126 (Table S8). Main text: maximum Content Novelty 'is increasing and marginally statistically significantly within the first several months after adoption' (Fig. 1d).",
+       "locator": "Main text, Results, 'Content Novelty', Fig. 1d; SI p. 10, Table S4; SI p. 18, Table S8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Mean Visual Novelty (cosine distance of DINOv2 image embedding to all prior artworks, mean per artwork, user-month)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Visual Novelty uses pairwise cosine distances between DINOv2 image embeddings and earlier artworks; the panel is aggregated monthly (main article, Materials and methods, Measuring creative novelty and Visual feature extraction; SI pp. 2-3, Sections 1A, 1C and 1E). Minimum Visual Novelty is retained here as a measurement variant: aggregate ATT (original) -0.0254 (SI p. 10, Table S4); event-study month 0 ATT -0.0245* (SE 0.0054; 95% confidence bounds [-0.0400, -0.0091]); Observations 44,078 (SI p. 19, Table S9). The observation count is user-months, not distinct people. Standard errors are clustered at the user level; * marks significance at the 95% confidence level. Generalized synthetic control robustness results appear in SI p. 21, Table S11 (mean), and p. 23, Table S13 (minimum).",
+     "unit": "participant",
+     "n_units": 44078,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "AI adopters, months since first AI-tagged post",
+       "control_arm": "Never-treated and not-yet-treated users (doubly robust event-study DiD)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "mean_difference_se",
+        "confidence_interval"
+       ],
+       "reported": "Aggregate ATT (original) -0.0409 (Table S4). Event-study ATT: month -1 -0.0150* (SE 0.0033); month 0 -0.0286* (SE 0.0038); month 7 -0.1031* (SE 0.0083); Observations 44,078 (Table S7). Main text: 'average Visual Novelty is decreasing over time among adopters' (Fig. 1e).",
+       "locator": "Main text, Results, 'Visual Novelty', Fig. 1e; SI p. 10, Table S4; SI p. 17, Table S7"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Maximum Visual Novelty (maximum cosine distance of DINOv2 image embedding to prior artworks, user-month)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": 44078,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "AI adopters, months since first AI-tagged post",
+       "control_arm": "Never-treated and not-yet-treated users (doubly robust event-study DiD)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "mean_difference_se",
+        "confidence_interval"
+       ],
+       "reported": "Aggregate ATT (original) -0.0048 (Table S4). Event-study ATT: month 0 -0.0039* (SE 0.0012); month 7 -0.0145* (SE 0.0030); Observations 44,078 (Table S9).",
+       "locator": "Main text, Results, 'Visual Novelty', Fig. 1f; SI p. 10, Table S4; SI p. 19, Table S9"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Value: favorites per view received after 2 weeks (user-month)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": 195632,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "AI adopters, months since first AI-tagged post",
+       "control_arm": "Never-treated and not-yet-treated users (doubly robust event-study DiD)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "mean_difference_se",
+        "confidence_interval"
+       ],
+       "reported": "Main text: 'a 50% increase in artwork favorability by the sixth month, jumping from the preadoption average of 2% to a steady 3% rate of earning a favorite per view' (Fig. 1b). Aggregate ATT (original) 0.0019 (Table S4). Event-study ATT: month 6 0.0092* (SE 0.0015); Observations 195,632 (Table S6).",
+       "locator": "Main text, Results, 'Creative value', Fig. 1b; SI p. 10, Table S4; SI p. 16, Table S6"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Creative productivity: log monthly artwork posts (user-month)",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Log of the number of artifacts a user posts in a month (main article, Results, Creative productivity, Fig. 1a). The analysis uses a monthly panel: n_units counts user-month observations, not distinct people (SI p. 2, Section 1A; p. 16, Table S6). Event-study ATT estimates use a doubly robust estimator with standard errors clustered at the user level; * marks significance at the 95% confidence level (SI p. 16, Table S6). Generalized synthetic control robustness results are reported in SI p. 20, Table S10.",
+     "unit": "participant",
+     "n_units": 252299,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI adopters, months since first AI-tagged post",
+       "control_arm": "Never-treated and not-yet-treated users (doubly robust event-study DiD)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "mean_difference_se",
+        "confidence_interval"
+       ],
+       "reported": "Aggregate ATT (original) 0.3170 (Table S4). Event-study ATT: month 0 0.5131* (SE 0.0525; 95% confidence bounds [0.3627, 0.6636]); month 1 1.0529* (SE 0.0705; 95% confidence bounds [0.8509, 1.2549]); Observations 252,299 (Table S6), counting user-months.",
+       "locator": "Main article XML, Results, Creative productivity, Fig. 1a; SI p. 2, Section 1A; p. 10, Table S4; p. 16, Table S6"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "https://osf.io/jfzyp/",
+  "code_url": "https://osf.io/jfzyp/"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "Observational platform data: users self-selected into text-to-image AI, and adoption was inferred from post tags; effects come from an event-study difference-in-differences against never-treated and not-yet-treated users. No one was randomly assigned to AI. Novelty is each artwork's embedding distance from all earlier platform artworks, scored on real output."
+ },
+ "one_line_finding": "After adopting text-to-image AI, artists' mean Content Novelty fell (aggregate ATT -0.0088) and mean Visual Novelty fell (-0.0409), maximum Content Novelty rose slightly (0.0032), and favorites per view rose from about 2 percent to 3 percent by month six (SI p. 10, Table S4; main text, Fig. 1).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].outcomes (omitted creative productivity)",
+    "old": "Five outcomes (S1-O1 through S1-O5); creative productivity was omitted.",
+    "new": "Added S1-O6, creative productivity (log monthly artwork posts), as an output-based fluency outcome. Aggregate ATT (original) 0.3170 (Table S4). Event-study ATT: month 0 0.5131* (SE 0.0525; 95% confidence bounds [0.3627, 0.6636]); month 1 1.0529* (SE 0.0705; 95% confidence bounds [0.8509, 1.2549]); Observations 252,299 (Table S6), counting user-months.",
+    "quote": "We define creative productivity as the log of the number of artifacts that a user posts in a month.",
+    "locator": "Main article XML, Results, Creative productivity, Fig. 1a; SI p. 2, Section 1A; p. 10, Table S4; p. 16, Table S6"
+   },
+   {
+    "field": "studies[0].outcomes / measure_detail (omitted minimum-novelty measures)",
+    "old": "S1-O1 and S1-O3 had empty measure_detail fields; minimum Content and Visual Novelty were omitted.",
+    "new": "Added minimum Content and Visual Novelty as measurement variants in S1-O1 and S1-O3 measure_detail, with original aggregate ATTs -0.0154 and -0.0254, respectively, and month-0 ATTs, SEs, confidence bounds, user-month observation counts, and robustness-table locators.",
+    "quote": "recovering the mean, minimum, and maximum distances for each artifact.",
+    "locator": "Main article XML, Materials and methods, Measuring creative novelty; SI p. 3, Section 1C; p. 10, Table S4; pp. 18-19, Tables S8-S9"
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+    "old": "[] for all five existing outcomes.",
+    "new": "All six outcomes record mean_difference_se and confidence_interval: the tables provide average treatment effects on the treated (ATT), user-clustered standard errors, and confidence bounds.",
+    "quote": "Standard errors clustered at the user-level.",
+    "locator": "SI pp. 16-19, Tables S6-S9, ATT, Std. Error, Lower and Upper columns and table notes; main article XML, Fig. 1 caption (95% CI)"
+   },
+   {
+    "field": "data_and_code.data_url / data_and_code.code_url",
+    "old": "Both URLs were empty strings.",
+    "new": "Both data_url and code_url are https://osf.io/jfzyp/; the article and supplement identify the replication archive and state that data are anonymized.",
+    "quote": "Replication archive with code is available at Open Science Framework (OSF) at https://osf.io/jfzyp/.",
+    "locator": "Main article XML, Data Availability; SI p. 2, opening paragraph"
+   }
+  ],
+  "rejected": []
+ }
+}

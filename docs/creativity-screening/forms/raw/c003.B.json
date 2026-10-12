@@ -1,0 +1,581 @@
+{
+  "cid": "c003",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Boussioux et al (2024) - The Crowdless Future Generative AI and Creative Problem-Solving.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Boussioux et al (2024) - The Crowdless Future Generative AI and Creative Problem-Solving.pdf",
+    "version": "Journal version of record: Organization Science 35(5):1589-1607, September-October 2024, published online in Articles in Advance August 16, 2024 (received November 30, 2023, accepted June 26, 2024); INFORMS download with cover page dated 27 May 2026. Open access CC BY 4.0. The online appendix (Appendices A-E) is not part of this PDF.",
+    "title_on_document": "The Crowdless Future? Generative AI and Creative Problem-Solving",
+    "authors_on_document": ["Léonard Boussioux", "Jacqueline N. Lane", "Miaomiao Zhang", "Vladimir Jacimovic", "Karim R. Lakhani"],
+    "pages": 20
+  },
+  "paper_design_summary": "The authors ran a crowdsourcing challenge (Freelancer.com, with Continuum Laboratory) for circular-economy business ideas and received 125 eligible human-crowd (HC) solutions; separately, one author prompted GPT-4 to generate 730 human-AI (HAI) solutions using a multiple-instance (independent search) or single-instance (differentiated search) configuration. A random selection of 234 solutions (54 HC, 90 HAI multiple-instance, 90 HAI single-instance) was split into 18 blocks of 13, and 300 screened Prolific evaluators, each randomly assigned one block and blind to source, rated each solution on novelty, strategic viability, environmental value, financial value, and overall quality (1-5 Likert). No person was randomly assigned to work with or without AI; the paper compares AI-generated (author-prompted) output with crowd-generated output.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Crowdsourcing challenge solutions vs GPT-4 (human-prompted) solutions, rated by 300 evaluators",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "No solver was assigned to AI. Solution source (human crowd vs GPT-4 prompted by one author) is not assigned to people. Randomization applies only to evaluation: 234 of 855 solutions were randomly selected and evaluators were randomly assigned one of 18 solution blocks (each block: 3 HC, 5 HAI multiple-instance, 5 HAI single-instance). Each evaluator rated both HC and HAI solutions.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "One of the study's authors completed all prompt engineering techniques to generate the solutions using the default temperature parameter of 1.0.",
+        "locator": "PDF p. 8 (journal p. 1595), Human-AI Collaboration and Prompt Engineering; blocks and evaluator assignment PDF p. 9 (p. 1596), Evaluator Recruitment and Procedures, and PDF p. 10 (p. 1597), Figure 2",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Human crowd (HC)", "description": "Solutions submitted to the crowdsourcing challenge (January 30 to May 15, 2023); 125 eligible, 54 randomly selected for evaluation (Table 2: Number of ideas 54).", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "HAI multiple instance (independent search)", "description": "GPT-4 solutions, each from a separate instance with the same prompt; 90 randomly selected for evaluation (Table 2).", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "HAI single instance (differentiated search)", "description": "GPT-4 solutions generated successively in one instance, with a human-written differentiation instruction after each output; 90 randomly selected for evaluation (Table 2).", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "Output producers: the contest received 310 submissions; 148 participants received $10 for nonblank entries; 125 of the 148 submissions were deemed eligible after filtering off-topic or insufficiently detailed solutions; 54 HC solutions were randomly selected for evaluation (the paper counts solutions, not solvers, for the analyzed set). AI solutions were produced by one author with GPT-4 (730 generated, 180 evaluated). Raters: 1,000 Prolific evaluators recruited, 300 passed the screening survey (145 first call, 155 second call); 3,900 evaluator-solution pairs analyzed.",
+        "population": "mixed",
+        "who": "Solvers: global participants in a Freelancer.com crowdsourcing challenge from various industries. Raters: US adults on Prolific screened for interest, work experience, and circular-economy knowledge.",
+        "country": "Solvers: global (not broken down); evaluators: United States",
+        "quote": "The challenge attracted 125 global solvers from various industries. ... We recruited 300 external human evaluators to judge a randomized selection of 13 out of 234 solutions, totaling 3,900 evaluator-solution pairs.",
+        "locator": "PDF p. 2 (journal p. 1589), Abstract; PDF p. 8 (p. 1595), Crowdsourcing Context; PDF p. 9 (p. 1596), Evaluator Recruitment and Procedures"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI GPT-4 via the Python API, default temperature 1.0 (mid-2023)",
+        "role": "other",
+        "how_used": "One author generated complete solutions with GPT-4 (AI-generated output, no participant used AI). Two configurations: multiple instances (independent search) and a single instance with an added differentiation instruction after each output (differentiated search). Three layered prompts: baseline (problem description, one-shot example, evaluation criteria, chain-of-thought-like wording), role-play as individual solver profiles, and role-play as famous experts from 23 industries. 730 solutions, about 27.2 seconds and $0.037 each."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Propose a sustainable, circular-economy business idea in a problem-solution format; solutions judged on novelty, strategic viability, environmental value, financial value, and overall quality.",
+        "duration": "Contest ran January 30 to May 15, 2023; paper states HC solutions took 2,520 hours and $2,555 in total, HAI solutions 5.5 hours and $27.01."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Novelty rating",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Five-point Likert rating by blind Prolific evaluators: 'How different is it from existing solutions?'. Nested mixed-effects model (lmerTest) with evaluators nested in 18 solution blocks, controls for screening criteria, evaluator demographics, cohort, and word count. Results without controls are in online Appendix D (not in this PDF).",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (multiple and single instance pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 3 Model 1: HAI Solution -0.140*** (0.035); N = 3,900, 18 blocks, 300 evaluators; text: p < 0.001",
+              "locator": "PDF p. 12 (journal p. 1599), Table 3; text PDF p. 11 (p. 1598)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 1: HAI Multiple Instance -0.217*** (0.039), text p < 0.001. Table 2 mean rating: HC 3.508 (1.127), 54 ideas; multiple 3.230 (1.040), 90 ideas; p vs HC 0.013",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 1: HAI Single Instance -0.056 (0.039), text p = 0.156. Table 2: HC 3.508 (1.127); single 3.469 (0.993), 90 ideas; p vs HC 0.657",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance (differentiated search)",
+              "control_arm": "HAI multiple instance (independent search)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "arm_means_sds_ns"],
+              "reported": "Table 2: single 3.469 (0.993) vs multiple 3.230 (1.040); p vs multiple instance 0.002. Text: emmeans pairwise comparison of Table 4 coefficients p < 0.001",
+              "locator": "PDF p. 12 (journal p. 1599), Table 2; PDF p. 13 (p. 1600), text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Strategic viability rating",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Five-point Likert rating: 'How likely is it to succeed and how scalable is it?'. Same mixed-effects model as S1-O1.",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 3 Model 2: HAI Solution 0.088* (0.037); text p = 0.016",
+              "locator": "PDF p. 12 (journal p. 1599), Table 3; text PDF p. 11 (p. 1598)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 2: 0.047 (0.040), text p = 0.239. Table 2: HC 3.194 (1.125); multiple 3.236 (1.037); p vs HC 0.445",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 2: 0.133** (0.041), text p = 0.001. Table 2: HC 3.194 (1.125); single 3.315 (1.070); p vs HC 0.069",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "HAI multiple instance",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "arm_means_sds_ns"],
+              "reported": "Table 2: single 3.315 (1.070) vs multiple 3.236 (1.037); p vs multiple instance 0.165. Text post hoc test of Table 4 coefficients: p = 0.038",
+              "locator": "PDF p. 12 (journal p. 1599), Table 2; PDF p. 13 (p. 1600), text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Environmental value rating",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Five-point Likert rating: 'How much does it benefit the planet?'. Same mixed-effects model as S1-O1.",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 3 Model 3: HAI Solution 0.160*** (0.029); text p < 0.001",
+              "locator": "PDF p. 12 (journal p. 1599), Table 3; text PDF p. 11 (p. 1598)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 3: 0.136*** (0.032), text p < 0.001. Table 2: HC 3.616 (1.037); multiple 3.763 (0.934); p vs HC 0.009",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 3: 0.186*** (0.033), text p < 0.001. Table 2: HC 3.616 (1.037); single 3.827 (0.913); p vs HC 0.000",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "HAI multiple instance",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "arm_means_sds_ns"],
+              "reported": "Table 2: single 3.827 (0.913) vs multiple 3.763 (0.934); p vs multiple instance 0.120",
+              "locator": "PDF p. 12 (journal p. 1599), Table 2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Financial value rating",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Five-point Likert rating: 'What financial value can it create for businesses?'. Same mixed-effects model as S1-O1.",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 3 Model 4: HAI Solution 0.143*** (0.033); text p < 0.001",
+              "locator": "PDF p. 12 (journal p. 1599), Table 3; text PDF p. 11 (p. 1598)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 4: 0.160*** (0.036), text p < 0.001. Table 2: HC 3.086 (1.051); multiple 3.237 (1.002); p vs HC 0.004",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 4: 0.126*** (0.037), text p < 0.001. Table 2: HC 3.086 (1.051); single 3.239 (0.996); p vs HC 0.009",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "HAI multiple instance",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "arm_means_sds_ns"],
+              "reported": "Table 2: single 3.239 (0.996) vs multiple 3.237 (1.002); p vs multiple instance 0.636",
+              "locator": "PDF p. 12 (journal p. 1599), Table 2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Overall quality rating",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Five-point Likert rating: 'Based on the four criteria above, what is the overall quality of the solution?'. Coded usefulness because the codebook lists quality there; it is an overall judgment combining novelty and the three value criteria, so it could also be read as overall_creativity. Same mixed-effects model as S1-O1.",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 3 Model 5: HAI Solution 0.101** (0.032); text p = 0.002",
+              "locator": "PDF p. 12 (journal p. 1599), Table 3; text PDF p. 11 (p. 1598)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 5: 0.049 (0.035), text p = 0.165. Table 2: HC 3.292 (1.058); multiple 3.345 (0.952); p vs HC 0.324",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns", "p_value_only"],
+              "reported": "Table 4 Model 5: 0.159*** (0.036), text p < 0.001. Table 2: HC 3.292 (1.058); single 3.461 (0.936); p vs HC 0.007",
+              "locator": "PDF p. 13 (journal p. 1600), Table 4 and text; PDF p. 12 (p. 1599), Table 2"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "HAI multiple instance",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "arm_means_sds_ns"],
+              "reported": "Table 2: single 3.461 (0.936) vs multiple 3.345 (0.952); p vs multiple instance 0.011. Text: multiple- and single-instance coefficients statistically different (p < 0.001)",
+              "locator": "PDF p. 12 (journal p. 1599), Table 2; PDF p. 13 (p. 1600), text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Top Novelty (binary: rating of 5 on novelty)",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Binary variable set to one if the evaluator gave the top rating (5 of 5). Linear mixed-effects model as in S1-O1. Table 2 separately reports mean novelty among solutions in the top decile: HC 4.364, multiple 3.901 (p vs HC 0.000), single 4.003 (p vs HC 0.000; p vs multiple 0.184).",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 5 Model 1: HAI Solution -0.079*** (0.012); text: 7.9 percentage points less likely, p < 0.001",
+              "locator": "PDF p. 13 (journal p. 1600), Table 5; text PDF p. 14 (p. 1601)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 1: HAI Multiple Instance -0.091*** (0.014); text p < 0.001",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 1: HAI Single Instance -0.065*** (0.014); text p < 0.001",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Top Strategic Viability (binary)",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Binary top rating (5 of 5) on strategic viability. Table 2 top-decile means: HC 3.789, multiple 3.797 (p vs HC 0.881), single 3.886 (p vs HC 0.132; p vs multiple 0.091).",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 5 Model 2: 0.004 (0.012); text p = 0.710",
+              "locator": "PDF p. 13 (journal p. 1600), Table 5; text PDF p. 14 (p. 1601)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 2: -0.009 (0.031); text p = 0.469",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 2: 0.019 (0.013); text p = 0.138",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "Top Environmental Value (binary)",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Binary top rating (5 of 5) on environmental value. Table 2 top-decile means: HC 4.197, multiple 4.308 (p vs HC 0.043), single 4.267 (p vs HC 0.181; p vs multiple 0.466).",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 5 Model 3: 0.017 (0.014); text p = 0.209",
+              "locator": "PDF p. 13 (journal p. 1600), Table 5; text PDF p. 14 (p. 1601)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 3: 0.014 (0.015); text p = 0.350",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 3: 0.021 (0.015); text p = 0.176",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O9",
+          "name": "Top Financial Value (binary)",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Binary top rating (5 of 5) on financial value. Table 2 top-decile means: HC 3.701, multiple 3.801 (p vs HC 0.304), single 3.702 (p vs HC 0.985; p vs multiple 0.087).",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 5 Model 4: 0.005 (0.010); text p = 0.658",
+              "locator": "PDF p. 13 (journal p. 1600), Table 5; text PDF p. 14 (p. 1601)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 4: 0.013 (0.011); text p = 0.264",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 4: -0.004 (0.011); text p = 0.705",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O10",
+          "name": "Top Quality (binary)",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Binary top rating (5 of 5) on overall quality. Table 2 top-decile means: HC 3.950, multiple 3.902 (p vs HC 0.514), single 3.975 (p vs HC 0.578; p vs multiple 0.340).",
+          "unit": "rating",
+          "n_units": 3900,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "HAI (pooled)",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 5 Model 5: -0.008 (0.011); text p = 0.462",
+              "locator": "PDF p. 13 (journal p. 1600), Table 5; text PDF p. 14 (p. 1601)"
+            },
+            {
+              "treatment_arm": "HAI multiple instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 5: -0.017 (0.012); text p = 0.173",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            },
+            {
+              "treatment_arm": "HAI single instance",
+              "control_arm": "Human crowd",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "Table 6 Model 5: 0.001 (0.012); text p = 0.924",
+              "locator": "PDF p. 14 (journal p. 1601), Table 6 and text"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "The challenge was run in partnership with Continuum Laboratory, an AI company, and Freelancer.com. Coauthor Vladimir Jacimovic is affiliated with ContinuumLab.AI (CEO and founder per the author bio).",
+    "locator": "PDF p. 2 (journal p. 1589), author affiliations; PDF p. 7 (p. 1594), Crowdsourcing Context; PDF p. 20 (p. 1607), author bios"
+  },
+  "data_and_code": { "data_url": "", "code_url": "https://github.com/leobix/creative" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "unclear",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "ai_vs_human",
+    "reason": "No person was randomly assigned to AI assistance. The AI arms are complete solutions generated by one author prompting GPT-4, compared with crowd-submitted solutions; only the evaluators were randomized to solution blocks. This is AI-versus-human output (context). Output producers are not counted as people for the analyzed set (54 HC solutions from a pool of 125 eligible solvers/solutions; AI solutions from one author); 300 evaluators rated outputs. Outcomes are rater-scored novelty, value, and quality on the output."
+  },
+  "one_line_finding": "Rated by 300 blind evaluators (3,900 ratings), GPT-4 solutions prompted by one author scored lower than crowd solutions on novelty (-0.140, SE 0.035) and on top-novelty share (-0.079) but higher on strategic viability (0.088), environmental value (0.160), financial value (0.143), and overall quality (0.101) (PDF pp. 12-13, Tables 3 and 5).",
+  "open_questions": [
+    "Whether overall quality should be coded usefulness (codebook lists quality there) or overall_creativity (an overall rating built on all four criteria).",
+    "Whether the single- vs multiple-instance comparison is better coded ai_design or other, since both arms are model outputs produced by the same author and no person was assigned."
+  ],
+  "notes": "PDF page numbers count the INFORMS cover page as p. 1, so journal p. 1589 = PDF p. 2. Online Appendices A-E (including results without controls in Appendix D and a text analysis of HC and HAI solutions in Appendix E) are not in this PDF; any diversity or similarity analysis there was not reviewed. Two internal inconsistencies as printed: (1) PDF p. 10 (p. 1597) text says single-instance quality exceeds HC with 'single instance: p = 0.011', while Table 2 gives p vs HC 0.007 and p vs multiple instance 0.011; (2) Table 6 Model 2 prints SE 0.031 for HAI Multiple Instance (-0.009), while all other SEs in that column are 0.013 and the text p = 0.469 matches an SE near 0.013 better; recorded as printed. Table 2 'Mean rating across all solutions' SDs are in parentheses; Table 2 p-values are not described in method. Unit of analysis for Tables 3-6 is the evaluator-solution pair (N = 3,900, 300 evaluators in 18 blocks)."
+}

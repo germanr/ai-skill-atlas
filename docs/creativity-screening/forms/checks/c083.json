@@ -1,0 +1,72 @@
+{
+ "cid": "c083",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[*].assignment.randomized; eligibility.criterion_1_random_assignment_of_ai",
+   "form_value": "All four assignment.randomized fields and criterion_1_random_assignment_of_ai are empty strings.",
+   "source_says": "Set assignment.randomized to no for S1-S4 and criterion_1_random_assignment_of_ai to not_met. Adoption is detected retrospectively; the search analysis compares referral sources around the Bing Chat release. Neither design randomly assigns people to AI.",
+   "quote": "Furthermore, the non-random adoption of Gen AI tools creates the potential for self-selection bias,",
+   "locator": "p. 7, Limitations and Future Directions; pp. 2-6, Results; p. 11, Figure 1 caption; p. 14, Figure 4 caption"
+  },
+  {
+   "field": "eligibility.criterion_2_at_least_50_people",
+   "form_value": "\"\"",
+   "source_says": "Set to met: the productivity analysis contains 168,553 authors. This is an analyzed observational author count, not a randomized count, and does not make the paper core eligible.",
+   "quote": "We track the productivity dynamics (measured as the number of preprints published monthly) of 168,553 authors between Jan 2022 and July 2024,",
+   "locator": "p. 11, Figure 1 caption; form-spec.md, eligibility.core field note"
+  },
+  {
+   "field": "eligibility.criterion_3_outcome_scored_on_output",
+   "form_value": "\"\"",
+   "source_says": "Set to not_met under this codebook. The outcomes are publication counts, linguistic complexity, publication/review quality proxies, and characteristics of accessed or cited references; none scores creativity, novelty, originality, or similarity/diversity across different authors’ outputs. The existing core=no and context_class=none are supported.",
+   "quote": "Our analysis explores three characteristics of cited references: (1) publication format (citations to books), (2) time lag (median reference age), and (3) impact of cited work (mean log citations of referenced documents).",
+   "locator": "pp. 3-6, Results; pp. 11, 13-14, Figures 1, 3 and 4; creativity-codebook.md, sections 3 and 6"
+  },
+  {
+   "field": "studies[0].outcomes[*].question; studies[3].outcomes[0].question",
+   "form_value": "with_ai for S1-O1, S1-O2, S1-O3, S1-O4 and S4-O1",
+   "source_says": "Use none for these out-of-scope outcomes if they are retained as background findings. Publication productivity and reference/access characteristics do not answer any of the three defined questions about rated creative output, similarity across people’s output, or creative work after AI removal.",
+   "quote": "Our analysis explores three characteristics of cited references: (1) publication format (citations to books), (2) time lag (median reference age), and (3) impact of cited work (mean log citations of referenced documents).",
+   "locator": "p. 11, Figure 1 caption; pp. 5-6, LLM use and Citation Behavior; p. 14, Figure 4 caption; creativity-codebook.md, section 1; form-spec.md, question field note"
+  },
+  {
+   "field": "studies[3].outcomes[0].n_units",
+   "form_value": "246000000 with unit=participant",
+   "source_says": "246M is the rounded corpus count of views and downloads, not the number of participants or user-level analysis observations. With unit=participant, set n_units to null and retain 246M accesses in the corpus description; the main PDF does not report the number of users.",
+   "quote": "a unique dataset capturing 246M views and downloads of arXiv papers (SM S1.5), each connected with a user id, arXiv document id, and referral source (e.g., Bing or Google).",
+   "locator": "p. 5, LLM use and Citation Behavior; p. 14, Figure 4A-C caption"
+  },
+  {
+   "field": "source.supplement.holds",
+   "form_value": "the main text gives estimates and P values only in figures and captions",
+   "source_says": "Delete the restriction to figures and captions. The body text also reports estimates and P values, including productivity estimates on p. 3, a writing-complexity test on p. 4, and access/citation estimates on p. 6. The supplementary material is listed but absent from the supplied PDF, so its additional numeric contents remain unverified.",
+   "quote": "Bing users access books at a 26.3% higher rate (P < 0.001, Poisson regression)",
+   "locator": "pp. 3-4 and 6, Results; p. 10, Supplementary Materials list"
+  },
+  {
+   "field": "company_involvement.description; company_involvement.locator",
+   "form_value": "Both fields are empty strings.",
+   "source_says": "Record the acknowledged tool-access assistance: Alex Cui provided academic access to the GPTZero API. This is the specific assistance stated in the PDF; it does not establish company funding, company authorship, or a company role in the study design.",
+   "quote": "and Alex Cui for providing academic access to the GPTZero API.",
+   "locator": "p. 10, Acknowledgments"
+  }
+ ],
+ "confirmed": [
+  "Read the complete 37,412-character markdown and all 14 PDF pages, including references and all figure captions. The source identifies itself as the author’s version and states that the definitive Science article was published on 18 Dec 2025, DOI 10.1126/science.adw3000; no arXiv version number appears in the PDF (p. 1). The retrieval record identifies arXiv 2601.13187 as the download source.",
+  "The title, six listed authors and 14-page length match the form. Supplementary Text, Figs. S1 to S37 and Tables S1 to S10 are listed but not included in this PDF (pp. 1 and 10-14); the supplement was not read.",
+  "All four analyses are observational; no randomized people study or small randomized experiment is reported. Core=no and context_class=none follow the supplied codebook because the reported reference characteristics do not measure creativity or diversity across different people’s outputs (pp. 2-7, 11, 13-14; codebook sections 3 and 6).",
+  "S1 analyzes 168,553 authors: arXiv 109,965, bioRxiv 43,218 and SSRN 15,370, tracked Jan 2022-July 2024. These are people analyzed, not people randomized; n_randomized=null is appropriate (p. 11, Figure 1 caption).",
+  "The full corpus is described as 2.1M preprints, with collection spanning Jan 2018-June 2024; the detector uses abstracts rewritten with GPT-3.5turbo0125. The citation corpus contains 101.6M citations, which are not people (pp. 1-2 and 6).",
+  "S2 manuscript counts of 177,880 arXiv, 58,958 bioRxiv and 31,959 SSRN, and S3’s 7,243 ICLR submissions and 28K referee reports, match the PDF. Their people counts remain null. Figure 3’s printed aggregate of 264,125 manuscripts is internally inconsistent with its listed components; do not infer an aggregate or people count from it (p. 5; p. 13, Figure 3 caption).",
+  "S1-O1: 36.2% (arXiv), 52.9% (bioRxiv), and 59.8% (SSRN) productivity increases relative to non-adopters are printed exactly; the 23.7%-89.3% subgroup range is also printed (pp. 1 and 3; pp. 11-12, Figures 1-2 captions).",
+  "S1-O2: the body states 11.9% more likely to cite books, while Figure 4D describes 11.9% more books from Poisson regressions. Repository estimates are 14.1% (P < 0.001), 7.81% (P = 0.011), and 2.50% (P = 0.605), in arXiv/bioRxiv/SSRN order (p. 6; p. 14, Figure 4D,G caption).",
+  "S1-O3: median reference age decreases by 0.379 years overall; repository decreases are 0.436 years (P < 0.001), 0.222 years (P < 0.001), and 0.422 years (P = 0.023), in arXiv/bioRxiv/SSRN order. The body’s wording about references being on average younger is reproduced accurately, and the caption identifies the median-age outcome (p. 6; p. 14, Figure 4E,H caption).",
+  "S1-O4: citation impact is 2.34% lower overall. Repository reductions are 4.29% (P < 0.001), 0.800% (P = 0.012), and 0.916% (P = 0.369), in arXiv/bioRxiv/SSRN order; reference impact is log(#citations+1) averaged over cited references (p. 6; p. 14, Figure 4F,I caption).",
+  "S4-O1: Bing-referred users access books at a 26.3% higher rate (P < 0.001, Poisson regression), and median accessed-document age decreases by an estimated 0.18 years. Less highly cited accessed works are reported qualitatively and in Figure 4C, with no exact citation-impact estimate printed in the form or main text (pp. 5-6; p. 14, Figure 4A-C).",
+  "Every numerical value in the one-line finding matches the cited PDF passages; its association wording is consistent with the paper’s express lack of causal identification (pp. 6-7 and 11; p. 14, Figure 4 caption).",
+  "This is original empirical research, not a synthesis; the null synthesis counts and empty pooled-estimate array are appropriate (pp. 2-7, Results and Limitations)."
+ ],
+ "summary": "The 14-page author’s version contains no randomized people study, and all reported effect estimates match the PDF. Seven corrections address eligibility fields, question labels, the access-event count, and source notes; exclusion from creativity/diversity context remains supported."
+}

@@ -1,0 +1,480 @@
+{
+ "cid": "c105",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Qian et al (2026) - The rise of large language models and the direction and impact of US federal res.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Qian et al (2026) - The rise of large language models and the direction and impact of US federal res.pdf",
+  "version": "arXiv 2601.15485v3 [cs.DL], 5 Jul 2026 (PDF on file, 97 pages, marked 'Forthcoming in PNAS'); not the PNAS version of record. Numbers checked against PDF pages 1, 5-6, 12-13, 15, 80-83.",
+  "title_on_document": "The Rise of Large Language Models and the Direction and Impact of US Federal Research Funding",
+  "authors_on_document": [
+   "Yifan Qian",
+   "Zhe Wen",
+   "Alexander C. Furnas",
+   "Yue Bai",
+   "Erzhuo Shao",
+   "Dashun Wang"
+  ],
+  "pages": 97,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Supporting Information (SI Appendix), PDF pp. 15-97 of the arXiv file",
+   "holds": "Regression model (S1.2); Tables S1-S4 with alpha coefficients on semantic distinctiveness, investigator-clustered standard errors, N and R2 (pp. 80-83); within-investigator topical-distance outcome (S2.17, p. 24; Fig. S50, p. 75), with coefficients and confidence intervals plotted but no exact estimates or analysis N printed; robustness analyses including standardized predictors (Table S13, p. 92)."
+  }
+ },
+ "paper_design_summary": "Observational study of US federal grant abstracts: confidential NSF (D1) and NIH (D2) proposal submissions from two R1 universities and public NSF (D3) and NIH (D4) awards, 2021-2025 (pp. 12-13). The authors detect LLM involvement as alpha and use proposal-PI-field-year regressions to relate it to semantic distinctiveness relative to the same agency's prior-year funded abstracts, with start-year, field and investigator fixed effects and funding controls; the private datasets also measure topical distance from each investigator's own prior proposals (p. 5; SI S1.2, pp. 16-17; SI S2.17, p. 24; SI S2.19, p. 25). No people were assigned to AI, and the reported associations are conditional correlations; proposal success and publication counts are outside the creativity outcomes recorded here (p. 5).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "D1: private NSF proposal submissions (two R1 universities)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "",
+    "structure": "",
+    "quote": "Note that this analysis exploits within-investigator variation in LLM involvement, reporting conditional correlations within investigators, not causal estimates.",
+    "locator": "p. 5, LLM use and semantic distinctiveness; pp. 12-13, Datasets; SI S1.1, p. 15, and S2.1, p. 17 (random sampling of calibration abstracts, not assignment of people)",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "",
+    "exclusions": "",
+    "population": "professionals",
+    "who": "Corpus: NSF proposal abstracts (funded, unfunded, pending) submitted by investigators at two large US R1 universities, request start dates 2021-2025; 'D1 contains 1.6K NSF proposal submissions' (p. 12). Distinctiveness analysis uses start years 2023-2025 (p. 5). Number of investigators not stated.",
+    "country": "United States",
+    "quote": "",
+    "locator": ""
+   },
+   "ai_tool": {
+    "name_model": "Not named for the investigators' own use; LLM involvement detected against a reference built with GPT-3.5-turbo-0125 rewrites (p. 3; SI S1.1, p. 15)",
+    "role": "other",
+    "how_used": "Self-chosen LLM use in writing proposal abstracts, measured after the fact as alpha, the estimated fraction of LLM-modified sentences (0 to 1)"
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Writing research proposal abstracts for NSF",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Semantic distinctiveness (prior 1 year), within-year percentile",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Mean cosine distance from the abstract's SPECTER2 embedding to all abstracts funded by the same agency in the preceding year, converted to within-year percentiles (0-100; higher means more distinctive); analysis covers grant starts in 2023-2025 (p. 5; SI S1.2, pp. 16-17). The output unit is a proposal-PI-field-year regression row: n_units = 1886 is the Model 3 observation count, not a count of distinct abstracts or people; a proposal or award may contribute multiple rows. The unique-abstract count for this analysis sample is not stated (SI S2.19, p. 25; Table S1, p. 80). Robustness variants: prior-two-year reference window (SI S2.5, p. 19; Fig. S8, p. 33); L2 distances and raw cosine distances without percentile normalization (SI S2.6, p. 19; Figs. S9-S10, pp. 34-35); alternative reference LLMs Claude, Gemini and Llama (SI S2.10, pp. 20-21; Fig. S27, p. 52), with Gemini-based distinctiveness results explicitly not statistically significant; tokenization, stopword and punctuation variants (SI S2.11, pp. 21-22; Fig. S31, p. 56); AI-vocabulary exclusion (SI S2.12, pp. 22-23; Fig. S35, p. 60); minimum abstract lengths of 100, 150 and 250 words (SI S2.14, pp. 23-24; Fig. S40, p. 65); a single-/multi-investigator indicator control (SI S2.15, p. 24; Fig. S44, p. 69); predictors standardized to z-scores while the outcome remains a percentile (SI S2.16, p. 24; Fig. S47, p. 72; Table S13, p. 92); and one field per proposal or award (SI S2.19, p. 25; Fig. S52, p. 77). Stylistic-rewriting calibration of baseline abstracts found nearly indistinguishable average distinctiveness for original and rewritten text; this comparison does not assign people to AI (SI S2.1, p. 17; Fig. S1, p. 26).",
+     "unit": "output",
+     "n_units": 1886,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "Higher LLM involvement (alpha, continuous)",
+       "control_arm": "Lower LLM involvement (alpha, continuous)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table S1, alpha: Model 1 -16.456*** (4.455), N = 1001; Model 2 (start year + field FE) -11.2727** (3.9927), N = 1412; Model 3 (start year + field + investigator FE) -11.9472** (4.3752), N = 1886, R2 = 0.72441. Controls log(funding). Standard errors clustered by investigator in parentheses; * p < 0.05, ** p < 0.01, *** p < 0.001.",
+       "locator": "p. 80, Table S1; p. 6, Fig. 2a"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Within-investigator topical distance (own proposals in the previous two years)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Cosine distance between each NSF proposal submitted in 2023-2025 and the investigator's own proposals submitted within the previous two years to the same agency; this measures departure from the investigator's recent proposal history (SI S2.17, p. 24; Fig. S50a, p. 75). Regressions include investigator, proposal-year and field fixed effects and control for proposal funding amount; standard errors are clustered by investigator. The paper defines its general regression unit as proposal-PI-field-year (SI S2.19, p. 25), but gives no analysis N or unique-proposal count for this outcome.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Higher LLM involvement (alpha, continuous)",
+       "control_arm": "Lower LLM involvement (alpha, continuous)",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "For private NSF proposals, the association between LLM involvement and within-investigator cosine distance is statistically indistinguishable from zero (SI S2.17). Figure S50a plots the coefficient and an investigator-clustered 95% confidence interval, but prints no exact coefficient, standard error, interval endpoints or N; no values are estimated from the plot.",
+       "locator": "p. 24, SI S2.17; p. 75, Fig. S50a"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "D2: private NIH proposal submissions (two R1 universities)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "",
+    "structure": "",
+    "quote": "Note that this analysis exploits within-investigator variation in LLM involvement, reporting conditional correlations within investigators, not causal estimates.",
+    "locator": "p. 5, LLM use and semantic distinctiveness; pp. 12-13, Datasets; SI S1.1, p. 15, and S2.1, p. 17 (random sampling of calibration abstracts, not assignment of people)",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "",
+    "exclusions": "",
+    "population": "professionals",
+    "who": "Corpus: NIH proposal abstracts (funded, unfunded, pending) submitted by investigators at two large US R1 universities, request start dates 2021-2025; 'D2 contains 4.1K NIH proposal submissions' (p. 12). Distinctiveness analysis uses start years 2023-2025 (p. 5). Number of investigators not stated.",
+    "country": "United States",
+    "quote": "",
+    "locator": ""
+   },
+   "ai_tool": {
+    "name_model": "Not named for the investigators' own use; LLM involvement detected against a reference built with GPT-3.5-turbo-0125 rewrites (p. 3; SI S1.1, p. 15)",
+    "role": "other",
+    "how_used": "Self-chosen LLM use in writing proposal abstracts, measured after the fact as alpha, the estimated fraction of LLM-modified sentences (0 to 1)"
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Writing research proposal abstracts for NIH",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Semantic distinctiveness (prior 1 year), within-year percentile",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Mean cosine distance from the abstract's SPECTER2 embedding to all abstracts funded by the same agency in the preceding year, converted to within-year percentiles (0-100; higher means more distinctive); analysis covers grant starts in 2023-2025 (p. 5; SI S1.2, pp. 16-17). The output unit is a proposal-PI-field-year regression row: n_units = 8198 is the Model 3 observation count, not a count of distinct abstracts or people; a proposal or award may contribute multiple rows. The unique-abstract count for this analysis sample is not stated (SI S2.19, p. 25; Table S2, p. 81). Robustness variants: prior-two-year reference window (SI S2.5, p. 19; Fig. S8, p. 33); L2 distances and raw cosine distances without percentile normalization (SI S2.6, p. 19; Figs. S9-S10, pp. 34-35); alternative reference LLMs Claude, Gemini and Llama (SI S2.10, pp. 20-21; Fig. S27, p. 52), with Gemini-based distinctiveness results explicitly not statistically significant; tokenization, stopword and punctuation variants (SI S2.11, pp. 21-22; Fig. S31, p. 56); AI-vocabulary exclusion (SI S2.12, pp. 22-23; Fig. S35, p. 60); minimum abstract lengths of 100, 150 and 250 words (SI S2.14, pp. 23-24; Fig. S40, p. 65); a single-/multi-investigator indicator control (SI S2.15, p. 24; Fig. S44, p. 69); predictors standardized to z-scores while the outcome remains a percentile (SI S2.16, p. 24; Fig. S47, p. 72; Table S13, p. 92); and one field per proposal or award (SI S2.19, p. 25; Fig. S52, p. 77). Stylistic-rewriting calibration of baseline abstracts found nearly indistinguishable average distinctiveness for original and rewritten text; this comparison does not assign people to AI (SI S2.1, p. 17; Fig. S1, p. 26).",
+     "unit": "output",
+     "n_units": 8198,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "Higher LLM involvement (alpha, continuous)",
+       "control_arm": "Lower LLM involvement (alpha, continuous)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table S2, alpha: Model 1 -7.974* (3.7419), N = 2532; Model 2 (start year + field FE) -10.6152** (3.6906), N = 3686; Model 3 (start year + field + investigator FE) -23.3958*** (3.1939), N = 8198, R2 = 0.53894. Controls log(funding). Standard errors clustered by investigator in parentheses; * p < 0.05, ** p < 0.01, *** p < 0.001.",
+       "locator": "p. 81, Table S2; p. 6, Fig. 2b"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O2",
+     "name": "Within-investigator topical distance (own proposals in the previous two years)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Cosine distance between each NIH proposal submitted in 2023-2025 and the investigator's own proposals submitted within the previous two years to the same agency; this measures departure from the investigator's recent proposal history (SI S2.17, p. 24; Fig. S50b, p. 75). Regressions include investigator, proposal-year and field fixed effects and control for proposal funding amount; standard errors are clustered by investigator. The paper defines its general regression unit as proposal-PI-field-year (SI S2.19, p. 25), but gives no analysis N or unique-proposal count for this outcome.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Higher LLM involvement (alpha, continuous)",
+       "control_arm": "Lower LLM involvement (alpha, continuous)",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "For private NIH proposals, the association between LLM involvement and within-investigator cosine distance is statistically indistinguishable from zero (SI S2.17). Figure S50b plots the coefficient and an investigator-clustered 95% confidence interval, but prints no exact coefficient, standard error, interval endpoints or N; no values are estimated from the plot.",
+       "locator": "p. 24, SI S2.17; p. 75, Fig. S50b"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S3",
+   "label": "D3: public NSF awards (Dimensions)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "",
+    "structure": "",
+    "quote": "Note that this analysis exploits within-investigator variation in LLM involvement, reporting conditional correlations within investigators, not causal estimates.",
+    "locator": "p. 5, LLM use and semantic distinctiveness; pp. 12-13, Datasets; SI S1.1, p. 15, and S2.1, p. 17 (random sampling of calibration abstracts, not assignment of people)",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "",
+    "exclusions": "",
+    "population": "professionals",
+    "who": "Corpus: full population of publicly released NSF award abstracts from Dimensions, start dates 2021-2025; 'D3 contains 57K NSF awards' (p. 13). Distinctiveness analysis uses start years 2023-2025 (p. 5). Number of investigators not stated.",
+    "country": "United States",
+    "quote": "",
+    "locator": ""
+   },
+   "ai_tool": {
+    "name_model": "Not named for the investigators' own use; LLM involvement detected against a reference built with GPT-3.5-turbo-0125 rewrites (p. 3; SI S1.1, p. 15)",
+    "role": "other",
+    "how_used": "Self-chosen LLM use in writing award abstracts, measured after the fact as alpha, the estimated fraction of LLM-modified sentences (0 to 1)"
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Research project abstracts of funded NSF awards",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Semantic distinctiveness (prior 1 year), within-year percentile",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Mean cosine distance from the abstract's SPECTER2 embedding to all abstracts funded by the same agency in the preceding year, converted to within-year percentiles (0-100; higher means more distinctive); analysis covers grant starts in 2023-2025 (p. 5; SI S1.2, pp. 16-17). The output unit is a proposal-PI-field-year regression row: n_units = 60283 is the Model 3 observation count, not a count of distinct abstracts or people; a proposal or award may contribute multiple rows. The unique-abstract count for this analysis sample is not stated (SI S2.19, p. 25; Table S3, p. 82). Robustness variants: prior-two-year reference window (SI S2.5, p. 19; Fig. S8, p. 33); L2 distances and raw cosine distances without percentile normalization (SI S2.6, p. 19; Figs. S9-S10, pp. 34-35); alternative reference LLMs Claude, Gemini and Llama (SI S2.10, pp. 20-21; Fig. S27, p. 52), with Gemini-based distinctiveness results explicitly not statistically significant; tokenization, stopword and punctuation variants (SI S2.11, pp. 21-22; Fig. S31, p. 56); AI-vocabulary exclusion (SI S2.12, pp. 22-23; Fig. S35, p. 60); minimum abstract lengths of 100, 150 and 250 words (SI S2.14, pp. 23-24; Fig. S40, p. 65); a single-/multi-investigator indicator control (SI S2.15, p. 24; Fig. S44, p. 69); predictors standardized to z-scores while the outcome remains a percentile (SI S2.16, p. 24; Fig. S47, p. 72; Table S13, p. 92); and one field per proposal or award (SI S2.19, p. 25; Fig. S52, p. 77). Stylistic-rewriting calibration of baseline abstracts found nearly indistinguishable average distinctiveness for original and rewritten text; this comparison does not assign people to AI (SI S2.1, p. 17; Fig. S1, p. 26). Public-award analyses also check results separately by field and subagency (SI S2.8-S2.9, p. 20; Figs. S17 and S23, pp. 42 and 48).",
+     "unit": "output",
+     "n_units": 60283,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "Higher LLM involvement (alpha, continuous)",
+       "control_arm": "Lower LLM involvement (alpha, continuous)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table S3, alpha: Model 1 -24.539*** (0.871), N = 32278; Model 2 (start year + field FE) -18.6069*** (0.8992), N = 46504; Model 3 (start year + field + investigator FE) -18.0163*** (1.2958), N = 60283, R2 = 0.78893. Controls log(funding). Standard errors clustered by investigator in parentheses; * p < 0.05, ** p < 0.01, *** p < 0.001. Text: 'for NSF awards, moving from low LLM involvement (25th percentile) to high LLM involvement (75th percentile) corresponds to a ∼5-point decrease in the distinctiveness percentile' (p. 5).",
+       "locator": "p. 82, Table S3; p. 5; p. 6, Fig. 2c"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S4",
+   "label": "D4: public NIH awards (Dimensions)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "",
+    "structure": "",
+    "quote": "Note that this analysis exploits within-investigator variation in LLM involvement, reporting conditional correlations within investigators, not causal estimates.",
+    "locator": "p. 5, LLM use and semantic distinctiveness; pp. 12-13, Datasets; SI S1.1, p. 15, and S2.1, p. 17 (random sampling of calibration abstracts, not assignment of people)",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "",
+    "exclusions": "",
+    "population": "professionals",
+    "who": "Corpus: full population of publicly released NIH award abstracts from Dimensions, start dates 2021-2025; 'D4 contains 74K NIH awards' (p. 13). Distinctiveness analysis uses start years 2023-2025 (p. 5). Number of investigators not stated.",
+    "country": "United States",
+    "quote": "",
+    "locator": ""
+   },
+   "ai_tool": {
+    "name_model": "Not named for the investigators' own use; LLM involvement detected against a reference built with GPT-3.5-turbo-0125 rewrites (p. 3; SI S1.1, p. 15)",
+    "role": "other",
+    "how_used": "Self-chosen LLM use in writing award abstracts, measured after the fact as alpha, the estimated fraction of LLM-modified sentences (0 to 1)"
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Research project abstracts of funded NIH awards",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S4-O1",
+     "name": "Semantic distinctiveness (prior 1 year), within-year percentile",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Mean cosine distance from the abstract's SPECTER2 embedding to all abstracts funded by the same agency in the preceding year, converted to within-year percentiles (0-100; higher means more distinctive); analysis covers grant starts in 2023-2025 (p. 5; SI S1.2, pp. 16-17). The output unit is a proposal-PI-field-year regression row: n_units = 56413 is the Model 3 observation count, not a count of distinct abstracts or people; a proposal or award may contribute multiple rows. The unique-abstract count for this analysis sample is not stated (SI S2.19, p. 25; Table S4, p. 83). Robustness variants: prior-two-year reference window (SI S2.5, p. 19; Fig. S8, p. 33); L2 distances and raw cosine distances without percentile normalization (SI S2.6, p. 19; Figs. S9-S10, pp. 34-35); alternative reference LLMs Claude, Gemini and Llama (SI S2.10, pp. 20-21; Fig. S27, p. 52), with Gemini-based distinctiveness results explicitly not statistically significant; tokenization, stopword and punctuation variants (SI S2.11, pp. 21-22; Fig. S31, p. 56); AI-vocabulary exclusion (SI S2.12, pp. 22-23; Fig. S35, p. 60); minimum abstract lengths of 100, 150 and 250 words (SI S2.14, pp. 23-24; Fig. S40, p. 65); a single-/multi-investigator indicator control (SI S2.15, p. 24; Fig. S44, p. 69); predictors standardized to z-scores while the outcome remains a percentile (SI S2.16, p. 24; Fig. S47, p. 72; Table S13, p. 92); and one field per proposal or award (SI S2.19, p. 25; Fig. S52, p. 77). Stylistic-rewriting calibration of baseline abstracts found nearly indistinguishable average distinctiveness for original and rewritten text; this comparison does not assign people to AI (SI S2.1, p. 17; Fig. S1, p. 26). Public-award analyses also check results separately by field and subagency (SI S2.8-S2.9, p. 20; Figs. S17 and S23, pp. 42 and 48).",
+     "unit": "output",
+     "n_units": 56413,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "Higher LLM involvement (alpha, continuous)",
+       "control_arm": "Lower LLM involvement (alpha, continuous)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table S4, alpha: Model 1 -11.093*** (1.1549), N = 36617; Model 2 (start year + field FE) -17.6547*** (1.1611), N = 54033; Model 3 (start year + field + investigator FE) -23.6247*** (1.7726), N = 56413, R2 = 0.86886. Controls log(funding). Standard errors clustered by investigator in parentheses; * p < 0.05, ** p < 0.01, *** p < 0.001. Text: 'for NIH awards, the decrease is ∼4 points' (p. 5).",
+       "locator": "p. 83, Table S4; p. 5; p. 6, Fig. 2d"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "https://northwestern-cssi.github.io/llmfunding/",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "All four datasets are observational: existing NSF and NIH proposal/award abstracts are compared across detected LLM involvement, with no random assignment of people to AI (pp. 5, 12-13). The number of people analyzed is not stated; regression Ns count proposal-PI-field-year observations and cannot establish the 50-person threshold (SI S2.19, p. 25; Tables S1-S4, pp. 80-83). The output-scored criterion is met by abstract semantic distinctiveness and, in the private datasets, within-investigator topical distance (p. 5; SI S2.17, p. 24; Fig. S50, p. 75). These are coded as novelty of an individual output relative to prior work; the paper explicitly describes conditional correlations, not causal estimates (p. 5), and stays outside the core dataset."
+ },
+ "one_line_finding": "In all four grant datasets, abstracts with more detected LLM text are less semantically distinct from the agency's prior-year funded abstracts, with investigator-fixed-effects coefficients on alpha of -11.9472 (private NSF), -23.3958 (private NIH), -18.0163 (public NSF), and -23.6247 (public NIH) percentile points (SI Tables S1-S4, pp. 80-83), about a 5-point drop for NSF awards and 4 points for NIH awards from the 25th to the 75th percentile of LLM involvement (p. 5).",
+ "open_questions": [],
+ "notes": "The de-identified data needed to reproduce the main plots and statistical analyses are available at the recorded data URL; raw university proposal data require data use agreements and raw Dimensions data require access from Digital Science. No separate code URL is stated (p. 14, Data and code availability).",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0:4].outcomes[0].unit / n_units / measure_detail",
+    "old": "unit=\"output\"; n_units=1886, 8198, 60283, 56413; measure_detail empty in all four studies.",
+    "new": "Retained unit=\"output\" and the four Model 3 Ns; measure_detail and the design summary explicitly identify proposal-PI-field-year regression rows, with multiple rows possible per proposal/award. Unique-abstract counts are not stated, and people counts remain null.",
+    "quote": "our unit of analysis is defined at the proposal-PI-field-year level, a given proposal or award can be associated with multiple fields.",
+    "locator": "p. 25, SI S2.19; pp. 80-83, Tables S1-S4, Model 3 N"
+   },
+   {
+    "field": "studies[0].outcomes; studies[1].outcomes; paper_design_summary; source.supplement.holds",
+    "old": "S1 and S2 each list only semantic distinctiveness relative to the agency's prior-year funded abstracts; the design summary and supplement description omit within-investigator topical distance.",
+    "new": "Added S1-O2 and S2-O2 for within-investigator topical distance to own proposals in the previous two years, coded novelty/with_ai, no_clear_difference and figure_only, with n_units=null. No exact coefficient, SE, confidence-interval endpoints or N are printed; the design summary and supplement description now include this outcome.",
+    "quote": "In other words, proposals with higher LLM involvement are not systematically farther from an investigator’s own prior proposals.",
+    "locator": "p. 24, SI S2.17; p. 75, Fig. S50a-b"
+   },
+   {
+    "field": "studies[0:4].outcomes[0].measure_detail",
+    "old": "Empty in all four studies.",
+    "new": "Described SPECTER2 average cosine distance and within-year percentiles, and documented prior-two-year, L2/raw-cosine, alternative-reference-LLM, preprocessing, AI-vocabulary, length, investigator-status, standardized-predictor and single-field variants. Added public-award field/subagency checks and stylistic-rewriting calibration; explicitly noted nonsignificant Gemini results.",
+    "quote": "For example, in the semantic distinctiveness analysis, the Gemini-based 𝛼estimates yield no statistically significant results.",
+    "locator": "p. 5; pp. 16-17, SI S1.2 and S2.1; pp. 19-25, SI S2.5-S2.6, S2.8-S2.16 and S2.19; p. 26, Fig. S1; p. 92, Table S13"
+   },
+   {
+    "field": "studies[0:4].outcomes[0].contrasts[0].statistics_available",
+    "old": "[] in all four studies.",
+    "new": "[\"regression_coefficient_se\"] in all four studies.",
+    "quote": "Standard errors clustered by investigator in parentheses.",
+    "locator": "pp. 80-83, Tables S1-S4, table notes"
+   },
+   {
+    "field": "studies[0:4].assignment.randomized; studies[0:4].assignment.quote / locator; eligibility.reason",
+    "old": "assignment.randomized, quote and locator empty in all four studies; eligibility.reason says criteria 1 and 2 do not apply.",
+    "new": "randomized=\"no\" for all four datasets, with source quote and locators. Re-evaluated eligibility: core=\"no\", context_class=\"observational\", random-assignment criterion not_met, people-count criterion unclear, output-scored criterion met; reason explains the unavailable people count and noncausal design.",
+    "quote": "Note that this analysis exploits within-investigator variation in LLM involvement, reporting conditional correlations within investigators, not causal estimates.",
+    "locator": "p. 5; pp. 12-13, Datasets; p. 15, SI S1.1; p. 17, SI S2.1; p. 25, SI S2.19"
+   },
+   {
+    "field": "data_and_code.data_url; notes",
+    "old": "data_and_code.data_url=\"\"; notes=\"\".",
+    "new": "https://northwestern-cssi.github.io/llmfunding/ (de-identified reproducibility data); notes explain restrictions on raw university/Dimensions data and that no separate code URL is stated.",
+    "quote": "The de-identified data necessary to reproduce main plots and statistical analyses are freely available at https://northwestern-cssi.github.io/llmfunding/.",
+    "locator": "p. 14, Data and code availability"
+   },
+   {
+    "field": "one_line_finding; studies[2:4].outcomes[0].contrasts[0].reported (quoted approximation symbols)",
+    "old": "In all four grant datasets, abstracts with more detected LLM text are less semantically distinct from the agency's prior-year funded abstracts, with investigator-fixed-effects coefficients on alpha of -11.95 (private NSF), -23.40 (private NIH), -18.02 (public NSF), and -23.62 (public NIH) percentile points (SI Tables S1-S4, pp. 80-83), about a 5-point drop for NSF awards and 4 points for NIH awards from the 25th to the 75th percentile of LLM involvement (p. 5). Quoted public-award text used ASCII ~ for the printed approximation symbol.",
+    "new": "In all four grant datasets, abstracts with more detected LLM text are less semantically distinct from the agency's prior-year funded abstracts, with investigator-fixed-effects coefficients on alpha of -11.9472 (private NSF), -23.3958 (private NIH), -18.0163 (public NSF), and -23.6247 (public NIH) percentile points (SI Tables S1-S4, pp. 80-83), about a 5-point drop for NSF awards and 4 points for NIH awards from the 25th to the 75th percentile of LLM involvement (p. 5). The public-award quotations now preserve the PDF's approximation symbol.",
+    "quote": "-16.456*** -11.2727** -11.9472**",
+    "locator": "pp. 80-83, Tables S1-S4, Model 3 alpha; p. 5, interquartile comparisons"
+   }
+  ],
+  "rejected": []
+ }
+}

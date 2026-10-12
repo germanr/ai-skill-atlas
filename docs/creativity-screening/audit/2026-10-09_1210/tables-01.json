@@ -1,0 +1,52 @@
+[
+  {
+    "id": "tables-01-1",
+    "cid": "c446",
+    "section": "Recommended for the core dataset",
+    "location": "Li, Zhou, and Mikel-Hong row, People analyzed, by study cell (report line 108)",
+    "claim": "not printed; same participants as No other paper is identified as sharing participants. Within this pap\u2026",
+    "problem": "The added phrase \"same participants as\" asserts a shared sample even though the form says no other paper is identified as sharing participants. The form describes reuse of teams between experiments within this paper; it does not identify a shared sample with another paper.",
+    "evidence": "forms/c446.json, sample_overlap.shares_participants_with: No other paper is identified as sharing participants. Within this paper, Experiment II reuses the 122 Experiment I teams as comparators and analyzes 139 individuals in its individual-AI arm. Whether any of those individuals had participated in Experiment I is not stated; the number of additional unique people across the two experiments is unconfirmed (p. 11, Section 2.2; p. 36, Appendix A Table 3).",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-01-2",
+    "cid": "c450",
+    "section": "Recommended for the core dataset",
+    "location": "Liang et al. row, Sample, AI role, and Task cells (report line 109)",
+    "claim": "Sample, AI role, and Task are all empty.",
+    "problem": "All three cells omit values explicitly recorded for the randomized study. The form uses design_class=\"other\" because the laboratory/online/coursework setting is unknown; that uncertainty does not extend to its recorded sample, AI role, or task. build_report.py filters the study out of these columns solely because its design code does not end with _rct.",
+    "evidence": "forms/c450.json, studies[0].participants.population=\"students\"; studies[0].ai_tool.role=\"open_chat\"; studies[0].task.type=\"creative_writing\"; studies[0].assignment.randomized=\"yes\"; studies[0].design_class=\"other\". eligibility.reason explicitly says the lab/online/field subtype remains unreported while random assignment is established. tools/build_report.py:208 and 216-218 omit this study from the displayed fields.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-01-3",
+    "cid": "c089",
+    "section": "Recommended for the core dataset",
+    "location": "Liu et al. (2025) row, People analyzed, by study cell (report line 110)",
+    "claim": "not printed; same participants as Possible overlap with c471: Liu, Li, Zuo, Lu, and Feng (2026), Explor\u2026",
+    "problem": "The report adds the categorical phrase \"same participants as\" to a possible overlap. The form explicitly leaves both participant reuse and the number shared unconfirmed and says the possible overlap does not establish a reanalysis.",
+    "evidence": "forms/c089.json, sample_overlap.shares_participants_with: Possible overlap with c471: Liu, Li, Zuo, Lu, and Feng (2026), Exploring the impact of ChatGPT on college students' mathematical creativity: A quasi-experimental study, doi:10.14742/ajet.10564. The c089 ChatGPT arm and c471 experimental arm have identical reported demographics: age M = 19.20, SD = 1.36; male/female 39/21; sciences/liberal arts/engineering 16/16/28; prior ChatGPT experience never/seldom/sometimes/often/always 2/10/24/23/1. They also use the same baseline and four MCT tasks, but their creativity means and SDs differ. Neither full text explicitly confirms shared participants or independence. Reuse and the number of shared people remain unconfirmed; author clarification is needed before treating these samples as independent. Possible overlap does not establish that c089 is a reanalysis.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-01-4",
+    "cid": "c503",
+    "section": "Recommended for the core dataset",
+    "location": "Noy and Zhang row, People analyzed, by study cell (report line 121)",
+    "claim": "not printed; same participants as No shared sample with another paper is stated in this manuscript.",
+    "problem": "The report adds \"same participants as\" despite the source field stating that no shared sample with another paper is reported. No shared-sample identity supports that wording.",
+    "evidence": "forms/c503.json, sample_overlap.shares_participants_with=\"No shared sample with another paper is stated in this manuscript.\" Its locator is \"Full saved manuscript, pp. 1-19; no sample-overlap disclosure found.\" studies[0].participants.n_analyzed is null, which supports \"not printed\" but not the added shared-sample assertion.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-01-5",
+    "cid": "c539",
+    "section": "Recommended for the core dataset",
+    "location": "Rosenbaum et al. row, People analyzed, by study, Sample, AI role, and Task cells (report line 124)",
+    "claim": "People analyzed is \"?\"; Sample, AI role, and Task are empty.",
+    "problem": "The form confirms 101 analyzed people and records the other three values. Only the RCT setting and the analyzed arm split are unresolved. Filtering out the study because its design code is \"other\" suppresses its confirmed total and its sample, AI-role, and task classifications.",
+    "evidence": "forms/c539.json, studies[0].participants.n_analyzed=101 and counts_are=\"people\"; studies[0].participants.population=\"students\"; studies[0].ai_tool.role=\"open_chat\"; studies[0].task.type=\"idea_generation\"; studies[0].assignment.randomized=\"yes\"; studies[0].design_class=\"other\". participants.exclusions states that the total is confirmed despite conflicting 69/32 and 70/31 arm splits. tools/build_report.py:208-218 filters this study out of the displayed fields.",
+    "severity": "serious"
+  }
+]

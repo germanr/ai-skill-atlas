@@ -1,0 +1,368 @@
+{
+  "cid": "c131",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu et al (2025) - Guided Creativity.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu et al (2025) - Guided Creativity.pdf",
+    "version": "Working paper dated March 2, 2026 (title page and Web Appendix title page), from coauthor Artem Timoshenko's website; newer than the SSRN 5371575 posting of 2025. Printed page numbers run one behind PDF page numbers (printed p. 1 = PDF p. 2); Web Appendix page WA-n = PDF p. 44+n.",
+    "title_on_document": "Guided Creativity: AI Intermediation for Enhancing Originality and Quality in Visual Design",
+    "authors_on_document": ["Xuekang Wu", "Guy Aridor", "Artem Timoshenko"],
+    "pages": 69,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendix A-E (printed pp. 35-43, PDF pp. 36-44) and Web Appendix A-D (WA-1 to WA-25, PDF pp. 45-69), both inside this PDF",
+      "holds": "Full regression tables with designer-clustered standard errors: Tables WA-C.1 (quality), WA-C.2 (embedding originality), WA-C.3 and WA-C.4 (pairwise contrasts with SEs) for Study 1; Tables WA-D.2 to WA-D.5 for the restaurant replication; perception-based originality (Appendix C, Figure C.1); balance tables B.1 and WA-D.1; alignment Table E.3."
+    }
+  },
+  "paper_design_summary": "Professional freelance logo designers recruited on freelancer.com entered a real two-week logo design contest and were randomized at registration to see a gallery of 60 human logo exemplars with ratings (Open), no gallery (Blind), or a gallery of AI-generated variations of those exemplars made by the authors' fine-tuned FLUX.1-dev pipeline (one or four variations per exemplar). Submissions were scored on quality (survey-based click attractiveness) and originality (CLIP embedding distance, or survey-rated distance, to the 12 leading exemplars, among the top-50 quality submissions per condition). A second contest for a restaurant brand replicated the design with Open, Blind, and Variation(4) arms.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Main field experiment (Armor Health healthcare logo contest)",
+      "design_class": "field_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Gallery shown in the creative brief: none (Blind), 60 original human exemplars with ratings (Open), one AI variation per exemplar with the originals' ratings (Variation(1)), or four AI variations per exemplar (Variation(4))",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Upon registration, designers were randomized into one of four conditions",
+        "locator": "PDF p. 19 (printed p. 18), Figure 4 notes; also PDF p. 17 (printed p. 16), Section 4.1: \"participants were randomly assigned to receive access to a gallery\"",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Variation(1)", "description": "Brief plus gallery of one AI-generated variation for each of the 60 exemplars, shown with the original exemplars' ratings; focal treatment arm", "ai": "generative_ai", "n_randomized": 105, "n_analyzed": 71 },
+        { "name": "Variation(4)", "description": "Brief plus gallery of four AI-generated variations per exemplar, with the original exemplars' ratings", "ai": "generative_ai", "n_randomized": 120, "n_analyzed": 76 },
+        { "name": "Open", "description": "Brief plus gallery of the 60 original human-designed exemplars and their quality ratings", "ai": "other_aid", "n_randomized": 105, "n_analyzed": 70 },
+        { "name": "Blind", "description": "Contest brief only, no exemplars or variations", "ai": "none", "n_randomized": 110, "n_analyzed": 75 }
+      ],
+      "participants": {
+        "n_randomized": 440,
+        "n_analyzed": 292,
+        "counts_are": "people",
+        "exclusions": "440 designers registered (randomized at registration, per Figure 4 notes); only the 292 who submitted at least one logo are analyzed (148 registered designers never submitted; registration did not require participation). Quality regressions use all 2,199 submissions of the 292 designers; originality regressions use only the top-50 submissions by quality in each condition (200 submissions), so the number of designers behind the originality estimates is not stated. Table 1 counts are labeled 'Registered designers', which the randomized counts here take as given.",
+        "population": "professionals",
+        "who": "Professional logo designers hired from freelancer.com; average of over 25 completed projects and high client ratings",
+        "country": "not_stated",
+        "quote": "A total of 440 designers registered for the experiment, with 292 designers submitting at least one logo (Table 1).",
+        "locator": "PDF p. 20 (printed p. 19), Section 4.1 and Table 1"
+      },
+      "ai_tool": {
+        "name_model": "Authors' custom pipeline: JoyCaption image captioning to structured text descriptions, then FLUX.1-dev text-to-image model fine-tuned with a Logo LoRA and an Optimization LoRA (contrastive loss on click-attractiveness pairs)",
+        "role": "ideas_supplied",
+        "how_used": "Designers did not operate the AI. They viewed a researcher-curated gallery of AI-generated logo variations (ranked by the original exemplars' quality ratings, 5 pages of 12) while designing their own logos during the contest."
+      },
+      "task": {
+        "type": "design_visual",
+        "description": "Create a new logo for a small healthcare brand (Armor Health) in a crowdsourcing contest with a $400 prize; goal communicated as attracting clicks in online display ads",
+        "duration": "Contest ran two weeks"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Submission quality (click attractiveness)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Click attractiveness measured in an online survey, similar to the Optimization LoRA pairwise survey, benchmarked to the original brief exemplars (footnote 2). Submission-level regression with condition indicators, submission day, and designer controls; SEs clustered by designer. Robustness: quantile regressions at tau = 0.50, 0.75, 0.90, 0.95 (Figure 8; Tables WA-C.1, WA-C.3).",
+          "unit": "output",
+          "n_units": 2199,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Blind",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Condition estimates: Variation(1) 0.5718*** (0.024), Blind 0.5054*** (0.024), N = 2199; beta_Var - beta_Blind = 0.0665*** (0.0197); text: Delta_Variation,Blind = 0.067, p = 0.001, '13% increase in quality'",
+              "locator": "PDF p. 24 (printed p. 23), Section 4.4 and PDF p. 25 Figure 7; PDF p. 62 Table WA-C.1; PDF p. 64 Table WA-C.3"
+            },
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Open",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Open 0.5735*** (0.022) vs Variation(1) 0.5718*** (0.024); beta_Open - beta_Var = 0.0017 (0.0188); text: Delta_Open,Variation = 0.002, p = 0.930",
+              "locator": "PDF p. 24 (printed p. 23); PDF p. 62 Table WA-C.1; PDF p. 64 Table WA-C.3"
+            },
+            {
+              "treatment_arm": "Variation(4)",
+              "control_arm": "Variation(1)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only", "p_value_only"],
+              "reported": "Figure 9B: Variation(1) vs Variation(4) quality estimates, p = 0.918 (bars about 0.57 each; no Variation(4) coefficient or SE printed in any table)",
+              "locator": "PDF p. 27 (printed p. 26), Figure 9B"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Embedding-based originality of high-quality submissions",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Originality_i = minimum CLIP cosine distance (CLIP-ViT-bigG-14-laion2B) between submission i and the 12 leading exemplars on the gallery's first page. Main sample: top-50 submissions by quality in each condition. Submission-level regression with day and designer controls, SEs clustered by designer. Robustness: top 100 each condition, top 200 and top 400 across all submissions (Tables WA-C.2, WA-C.4).",
+          "unit": "output",
+          "n_units": 200,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Blind",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Top 50 each condition: Variation(1) 0.0512*** (0.0078), Blind 0.0547*** (0.0068), N = 200; beta_Var - beta_Blind = -0.0035 (0.0054); text: Delta_Variation,Blind = -0.004, p = 0.516",
+              "locator": "PDF p. 23 (printed p. 22), Section 4.3; PDF p. 24 Figure 6; PDF p. 63 Table WA-C.2; PDF p. 64 Table WA-C.4"
+            },
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Open",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Top 50 each condition: Open 0.0373*** (0.0064) vs Variation(1) 0.0512*** (0.0078); beta_Open - beta_Var = -0.0139** (0.0053); text: Delta_Open,Variation = -0.014, p = 0.008",
+              "locator": "PDF p. 23 (printed p. 22); PDF p. 24 Figure 6; PDF p. 63 Table WA-C.2; PDF p. 64 Table WA-C.4"
+            },
+            {
+              "treatment_arm": "Variation(4)",
+              "control_arm": "Variation(1)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Delta_Variation(1),Variation(4) = -0.003, p = 0.543 (Figure 9A)",
+              "locator": "PDF p. 27 (printed p. 26), Section 4.5 and Figure 9A"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Perception-based originality",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Survey participants rated similarity of submission-exemplar pairs on a 7-point scale for color palette, composition, and style (15 raters per pair and dimension); score = minimum over leading exemplars of the average of the three dissimilarities. Estimated with specification (1). The submission subset used and the number of rated submissions are not stated.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Blind",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Delta_Variation,Blind (perceived originality) = 0.0257, p = 0.857",
+              "locator": "PDF pp. 38-39 (printed pp. 37-38), Appendix C, Figure C.1"
+            },
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Open",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Delta_Open,Variation (perceived originality) = -0.351, p = 0.024; Figure C.1 also shows Open vs Blind p = 0.040",
+              "locator": "PDF pp. 38-39 (printed pp. 37-38), Appendix C, Figure C.1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Alignment of submissions with original exemplars (motif, color, composition)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Aggregate alignment score: for each submission, the maximum alignment (motif, color, composition indices from ChatGPT-extracted motifs and colors, Hu moments, scene graphs) with the 12 original exemplars. Higher = closer to exemplars (inverse of originality). Mechanism outcome; also feature-prevalence table E.2 (e.g., shield motif in 64% Open, 58% Variation, 38% Blind submissions). Reported for all submissions and top 200/100/50 per condition. No test statistics.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Blind",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "All submissions: Variation 0.823 (0.077) vs Blind 0.776 (0.110), Delta vs Blind 0.047; Top 50: 0.854 (0.056) vs 0.842 (0.094), Delta 0.012. SDs in parentheses; Ns not printed in the table; no test reported",
+              "locator": "PDF p. 44 (printed p. 43), Table E.3; PDF pp. 42-43 text"
+            },
+            {
+              "treatment_arm": "Variation(1)",
+              "control_arm": "Open",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "All submissions: Variation 0.823 (0.077) vs Open 0.833 (0.085); Top 50: 0.854 (0.056) vs 0.872 (0.074). No test reported",
+              "locator": "PDF p. 44 (printed p. 43), Table E.3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Replication field experiment (Juneberry restaurant logo contest)",
+      "design_class": "field_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Gallery shown in the brief: none (Blind), 60 rated original exemplars (Open), or four AI variations per exemplar (Variation, i.e., Variation(4))",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "We closely followed the experimental design from Section 4. ... Randomization checks, presented in Web Appendix D, confirm there are no significant differences in demographics or participation across conditions.",
+        "locator": "PDF p. 29 (printed p. 28), Section 5, Study Design",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Variation (Variation(4))", "description": "Brief plus gallery of four AI-generated variations per exemplar", "ai": "generative_ai", "n_randomized": 161, "n_analyzed": 64 },
+        { "name": "Open", "description": "Brief plus 60 rated original exemplars of varying quality", "ai": "other_aid", "n_randomized": 155, "n_analyzed": 65 },
+        { "name": "Blind", "description": "Brief only, no exemplars", "ai": "none", "n_randomized": 169, "n_analyzed": 79 }
+      ],
+      "participants": {
+        "n_randomized": 485,
+        "n_analyzed": 208,
+        "counts_are": "people",
+        "exclusions": "485 designers registered; 208 submitted at least one logo and are analyzed (277 registered designers did not submit). Table 2 labels the counts 'Registered designers'; randomization at registration is inferred from the statement that Study 2 followed the Section 4 design. Quality uses all 1,027 submissions; originality uses the top-50 submissions per condition (150).",
+        "population": "professionals",
+        "who": "Professional designers recruited through the same process as the main experiment (freelancer.com)",
+        "country": "not_stated",
+        "quote": "A total of 485 designers registered for the contest, with 208 submitting at least one logo. Together, we gather 1027 submissions.",
+        "locator": "PDF p. 29 (printed p. 28), Section 5 and Table 2"
+      },
+      "ai_tool": {
+        "name_model": "Same custom pipeline as S1 (JoyCaption descriptions plus FLUX.1-dev with Logo LoRA and Optimization LoRA)",
+        "role": "ideas_supplied",
+        "how_used": "Designers viewed a gallery of four AI-generated variations per original exemplar while designing their own logos."
+      },
+      "task": {
+        "type": "design_visual",
+        "description": "Create a logo for a small vegan cafe brand (Juneberry); goal stated as making Facebook ads more engaging and attracting clicks",
+        "duration": "Not stated; the paper says incentives and duration were altered relative to Study 1"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Submission quality (click attractiveness)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same survey-based click attractiveness as S1; specification (1) with designer controls, SEs clustered by designer. Robustness: quantile regressions (Table WA-D.3, WA-D.5, Figure WA-D.2).",
+          "unit": "output",
+          "n_units": 1027,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Variation (Variation(4))",
+              "control_arm": "Blind",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Variation(4) 0.4774*** (0.0414), Blind 0.4251*** (0.0384), N = 1027; beta_Variation - beta_Blind = 0.0523* (0.0265); Figure 11B p = 0.046",
+              "locator": "PDF p. 30 (printed p. 29), Figure 11B; PDF p. 68 Table WA-D.3; PDF p. 69 Table WA-D.5"
+            },
+            {
+              "treatment_arm": "Variation (Variation(4))",
+              "control_arm": "Open",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Open 0.4965*** (0.0415) vs Variation(4) 0.4774*** (0.0414); beta_Open - beta_Variation = 0.0191 (0.0246); Figure 11B p = 0.498",
+              "locator": "PDF p. 30 (printed p. 29), Figure 11B; PDF p. 68 Table WA-D.3; PDF p. 69 Table WA-D.5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Embedding-based originality of high-quality submissions",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same CLIP minimum-distance-to-leading-exemplars measure as S1, top-50 submissions per condition; robustness: top 100 each, top 200 and top 400 overall (Tables WA-D.2, WA-D.4).",
+          "unit": "output",
+          "n_units": 150,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Variation (Variation(4))",
+              "control_arm": "Blind",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Top 50 each condition: Variation(4) 0.1803*** (0.0236), Blind 0.1887*** (0.0280), N = 150; beta_Variation - beta_Blind = -0.0084 (0.0176); Figure 11A p = 0.635",
+              "locator": "PDF p. 30 (printed p. 29), Figure 11A; PDF p. 67 Table WA-D.2; PDF p. 68 Table WA-D.4"
+            },
+            {
+              "treatment_arm": "Variation (Variation(4))",
+              "control_arm": "Open",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "mean_difference_se"],
+              "reported": "Top 50 each condition: Open 0.1429*** (0.0286) vs Variation(4) 0.1803*** (0.0236); beta_Open - beta_Variation = -0.0374* (0.0181); Figure 11A p = 0.039",
+              "locator": "PDF p. 30 (printed p. 29), Figure 11A; PDF p. 67 Table WA-D.2; PDF p. 68 Table WA-D.4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Authors are at Kellogg School of Management. Designers were hired on freelancer.com and the training data came from a crowdsourcing design platform; no funding or co-authorship by an AI company or the platform is stated.", "locator": "PDF p. 1; PDF p. 16 (printed p. 15), Section 4; PDF p. 12 (printed p. 11)" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "S1: professional designers randomized at registration to galleries of AI-generated logo variations versus no exemplars (Blind) or human exemplars (Open) in a real contest; 292 designers analyzed (440 registered), well above 50; quality (survey click attractiveness) and originality (CLIP distance to exemplars) scored on submitted logos. S2 replicates with 208 analyzed designers. The AI intervention is a researcher-generated gallery of AI examples (ideas_supplied), not free tool use."
+  },
+  "one_line_finding": "In a field logo contest with 292 participating designers, a gallery of AI-generated variations raised submission quality over no exemplars (Delta = 0.067, p = 0.001, about 13 percent) and matched human-exemplar quality (Delta = 0.002, p = 0.930), while top-50 submissions were more original than under human exemplars (Open minus Variation = -0.014, p = 0.008) and as original as Blind (p = 0.516) (printed pp. 22-23, Figures 6-7; Tables WA-C.1 to WA-C.4).",
+  "open_questions": [
+    "Should a researcher-curated gallery of AI-generated examples (participants never operate the AI) count as 'generative-AI assistance' under criterion 1? It fits the codebook's ideas_supplied role.",
+    "Originality is distance from the 12 leading exemplars, not similarity across participants, so the paper has no across_people diversity outcome even though it frames the result as reducing fixation and homogenization.",
+    "Originality is computed only on the top-50 quality submissions per condition, a post-treatment selection; which designers contribute those submissions is not reported.",
+    "Registered designers are treated as randomized (Figure 4 notes say randomization happened upon registration); 34 to 37 percent of each arm never submitted in S1 and 53 to 60 percent in S2, so analyses are not intention-to-treat."
+  ],
+  "notes": "Whole PDF read (69 pages, main text, Appendix A-E, Web Appendix A-D). Retrieval record lists 'Kellogg' as a fourth author; the document has three authors (Wu, Aridor, Timoshenko) and Kellogg is their school. All main estimates are submission-level regressions with designer-clustered SEs and designer controls (reputation, professionalism, hire again, quality, number of jobs, reviews, hourly rate) plus submission day. The Variation(4) arm of S1 is in the regressions (N = 2199 and 200 include it) but its coefficient is printed only as bars in Figure 9. Figure 9 and Figure 10 notes swap the panel descriptions relative to the panel titles (titles say A = Originality, B = Quality). Not listed as outcomes because they answer none of the three questions: (a) top-50 Variation submissions versus professionally refined AI variations, originality Delta = 0.017, p < 0.001 and quality Delta = 0.295, p < 0.001 (PDF p. 28, Figure 10; refinement designers' count not stated); (b) model-only validation studies of the variations (Web Appendix B.3: alignment, dispersion of variations vs exemplars, Optimization LoRA click test with survey participants). Quality ratings were also fed back to designers during the contest: 10 random submissions per condition were rated daily and the ratings sent privately (PDF pp. 18-20)."
+}

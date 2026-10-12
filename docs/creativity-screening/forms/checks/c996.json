@@ -1,0 +1,57 @@
+{
+ "cid": "c996",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "studies[0].design_class",
+   "form_value": "online_rct",
+   "source_says": "Use lab_rct (a supervised session delivered remotely) under creativity-codebook.md Section 4. The researchers provided a tutorial, administered design sprints, and interviewed participants in recorded Zoom sessions; recruitment was through social media. The codebook assigns online_rct to online-panel experiments, whereas the paper describes a supervised session.",
+   "quote": "Each study session was recorded and transcribed using Zoom.",
+   "locator": "PDF p. 6, Sections 4.1-4.3; PDF pp. 16-17, Appendix B; creativity-codebook.md Section 4"
+  },
+  {
+   "field": "studies[0].participants.n_randomized; studies[0].arms[0].n_randomized; studies[0].arms[1].n_randomized",
+   "form_value": "participants.n_randomized = 20; With plugin n_randomized = 20; Without plugin n_randomized = 20",
+   "source_says": "The explicit count is 20 people recruited. The paper reports randomized condition order but gives no separate count at assignment or counts by randomized sequence. Under the form-spec.md Counts in prose rule, these n_randomized fields should be null, with 20 retained as the recruited count in prose. The two conditions involve the same sample; the pathway-analysis n is not stated.",
+   "quote": "Of those who expressed interest, we were able to recruit 20 people to participate in our study.",
+   "locator": "PDF p. 6, Sections 4.1-4.2; PDF p. 9, Section 5.2.1; form-spec.md Field notes, Counts in prose"
+  },
+  {
+   "field": "paper_design_summary",
+   "form_value": "Twenty designers (13 professional UX designers, the rest design students) each did two 10-minute online design sprints, drawing causal pathway diagrams in Miro, once with a plugin that includes GPT-4 suggestions and once without it. The order of the plugin condition and of the sprints was randomized within person. The paper compares self-reported ease and confidence, time on task, and the number of pathways in each diagram with paired t-tests.",
+   "source_says": "Replace the statement that each of the twenty designers did two sprints with: Twenty people were recruited and asked to complete two sprints; all except one completed both, and the remaining participant completed only the no-plugin sprint. Appendix A identifies the participant who completed only one sprint as P15. The form correctly acknowledges this exception elsewhere.",
+   "quote": "All participants except one completed both design sprints. One participant had to leave early due to personal reasons and only completed one of the design sprints (one without the plugin).",
+   "locator": "PDF p. 6, Section 4.2; PDF p. 16, Appendix A, Table 1 and its asterisk note"
+  },
+  {
+   "field": "company_involvement.any; company_involvement.description; company_involvement.locator",
+   "form_value": "any = false; description = \"\"; locator = \"\"",
+   "source_says": "Set any to true and record that coauthor Lucas Colusso is affiliated with Microsoft, Redmond, WA, USA. This establishes company involvement through authorship; the acknowledgments separately identify National Cancer Institute/NIH funding.",
+   "quote": "Microsoft\nRedmond, WA, USA",
+   "locator": "PDF p. 1, Lucas Colusso author affiliation; PDF p. 13, Acknowledgments"
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "The PDF provides the codebase URL https://github.com/prosociallab/chi2024_miro-cpd-plugin as the hyperlink target of (i) codebase in footnote 1. Record that URL.",
+   "quote": "The codebase and the application of our plugin are available on the following links: (i) codebase, (ii) plugin (application)",
+   "locator": "PDF p. 2, footnote 1; codebase hyperlink annotation"
+  }
+ ],
+ "confirmed": [
+  "The source is arXiv:2403.08111v1 [cs.HC], dated 12 Mar 2024, in CHI 2024 author-copy format with DOI 10.1145/3613904.3642179; the title and all six author names match the form (PDF p. 1). The file contains 20 PDF pages, although its ACM reference-format paragraph says 19 pages.",
+  "The full markdown was read through the end, including Appendices A-C. The appendices contain demographics, the study protocol, and plugin screens, with no additional numerical effect estimates (PDF pp. 16-20). No separate supplementary document is identified in the paper.",
+  "There is one empirical user study: a one-hour within-person session with two planned 10-minute design sprints, one with the plugin and one without. Both plugin-condition order and design-sprint order were randomized (PDF p. 6, Section 4.1; PDF p. 16, Appendix B.3).",
+  "The intervention uses GPT-4 with temperature 1 and max_tokens 256 and bundles AI recommendations with non-AI diagramming, checking, and help features (PDF p. 6, Sections 3.1.4-3.2).",
+  "The recruitment count is 20 people, not diagrams, ideas, or ratings; all except one completed both conditions, and the exception completed only the no-plugin sprint (PDF p. 6, Section 4.2; PDF p. 16, Table 1). This supports fewer than 50 people regardless of the unreported quantitative analysis count.",
+  "The main text reports 13 professional UX designers, with the others enrolled in design-related programs (PDF p. 6, Section 4.2). Appendix A lists P9 as a pharmaceutical scientist, so its occupation entries should not be treated as a separate confirmation of enrollment status (PDF p. 16, Table 1).",
+  "The outcome counts CPD pathways produced by each designer and is analyzed with paired sample t-tests; fluency, category_count, participant, and with_ai are supported. Correctness and usefulness are self-rated confidence, not independent ratings of creative output (PDF p. 7, Section 4.4).",
+  "The reported pathway means are M_without_plugin = 1.47 and M_with_plugin = 2.32, p < .05, exactly as the form records (PDF p. 9, Section 5.2.1). Figure 4b displays pathways explored, and its caption identifies the bars as standard errors (PDF p. 10, Figure 4).",
+  "The time means are M_without_plugin = 603(s) and M_with_plugin = 556(s), p > 0.5, matching the one-line finding (PDF p. 9, Section 5.2.1).",
+  "No explicit pathway-test sample size, t statistic, degrees of freedom, numerical standard error, or standard deviation is supplied. Keeping n_analyzed and outcome n_units null is supported; the self-report tests print t(18) for ease measures and t(17) for confidence measures (PDF pp. 7, 9-10, Sections 4.4 and 5.2.1 and Figure 4).",
+  "has_randomized_people_study is true: randomized within-person AI assistance was evaluated using fluency scored on produced diagrams. The paper belongs in the requested two-screener pipeline, while core = no, criterion_2_at_least_50_people = not_met, and context_class = none remain supported (PDF pp. 6-7 and 9; creativity-codebook.md Sections 3 and 6).",
+  "This is an original user study, not a synthesis; there are no pooled estimates, confidence intervals for pooled effects, or synthesis standardizers to extract (PDF Sections 4-5)."
+ ],
+ "summary": "A randomized within-person study of 20 recruited designers measured output fluency and belongs in the two-screener pipeline, while failing the 50-person core threshold. Corrections concern the design subtype, randomized-count provenance, completion wording, company affiliation, and omitted code URL; the reported result numbers match the PDF."
+}

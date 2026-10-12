@@ -1,0 +1,89 @@
+{
+  "cid": "c158",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O11",
+      "field": "contrasts[0].direction and diversity_detail.notes",
+      "form_value": "no_clear_difference, from Mann-Whitney U = 2674 (p = 0.347) and Kolmogorov-Smirnov D = 0.217 (p = 0.061) on story-level diversity contribution scores. The one-line finding reads this as 'story diversity did not differ'.",
+      "source_says": "Each story's contribution is its own condition's mean pairwise dissimilarity minus the same mean computed without that story. Averaged over a condition's stories, this difference is zero by construction, whatever the condition's level of diversity. A numerical check with two pools whose diversity differs threefold gives a mean contribution of 0 in each, and both densities in Figure 7a sit around 0. The U and K-S tests therefore compare the shapes of two zero-mean distributions, not the arms' levels of diversity, and the paper never prints each condition's mean pairwise dissimilarity. The text supports no across_people direction. Fix: say in diversity_detail.notes and in reported that this test cannot show which arm's stories are more alike, and do not read it (or the one-line finding) as 'no difference in diversity'.",
+      "quote": "To assess the unique impact of each text, a diversity contribution score was computed by subtracting the group's diversity score (calculated without that text) from the total diversity score.",
+      "locator": "p. 7, Data Analysis, Creative Short Story Task; p. 15, Diversity and Figure 7a"
+    },
+    {
+      "where": "S1-O10",
+      "field": "unit",
+      "form_value": "output (one story). measure_detail says the text does not state whether DSI is scored per story or per participant's sentences.",
+      "source_says": "The story originality model has participant role and scaled DAT (an individual covariate) as predictors and a random intercept for group ID. With one story per pair, a one-row-per-story dataset has one row per group, and a group random intercept cannot be separated from the residual. So the rows are participants, or contributors, within pairs. The Discussion also reads the role term as a difference between people: 'Role B participants produced less original content only when partnered with a human' (p. 17). The unit of the paper's analysis is participant. Whether each row's DSI covers the whole story or only that person's sentences, and whether GPT-4o has rows of its own, is not stated. Fix: code 'participant' and keep the caveat.",
+      "quote": "Following the model indicated in the pre-registration, a linear mixed-effects model was conducted to examine the effects of condition and participant role on originality, controlling for scaled DAT and accounting for random effects of group ID.",
+      "locator": "p. 14, Creative Short Story Task, Originality; p. 17, Discussion, Creative short stories"
+    },
+    {
+      "where": "S1-O13",
+      "field": "unit",
+      "form_value": "output (story word count). measure_detail says the text does not state whether the count covers the whole story or each participant's sentences.",
+      "source_says": "The word-count model has the same structure as S1-O10 (condition, participant role, scaled DAT, random effect of group ID), so its rows are also participants within pairs. The paper reads the role coefficient as a difference between participants. The Discussion says the AI partner increased the length of human responses, most for Role A in the stories (p. 18). The unit of the analysis is participant, not one story, although the text calls the outcome 'story word count'. Fix: code 'participant'.",
+      "quote": "Additionally, there was a significant main effect of participant role (B = -12.04, SE = 5.59, t = -2.15, p = .033), indicating that role B participants used fewer words than role A participants.",
+      "locator": "p. 16, Elaboration; p. 18, Discussion, Hypothesis 3"
+    },
+    {
+      "where": "S1-O1 (the same applies to S1-O3, S1-O5, S1-O7, and S1-O9, which also score all responses)",
+      "field": "question",
+      "form_value": "with_ai",
+      "source_says": "In the Human-AI arm the scored set includes GPT-4o's own AUT ideas. AI responses number 904: 2,970 minus 2,066 observations in Table 2, and 3,038 minus 2,134 from the Levene degrees of freedom. Human-AI pairs gave about 1,678 responses (72 pairs x 23.3, p. 9). So about 54 percent of the treatment arm's scored items are GPT-4o's output, while the control arm's are all human. The paper says the AI's responses drove the all-responses results, for originality here and for Levene's test on p. 11. The codebook's with_ai asks about 'what a person produces', and the form spec codes AI output compared with human output as 'none'. Fix: code the all-responses records 'none', or keep with_ai and state that more than half of the treatment items are GPT-4o's, so that S1-O2, not S1-O1, serves as the with_ai record.",
+      "quote": "human collaborators were linked to higher originality when AI-generated responses were excluded, implying that AI responses may have previously masked underlying differences in human responses",
+      "locator": "p. 10, last paragraph; pp. 9-10, Table 2, Model Fit; p. 9, AUT Originality; p. 11, Diversity; codebook section 1; form-spec field note on 'question'"
+    },
+    {
+      "where": "S1-O14",
+      "field": "construct",
+      "form_value": "other",
+      "source_says": "The DAT asks each person for 10 words as different from each other as possible and scores the mean semantic distance among that person's words. That is variety among one person's own ideas, which codebook section 6 assigns to flexibility. The form already codes forward flow, a semantic-distance measure over an idea sequence, as flexibility. 'other' does not follow the codebook rule. Fix: code flexibility.",
+      "quote": "The average semantic distance across all word pairs multiplied by 100 to yield the final DAT score.",
+      "locator": "p. 5, Verbal Creative Thinking Ability; codebook section 6, Construct"
+    },
+    {
+      "where": "S1-O12",
+      "field": "contrasts[0].direction",
+      "form_value": "mixed",
+      "source_says": "The model gives condition B = 0.002 (p = .90) and condition x sequence B = 0.004 (p = .018). The text says Human-AI distance stays stable while Human-Human distance rises, which makes Human-AI the reference. The modeled Human-Human minus Human-AI gap is then 0.002 + 0.004 per sentence and never favors Human-AI. The Discussion reads the result as higher semantic jumps with a human partner. Only the fitted lines in Figure 7b cross near the start, inside overlapping bands. 'treatment_lower' (no gap at the start, lower later) fits the text and the model better than 'mixed'. Minor.",
+      "quote": "In both the AUT and creative short story, forward flow analysis showed that human collaboration had higher semantic jumps.",
+      "locator": "p. 15, story forward-flow paragraph and Figure 7b; p. 18, Discussion, Hypothesis 2"
+    },
+    {
+      "where": "S1-O3",
+      "field": "primary",
+      "form_value": "not_stated (S1-O5, forward flow on all responses, is paper_primary)",
+      "source_says": "The Data Analysis section and the Results name Levene's test and forward flow together as the two tests of hypothesis 2, and neither is labeled exploratory. The reconciliation gives S1-O5 paper_primary for this reason, so S1-O3 is paper_primary too. Minor, and outside the five fields under check.",
+      "quote": "Diversity was measured in two ways: Levene’s text for the variance differences in AUT originality scores, and forward flow (hypothesis 2).",
+      "locator": "p. 6, Data Analysis, Alternate Uses Task; p. 11, Diversity ('two analyses were performed')"
+    },
+    {
+      "where": "S1-O7, S1-O8, S1-O13",
+      "field": "measure",
+      "form_value": "automated_score",
+      "source_says": "The outcome is a plain word count. Codebook section 6 defines automated_score as a scoring model for creativity (semantic-distance scoring of divergent-thinking tests, or a language model used as judge). A word count is neither, and no measure code covers text length. The form follows earlier reconciled forms, so this is a codebook gap for Review 1, not a misreading of the paper.",
+      "quote": "Hypothesis 3 expects AI collaborations to yield higher elaboration (word count), as AI can rapidly expand ideas with detailed explanations.",
+      "locator": "p. 7, Data Analysis; p. 16, Elaboration; codebook section 6, Measure"
+    }
+  ],
+  "confirmed": [
+    "Every outcome is a computed score of produced text, and none is a self-report: CLAUS originality of each AUT response (p. 5), DSI of the story text (p. 5), a Sentence-BERT diversity contribution per story (p. 7), forward-flow distances between consecutive responses or sentences (pp. 6-7 and p. 15), word counts (p. 7 and p. 16), responses per pair (p. 9), and the GloVe-based DAT (p. 5). The partner-perception, closeness, AI-attitude, and personality scales are self-reports, and the form leaves them out correctly (pp. 5-6).",
+    "AI availability: both collaborative tasks were done in turns with the assigned partner, GPT-4o in the Human-AI arm, so 'yes' holds for S1-O1 to S1-O13. The DAT was done individually after those tasks, so 'no', 'immediate', and after_ai hold for S1-O14 (p. 4, Materials and Procedure).",
+    "S1-O11 compares different people's outputs: all stories in a condition, one per pair, by mean pairwise cosine dissimilarity of Sentence-BERT embeddings, and the tests use 72 and 68 pairs. Construct diversity, question across_people, unit 'output', and n_units 140 hold (p. 7, Data Analysis; p. 15, Diversity).",
+    "Forward flow as flexibility has explicit support: the paper uses it 'to quantify flexibility and semantic distance' (p. 6). Each observation is the distance between two consecutive responses or sentences, the codebook's 'pair' unit, and F(3, 1762) in the story model implies 1,766 such rows (p. 7 and p. 15). The form's caveat that consecutive ideas come from two contributors stands.",
+    "The AUT mixed models have one row per response: N (observations) is 2,970 and 2,066 with 139 and 137 groups, so unit 'output' and the n_units values hold for S1-O1, S1-O2, S1-O7, and S1-O8 (pp. 9-10, Table 2; p. 13, Table 3).",
+    "The other construct codes fit codebook section 6: CLAUS ('fine-tuned to match human ratings') and DSI ('higher originality') as novelty, word count as elaboration, responses per pair as fluency, and the spread of originality scores in Levene's test as other, because a spread of a quality score does not compare the content of outputs (p. 5, p. 9, p. 11).",
+    "Every number in the reported strings matches the PDF: Table 2 (Base, Covariates, Human-Only) and the p. 10 text, the random-human rerun t(175.5) = 2.518 (p. 11), Levene F(1, 3036) = 3.72 and F(1, 2132) = 0.15 with Figure 3 titles p = 0.0538 and 0.696 (pp. 11-12), AUT forward flow (p. 12), Table 3 and the pp. 13-14 text, the story DSI, diversity, forward-flow, and word-count statistics (pp. 14-16), and the fluency and DAT means (p. 9).",
+    "Reference categories: the Table 2 and 3 notes give Condition = AI-Human and Role = A. The story models print none, but their coefficients reproduce Figure 6a (0.812, 0.815, 0.806, 0.790) and Figure 8 (133.4, 121.3, 85.0, 80.1 words) with Human-AI and Role A as reference, so the directions of S1-O10 and S1-O13 hold (p. 15, Figure 6a; p. 16, Figure 8).",
+    "Directions match the signs and figures for S1-O1 (Base treatment_higher, Covariates no_clear_difference), S1-O2 (treatment_lower), S1-O5 and S1-O6 (Human-Human above Human-AI in Figures 4a and 4b), and S1-O7 and S1-O8 (treatment_higher) (pp. 10-14).",
+    "U = 2674 with groups of 72 and 68 gives a normal-approximation two-sided p of 0.346, consistent with the printed 0.347 (p. 15).",
+    "The counts agree across sources: the p. 9 means give about 1,678 Human-AI and 1,361 Human-Human responses, 3,039 in all, against 3,038 implied by Levene's F(1, 3036). AI responses number 904 by both the model counts (2,970 minus 2,066) and the Levene counts (3,038 minus 2,134) (p. 9; pp. 9-10, Table 2; p. 11).",
+    "No outcome that bears on the three questions is missing. The covariate models, the random-human rerun, the story word-count variant, and the Kolmogorov-Smirnov test sit inside existing records, and the remaining measures are self-reports (pp. 5-6, pp. 9-16).",
+    "The PDF holds no appendix: pp. 20-27 are references, and SI 1 and SI 2 are not on file (p. 4, p. 5, p. 7, pp. 20-27).",
+    "Criterion 3 holds through S1-O2 alone: CLAUS scores of the participants' own AUT responses, with GPT-4o's responses removed (p. 10, Model 3; pp. 9-10, Table 2, Human-Only column)."
+  ],
+  "summary": "Criterion 3 holds: all 14 outcomes are computed scores of produced text (CLAUS, DSI, Sentence-BERT, forward flow, word and response counts, DAT), AI availability is right for every record, and every number in the reported strings matches Tables 2 and 3, pp. 9-16, and the Figure 3 titles. The coding is still refuted: (1) the story DSI and word-count models run on participant rows, not stories, (2) the story diversity contribution score averages zero within each arm by construction, so its test cannot show an across-people difference, (3) GPT-4o wrote about 54 percent of the Human-AI responses that the all-responses AUT records score as with_ai, (4) the DAT is flexibility under the codebook, and (5) three minor points concern S1-O12's direction, S1-O3's primary status, and the word-count measure code."
+}

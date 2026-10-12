@@ -1,0 +1,109 @@
+{
+ "cid": "c789",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies",
+   "form_value": "Only S1: Three-phase within-subjects user study (POET vs Base text-to-image models).",
+   "source_says": "A separate automatic evaluation is omitted. Add a model_only study for the Flickr30K evaluation: 1,000 sampled text prompts, with 10 images generated for each selected prompt using the baseline models and POET variants; these are prompts/images, not people. Its ICAD outcome measures diversity among model-generated images from the same prompt, not diversity across human creators. The results are in Table 1 and Figures 4-5.",
+   "quote": "We use the image-captioning dataset Flickr30K [81] for automatic evaluation, randomly sampling 1,000 text prompts to generate corresponding images.",
+   "locator": "PDF pp. 7-8, Sections 4.1-4.2, Table 1 and Figures 4-5; form-spec.md rule 6 requires one entry per study."
+  },
+  {
+   "field": "studies[0].assignment.locator",
+   "form_value": "p. 10, Section 5.1.2 (also p. 9, Section 5 'we conducted a within-subjects study')",
+   "source_says": "The quoted scenario-assignment and condition-counterbalancing passage is on PDF p. 9, Section 5.1.2. The statement that the study was within-subjects is on PDF p. 8, Section 5. Neither passage states random assignment.",
+   "quote": "We assigned scenarios in a way where every scenario was seen by 6 participants and counterbalanced the order of conditions (experimental & baseline) to reduce learning effects on our results",
+   "locator": "PDF p. 9, Section 5.1.2; PDF p. 8, Section 5."
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0].locator",
+   "form_value": "p. 12, Table 3; design p. 9, Section 5.1.1",
+   "source_says": "Table 3 is correctly located on PDF p. 12, but the Phase 1 design in Section 5.1.1 is on PDF p. 8, not p. 9.",
+   "quote": "Each participant was presented six pairs of images for each of the four scenarios summarized in Table 2 (for a total of 24 pairs).",
+   "locator": "PDF p. 8, Section 5.1.1; PDF p. 12, Table 3."
+  },
+  {
+   "field": "studies[0].task.duration",
+   "form_value": "Sessions lasted on average 60 minutes (p. 11); at most 5 re-prompts per condition (p. 10)",
+   "source_says": "The explicit maximum of 5 re-prompts is on PDF p. 9, Section 5.1.2. The average session duration of 60 minutes is correctly cited to PDF p. 11, Section 5.2; neither number needs changing.",
+   "quote": "we allowed for a maximum of 5 re-prompts to stay within the time limits of our study.",
+   "locator": "PDF p. 9, Section 5.1.2; PDF p. 11, Section 5.2."
+  },
+  {
+   "field": "eligibility.reason",
+   "form_value": "28 people analyzed in total, well below 50 (abstract p. 2, conclusions p. 15, Tables 4 and 5 p. 12). It is a within-subjects comparison of two AI configurations with counterbalanced order; the paper does not say the order was random. No outcome scores creativity or cross-person diversity of participants' own outputs: Phase 1 ratings are of researcher-generated image pairs, and Phases 2 and 3 report rounds to satisfaction and self-rated satisfaction. Minor inconsistency: 'every scenario was seen by 6 participants' (p. 10) implies 24 people per phase across four scenarios, against 28 reported. Listed in the screening report as a small experiment.",
+   "source_says": "Keep the core-exclusion reasoning and the flagged inconsistency, but change the locator for \"every scenario was seen by 6 participants\" from p. 10 to PDF p. 9. The reported total remains 28; the paper does not explain the discrepancy.",
+   "quote": "every scenario was seen by 6 participants",
+   "locator": "PDF p. 9, Section 5.1.2; total 28 in PDF p. 2, Abstract, p. 12, Tables 4-5, and p. 15, Conclusions."
+  },
+  {
+   "field": "studies[0].outcomes[0].n_units",
+   "form_value": "null",
+   "source_says": "Set n_units to 672 for the recorded unit=rating. Table 3 explicitly gives 672 observations of image-difference ratings; this is not a participant count.",
+   "quote": "Number of Observations 672",
+   "locator": "PDF p. 12, Table 3; rating procedure in PDF p. 8, Section 5.1.1."
+  },
+  {
+   "field": "studies[0].outcomes[1].scored_on_output",
+   "form_value": "true",
+   "source_says": "Set scored_on_output to false. This outcome counts prompting rounds until satisfaction, a process/efficiency measure rather than a score assigned to the produced image; construct=other and question=none remain appropriate.",
+   "quote": "number of rounds required to achieve satisfaction in Phases 2 and 3",
+   "locator": "PDF p. 11, Section 5.2, Quantitative Analysis; PDF p. 12, Tables 4-5."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "[] for S1-O1, S1-O2, and S1-O3.",
+   "source_says": "All three outcomes have reported regression coefficients and standard errors. Set statistics_available to [\"regression_coefficient_se\"] for these contrasts, including the personalized-model contrasts when entered separately.",
+   "quote": "POET vs Base -0.857 . (0.453) 0.600 ** (0.229)",
+   "locator": "PDF p. 12, Tables 3-5; fixed-effects panel linear models described on PDF p. 11, Section 5.2."
+  },
+  {
+   "field": "studies[0].outcomes[1:3].contrasts",
+   "form_value": "Both outcomes contain only a POET versus Base contrast; Phase 3 estimates are embedded in its reported string, and both outcome names specify Phase 2.",
+   "source_says": "Enter Phase 3 as separate contrasts or outcome entries labeled POET-Personalize versus Base-Personalize: rounds -1.35** (SE 0.409) and satisfaction 0.652** (SE 0.217), with ** denoting p < 0.01. These belong to the personalized conditions in Table 5, not the POET versus Base contrast in Table 4; they use the same participant sample.",
+   "quote": "POET-Personalize vs Base-Personalize -1.35 ** (0.409) 0.652 ** (0.217)",
+   "locator": "PDF p. 12, Table 5; PDF p. 10, Section 5.1.3; all participants evaluated the versions in PDF p. 8, Section 5."
+  },
+  {
+   "field": "one_line_finding",
+   "form_value": "With 28 participants, POET image pairs were rated more different than Base pairs (2.28 points on a 7-point scale, SE 0.203, Table 3, p. 12), and POET reached satisfaction in 0.857 fewer rounds (SE 0.453, p < .1) with 0.600 higher self-rated satisfaction (SE 0.229) in Phase 2 (Table 4, p. 12).",
+   "source_says": "Qualify the 2.28-point coefficient (SE 0.203) as the POET versus Base difference for the fictional-character reference scenario. Table 3 includes scenario interactions, so 2.28 is not an overall pooled difference across the four scenarios. The Phase 2 figures in the sentence are correct as printed.",
+   "quote": "Reference scenario was set to Fictional Character Generation",
+   "locator": "PDF p. 12, Table 3 (coefficient, scenario interactions, and reference-scenario note); Phase 2 figures in Table 4."
+  },
+  {
+   "field": "studies[0].participants.country",
+   "form_value": "",
+   "source_says": "United States is explicitly reported as the recruitment country and should replace the blank value.",
+   "quote": "we recruited participants from college campuses in the United States",
+   "locator": "PDF p. 10, Section 5.2, Recruitment."
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "Set code_url to https://github.com/evansh666/POET. The PDF explicitly identifies this as the project page with code; no dataset URL is stated.",
+   "quote": "The project page with code can be found at https://github.com/evansh666/POET.",
+   "locator": "PDF p. 2, footnote 1."
+  }
+ ],
+ "confirmed": [
+  "Read all 108,029 characters of the markdown conversion in six contiguous chunks, through the final reference. The PDF has 18 pages and identifies itself as arXiv:2504.13392v2 [cs.CV], 4 Sep 2025 (PDF p. 1); the title and six authors match the form (PDF p. 1 and PDF metadata).",
+  "The proceedings title and DOI 10.1145/3746059.3747710 are confirmed by the primary Crossref record retrieved directly at https://api.crossref.org/works/10.1145/3746059.3747710; the full text read for this check is the local arXiv v2 PDF, not the ACM version of record.",
+  "The Appendix is referenced but absent from this 18-page PDF, which ends with references. Cited contents include task prompts (PDF pp. 5-6), scenario/condition assignments (pp. 8-9), interfaces and Phase 1 image sets (p. 11), and a cross-panel analysis (p. 12). The form correctly says the supplement is not in this PDF.",
+  "The reported user study is within-subjects: each participant evaluated four model versions across three phases (PDF p. 8, Section 5). Phase 1 scenario order and Phase 2 condition order were counterbalanced (pp. 8-9, Sections 5.1.1-5.1.2); Phase 3 uses a similar setup with a new scenario (p. 10, Section 5.1.3). Random assignment of people or condition order is not stated, so assignment.randomized=not_stated and design_class=other are supported for S1; an RCT classification is not established.",
+  "The reported analysis sample is 28 people, below 50, not 28 independent people in each arm: the abstract reports 28 users (PDF p. 2), conclusions report 28 participants (p. 15), and Tables 4-5 print 28 for each outcome (p. 12). All versions were evaluated within participants (p. 8). No separate number randomized or explicit attrition count is reported, so n_randomized=null is appropriate.",
+  "Three pilot participants were used to refine the interface and timing; the paper does not report a separate scored pilot experiment or justify adding them to the main analysis sample (PDF p. 8, Section 5.1). The statement that each scenario was seen by 6 participants is present but unexplained relative to the reported main total (p. 9, Section 5.1.2).",
+  "Phase 1 evaluates pre-generated image pairs: six pairs per scenario, four scenarios, 24 pairs per participant, half Base and half POET, rated from 1=Very Similar to 7=Very Different (PDF p. 8, Section 5.1.1). These are ratings of model output, not diversity across different participants’ creative outputs.",
+  "Every Table 3 coefficient and standard error quoted in the form matches the PDF: POET vs Base 2.28*** (0.203); interaction with Interior Design 0.714** (0.257), Product Advertisement -0.369 (0.257), and Tourist Promotion 0.357 (0.257); 672 observations. The reference scenario is Fictional Character Generation, *** means p < .001, and ** means p < .01 (PDF p. 12, Table 3).",
+  "The Phase 2 reported string matches Table 4: rounds -0.857 . (0.453), with the dot denoting p < .1; satisfaction 0.600 ** (0.229), with ** denoting p < 0.01. The table literally labels 28/28 as No. of Observations and 56/235 as No. of Groups; the form preserves those printed labels (PDF p. 12, Table 4).",
+  "The Phase 3 coefficients included in the form match Table 5: rounds -1.35 ** (0.409) and satisfaction 0.652 ** (0.217), ** p < 0.01. The table prints No. of Observations 28/28 and No. of Groups 56/207. These unusual table count labels should not be silently reversed or treated as additional people (PDF p. 12, Table 5).",
+  "All conditions use generative AI: Flux.1-dev Base, POET with homogeneous-dimension expansion, and their personalized variants (PDF p. 4, Section 3). OpenCLIP-ViT/H and GPT-4o are identified in the implementation/expansion descriptions (pp. 5-6, Sections 3.2-3.4).",
+  "The four task domains are product advertisement, tourist promotion, fictional character generation, and interior design (PDF p. 10, Table 2). Prompting starts with a fixed set of four images and permits at most 5 re-prompts (p. 9, Section 5.1.2); users rate satisfaction on a 7-point scale each round (p. 9; p. 12, Tables 4-5). Sessions averaged 60 minutes and paid $30 (p. 11, Section 5.2).",
+  "No creativity or cross-person diversity score is reported for participants’ own prompting outputs: Phase 1 concerns supplied model image pairs, and the reported Phase 2/3 outcomes are prompting rounds and participants’ own satisfaction ratings (PDF pp. 8-12, Sections 5.1-5.3 and Tables 3-5). Thus core=no, criterion_2=not_met, criterion_3=not_met, and context_class=none are supported. The paper supplies neither AI-versus-human output comparisons nor eligible observational creativity/diversity evidence.",
+  "This is an original systems evaluation, not a synthesis; synthesis fields should remain empty/null. The two evaluation components are the automatic model evaluation and the user study (PDF pp. 7-12, Sections 4-5).",
+  "The listed affiliations are academic (PDF p. 1), and the acknowledgments name NSF support and academic institutions (p. 15). No company sponsorship or company author affiliation is disclosed in the source read."
+ ],
+ "summary": "The 28-person user study does not establish random assignment or report scored creativity/diversity of participants’ own output, so core exclusion and context_class=none are supported. Regression values match the PDF, but corrections are needed to study coverage, the scope of the 2.28 coefficient, outcome metadata, source locators, and omitted country/code information."
+}

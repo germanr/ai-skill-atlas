@@ -1,0 +1,988 @@
+{
+ "cid": "c006",
+ "analyst": "A",
+ "script": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/analysis/c006/A.py",
+ "data_files": [
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/raw_data/writers-2023-06-28.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/raw_data/evaluators-2023-07-06.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/already_processed_data/creators.dta",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/already_processed_data/evaluators_stories.dta",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/README.md",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/readme.txt",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/scripts/01_writer_process_output.do",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/scripts/02_evaluator_process_output.do",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/scripts/03_analysis.do",
+  "D:/projects/ai-skill-atlas/creativity-data/zenodo-11654403/GenAI_creativity_scripts-unpacked/GenAI_creativity_scripts/scripts/ai_human_story_similarity.py",
+  "D:/projects/ai-skill-atlas/creativity-data/manifest.json",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/extraction/c006.json",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/retrieval.json",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/extraction-spec.md",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-codebook.md",
+  "C:/Dropbox/Research/ai-lab/literature/creativity/Doshi and Hauser (2024) - Generative AI Enhances Individual Creativity.md",
+  "C:/Dropbox/Research/ai-lab/literature/creativity/Doshi and Hauser (2024) - Generative AI Enhances Individual Creativity.pdf",
+  "C:/Dropbox/Research/ai-lab/literature/productivity/Doshi and Hauser (2024) - GenAI Enhances Creativity Reduces Diversity.pdf"
+ ],
+ "results": [
+  {
+   "slug": "s1_novelty_one_idea_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 100,
+     "computed": 100,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.207,
+     "computed": 0.2065445710169466,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.021,
+     "computed": 0.02109592502767661,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent",
+     "printed": 5.4,
+     "computed": 5.362977120557446,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 100,
+    "n_control": 95,
+    "treatment_mean": 4.064758852258852,
+    "treatment_sd": 1.0408527617923728,
+    "control_mean": 3.858539238539239,
+    "control_sd": 1.0138976053847175,
+    "difference": 0.20621961371961328,
+    "difference_se": 0.1471552743246732,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[2], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_novel_index. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. The novelty index is the arithmetic mean of novel, original and rare, rebuilt in float64. Rebuilt indices match stored Stata indices within 3.2e-7 (float32 rounding). All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_novelty_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.311,
+     "computed": 0.3108501925010499,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 0.00038657068978028853,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent",
+     "printed": 8.1,
+     "computed": 8.071296486254424,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 4.171512727635177,
+    "treatment_sd": 0.8386302343060684,
+    "control_mean": 3.858539238539239,
+    "control_sd": 1.0138976053847175,
+    "difference": 0.3129734890959379,
+    "difference_se": 0.13415464021845036,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_novel_index. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. The novelty index is the arithmetic mean of novel, original and rare, rebuilt in float64. Rebuilt indices match stored Stata indices within 3.2e-7 (float32 rounding). All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_usefulness_one_idea_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 100,
+     "computed": 100,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.185,
+     "computed": 0.1851800300355237,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 5.21,
+     "computed": 5.208368435832631,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.039,
+     "computed": 0.039408461244626596,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent",
+     "printed": 3.7,
+     "computed": 3.6865037716246754,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 100,
+    "n_control": 95,
+    "treatment_mean": 5.212005457505456,
+    "treatment_sd": 1.052779556309726,
+    "control_mean": 5.0397382734224845,
+    "control_sd": 1.0936142331529823,
+    "difference": 0.1722671840829717,
+    "difference_se": 0.15385980102983376,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[2], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_useful_index. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. The usefulness index is the arithmetic mean of appropriate, feasible and publishable, rebuilt in float64. Rebuilt indices match stored Stata indices within 3.2e-7 (float32 rounding). All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_usefulness_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.453,
+     "computed": 0.45340493881654903,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 6.092978393309134e-07,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent",
+     "printed": 9.0,
+     "computed": 9.026237962591418,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 5.484019268713146,
+    "treatment_sd": 1.0081172135519534,
+    "control_mean": 5.0397382734224845,
+    "control_sd": 1.0936142331529823,
+    "difference": 0.44428099529066145,
+    "difference_se": 0.15152492145356378,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_useful_index. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. The usefulness index is the arithmetic mean of appropriate, feasible and publishable, rebuilt in float64. Rebuilt indices match stored Stata indices within 3.2e-7 (float32 rounding). All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_usefulness_five_ideas_vs_one_idea",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 100,
+     "computed": 100,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 5.21,
+     "computed": 5.208368435832631,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.0012,
+     "computed": 0.0012450258142670198,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent",
+     "printed": 5.1,
+     "computed": 5.149883540029286,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 100,
+    "treatment_mean": 5.484019268713146,
+    "treatment_sd": 1.0081172135519534,
+    "control_mean": 5.212005457505456,
+    "control_sd": 1.052779556309726,
+    "difference": 0.27201381120768975,
+    "difference_se": 0.1464713601092128,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[2]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_useful_index. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. The usefulness index is the arithmetic mean of appropriate, feasible and publishable, rebuilt in float64. Rebuilt indices match stored Stata indices within 3.2e-7 (float32 rounding). All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_well_written_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.372,
+     "computed": 0.37167806959464456,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 0.0001594555935933682,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 5.053125445982589,
+    "treatment_sd": 1.1739304055436315,
+    "control_mean": 4.690434302539566,
+    "control_sd": 1.2023305243586642,
+    "difference": 0.36269114344302356,
+    "difference_se": 0.17111166457351323,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_well_written. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. The raw field tt_badly_written was retained after the question changed to well written; it is not reversed. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_enjoyable_one_idea_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 100,
+     "computed": 100,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.216,
+     "computed": 0.21571151239881248,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.028,
+     "computed": 0.027534513548205238,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 100,
+    "n_control": 95,
+    "treatment_mean": 4.735822621822622,
+    "treatment_sd": 1.1266732649684539,
+    "control_mean": 4.525578456631087,
+    "control_sd": 1.0917677092264442,
+    "difference": 0.21024416519153455,
+    "difference_se": 0.15887365866275463,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[2], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_enjoyed. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_enjoyable_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.375,
+     "computed": 0.375304936364304,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 0.0001221987488605999,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 4.893997499099539,
+    "treatment_sd": 0.9858381835148549,
+    "control_mean": 4.525578456631087,
+    "control_sd": 1.0917677092264442,
+    "difference": 0.36841904246845214,
+    "difference_se": 0.14988003345043874,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_enjoyed. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_surprising_twist_one_idea_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 100,
+     "computed": 100,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.384,
+     "computed": 0.38389656056554655,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 0.0002211056980738921,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 100,
+    "n_control": 95,
+    "treatment_mean": 3.8184040959040964,
+    "treatment_sd": 1.42760327900512,
+    "control_mean": 3.42156054471844,
+    "control_sd": 1.468094118518273,
+    "difference": 0.3968435511856563,
+    "difference_se": 0.20752802998866654,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[2], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_twist. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_surprising_twist_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.468,
+     "computed": 0.46848966379754275,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 3.1095835152911755e-06,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 3.8883312265965326,
+    "treatment_sd": 1.1675700102791982,
+    "control_mean": 3.42156054471844,
+    "control_sd": 1.468094118518273,
+    "difference": 0.46677068187809256,
+    "difference_se": 0.1913054557656115,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_twist. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_changed_expectations_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 0.251,
+     "computed": 0.2509850658427134,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.005,
+     "computed": 0.00497333094475688,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 3.2922764310519406,
+    "treatment_sd": 0.6443060155671516,
+    "control_mean": 3.0465096307201573,
+    "control_sd": 0.743814014593873,
+    "difference": 0.24576680033178322,
+    "difference_se": 0.1002985785373864,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_future. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_boring_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": -0.2,
+     "computed": -0.19988523504745168,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.049,
+     "computed": 0.04946391531073302,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 4.04967617416597,
+    "treatment_sd": 0.9804536780731804,
+    "control_mean": 4.248931419457735,
+    "control_sd": 1.0945627173723405,
+    "difference": -0.19925524529176464,
+    "difference_se": 0.149734140892015,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_boring. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. Higher means more boring; the raw treatment-minus-control difference is retained, without sign reversal. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_funny_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 3519,
+     "computed": 3519,
+     "match": true
+    },
+    {
+     "statistic": "n_evaluators_all_three_arms",
+     "printed": 600,
+     "computed": 600,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": -0.106,
+     "computed": -0.1063679835209304,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.115,
+     "computed": 0.11537634907617299,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 1.980992137114586,
+    "treatment_sd": 0.556303212324328,
+    "control_mean": 2.0931039136302294,
+    "control_sd": 0.8728601104719906,
+    "difference": -0.11211177651564341,
+    "difference_se": 0.10572478498178814,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Keep evaluator records with participant._current_page_name=Finally, reshape their first-pass evaluator.{story_number}.player ratings, and inner join story_id to eligible writers. This drops 81 of 3600 ratings, retaining 3519 ratings from 600 evaluators; ratings were collected before AI-use disclosure. Every raw item rating, writer identifier, story identifier and condition matches the processed DTA. Outcome variable: eval_tt_funny. Printed statistics are reproduced using rating-level OLS with both AI-arm indicators and Human-only reference; p-values use Stata's evaluator-clustered covariance correction G/(G-1)*(N-1)/(N-3) with G=600 and Student t with 599 df. The five-versus-one contrast uses the difference between the two coefficients in that same model. The reproduction n_units and study_n_analyzed refer to all three arms, not the pairwise contrast. For computed results, average all 9-14 ratings within each writer first, then weight writers equally. Thus computed participant means/differences can differ from printed rating-level values. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_similarity_ai_idea_one_idea_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 100,
+     "computed": 100,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 4.29,
+     "computed": 4.287919199090265,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 82.85,
+     "computed": 82.84959331311677,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 1.974563639525552e-11,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent",
+     "printed": 5.2,
+     "computed": 5.175546466335399,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 100,
+    "n_control": 95,
+    "treatment_mean": 87.13751251220702,
+    "treatment_sd": 5.0930454722633165,
+    "control_mean": 82.84959331311677,
+    "control_sd": 3.342843873914257,
+    "difference": 4.287919199090254,
+    "difference_se": 0.6140183585355943,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[2], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Outcome: creators.dta sim_idea, the original stored cosine similarity times 100 for each writer's one story and its assigned AI idea. These are participant-level observations, not the across-people diversity measure sim_cstories. The printed control mean and coefficient are reproduced from float64 copies of the stored scores; the printed p-value uses the paper's three-arm HC1 model (Stata vce(robust)). Original comparison-idea assignments and scores are preserved; embeddings are not regenerated. Authors' code names text-embedding-ada-002. Two story texts differ between raw CSV and processed DTA through UTF-8/Latin-1 mojibake; using the deposited scores avoids changing the texts or sampling a new comparison idea. Higher scores mean stronger anchoring to the AI idea. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  },
+  {
+   "slug": "s1_similarity_ai_idea_five_ideas_vs_human_only",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 98,
+     "computed": 98,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "n_units_all_three_arms",
+     "printed": 293,
+     "computed": 293,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 4.11,
+     "computed": 4.105271266687323,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 82.85,
+     "computed": 82.84959331311677,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 8.873600955667966e-12,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent",
+     "printed": 5.0,
+     "computed": 4.955089219535584,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 98,
+    "n_control": 95,
+    "treatment_mean": 86.9548645798041,
+    "treatment_sd": 4.595042193216667,
+    "control_mean": 82.84959331311677,
+    "control_sd": 3.342843873914257,
+    "difference": 4.105271266687325,
+    "difference_se": 0.5771313664979498,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Randomized unit: individual writer; between-person design, so round=all and no first_round result. Condition coding: 1=Human-only, 2=Human with one GenAI idea, 3=Human with five GenAI ideas; this contrast uses treatment=[3], control=[1]. Keep writer records with participant._current_page_name=Finally; exclude the three human-condition writers reporting AI use in follow_up.1.player.used_ai_tool or its follow_up.2 fallback. This gives 95/100/98 writers. Retain all assigned AI-arm writers regardless of actual AI uptake. The two missing DAT scores do not exclude writers from these unconditional analyses. Outcome: creators.dta sim_idea, the original stored cosine similarity times 100 for each writer's one story and its assigned AI idea. These are participant-level observations, not the across-people diversity measure sim_cstories. The printed control mean and coefficient are reproduced from float64 copies of the stored scores; the printed p-value uses the paper's three-arm HC1 model (Stata vce(robust)). Original comparison-idea assignments and scores are preserved; embeddings are not regenerated. Authors' code names text-embedding-ada-002. Two story texts differ between raw CSV and processed DTA through UTF-8/Latin-1 mojibake; using the deposited scores avoids changing the texts or sampling a new comparison idea. Higher scores mean stronger anchoring to the AI idea. All printed checks must match at the printed precision before participant statistics are computed. SDs use denominator n-1. Difference is treatment mean minus control mean in the original units. Final difference_se is the HC2 sandwich SE from pairwise participant-level OLS on an intercept and treatment indicator; it equals sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). No clusters were randomized, so n_clusters is null."
+  }
+ ],
+ "skipped": [
+  {
+   "slug": "s1_novelty_combined_ai_vs_human_only",
+   "reason": "Data mapping is available (eval_novel_index; treatment condition [2, 3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_usefulness_combined_ai_vs_human_only",
+   "reason": "Data mapping is available (eval_useful_index; treatment condition [2, 3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_similarity_other_stories_one_idea_vs_human_only",
+   "reason": "Set-dependent story-to-condition similarity cannot be recomputed exactly. creators.dta provides sim_cstories scalars but no original embedding vectors. The deposited text-only code names text-embedding-ada-002; its lines 53-57 include the focal story in the condition centroid, whereas paper pp. 4 and 8 specify all OTHER stories. Neither the original embeddings nor a faithful reconstruction of the paper's leave-one-out procedure is available. Raw and processed texts also contain two encoding differences. Per rule 5, stored scalar scores are not treated as a recomputed set measure or as independent participant outcomes; no participant SD or HC2 SE is calculated for this diversity estimate."
+  },
+  {
+   "slug": "s1_similarity_other_stories_five_ideas_vs_human_only",
+   "reason": "Set-dependent story-to-condition similarity cannot be recomputed exactly. creators.dta provides sim_cstories scalars but no original embedding vectors. The deposited text-only code names text-embedding-ada-002; its lines 53-57 include the focal story in the condition centroid, whereas paper pp. 4 and 8 specify all OTHER stories. Neither the original embeddings nor a faithful reconstruction of the paper's leave-one-out procedure is available. Raw and processed texts also contain two encoding differences. Per rule 5, stored scalar scores are not treated as a recomputed set measure or as independent participant outcomes; no participant SD or HC2 SE is calculated for this diversity estimate."
+  },
+  {
+   "slug": "s1_well_written_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_tt_well_written; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_changed_expectations_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_tt_future; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_boring_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_tt_boring; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_funny_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_tt_funny; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_novel_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_novel; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_novel_five_ideas_vs_human_only",
+   "reason": "Data mapping is available (eval_novel; treatment condition [3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_original_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_original; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_original_five_ideas_vs_human_only",
+   "reason": "Data mapping is available (eval_original; treatment condition [3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_rare_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_rare; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_rare_five_ideas_vs_human_only",
+   "reason": "Data mapping is available (eval_rare; treatment condition [3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_appropriate_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_appropriate; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_appropriate_five_ideas_vs_human_only",
+   "reason": "Data mapping is available (eval_appropriate; treatment condition [3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_feasible_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_feasible; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_feasible_five_ideas_vs_human_only",
+   "reason": "Data mapping is available (eval_feasible; treatment condition [3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_publishable_one_idea_vs_human_only",
+   "reason": "Data mapping is available (eval_publishable; treatment condition [2], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  },
+  {
+   "slug": "s1_publishable_five_ideas_vs_human_only",
+   "reason": "Data mapping is available (eval_publishable; treatment condition [3], control condition [1]), but the reconciled extraction and available main article print no numerical arm mean, difference, or coefficient for this exact contrast. Only qualitative results or unlabeled figure points are available. Sections S1-S9 and tables S1-S18 are absent from both local article PDFs and the posted-data folders; direct publisher and Zenodo requests failed with socket error 10013. Counts alone do not meet the reproduce-first rule. No participant-level effect, SD, or SE is computed."
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "tables-00-1",
+    "cid": "c174",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:208-214; core table, People analyzed, by study, c174",
+    "correct_value": "S1: not printed",
+    "evidence": "The assembled report, line 69, attaches a truncated paper-level overlap note to the randomized-study count. forms/c174.json records S1 as online_rct with participants.n_analyzed null and S2 as ai_vs_human; sample_overlap assigns ArgRewrite-v2 reuse to S2 and identifies S1 as newly collected. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Abdulhai et al (2026) - How LLMs Distort Our Written Language.pdf, PDF pp. 4-5: p. 4 describes a newly recruited Prolific experiment with 100 participants; p. 5 separately describes the historical ArgRewrite-v2 corpus of 86 university students. tools/build_report.py:208-212 filters the counts to randomized studies but then prepends \"same participants as\" to the unfiltered, truncated paper-level overlap note. The form does not assign the reused corpus to S1."
+  },
+  {
+    "id": "tables-00-2",
+    "cid": "c249",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:208-214; core table, People analyzed, by study, c249",
+    "correct_value": "S1: not printed; S2: not printed; S3: not printed; neutral comparator potentially shared across studies (unconfirmed)",
+    "evidence": "The assembled report, line 80, says \"same participants as No reuse from another paper is stated\" and truncates the internal-overlap qualification. forms/c249.json has null analyzed counts for S1-S3 and explicitly calls comparator reuse unconfirmed. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Chen Liu Hu Li (2026) - AI agents reshape consensus formation in human groups.pdf, PDF p. 16: the allocation roster lists one neutral 33.3% condition in Study A and additional high-adoption, high-persistence and smaller-model conditions in Studies B and C. PDF p. 4 describes the matching neutral/model comparisons. These passages do not establish whether the comparator was reused or independently repeated. tools/build_report.py:210-212 converts any nonempty overlap description into an affirmative reuse label and truncates it to 70 characters."
+  },
+  {
+    "id": "tables-00-3",
+    "cid": "c750",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:219-220; core table, Statistics, c750",
+    "correct_value": "in the PDF (Tables 5 and 6, pp. 39-40); separate supplementary materials not on file",
+    "evidence": "The assembled report defines Statistics as the location of statistics at line 65, but labels c750 \"supplement not on file\" at line 82. forms/c750.json source.supplement.holds correctly distinguishes statistics in the saved PDF from external materials. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Contractor and Reyes (2026) - Experimental Evidence on the Learning Impact of Generative AI.pdf, PDF p. 39, Table 5 Panel C: within-group similarity ITT coefficients are 0.001 (SE 0.007) and -0.005 (SE 0.013). PDF p. 40, Table 6 Panel B: overall-quality ITT coefficients are 0.246 (SE 0.211) and 0.308 (SE 0.210). PDF pp. 1, 7, 12 and 69 describe the external materials as survey instruments, learning texts and a grading instrument. tools/build_report.py:220 determines the statistics label solely from supplement existence and inclusion, ignoring the correctly recorded locations of the reported statistics."
+  },
+  {
+    "id": "tables-00-4",
+    "cid": "c766",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:208-214; core table, People analyzed, by study, c766",
+    "correct_value": "S1: not printed; follow-up interviews use a subset of S1; pilot/main overlap unstated",
+    "evidence": "The assembled report, line 87, inserts \"same participants as\" before a form statement that no external reuse is stated. forms/c766.json records S1 participants.n_analyzed as null; sample_overlap describes the interviews as a subset of the main experiment and leaves pilot/main overlap unstated. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Fan Liu Pan Huang (2025) - Creative Momentum Transfer.pdf, PDF p. 3, Sections 3.2-3.3, and p. 4, Section 3.4: twelve participants were invited for interviews after the experiment, while the stimulus pilot is described separately. These passages support internal follow-up, not a confirmed shared sample with another paper. tools/build_report.py:210-212 supplies the unsupported affirmative prefix and truncates the qualification."
+  },
+  {
+    "id": "tables-00-5",
+    "cid": "c766",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:194-201 and 231-237; c766 Questions cell, question-specific note, and core_by_question.with_ai",
+    "correct_value": "Questions cell: with_ai.\nAdd note: `with_ai`, expert-rated final overall creativity: Late-AI-Labeled and Late-AI-Unlabeled exceeded Control; no numerical pairwise effect estimate or test is printed (PDF p. 4, Section 4.1; p. 5, Figure 2a). Suggestions were supplied during Late-AI Round 2; Early-AI final-output timing remains unresolved.\ncore_by_question.with_ai: 75.",
+    "evidence": "The assembled report has a blank Questions cell at line 87 and no question-specific contrast in the c766 notes at lines 342-349. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Fan Liu Pan Huang (2025) - Creative Momentum Transfer.pdf, PDF pp. 3-4, Sections 3.3-3.5: Late-AI participants receive GPT-4 suggestions during Round 2, and experts rate the final submissions. PDF p. 4, Section 4.1 states that Late-AI groups exceeded Control in final outcomes; p. 5 contains Figure 2a. The codebook, section 1, classifies rated creativity produced with AI available as with_ai. forms/c766.json notes, S1-O1.measure_detail, and final.challenge_resolution explicitly preserve this confirmed subset while leaving the shared question fields null because Early-AI final access is unresolved. The builder reads only those shared question fields and drops the confirmed subset. Independently reproduced report-data.json core_by_question.with_ai = 74 from the current core forms; c766 is core and contributes no question under that rule, so adding this confirmed paper raises the count to 75."
+  },
+  {
+    "id": "tables-00-6",
+    "cid": "c788",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:219-220; core table, Statistics, c788",
+    "correct_value": "in the PDF (pp. 8-9); separate supplementary materials not on file",
+    "evidence": "The assembled report, line 90, labels the statistics \"supplement not on file\", although line 65 defines the column as their location. forms/c788.json source.supplement.holds and the retained contrast locators distinguish main-PDF results from external instructions and examples. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Han and Ren (2025) - Why unequal AI access enhances team productivity.pdf, PDF p. 8, Section 4.1: quality means 5.654 versus 5.250, t = 2.881, p < 0.01. PDF p. 9, Section 4.2: diversity means 0.631 versus 0.510, t = 5.938, p < 0.01, and full-access coefficient b = -0.107, SE = 0.025. PDF pp. 6-7 identify supplementary writing instructions, evaluator instructions/examples and coding categories; p. 14 gives the external supplement link. The inspected passages do not establish that missing statistics are in that supplement. tools/build_report.py:220 substitutes supplement availability for the location of statistics."
+  },
+  {
+    "id": "tables-00-7",
+    "cid": "c065",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:75-79 and 237; c065 with_ai note, TOST bound",
+    "correct_value": "TOST bounded the maximum credible effect at |β| ≤ 0.33;",
+    "evidence": "The assembled report, line 386, and report-generated.md, line 340, print /β/ instead of absolute-value bars. forms/c065.json studies[S1].outcomes[S1-O1].contrasts[0].reported preserves |β| ≤ 0.33. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Hemmatian et al (2026) - Two-Player Alternate Uses Test.pdf, PDF p. 4, Section 4.1, which prints the absolute-value bound |β| ≤ 0.33. tools/build_report.py:76 unconditionally replaces every vertical bar with a slash, and line 237 applies that table-cell formatter to the prose note. Preserve the mathematical bars in the note; the form is correct."
+  },
+  {
+    "id": "tables-00-8",
+    "cid": "c793",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:208-214; core table, People analyzed, by study, c793",
+    "correct_value": "S1: not printed; S2 reuses S1 baseline DAT scores and is not an independent human sample",
+    "evidence": "The assembled report, line 92, says \"same participants as No overlap with another paper is stated\" and truncates the explanation of internal reuse. forms/c793.json records S1 as field_rct with null n_analyzed, S2 as ai_vs_human, and sample_overlap as internal reuse of the same cohort and its baseline DAT scores. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Hosanagar and Ahn (2025) - Designing Human and Generative AI Collaboration.pdf, PDF p. 4: the two-day writing study measures DAT at baseline and uses Day 1 as the baseline for Day 2. PDF p. 8 compares ChatGPT DAT scores with \"participants in our study\"; PDF p. 11, Table 1, reports 280 initial-survey DAT scores, and p. 19 describes that baseline test. These support internal reuse, not an external-paper reuse label. tools/build_report.py:210-212 supplies the affirmative prefix without interpreting the negative overlap statement or its study scope."
+  }
+]

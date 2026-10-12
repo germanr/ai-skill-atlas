@@ -1,0 +1,245 @@
+{
+  "cid": "c389",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Jo and Raghavan (2026) - Incentives shape how humans co-create with generative AI.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Jo and Raghavan (2026) - Incentives shape how humans co-create with generative AI.pdf",
+    "version": "arXiv:2604.03529v1 [cs.HC], 4 Apr 2026 (preprint; side stamp on p. 1). Candidate record also lists an ICML 2026 Workshop on Human-AI Co-Creativity version, not on file.",
+    "title_on_document": "Incentives shape how humans co-create with generative AI",
+    "authors_on_document": ["Nathanael Jo", "Manish Raghavan"],
+    "pages": 30,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendices A-C inside this PDF (pp. 18-30). Pre-registration on OSF: https://osf.io/3u8tq/overview?view_only=e1a8044dd5044bc59dd0a7d8f3fca3c2 (p. 2, fn. 1; p. 3, fn. 2).",
+      "holds": "Appendix Table 5 (p. 28) prints the numeric differences in means behind Figure 1 with standard and Benjamini-Hochberg stars; Table 6 (p. 30) the adoption-stratified differences; Figures 15-17 (pp. 28-29) arm means and trajectories for all metrics. No standard errors are printed anywhere, only star thresholds."
+    }
+  },
+  "paper_design_summary": "Two hundred Prolific participants were block-randomized in a 2x2 between-subjects design: write a 250-350 word short story alone (SELF) or with a GPT-5-mini chat assistant (AI), and receive a bonus for originality relative to peers (O) or for technical quality (T); 50 per cell. The scored outcome is collective diversity of final stories within each cell, measured as each participant's leave-one-out mean similarity to the other stories in the same cell, using 7 embedding models and 5 n-gram/token metrics. Quality and creativity of individual stories were not rated.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "2x2 online experiment: AI access x incentive (short story writing)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "AI writing assistant access (AI vs SELF) crossed with bonus incentive (originality O vs technical quality T)",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "We run a pre-registered, between-subjects experiment in which participants are assigned via block randomization to one of four conditions in a 2 × 2 factorial design",
+        "locator": "p. 3, Section 3",
+        "preregistered": "yes",
+        "prereg_locator": "p. 2, fn. 1 and p. 3, fn. 2 (OSF link); p. 5, Section 4: all Section 4 analyses pre-registered except Figure 1 (right); Sections 5-6 exploratory (p. 8, p. 9)"
+      },
+      "arms": [
+        { "name": "AI-O", "description": "GPT-5-mini chat assistant during writing; bonus for originality and uniqueness (top 25% gain $2-7)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 50 },
+        { "name": "SELF-O", "description": "Writes alone; bonus for originality and uniqueness", "ai": "none", "n_randomized": null, "n_analyzed": 50 },
+        { "name": "AI-T", "description": "GPT-5-mini chat assistant during writing; bonus by rubric grade on organization and technique (A $2.5, B $1)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 50 },
+        { "name": "SELF-T", "description": "Writes alone; bonus by rubric grade on organization and technique", "ai": "none", "n_randomized": null, "n_analyzed": 50 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 200,
+        "counts_are": "people",
+        "exclusions": "The paper says it 'managed to filter out 29 Prolific workers' through full-screen violations, inactivity limits, failed attention checks, and one SELF participant excluded post hoc for an implausible writing pattern (pp. 3-4, p. 25). It does not say whether these people were assigned before exclusion, so no randomized count is recorded. The 200 analyzed (50 per cell) are the participants after these filters (p. 3; Table 2 note, p. 5). Eleven submissions outside the 250-350 word range were kept (p. 20).",
+        "population": "online_panel",
+        "who": "Prolific workers residing in the US or UK, English primary or fluent, 18+, at least 500 prior tasks, at least 98% approval rate; mean age about 40; 11-22% students by cell",
+        "country": "United States and United Kingdom",
+        "quote": "We recruited a total of n = 200 participants from Prolific, with 50 participants per group.",
+        "locator": "p. 3, Section 3.1; p. 5, Table 2 ('All groups consist of n = 50 participants'); p. 25, Appendix A.3"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI gpt5-mini (reasoning set to medium) in an integrated chat panel",
+        "role": "open_chat",
+        "how_used": "Side-by-side editor and chat box during the 20-minute writing phase only (not during brainstorming); participants had to prompt at least once, capped at 15 prompts; copy-paste allowed only within the window. AI users averaged 3.57 turns; 91 percent asked for a full draft at least once (pp. 4-5, p. 20)."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "First-person short story of 250-350 words centered on a decision or dilemma, after a structured outline (character, setting, conflict, resolution, plot).",
+        "duration": "Up to 5 minutes brainstorming (no AI), up to 20 minutes writing, plus 5-minute grace period if outside the word range; about 25 minutes total"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Embedding similarity of final stories within cell (leave-one-out mean cosine similarity)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Seven pre-specified embedding models: all-MiniLM-L12-v2, all-mpnet-base-v2, Qwen3-Embedding-0.6B, embeddinggemma-300m, Style-Embedding, STAR, byt5 (Table 3, p. 6). Higher similarity means lower diversity. The paper restricts its interpretation to embedding metrics and uses all-MiniLM-L12-v2 as its main illustrative metric in Section 5 (pp. 7-8).",
+          "unit": "participant",
+          "n_units": 200,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-O",
+              "control_arm": "SELF-O",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Difference in mean similarity, AI-O - SELF-O, final submissions (positive = AI arm more homogeneous): MiniLM 0.043***, mpnet 0.043***, Qwen3 -0.005, embeddinggemma 0.031***, Style-Embedding -0.033, byt5 0.004**, STAR 0.059***. Welch t-test, one-sided; stars only, no SEs. Arm means (MiniLM, text): AI-O 0.26 vs SELF-O 0.22.",
+              "locator": "p. 28, Table 5; p. 7, Figure 1 (left); pp. 8-9 text and Figure 2(a)"
+            },
+            {
+              "treatment_arm": "AI-T",
+              "control_arm": "SELF-T",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Difference in mean similarity, AI-T - SELF-T, final submissions: MiniLM 0.062***, mpnet 0.076***, Qwen3 0.027***, embeddinggemma 0.044***, Style-Embedding 0.164***, byt5 0.017***, STAR 0.067***. Welch t-test, one-sided; all also *** after Benjamini-Hochberg. Arm means in Figure 2(a) and Figure 15 only.",
+              "locator": "p. 28, Table 5; p. 7, Figure 1 (left); p. 9, Figure 2(a); p. 28, Figure 15"
+            },
+            {
+              "treatment_arm": "AI-O",
+              "control_arm": "AI-T",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Incentive contrast with AI available in both arms. Printed as AI (T - O), final (positive = AI-T more homogeneous, i.e., AI-O more diverse): MiniLM 0.023** (BH *), mpnet 0.029** (BH *), Qwen3 0.007, embeddinggemma -0.013, Style-Embedding 0.153*** (BH ***), byt5 -0.002, STAR 0.020* (no BH star). Arm means (MiniLM): AI-O 0.26; AI-T about 0.28 in Figure 2(a) only.",
+              "locator": "p. 28, Table 5; p. 7, Figure 1 (left, third column); p. 8, Hypothesis 2 text"
+            },
+            {
+              "treatment_arm": "SELF-O",
+              "control_arm": "SELF-T",
+              "comparison_type": "other",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Incentive contrast without AI. Printed as SELF (T - O), final: MiniLM 0.004, mpnet -0.003, Qwen3 -0.025, embeddinggemma -0.026, Style-Embedding -0.044, byt5 -0.015, STAR 0.013*. Paper: 'In the SELF condition, we fail to reject the null.'",
+              "locator": "p. 28, Table 5; p. 8, Hypothesis 2 text"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Participant-level outcome Y_i = (1/(n_g - 1)) * sum over j in same cell, j != i, of cosine similarity of embeddings f(X_i), f(X_j); arm statistic is the mean of Y_i over the cell",
+            "embedding_model": "all-MiniLM-L12-v2, all-mpnet-base-v2, Qwen3-Embedding-0.6B, embeddinggemma-300m, Style-Embedding (Wegmann et al.), STAR, byt5",
+            "computed_over": "Each final story against every other story in the same cell (leave-one-out average over all pairs within the cell of 50)",
+            "uncertainty": "Two-sample Welch t-test, one-sided, on the 50 participant-level leave-one-out scores per arm; standard p-values and Benjamini-Hochberg adjusted p-values shown as stars only (p. 7; p. 28, Table 5)",
+            "notes": "Printed values are raw differences in mean similarity labeled 'effect sizes', not standardized (e.g., MiniLM 0.043 matches arm means 0.26 vs 0.22). Paper does not correct for multiple testing in the main analysis because it treats metrics as correlated views of one construct. Leave-one-out scores within a cell share pairs, so they are not independent; the paper does not discuss this (screener remark)."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "N-gram/token-based similarity and diversity of final stories within cell",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Five pre-specified metrics: compression ratio, self-BLEU, ROUGE-L (similarity; higher = less diverse) and n-gram diversity score for n = 2 and n = 3 (diversity; higher = more diverse) (Table 3, p. 6). The paper sets these aside after finding no final-stage differences (pp. 7-8).",
+          "unit": "participant",
+          "n_units": 200,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-O",
+              "control_arm": "SELF-O",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "AI-O - SELF-O, final: compression ratio -0.083, self BLEU -0.001, ROUGE-L -0.003, NGDS2 0.095, NGDS3 0.103; none significant. Table 5 prints NGDS unflipped; Figure 1 flips NGDS so that positive means more homogeneous.",
+              "locator": "p. 28, Table 5; p. 7, Figure 1 (left)"
+            },
+            {
+              "treatment_arm": "AI-T",
+              "control_arm": "SELF-T",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "AI-T - SELF-T, final: compression ratio -0.100, self BLEU 0.001, ROUGE-L 0.002, NGDS2 0.083, NGDS3 0.088; none significant.",
+              "locator": "p. 28, Table 5; p. 7, Figure 1 (left)"
+            },
+            {
+              "treatment_arm": "AI-O",
+              "control_arm": "AI-T",
+              "comparison_type": "other",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only"],
+              "reported": "AI (T - O), final: compression ratio -0.016, self BLEU 0.000, ROUGE-L -0.001, NGDS2 0.004, NGDS3 0.004; none significant.",
+              "locator": "p. 28, Table 5"
+            },
+            {
+              "treatment_arm": "SELF-O",
+              "control_arm": "SELF-T",
+              "comparison_type": "other",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only"],
+              "reported": "SELF (T - O), final: compression ratio 0.002, self BLEU -0.001, ROUGE-L -0.006, NGDS2 0.015, NGDS3 0.018; none significant.",
+              "locator": "p. 28, Table 5"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Leave-one-out mean pairwise similarity within cell for compression ratio, self-BLEU, ROUGE-L; n-gram diversity score (sum over n of unique n-grams / all n-grams) for n = 2, 3",
+            "embedding_model": "",
+            "computed_over": "Each final story against every other story in the same cell (same leave-one-out construction as S1-O1)",
+            "uncertainty": "Welch t-test, one-sided, on participant-level scores; stars only",
+            "notes": "Large differences appear for the first AI draft versus SELF final stories (e.g., compression ratio 0.087***, self BLEU 0.022*** for AI-O - SELF-O 'First (AI)'), but they vanish for final submissions."
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Embedding similarity of in-progress drafts over session time (30-second snapshots)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same leave-one-out similarity applied to text snapshots every 30 seconds, restricted to text of at least 200 words; finished participants carry their final submission forward. Main text uses all-MiniLM-L12-v2; all metrics in Figure 16. Exploratory, not pre-registered.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-O",
+              "control_arm": "AI-T",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Text: AI-O and AI-T 'begin to diverge around 12 minutes' into the session, with AI-O less similar thereafter; AI arms above SELF arms throughout. No numbers printed.",
+              "locator": "p. 9, Figure 2(b) and text; p. 29, Figure 16"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Leave-one-out mean cosine similarity within cell at each 30-second snapshot",
+            "embedding_model": "all-MiniLM-L12-v2 in main text; all Table 3 metrics in Figure 16",
+            "computed_over": "Each participant's snapshot against the other participants' snapshots in the same cell at the same time point",
+            "uncertainty": "Shaded bands in figure; method not stated",
+            "notes": "Exploratory (p. 8)."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": []
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "No company involvement stated. The AI tool is OpenAI's gpt5-mini accessed by the authors; authors are at MIT.", "locator": "p. 1; p. 20, A.1.4" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Participants were block-randomized to write with or without a GPT-5-mini assistant (crossed with an incentive factor) (p. 3, Section 3); 200 people analyzed, 50 per cell, so each AI-vs-SELF contrast within an incentive arm has 100 people (p. 3; Table 2, p. 5); outcome is computed diversity of the stories participants submitted (Section 4.1, p. 6). The randomized incentive factor (AI-O vs AI-T) is not an AI-configuration contrast and is coded 'other'."
+  },
+  "one_line_finding": "With AI available, final stories were more similar to one another than stories written alone on most embedding metrics (all-MiniLM: AI-O - SELF-O 0.043***, AI-T - SELF-T 0.062***), and originality pay reduced the similarity among AI users (AI T - O 0.023**) but not among solo writers (p. 28, Table 5; p. 7, Figure 1).",
+  "open_questions": [
+    "Whether the 29 filtered Prolific workers were assigned to a cell before exclusion, and how many per cell; the paper reports only the 200 analyzed.",
+    "Hypothesis 2 on p. 7 is written as D_{j,Q} - D_{j,O}; 'Q' appears to stand for T (technical quality).",
+    "p. 11 says AI-O effort 'does not yield significant changes in diversity between AI-O and AI-T', which seems to contradict the Hypothesis 2 rejection on p. 8; it may refer to the within-adoption-level comparison in Table 6.",
+    "No standard errors or exact p-values are printed; extraction of uncertainty would need the arm-level participant scores (posted data not stated) or the figure error bars.",
+    "Which embedding metric is primary for the atlas: the pre-registration names a suite with no single primary; the paper features all-MiniLM-L12-v2."
+  ],
+  "notes": "Context-level analyses not coded as outcomes: (1) 'First (AI)' columns in Table 5 (p. 28) and Figure 1 (right) compare the first full AI-generated draft with final submissions; first AI drafts are about 45 percent more similar on average (p. 8) and MiniLM similarity is 0.39 for AI-O first drafts vs 0.22 for SELF-O (pp. 8-9). These scores are on AI output, not participants' output. (2) Table 6 (p. 30) and Figure 6 (p. 12) stratify AI users by post-treatment adoption (A > 0.8 high, n = 27; A < 0.2 low, n = 37; Table 4, p. 13); low-adopters resemble SELF, high-adopters are much more similar. Some stars differ between Table 6 and Figure 6 (e.g., all-mpnet AI-T - SELF-T low: 0.021 with no star in Table 6, one star in Figure 6). (3) Adoption rate of AI text (n-gram attribution), prompting time and counts are process measures, not creativity outcomes. Quality was not measured (p. 14). The bonus actually paid was a flat $1 for all completed work, decided after the study (p. 25, A.4); participants were told the incentive scheme in advance."
+}

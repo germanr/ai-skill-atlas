@@ -1,0 +1,89 @@
+{
+ "cid": "c419",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "eligibility.context_class",
+   "form_value": "none",
+   "source_says": "Use ai_vs_human for the paper-level context component: separately generated model sequences are compared with archived unassisted human sequences. Experiment 4 can retain design_class=other and randomized=not_stated because its counterbalancing does not establish random assignment; this does not remove the separate AI-versus-human context evidence.",
+   "quote": "to generate SFT sequences and compare them with a set of n = 141 human-generated animal sequences from an earlier study [21].",
+   "locator": "PDF p. 6, Cognitive Macro-Alignment; p. 30, Experiment 4; creativity-codebook.md, sections 3?4."
+  },
+  {
+   "field": "studies[0].participants.exclusions; studies[1].participants.exclusions; studies[2].participants.exclusions; studies[3].participants.exclusions",
+   "form_value": "All four exclusion descriptions are empty strings.",
+   "source_says": "Record the stated exclusions and filtering. Typing-test failures were excluded before experiments involving typing; invalid or instruction-violating fluency sequences were manually inspected and removed, and repeated items were removed. For Experiment 4, word-count analyses included participants completing at least one dyadic task; human-dyad analyses excluded participants whose partner submitted no words or who returned their Prolific submission; paired comparisons required completion of both tasks. Counts excluded by reason are not reported and should remain null.",
+   "quote": "Participants whose partner did not submit any words or who returned their submission on Prolific were not included in the human dyad analyses.",
+   "locator": "PDF p. 31, Human participants and Data Inclusion Criteria; p. 32, Word Filtering and Standardization."
+  },
+  {
+   "field": "studies[3].outcomes[0].contrasts",
+   "form_value": "[{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": [], \"reported\": \"Human–AI versus human–human, pooled across prompt types and the animals/clothes categories: the number of concepts produced by the individual human partner did not differ; Mann–Whitney U = 1.45 × 10^4, p = 0.44. Figure 5D reports the overall condition comparison; the separately reported 129-person subset applies to the paired analyses in Figure S12.\", \"locator\": \"PDF p. 14, Figure 5D and caption; p. 11, definition of the semantic-fluency score.\"}]",
+   "source_says": "The recorded Figure 5D result is correct, but the same individual-fluency outcome also has paired comparisons that should be recorded: convergent t = 0.540, p = 0.708; divergent t = 1.938, p = 0.182; inferred t = 0.936, p = 0.708. These are two-tailed paired t-tests with Holm?Bonferroni correction, using 129 people in total: 45 convergent, 36 divergent, and 48 inferred. Keep these paired analyses distinct from the pooled Mann?Whitney comparison.",
+   "quote": "convergent (t = 0.540, p = 0.708), divergent (t = 1.938, p = 0.182), and inferred (t = 0.936, p = 0.708).",
+   "locator": "PDF p. 71, Figure S12B and final sample-count sentence; p. 14, Figure 5D."
+  },
+  {
+   "field": "studies[3].outcomes",
+   "form_value": "[\"Individual human concept production\", \"Change in similarity to one’s own preceding word, late minus early phase\"]",
+   "source_says": "The list omits additional scored output measures. Add dyad-level unique-concept production (unit=team): human?human n = 96, median = 33.0 [IQR: 28.8, 39.0]; human?AI convergent n = 48, median = 34.0 [IQR: 30.0, 38.2]; divergent n = 46, median = 31.5 [IQR: 27.2, 36.8]; inferred n = 50, median = 34.0 [IQR: 29.0, 40.0]. These n values count dyads; the nominal comparison n = 3,846 counts constructed pairs, not people. Add late-minus-early similarity to the partner?s preceding word: human?human ?0.062 ? 0.007 SEM and human?AI ?0.038 ? 0.007 SEM; U = 1.22 ? 10^4, p_corrected = 5.97 ? 10^-2. Also record partner-word similarity to the human semantic-transition midpoint: mean comparison U = 8.94 ? 10^3, p = 2.93 ? 10^-8; Brown-Forsythe variance test W = 44.72, p = 9.6 ? 10^-11, HA SD = 0.124 versus HH SD = 0.068. The similarity measures characterize within-sequence or within-dyad semantic relations, not homogenization across independent participants? outputs. The self/other similarity variants in Figures S11 and S14 and prompt-specific self-similarity changes in Figure S16B should be covered in measure_detail rather than silently omitted.",
+   "quote": "The SFT score is the number of unique concepts produced by the solo participant or the dyad.",
+   "locator": "PDF p. 11, Dyadic Experiments; p. 14, Figure 5C; p. 70, Figure S11; p. 71, Figure S12A; p. 73, Figure S14; p. 74, Figure S15B; p. 75, Figure S16B."
+  },
+  {
+   "field": "studies[1].outcomes[0] and studies[3].outcomes[0:2]: measure_detail, ai_available_when_produced, timing, and contrast descriptors",
+   "form_value": "measure_detail, ai_available_when_produced, timing, treatment_arm, control_arm, comparison_type, and direction are empty; statistics_available is [].",
+   "source_says": "Populate the supported descriptors. S2-O1 compares independent Gemini-3-Pro predictions with unassisted human predictors: comparison_type=ai_vs_human, direction=treatment_higher, with confidence intervals and a test statistic available; the human predictions were made without AI assistance during the task. Both retained S4 outcomes compare pooled human?AI conditions with human?human collaboration: comparison_type=ai_vs_active, direction=no_clear_difference after the stated correction, and test statistics are available. These S4 outputs were produced during the task with AI available in the AI condition (timing=immediate). Describe individual unique-concept counting for S4-O1 and ConceptNet cosine similarity to the same person?s preceding word, late minus early after a word-count median split, for S4-O2. Retain the printed SEMs as SEMs.",
+   "quote": "The number of concepts produced did not differ between the human-AI and human-human dyads",
+   "locator": "PDF p. 8, Cognitive Micro-Alignment; pp. 11?12, Dyadic Experiments; p. 14, Figure 5B/D; pp. 25?26, Embedding switch detection; pp. 29?30, Experiments 2 and 4; p. 74, Figure S15A."
+  },
+  {
+   "field": "studies[4].outcomes",
+   "form_value": "[]",
+   "source_says": "The archival comparison has measured output-similarity and semantic-variation outcomes that should accompany its AI-versus-human context classification. Record BLEU overlap (human M = 0.326, 95% CI [0.304, 0.347]; Gemini-3-Pro M = 0.626, CI [0.615, 0.637]), semantic spectral gap, curvature, participation ratio, and subcategory-switch fraction. These compare model-generated and unassisted human outputs, so question=none; they are not effects of AI assistance on people.",
+   "quote": "We characterize semantic trajectories of humans and LLMs using three distinct metrics derived from the underlying semantic embedding space: spectral gap, participation ratio, and curvature.",
+   "locator": "PDF p. 6, Cognitive Macro-Alignment; pp. 32?33, Structural analysis; p. 61, Figure S3."
+  },
+  {
+   "field": "sample_overlap",
+   "form_value": "{\"shares_participants_with\": \"\", \"quote\": \"\", \"locator\": \"\"}",
+   "source_says": "Document reuse of the archival human datasets from Hills, Jones, and Todd (2012), Optimal foraging in semantic memory, and Zemla, Gooding, and Austerweil (2023), Evidence for optimal semantic search throughout adulthood. The benchmark sequences are reused data, not newly recruited independent human samples. The solo sequence pool also combines Experiments 1 and 3 within this paper; no further cross-paper overlap for the newly recruited collaboration participants is stated.",
+   "quote": "The dataset for this research was sourced from [14] and [15].",
+   "locator": "PDF pp. 6 and 10, archival analyses; p. 29, solo-sequence pooling; p. 31, Additional Data; pp. 76?77, Supplementary References [14]?[15]."
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any=true and describe the acknowledged Google Research Credits 423033108. The source establishes research-credit support; it does not establish company control over study design or analysis.",
+   "quote": "Google Research Credits 423033108.",
+   "locator": "PDF p. 19, Acknowledgments."
+  },
+  {
+   "field": "data_and_code",
+   "form_value": "{\"data_url\": \"\", \"code_url\": \"\"}",
+   "source_says": "Both data_url and code_url can be filled with the repository explicitly supplied by the paper: https://github.com/mcneural-lab/sft-cognitive-synergies/tree/main . This is the availability statement in the PDF; repository contents were not independently inspected.",
+   "quote": "The datasets and software code used in this study are available on GitHub",
+   "locator": "PDF p. 31, Data, Materials, and Software Availability."
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion, including all prompt appendices, additional analyses, and supplementary references; independently extracted the PDF pages supporting the recorded numbers.",
+  "Source version is arXiv:2608.26152v2, 28 Aug 2026, and the title/authors match; the PDF has 77 pages with Supplementary Information beginning on p. 25 (PDF p. 1 masthead; pp. 25?77).",
+  "Four web-based human experiments recruited native English-speaking Prolific participants (PDF pp. 18?19, Human?AI Collaborative Experiments).",
+  "No randomized AI-assistance study is confirmed. Experiment 4 uses between-person AI prompt type, within-person partner type, and counterbalanced order/category; neither AI-prompt allocation nor condition order is explicitly called randomized. Retain other/not_stated and eligibility criterion 1 unclear; false in this checker means randomization was not documented, not that non-random assignment was proven (PDF pp. 29?30, Experiment 4; full-text allocation search).",
+  "Explicit random assignment in Experiments 2 and 3 concerns the human sequence to be predicted, not receipt of AI assistance (PDF p. 29, Experiments 2?3).",
+  "Experiment 1 reports 36 completers, three categories, and three minutes per category; the timing pilot separately reports 36 human participants. Both reported human samples are below 50 and neither is an AI-assistance experiment (PDF p. 28, Experiment 1; p. 72, Figure S13A).",
+  "Experiment 2 reports 174 human predictors, 58 per category. Experiment 3 reports 181 prediction sessions (62 animals, 59 clothes, 60 supermarket items), separately identifying 92 participants contributing solo sequences; the pooled 190 valid solo sequences are not a people count (PDF pp. 18?19 and 29).",
+  "Experiment 4 reports an initial pool of 207, 192 people in 96 valid human?human dyads, and 144 valid human?AI sequences; 129 people have valid data in both conditions. These overlapping conditions must not be summed as independent people, and no separately stated randomized total is supplied (PDF pp. 11 and 29?30).",
+  "Full human?AI samples are 48 convergent, 46 divergent, and 50 inferred dyads, each with one human. Paired analyses instead use 45 convergent, 36 divergent, and 48 inferred participants, totaling the explicitly reported 129; the study exceeds 50 people despite smaller individual prompt arms (PDF p. 11; p. 71, Figure S12).",
+  "S2-O1 reported values exactly match: AI M = 0.138, 95% CI [0.128, 0.149]; human M = 0.079, 95% CI [0.071, 0.088]; +5.91 percentage points; W = 936.5, p < 0.0001, n = 174 (PDF p. 8, Cognitive Micro-Alignment).",
+  "S4-O1 and the one-line finding reproduce the reported individual-human fluency comparison, U = 1.45 ? 10^4, p = 0.44. Figure 5D labels the outcome as concepts produced by the individual human partner; the result is a non-significant difference (PDF p. 14, Figure 5D).",
+  "S4-O2 reported values exactly match: human?AI ?0.067 ? 0.008 SEM versus human?human ?0.044 ? 0.008 SEM; U = 1.57 ? 10^4, p = 3.63 ? 10^-2 uncorrected, p_corrected = 7.27 ? 10^-2. The comparison is not significant after Holm?Bonferroni correction and concerns within-person self-similarity, not across-person homogenization (PDF p. 74, Figure S15A).",
+  "The archival counts are 141 human-generated animal sequences and 699 human trajectories, with 648 complete sequences in paired context-control analyses; these are correctly distinguished from a confirmed new participant count (PDF pp. 6 and 10).",
+  "The model-only temporal probe uses 50 human sequences as contexts; the simulated dyads use starting words from 699 human sequences. Neither constitutes randomized human receipt of AI help (PDF p. 64, Figure S6; p. 67, Figure S8).",
+  "Gemini-3-Pro supplies the main independent prediction results; collaborative partners use Llama-3.3 70B-Instruct with divergent, convergent, or inferred prompts and calibrated response delays (PDF pp. 8, 11, 17, and 30?31).",
+  "The source is an original multi-experiment paper, not a synthesis; null synthesis counts and absent pooled meta-analytic estimates are appropriate (PDF pp. 18?19 and 28?31). The included supplement contains regression standard errors and paired counts/tests (PDF p. 66, Table S3; p. 71, Figure S12)."
+ ],
+ "summary": "The source version and reported statistics match the PDF, but context coding, outcome coverage, exclusions, and provenance need correction. Random assignment of AI assistance is not documented; the collaboration experiment reports counterbalancing and 129 participants in paired analyses."
+}

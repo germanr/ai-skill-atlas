@@ -1,0 +1,59 @@
+{
+ "cid": "c987",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_randomized; studies[0].arms[*].n_randomized",
+   "form_value": "participants.n_randomized = 12; TreeWriter.n_randomized = 12; Google Docs + Gemini.n_randomized = 12",
+   "source_says": "The paper reports 12 recruited participants, states that each user was randomly assigned to an order group, and shows 12 responses per condition in Figure 9. It does not separately report an initial randomized total or counts allocated to the order groups. Under the form rule restricting randomized counts to numbers reported at assignment, use null for these n_randomized fields; retain 12 as the observed/analyzed within-person cohort and identify Figure 9 as its analysis-count evidence.",
+   "quote": "We recruited 12 participants (P1-P12; 2 women, 10 men) through the mailing lists and Discord channels of student clubs at a research-focused Tier 1 university in North America.",
+   "locator": "p. 13, Section 5.1 (recruitment); p. 27, Appendix D and Table 6 (order assignment without allocation counts); p. 17, Figure 9 (response counts)"
+  },
+  {
+   "field": "studies",
+   "form_value": "Only S1, the comparative lab study, has a study entry; the formative study and field deployment are mentioned only in prose.",
+   "source_says": "Add separate entries, as required by form-spec rule 6, for the six-person formative online survey with open-ended interview and Likert questions (Section 3) and the eight-person, two-month collaborative field deployment (Section 6). Neither has randomized conditions or creativity/diversity scored on written output; both are descriptive studies (design_class other), so context_class remains none. The field deployment used AI editing buttons without the chat writing assistant, and two participating authors were explicitly excluded from its participant count. Appendix A states that the three participant samples do not overlap.",
+   "quote": "The following tables shows the information of the participants in the formative (Table 3), comparative (Table 4) and deployment study (Table 5) in this work.",
+   "locator": "p. 5, Sections 3 and 3.1; p. 18, Section 6; p. 25, Appendix A and Tables 3-5; pp. 32-33, Appendix H"
+  },
+  {
+   "field": "source.supplement.where; source.supplement.holds",
+   "form_value": "Appendices A to H at the end of the same PDF (from p. 25); code at https://github.com/aspuru-guzik-group/TreeWriter (p. 1)",
+   "source_says": "The included appendices run from A through I, on pp. 25-35. Appendix I, Prompts for AI functionality, contains the writing-assistant and AI-editing-button prompts on pp. 33-35 and is omitted from the form description.",
+   "quote": "I Prompts for AI functionality",
+   "locator": "p. 25, Appendix A; pp. 33-35, Appendix I (I.1 Writing assistant and I.2 AI-powered editing buttons)"
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any to true and describe the NVIDIA author affiliation: Al?n Aspuru-Guzik lists affiliation 9, NVIDIA. This establishes company affiliation; it does not establish company sponsorship or a role in study conduct.",
+   "quote": "NVIDIA, 431 King St W #6th, M5V 1K4, Toronto, Canada",
+   "locator": "p. 1, author byline and affiliation 9"
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "The document explicitly provides the code URL https://github.com/aspuru-guzik-group/TreeWriter; populate code_url with that URL. The source does not identify a separate study-data URL.",
+   "quote": "Code: https://github.com/aspuru-guzik-group/TreeWriter",
+   "locator": "p. 1, Code line below the abstract"
+  }
+ ],
+ "confirmed": [
+  "The local PDF is arXiv:2601.12740v1 [cs.HC], dated 19 Jan 2026, with 35 pages; its title and author list match the form (p. 1 and PDF page count). The entire markdown conversion, including Appendix I, was read.",
+  "The comparative study is a lab experiment with randomized within-person tool order: every participant used TreeWriter and Google Docs + Gemini, with assignment to four order/content groups. lab_rct, within_person_order, and ai_design are supported (p. 14, Section 5.2; p. 27, Appendix D and Table 6).",
+  "The reported comparative cohort contains 12 students; Figure 9 shows response counts totaling 12 for each tool and item. These are repeated responses from the same people, not separate people per arm, texts, or independent ratings; the analyzed cohort is below 50 (p. 13, Section 5.1; p. 17, Figure 9; p. 25, Table 4).",
+  "The form correctly preserves the source discrepancy in education: Section 5.1 says five undergraduate, three master?s, and four PhD students, while Table 4 lists five undergraduates, three master?s students, three PhD students, and one JD student. Two women, ten men, prior AI co-writing experience, and $50 CAD compensation are stated in Section 5.1 (p. 13; p. 25, Table 4).",
+  "Task sizes and timing match: a 4,000-word article with six editing subtasks, an 800-word essay, 20 minutes per task per tool, and approximately 2.5 hours per session. The essay topics concern university teaching and students? mental health (pp. 13-14, Sections 5.1-5.2; p. 27, Figure 10; p. 29, Appendix F).",
+  "TreeWriter uses GPT-5 for its writing assistant and GPT-4.1 for its editing buttons; the comparative baseline is Google Docs with Gemini (p. 13, Section 4.7; p. 14, Section 5.3).",
+  "The recorded measures concern perceived tool support: post-task items use a 7-point Likert scale and CSI items use a 1-10 scale. CSI was completed after the creative-writing task. No creativity or diversity score of the essays or edits is reported (p. 14, Section 5.4; pp. 26-27, Appendix C; p. 31, Figure 11; p. 32, Figure 12).",
+  "All three reported q-values and multiplicity labels match: Explore Ideas q = 0.01, Creativity q = 0.033, and Track Ideas q = 0.033, from Wilcoxon signed-rank tests with within-category Benjamini-Hochberg correction; creative-writing post-task m = 5 and CSI m = 10 (p. 16, Figure 8; p. 30, Appendix G).",
+  "The creativity response bands match the PDF figure: Google Docs 1-2 N=2, 3-4 N=4, 5-6 N=3, 9-10 N=3; TreeWriter 3-4 N=1, 5-6 N=3, 7-8 N=2, 9-10 N=6 (p. 17, Figure 9, Creativity row and color legend).",
+  "The idea-tracking response bands match the PDF figure: Google Docs 1-2 N=1, 3-4 N=4, 5-6 N=1, 7-8 N=5, 9-10 N=1; TreeWriter 5-6 N=2, 7-8 N=4, 9-10 N=6 (p. 17, Figure 9, Track Ideas row and color legend).",
+  "The one-line finding accurately describes higher self-reported idea exploration, creativity support, and idea tracking with the three printed q-values; it does not claim higher scored writing creativity (p. 16, Figure 8; p. 17, Figure 9; p. 30, Appendix G).",
+  "The six-person formative study and eight-person field deployment also report questionnaire/interview evidence rather than scored creative output; the deployment has no comparison arm, and the samples do not overlap (p. 5, Section 3.1; p. 18, Section 6; p. 25, Appendix A; pp. 32-33, Appendix H).",
+  "Core = no, context_class = none, and failure of the sample-size and output-scoring criteria are supported. Although tool order was randomized, no study combines random assignment of AI assistance with creativity/diversity scored on human output; therefore has_randomized_people_study is false under this checker?s definition (pp. 13-14, Sections 5.1-5.4; p. 27, Appendix D; pp. 30-33, Appendices G-H).",
+  "This is an original system evaluation, not a synthesis; the empty synthesis fields and absence of pooled estimates are appropriate (p. 5, Section 3; p. 13, Section 5; p. 18, Section 6)."
+ ],
+ "summary": "The 12-person randomized-order study measured self-reported tool support, with no creativity or diversity scored on writing. Reported results match the PDF, but five corrections are needed for randomization-count provenance, missing studies, appendix coverage, company involvement, and code availability."
+}

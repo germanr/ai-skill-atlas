@@ -1,0 +1,29 @@
+[
+  {
+    "id": "prose-1",
+    "cid": null,
+    "verdict": "confirmed",
+    "fix_target": "prose",
+    "field": "report-prose.md:21, first sentence of Short-form pipeline",
+    "correct_value": "Context papers, experiments under 50 people, designs that the abstract called non-random, and experiments whose abstract did not say how people were assigned went through one screener and citation checking. Of the 186 short forms, 129 have a saved independent checker record; the remaining 57 have no saved checker record and no matching job in the supplied Codex job logs. The checker protocol required finding each cited passage independently and using a fixer when the checker disagreed.",
+    "evidence": "The assembled report, creativity-screening-2026-10-04.md:21, describes independent checking as completed for the short-form set; report-prose.md:21 contains that wording. Independently enumerating forms/c<digits>.json gives 186 forms whose screener starts with single. Exactly 129 have a matching forms/checks/<cid>.json; all 129 parse and identify the matching cid. The other 57 have no checker file. Parsing every record in the six codex-jobs/jobs-*.jsonl files finds no reference to any of those 57 cids. For example, c027 and c066 have screener=single and no checker file or job. All 186 short forms have citation-check files. tools/codex_pipeline.py:332-348 defines the independent checker and requires its output at forms/checks/<cid>.json; lines 352-361 define the fixer. The records support documented checking for 129 forms, not the blanket completion claim; absence of records does not establish that undocumented checking was impossible."
+  },
+  {
+    "id": "prose-2",
+    "cid": null,
+    "verdict": "confirmed",
+    "fix_target": "prose",
+    "field": "report-prose.md:44, phrase '{{n_small_unreported}} of them report only the number randomized'",
+    "correct_value": "{{n_small_unreported}} of them have no analyzed participant count recorded",
+    "evidence": "The assembled report:52 says seven report only the number randomized. report-data.json has 27 small-status papers, 20 entries in small_n, and n_small_without_analyzed_count=7. The seven absent from small_n are c018, c250, c614, c644, c683, c983, and c996; their randomized studies all have participants.n_analyzed=null. Only five have a recorded n_randomized: c250/S1=20, c614/S2=48, c644/S1=27, c683/S2=40, and c983/S1=12. I opened their retrieval.json pdf_path files with PyMuPDF and checked PDF p. 5 Sections 3.1-3.2 (c250), p. 8 Participants/Design study and Table 2 (c614), p. 6 Section 3.4 (c644: randomized teams with 16 and 11 students), p. 9 Section 5.1 (c683: 40 individuals in randomized teams), and p. 10 Sections 5.1-5.2 (c983: 12 students and randomized within-person conditions). forms/c018.json and forms/c996.json have both n_randomized and n_analyzed null. The c018 PDF, pp. 14-15 Appendix A.1, reports 38 recruits, filtering an unspecified number after their first session, and reassignment of sessions; it does not separately resolve the assignment-stage and analyzed-person totals. The c996 PDF, p. 6 Sections 4.1-4.2, reports 20 recruits and one person completing only the no-plugin sprint, without a separate randomized-person total. The report rows at lines 1682 and 1697 accordingly say not reported without a randomized count. tools/build_report.py:189-198 counts missing analyzed counts; tools/assemble_report.py:107 correctly inserts that count. The unsupported interpretation originates in report-prose.md, so the correction renders as seven lacking a recorded analyzed count."
+  },
+  {
+    "id": "prose-3",
+    "cid": null,
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/assemble_report.py:163, sentence beginning '`docs/creativity-screening/to-download.html` lists the same papers'",
+    "correct_value": "Use the links in this section's table as the current download list. `docs/creativity-screening/to-download.html` contains a different set: 264 papers, comprising 224 of the 225 listed here and 40 papers in other report statuses; it omits c493.",
+    "evidence": "The assembled report:1436 claims that to-download.html lists the same 225 papers. I parsed the HTML li elements and found 264 entries with 264 distinct cids; its three section headings state 181 experiments, 54 small experiments, and 29 context papers. Independently extracting cids from the report section gives 225 table rows with 225 distinct cids, exactly matching status_by_cid=no_fulltext in report-data.json. The intersection with the HTML list has 224 cids. The only missing cid is c493, present at report:1569. The 40 extra cids are c027, c028, c029, c044, c046, c048, c049, c058, c061, c062, c063, c069, c071, c077, c085, c086, c090, c092, c095, c102, c104, c110, c111, c113, c115, c125, c129, c134, c138, c139, c143, c144, c146, c149, c151, c152, c155, c163, c164, and c604. c044 appears in to-download.html:55 but is core in report-data.json and the recommended-core table at report:85. The inaccurate same-papers sentence is hard-coded in tools/assemble_report.py:163, not in report-prose.md or a screening form; the correction therefore belongs in the assembler."
+  }
+]

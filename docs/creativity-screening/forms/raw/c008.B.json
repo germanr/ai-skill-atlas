@@ -1,0 +1,74 @@
+{
+  "cid": "c008",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Hintze Proschinger Schossau (2026) - Language-Image Generation Loops Converge to Generic Motifs.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Hintze Proschinger Schossau (2026) - Language-Image Generation Loops Converge to Generic Motifs.pdf",
+    "version": "Journal version of record: Patterns 7, 101451, January 9, 2026 (received July 15, 2025; revised October 3, 2025; accepted November 17, 2025; published December 19, 2025), doi 10.1016/j.patter.2025.101451, as the document shows (PDF p. 1 and p. 12). The supplemental information (Figures S1-S16, supplementary method 2) is cited but is not part of this PDF.",
+    "title_on_document": "Autonomous language-image generation loops converge to generic visual motifs",
+    "authors_on_document": ["Arend Hintze", "Frida Proschinger Åström", "Jory Schossau"],
+    "pages": 13
+  },
+  "paper_design_summary": "A model-only simulation with no human participants. The authors build closed loops in which an image model (SDXL) draws an image from a text prompt and a vision-language model (LLaVA) describes the image, and the description becomes the next prompt. They run 700 trajectories (100 novelty-search start prompts x 7 temperatures, 100 iterations each) and a second experiment crossing 4 image generators with 4 captioning models (40 start prompts each), and measure semantic drift and convergence with sentence-embedding cosine distances and k-means clustering of final prompts.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "AI-to-AI text-image-text loops (temperature experiment and generator x captioner experiment)",
+      "design_class": "model_only",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "No people. Model configurations (sampling temperature; image generator x captioning model) were varied across simulated trajectories.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "Across 700 trajectories with diverse starting prompts and 7 temperature settings over 100 iterations, all runs converged to nearly identical visuals",
+        "locator": "PDF p. 2 (printed p. 1), Summary; PDF p. 11 (printed p. 10), Methods, Iterative language-image loop construction",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "",
+        "population": "",
+        "who": "No human participants. Units are 700 simulated trajectories in the temperature experiment and 16 model combinations x 40 start prompts in the second experiment.",
+        "country": "",
+        "quote": "experiments were conducted across seven temperature values: 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, and 1.3. Each trajectory evolved through 100 prompt-image-prompt cycles.",
+        "locator": "PDF p. 11 (printed p. 10), Methods, Iterative language-image loop construction"
+      },
+      "ai_tool": {
+        "name_model": "Stable Diffusion XL and LLaVA (llava:13b); second experiment also segmind-SSD-1B, stable-diffusion-v1.5, playground-v2-aesthetic, bakllava, llava:13b-v1.6, moondream; initial prompts from LLaMA 3.2; embeddings from all-MiniLM-L6-v2",
+        "role": "other",
+        "how_used": "Models generate and describe images in an autonomous loop with no human input."
+      },
+      "task": {
+        "type": "design_visual",
+        "description": "Iterated image generation from a prompt and image description (50 words or fewer) back into a prompt.",
+        "duration": "100 iterations per trajectory"
+      },
+      "outcomes": []
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": []
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Authors declare no competing interests; computing resources from the Institute for Cyber-Enabled Research at Michigan State University.", "locator": "PDF p. 12 (printed p. 11), Acknowledgments and Declaration of interests" },
+  "data_and_code": { "data_url": "https://doi.org/10.17605/OSF.IO/WGDQ4 (images: https://doi.org/10.6084/m9.figshare.30553604)", "code_url": "https://doi.org/10.17605/OSF.IO/WGDQ4" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "not_met",
+    "context_class": "none",
+    "reason": "Model-only study: AI systems generate and describe images in closed loops with no human participants, no assignment of people to AI help, and no human-produced output (PDF p. 2 Summary; PDF p. 11 Methods). Model-only studies are listed in the screening report and omitted from the dataset (codebook section 3)."
+  },
+  "one_line_finding": "In 700 autonomous SDXL-LLaVA loops run for 100 iterations, final prompts pooled into k = 12 clusters (temperature-specific k of 14 to 19 in the figure legend; PDF p. 8, Figure 5), and in the generator x captioner experiment the captioning model explained about 13.6 percent of the variance in step-to-step drift (F = 33.242, df 3, p < 10^-19) against 0.2 percent for the image generator (F = 0.534, p = 0.659) (PDF p. 6 text; PDF p. 11, Table 1).",
+  "open_questions": [],
+  "notes": "No human participants, so arms and outcomes are left empty. PDF page numbers run one ahead of the printed page numbers (PDF p. 1 is the cover page). Machine-only measures reported: cumulative cosine distance from the initial prompt (low temperatures about 0.85, high about 0.87; PDF p. 4 text, PDF p. 6 Figure 3A), step-to-step cosine distance (about 0.13 low vs 0.22 high temperature; PDF p. 4 text, PDF p. 6 Figure 3B), k-means elbow cluster counts (PDF p. 4 text, PDF p. 8 Figure 5), two-way ANOVA (PDF p. 11, Table 1: image generator SS 0.0149, df 3, F 0.534, p 0.659; language model SS 0.9247, df 3, F 33.242, p < 10^-19; A x B SS 0.0520, df 9, F 0.623, p 0.778; residual SS 5.786, df 624). Inconsistency inside the paper: the text says temperature-specific optimal clusters range from 15 to 20 (PDF p. 4; PDF p. 6 says k = 15-20), while the Figure 5 legend lists k_opt = 16, 18, 19, 14, 16, 17, 17 for t = 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3 (PDF p. 8)."
+}

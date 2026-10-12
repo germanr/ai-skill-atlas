@@ -1,0 +1,77 @@
+{
+ "cid": "c599",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "eligibility.core; eligibility.criterion_1_random_assignment_of_ai; eligibility.reason",
+   "form_value": "{\"core\": \"unclear\", \"criterion_1_random_assignment_of_ai\": \"unclear\", \"reason_excerpt\": \"Whether the randomized prevention intervention meets the assistance criterion requires the two-screener pipeline; criterion 1 and core are therefore unclear.\"}",
+   "source_says": "Code core as no and criterion_1_random_assignment_of_ai as not_met under the supplied codebook. Study #2 randomized requests and hurdles intended to discourage LLM use, not assignment to generative-AI assistance. The content comparison uses classifier-defined use groups, and the prevention/content analysis selects the human-labeled subset after assignment. Retain context_class=observational. The online_rct label accurately describes the prevention experiment, but does not make its observed-use contrasts randomized AI-assistance estimates.",
+   "quote": "Specifically, we studied two different mitigation approaches: (1) explicitly asking crowd workers not to use LLMs (henceforth the ‘request’ strategy) and (2) imposing hurdles that deter LLM use (the ‘hurdle’ strategy).",
+   "locator": "PDF p. 2, Section 2, Study #2; pp. 8-9, Appendix B, conditions and instructions; p. 4, Section 2.3; p. 11, Appendix E.1. Eligibility interpretation follows creativity-codebook.md, Sections 3-4."
+  },
+  {
+   "field": "studies[1].participants.n_analyzed; studies[1].participants.exclusions",
+   "form_value": "{\"n_analyzed\": 720, \"exclusions\": \"\"}",
+   "source_says": "Keep n_randomized=720 and describe 720 as the reported study cohort. A separate analyzed count for the scored content outcomes is not stated, so n_analyzed should be null rather than equating assignment and analysis counts. Explicitly record that the prevention/content analysis includes only classifier-labeled human summaries, whose count is not given. No numerical attrition count or per-arm analyzed count can be confirmed; this is an analysis restriction, not evidence of participant dropout.",
+   "quote": "Using the same task and classifier as in Study #1, Study #2 was conducted on 23 July 2023, by randomly split n = 720 users into the nine conditions.",
+   "locator": "PDF p. 2, Section 2 (randomized count); p. 5, Section 4.1 (reported cohort); p. 4, Section 2.3 (human-labeled analysis restriction)."
+  },
+  {
+   "field": "studies[1].outcomes[0].contrasts; studies[1].outcomes[1].contrasts (omitted prevention comparisons)",
+   "form_value": "Both outcome arrays list only the classifier-defined synthetic-versus-human comparison; neither records the prevention/content results.",
+   "source_says": "Add the reported prevention comparisons, clearly labeled as analyses restricted to classifier-labeled human summaries. The paper reports no significant intervention effect on homogeneity and no significant effect on keyword retention except that directly requesting no LLM use decreased keyword retention by 6.2% (p = 0.009). Preserve the printed percent wording; do not supply an unreported coefficient, interval, or sample count. These selected-subset results must not be presented as an intention-to-treat AI-assistance effect.",
+   "quote": "We found no significant effect of the interventions on either, with one exception: directly requesting workers not to use LLMs decreased keyword retention by 6.2% (p = 0.009).",
+   "locator": "PDF p. 4, Section 2.3, final three sentences; p. 13, Appendix G.1, intervention model."
+  },
+  {
+   "field": "studies[1].outcomes[0].contrasts[0]; studies[1].outcomes[1].contrasts[0] (structured comparison fields)",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "For both existing comparisons, identify the groups as classifier-labeled synthetic summaries and classifier-labeled human summaries, and use comparison_type=other for this observational detected-use comparison. Record the printed intervals in statistics_available as confidence_interval, while retaining that their level and construction are unstated. For S2-O1, synthetic summaries have higher raw homogeneity, hence treatment_lower when direction is coded for diversity under the codebook. For S2-O2, keyword retention is treatment_higher. The reported numerical strings themselves are correct.",
+   "quote": "summaries labeled as synthetic preserved more keywords (40.1% [36.9%, 43.2%]) than summaries labeled as human (31.2% [29.9%, 32.6%]).",
+   "locator": "PDF p. 4, Section 2.3, first two paragraphs; pp. 11-12, Appendix E.1. Diversity direction follows creativity-codebook.md, Section 7."
+  },
+  {
+   "field": "studies[1].outcomes[0].measure_detail; studies[1].outcomes[0].diversity_detail",
+   "form_value": "{\"measure_detail\": \"\", \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "Populate the required diversity metadata: ROUGE-L/longest-common-subsequence homogeneity, computed between distinct summaries of the same source abstract within a predicted class, then averaged over abstracts. Classification is based on the classifier, heuristics, or self-reports; the main printed contrast uses classifier labels. No embedding model is used. Higher homogeneity means lower diversity. The content-analysis interval confidence level and construction are not stated. The form-spec requires diversity_detail for every diversity outcome.",
+   "quote": "We then calculate the rouge-L score between all the summaries in a given group and aggregate for that group across all summaries.",
+   "locator": "PDF pp. 11-12, Appendix E.1, Homogeneity, including Equation (2); p. 4, Section 2.3."
+  },
+  {
+   "field": "studies[1].outcomes[1].measure_detail",
+   "form_value": "\"\"",
+   "source_says": "Describe retention of source-abstract key tokens concerning study participants, intervention, and outcomes as the proxy for summary quality. Note that the metric favors extractive over abstractive summarization, and that the paper reports similar synthetic-versus-human results when groups are defined by self-reports or high-precision heuristics. These robustness variants belong in measure_detail under the form rules.",
+   "quote": "Note that this metric favors extractive over abstractive summarization—changing the text incurs the risk of changing key tokens.",
+   "locator": "PDF p. 12, Appendix E.2, Key token survival; p. 4, Section 2.3, keyword-retention paragraph."
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any=true and record the affiliations: Philip Cozzolino and Andrew Gordon are affiliated with Prolific, and David Rothschild with Microsoft Research. The PDF establishes company-affiliated coauthors; it does not establish additional company funding or sponsorship.",
+   "quote": "1 EPFL; 2 Prolific; 3 Microsoft Research;",
+   "locator": "PDF p. 1, author names, affiliation superscripts, and affiliation line."
+  },
+  {
+   "field": "data_and_code",
+   "form_value": "{\"data_url\": \"\", \"code_url\": \"\"}",
+   "source_says": "The PDF supplies data_url=https://github.com/epfl-dlab/LLM-crowdwork/data/ and model-training code at https://github.com/epfl-dlab/LLM-crowdwork/model/. It also supplies experiment materials/code at https://github.com/epfl-dlab/LLM-crowdwork/experiments/. Populate the URL fields with these printed links; their current online contents were not inspected.",
+   "quote": "We release all code used to train the model.",
+   "locator": "PDF p. 8, Appendix A, Data availability, and Appendix B, footnote URLs; p. 10, Appendix C, opening sentence and model-code URL."
+  }
+ ],
+ "confirmed": [
+  "The source is arXiv:2310.15683v1 [cs.CL], 24 Oct 2023, with 14 PDF pages and Appendices A-G on pp. 7-14; the form correctly identifies the local preprint version rather than claiming to have read the 2025 journal version (p. 1 arXiv stamp; pp. 7-14).",
+  "The document title and all six authors match the form (p. 1, title and byline).",
+  "Study #1 used 168 Prolific workers and ran the classifier on each of their 168 summaries; it did not direct LLM use, and it reports no creativity or across-worker diversity outcome (p. 2, Section 1; p. 5, Section 4.1).",
+  "Study #2 randomized 720 people to nine prevention conditions in a 3 x 3 design. The requests were None, Indirect, and Direct; the hurdles were None, Image, and No Ctrl C+V. The overall prevention experiment is an online RCT, while its classifier-defined content comparison is observational (p. 2, Section 2; pp. 8-9, Appendix B; p. 4, Section 2.3).",
+  "The reported cohorts of 168 and 720 are people, not ratings or model-generated texts; neither is a reported cohort below 50. The human-labeled subset used for prevention/content analysis has no stated count (pp. 2, 4-5).",
+  "Participants summarized one of 16 medical abstracts and were instructed to write at least 100 words (pp. 8-9, Appendix B). The 1440 generated summaries and 724 historical summaries described separately are classifier-training corpora, not counts of people randomized in these studies (pp. 7-8, Appendix A; p. 10, Appendix C).",
+  "S2-O1 and the one-line finding reproduce the homogeneity values exactly: synthetic 45.6% [43.2%, 48.2%], human 27.1% [26.8%, 27.4%]. The paper calls synthetic summaries significantly more homogeneous (p. 4, Section 2.3).",
+  "S2-O2 reproduces keyword retention exactly: synthetic 40.1% [36.9%, 43.2%], human 31.2% [29.9%, 32.6%]; the paper reports similar results using self-reports and high-precision heuristics (p. 4, Section 2.3).",
+  "The content results use output-based lexical measures: ROUGE-L homogeneity across workers and keyword retention as a quality proxy. No confidence level or interval-construction procedure is specified for these content intervals (p. 4, Section 2.3; pp. 11-12, Appendix E; pp. 13-14, Appendix G).",
+  "The form correctly notes that prevention effects on content were examined only among summaries labeled human by the classifier, with an unstated subset count (p. 4, Section 2.3).",
+  "This is a paper reporting two empirical studies, not a synthesis; no pooled effect estimate or meta-analytic standardizer is reported (p. 2, Sections 1-2; pp. 4-6, Sections 2.3-4)."
+ ],
+ "summary": "The arXiv v1 paper randomizes LLM-prevention conditions, not generative-AI assistance, and its main content comparisons are observational. The main numerical results match the PDF, but eligibility, analyzed-count labeling, omitted prevention results, outcome coding, company involvement, and data/code links need correction."
+}

@@ -1,0 +1,635 @@
+{
+ "cid": "c750",
+ "extractor": "reconciled",
+ "is_own_paper": true,
+ "source": {
+  "pdf_file": "C:/Dropbox/Admin/website/ai-skill-atlas/public/pdfs/Contractor & Reyes (2026-09) - AI Learning RCT.pdf",
+  "version": "September 2026, as dated on the title page (PDF p. 1); the manuscript required by extraction-spec Rule 6.",
+  "supplement_used": "Internal Appendices A-D in the same PDF, read in full. The separately linked Supplementary Materials file was not used."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Two-session laboratory experiment: analytical essays with randomized AI access, then unaided writing approximately one week later",
+   "design_class": "lab_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": null,
+   "cluster_se_treatment": "Students were individually randomized to computers within their chosen time slot, then the two parallel labs were randomly assigned opposite AI conditions (PDF p. 6, Section 2.1; PDF p. 54, Figure A3 notes). The printed eight time slots describe randomization strata; no per-arm cluster count is separately printed. clusters_per_arm is null rather than a derived count of lab-by-time-slot delivery groups. The paper reports student-level heteroskedasticity-robust standard errors with time-slot fixed effects (PDF pp. 11-12, Section 3.3). No lab/time-slot clustering or adjustment for dependence between similarity scores sharing essays is reported.",
+   "n_randomized": 256,
+   "n_analyzed": 211,
+   "counts_source": {
+    "locator": "PDF p. 38, Table 2, N (Students): AI-forbidden, AI-allowed, total; PDF p. 37, Table 1, Number of students: signed up, attended Session One, attended both sessions; PDF p. 39, Table 3, N: control, total; PDF p. 63, Table A1, N (Students): AI-allowed students in account-use and self-report regressions.",
+    "quote": "N (Students)\n126\n130\n256\n\nNumber of students\n256\n211\n205\n\nN\n104\n211\n\nN (Students)\n107\n102\n107\n102"
+   },
+   "arms": [
+    {
+     "name": "AI-allowed",
+     "description": "Any generative AI tool permitted during Session One learning and essay writing; a dedicated ChatGPT (GPT-4o) account was supplied. Standard online resources were also permitted. AI and other external resources were prohibited for all knowledge tests and for the Session Two essay (PDF pp. 7-10, Sections 2.1-2.2; PDF p. 53, Figure A2). Arm counts refer to assigned sign-ups and the Session One study sample, not the outcome-specific essay sample.",
+     "ai": "generative_ai",
+     "n_randomized": 130,
+     "n_analyzed": 107
+    },
+    {
+     "name": "AI-forbidden",
+     "description": "Generative AI prohibited during Session One learning and essay writing; standard online resources such as Google, Wikipedia, and the college library website were permitted. AI and other external resources were prohibited for all knowledge tests and for the Session Two essay (PDF pp. 7-10, Sections 2.1-2.2; PDF p. 53, Figure A2). Arm counts refer to assigned sign-ups and the Session One study sample, not the outcome-specific essay sample.",
+     "ai": "none",
+     "n_randomized": 126,
+     "n_analyzed": 104
+    }
+   ],
+   "population": "students",
+   "country": "United States",
+   "task_type": "other",
+   "task": "Middlebury College undergraduates read about randomly assigned blockchain technology, carbon capture, or CRISPR gene editing and write an analytical essay, then write to a complementary prompt on the same topic without AI or other resources in the later session (PDF pp. 7-10, Sections 2.1-3.1).",
+   "ai_role": "open_chat",
+   "ai_tool": {
+    "name": "ChatGPT (GPT-4o); any generative AI tool was permitted",
+    "year": null,
+    "locator": "PDF p. 8, Section 2.1, Treatment; the model release year is not printed"
+   },
+   "preregistration": {
+    "exists": "yes",
+    "where": "AEA RCT Registry, AEARCTR-0015806, named and linked on PDF p. 1; the pre-analysis plan is discussed on PDF p. 13, Section 3.4. The external registration and plan were not independently retrieved.",
+    "primary_outcome": "The paper explicitly identifies overall essay quality and the average quality index as the pre-analysis plan primary essay-based outcomes (PDF p. 13, Section 3.4). Within-group similarity is an ancillary essay-writing characteristic."
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Within-group similarity, Session One essays (AI available)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "For each student, average pairwise cosine similarity between that student's essay embedding and all other essays in the same assigned treatment × topic × prompt cell. A sentence-embedding model fine-tuned from MPNet is named; its exact checkpoint is not stated. The analysis uses a student-level score, with an essay produced in each session; higher similarity means less diversity across writers (PDF p. 14, Section 3.4; PDF p. 41, Table 5 notes).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI-allowed",
+   "control_arm": "AI-forbidden",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": 104,
+   "n_total": 210,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.773,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.004,
+     "se": 0.007,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Intent-to-treat OLS coefficient on assignment to AI-allowed, with Session One time-slot fixed effects and double-lasso-selected controls. The outcome is the student-level average within-group cosine similarity in raw units (PDF pp. 11-12, Section 3.3; PDF p. 41, Table 5 notes)."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": {
+     "type": "other",
+     "value": 0.006,
+     "se": 0.01,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "None. This is the additional treatment-on-the-treated coefficient in raw cosine-similarity units, estimated by two-stage least squares instrumenting actual ChatGPT use with randomized AI-access assignment. It is not a standardized effect."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "no",
+   "sources": [
+    {
+     "fields": [
+      "control_mean",
+      "regression.coef",
+      "regression.se",
+      "paper_effect.value",
+      "paper_effect.se"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and standard errors, columns 1-3 (Session One)",
+     "quote": "Within−group sim.\n0.773\n0.004\n0.006\n0.746\n−0.003\n−0.004\n(0.007)\n(0.010)\n(0.016)\n(0.022)"
+    },
+    {
+     "fields": [
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, N row, columns 1-3 (Session One)",
+     "quote": "N\n104\n210\n210\n102\n204\n204"
+    },
+    {
+     "fields": [
+      "measure_detail",
+      "unit",
+      "construct",
+      "higher_is"
+     ],
+     "locator": "PDF p. 41, Table 5 notes, definition of within-group similarity",
+     "quote": "within-group similarity is the average pairwise cosine sim-\nilarity between a student’s essay embedding and all other essays in the same treatment × topic × prompt\ncell;"
+    },
+    {
+     "fields": [
+      "regression.model"
+     ],
+     "locator": "PDF p. 12, Section 3.3, regression controls",
+     "quote": "for the randomization strata (the eight Session One time slots) and additional controls\nselected through the double-lasso procedure"
+    },
+    {
+     "fields": [
+      "regression.se_type",
+      "se_basis"
+     ],
+     "locator": "PDF p. 12, Section 3.3, reported standard errors",
+     "quote": "We report heteroskedasticity-robust standard errors."
+    },
+    {
+     "fields": [
+      "preregistered_primary"
+     ],
+     "locator": "PDF p. 13, Section 3.4, named pre-analysis plan primary essay outcomes",
+     "quote": "As specified in our pre-analysis plan, the over-\nall quality rating and this average index are our primary essay-based outcomes, and the\nindividual dimensions are secondary outcomes."
+    },
+    {
+     "fields": [
+      "question",
+      "outcome_with_ai",
+      "outcome_timing"
+     ],
+     "locator": "PDF p. 34, Figure 6 notes, AI availability when each session's essays were produced",
+     "quote": "Circles represent\nSession One effects (essays written with or without AI access); diamonds represent Session Two effects\n(essays written one week later without AI access)."
+    },
+    {
+     "fields": [
+      "within_person"
+     ],
+     "locator": "PDF p. 6, Section 2.1, between-subjects treatment assignment",
+     "quote": "The first session employs a between-subjects design with random assignment\nto either an AI-allowed or AI-forbidden condition."
+    }
+   ],
+   "notes": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. Both arms could use ordinary online resources during the learning phase, so the comparison is ai_vs_bau (PDF p. 53, Figure A2). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. AI availability refers to the assigned AI-allowed arm, regardless of whether a student actually used the tool. Diversity measured while AI is available answers across_people."
+  },
+  {
+   "slug": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Within-group similarity, Session Two essays (unaided follow-up)",
+   "question": "after_ai",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "For each student, average pairwise cosine similarity between that student's essay embedding and all other essays in the same assigned treatment × topic × prompt cell. A sentence-embedding model fine-tuned from MPNet is named; its exact checkpoint is not stated. The analysis uses a student-level score, with an essay produced in each session; higher similarity means less diversity across writers (PDF p. 14, Section 3.4; PDF p. 41, Table 5 notes).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "delayed",
+   "delay_days": 6.98,
+   "outcome_with_ai": false,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "AI-allowed",
+   "control_arm": "AI-forbidden",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": 102,
+   "n_total": 204,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.746,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.003,
+     "se": 0.016,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Intent-to-treat OLS coefficient on assignment to AI-allowed, with Session One time-slot fixed effects and double-lasso-selected controls. The outcome is the student-level average within-group cosine similarity in raw units (PDF pp. 11-12, Section 3.3; PDF p. 41, Table 5 notes)."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": {
+     "type": "other",
+     "value": -0.004,
+     "se": 0.022,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "None. This is the additional treatment-on-the-treated coefficient in raw cosine-similarity units, estimated by two-stage least squares instrumenting actual ChatGPT use with randomized AI-access assignment. It is not a standardized effect."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "no",
+   "sources": [
+    {
+     "fields": [
+      "control_mean",
+      "regression.coef",
+      "regression.se",
+      "paper_effect.value",
+      "paper_effect.se"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and standard errors, columns 4-6 (Session Two)",
+     "quote": "Within−group sim.\n0.773\n0.004\n0.006\n0.746\n−0.003\n−0.004\n(0.007)\n(0.010)\n(0.016)\n(0.022)"
+    },
+    {
+     "fields": [
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 41, Table 5, Panel B, N row, columns 4-6 (Session Two)",
+     "quote": "N\n104\n210\n210\n102\n204\n204"
+    },
+    {
+     "fields": [
+      "measure_detail",
+      "unit",
+      "construct",
+      "higher_is"
+     ],
+     "locator": "PDF p. 41, Table 5 notes, definition of within-group similarity",
+     "quote": "within-group similarity is the average pairwise cosine sim-\nilarity between a student’s essay embedding and all other essays in the same treatment × topic × prompt\ncell;"
+    },
+    {
+     "fields": [
+      "regression.model"
+     ],
+     "locator": "PDF p. 12, Section 3.3, regression controls",
+     "quote": "for the randomization strata (the eight Session One time slots) and additional controls\nselected through the double-lasso procedure"
+    },
+    {
+     "fields": [
+      "regression.se_type",
+      "se_basis"
+     ],
+     "locator": "PDF p. 12, Section 3.3, reported standard errors",
+     "quote": "We report heteroskedasticity-robust standard errors."
+    },
+    {
+     "fields": [
+      "preregistered_primary"
+     ],
+     "locator": "PDF p. 13, Section 3.4, named pre-analysis plan primary essay outcomes",
+     "quote": "As specified in our pre-analysis plan, the over-\nall quality rating and this average index are our primary essay-based outcomes, and the\nindividual dimensions are secondary outcomes."
+    },
+    {
+     "fields": [
+      "question",
+      "outcome_with_ai",
+      "outcome_timing"
+     ],
+     "locator": "PDF p. 34, Figure 6 notes, AI availability when each session's essays were produced",
+     "quote": "Circles represent\nSession One effects (essays written with or without AI access); diamonds represent Session Two effects\n(essays written one week later without AI access)."
+    },
+    {
+     "fields": [
+      "within_person"
+     ],
+     "locator": "PDF p. 6, Section 2.1, between-subjects treatment assignment",
+     "quote": "The first session employs a between-subjects design with random assignment\nto either an AI-allowed or AI-forbidden condition."
+    },
+    {
+     "fields": [
+      "delay_days"
+     ],
+     "locator": "PDF p. 9, Section 2.2, footnote 5, mean gap among Session Two attendees",
+     "quote": "Among students\nwho attended Session Two, the average gap between sessions was 6.98 days."
+    }
+   ],
+   "notes": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. Both arms could use ordinary online resources during the learning phase, so the comparison is ai_vs_bau (PDF p. 53, Figure A2). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. Both arms wrote without AI or external resources in Session Two, and the comparison retains their original Session One assignments; the question is after_ai. delay_days is the printed mean among Session Two attendees, not a separately reported mean for the similarity-analysis sample or a fixed interval for every student."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "Overall essay quality, both sessions (S1-O3 and S1-O4), including combined, human-only, and AI-only grades",
+   "reason": "Analytical-writing proficiency, excluded by extraction Rule 6; only the two within-group essay-similarity outcomes enter for c750. PDF p. 13, Section 3.4; PDF p. 41, Table 5 Panel C."
+  },
+  {
+   "what": "Average essay quality index, both sessions and all grader variants",
+   "reason": "Writing-proficiency composite, excluded by extraction Rule 6. PDF p. 13, Section 3.4; PDF p. 41, Table 5 Panel C."
+  },
+  {
+   "what": "Accuracy of content, both sessions (including S1-O11), and grader-specific variants",
+   "reason": "Analytical-writing proficiency, excluded by extraction Rule 6. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Use of evidence and examples, both sessions (including S1-O12), and grader-specific variants",
+   "reason": "Analytical-writing proficiency, excluded by extraction Rule 6. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Relevance to the prompt, both sessions (including S1-O13), and grader-specific variants",
+   "reason": "Analytical-writing proficiency, excluded by extraction Rule 6. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Organization and structure, both sessions (including S1-O14), and grader-specific variants",
+   "reason": "Analytical-writing proficiency, excluded by extraction Rule 6. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Writing style and clarity, both sessions (including S1-O15), and grader-specific variants",
+   "reason": "Analytical-writing proficiency, excluded by extraction Rule 6. PDF p. 67, Table A5."
+  },
+  {
+   "what": "Lexical diversity index and its type-token ratio and hapax components, both sessions (S1-O5 and S1-O6)",
+   "reason": "Within-essay vocabulary variety is not diversity across different writers and is outside the paper-specific scope. PDF p. 66, Table A4; PDF p. 58, Figure A7."
+  },
+  {
+   "what": "Similarity to the reading material, both sessions (S1-O7 and S1-O8)",
+   "reason": "Compares each essay with the supplied reading rather than other writers; excluded by the restriction in extraction Rule 6 to the two within-group essay-similarity outcomes. PDF p. 41, Table 5 Panel B."
+  },
+  {
+   "what": "Essay length index and token, word, and sentence counts, both sessions (S1-O9 and S1-O10)",
+   "reason": "Excluded by the paper-specific scope in extraction Rule 6. PDF p. 66, Table A4; PDF p. 58, Figure A7."
+  },
+  {
+   "what": "Readability index and sentence-length, syllables-per-word, Flesch-Kincaid, and Flesch Reading Ease components, both sessions",
+   "reason": "Excluded by the paper-specific scope in extraction Rule 6. PDF p. 66, Table A4; PDF p. 58, Figure A7."
+  },
+  {
+   "what": "AI-detected fraction of essay text, both sessions",
+   "reason": "AI-authorship diagnostic rather than an eligible essay-similarity outcome; excluded by extraction Rule 6. PDF p. 41, Table 5 Panel A."
+  },
+  {
+   "what": "Plagiarism fraction of essay text, both sessions",
+   "reason": "Plagiarism diagnostic rather than an eligible essay-similarity outcome; excluded by extraction Rule 6. PDF p. 41, Table 5 Panel A."
+  },
+  {
+   "what": "Knowledge tests in both sessions, including standardized scores, thresholds, item analyses, and robustness variants",
+   "reason": "Academic factual/conceptual learning outcomes, not convergent creativity tests; outside the paper-specific extraction scope. PDF p. 13, Section 3.4; PDF p. 40, Table 4."
+  },
+  {
+   "what": "Self-assessed knowledge, both sessions",
+   "reason": "Self-report rather than creativity or diversity scored on the produced output. PDF p. 40, Table 4."
+  },
+  {
+   "what": "AI adoption, prompt and conversation counts, self-reported tool use, purpose classifications, and correlates of take-up",
+   "reason": "Usage, compliance, and descriptive process measures rather than eligible essay outcomes; correlates are nonrandom comparisons. PDF p. 12, Section 3.4; PDF p. 39, Table 3; PDF p. 63, Table A1."
+  },
+  {
+   "what": "Total learning time, recorded and self-reported",
+   "reason": "Process measure rather than creativity or diversity scored on outputs. PDF p. 42, Table 6 Panel A."
+  },
+  {
+   "what": "Time allocation across research, writing, other activities, and their components",
+   "reason": "Self-reported process measures rather than eligible output outcomes. PDF p. 42, Table 6 Panel B."
+  },
+  {
+   "what": "Enjoyment and perceived effectiveness of the learning task",
+   "reason": "Self-reported experience and efficacy, excluded under extraction Rule 5. PDF p. 42, Table 6 Panel C."
+  },
+  {
+   "what": "Proctor-detected violations, self-reported unauthorized resource use, and any academic-integrity violation",
+   "reason": "Compliance outcomes rather than creativity or diversity. PDF p. 65, Table A3."
+  },
+  {
+   "what": "Beliefs about AI effects on own and others' scores and belief accuracy",
+   "reason": "Perceptions and beliefs rather than eligible creative-output outcomes. PDF p. 69, Table A7."
+  },
+  {
+   "what": "Open-ended attitudes about AI, sentiment, causal-graph narrative features, and narrative clusters",
+   "reason": "Self-reported beliefs about AI and learning, outside the two-outcome scope; the narrative analyses do not score the experimental essays. PDF p. 86, Appendix C introduction."
+  },
+  {
+   "what": "Automation-versus-augmentation comparisons and subgroup or moderation analyses",
+   "reason": "Post-assignment, self-selected use types rather than randomized AI configurations, or subgroup comparisons; excluded under Rule 5. Their reported quality/test outcomes are also outside Rule 6. PDF p. 43, Table 7 and notes."
+  },
+  {
+   "what": "Literature-comparison effects and pooled learning estimates",
+   "reason": "Synthesis of other papers rather than an additional eligible experiment in this paper. PDF p. 82, Appendix B.7."
+  },
+  {
+   "what": "Conceptual model of learning, writing, and delegation",
+   "reason": "Theoretical framework rather than a randomized human-output analysis. PDF p. 95, Appendix D."
+  },
+  {
+   "what": "Embedding validation similarities within/across topics and within/across prompts",
+   "reason": "Descriptive validation comparisons do not contrast randomized AI arms. PDF p. 14, footnote 15."
+  },
+  {
+   "what": "Graphical standardized versions of the two within-group similarity contrasts",
+   "reason": "Figures 6 and A7 repeat the same outcomes and arm contrast in standardized units, with no printed numerical effect or confidence-limit labels. Raw Table 5 estimates are retained; graph positions are not transcribed under Rule 1. PDF pp. 34 and 58."
+  }
+ ],
+ "open_items": [
+  "Neither treatment-arm mean similarity is printed; Table 5 gives control means and adjusted ITT/TOT coefficients. Arm levels remain incomplete because adjusted coefficients cannot be added to unadjusted means (PDF p. 41).",
+  "The paper does not print similarity SDs, arm-mean SEs, exact p-values, test statistics, or numeric confidence limits. Figures 6 and A7 show standardized similarity effects and intervals only graphically (PDF pp. 34 and 58).",
+  "The outcome-specific treated count is not separately printed for either similarity analysis. n_treatment remains null; the printed control and total counts are retained without subtraction (PDF p. 41, Table 5 Panel B).",
+  "The precise MPNet-based embedding checkpoint and the number of essay pairs are not stated (PDF p. 41, Table 5 notes).",
+  "Complete outcome-specific missing-essay accounting is not provided. The September Table 5 counts agree with its writing-style Table A4; the earlier screening form's July table-count conflict is superseded. The empty/short-essay rule for AI grading does not establish similarity-analysis exclusions (PDF pp. 41, 66, and 75).",
+  "No covariance or cluster adjustment for shared essays in the similarity averages is reported. se_basis describes the paper's participant-level robust uncertainty and does not certify an adjustment for this dependence (PDF pp. 11-12 and 41).",
+  "The GPT-4o release year is not printed in the paper; ai_tool.year remains null (PDF p. 8)."
+ ],
+ "notes": "Reconciled on 2026-10-09 using the specified September PDF, rather than the older July source underlying the screening form and retrieval entry. An in-memory markdown conversion of the September PDF was read in consecutive chunks through the end of Appendix D; no conversion file was created. Cited source pages were checked using PyMuPDF get_text, and the main table was checked with find_tables using the text strategy. PDF page indices plus one equal the printed page numbers at the cited locations. is_own_paper follows codebook Review 1 decision 7. The study-level and arm n_analyzed fields describe the Session One study sample; estimate counts come from the outcome-specific Table 5 Panel B rows. Individually randomized computers support assignment_unit=individual; the subsequent random assignment of conditions to parallel labs is disclosed in cluster_se_treatment. The analytical-essay task retains task_type=other from the screening form, with eligibility supplied by the comparison of similarity across writers. Shared participants with another paper are not stated; shared_sample remains null, consistent with the form. All in-scope form outcomes and contrasts are present, and every other screened outcome is named in not_extracted under the paper-specific decision. The extraction diff has no estimates unique to either extractor; no additional eligible outcome or arm contrast was found in the appendices. Each outcome record retains the assignment ITT in regression and the additional full-sample IV/TOT in paper_effect (type other), explicitly in raw units. No statistics, arm means, sample counts, standardized effects, standard errors, or intervals were calculated. The agreed counts, question, construct, unit, higher_is, outcome_with_ai, and within_person fields were independently checked against the September source. The resolution log includes all supplied diff entries and the two preregistered_primary differences omitted from the diff report.",
+ "resolutions": [
+  {
+   "where": "S1.clusters_per_arm",
+   "a": {
+    "AI-allowed": 8,
+    "AI-forbidden": 8
+   },
+   "b": null,
+   "decision": "Retain B: null. The printed eight refers to time slots, and students were randomly allocated to individual computers before the lab conditions were assigned. A converts the lab-by-time-slot delivery arrangement into per-arm cluster counts that are not separately printed. Keep the full two-stage assignment description and the absence of clustered SEs in cluster_se_treatment.",
+   "locator": "PDF p. 6, Section 2.1, Overview; PDF p. 54, Figure A3 notes; PDF p. 12, Section 3.3",
+   "quote": "We schedule eight time slots with two\nparallel labs per slot. We randomly assign each student who signed up for a time slot to a\nspecific computer in one of two labs."
+  },
+  {
+   "where": "S1.ai_tool",
+   "a": {
+    "name": "ChatGPT (GPT-4o); any generative AI tool was permitted",
+    "year": null,
+    "locator": "PDF p. 8, Section 2.1, Treatment; the model release year is not printed"
+   },
+   "b": {
+    "name": "ChatGPT (GPT-4o); any generative AI tool was permitted",
+    "year": null,
+    "locator": "PDF p. 8, Section 2.1, Treatment; experiment conducted in Spring 2025, PDF p. 10, Section 3.1. Model release year is not printed."
+   },
+   "decision": "Retain the common ChatGPT (GPT-4o) identification and null release year, using A's focused model locator. B's Spring 2025 reference dates the experiment, not the model release. Neither the release year nor a different model is supplied by this source.",
+   "locator": "PDF p. 8, Section 2.1, Treatment; PDF p. 10, Section 3.1",
+   "quote": "To ease access, each\ncomputer has three browser tabs already open: a dedicated ChatGPT (GPT-4o) account,"
+  },
+  {
+   "where": "S1.arms",
+   "a": [
+    {
+     "name": "AI-allowed",
+     "description": "Any generative AI tool permitted during Session One learning and essay writing; a dedicated ChatGPT (GPT-4o) account was supplied. Standard online resources were also permitted. AI and other external resources were prohibited for all knowledge tests and for the Session Two essay (PDF pp. 7-10, Sections 2.1-2.2; PDF p. 53, Figure A2). Arm counts refer to assigned sign-ups and the Session One study sample, not the outcome-specific essay sample.",
+     "ai": "generative_ai",
+     "n_randomized": 130,
+     "n_analyzed": 107
+    },
+    {
+     "name": "AI-forbidden",
+     "description": "Generative AI prohibited during Session One learning and essay writing; standard online resources such as Google, Wikipedia, and the college library website were permitted. AI and other external resources were prohibited for all knowledge tests and for the Session Two essay (PDF pp. 7-10, Sections 2.1-2.2; PDF p. 53, Figure A2). Arm counts refer to assigned sign-ups and the Session One study sample, not the outcome-specific essay sample.",
+     "ai": "none",
+     "n_randomized": 126,
+     "n_analyzed": 104
+    }
+   ],
+   "b": [
+    {
+     "name": "AI-allowed",
+     "description": "Any generative AI tool permitted while learning and writing the Session One essay; a dedicated logged-in ChatGPT account was provided. Standard online resources were also available. The Session Two essay prohibited AI and all external resources (PDF pp. 8-10; Figure A2, PDF p. 53). Arm counts describe assigned sign-ups and Session One participants, not the outcome-specific essay samples.",
+     "ai": "generative_ai",
+     "n_randomized": 130,
+     "n_analyzed": 107
+    },
+    {
+     "name": "AI-forbidden",
+     "description": "Generative AI prohibited during Session One; standard online resources including Google, Wikipedia, and the college library website were permitted. The Session Two essay prohibited all external resources (PDF pp. 8-10; Figure A2, PDF p. 53). Arm counts describe assigned sign-ups and Session One participants.",
+     "ai": "none",
+     "n_randomized": 126,
+     "n_analyzed": 104
+    }
+   ],
+   "decision": "Retain A's fuller descriptions; both extractors correctly identify the same two arms and the same assignment/Session One participant counts. AI access is permitted only in the assigned AI-allowed learning phase; ordinary online resources are permitted in both arms. All knowledge tests and the Session Two essay prohibit AI and external resources. Outcome-specific essay counts remain separate.",
+   "locator": "PDF pp. 7-10, Sections 2.1-2.2; PDF p. 53, Figure A2; arm counts: PDF p. 38, Table 2; PDF p. 39, Table 3; PDF p. 63, Table A1",
+   "quote": "Using\nChatGPT or other generative AI is completely allowed.\n\nYou are not allowed to use generative AI tools such as\nChatGPT, Claude, or other AI assistants."
+  },
+  {
+   "where": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden.paper_effect.se",
+   "a": null,
+   "b": 0.01,
+   "decision": "Retain B: 0.010, the printed robust SE of the TOT coefficient. Keep it in paper_effect.se alongside the separate ITT SE in regression.se; it is neither an arm-mean SE nor a standardized-effect SE.",
+   "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and SEs, column 3 (Session One); PDF p. 12, Section 3.3",
+   "quote": "Within−group sim.\n0.773\n0.004\n0.006\n0.746\n−0.003\n−0.004\n(0.007)\n(0.010)\n(0.016)\n(0.022)"
+  },
+  {
+   "where": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden.paper_effect.value",
+   "a": null,
+   "b": 0.006,
+   "decision": "Retain B: 0.006, the printed IV/TOT coefficient in raw cosine-similarity units. Use paper_effect.type=other with an explicit no-standardizer explanation. This full-sample result belongs with the same outcome/arm contrast; it is not a separate randomized AI configuration and is not discarded.",
+   "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and SEs, column 3 (Session One); PDF p. 12, Section 3.3",
+   "quote": "Within−group sim.\n0.773\n0.004\n0.006\n0.746\n−0.003\n−0.004\n(0.007)\n(0.010)\n(0.016)\n(0.022)"
+  },
+  {
+   "where": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden.paper_effect.se",
+   "a": null,
+   "b": 0.022,
+   "decision": "Retain B: 0.022, the printed robust SE of the TOT coefficient. Keep it in paper_effect.se alongside the separate ITT SE in regression.se; it is neither an arm-mean SE nor a standardized-effect SE.",
+   "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and SEs, column 6 (Session Two); PDF p. 12, Section 3.3",
+   "quote": "Within−group sim.\n0.773\n0.004\n0.006\n0.746\n−0.003\n−0.004\n(0.007)\n(0.010)\n(0.016)\n(0.022)"
+  },
+  {
+   "where": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden.paper_effect.value",
+   "a": null,
+   "b": -0.004,
+   "decision": "Retain B: -0.004, the printed IV/TOT coefficient in raw cosine-similarity units. Use paper_effect.type=other with an explicit no-standardizer explanation. This full-sample result belongs with the same outcome/arm contrast; it is not a separate randomized AI configuration and is not discarded.",
+   "locator": "PDF p. 41, Table 5, Panel B, Within-group sim. row and SEs, column 6 (Session Two); PDF p. 12, Section 3.3",
+   "quote": "Within−group sim.\n0.773\n0.004\n0.006\n0.746\n−0.003\n−0.004\n(0.007)\n(0.010)\n(0.016)\n(0.022)"
+  },
+  {
+   "where": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden.preregistered_primary",
+   "a": "not_stated",
+   "b": "no",
+   "decision": "Retain B: no, based on the paper's explicit identification of overall quality and the average quality index as the pre-analysis plan primary essay-based outcomes. Similarity is described separately as an essay-writing characteristic. This coding uses the paper's statement; the external plan was not retrieved.",
+   "locator": "PDF p. 13, Section 3.4, Essay-Based Learning Outcomes; PDF p. 14, Essay Writing Characteristics",
+   "quote": "As specified in our pre-analysis plan, the over-\nall quality rating and this average index are our primary essay-based outcomes, and the\nindividual dimensions are secondary outcomes."
+  },
+  {
+   "where": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden.preregistered_primary",
+   "a": "not_stated",
+   "b": "no",
+   "decision": "Retain B: no, based on the paper's explicit identification of overall quality and the average quality index as the pre-analysis plan primary essay-based outcomes. Similarity is described separately as an essay-writing characteristic. This coding uses the paper's statement; the external plan was not retrieved.",
+   "locator": "PDF p. 13, Section 3.4, Essay-Based Learning Outcomes; PDF p. 14, Essay Writing Characteristics",
+   "quote": "As specified in our pre-analysis plan, the over-\nall quality rating and this average index are our primary essay-based outcomes, and the\nindividual dimensions are secondary outcomes."
+  }
+ ],
+ "fixes": [
+  {
+   "slug": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden",
+   "field": "comparison_type",
+   "old": "ai_vs_bau",
+   "new": "ai_vs_active",
+   "locator": "PDF p. 53, Figure A2, Panel B (AI-forbidden instructions); PDF p. 9, Section 2.1, Treatment",
+   "quote": "You are welcome to use standard online resources like\nGoogle, Wikipedia, Middlebury College Library's website, or\nother websites to look up information.",
+   "basis": "Verifier flag confirmed against the September 2026 PDF. Codebook Section 5 defines ai_vs_active as AI assistance versus another aid, explicitly including web search. The AI-forbidden control was allowed Google, Wikipedia, and the college library website; Section 2.1 confirms these browser tabs were already open. Availability of ordinary online resources to both arms does not make the control unassisted under this definition."
+  },
+  {
+   "slug": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden",
+   "field": "notes",
+   "old": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. Both arms could use ordinary online resources during the learning phase, so the comparison is ai_vs_bau (PDF p. 53, Figure A2). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. AI availability refers to the assigned AI-allowed arm, regardless of whether a student actually used the tool. Diversity measured while AI is available answers across_people.",
+   "new": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. The AI-forbidden control could use Google, Wikipedia, and the college library website during Session One, so the comparison is ai_vs_active under codebook Section 5 (PDF p. 9, Section 2.1; PDF p. 53, Figure A2, Panel B). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. AI availability refers to the assigned AI-allowed arm, regardless of whether a student actually used the tool. Diversity measured while AI is available answers across_people.",
+   "locator": "PDF p. 53, Figure A2, Panel B (AI-forbidden instructions); PDF p. 9, Section 2.1, Treatment",
+   "quote": "You are welcome to use standard online resources like\nGoogle, Wikipedia, Middlebury College Library's website, or\nother websites to look up information.",
+   "basis": "Consequential correction to the explanatory sentence for the confirmed comparison_type flag. Replaces the incorrect ai_vs_bau rationale with the source-supported ai_vs_active rationale; all other sentences in the estimate notes are preserved."
+  },
+  {
+   "slug": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden",
+   "field": "comparison_type",
+   "old": "ai_vs_bau",
+   "new": "ai_vs_active",
+   "locator": "PDF p. 53, Figure A2, Panel B (AI-forbidden instructions); PDF p. 9, Section 2.1, Treatment; PDF pp. 9-10, Section 2.2, Session Two",
+   "quote": "You are welcome to use standard online resources like\nGoogle, Wikipedia, Middlebury College Library's website, or\nother websites to look up information.",
+   "basis": "Verifier flag confirmed against the September 2026 PDF. Codebook Section 5 defines ai_vs_active as AI assistance versus another aid, explicitly including web search. The AI-forbidden control was allowed Google, Wikipedia, and the college library website; Section 2.1 confirms these browser tabs were already open. Availability of ordinary online resources to both arms does not make the control unassisted under this definition. Session Two measures the follow-up effect of the original randomized conditions. Both groups writing without AI or external resources at follow-up leaves the original active comparator unchanged; question=after_ai and outcome_with_ai=false remain supported."
+  },
+  {
+   "slug": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden",
+   "field": "notes",
+   "old": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. Both arms could use ordinary online resources during the learning phase, so the comparison is ai_vs_bau (PDF p. 53, Figure A2). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. Both arms wrote without AI or external resources in Session Two, and the comparison retains their original Session One assignments; the question is after_ai. delay_days is the printed mean among Session Two attendees, not a separately reported mean for the similarity-analysis sample or a fixed interval for every student.",
+   "new": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. The original Session One control could use Google, Wikipedia, and the college library website, so this follow-up retains comparison_type=ai_vs_active under codebook Section 5 (PDF p. 9, Section 2.1; PDF p. 53, Figure A2, Panel B). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. Both arms wrote without AI or external resources in Session Two, and the comparison retains their original Session One assignments; the question is after_ai. delay_days is the printed mean among Session Two attendees, not a separately reported mean for the similarity-analysis sample or a fixed interval for every student.",
+   "locator": "PDF p. 53, Figure A2, Panel B (AI-forbidden instructions); PDF p. 9, Section 2.1, Treatment; PDF pp. 9-10, Section 2.2, Session Two",
+   "quote": "You are welcome to use standard online resources like\nGoogle, Wikipedia, Middlebury College Library's website, or\nother websites to look up information.",
+   "basis": "Consequential correction to the explanatory sentence for the confirmed comparison_type flag. Replaces the incorrect ai_vs_bau rationale with the source-supported ai_vs_active rationale; all other sentences in the estimate notes are preserved."
+  }
+ ],
+ "kept": [],
+ "review_corrections": [
+  {
+   "date": "2026-10-09",
+   "by": "Claude (main session) after reading both panels of Figure A2",
+   "slug": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden",
+   "field": "comparison_type",
+   "old": "ai_vs_active",
+   "new": "ai_vs_bau",
+   "basis": "Both arms received the same sentence, 'You are welcome to use standard online resources like Google, Wikipedia, Middlebury College Library's website, or other websites to look up information' (PDF p. 53, Figure A2, Panel A, AI-allowed condition, and Panel B, AI-forbidden condition). Web resources were common to both arms, and only AI access differed, so the contrast is AI versus no AI (codebook section 5, ai_vs_bau). The verifier and the fixer cited Panel B only. The learning section codes the same experiment ai_vs_bau (src/estimates.json, contractor_reyes_2026)."
+  },
+  {
+   "date": "2026-10-09",
+   "by": "Claude (main session)",
+   "slug": "s1_within_group_similarity_session_one_ai_allowed_vs_ai_forbidden",
+   "field": "notes",
+   "old": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. The AI-forbidden control could use Google, Wikipedia, and the college library website during Session One, so the comparison is ai_vs_active under codebook Section 5 (PDF p. 9, Section 2.1; PDF p. 53, Figure A2, Panel B). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. AI availability refers to the assigned AI-allowed arm, regardless of whether a student actually used the tool. Diversity measured while AI is available answers across_people.",
+   "new": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. Both arms could use ordinary online resources during the learning phase, so the comparison is ai_vs_bau (PDF p. 53, Figure A2). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. AI availability refers to the assigned AI-allowed arm, regardless of whether a student actually used the tool. Diversity measured while AI is available answers across_people.",
+   "basis": "Restores the reconciled note, which the fixer rewrote for the ai_vs_active code."
+  },
+  {
+   "date": "2026-10-09",
+   "by": "Claude (main session) after reading both panels of Figure A2",
+   "slug": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden",
+   "field": "comparison_type",
+   "old": "ai_vs_active",
+   "new": "ai_vs_bau",
+   "basis": "Both arms received the same sentence, 'You are welcome to use standard online resources like Google, Wikipedia, Middlebury College Library's website, or other websites to look up information' (PDF p. 53, Figure A2, Panel A, AI-allowed condition, and Panel B, AI-forbidden condition). Web resources were common to both arms, and only AI access differed, so the contrast is AI versus no AI (codebook section 5, ai_vs_bau). The verifier and the fixer cited Panel B only. The learning section codes the same experiment ai_vs_bau (src/estimates.json, contractor_reyes_2026)."
+  },
+  {
+   "date": "2026-10-09",
+   "by": "Claude (main session)",
+   "slug": "s1_within_group_similarity_session_two_ai_allowed_vs_ai_forbidden",
+   "field": "notes",
+   "old": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. The original Session One control could use Google, Wikipedia, and the college library website, so this follow-up retains comparison_type=ai_vs_active under codebook Section 5 (PDF p. 9, Section 2.1; PDF p. 53, Figure A2, Panel B). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. Both arms wrote without AI or external resources in Session Two, and the comparison retains their original Session One assignments; the question is after_ai. delay_days is the printed mean among Session Two attendees, not a separately reported mean for the similarity-analysis sample or a fixed interval for every student.",
+   "new": "The randomized-access ITT coefficient and its robust standard error are in regression. The additional printed instrumental-variable TOT coefficient and its robust standard error are retained in paper_effect (type other); this estimates the local average effect for compliers and is not a standardized effect or a second randomized arm configuration (PDF p. 12, Section 3.3). Both estimands use the full reported analysis sample and belong to the same outcome/arm contrast. The paper's raw similarity signs are retained. Both arms could use ordinary online resources during the learning phase, so the comparison is ai_vs_bau (PDF p. 53, Figure A2). No treatment mean, arm SD, arm-mean SE, exact p-value, test statistic, or numeric confidence limits are printed. No arm mean was reconstructed from an adjusted regression coefficient. The outcome-specific treated count is not separately printed and remains null; it was not obtained by subtraction or borrowed from another analysis. The analysis uses a student-level similarity average rather than treating individual essay pairs as the observations, with participant-level robust SEs; no adjustment for shared-essay dependence or lab/time-slot clustering is reported. Figures 6 and A7 show standardized effects and confidence intervals only graphically (PDF pp. 34 and 58); no values were read from their positions. Repeated assessments do not make the randomized AI-access comparison a within-person crossover. Both arms wrote without AI or external resources in Session Two, and the comparison retains their original Session One assignments; the question is after_ai. delay_days is the printed mean among Session Two attendees, not a separately reported mean for the similarity-analysis sample or a fixed interval for every student.",
+   "basis": "Restores the reconciled note, which the fixer rewrote for the ai_vs_active code."
+  }
+ ]
+}

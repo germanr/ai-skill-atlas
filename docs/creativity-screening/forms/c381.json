@@ -1,0 +1,461 @@
+{
+ "cid": "c381",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Inoshita et al (2026) - Does AI Homogenize Student Thinking.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Inoshita et al (2026) - Does AI Homogenize Student Thinking.pdf",
+  "version": "arXiv v1 (arXiv:2603.21228v1 [cs.AI], 22 Mar 2026), full PDF on file; numbers checked against PDF pages 10, 11, 16, 17, 19",
+  "title_on_document": "Does AI Homogenize Student Thinking? A Multi-Dimensional Analysis of Structural Convergence in AI-Augmented Essays",
+  "authors_on_document": [
+   "Keito Inoshita",
+   "Michiaki Omura",
+   "Tsukasa Yamanaka",
+   "Go Maeda",
+   "Kentaro Tsuji"
+  ],
+  "pages": 33,
+  "supplement": {
+   "exists": "no",
+   "in_this_pdf": false,
+   "where": "The paper refers to no supplementary material. Data availability (p. 29): the generated essays, extracted structural features, and analysis code 'will be made available upon publication'.",
+   "holds": ""
+  }
+ },
+ "paper_design_summary": "The authors take 1,375 student-written essays from the public AIDE Kaggle corpus (two topics) and use GPT-5-mini to rewrite each one under three prompts (Minimal 'improve', Structural, Delegative 'rewrite in your own way') and to write 1,375 AI-only essays, giving 6,875 essays in five conditions. GPT-5 scores every essay three times on five structural dimensions and holistic quality. The paper compares means and variances (variance ratio, Brown-Forsythe test, bootstrap CIs) between the human essays and each AI condition; no person used AI.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "AIDE essay corpus: human-only vs AI-only vs three LLM-rewrite conditions",
+   "design_class": "ai_vs_human",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No people were assigned to AI assistance. Each existing human essay was computationally rewritten under all three prompt strategies. The within structure refers to the matched human essays and their rewrites; the AI-only essays are a separately generated baseline.",
+    "unit": "other",
+    "structure": "within",
+    "quote": "First, the H+AI conditions were generated computationally rather than through actual student–AI interaction.",
+    "locator": "p. 11, Section 3.3, Condition H+AI; p. 15, Section 4.1; pp. 27-28, Section 5.4",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Human-only (H)",
+     "description": "Unmodified human-written AIDE essays; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "AI-only (A)",
+     "description": "GPT-5-mini essays generated from the original topic instructions and source materials; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "H+AI Minimal",
+     "description": "GPT-5-mini rewrites requesting improvement while retaining the topic and general direction; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "H+AI Structural",
+     "description": "GPT-5-mini rewrites requesting stronger argument structure, counterarguments and rebuttals, and logical coherence while retaining the original perspective and main arguments; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "H+AI Delegative",
+     "description": "GPT-5-mini rewrites on the same topic in the model's own way, permitting complete restructuring and rewriting; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "",
+    "who": "No participants. Corpus of 6,875 essays: 1,375 student-written essays from the AIDE Kaggle dataset (Topic 0 'Car-free cities', 707; Topic 1 electoral college, 668; 3 AI-labeled AIDE essays excluded), 1,375 GPT-5-mini AI-only essays, and 1,375 GPT-5-mini rewrites of the human essays under each of three prompts (pp. 9-11, Table 1).",
+    "country": "not_stated",
+    "quote": "First, the H+AI conditions were generated computationally rather than through actual student–AI interaction.",
+    "locator": "p. 27, Section 5.4 Limitations; p. 10, Table 1"
+   },
+   "ai_tool": {
+    "name_model": "GPT-5-mini (essay generation and rewriting, OpenAI API); GPT-5 as automated evaluator",
+    "role": "refinement",
+    "how_used": "Each human essay was sent to GPT-5-mini in a single API turn with one of three prompts: Minimal ('Please improve the following essay...'), Structural (strengthen argument structure, add counterarguments, improve coherence), Delegative ('rewrite it on the same topic in your own way'). AI-only essays were generated from the topic instructions and source materials (p. 11, Table 2)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Explanatory essay on limiting car usage and argumentative essay on the U.S. Electoral College (AIDE prompts with standardized instructions and source materials); scored by GPT-5 on argument depth, perspective plurality, abstract-concrete oscillation, cohesion architecture, structural originality (1-5), and holistic quality (1-6).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Diversity of Cohesion Architecture scores across essays (variance ratio VR = var_H / var_H+AI; HI = 1 - var_H+AI / var_H)",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Cohesion Architecture assesses the quality of logical connections between and within paragraphs on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. Cohesion homogenization occurs for both topics (p. 23, Table 12 and Section 4.6).",
+     "unit": "output",
+     "n_units": 2750,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "H+AI Minimal (GPT-5-mini rewrite, 'Please improve', n = 1,375 essays)",
+       "control_arm": "Human-only (H, n = 1,375 essays)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "confidence_interval"
+       ],
+       "reported": "SD H 0.47 vs Minimal 0.22 (Table 5); Minimal VR 4.554 [95% CI 3.88, 5.45] (Table 7; VR > 1 = homogenization); HI +0.780 (Table 8). Structural VR 3.160 [2.72, 3.73], HI +0.684; Delegative VR 3.180 [2.81, 3.62], HI +0.686. Direction refers to diversity (lower variance in H+AI).",
+       "locator": "p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).",
+      "embedding_model": "Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.",
+      "computed_over": "Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).",
+      "uncertainty": "95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.",
+      "notes": "Cohesion homogenization occurs for both topics (p. 23, Table 12 and Section 4.6). Contrast directions refer to diversity: higher means greater variance across essays."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Diversity of Structural Originality scores across essays (VR and HI)",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Structural Originality assesses deviation from standard organizational templates on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. Structural Originality homogenization occurs for both topics (p. 23, Table 12 and Section 4.6). Mean originality levels are recorded separately in S1-O7.",
+     "unit": "output",
+     "n_units": 2750,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "H+AI Minimal (GPT-5-mini rewrite, n = 1,375 essays)",
+       "control_arm": "Human-only (H, n = 1,375 essays)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "confidence_interval"
+       ],
+       "reported": "Mean (SD): H 1.51 (0.49) vs Minimal 1.74 (0.39); A 2.01 (0.11) (Table 5). Minimal VR 1.563 [1.41, 1.73]; Structural VR 1.413 [1.27, 1.57]; Delegative VR 2.082 [1.84, 2.36] (Table 7). HI +0.360 / +0.292 / +0.520 (Table 8). Direction refers to diversity.",
+       "locator": "p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).",
+      "embedding_model": "Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.",
+      "computed_over": "Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).",
+      "uncertainty": "95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.",
+      "notes": "Structural Originality homogenization occurs for both topics (p. 23, Table 12 and Section 4.6). Mean originality levels are recorded separately in S1-O7. Contrast directions refer to diversity: higher means greater variance across essays."
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Diversity of Perspective Plurality scores across essays (VR and HI)",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Perspective Plurality assesses the number and integration quality of distinct viewpoints on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. The topic-stratified effect is approximately unchanged for Topic 0 and diversified for Topic 1 (p. 23, Table 12 and Section 4.6). For the Structural prompt, the overall VR confidence interval includes 1 (p. 17, Table 7).",
+     "unit": "output",
+     "n_units": 2750,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "H+AI Minimal (GPT-5-mini rewrite, n = 1,375 essays)",
+       "control_arm": "Human-only (H, n = 1,375 essays)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "confidence_interval"
+       ],
+       "reported": "SD H 0.51 vs Minimal 0.58 (Table 5). Minimal VR 0.771 [0.70, 0.85]; Structural VR 0.959 [0.87, 1.07]; Delegative VR 0.685 [0.62, 0.76] (Table 7). HI -0.297 / -0.043 / -0.461 (Table 8; 'Diversification'). Direction refers to diversity (higher variance in H+AI).",
+       "locator": "p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).",
+      "embedding_model": "Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.",
+      "computed_over": "Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).",
+      "uncertainty": "95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.",
+      "notes": "The topic-stratified effect is approximately unchanged for Topic 0 and diversified for Topic 1 (p. 23, Table 12 and Section 4.6). For the Structural prompt, the overall VR confidence interval includes 1 (p. 17, Table 7). Contrast directions refer to diversity: higher means greater variance across essays."
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Diversity of Argument Depth scores across essays (VR and HI); prompt-dependent",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Argument Depth assesses the number of inferential layers between claims and evidence on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. The Structural prompt diversifies Argument Depth while Minimal and Delegative homogenize it; this reversal holds for both topics (p. 23, Table 12 and Section 4.6).",
+     "unit": "output",
+     "n_units": 2750,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "H+AI Structural (GPT-5-mini rewrite with structure-specific instructions, n = 1,375 essays)",
+       "control_arm": "Human-only (H, n = 1,375 essays)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "confidence_interval"
+       ],
+       "reported": "SD H 0.27 vs Structural 0.37 (Table 5). Structural VR 0.528 [0.46, 0.60], HI -0.894; by contrast Minimal VR 1.881 [1.52, 2.36], HI +0.468 and Delegative VR 2.065 [1.66, 2.64], HI +0.516 (Tables 7, 8). Direction refers to diversity.",
+       "locator": "p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).",
+      "embedding_model": "Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.",
+      "computed_over": "Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).",
+      "uncertainty": "95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.",
+      "notes": "The Structural prompt diversifies Argument Depth while Minimal and Delegative homogenize it; this reversal holds for both topics (p. 23, Table 12 and Section 4.6). Contrast directions refer to diversity: higher means greater variance across essays."
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Holistic essay quality (GPT-5 score, 1-6)",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "GPT-5 assigns holistic essay quality on a 1-6 scale, from very poor to excellent; the analyzed score is the mean of three independent evaluations of each essay (p. 12, Table 3; p. 13, Section 3.4). Mean quality is compared using Welch's t-test and reported Cohen's d (p. 14, Section 3.6; p. 16, Table 6). Quality improvement replicates for both topics (p. 23, Table 12 and Section 4.6).",
+     "unit": "output",
+     "n_units": 2750,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "",
+     "contrasts": [
+      {
+       "treatment_arm": "H+AI Minimal (GPT-5-mini rewrite, n = 1,375 essays)",
+       "control_arm": "Human-only (H, n = 1,375 essays)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "standardized_effect"
+       ],
+       "reported": "H mean -> H+AI mean: Minimal 2.69 -> 4.55, Cohen's d 4.102; Structural 2.69 -> 4.23, d 3.754; Delegative 2.69 -> 4.74, d 4.814; p < 0.0001 for each of the three comparisons (Table 6, Welch t-test). Mean (SD): H 2.69 (0.47), A 4.34 (0.41), Minimal 4.55 (0.44), Structural 4.23 (0.35), Delegative 4.74 (0.38) (Table 5).",
+       "locator": "p. 10, Table 1; p. 16, Tables 5 and 6"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Diversity of Abstract–Concrete Oscillation scores across essays (VR and HI)",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Abstract-Concrete Oscillation assesses the frequency and purposefulness of transitions between abstract claims and concrete examples on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. The overall diversification reverses by topic: diversified for Topic 0 but homogenized for Topic 1 (p. 23, Table 12 and Section 4.6).",
+     "unit": "output",
+     "n_units": 2750,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "H+AI Minimal (GPT-5-mini rewrite, n = 1,375 essays)",
+       "control_arm": "Human-only (H, n = 1,375 essays)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "confidence_interval"
+       ],
+       "reported": "Mean (SD): H 2.84 (0.39), A 3.76 (0.35), Minimal 3.37 (0.45), Structural 3.53 (0.46), Delegative 3.37 (0.44) (Table 5). Minimal VR 0.737 [95% CI 0.66, 0.82], Structural VR 0.711 [0.63, 0.80], Delegative VR 0.761 [0.68, 0.85] (Table 7). HI -0.357 / -0.407 / -0.314 in Minimal / Structural / Delegative order (Table 8). Direction refers to higher across-essay variance in rewrites overall. Topic-stratified analyses show diversification for Topic 0 and homogenization for Topic 1 (Table 12).",
+       "locator": "p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8; p. 23, Table 12 and Section 4.6"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).",
+      "embedding_model": "Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.",
+      "computed_over": "Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).",
+      "uncertainty": "95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.",
+      "notes": "The overall diversification reverses by topic: diversified for Topic 0 but homogenized for Topic 1 (p. 23, Table 12 and Section 4.6). Contrast directions refer to diversity: higher means greater variance across essays."
+     }
+    },
+    {
+     "outcome_id": "S1-O7",
+     "name": "Structural Originality score level (GPT-5 score, 1-5)",
+     "construct": "novelty",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Structural Originality assesses deviation from standard organizational templates on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). This outcome records the level of originality, separately from its across-essay variance in S1-O2 (p. 16, Table 5).",
+     "unit": "output",
+     "n_units": 2750,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "H+AI Minimal (GPT-5-mini rewrite, n = 1,375 essays)",
+       "control_arm": "Human-only (H, n = 1,375 essays)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns"
+       ],
+       "reported": "Mean (SD): H 1.51 (0.49), A 2.01 (0.11), Minimal 1.74 (0.39), Structural 2.28 (0.41), Delegative 1.87 (0.34) (Table 5). Direction refers to higher mean Structural Originality scores in the AI-involved conditions; the lower across-essay variance is a separate outcome, S1-O2.",
+       "locator": "p. 10, Table 1; p. 12, Table 3; p. 16, Table 5"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Coauthor Michiaki Omura is affiliated with Arbege Corporation (p. 1, affiliation c). The acknowledgment reports a research grant from Ritsumeikan Global Innovation Research Organization (R-GIRO), Ritsumeikan University, and the authors declare no known competing financial interests or personal relationships (p. 29). The corporate coauthor affiliation is the documented company involvement.",
+  "locator": "p. 1, author Michiaki Omura and affiliation c; p. 29, Declaration of competing interest and Acknowledgment"
+ },
+ "data_and_code": {
+  "data_url": "https://www.kaggle.com/datasets/lburleigh/tla-lab-ai-detection-for-essays-aide-dataset",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "ai_vs_human",
+  "reason": "No people were assigned to AI assistance: the H+AI outputs are computational single-turn rewrites of existing essays (pp. 11-12, Section 3.3; pp. 27-28, Section 5.4). The counts of 1,375 per condition and 6,875 overall are essays; the number of distinct people analyzed is not stated, so the at-least-50-people criterion is unclear (p. 10, Table 1; p. 15, Section 4.1). The output criterion is met because GPT-5 scores structural originality and holistic quality on the essay outputs and the paper compares across-essay score variances (pp. 12-14, Sections 3.4-3.6; pp. 16-19, Tables 5-8). Core remains no because random assignment of people to AI assistance is absent; this is AI-versus-human output context evidence."
+ },
+ "one_line_finding": "GPT-5-mini rewrites of 1,375 AIDE student essays scored higher on GPT-5-rated quality (2.69 to 4.55, d = 4.102 for the Minimal prompt, Table 6, p. 16) and were less varied in cohesion architecture (variance ratio 4.554 [3.88, 5.45], Table 7, p. 17; HI +0.68 to +0.78, Table 8, p. 19), but more varied in perspective plurality (VR 0.685 to 0.959), and the structural prompt diversified argument depth (VR 0.528, HI -0.894).",
+ "open_questions": [],
+ "notes": "data_and_code.data_url is the public AIDE source dataset, not a release of the generated study outputs. The generated essays, extracted structural features, and analysis code are promised upon publication; this version supplies no URL for those materials (p. 29, Data availability). Outcome n_units = 2,750 counts output observations in each named two-condition comparison, obtained by summing the two printed condition counts of 1,375 essays (p. 10, Table 1); the human essays and their rewrites share source essays, so this is not a count of independent people (p. 15, Section 4.1).",
+ "fix": {
+  "applied": [
+   {
+    "field": "eligibility",
+    "old": "{\"core\":\"no\",\"criterion_1_random_assignment_of_ai\":\"not_met\",\"criterion_2_at_least_50_people\":\"not_met\",\"criterion_3_outcome_scored_on_output\":\"not_met\",\"context_class\":\"ai_vs_human\",\"reason\":\"No person received AI help: the Human+AI essays are single-turn GPT-5-mini rewrites of existing AIDE student essays, compared with the unmodified human essays and AI-only essays ('the H+AI conditions were generated computationally rather than through actual student-AI interaction', p. 27, Section 5.4). Context evidence of the AI-versus-human-output kind; borderline model_only, since the human inputs are fixed texts.\"}",
+    "new": "{\"core\":\"no\",\"criterion_1_random_assignment_of_ai\":\"not_met\",\"criterion_2_at_least_50_people\":\"unclear\",\"criterion_3_outcome_scored_on_output\":\"met\",\"context_class\":\"ai_vs_human\",\"reason\":\"No people were assigned to AI assistance: the H+AI outputs are computational single-turn rewrites of existing essays (pp. 11-12, Section 3.3; pp. 27-28, Section 5.4). The counts of 1,375 per condition and 6,875 overall are essays; the number of distinct people analyzed is not stated, so the at-least-50-people criterion is unclear (p. 10, Table 1; p. 15, Section 4.1). The output criterion is met because GPT-5 scores structural originality and holistic quality on the essay outputs and the paper compares across-essay score variances (pp. 12-14, Sections 3.4-3.6; pp. 16-19, Tables 5-8). Core remains no because random assignment of people to AI assistance is absent; this is AI-versus-human output context evidence.\"}",
+    "quote": "All 6,875 essays were evaluated on six structural dimensions using GPT-5 as an automated evaluator.",
+    "locator": "p. 12, Section 3.4 and Table 3; p. 10, Table 1; p. 15, Section 4.1; pp. 27-28, Section 5.4; codebook Section 3"
+   },
+   {
+    "field": "studies[0].assignment; studies[0].participants.quote",
+    "old": "{\"assignment\":{\"randomized\":\"\",\"what_was_assigned\":\"\",\"unit\":\"\",\"structure\":\"\",\"quote\":\"\",\"locator\":\"\",\"preregistered\":\"\",\"prereg_locator\":\"\"},\"participants.quote\":\"First, the H+AI conditions were generated computationally rather than through actual student-AI interaction.\"}",
+    "new": "{\"assignment\":{\"randomized\":\"no\",\"what_was_assigned\":\"No people were assigned to AI assistance. Each existing human essay was computationally rewritten under all three prompt strategies. The within structure refers to the matched human essays and their rewrites; the AI-only essays are a separately generated baseline.\",\"unit\":\"other\",\"structure\":\"within\",\"quote\":\"First, the H+AI conditions were generated computationally rather than through actual student–AI interaction.\",\"locator\":\"p. 11, Section 3.3, Condition H+AI; p. 15, Section 4.1; pp. 27-28, Section 5.4\",\"preregistered\":\"not_stated\",\"prereg_locator\":\"\"},\"participants.quote\":\"First, the H+AI conditions were generated computationally rather than through actual student–AI interaction.\"}",
+    "quote": "First, the H+AI conditions were generated computationally rather than through actual student–AI interaction.",
+    "locator": "p. 27, Section 5.4; p. 28, first paragraph; p. 11, Section 3.3, Condition H+AI"
+   },
+   {
+    "field": "studies[0].arms",
+    "old": "[{\"name\":\"\",\"description\":\"\",\"ai\":\"\",\"n_randomized\":null,\"n_analyzed\":null}]",
+    "new": "[{\"name\":\"Human-only (H)\",\"description\":\"Unmodified human-written AIDE essays; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).\",\"ai\":\"none\",\"n_randomized\":null,\"n_analyzed\":null},{\"name\":\"AI-only (A)\",\"description\":\"GPT-5-mini essays generated from the original topic instructions and source materials; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).\",\"ai\":\"generative_ai\",\"n_randomized\":null,\"n_analyzed\":null},{\"name\":\"H+AI Minimal\",\"description\":\"GPT-5-mini rewrites requesting improvement while retaining the topic and general direction; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).\",\"ai\":\"generative_ai\",\"n_randomized\":null,\"n_analyzed\":null},{\"name\":\"H+AI Structural\",\"description\":\"GPT-5-mini rewrites requesting stronger argument structure, counterarguments and rebuttals, and logical coherence while retaining the original perspective and main arguments; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).\",\"ai\":\"generative_ai\",\"n_randomized\":null,\"n_analyzed\":null},{\"name\":\"H+AI Delegative\",\"description\":\"GPT-5-mini rewrites on the same topic in the model's own way, permitting complete restructuring and rewriting; 1,375 analyzed essays in this condition (output count, not a people count; p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2).\",\"ai\":\"generative_ai\",\"n_randomized\":null,\"n_analyzed\":null}]",
+    "quote": "The final dataset comprises 6,875 essays across five conditions, with 1,375 essays per condition.",
+    "locator": "p. 10, Table 1; pp. 11-12, Section 3.3 and Table 2; p. 15, Section 4.1"
+   },
+   {
+    "field": "studies[0].outcomes (omitted Abstract-Concrete Oscillation diversity outcome)",
+    "old": "Absent",
+    "new": "{\"outcome_id\":\"S1-O6\",\"name\":\"Diversity of Abstract–Concrete Oscillation scores across essays (VR and HI)\",\"construct\":\"diversity\",\"question\":\"none\",\"scored_on_output\":true,\"measure\":\"automated_score\",\"measure_detail\":\"Abstract-Concrete Oscillation assesses the frequency and purposefulness of transitions between abstract claims and concrete examples on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. The overall diversification reverses by topic: diversified for Topic 0 but homogenized for Topic 1 (p. 23, Table 12 and Section 4.6).\",\"unit\":\"output\",\"n_units\":2750,\"ai_available_when_produced\":\"\",\"timing\":\"\",\"delay\":\"\",\"primary\":\"not_stated\",\"contrasts\":[{\"treatment_arm\":\"H+AI Minimal (GPT-5-mini rewrite, n = 1,375 essays)\",\"control_arm\":\"Human-only (H, n = 1,375 essays)\",\"comparison_type\":\"ai_vs_human\",\"direction\":\"treatment_higher\",\"statistics_available\":[\"arm_means_sds_ns\",\"confidence_interval\"],\"reported\":\"Mean (SD): H 2.84 (0.39), A 3.76 (0.35), Minimal 3.37 (0.45), Structural 3.53 (0.46), Delegative 3.37 (0.44) (Table 5). Minimal VR 0.737 [95% CI 0.66, 0.82], Structural VR 0.711 [0.63, 0.80], Delegative VR 0.761 [0.68, 0.85] (Table 7). HI -0.357 / -0.407 / -0.314 in Minimal / Structural / Delegative order (Table 8). Direction refers to higher across-essay variance in rewrites overall. Topic-stratified analyses show diversification for Topic 0 and homogenization for Topic 1 (Table 12).\",\"locator\":\"p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8; p. 23, Table 12 and Section 4.6\"}],\"diversity_detail\":{\"metric\":\"VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).\",\"embedding_model\":\"Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.\",\"computed_over\":\"Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).\",\"uncertainty\":\"95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.\",\"notes\":\"The overall diversification reverses by topic: diversified for Topic 0 but homogenized for Topic 1 (p. 23, Table 12 and Section 4.6). Contrast directions refer to diversity: higher means greater variance across essays.\"}}",
+    "quote": "Abstract–Concrete Osc.\n0.737 [0.66, 0.82]\n0.711 [0.63, 0.80]\n0.761 [0.68, 0.85]",
+    "locator": "p. 16, Table 5; p. 17, Table 7; p. 19, Table 8; p. 23, Table 12 and Section 4.6"
+   },
+   {
+    "field": "studies[0].outcomes (Structural Originality level versus diversity)",
+    "old": "No separate novelty outcome; only the diversity outcome S1-O2 was present.",
+    "new": "{\"outcome_id\":\"S1-O7\",\"name\":\"Structural Originality score level (GPT-5 score, 1-5)\",\"construct\":\"novelty\",\"question\":\"none\",\"scored_on_output\":true,\"measure\":\"automated_score\",\"measure_detail\":\"Structural Originality assesses deviation from standard organizational templates on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). This outcome records the level of originality, separately from its across-essay variance in S1-O2 (p. 16, Table 5).\",\"unit\":\"output\",\"n_units\":2750,\"ai_available_when_produced\":\"\",\"timing\":\"\",\"delay\":\"\",\"primary\":\"not_stated\",\"contrasts\":[{\"treatment_arm\":\"H+AI Minimal (GPT-5-mini rewrite, n = 1,375 essays)\",\"control_arm\":\"Human-only (H, n = 1,375 essays)\",\"comparison_type\":\"ai_vs_human\",\"direction\":\"treatment_higher\",\"statistics_available\":[\"arm_means_sds_ns\"],\"reported\":\"Mean (SD): H 1.51 (0.49), A 2.01 (0.11), Minimal 1.74 (0.39), Structural 2.28 (0.41), Delegative 1.87 (0.34) (Table 5). Direction refers to higher mean Structural Originality scores in the AI-involved conditions; the lower across-essay variance is a separate outcome, S1-O2.\",\"locator\":\"p. 10, Table 1; p. 12, Table 3; p. 16, Table 5\"}],\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}}",
+    "quote": "Degree of deviation from standard organizational templates.",
+    "locator": "p. 12, Table 3; p. 16, Table 5; form-spec rule 7 and codebook Section 6"
+   },
+   {
+    "field": "studies[0].outcomes[*].measure_detail and diversity_detail",
+    "old": "{\"S1-O1\":{\"measure_detail\":\"\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}},\"S1-O2\":{\"measure_detail\":\"\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}},\"S1-O3\":{\"measure_detail\":\"\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}},\"S1-O4\":{\"measure_detail\":\"\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}},\"S1-O5\":{\"measure_detail\":\"\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}}}",
+    "new": "{\"S1-O1\":{\"measure_detail\":\"Cohesion Architecture assesses the quality of logical connections between and within paragraphs on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. Cohesion homogenization occurs for both topics (p. 23, Table 12 and Section 4.6).\",\"diversity_detail\":{\"metric\":\"VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).\",\"embedding_model\":\"Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.\",\"computed_over\":\"Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).\",\"uncertainty\":\"95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.\",\"notes\":\"Cohesion homogenization occurs for both topics (p. 23, Table 12 and Section 4.6). Contrast directions refer to diversity: higher means greater variance across essays.\"}},\"S1-O2\":{\"measure_detail\":\"Structural Originality assesses deviation from standard organizational templates on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. Structural Originality homogenization occurs for both topics (p. 23, Table 12 and Section 4.6). Mean originality levels are recorded separately in S1-O7.\",\"diversity_detail\":{\"metric\":\"VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).\",\"embedding_model\":\"Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.\",\"computed_over\":\"Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).\",\"uncertainty\":\"95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.\",\"notes\":\"Structural Originality homogenization occurs for both topics (p. 23, Table 12 and Section 4.6). Mean originality levels are recorded separately in S1-O7. Contrast directions refer to diversity: higher means greater variance across essays.\"}},\"S1-O3\":{\"measure_detail\":\"Perspective Plurality assesses the number and integration quality of distinct viewpoints on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. The topic-stratified effect is approximately unchanged for Topic 0 and diversified for Topic 1 (p. 23, Table 12 and Section 4.6). For the Structural prompt, the overall VR confidence interval includes 1 (p. 17, Table 7).\",\"diversity_detail\":{\"metric\":\"VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).\",\"embedding_model\":\"Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.\",\"computed_over\":\"Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).\",\"uncertainty\":\"95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.\",\"notes\":\"The topic-stratified effect is approximately unchanged for Topic 0 and diversified for Topic 1 (p. 23, Table 12 and Section 4.6). For the Structural prompt, the overall VR confidence interval includes 1 (p. 17, Table 7). Contrast directions refer to diversity: higher means greater variance across essays.\"}},\"S1-O4\":{\"measure_detail\":\"Argument Depth assesses the number of inferential layers between claims and evidence on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. The Structural prompt diversifies Argument Depth while Minimal and Delegative homogenize it; this reversal holds for both topics (p. 23, Table 12 and Section 4.6).\",\"diversity_detail\":{\"metric\":\"VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).\",\"embedding_model\":\"Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.\",\"computed_over\":\"Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).\",\"uncertainty\":\"95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.\",\"notes\":\"The Structural prompt diversifies Argument Depth while Minimal and Delegative homogenize it; this reversal holds for both topics (p. 23, Table 12 and Section 4.6). Contrast directions refer to diversity: higher means greater variance across essays.\"}},\"S1-O5\":{\"measure_detail\":\"GPT-5 assigns holistic essay quality on a 1-6 scale, from very poor to excellent; the analyzed score is the mean of three independent evaluations of each essay (p. 12, Table 3; p. 13, Section 3.4). Mean quality is compared using Welch's t-test and reported Cohen's d (p. 14, Section 3.6; p. 16, Table 6). Quality improvement replicates for both topics (p. 23, Table 12 and Section 4.6).\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}},\"S1-O6\":{\"measure_detail\":\"Abstract-Concrete Oscillation assesses the frequency and purposefulness of transitions between abstract claims and concrete examples on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). Diversity is dispersion of these scores across essays within each condition, not embedding similarity. The overall diversification reverses by topic: diversified for Topic 0 but homogenized for Topic 1 (p. 23, Table 12 and Section 4.6).\",\"diversity_detail\":{\"metric\":\"VR = variance(H) / variance(H+AI); HI = 1 - variance(H+AI) / variance(H). VR > 1 and HI > 0 indicate homogenization; VR < 1 and HI < 0 indicate diversification (p. 14, Section 3.6, equations 1-2).\",\"embedding_model\":\"Not applicable: VR and HI use GPT-5 rubric scores, not embeddings.\",\"computed_over\":\"Variance across essay scores within a condition. Each H+AI prompt condition rewrites the same 1,375 human source essays, and each rewrite-condition variance is compared with the human-only variance (p. 10, Table 1; p. 11, Section 3.3; p. 15, Section 4.1).\",\"uncertainty\":\"95% bootstrap confidence intervals for VR using 10,000 resamples; Brown-Forsythe variance tests (p. 14, Section 3.6; p. 16, paragraph before Table 7). Human originals and rewrites share source essays; the bootstrap resampling unit and preservation of matching are not specified, and no participant-level uncertainty is reported.\",\"notes\":\"The overall diversification reverses by topic: diversified for Topic 0 but homogenized for Topic 1 (p. 23, Table 12 and Section 4.6). Contrast directions refer to diversity: higher means greater variance across essays.\"}},\"S1-O7\":{\"measure_detail\":\"Structural Originality assesses deviation from standard organizational templates on a 1-5 rubric scale. The analyzed essay score is the mean of three independent GPT-5 evaluations (p. 12, Table 3; p. 13, Section 3.4). This outcome records the level of originality, separately from its across-essay variance in S1-O2 (p. 16, Table 5).\",\"diversity_detail\":{\"metric\":\"\",\"embedding_model\":\"\",\"computed_over\":\"\",\"uncertainty\":\"\",\"notes\":\"\"}}}",
+    "quote": "Each essay was evaluated three times independently, and the mean of the three scores was used for analysis.",
+    "locator": "p. 12, Table 3; p. 13, Section 3.4; p. 14, Section 3.6, equations 1-2; p. 16, paragraph before Table 7; p. 23, Table 12 and Section 4.6"
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].statistics_available; supporting reported and locator fields",
+    "old": "{\"S1-O1\":[{\"statistics_available\":[],\"reported\":\"SD H 0.47 vs Minimal 0.22 (Table 5); Minimal VR 4.554 [95% CI 3.88, 5.45] (Table 7; VR > 1 = homogenization); HI +0.780 (Table 8). Structural VR 3.160 [2.72, 3.73], HI +0.684; Delegative VR 3.180 [2.81, 3.62], HI +0.686. Direction refers to diversity (lower variance in H+AI).\",\"locator\":\"p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O2\":[{\"statistics_available\":[],\"reported\":\"Mean (SD): H 1.51 (0.49) vs Minimal 1.74 (0.39); A 2.01 (0.11) (Table 5). Minimal VR 1.563 [1.41, 1.73]; Structural VR 1.413 [1.27, 1.57]; Delegative VR 2.082 [1.84, 2.36] (Table 7). HI +0.360 / +0.292 / +0.520 (Table 8). Direction refers to diversity.\",\"locator\":\"p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O3\":[{\"statistics_available\":[],\"reported\":\"SD H 0.51 vs Minimal 0.58 (Table 5). Minimal VR 0.771 [0.70, 0.85]; Structural VR 0.959 [0.87, 1.07]; Delegative VR 0.685 [0.62, 0.76] (Table 7). HI -0.297 / -0.043 / -0.461 (Table 8; 'Diversification'). Direction refers to diversity (higher variance in H+AI).\",\"locator\":\"p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O4\":[{\"statistics_available\":[],\"reported\":\"SD H 0.27 vs Structural 0.37 (Table 5). Structural VR 0.528 [0.46, 0.60], HI -0.894; by contrast Minimal VR 1.881 [1.52, 2.36], HI +0.468 and Delegative VR 2.065 [1.66, 2.64], HI +0.516 (Tables 7, 8). Direction refers to diversity.\",\"locator\":\"p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O5\":[{\"statistics_available\":[],\"reported\":\"H mean -> H+AI mean: Minimal 2.69 -> 4.55, Cohen's d 4.102, p < 0.0001; Structural 2.69 -> 4.23, d 3.754; Delegative 2.69 -> 4.74, d 4.814 (Table 6, Welch t-test). Mean (SD): H 2.69 (0.47), A 4.34 (0.41), Minimal 4.55 (0.44) (Table 5).\",\"locator\":\"p. 16, Tables 5 and 6\"}]}",
+    "new": "{\"S1-O1\":[{\"statistics_available\":[\"arm_means_sds_ns\",\"confidence_interval\"],\"reported\":\"SD H 0.47 vs Minimal 0.22 (Table 5); Minimal VR 4.554 [95% CI 3.88, 5.45] (Table 7; VR > 1 = homogenization); HI +0.780 (Table 8). Structural VR 3.160 [2.72, 3.73], HI +0.684; Delegative VR 3.180 [2.81, 3.62], HI +0.686. Direction refers to diversity (lower variance in H+AI).\",\"locator\":\"p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O2\":[{\"statistics_available\":[\"arm_means_sds_ns\",\"confidence_interval\"],\"reported\":\"Mean (SD): H 1.51 (0.49) vs Minimal 1.74 (0.39); A 2.01 (0.11) (Table 5). Minimal VR 1.563 [1.41, 1.73]; Structural VR 1.413 [1.27, 1.57]; Delegative VR 2.082 [1.84, 2.36] (Table 7). HI +0.360 / +0.292 / +0.520 (Table 8). Direction refers to diversity.\",\"locator\":\"p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O3\":[{\"statistics_available\":[\"arm_means_sds_ns\",\"confidence_interval\"],\"reported\":\"SD H 0.51 vs Minimal 0.58 (Table 5). Minimal VR 0.771 [0.70, 0.85]; Structural VR 0.959 [0.87, 1.07]; Delegative VR 0.685 [0.62, 0.76] (Table 7). HI -0.297 / -0.043 / -0.461 (Table 8; 'Diversification'). Direction refers to diversity (higher variance in H+AI).\",\"locator\":\"p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O4\":[{\"statistics_available\":[\"arm_means_sds_ns\",\"confidence_interval\"],\"reported\":\"SD H 0.27 vs Structural 0.37 (Table 5). Structural VR 0.528 [0.46, 0.60], HI -0.894; by contrast Minimal VR 1.881 [1.52, 2.36], HI +0.468 and Delegative VR 2.065 [1.66, 2.64], HI +0.516 (Tables 7, 8). Direction refers to diversity.\",\"locator\":\"p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8\"}],\"S1-O5\":[{\"statistics_available\":[\"arm_means_sds_ns\",\"standardized_effect\"],\"reported\":\"H mean -> H+AI mean: Minimal 2.69 -> 4.55, Cohen's d 4.102; Structural 2.69 -> 4.23, d 3.754; Delegative 2.69 -> 4.74, d 4.814; p < 0.0001 for each of the three comparisons (Table 6, Welch t-test). Mean (SD): H 2.69 (0.47), A 4.34 (0.41), Minimal 4.55 (0.44), Structural 4.23 (0.35), Delegative 4.74 (0.38) (Table 5).\",\"locator\":\"p. 10, Table 1; p. 16, Tables 5 and 6\"}],\"S1-O6\":[{\"statistics_available\":[\"arm_means_sds_ns\",\"confidence_interval\"],\"reported\":\"Mean (SD): H 2.84 (0.39), A 3.76 (0.35), Minimal 3.37 (0.45), Structural 3.53 (0.46), Delegative 3.37 (0.44) (Table 5). Minimal VR 0.737 [95% CI 0.66, 0.82], Structural VR 0.711 [0.63, 0.80], Delegative VR 0.761 [0.68, 0.85] (Table 7). HI -0.357 / -0.407 / -0.314 in Minimal / Structural / Delegative order (Table 8). Direction refers to higher across-essay variance in rewrites overall. Topic-stratified analyses show diversification for Topic 0 and homogenization for Topic 1 (Table 12).\",\"locator\":\"p. 10, Table 1; p. 16, Table 5; p. 17, Table 7; p. 19, Table 8; p. 23, Table 12 and Section 4.6\"}],\"S1-O7\":[{\"statistics_available\":[\"arm_means_sds_ns\"],\"reported\":\"Mean (SD): H 1.51 (0.49), A 2.01 (0.11), Minimal 1.74 (0.39), Structural 2.28 (0.41), Delegative 1.87 (0.34) (Table 5). Direction refers to higher mean Structural Originality scores in the AI-involved conditions; the lower across-essay variance is a separate outcome, S1-O2.\",\"locator\":\"p. 10, Table 1; p. 12, Table 3; p. 16, Table 5\"}]}",
+    "quote": "H+AI Minimal\n2.69 →4.55\n4.102\n< 0.0001",
+    "locator": "p. 10, Table 1; p. 16, Tables 5-6; p. 17, Table 7"
+   },
+   {
+    "field": "company_involvement",
+    "old": "{\"any\":false,\"description\":\"\",\"locator\":\"\"}",
+    "new": "{\"any\":true,\"description\":\"Coauthor Michiaki Omura is affiliated with Arbege Corporation (p. 1, affiliation c). The acknowledgment reports a research grant from Ritsumeikan Global Innovation Research Organization (R-GIRO), Ritsumeikan University, and the authors declare no known competing financial interests or personal relationships (p. 29). The corporate coauthor affiliation is the documented company involvement.\",\"locator\":\"p. 1, author Michiaki Omura and affiliation c; p. 29, Declaration of competing interest and Acknowledgment\"}",
+    "quote": "Arbege Corporation, 3-20, Yotsuyatori, Nagoya, 464-0819, Aichi, Japan",
+    "locator": "p. 1, affiliation c; p. 29, Declaration of competing interest and Acknowledgment"
+   },
+   {
+    "field": "data_and_code.data_url; notes",
+    "old": "{\"data_url\":\"\",\"notes\":\"\"}",
+    "new": "{\"data_url\":\"https://www.kaggle.com/datasets/lburleigh/tla-lab-ai-detection-for-essays-aide-dataset\",\"notes\":\"data_and_code.data_url is the public AIDE source dataset, not a release of the generated study outputs. The generated essays, extracted structural features, and analysis code are promised upon publication; this version supplies no URL for those materials (p. 29, Data availability). Outcome n_units = 2,750 counts output observations in each named two-condition comparison, obtained by summing the two printed condition counts of 1,375 essays (p. 10, Table 1); the human essays and their rewrites share source essays, so this is not a count of independent people (p. 15, Section 4.1).\"}",
+    "quote": "The AIDE dataset used in this study is publicly available at Kaggle",
+    "locator": "p. 29, Data availability; p. 10, Table 1; p. 15, Section 4.1"
+   }
+  ],
+  "rejected": []
+ }
+}

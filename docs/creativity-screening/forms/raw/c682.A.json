@@ -1,0 +1,195 @@
+{
+  "cid": "c682",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Zhi Long So Lee (2026) - What Does AI Do for Cultural Interpretation.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Zhi Long So Lee (2026) - What Does AI Do for Cultural Interpretation.pdf",
+    "version": "arXiv 2603.06855v1 [cs.HC], 6 Mar 2026 (stamp on p. 1), typeset in the CHI '26 proceedings format (Proceedings of the 2026 CHI Conference, Barcelona, DOI 10.1145/3772318.3791727)",
+    "title_on_document": "What Does AI Do for Cultural Interpretation? A Randomized Experiment on Close Reading Poems with Exposure to AI Interpretation",
+    "authors_on_document": ["Jiayin Zhi", "Hoyt Long", "Richard Jean So", "Mina Lee"],
+    "pages": 18,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "\"Supplementary Materials\" sections B.1 to B.8 (no URL given for them). Data, analysis, and interface code at https://closereading-ai.app (p. 2, footnote 2). The PDF's Appendix A (p. 18) holds only Tables 7 and 8.",
+      "holds": "Pre- and post-task survey questions (B.1), task questions (B.2), poem texts (B.3), scoring rubrics (B.4), AI responses and prompts (B.8), and exploratory analyses adjusting for the number of AI interpretations viewed (cited as B.1 on p. 9). The main-text treatment statistics (Table 1, Table 2) are in this PDF."
+    }
+  },
+  "paper_design_summary": "400 US Prolific workers (405 recruited) were randomly assigned to one of three between-subjects conditions: Control (no AI), AI-Single (one pre-generated GPT-4o interpretation shown under the poem), or AI-Multiple (three GPT-4o interpretations in a stacked interface). Each participant close-read three poems in random order, identifying three stylistic features per poem and explaining their effects in 2-3 sentences. Two expert graders scored feature identification (0/1), interpretation quality (1-5), and writing quality (1-5); participants also self-rated appreciation, enjoyment, and self-efficacy on 7-point scales.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Close reading of three poems with no, one, or three AI interpretations (Prolific)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Condition: Control (no AI interpretation), AI-Single (one GPT-4o interpretation), AI-Multiple (three GPT-4o interpretations), applied to all three poems",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were randomly assigned to one of three conditions (Control, AI-Single and AI-Multiple; Figure 1), applied consistently across all poems.",
+        "locator": "p. 4, Section 3.1.1",
+        "preregistered": "yes",
+        "prereg_locator": "p. 2, footnote 1 and p. 6, footnote 3 (https://aspredicted.org/555c-y7kz.pdf); p. 6, Section 3.4.2"
+      },
+      "arms": [
+        { "name": "Control", "description": "Close reading each poem without AI assistance", "ai": "none", "n_randomized": null, "n_analyzed": 141 },
+        { "name": "AI-Single", "description": "One pre-generated GPT-4o interpretation displayed under the poem, visible by default", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 115 },
+        { "name": "AI-Multiple", "description": "Three pre-generated GPT-4o interpretations in a stacked interface; one visible by default, two more behind labeled buttons", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 144 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 400,
+        "counts_are": "people",
+        "exclusions": "405 recruited from Prolific; 5 excluded for completing any poem in excessively short time (3 SDs below the mean), leaving 400. The paper does not give per-arm counts before exclusion or say that all 405 were assigned.",
+        "population": "online_panel",
+        "who": "Prolific crowdworkers with 100% approval rate, US-based, English as primary language; 51.6% had taken at least one college-level humanities course",
+        "country": "United States",
+        "quote": "We recruited 405 participants from Prolific. We have 400 participants in all after excluding those who completed any of the poems in excessively short time (3 SDs below the mean).",
+        "locator": "p. 6, Section 3.3 (arm counts: \"141 in the Control, 115 in the AI-Single, and 144 in the AI-Multiple\")"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4o",
+        "role": "ideas_supplied",
+        "how_used": "Pre-generated AI interpretations of each poem (produced by GPT-4o from the same task instructions participants received) were displayed beside the task; no interactive chatbot. AI-Multiple showed three distinct interpretations, each identifying different stylistic features (pp. 4-5, Sections 3.1.2 and 3.1.5)."
+      },
+      "task": {
+        "type": "other",
+        "description": "Close reading of three poems (\"Love Poem\" by Linda Pastan, \"Dusting\" by Marilyn Nelson, \"Theme for English B\" by Langston Hughes). Per poem, three tasks adapted from the Critical Reader's Interpretive Toolkit: identify a distinctive word or phrase, a line revealing the poet's voice, and an element of poetic style, and explain each feature's effect in 2-3 sentences. Literary interpretation, not a task judged on novelty or creativity.",
+        "duration": "Whole study took around one hour (p. 6, Section 3.3)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Interpretation Quality",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Two trained graders (undergraduate degrees in English, one an English PhD student) rated depth and insight of each explanation on a 1-5 rubric; averaged over the three tasks per poem. ICC(2,1) = 0.76 on a 70-participant validation set. Rubric judges interpretive depth, not novelty or creativity.",
+          "unit": "output",
+          "n_units": 1200,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-Single",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "arm_means_sds_ns"],
+              "reported": "Mixed-effects coefficient 0.865, 95% CI [0.664, 1.065], p < 0.001. Instance-level means (SD): AI-Single 2.52 (0.95) vs Control 1.65 (0.75); instances 345 vs 423. Subgroups (participant-level, Mann-Whitney): inexperienced 2.564 (0.912) vs 1.617 (0.810), Cohen's d 1.106; experienced 2.474 (0.797) vs 1.684 (0.553), d 1.166.",
+              "locator": "p. 7, Table 1 and Section 4.1.1; p. 11, Table 3; p. 18, Table 7"
+            },
+            {
+              "treatment_arm": "AI-Multiple",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval"],
+              "reported": "Mixed-effects coefficient 0.593, 95% CI [0.404, 0.782], p < 0.001. Overall arm mean AI-Multiple 2.25 (no SD) vs Control 1.65 (0.75). Subgroups: inexperienced 2.153 (0.891) vs 1.617 (0.810), d 0.630; experienced 2.328 (0.867) vs 1.684 (0.553), d 0.874.",
+              "locator": "p. 7, Table 1; p. 13, Section 6.1.1; p. 11, Table 3; p. 18, Table 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Writing Quality",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Same two graders rated clarity and coherence of expression on a 1-5 rubric; averaged over the three tasks per poem. ICC(2,1) = 0.76.",
+          "unit": "output",
+          "n_units": 1200,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-Single",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "arm_means_sds_ns"],
+              "reported": "Mixed-effects coefficient 1.035, 95% CI [0.817, 1.253], p < 0.001. Instance-level means (SD): AI-Single 2.71 (1.03) vs Control 1.68 (0.76). Subgroups: inexperienced 2.749 (1.013) vs 1.656 (0.784), d 1.229; experienced 2.678 (0.900) vs 1.696 (0.604), d 1.299.",
+              "locator": "p. 7, Table 1 and Section 4.1.1; p. 11, Table 3; p. 18, Table 7"
+            },
+            {
+              "treatment_arm": "AI-Multiple",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval"],
+              "reported": "Mixed-effects coefficient 0.784, 95% CI [0.578, 0.989], p < 0.001. Overall arm mean AI-Multiple 2.46 (no SD) vs Control 1.68 (0.76). Subgroups: inexperienced 2.370 (1.014) vs 1.656 (0.784), d 0.791; experienced 2.541 (0.936) vs 1.696 (0.604), d 1.061.",
+              "locator": "p. 7, Table 1; p. 13, Section 6.1.1; p. 18, Table 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Feature Identification",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Graders scored whether each identified stylistic feature was correct (0/1); share correct over the three tasks per poem. Grader agreement 85.4%.",
+          "unit": "output",
+          "n_units": 1200,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-Single",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "arm_means_sds_ns"],
+              "reported": "Mixed-effects coefficient 0.048, 95% CI [0.002, 0.094], p = 0.042. Instance-level means (SD): AI-Single 0.85 (0.23) vs Control 0.80 (0.27).",
+              "locator": "p. 7, Table 1 and Section 4.1.1; p. 11, Table 3; p. 18, Table 7"
+            },
+            {
+              "treatment_arm": "AI-Multiple",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval"],
+              "reported": "Mixed-effects coefficient 0.051, 95% CI [0.008, 0.095], p = 0.020. Overall arm mean AI-Multiple 0.85 (no SD) vs Control 0.80 (0.27).",
+              "locator": "p. 7, Table 1; p. 13, Section 6.1.1; p. 18, Table 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Funded by SSHRC Insight Development Grant 430-2024-00336; authors at University of Chicago and Duke; no company involvement stated.", "locator": "p. 16, Acknowledgments" },
+  "data_and_code": { "data_url": "https://closereading-ai.app", "code_url": "https://closereading-ai.app" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "unclear",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "not_met",
+    "context_class": "none",
+    "reason": "People were randomly assigned to generative-AI assistance (400 analyzed), but the task is close reading of poems (literary interpretation), and the output is scored on correctness of feature identification, interpretive depth, and writing quality. No outcome measures creativity, novelty, originality, or diversity across people, so criterion 3 fails; criterion 1 is unclear only because the task is not a creative or ideation task in the codebook's sense. Remaining outcomes are self-reported pleasure (appreciation, enjoyment, self-efficacy) and a descriptive textual-overlap rate with the AI text."
+  },
+  "one_line_finding": "Showing one GPT-4o interpretation raised graders' interpretation quality by 0.865 points and writing quality by 1.035 points (1-5 scales), and three interpretations by 0.593 and 0.784, versus no AI (p. 7, Table 1); no creativity or diversity outcome is measured.",
+  "open_questions": [
+    "Whether interpretive close-reading tasks should count as creative tasks for the atlas; under the codebook definition they do not, since output is not judged on novelty, originality, or creativity."
+  ],
+  "notes": "Outcomes not listed as output-scored: self-reported appreciation, enjoyment, and self-efficacy (7-point; mixed-effects ordinal log-odds in Table 2, p. 9: AI-Single 0.899, 0.969, 0.900, all significant; AI-Multiple -0.070, -0.248, -0.352, n.s.), and a descriptive textual-overlap rate between each participant's answer and the AI text (Section 5.4, Table 6, p. 13), which is overlap with the AI rather than similarity across participants and is not compared with Control. Mixed models (p. 6, Section 3.4.2) include participant random effects, poem type, poem position, and expertise; unit is participant x poem (423 + 345 + 432 = 1,200 instances, p. 6). Table 3 and Table 4 means are labeled per instance; Tables 7 and 8 means are participant-level averages within expertise subgroups, with per-subgroup arm counts not reported. Internal inconsistency: Table 4 (p. 12) and the introduction (p. 2) give 45.2% (AI-Single) and 53.0% (AI-Multiple) as reporting AI use and 54.8% / 47.0% as not reporting it, while Section 5 bullet (p. 9) and Section 5.3 (p. 10) say 45.2% and 53.0% reported NOT using AI. Pilots (n = 20, 60, 90, 100) were used only to refine instructions. No after-AI test: the paper says it intentionally did not remove AI to measure learning (p. 15, Section 6.3.6)."
+}

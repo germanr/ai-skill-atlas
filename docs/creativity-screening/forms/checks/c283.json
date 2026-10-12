@@ -1,0 +1,53 @@
+{
+ "cid": "c283",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].outcomes[0].contrasts[0] (unfilled contrast coding)",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "Complete the structured contrast fields: treatment_arm='Progressive Staging (Creo)', control_arm='One-Shot Baseline (ChatGPT/GPT)', comparison_type='ai_design', direction='treatment_higher' for the first-to-final L2 distance, and statistics_available=['arm_means_sds_ns']. The reported means and SDs are already correct, and Figure 4 displays the same participants under both conditions. Coding the AI-configuration contrast does not establish random assignment.",
+   "quote": "the L2 distance between first and last generated images in CLIP space was higher (M = 0.75, SD = 0.13) than under GPT (M = 0.46, SD = 0.31)",
+   "locator": "PDF p. 8, Section 4.3.1 and Figure 4; p. 7, Section 4.1 (condition identities and within-participant design)."
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts[0] (unfilled contrast coding)",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "Complete the structured contrast fields: treatment_arm='Progressive Staging (Creo)', control_arm='One-Shot Baseline (ChatGPT/GPT)', comparison_type='ai_design', direction='treatment_higher' when expressing the outcome as diversity, and statistics_available=['figure_only']. The direction is the caption's qualitative claim of less clustering with Creo; no numerical between-person diversity contrast or inferential test is reported.",
+   "quote": "Visual embeddings of the images that users produced using Creo are less tightly clustered than those from GPT.",
+   "locator": "PDF p. 8, Figure 4 and caption; p. 7, Section 4.1 (condition identities)."
+  },
+  {
+   "field": "studies[0].outcomes[0:2].ai_available_when_produced and timing",
+   "form_value": "Both outcomes have ai_available_when_produced=\"\" and timing=\"\".",
+   "source_says": "Set ai_available_when_produced='yes' and timing='immediate' for both outcomes. The scored images were generated while participants used the assigned AI interface during the study tasks; there is no subsequent unassisted-output assessment.",
+   "quote": "For each session we also collected interaction artifacts including generated images, prompt histories, and stage histories produced during the session.",
+   "locator": "PDF p. 16, Appendix D.5; p. 15, Appendices D.2-D.4; p. 7, Sections 4.1-4.2."
+  },
+  {
+   "field": "studies[0].outcomes[1].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "The form rules require this object for every diversity outcome. Record a qualitative visual comparison of clustering in the CLIP embedding plot, computed over first and final images across participants within each tool condition. The figure labels its axes PC1 and PC2; the exact embedding checkpoint and projection procedure are not specified. No numerical between-person diversity metric or uncertainty estimate is reported. Appendix D.7 names OpenCLIP for the first-to-final analysis, but its cosine-similarity definition conflicts with the main text's L2-distance definition; retain that caveat and do not treat the within-session means as a between-person diversity estimate.",
+   "quote": "Visual embeddings of the images that users produced using Creo are less tightly clustered than those from GPT.",
+   "locator": "PDF p. 8, Figure 4 and Section 4.3.1; p. 7, Section 4.2; p. 16, Appendix D.7; form-spec.md, diversity_detail field note."
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion, including references and Appendices A-E, and checked the relevant PDF text and Figure 4; the PDF has 18 pages and is stamped arXiv:2604.13956v1, 15 Apr 2026 (PDF p. 1; Appendices A-E, pp. 13-18).",
+  "The title and five author names, including their order, match the source metadata and title page (PDF p. 1).",
+  "The evaluated study is a remotely moderated within-participant comparison of progressive Creo and a multi-turn prompt-centric ChatGPT image interface; each participant used both tools on different living-room/kitchen prompts (PDF p. 7, Section 4.1; p. 15, Appendix D.2).",
+  "Tool and prompt order were counterbalanced with four listed sequences, but neither the main text nor the appendix states random allocation or how participants were allocated to sequences; has_randomized_people_study=false means randomization is not established, rather than proven absent (PDF p. 7, Section 4.1; p. 15, Appendix D.2 and Table 2).",
+  "The reported study sample is 15 people, and Figure 4 displays P1-P15 in both conditions; the two arm counts refer to the same people, so the sample is below the 50-person core threshold (PDF p. 7, Section 4.1.1; p. 8, Figure 4).",
+  "Appendix D.1 reports 275 screening responses and 19 invited participants; those are screening and invitation counts, not randomized or analyzed counts, and the transition to the reported study sample is unexplained (PDF p. 14, Appendix D.1; p. 7, Section 4.1.1).",
+  "Randomized-person counts are not reported and should remain null; the form appropriately retains design_class=other, randomized=not_stated, core=no, and context_class=none rather than inferring randomization or established non-random allocation from counterbalancing (PDF p. 7, Section 4.1; p. 15, Appendix D.2 and Table 2; creativity-codebook.md, Sections 3-4).",
+  "The participants had visual-design experience, and Appendix C explicitly describes an architecture student from the user study, supporting the mixed population description (PDF p. 7, Section 4.1.1; p. 13, Appendix C).",
+  "The stated task duration is approximately 14 minutes per condition within an approximately 60-minute remote session (PDF p. 7, Sections 4.1.1-4.1.2; p. 15, Appendix D.3).",
+  "The anchoring reported string and one-line finding reproduce the main-text statistics exactly: Creo M = 0.75, SD = 0.13; GPT M = 0.46, SD = 0.31 (PDF p. 8, Section 4.3.1).",
+  "Those numerical distances compare the first and final images within each participant session and are aggregated across participants; they do not quantify similarity between different people (PDF p. 7, Section 4.2; p. 8, Section 4.3.1 and Figure 4; p. 16, Appendix D.7).",
+  "The form correctly flags the source inconsistency: the main text defines L2 distance between unit-norm CLIP embeddings, whereas Appendix D.7 specifies cosine similarity with OpenCLIP and L2-normalized embeddings (PDF p. 7, Section 4.2; p. 16, Appendix D.7).",
+  "The diversity reported string accurately describes the qualitative Figure 4 caption; no numerical between-person diversity contrast or inferential test is supplied (PDF p. 8, Figure 4 and Section 4.3.1; p. 16, Appendix D.7).",
+  "The source supports Creo and ChatGPT as generative image tools, but does not specify their generation-model versions; the screening references to other image tools describe participants' prior use, not the study engines (PDF pp. 6-7, Sections 3.4 and 4.1; p. 15, Appendix D.1; p. 16, Appendix D.5).",
+  "This is an original system/user-study paper, not a synthesis; synthesis counts and pooled-effect fields appropriately remain at their defaults (PDF pp. 6-9, Sections 4-4.3; pp. 14-17, Appendix D)."
+ ],
+ "summary": "The 15-person counterbalanced comparison of Creo and ChatGPT reports no random assignment, and its version, sample count, first-to-final distance statistics, and exclusion from core are supported. Four corrections complete outcome coding; the numerical results and the distinction between within-session anchoring and qualitative across-person diversity remain unchanged."
+}

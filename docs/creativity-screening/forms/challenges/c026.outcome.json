@@ -1,0 +1,51 @@
+{
+  "cid": "c026",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O4",
+      "field": "measure",
+      "form_value": "embedding_similarity",
+      "source_says": "The outcome is the cross-validated accuracy and macro F1 of a logistic regression that takes the essay embeddings as features and the writer's cohort as the label. The paper computes no distance between embeddings for this outcome. The codebook defines embedding_similarity as 'Distances between text or image embeddings', and the form itself says the metric 'is classifier performance on embeddings, not a distance'. When no code fits, reconciled forms use automated_score as the closest code (c001 and c013 word counts, c018 essay length and perplexity), and c118 S3-O1 codes a classifier F1 that way. Both screeners agreed on embedding_similarity, so the reconciler never examined it. Fix: automated_score, with the embedding features kept in measure_detail, or a Review 1 ruling on classifier separability (open_questions already asks whether this outcome is diversity). Construct, question, direction, and numbers are not affected.",
+      "quote": "As shown in Figure 7, we used essay embeddings obtained from OpenAI’s text-embedding model as features, with the participant’s cohort (Indian or American) as the label.",
+      "locator": "p. 10, Section 4.3.2 (Setup); p. 11, Figure 7; codebook Section 6 (Measure); c118 S3-O1; raw forms c026.A and c026.B"
+    },
+    {
+      "where": "S1-O7",
+      "field": "measure_detail",
+      "form_value": "American participants' essays were not coded (p. 12, Section 4.4).",
+      "source_says": "The paper says it focused on essays by Indian participants and reports coding results only for them. It does not say that American essays were left uncoded, and Section 3.5.2 describes a content analysis of 'the essays' in general. Fix: 'The paper reports the hand coding only for Indian participants' essays.' Wording only: no code changes.",
+      "quote": "We focused on essays written by Indian participants, as the aforementioned quantitative results indicated that homogenization had a greater impact on them compared to the American participants.",
+      "locator": "p. 12, Section 4.4, first paragraph; p. 7, Section 3.5.2 (content analysis paragraph)"
+    },
+    {
+      "where": "S1 (outcome not listed)",
+      "field": "outcomes; notes",
+      "form_value": "Essay length is neither listed as an outcome nor named in notes among the outcomes left out.",
+      "source_says": "The paper states that the essays in all four groups (both cohorts, with and without AI) were of similar length. That is a with_ai comparison of an output feature (construct elaboration, the length of a single output), with no numbers and no test. Rule 7 asks for every outcome scored on the output that bears on a question. The reconciled c018 records 'Essay length (words)' as an elaboration outcome (with_ai, automated_score, no_clear_difference) and cites the caption 'users write essays of similar length across all setups'. Fix: add an elaboration outcome with statistics_available ['none'], direction no_clear_difference, and this sentence as reported, or at least name it in notes. Minor.",
+      "quote": "Although TTR penalizes longer texts, this was not an issue in our analysis, as the essays across all four experimental groups were of similar length, likely due to the minimum word requirement we enforced.",
+      "locator": "p. 6, Section 3.5.2, item (1) Type-Token Ratio; c018 outcome 'Essay length (words)'"
+    }
+  ],
+  "confirmed": [
+    "Criterion 3 holds. S1-O1 to S1-O4 are computed on OpenAI embeddings of the participants' essays, S1-O5 and S1-O6 on the essay text, and S1-O7 is the authors' hand coding of the essays. None is a self-report (p. 7, Section 3.5.2; p. 6, Section 3.5.2; p. 11, Section 4.3.4; p. 12, Section 4.4).",
+    "AI availability holds. Assignment happened at consent, and in the AI condition the textbox fetched a GPT-4o suggestion when the writer paused typing for 100 ms, with the same interface in all four tasks. So yes and immediate fit the AI arms. S1-O3 is mixed because each compared pair joins one AI-assisted essay and one essay by a writer who never had AI. No essay was written after AI was removed, so no outcome is after_ai (p. 4, Section 3.3.1; p. 10, Section 4.3.1, 'Direction of Homogenization'; form-spec JSON structure 'yes | no | mixed').",
+    "Question codes follow the rule: across_people for the four diversity outcomes written with AI (S1-O1 to S1-O4) and with_ai for the three other outcomes (S1-O5 to S1-O7) (codebook Section 1; form-spec field note 'question').",
+    "Construct diversity fits S1-O1 to S1-O4. Each compares essays by different participants on the same topic: Indian-American pairs, pairs inside one group of 24 to 36 people, or a classifier that separates Indian from American writers (p. 9, Sections 4.2.1 and 4.3.1; p. 10, Sections 4.3.1 and 4.3.2).",
+    "Construct other fits S1-O5. TTR counts word variety inside one essay. It is neither variety among one person's ideas (flexibility) nor a comparison across people (diversity). c084 S1-O2 codes within-essay TTR the same way: other, with_ai, lexical_overlap, output (p. 6, Section 3.5.2; p. 12, Section 4.3.5).",
+    "Units fit the printed degrees of freedom. S1-O1: 6958 = 2784 No AI pairs + 4176 AI pairs (4 x 36 x 29) - 2. S1-O2: 3622 = 1104 + 2520 - 2 and 3246 = 1624 + 1624 - 2. S1-O5: 210 = 96 + 116 - 2 and 258 = 144 + 116 - 2 essays. S1-O6: Cliff's D = 2 x 7729 / (116 x 116) - 1 = 0.149 on essays. The printed d and t agree within rounding under these counts (pp. 9-12; group sizes p. 3, Table 1).",
+    "S1-O4 unit set and n_units 40 match the analysis: 20 held-out-fold scores per condition compared by t(38), and t = d x sqrt(10) gives 2.25 for accuracy and 2.06 for F1 (2.07 printed). The email-only t(8) with d = 3.56 implies 5 folds per condition, which the paper does not state, and the form correctly leaves the fold count unstated. The codebook glosses set as one condition's whole pool, but reconciled forms already use set for sub-pools (c025: one set per book or problem) (p. 10, Section 4.3.2; p. 11, Section 4.3.3).",
+    "S1-O1 and S1-O2 numbers match: 0.48 (SD 0.11) vs 0.54 (SD 0.13), t(6958) = −17.89, p < 0.001, d = −0.44; Indians t(3622) = −7.22, d = −0.26; Americans t(3246) = −9.45, d = −0.33; DiD p = 0.30, 95% CI [−0.018, 0.006] (p. 9, Sections 4.2.1 and 4.3.1; p. 10, Section 4.3.1).",
+    "S1-O3 and S1-O4 numbers match: one-cohort-AI tests p < 0.001 with d = −0.22 and d = −0.12; accuracy 90.6% vs 83.5%, t(38) = 2.25, p = 0.03, d = 0.71; macro F1 89.9% vs 82.9%, t(38) = 2.07, p = 0.045, d = 0.65; email accuracy 82.9% vs 60%, t(8) = 5.63, d = 3.56; email F1 81.7% vs 49.2%, t(8) = 5.79, d = 3.66 (p. 10, Sections 4.3.1 and 4.3.2; p. 11, Section 4.3.3).",
+    "S1-O5 to S1-O7 numbers match: TTR cohort gaps t(210) = −2.94, p = 0.003, d = −0.41 and t(258) = −0.32, p = 0.75, d = −0.04, with the Figure 9 caption quoted correctly; grammar errors U = 7729.0, p = 0.04, D = 0.15 (US) and U = 7584.5, p = 0.18 (India); sushi 0 vs 3 essays, Christmas 3/24 vs 5/36, Indian public figure 13/24 vs 16/36 in the text (p. 11, Section 4.3.4; p. 12, Section 4.3.5 and Figure 9; p. 13, Section 4.4.3).",
+    "The Table 7 conflict that the form flags is real. Blue (Indian) cells sum to 13 of 24 without AI (9 names) and 23 of 36 with AI (16 names). The text's 16/36 equals the number of distinct Indian names, and the table's AI share (64 percent) is higher than the No AI share (54 percent) (p. 20, Table 7; p. 13, Section 4.4.3).",
+    "The other measure codes fit: embedding_similarity for cosine similarity (S1-O1 to S1-O3), lexical_overlap for TTR (the codebook lists type-token ratios), category_count for hand-coded artifact counts, and automated_score for LanguageTool, which follows the forms' practice for computed measures that fit no code and which the form discloses (codebook Section 6; p. 11, Section 4.3.4).",
+    "Directions follow codebook Section 7: higher similarity or classifier accuracy with AI is coded treatment_lower (less diversity), and measure_detail says so. The untested point differences in S1-O7 are coded by their sign, as c018 and c012 do (pp. 9-11; p. 13, Section 4.4.3).",
+    "Primary codes hold. The paper calls cosine similarity and predictive modeling its 'two main experiments', says Section 4.2 sets the stage for the main cross-cultural investigation, and calls the direction analysis a 'complementary test' (p. 11, Section 4.3.5; p. 9, Section 4.2; p. 10, Section 4.3.1).",
+    "Measures left out are correctly excluded. The Short Schwartz Value Survey is a self-report. AI reliance, acceptance rate, suggestion modification, and productivity per suggestion exist only in the AI arms. Completion time and words per second are process measures. The content analysis in Tables 5 and 8 gives no numbers (p. 6, Section 3.4; pp. 7-8, Section 4.1; pp. 12-13, Section 4.4.1).",
+    "Every outcome locator page was checked on the PDF page images (pp. 3-7, 9-13, and 20)."
+  ],
+  "summary": "All seven c026 outcomes are scored on the essays that participants wrote, by embeddings, text metrics, or the authors' hand coding, and their question codes, AI availability, constructs, units, and every printed number match the PDF, so criterion 3 holds. The coding is still refuted on three minor points: S1-O4's classifier accuracy carries the embedding_similarity code although no embedding distance is computed, S1-O7 states that American essays were not coded where the paper says only that it focused on Indian essays, and the paper's statement that essays in all four groups had similar length is missing from outcomes and notes."
+}

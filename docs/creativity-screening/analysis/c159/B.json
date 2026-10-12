@@ -1,0 +1,117 @@
+{
+ "cid": "c159",
+ "analyst": "B",
+ "script": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/analysis/c159/B.py",
+ "data_files": [
+  "D:/projects/ai-skill-atlas/creativity-data/osf-nz6ag/CoCreativityDF.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study1/study1_ai_creativity_noheader.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study1/study1_ai_creativity_with_header.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/s2_metaphor_llm_ratings.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/study2_ai_creativity_with_header.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/s2_co-writing_llm_ratings.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/study2_ai_creativity_noheader.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/SensitivityAnalysis/study2_human_product_ratings.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/SensitivityAnalysis/study2_ai_literacy.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/SensitivityAnalysis/study2_llm_items.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study2/SensitivityAnalysis/study2_participants.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-b4ztn/Study1/Corrs_Study1.R",
+  "D:/projects/ai-skill-atlas/creativity-data/manifest.json"
+ ],
+ "results": [
+  {
+   "slug": "s1_originality_ai_help_vs_no_ai_paired",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 263,
+     "computed": 263,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 263,
+     "computed": 263,
+     "match": true
+    },
+    {
+     "statistic": "n_total_unique_people",
+     "printed": 263,
+     "computed": 263,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 0.56,
+     "computed": 0.5569581749049429,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 0.52,
+     "computed": 0.5238783269961977,
+     "match": true
+    },
+    {
+     "statistic": "paired_t",
+     "printed": 5.56,
+     "computed": 5.561735474258515,
+     "match": true
+    },
+    {
+     "statistic": "paired_t_df",
+     "printed": 262,
+     "computed": 262,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<.001",
+     "computed": 6.582967663721648e-08,
+     "match": true
+    },
+    {
+     "statistic": "paper_d_if_paired_difference_sd",
+     "printed": 0.34,
+     "computed": 0.34295130121108836,
+     "match": true
+    },
+    {
+     "statistic": "ci_lower_if_paired_mean_difference",
+     "printed": 0.021,
+     "computed": 0.021368360333438106,
+     "match": true
+    },
+    {
+     "statistic": "ci_upper_if_paired_mean_difference",
+     "printed": 0.045,
+     "computed": 0.04479133548405239,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 263,
+    "n_control": 263,
+    "treatment_mean": 0.5569581749049429,
+    "treatment_sd": 0.08365611497212164,
+    "control_mean": 0.5238783269961977,
+    "control_sd": 0.08460153812832794,
+    "difference": 0.03307984790874525,
+    "difference_se": 0.0059477564263617595,
+    "se_type": "paired",
+    "n_clusters": null
+   },
+   "notes": "Sources: c159 PDF pp. 8-12 and 14; the complete 444-line markdown, including references and Appendices A-D, was read. All 263 rows in CoCreativityDF.csv have distinct ID values and both originality scores. Originality_AIhelp is treatment and Originality_noAI is control; each is one MAoSS score for one participant's story, on the deposited 0-1 scale. The posted sample matches the final sample after the paper's exclusions (68 external-aid reports, 53 attention-check failures, and 7 low intelligence-test scores from 391 recruited people). Exclusion flags and pre-exclusion rows are unavailable, so those exclusions cannot be independently reconstructed. No additional exclusions were applied. Prompt-count outlier removals concern separate correlational analyses, and missing self-assessments do not exclude story scores. Originality_DifferenceScore agrees with treatment minus control for every row to floating-point tolerance. The paired score/word-count tuples exactly match orig_ai, orig, elab_ai, and elab in the 263-row osf-b4ztn Study1 table, both as multisets and in row order. IDs differ between deposits and were not joined. Study2 files concern a different study and supply no c159 observations. Every audited deposit file was checked against its SHA-256 in manifest.json; the primary CSV hash is 9b26e7f7a06ce3f9eedf46344600106a5032b91417d199e60c651d531d3c3a63. The PDF literally prints both originality SDs as '08'; those ambiguous strings are not interpreted as numerical SDs for a reproduction check. The SDs below are computed directly across participants with denominator n-1. Difference = mean(AI-help_i - No-AI_i); difference_se = sd(AI-help_i - No-AI_i, ddof=1)/sqrt(263). The paired t, its degrees of freedom and its two-sided p-value reproduce the printed test. The d and CI checks are explicitly conditional arithmetic checks: d_z and the paired mean-difference t interval round to the printed numbers, but the paper does not specify the standardizer or interval target. This does not resolve those labels in the reconciled extraction. Scores in the deposited originality columns are rounded to at most two decimal places; derived quantities reflect those available values. Both arm counts represent the same 263 people, not 526 independent people. Condition order was randomized, but it is absent from the relevant data, so first_round is explicitly skipped. All participants had an AI-available practice story before the scored conditions (PDF pp. 10-11)."
+  }
+ ],
+ "skipped": [
+  {
+   "slug": "s1_originality_ai_help_vs_no_ai_paired",
+   "reason": "first_round only: the 17-column CoCreativityDF.csv and the related 12-column osf-b4ztn Study1 tables contain no randomized condition order, round identifier, timestamp, or first-condition assignment. The paper reports no first-round arm counts or results. Participant IDs and row order cannot establish who received AI first. The task_num fields in osf-b4ztn Study2 belong to a different study. Therefore first-round arm membership and the requested HC2 contrast are unidentifiable from the supplied data. No first-round values are imputed."
+  },
+  {
+   "slug": "s1_diversity_contribution_ai_help_vs_no_ai_paired",
+   "reason": "all and first_round: this is a leave-one-out contribution to a prompt-specific set of stories, not an independent participant outcome. Under rule 5 it can be reported only if regenerated using the same texts and embedding procedure. PDF pp. 11-12 require paraphrase-multilingual-MiniLM-L12-v2 final-layer embeddings, removal of each prompt's three words, and all pairwise cosine distances in the two prompt-specific story pools. The c159 data contain only precomputed diversity scores, with no c159 story texts, story-to-prompt assignments, embeddings, or pairwise distance matrices. The related Study1 CSVs also lack these inputs; Study2 texts cannot substitute for the c159 texts. Moreover, even a diagnostic summary of the posted scores does not fully reproduce the printed precision: AI-help mean -2.549489733840304e-05 rounds to -0.000025 rather than the printed -0.000026; AI-help SD 0.0003392151707044013 rounds to 0.00034 rather than the printed 0.00033. No-AI mean 2.660247148288973e-05 and SD 0.0003422638888425593 do round to the printed 0.000027 and 0.00034, and both columns contain 263 values. These diagnostics do not constitute reproduction of the embedding measure. No diversity effect, participant SD record, or standard error is supplied. First-round condition order is also unavailable."
+  }
+ ]
+}

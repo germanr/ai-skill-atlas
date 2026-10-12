@@ -1,0 +1,50 @@
+{
+ "cid": "c605",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_randomized; studies[0].arms[*].n_randomized",
+   "form_value": "{\"participants.n_randomized\": 9, \"arms\": {\"Text\": 9, \"Sketch\": 9, \"SketchPlusTags\": 9}}",
+   "source_says": "The paper reports nine recruited students and a study sample of N = 9, and explicitly describes randomized condition exposure, but does not separately report a count at randomization. Under the form-spec requirement to use randomized counts only when given at assignment, these n_randomized fields should be null. Retain n_analyzed = 9 overall and in each overlapping within-person condition; the paper does not report exclusions or an allocation-flow count.",
+   "quote": "We recruited nine design students undertaking a Bachelor of Design or Master’s degree in UX/UI, graphic, or a related design field, via university digital noticeboards, student clubs, social media, and word-of-mouth.",
+   "locator": "PDF p. 4, Sections 4 and 4.2; p. 5, Section 4.4; p. 14, Section 6.4; p. 18, Appendix D, Table D; form-spec.md, Field notes, Counts in prose"
+  },
+  {
+   "field": "studies[0].outcomes (missing Variety outcome)",
+   "form_value": "Only Fluency, Originality and Quality are listed; Variety is absent.",
+   "source_says": "Add Variety as an output-scored flexibility outcome (question = with_ai, measure = category_count, unit = participant). Equation (1) divides the number of clusters covered by one participant minus one by the total number of clusters minus one; it is within-person breadth, not across-person diversity. Table 3 reports Gaussian condition coefficients versus Text: Sketch M = -0.02 (posterior SD = 0.07), 89% credible interval [-0.13, 0.08]; SketchPlusTags M = 0.02 (posterior SD = 0.09), 89% credible interval [-0.12, 0.16]. The Section 5.3.2 prose instead prints SketchPlusTags M = -0.02 and interval [-0.12, 0.15]; preserve this discrepancy rather than silently reconciling it. Neither comparison establishes a reliable difference. Form-spec rule 7 requires every qualifying output outcome.",
+   "quote": "Variety = Number of clusters that a participant’s products belong to - 1 Number of clusters - 1",
+   "locator": "PDF p. 5, Section 4.5; p. 9, Section 5.3.2, Equation (1) and Figure 9; p. 10, Table 3, Variety row and continuation of Section 5.3.2; creativity-codebook.md, Section 6; form-spec.md, rule 7"
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].treatment_arm; control_arm; comparison_type",
+   "form_value": "All three recorded contrasts leave treatment_arm, control_arm and comparison_type empty.",
+   "source_says": "The existing Fluency and Quality contrasts compare Sketch with Text; the existing Originality contrast compares SketchPlusTags with Text. Set treatment_arm to Sketch, SketchPlusTags and Sketch, respectively; control_arm to Text in each; and comparison_type to ai_design in each. Text is explicitly the baseline and all conditions provide generative-image assistance. The prose in reported already identifies the comparisons, but the structured fields omit them; the codebook requires both arms to be named.",
+   "quote": "We created SketchifAI (see Figure 1), a prototype that supports designers by generating inspiration stimuli in response to prompts entered through three distinct interfaces: Text (baseline), Sketch, and SketchPlusTags.",
+   "locator": "PDF p. 3, Section 3; p. 4, Section 4; pp. 9-10, Sections 5.3.1, 5.3.3 and 5.3.4 and Table 3; creativity-codebook.md, Section 5"
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced; timing",
+   "form_value": "ai_available_when_produced and timing are empty for all three recorded outcomes.",
+   "source_says": "Set ai_available_when_produced = yes and timing = immediate for all recorded output outcomes and the missing Variety outcome. The scored products were drawn during the same ideation sessions in which participants alternated between generating AI inspiration and sketching on paper; this was not an unassisted follow-up after AI removal.",
+   "quote": "During the study participants switched between (A) an inspiration phase where participants used SketchifAI to generate AI stimuli, and (B) sketch out their idea products on paper.",
+   "locator": "PDF p. 5, Section 4.4 and Figure 3; p. 6, Figure 4; creativity-codebook.md, Sections 1 and 6"
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion, including references and Appendices A-D, and independently extracted the relevant PDF pages. The PDF has 18 pages and identifies itself as arXiv:2606.26626v1, 25 Jun 2026, with C&C 2026 conference-paper formatting; the form title and all three authors match (PDF p. 1; Appendices A-C on p. 17 and D on p. 18).",
+  "lab_rct and a within-person structure are supported: condition exposure was randomized, briefs were counterbalanced, and each participant completed a mascot task under Text, Sketch and SketchPlusTags in an in-person UX laboratory (PDF p. 4, Section 4; p. 5, Section 4.4).",
+  "Nine design students constitute the study sample, and the same people completed the conditions; N = 9 is explicitly stated in the limitations and the participant roster lists P01-P09. The form correctly treats arm counts as overlapping and the analyzed total as below 50; core = no, criterion 2 = not_met and context_class = none are appropriate (PDF p. 4, Section 4.2; p. 5, Section 4.4; p. 14, Section 6.4; p. 18, Table D; codebook Section 3).",
+  "The reported output corpus is 177 products: 55 Text, 68 Sketch and 54 SketchPlusTags. These are participant-created paper sketches, not additional people or numbers of ratings; all products were scanned for expert evaluation, but separate model-row observation counts are not explicitly supplied (PDF p. 5, Sections 4.4-4.5; p. 7, Section 5).",
+  "The scored outputs were human-created paper designs evaluated by two experts blind to condition. The procedure used three rapid-ideation tasks, each lasting 20 minutes; the briefs concern social connection for older adults, nature exploration/hiking and folk-inspired music creation (PDF p. 5, Sections 4.4-4.5; p. 17, Appendix C).",
+  "SketchifAI uses Stable Diffusion v1.5 and ControlNet-Scribble for sketch inputs, with a fixed back-end prompt for low-to-mid-fidelity sketch-condition images (PDF p. 3, Sections 3.1-3.2).",
+  "Every number in the recorded Fluency reported string matches: Table 3 Sketch versus Text M = 0.20, posterior SD = 0.33, 89% credible interval [-0.33, 0.72]; Section 5.3.1 instead gives M = 0.21 and [-0.33, 0.75], plus 74% posterior probability, ln(BF) = 1.03 and BF = 2.80. The negative-binomial log scale and uncertainty are correctly described (PDF p. 9, Section 5.3.1; p. 10, Table 3).",
+  "Every number in the recorded Originality reported string matches: SketchPlusTags versus Text M = -0.06, posterior SD = 0.04, 89% credible interval [-0.12, -0.00] in Table 3; the prose prints [-0.12, 0.00], 94% posterior probability, ln(BF) = -2.81 and BF = 0.06. Equation (2) defines individual-product rarity from other participants with products in its cluster (PDF p. 10, Table 3 and Section 5.3.3).",
+  "Every number in the recorded Quality reported string matches: Sketch versus Text M = -0.24, posterior SD = 0.50, 89% credible interval [-1.06, 0.52]. Section 5.3.4 explicitly describes a cumulative-probit model and no credible evidence of a reliable quality shift, supporting the form despite inconsistent generic wording in the table caption (PDF p. 10, Table 3 and Section 5.3.4).",
+  "The one-line finding faithfully uses the Table 3 Fluency and Originality coefficients and intervals and qualifies the effects as uncertain or suggestive; it does not conflate posterior SDs with participant outcome SDs or Bayesian credible intervals with frequentist confidence intervals (PDF p. 7, Section 4.6.1; pp. 9-10, Section 5.3 and Table 3; p. 14, Section 6.4).",
+  "The referenced Latin square and supplemental modelling reports are distinct from the included Appendices A-D. The form correctly identifies supplementary material-A, omitted threshold estimates and supplementary material-C; no supplement URL appears in the document (PDF p. 4, Section 4; p. 7, Section 4.6.1; p. 8, Table 1; p. 9, Table 2; p. 10, Table 3; pp. 17-18, Appendices A-D).",
+  "This is a primary empirical study, not a synthesis, so the default empty synthesis fields are appropriate. The acknowledged support is from University of Melbourne scholarships; no company involvement is stated (PDF pp. 4-10, Methods and quantitative Findings; p. 14, Acknowledgments)."
+ ],
+ "summary": "This is a randomized within-person laboratory study with nine analyzed design students and creativity scored on their mascot designs, so it belongs in the two-screener pipeline but falls below the 50-person core threshold. The source version and recorded statistics are accurate, but the form omits Variety and comparison/timing fields and presents the recruited study sample as an explicitly reported randomized count."
+}

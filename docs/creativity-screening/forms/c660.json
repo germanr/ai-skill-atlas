@@ -1,0 +1,350 @@
+{
+ "cid": "c660",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/You et al (2026) - Surprise2Refine.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/You et al (2026) - Surprise2Refine.pdf",
+  "version": "arXiv 2608.12605v1 of 2026-08-12 (UIST '26 paper, doi 10.1145/3830398.3830612 printed on p. 1), 19 pages including Appendices A and B; entire markdown read, with evidence and recorded numbers checked against PDF text on pp. 1, 4-5, 8-9, 11-12, and 15-19.",
+  "title_on_document": "Surprise2Refine: Axis-Centered Exploration-To-Refinement for Agent-Assisted Creative Scaffolding",
+  "authors_on_document": [
+   "Yuzhe You",
+   "Gromit Yeuk-Yin Chan",
+   "Shunan Guo",
+   "Anlan Zhang",
+   "Eunyee Koh",
+   "Jian Zhao",
+   "Tongyu Zhou"
+  ],
+  "pages": 19,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendix A, pp. 12-15; Appendix B, pp. 15-19, within this PDF.",
+   "holds": "Appendix A contains implementation details and prompt templates. Appendix B contains LPIPS means and SDs by participant and overall (Table 1, p. 15), CSI questionnaire distributions (Figure 10, p. 16), CSI component factor and weighted scores with SDs (Table 2, p. 16), example initial generations (Figures 11-14, pp. 16-18), and final-design galleries (Figures 15-16, pp. 18-19). Table 2 does not report an SD for the overall CSI score."
+  }
+ },
+ "paper_design_summary": "A formative study with five professional designers used interviews and a 30-minute table-tennis poster walkthrough with their usual tools (p. 4, Section 3). The evaluation analyzed 14 designers who each used Surprise2Refine and its AI baseline for 20 minutes per condition, with counterbalanced order and no stated randomization (p. 8, Section 6). Reported outcomes include post-tool self-reports (Q8, Q12, and the Creativity Support Index) and LPIPS of the nine initial AI-generated designs per participant, with no separately reported creativity assessment of the final posters (pp. 8-9, Sections 6-7 and Figure 8; p. 15, Appendix B).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Within-subjects user study (poster design, Surprise2Refine vs baseline)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Order of the two tool conditions (Surprise2Refine first or baseline first); every participant used both",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "The order of conditions was counterbalanced across participants to mitigate ordering effects.",
+    "locator": "p. 8, Section 6 Evaluation",
+    "preregistered": "not_stated",
+    "prereg_locator": "No preregistration statement or identifier found in the full document, pp. 1-19, including Appendices A-B"
+   },
+   "arms": [
+    {
+     "name": "Surprise2Refine",
+     "description": "Agent-assisted poster design tool with axis-centered n x n grid, zooming, anchoring, and decomposition interactions",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 14
+    },
+    {
+     "name": "Baseline",
+     "description": "Self-built version of the same AI-assisted design tool without the axis-centered interactions",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 14
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 14,
+    "counts_are": "people",
+    "exclusions": "",
+    "population": "professionals",
+    "who": "Designers in visual, product, and packaging design and illustration, age 24-47, eight men and six women, recruited through online postings and design communities, paid $30; the same 14 people used both conditions (Table 1 lists P1-P14)",
+    "country": "",
+    "quote": "We recruited 14 designers (P1~P14; age 24~47; eight men, six women) across visual, product, and packaging design, as well as illustration.",
+    "locator": "p. 8, Section 6 Evaluation; p. 15, Table 1"
+   },
+   "ai_tool": {
+    "name_model": "Surprise2Refine prototype built on Gemini-2.5-Flash-Lite (vision-language model) and Gemini-2.5-Flash-Image (image generation); baseline is the same system without axis-centered interactions",
+    "role": "image_generation",
+    "how_used": "Designers supplied a moodboard of references and a base prompt; the agent generated a 3 x 3 grid of poster designs along two conceptual axes, which designers reshaped by zooming, anchoring, and decomposition (pp. 5, 12)"
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Design a poster on a topic chosen from a predefined set; the same topic in both conditions, starting from the same three to four references",
+    "duration": "20 minutes per condition; sessions about 90 minutes"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Mean LPIPS diversity of the nine initial generated designs",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "LPIPS perceptual distance among the nine initial AI-generated designs in each participant's grid, computed with the same moodboard references and input prompts in both systems; it measures variety within one participant's AI-generated set, not across people, and is a property of the system's generations rather than of the designer's final poster; Table 1 labels the entries Mean (SD), but the LPIPS backbone, pair aggregation procedure, and aggregation basis of the overall SDs are not stated. The reported overall SDs should not be assumed to be participant-level SDs (p. 15, Appendix B.1 and Table 1).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Surprise2Refine",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "p_value_only"
+       ],
+       "reported": "Mean LPIPS=0.641>0.529, p= 0.0001; Table 1 Overall: Baseline 0.529 (0.078), Surprise2Refine 0.641 (0.080); per-participant means (SD) for P1-P14; the same 14 participants used both tools (p. 8, Section 6); the aggregation basis of the overall SDs is not explained.",
+       "locator": "p. 9, Section 7.1; p. 15, Table 1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Q12 'This tool helped me to be more creative' (self-report)",
+     "construct": "overall_creativity",
+     "question": "with_ai",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "7-point Likert item rated by the designer after each condition; Q8 'I find the generated designs from this tool meaningful and creative' is reported only in Figure 8 (p. 9); the Q12 mean difference and 95% CI appear graphically in Figure 8 without printed numerical bounds.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Surprise2Refine",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only",
+        "figure_only"
+       ],
+       "reported": "Q12: MD=5>3.5; p= 0.006 (Wilcoxon signed-rank test)",
+       "locator": "p. 9, Section 7.1; Figure 8"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Creativity Support Index (self-report)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Overall CSI score from the post-condition questionnaire; Appendix B.2 (p. 15), Figure 10 and Table 2 (p. 16) provide item distributions and component scale scores with SDs. Table 2 does not provide an SD for the overall CSI score.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Surprise2Refine",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "CSI=69.71>55.79; p= 0.0085",
+       "locator": "p. 8, Section 7.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Formative study (designer interviews and poster walkthrough)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "No assigned AI comparison is reported. Participants completed a poster walkthrough on the same table-tennis theme and were free to choose their usual design tools.",
+    "unit": "other",
+    "structure": null,
+    "quote": "They\nwere free to use any design tools they normally would.",
+    "locator": "p. 4, Section 3 Formative Study; qualitative study without assigned comparison conditions",
+    "preregistered": "not_stated",
+    "prereg_locator": "No preregistration statement or identifier found in the full document, pp. 1-19, including Appendices A-B"
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 5,
+    "counts_are": "people",
+    "exclusions": "Not reported.",
+    "population": "professionals",
+    "who": "Five professional designers (F1-F5) from visual, UI/UX, and product design. Overlap with the evaluation participants (P1-P14) is not stated; these counts are kept separate.",
+    "country": "",
+    "quote": "we conducted a formative study with five professional de-\nsigners (F1∼F5) from diverse backgrounds including visual, UI/UX,\nand product design.",
+    "locator": "p. 4, Section 3 Formative Study; p. 8, Section 6 Evaluation for the separately reported evaluation sample"
+   },
+   "ai_tool": {
+    "name_model": "No standardized AI system was assigned; participants were free to use their usual design tools.",
+    "role": "other",
+    "how_used": "The formative findings describe both sketches and AI generations. Participants discussed AI or agent-assisted tools including MidJourney, GPT, and Nano Banana in their existing workflows; no controlled AI comparison is reported (p. 4, Sections 3-3.1)."
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Poster design walkthrough on the theme \"table tennis\", using usual tools, thinking aloud, and optional reference materials; preceded by a pre-questionnaire and semi-structured interview and followed by a post-interview (p. 4, Section 3).",
+    "duration": "30-minute poster walkthrough; total session duration not stated (p. 4, Section 3)."
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "Not stated, including whether the formative sample (F1-F5) overlaps with the evaluation sample (P1-P14). The study counts are not combined.",
+  "quote": "",
+  "locator": "p. 4, Section 3 Formative Study; p. 8, Section 6 Evaluation"
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Gromit Yeuk-Yin Chan, Shunan Guo, Anlan Zhang, Eunyee Koh, and Tongyu Zhou are affiliated with Adobe Research. Yuzhe You's author footnote states that the work was done during an Adobe Research internship. The acknowledgments disclose a gift fund from Adobe.",
+  "locator": "p. 1, author affiliations and first-author footnote; p. 11, Acknowledgments"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "unclear",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "unclear",
+  "context_class": "none",
+  "reason": "The evaluation analyzed 14 people, each using both AI configurations, below the 50-person threshold (p. 8, Section 6; p. 15, Table 1). The five formative participants are recorded separately; overlap is not stated and the counts are not combined (p. 4, Section 3). Evaluation order was counterbalanced, with no reported randomization (p. 8, Section 6; p. 11, Section 8). Criterion 3 remains unclear because the sole output-scored measure is LPIPS of each participant's nine initial AI generations; its status as a qualifying human-output creativity measure is unclear, and it does not compare different people (p. 15, Appendix B.1). Q8 concerns generated designs generally and Q12 perceived help with creativity; no separate creativity assessment of the final posters is reported (p. 9, Figure 8; p. 15, Appendix B.3; pp. 18-19, Figures 15-16). The formative study has no assigned AI comparison or scored creativity/diversity outcome. Neither study supplies a qualifying context comparison under the codebook."
+ },
+ "one_line_finding": "In a counterbalanced comparison of 14 designers, Surprise2Refine had higher self-rated creativity (Q12 MD=5 vs 3.5, p = 0.006, p. 9), CSI (69.71 vs 55.79, p = 0.0085, p. 8), and LPIPS diversity of initial generations (0.641 vs 0.529, p = 0.0001, p. 9 and Table 1, p. 15) than the baseline tool.",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[1]; sample_overlap",
+    "old": "{\"studies[1]\": null, \"sample_overlap\": {\"shares_participants_with\": \"\", \"quote\": \"\", \"locator\": \"\"}}",
+    "new": "{\"studies[1]\": {\"study_id\": \"S2\", \"label\": \"Formative study (designer interviews and poster walkthrough)\", \"design_class\": \"other\", \"assignment\": {\"randomized\": \"not_stated\", \"what_was_assigned\": \"No assigned AI comparison is reported. Participants completed a poster walkthrough on the same table-tennis theme and were free to choose their usual design tools.\", \"unit\": \"other\", \"structure\": null, \"quote\": \"They\\nwere free to use any design tools they normally would.\", \"locator\": \"p. 4, Section 3 Formative Study; qualitative study without assigned comparison conditions\", \"preregistered\": \"not_stated\", \"prereg_locator\": \"No preregistration statement or identifier found in the full document, pp. 1-19, including Appendices A-B\"}, \"arms\": [], \"participants\": {\"n_randomized\": null, \"n_analyzed\": 5, \"counts_are\": \"people\", \"exclusions\": \"Not reported.\", \"population\": \"professionals\", \"who\": \"Five professional designers (F1-F5) from visual, UI/UX, and product design. Overlap with the evaluation participants (P1-P14) is not stated; these counts are kept separate.\", \"country\": \"\", \"quote\": \"we conducted a formative study with five professional de-\\nsigners (F1∼F5) from diverse backgrounds including visual, UI/UX,\\nand product design.\", \"locator\": \"p. 4, Section 3 Formative Study; p. 8, Section 6 Evaluation for the separately reported evaluation sample\"}, \"ai_tool\": {\"name_model\": \"No standardized AI system was assigned; participants were free to use their usual design tools.\", \"role\": \"other\", \"how_used\": \"The formative findings describe both sketches and AI generations. Participants discussed AI or agent-assisted tools including MidJourney, GPT, and Nano Banana in their existing workflows; no controlled AI comparison is reported (p. 4, Sections 3-3.1).\"}, \"task\": {\"type\": \"design_visual\", \"description\": \"Poster design walkthrough on the theme \\\"table tennis\\\", using usual tools, thinking aloud, and optional reference materials; preceded by a pre-questionnaire and semi-structured interview and followed by a post-interview (p. 4, Section 3).\", \"duration\": \"30-minute poster walkthrough; total session duration not stated (p. 4, Section 3).\"}, \"outcomes\": []}, \"sample_overlap\": {\"shares_participants_with\": \"Not stated, including whether the formative sample (F1-F5) overlaps with the evaluation sample (P1-P14). The study counts are not combined.\", \"quote\": \"\", \"locator\": \"p. 4, Section 3 Formative Study; p. 8, Section 6 Evaluation\"}}",
+    "quote": "we conducted a formative study with five professional de-\nsigners (F1∼F5) from diverse backgrounds including visual, UI/UX,\nand product design.",
+    "locator": "p. 4, Sections 3-3.1; p. 8, Section 6; form-spec.md, rule 6. No scored creativity/diversity outcome is reported for the formative study; sample overlap is not stated."
+   },
+   {
+    "field": "source.supplement; source.version",
+    "old": "{\"supplement\": {\"exists\": \"yes | no | not_stated\", \"in_this_pdf\": false, \"where\": \"URL or description if the document gives one\", \"holds\": \"what it contains that the main text lacks, e.g. tables S3 and S11 with standard errors\"}, \"version\": \"arXiv 2608.12605v1 of 2026-08-12 (UIST '26 paper, doi 10.1145/3830398.3830612 printed on p. 1), 19 pages including Appendices A and B; read in full PDF pages 1, 7-9, 15 and the markdown\"}",
+    "new": "{\"supplement\": {\"exists\": \"yes\", \"in_this_pdf\": true, \"where\": \"Appendix A, pp. 12-15; Appendix B, pp. 15-19, within this PDF.\", \"holds\": \"Appendix A contains implementation details and prompt templates. Appendix B contains LPIPS means and SDs by participant and overall (Table 1, p. 15), CSI questionnaire distributions (Figure 10, p. 16), CSI component factor and weighted scores with SDs (Table 2, p. 16), example initial generations (Figures 11-14, pp. 16-18), and final-design galleries (Figures 15-16, pp. 18-19). Table 2 does not report an SD for the overall CSI score.\"}, \"version\": \"arXiv 2608.12605v1 of 2026-08-12 (UIST '26 paper, doi 10.1145/3830398.3830612 printed on p. 1), 19 pages including Appendices A and B; entire markdown read, with evidence and recorded numbers checked against PDF text on pp. 1, 4-5, 8-9, 11-12, and 15-19.\"}",
+    "quote": "Additional diversity score calculations and CSI ratings are reported\nin Appendix B.",
+    "locator": "p. 1, version identifier; p. 8, Section 7; pp. 12-15, Appendix A; pp. 15-19, Appendix B, Tables 1-2 and Figures 10-16"
+   },
+   {
+    "field": "company_involvement",
+    "old": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+    "new": "{\"any\": true, \"description\": \"Gromit Yeuk-Yin Chan, Shunan Guo, Anlan Zhang, Eunyee Koh, and Tongyu Zhou are affiliated with Adobe Research. Yuzhe You's author footnote states that the work was done during an Adobe Research internship. The acknowledgments disclose a gift fund from Adobe.\", \"locator\": \"p. 1, author affiliations and first-author footnote; p. 11, Acknowledgments\"}",
+    "quote": "Work done during an internship at Adobe Research.",
+    "locator": "p. 1, author affiliations and first-author footnote; p. 11, Acknowledgments"
+   },
+   {
+    "field": "studies[0].assignment.preregistered; studies[0].assignment.prereg_locator",
+    "old": "{\"preregistered\": \"yes | no | not_stated\", \"prereg_locator\": \"\"}",
+    "new": "{\"preregistered\": \"not_stated\", \"prereg_locator\": \"No preregistration statement or identifier found in the full document, pp. 1-19, including Appendices A-B\"}",
+    "quote": "We conducted a task-based study to evaluate the usability and\nimpact of Surprise2Refine, focusing on three key questions:",
+    "locator": "p. 8, Section 6 Evaluation; full document, pp. 1-19, including Appendices A-B, contains no preregistration statement or identifier"
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced",
+    "old": "{\"S1-O1\": \"yes | no | mixed\", \"S1-O2\": \"yes | no | mixed\", \"S1-O3\": \"yes | no | mixed\"}",
+    "new": "{\"S1-O1\": \"yes\", \"S1-O2\": \"yes\", \"S1-O3\": \"yes\"}",
+    "quote": "Participants then completed the main\ntask, interacting with two AI-assisted design tools in a within-\nsubjects setting: Surprise2Refine and a baseline version without\naxis-centered interactions.",
+    "locator": "p. 8, Section 6 Evaluation; p. 15, Appendix B.1: both design conditions used AI, and the questionnaires concern those sessions"
+   },
+   {
+    "field": "studies[0].outcomes[*].timing",
+    "old": "{\"S1-O1\": \"immediate | delayed\", \"S1-O2\": \"immediate | delayed\", \"S1-O3\": \"immediate | delayed\"}",
+    "new": "{\"S1-O1\": \"immediate\", \"S1-O2\": \"immediate\", \"S1-O3\": \"immediate\"}",
+    "quote": "After each condition, participants completed a post-questionnaire\nassessing overall experience, support for scaffolding workflows,\nperceived workflow improvements, and sensemaking of decision-\nmaking, along with the Creativity Support Index (CSI).",
+    "locator": "p. 8, Section 6 Evaluation; p. 15, Appendix B.1: initial generated designs and post-condition questionnaires in the same session"
+   },
+   {
+    "field": "studies[0].outcomes[*].primary",
+    "old": "{\"S1-O1\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"S1-O2\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"S1-O3\": \"preregistered_primary | paper_primary | secondary | not_stated\"}",
+    "new": "{\"S1-O1\": \"not_stated\", \"S1-O2\": \"not_stated\", \"S1-O3\": \"not_stated\"}",
+    "quote": "We conducted a task-based study to evaluate the usability and\nimpact of Surprise2Refine, focusing on three key questions:",
+    "locator": "pp. 8-10, Sections 6-7; p. 15, Appendix B; no explicit primary/secondary outcome designation found throughout pp. 1-19"
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].comparison_type",
+    "old": "{\"S1-O1\": \"ai_vs_bau | ai_vs_active | ai_design | ai_vs_human | before_after | other\", \"S1-O2\": \"ai_vs_bau | ai_vs_active | ai_design | ai_vs_human | before_after | other\", \"S1-O3\": \"ai_vs_bau | ai_vs_active | ai_design | ai_vs_human | before_after | other\"}",
+    "new": "{\"S1-O1\": \"ai_design\", \"S1-O2\": \"ai_design\", \"S1-O3\": \"ai_design\"}",
+    "quote": "Participants then completed the main\ntask, interacting with two AI-assisted design tools in a within-\nsubjects setting: Surprise2Refine and a baseline version without\naxis-centered interactions.",
+    "locator": "p. 8, Section 6 Evaluation: two AI configurations; this does not establish random assignment"
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].direction",
+    "old": "{\"S1-O1\": \"treatment_higher | treatment_lower | no_clear_difference | mixed\", \"S1-O2\": \"treatment_higher | treatment_lower | no_clear_difference | mixed\", \"S1-O3\": \"treatment_higher | treatment_lower | no_clear_difference | mixed\"}",
+    "new": "{\"S1-O1\": \"treatment_higher\", \"S1-O2\": \"treatment_higher\", \"S1-O3\": \"treatment_higher\"}",
+    "quote": "(Mean LPIPS=0.641>0.529, 𝑝= 0.0001).",
+    "locator": "p. 8, Section 7.1 (CSI); p. 9, Section 7.1 (LPIPS and Q12); p. 15, Table 1"
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].statistics_available; associated measure_detail and reported qualifiers",
+    "old": "{\"S1-O1\": {\"statistics_available\": [], \"measure_detail\": \"LPIPS perceptual distance among the nine initial AI-generated designs in each participant's grid, computed with the same moodboard references and input prompts in both systems; it measures variety within one participant's AI-generated set, not across people, and is a property of the system's generations rather than of the designer's final poster\", \"reported\": \"Mean LPIPS=0.641>0.529, p= 0.0001; Table 1 Overall: Baseline 0.529 (0.078), Surprise2Refine 0.641 (0.080); per-participant means (SD) for P1-P14\"}, \"S1-O2\": {\"statistics_available\": [], \"measure_detail\": \"7-point Likert item rated by the designer after each condition; Q8 'I find the generated designs from this tool meaningful and creative' is reported only in Figure 8 (p. 9)\", \"reported\": \"Q12: MD=5>3.5; p= 0.006 (Wilcoxon signed-rank test)\"}, \"S1-O3\": {\"statistics_available\": [], \"measure_detail\": \"Overall CSI score from the post-condition questionnaire; scale-level scores in Appendix B.2, Table 2\", \"reported\": \"CSI=69.71>55.79; p= 0.0085\"}}",
+    "new": "{\"S1-O1\": {\"statistics_available\": [\"arm_means_sds_ns\", \"p_value_only\"], \"measure_detail\": \"LPIPS perceptual distance among the nine initial AI-generated designs in each participant's grid, computed with the same moodboard references and input prompts in both systems; it measures variety within one participant's AI-generated set, not across people, and is a property of the system's generations rather than of the designer's final poster; Table 1 labels the entries Mean (SD), but the LPIPS backbone, pair aggregation procedure, and aggregation basis of the overall SDs are not stated. The reported overall SDs should not be assumed to be participant-level SDs (p. 15, Appendix B.1 and Table 1).\", \"reported\": \"Mean LPIPS=0.641>0.529, p= 0.0001; Table 1 Overall: Baseline 0.529 (0.078), Surprise2Refine 0.641 (0.080); per-participant means (SD) for P1-P14; the same 14 participants used both tools (p. 8, Section 6); the aggregation basis of the overall SDs is not explained.\"}, \"S1-O2\": {\"statistics_available\": [\"p_value_only\", \"figure_only\"], \"measure_detail\": \"7-point Likert item rated by the designer after each condition; Q8 'I find the generated designs from this tool meaningful and creative' is reported only in Figure 8 (p. 9); the Q12 mean difference and 95% CI appear graphically in Figure 8 without printed numerical bounds.\", \"reported\": \"Q12: MD=5>3.5; p= 0.006 (Wilcoxon signed-rank test)\"}, \"S1-O3\": {\"statistics_available\": [\"p_value_only\"], \"measure_detail\": \"Overall CSI score from the post-condition questionnaire; Appendix B.2 (p. 15), Figure 10 and Table 2 (p. 16) provide item distributions and component scale scores with SDs. Table 2 does not provide an SD for the overall CSI score.\", \"reported\": \"CSI=69.71>55.79; p= 0.0085\"}}",
+    "quote": "Overall\n0.529 (0.078)\n0.641 (0.080)\nTable 1: Mean LPIPS diversity across participants.",
+    "locator": "pp. 8-9, Sections 6-7.1 and Figure 8; p. 15, Appendix B.1-B.2 and Table 1; p. 16, Figure 10 and Table 2. Overall LPIPS SD aggregation is unspecified; Q12 intervals are graphical; no overall CSI SD is printed."
+   },
+   {
+    "field": "eligibility; paper_design_summary; one_line_finding",
+    "old": "{\"eligibility\": {\"core\": \"no\", \"criterion_1_random_assignment_of_ai\": \"unclear\", \"criterion_2_at_least_50_people\": \"not_met\", \"criterion_3_outcome_scored_on_output\": \"unclear\", \"context_class\": \"none\", \"reason\": \"14 designers analyzed across both conditions of one within-subjects study (p. 8; Table 1, p. 15), well under 50. Order was counterbalanced, with no statement of randomization, and both arms use generative AI (axis-centered vs plain configuration). The only output-scored measure is LPIPS diversity of the system's nine initial generations per participant; creativity of the final posters is self-reported only.\"}, \"paper_design_summary\": \"Fourteen professional designers each designed a poster for 20 minutes with two AI image-generation tools: Surprise2Refine (axis-centered grid interactions) and a baseline version of the same system without those interactions. The order of conditions was counterbalanced; the paper does not say it was randomized. Outcomes are post-questionnaire Likert items (including Q8 'meaningful and creative' and Q12 'helped me to be more creative'), the Creativity Support Index, and LPIPS diversity of the nine initial AI-generated designs per participant; the final posters were not rated by anyone other than the designers.\", \"one_line_finding\": \"In 14 designers, Surprise2Refine raised self-rated creativity (Q12 MD=5 vs 3.5, p = 0.006, p. 9), the CSI (69.71 vs 55.79, p = 0.0085, p. 8), and the LPIPS diversity of initial generations (0.641 vs 0.529, p = 0.0001, p. 9 and Table 1, p. 15) relative to the baseline tool.\"}",
+    "new": "{\"eligibility\": {\"core\": \"no\", \"criterion_1_random_assignment_of_ai\": \"unclear\", \"criterion_2_at_least_50_people\": \"not_met\", \"criterion_3_outcome_scored_on_output\": \"unclear\", \"context_class\": \"none\", \"reason\": \"The evaluation analyzed 14 people, each using both AI configurations, below the 50-person threshold (p. 8, Section 6; p. 15, Table 1). The five formative participants are recorded separately; overlap is not stated and the counts are not combined (p. 4, Section 3). Evaluation order was counterbalanced, with no reported randomization (p. 8, Section 6; p. 11, Section 8). Criterion 3 remains unclear because the sole output-scored measure is LPIPS of each participant's nine initial AI generations; its status as a qualifying human-output creativity measure is unclear, and it does not compare different people (p. 15, Appendix B.1). Q8 concerns generated designs generally and Q12 perceived help with creativity; no separate creativity assessment of the final posters is reported (p. 9, Figure 8; p. 15, Appendix B.3; pp. 18-19, Figures 15-16). The formative study has no assigned AI comparison or scored creativity/diversity outcome. Neither study supplies a qualifying context comparison under the codebook.\"}, \"paper_design_summary\": \"A formative study with five professional designers used interviews and a 30-minute table-tennis poster walkthrough with their usual tools (p. 4, Section 3). The evaluation analyzed 14 designers who each used Surprise2Refine and its AI baseline for 20 minutes per condition, with counterbalanced order and no stated randomization (p. 8, Section 6). Reported outcomes include post-tool self-reports (Q8, Q12, and the Creativity Support Index) and LPIPS of the nine initial AI-generated designs per participant, with no separately reported creativity assessment of the final posters (pp. 8-9, Sections 6-7 and Figure 8; p. 15, Appendix B).\", \"one_line_finding\": \"In a counterbalanced comparison of 14 designers, Surprise2Refine had higher self-rated creativity (Q12 MD=5 vs 3.5, p = 0.006, p. 9), CSI (69.71 vs 55.79, p = 0.0085, p. 8), and LPIPS diversity of initial generations (0.641 vs 0.529, p = 0.0001, p. 9 and Table 1, p. 15) than the baseline tool.\"}",
+    "quote": "Q8 I find the generated designs from this tool meaningful and creative.",
+    "locator": "p. 4, Section 3; p. 8, Section 6; p. 9, Section 7.1 and Figure 8 (Q3, Q8, Q12); p. 11, Section 8; p. 15, Appendix B.1-B.3; pp. 18-19, Figures 15-16. Methods and galleries specify no separate final-poster creativity assessment; core and context classifications remain unchanged after review."
+   }
+  ],
+  "rejected": []
+ }
+}

@@ -1,0 +1,113 @@
+{
+ "cid": "c650",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].design_class",
+   "form_value": "lab_rct",
+   "source_says": "Random assignment is not documented. Code other, described as an in-person, counterbalanced within-person experiment with randomized=not_stated; lab_rct is unsupported. Retain criterion_1_random_assignment_of_ai=unclear. has_randomized_people_study=false means that no randomized people study is established by this source, not that nonrandom assignment was explicitly reported.",
+   "quote": "To reduce potential confounds from task content, fatigue and order effects, we counterbalanced task assignment, condition assignment, and presentation order across the 12 participants.",
+   "locator": "PDF pp. 10-11, Sections 4.2 and 4.2.1; full document, including Appendix 7, contains no statement of randomized assignment."
+  },
+  {
+   "field": "studies[0].participants.n_randomized; studies[0].arms[0].n_randomized; studies[0].arms[1].n_randomized",
+   "form_value": "12; 12; 12",
+   "source_says": "All three n_randomized values should be null. The paper reports 12 recruited people and shows 12 participants per condition in the analyzed within-person sample; it does not report a randomized count. Keep n_analyzed=12 overall and in each arm; these are the same people in both arms.",
+   "quote": "We recruited 12 participants (7 men and 5 women) through professional networks via Slack and email.",
+   "locator": "PDF p. 11, Sections 4.2.1-4.2.2; p. 14, Figure 5 legend."
+  },
+  {
+   "field": "studies",
+   "form_value": "Only one entry, labeled Study 2: within-subject user study of the interactive system; Study 1 appears only in the summary.",
+   "source_says": "Add a separate model_only entry for Study 1, the automated-generation evaluation: full pipeline versus no expansion and no synergy. It generated 90 ideas over three tasks and three conditions, with 10 final ideas per task-condition, rated by two engineering experts on four dimensions and their composite. The experts are raters, not people assigned to creative-task assistance. Figure 4 presents individual expert ratings; the 90 count refers to ideas.",
+   "quote": "For each task and condition, the pipeline generated 10 final ideas, resulting in 90 ideas in total (3 tasks × 3 conditions × 10 ideas).",
+   "locator": "PDF p. 10, Section 4.1; p. 13, Section 5.1.1 and Figure 4; form-spec.md, rule 6."
+  },
+  {
+   "field": "studies[0].outcomes[1].construct",
+   "form_value": "overall_creativity",
+   "source_says": "Use other for interestingness and preserve its operational definition: how compelling and worth further exploration the idea is. The source does not define this item as a rating of overall creativity.",
+   "quote": "Interestingness, whether the idea is compelling and worth further exploration, capturing its promise as a direction for continued design development.",
+   "locator": "PDF p. 10, Section 4.1, rating definitions; p. 12, Section 4.2.4, reuse of the same dimensions; p. 14, Figure 5."
+  },
+  {
+   "field": "studies[0].outcomes (omitted expert-rated dimensions)",
+   "form_value": "Only composite quality, overall interestingness, and semantic spread are listed.",
+   "source_says": "Add Goal Fulfillment (Scanvas 5.16 vs. baseline 4.50, p=.001), New Benefits/Opportunities (5.06 vs. 4.27, p<.001), and Value vs. Cost (4.45 vs. 3.28, p<.001). These are separate output-scored outcomes using the same expert panel and two-sided Mann-Whitney U tests with Holm correction. For New Benefits, also retain the participant-level check: 8 of 12 improved and four tied; Wilcoxon signed-rank p=.0078 among the eight non-tied participants.",
+   "quote": "addressing the original goal (5.16 vs. 4.50, 𝑝= .001), surfacing new benefits (5.06 vs. 4.27, 𝑝< .001), worth relative to resources and costs (4.45 vs. 3.28, 𝑝< .001)",
+   "locator": "PDF p. 13, Section 5.1.2; p. 14, Figure 5; form-spec.md, rule 7."
+  },
+  {
+   "field": "studies[0].outcomes (omitted idea-count measures)",
+   "form_value": "No idea-count or fluency outcome is listed.",
+   "source_says": "Add the participant-level quantity measures, distinguishing ideas explored on the canvas from ideas submitted for evaluation. Explored: Scanvas M=33.8, SD=8.9 versus baseline M=26.3, SD=7.8; the paper states no significant difference without an exact p-value. Submitted: Scanvas M=4.83, SD=1.27 versus baseline M=4.42, SD=1.38; Wilcoxon signed-rank W=8.5, p=.347. These are counts per participant, not additional participants.",
+   "quote": "They also submitted a similar number of ideas: an average of 4.83 ideas (𝑆𝐷= 1.27) in Scanvas and 4.42 ideas (𝑆𝐷= 1.38) in the baseline (Wilcoxon signed-rank test, 𝑊= 8.5, 𝑝= .347).",
+   "locator": "PDF pp. 13-14, Section 5.1.2; form-spec.md, rule 7."
+  },
+  {
+   "field": "studies[0].outcomes[2].contrasts[0].reported",
+   "form_value": "Scanvas: n ideas 58, semantic spread 0.564, 95% CI [0.513, 0.595]; Baseline: n ideas 53, 0.534, 95% CI [0.477, 0.559]; bootstrap CIs resampling participants; no test between the two user-study conditions is reported",
+   "source_says": "Keep the reported idea counts, semantic-spread estimates, and confidence intervals. Replace the claim that no user-study comparison is reported: Table 4 specifies four comparisons against Scanvas, including the baseline row, which has no significance star. Report no significant Scanvas-baseline difference indicated after Holm correction; an exact p-value, test statistic, and test procedure for that contrast are not supplied.",
+   "quote": "Stars indicate significant differences from Scanvas after Holm correction across the four comparisons",
+   "locator": "PDF p. 16, Table 4, baseline row and caption."
+  },
+  {
+   "field": "studies[0].outcomes[2].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "Fill metric with mean pairwise cosine distance; embedding_model with OpenAI text-embedding-3-small; computed_over with all submitted ideas pooled within each task and condition, then averaged across the two tasks. This is a condition-level set measure, not a participant-only flexibility score. Uncertainty is 95% bootstrap confidence intervals resampling participants for the user-study conditions; comparisons with Scanvas receive Holm correction. The reported values are raw distances, not standardized effects.",
+   "quote": "We embedded each idea’s text using OpenAI’s text-embedding-3-small model [36] and calculated the mean pairwise cosine distance among ideas within each task and condition. We then averaged this measure across the two tasks.",
+   "locator": "PDF p. 12, Section 4.2.4; p. 16, Table 4 caption."
+  },
+  {
+   "field": "studies[0].outcomes[0].measure_detail; studies[0].outcomes[1].measure_detail",
+   "form_value": "Both are empty strings.",
+   "source_says": "Record two engineering experts who independently rated the ideas while blind to condition and participant information, using the same seven-point dimensions as Study 1. Figure 5 reports experts average ratings of ideas; its composite is the mean of four dimensions. The arm counts are 58 Scanvas ideas and 53 baseline ideas from the same 12 participants. Keep the idea-level rating analysis separate from the participant-level New Benefits check.",
+   "quote": "We also assessed idea quality through an external panel blind to the conditions and participant information.",
+   "locator": "PDF p. 10, Section 4.1; p. 12, Section 4.2.4; pp. 13-14, Section 5.1.2 and Figure 5."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0] (treatment_arm, control_arm, comparison_type, direction, statistics_available)",
+   "form_value": "All three contrasts leave arm names, comparison type, and direction empty, with statistics_available=[].",
+   "source_says": "For all three recorded contrasts, set treatment_arm=Scanvas, control_arm=Baseline, and comparison_type=ai_design. Set direction=treatment_higher for composite quality and interestingness, and no_clear_difference for semantic spread. Available statistics include arm means/SDs/counts and p-value for the composite, arm means and p-value for interestingness, and confidence intervals for semantic spread; encode the corresponding statistics_available entries instead of an empty list.",
+   "quote": "Both conditions used GPT-5.5 as the underlying language model.",
+   "locator": "PDF p. 11, Section 4.2.3; p. 13, Section 5.1.2; p. 14, Figure 5; p. 16, Table 4."
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing",
+   "form_value": "Both fields are empty strings for all three outcomes.",
+   "source_says": "Set ai_available_when_produced=yes and timing=immediate for all three outcomes. They score ideas made during the two system-assisted tasks in the study session; there is no delayed or AI-removed production task. The existing with_ai and across_people question codes are appropriate.",
+   "quote": "Each participant completed two ideation tasks, using the full Scanvas system for one task and the baseline for the other.",
+   "locator": "PDF pp. 10-11, Sections 4.2-4.2.3; p. 12, Section 4.2.4."
+  },
+  {
+   "field": "studies[0].assignment.preregistered; studies[0].outcomes[*].primary",
+   "form_value": "preregistered and all three primary fields are empty strings.",
+   "source_says": "Use not_stated for preregistration and outcome-primary status. The full source does not report a preregistration or explicitly designate a primary outcome; these unknown statuses should use the form vocabulary rather than empty strings.",
+   "quote": "We evaluated the user study results based on both participants’ user experience and the outcomes they produced.",
+   "locator": "PDF p. 11, Section 4.2.4; pp. 12-16, results; pp. 23-24, Appendix 7; full-document check for preregistration and primary-outcome designation."
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any=true. Toyota Research Institute is an author affiliation, and the first-author footnote states that the work was done during an internship there. Record that involvement without inferring an unreported funding arrangement.",
+   "quote": "The work is done during the internship at Toyota Research Institute.",
+   "locator": "PDF p. 1, author affiliations; p. 2, first-author footnote."
+  }
+ ],
+ "confirmed": [
+  "Source identity and version match: Scanvas: Discovering and Developing Synergistic Opportunities in Generative Design Spaces, arXiv:2609.34062v1 [cs.HC], 28 Sep 2026; 24 PDF pages. All seven listed authors match. The checker read all 599 markdown lines, including references and Appendix 7, and checked relevant numerical passages and figures in the PDF (p. 1; pp. 23-24).",
+  "The same 12 people completed both conditions and appear in both analyzed arms; they are not 24 independent participants. Figure 5 labels 58 Scanvas ideas and 53 baseline ideas, each from 12 participants. No participant exclusions are reported (pp. 10-11, Sections 4.2-4.2.2; p. 14, Figure 5).",
+  "The described sample is seven full-time industry engineers and five engineering PhD students, all with industry experience; mean time in their current roles is 3.3 years (p. 11, Section 4.2.2).",
+  "Each main task lasted 30 minutes; the session lasted approximately 90 minutes. Both conditions used GPT-5.5, and the baseline used zero-shot expansion/combination prompts. Task, condition, and presentation order were counterbalanced (pp. 10-11, Sections 4.2.1-4.2.3).",
+  "The two user tasks and their three seed ideas match the form: cooking support for an older adult with mild cognitive decline and communicating visual artwork styles to visitors with visual impairments (p. 11, Table 2).",
+  "Composite reported statistics are exact: Scanvas M=4.93, SD=0.76; baseline M=3.99, SD=0.66; p<.001. The source specifies two-sided Mann-Whitney U tests with Holm correction. The one-line finding accurately reproduces these means, the participant count, and the idea-level comparison (p. 13, Section 5.1.2; p. 14, Figure 5).",
+  "Interestingness reported means and p-value are exact: Scanvas 5.03 versus baseline 3.89, p<.001, using the stated Holm-corrected two-sided Mann-Whitney comparisons (p. 13, Section 5.1.2).",
+  "Semantic spread numbers are exact: Scanvas, 58 ideas, 0.564, 95% CI [0.513, 0.595]; baseline, 53 ideas, 0.534, 95% CI [0.477, 0.559]. The user-study confidence intervals bootstrap participants (p. 16, Table 4).",
+  "The two blind engineering experts rate output quality, and text-embedding-3-small supplies a computed diversity score across the condition idea pools. Thus criterion_3_outcome_scored_on_output=met is supported; these outcomes go beyond self-reported creativity support (p. 12, Section 4.2.4).",
+  "Core=no and criterion_2_at_least_50_people=not_met are supported by 12 analyzed people. The study compares two AI configurations; it is not AI-only output against unassisted human output. Retain context_class=none for this screening-only small experiment while assignment remains unconfirmed; the source does not establish a randomized design or explicitly document a nonrandom assignment scheme (pp. 10-11, Sections 4.2-4.2.3; p. 14, Figure 5; creativity-codebook.md, Sections 3-4).",
+  "The PDF includes tutorial details, Scanvas-only Creativity Support Index items in Table 5, and baseline AUT-fluency correlations with idea quality and within-person gains in Table 6. These appendix analyses do not add a new randomized study or a delayed unassisted-output comparison (pp. 23-24, Appendix 7; p. 12, Section 4.2.4).",
+  "This is an original system evaluation with two studies, not a synthesis; the empty pooled-estimate list and null synthesis counts are appropriate (p. 9, Section 4; p. 10, Sections 4.1-4.2)."
+ ],
+ "summary": "Random assignment is unconfirmed in the 12-person counterbalanced study, which remains below the 50-person threshold. Corrections address unsupported RCT/count coding, omitted studies and outcomes, diversity-test wording, incomplete metadata, and company involvement; reported means and intervals match the PDF."
+}

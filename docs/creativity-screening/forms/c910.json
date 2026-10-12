@@ -1,0 +1,470 @@
+{
+ "cid": "c910",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Shin et al (2024) - Facilitating Asynchronous Idea Generation and Selection with Chatbots.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Shin et al (2024) - Facilitating Asynchronous Idea Generation and Selection with Chatbots.pdf",
+  "version": "arXiv 2503.03617v1 of 5 Mar 2025 (PDF on file, 29 pages; header 'OzCHI, December 2024, Brisbane, Queensland, Australia'; not the ACM version of record)",
+  "title_on_document": "Facilitating Asynchronous Idea Generation and Selection with Chatbots",
+  "authors_on_document": [
+   "Joongi Shin",
+   "Ankit Khatri",
+   "Michael A. Hedderich",
+   "Andrés Lucero",
+   "Antti Oulasvirta"
+  ],
+  "pages": 29,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A-D, PDF pp. 25-29. Section 5 (p. 9) refers to technical descriptions and evaluations in Appendices A and B. Appendix C (p. 27) also refers to Supplementary.C without a separate usable link.",
+   "holds": "Classifier implementation, prediction and latency benchmarks (Appendix A.1-A.2, p. 25), human calibration of similarity thresholds (A.3, p. 26), bandit algorithm, actions and rewards (B-D, pp. 26-28), and simulated evaluations (D.1, pp. 28-29). These appendices do not report participant-level standard errors for the main experimental contrasts; the standard-error formula in Appendix D defines a bandit reward from idea ratings."
+  }
+ },
+ "paper_design_summary": "Study 1 randomly assigned 48 people, 24 per group, to structured or adaptive Telegram chatbot facilitators for five days of asynchronous pandemic-related ideation, measuring idea counts, similarity to a fixed seed idea, self-ratings and surveys (pp. 11-15, Sections 6-7). Study 2 interviewed an expert after an hour-long human-facilitated workshop, reported as 11 participants despite demographic counts of 8 men and 4 women, and compared its notable-idea proportions and seed similarity with the reused Study 1 groups without reported random assignment to the human baseline (pp. 17-18, Section 8 and Fig. 11). The deployed chatbots retrieved other collaborators' ideas using a fine-tuned DistilBERT classifier and, for adaptive facilitation, a bandit algorithm; GPT-4 was tested only in classifier benchmarks, with separate human threshold calibration and simulated bandit evaluations in the appendices (p. 9, Section 5.1; pp. 25-29, Appendices A-D).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "User study: structured vs adaptive chatbot facilitator (asynchronous ideation)",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Which chatbot facilitator a participant interacted with: structured or adaptive",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "We randomly assigned half of them to interact with either the structured or adaptive facilitator, considering gender balance.",
+    "locator": "pp. 11-12, Section 6.2 Participants; Fig. 6 (p. 11)",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Structured facilitator",
+     "description": "Chatbot gives every user the same process: first shows dissimilar ideas and asks for any new idea, then shows similar ideas and asks to improve one; in selection, presents ideas in descending order of ratings.",
+     "ai": "other_aid",
+     "n_randomized": 24,
+     "n_analyzed": null
+    },
+    {
+     "name": "Adaptive facilitator",
+     "description": "Chatbot uses a multi-armed bandit to choose inspirations and ideation methods based on the user's ideation performance, and to order ideas during selection.",
+     "ai": "other_aid",
+     "n_randomized": 24,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": 48,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "",
+    "population": "general_public",
+    "who": "Adults recruited via social network who had experienced collaborative ideation (mean age 27.21); backgrounds included teachers, software developers, researchers, and nurses. No exclusions are reported; the satisfaction results refer to 'out of 24 participants' per group (p. 15).",
+    "country": "",
+    "quote": "We recruited 48 participants via social network (Mean age = 27.21, SD = 4.95, self-identified as men = 21 and women = 27), who had experienced any type of collaborative ideation",
+    "locator": "p. 11, Section 6.2 Participants; Fig. 6 (Structured facilitator group (N = 24), Adaptive facilitator group (N = 24))"
+   },
+   "ai_tool": {
+    "name_model": "Custom Telegram chatbots written in Python; fine-tuned DistilBERT semantic-similarity classifier (GPT-4 tested but not used); adaptive bot adds a multi-armed bandit",
+    "role": "other",
+    "how_used": ""
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Asynchronous group ideation over five days: two days of idea generation, two days of idea selection, then review of the three top-rated ideas; goal was ideas to improve daily life during a pandemic.",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Semantic similarity of each idea to one seed idea ('A clear mask that allows people to see your expressions'), scored 0-5 by the fine-tuned DistilBERT classifier; higher = more similar",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "A learned semantic-textual-similarity prediction from DistilBERT base-uncased, fine-tuned on the English portion of SemEval2017-STS using mean-squared-error loss (p. 25, Appendix A). Each generated idea is scored against the single seed, A clear mask that allows people to see your expressions (p. 13, Section 7.2.1). Section 5.1 (p. 9) calls this a 5-point scale; Fig. 9 (p. 14) displays similarity scores from 0 to 5. The paper does not specify an embedding-distance or cosine-similarity calculation for this outcome. This is similarity to a fixed seed, not diversity across different participants' outputs.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "no",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Adaptive facilitator",
+       "control_arm": "Structured facilitator",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Mean idea similarity: structured 0.93 (SD = 0.4), adaptive 1.41 (SD = 0.4); mixed ANOVA main effect of chatbot F(1, 358) = 60.93, p < 0.01; day F(1, 358) = 0.26, p = 0.61; chatbot x day F(1, 358) = 6.01, p = 0.02",
+       "locator": "p. 13, Section 7.2.1 Ideas similarity; Fig. 9 left (p. 14)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Number of ideas generated by each group during idea generation",
+     "construct": "fluency",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "no",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Adaptive facilitator",
+       "control_arm": "Structured facilitator",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [],
+       "reported": "Structured group generated 474 ideas, adaptive group 395; after filtering of too-similar ideas, 311 and 200 ideas went to review; no test reported",
+       "locator": "p. 12, Section 7 Results; Fig. 7 (p. 13)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Study 2: expert evaluation and non-randomized human-facilitated workshop baseline",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "A separate in-person workshop led by a human expert was compared with the existing chatbot groups from S1. No random allocation between the human workshop and chatbot conditions is reported; the expert was subsequently interviewed.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "We used them as a baseline to further analyze the chatbot-facilitated ideation.",
+    "locator": "p. 17, Section 8 Expert evaluation; p. 19, Section 9 explicitly identifies Study 2",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Structured facilitator",
+     "description": "The structured chatbot group from S1 is reused for the comparison with the human workshop; this is not a newly randomized group in S2.",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Adaptive facilitator",
+     "description": "The adaptive chatbot group from S1 is reused for the comparison with the human workshop; this is not a newly randomized group in S2.",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Human facilitator (workshop baseline)",
+     "description": "An expert facilitated an hour-long in-person ideation workshop without chatbots, following the same ideation structure and goal. The stated workshop count conflicts with the demographic counts; no analysis-specific count is supplied.",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "No participant exclusions or analysis-specific counts are reported. The stated workshop total is internally inconsistent with its demographic counts, so the analyzed count is left null.",
+    "population": null,
+    "who": "The workshop is reported as having 11 participants (mean age 27.18, SD 7.55), but the same passage reports 8 men and 4 women, inconsistent with that total. Recruitment details and occupations of workshop participants are not stated. Separately, the interviewed facilitator was a woman aged 49 with over 25 years of facilitation experience; she is not counted as an ideating participant. The chatbot comparator samples are reused from S1, not additional participants.",
+    "country": "",
+    "quote": "The workshop was held for an hour with 11 participants (Mean age = 27.18, SD = 7.55, self-identified as men = 8 and women = 4)",
+    "locator": "p. 17, Section 8 Expert evaluation; p. 18, Fig. 11"
+   },
+   "ai_tool": {
+    "name_model": "No chatbot used in the human workshop; comparison groups reused the non-generative DistilBERT-based Telegram facilitators from S1",
+    "role": "other",
+    "how_used": "The expert independently led the workshop, then saw the chatbot demonstration and was interviewed. Neither the human workshop nor the reused chatbot conditions supplied generative-AI assistance (p. 17, Section 8; p. 9, Section 5.1)."
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Human-facilitated in-person idea generation and selection with the same pandemic-related goal and ideation structure as S1, followed by an expert interview; workshop ideas were compared non-randomly with S1 outputs (p. 17, Section 8).",
+    "duration": "One hour for the workshop (p. 17, Section 8); interview duration not stated."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Proportion of notable ideas retained after similarity filtering",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Notable ideas are those not filtered out as too similar or repetitive (p. 13, Fig. 7 caption; p. 26, Appendix A.3, similarity above 3.0 filtered out). Fig. 11 reports the group proportions. Comparisons use a chi-square test of independence with a Bonferroni correction (p. 17, Section 8). This is a retention proportion, not an expert creativity rating; the expert supplied an interview, not ratings of idea creativity.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "no",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Structured facilitator",
+       "control_arm": "Human facilitator (workshop baseline)",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "Proportion of notable ideas: structured 0.66, human 0.64; structured versus human p > 0.1 (chi-square test of independence with Bonferroni correction). No chi-square statistic or confidence interval is printed.",
+       "locator": "p. 17, Section 8, first result bullet; p. 18, Fig. 11, top left"
+      },
+      {
+       "treatment_arm": "Adaptive facilitator",
+       "control_arm": "Human facilitator (workshop baseline)",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "Proportion of notable ideas: adaptive 0.51, human 0.64; adaptive versus human p > 0.1 (chi-square test of independence with Bonferroni correction). No chi-square statistic or confidence interval is printed.",
+       "locator": "p. 17, Section 8, first result bullet; p. 18, Fig. 11, top left"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O2",
+     "name": "Semantic similarity of ideas to the fixed seed used in S1",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "The same fine-tuned DistilBERT seed-similarity measure used in S1 (p. 13, Section 7.2.1), with chatbot and human distributions compared by Kruskal-Walis H test and Dunn's post-hoc test (p. 17, Section 8; p. 18, Fig. 11, top right). Numerical means and standard deviations for the human baseline are not printed. Higher scores mean greater similarity to the seed, not a direct across-participant diversity measure.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "no",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Structured facilitator",
+       "control_arm": "Human facilitator (workshop baseline)",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "Structured versus human idea similarity: p = 0.80 (Kruskal-Walis H test with Dunn's post-hoc test); no test statistic or human-baseline mean/SD is printed.",
+       "locator": "p. 17, Section 8, second result bullet; p. 18, Fig. 11, top right"
+      },
+      {
+       "treatment_arm": "Adaptive facilitator",
+       "control_arm": "Human facilitator (workshop baseline)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "Adaptive group idea similarity was higher than the human baseline: p < 0.01 (Kruskal-Walis H test with Dunn's post-hoc test); no test statistic or human-baseline mean/SD is printed.",
+       "locator": "p. 17, Section 8, second result bullet; p. 18, Fig. 11, top right"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S3",
+   "label": "Auxiliary human threshold calibration (Appendix A.3; not an ideation intervention)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Only the presentation order of prepared idea pairs was randomized for the raters. Pairs were also randomly sampled across classifier-score intervals. People were not assigned to generative-AI-assisted creation.",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "10 participants (Mean age = 24.80, SD = 4.26, 5 males) reviewed the selected pairs in a randomized order",
+    "locator": "p. 26, Appendix A.3, steps 3-4",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Human similarity raters",
+     "description": "Raters judged prepared idea pairs; there were no generative-AI assistance conditions.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "Neutral-labeled pairs were excluded, and similar/very similar and dissimilar/very dissimilar labels were collapsed. The number of retained judgments and any post-exclusion rater count are not stated.",
+    "population": null,
+    "who": "10 raters reviewed prepared pairs (mean age 24.80, SD 4.26, 5 males). Recruitment details are not stated. They supplied calibration judgments, not ideas created under assigned assistance; they are not added to S1.",
+    "country": "",
+    "quote": "10 participants (Mean age = 24.80, SD = 4.26, 5 males) reviewed the selected pairs in a randomized order",
+    "locator": "p. 26, Appendix A.3, steps 3-6"
+   },
+   "ai_tool": {
+    "name_model": "Fine-tuned DistilBERT semantic-similarity classifier",
+    "role": "other",
+    "how_used": "Classifier predictions were calibrated against human labels of prepared pairs. This evaluated a scoring tool, not generative assistance to ideators (p. 26, Appendix A.3)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Rate similarity of 84 pairs sampled from 100 prepared ideas. Raters judged pairs in randomized order using a 5-point Likert scale (1 = very dissimilar; 5 = very similar); they did not generate creative output as an intervention task (p. 26, Appendix A.3, steps 1-4).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Human similarity judgments used to calibrate classifier thresholds",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Neutral judgments were excluded; the retained number of ratings is not reported, so n_units is null. The paper reports classifier-human agreement of 83% at a similarity threshold of 2.0 and 84% at a very-similar threshold of 3.0 (p. 26, Appendix A.3, steps 4-6). These are calibration accuracies, not creativity effects or participant counts.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "no",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "S1 randomized 48 people, 24 per arm, so it cannot have at least 50 people analyzed; its analysis-specific participant count remains unreported (pp. 11-12, Section 6.2 and Fig. 6). Both randomized arms used non-generative facilitation: retrieval of collaborators' ideas, predetermined prompts, fine-tuned DistilBERT similarity predictions and, for the adaptive condition, a bandit. GPT-4 was only benchmarked as a similarity classifier (pp. 7-10, Sections 4-5; p. 25, Appendix A). Criterion 3 is met for the output-level fluency measure: counts of generated ideas, a construct and category-count measure included in the codebook (p. 12, Section 7; p. 13, Fig. 7). Seed similarity is not a direct across-people diversity measure, and self-reported creativity support and satisfaction do not qualify (pp. 13-15, Sections 7.2-7.3). S2 adds a non-randomized human-workshop baseline with an internally inconsistent count, and S3 supplies human calibration judgments with randomized pair order; neither supplies randomized generative-AI assistance or additional S1 ideators (p. 17, Section 8; p. 26, Appendix A.3). Classifier benchmarks and bandit simulations also provide no eligible human creative-assistance study (pp. 25 and 28-29). No study meets all core criteria, and there is no eligible generative-AI context comparison."
+ },
+ "one_line_finding": "With 48 participants (24 per arm), ideas generated with the adaptive chatbot facilitator were more similar to a seed idea than those with the structured facilitator (mean 1.41 vs 0.93, F(1, 358) = 60.93, p < 0.01; p. 13), and the structured group produced more ideas (474 vs 395; p. 12).",
+ "open_questions": [
+  "Section 8 (p. 17) reports an 11-participant workshop but also 8 men and 4 women. The internally inconsistent headcount cannot be resolved from this PDF; no corrected or analysis-specific count is supplied.",
+  "Appendix A.3 (p. 26) excludes neutral-labeled pairs without stating the retained number of ratings or any post-exclusion rater count; these counts remain null.",
+  "Appendix C (p. 27) refers to Supplementary.C but supplies no separate usable link. The local PDF includes Appendices A-D."
+ ],
+ "notes": "Separate technical evaluations: Appendix A.1 (p. 25) compares fine-tuned DistilBERT and prompt-based GPT-4 (gpt-4-0613) predictions with human annotations on the SemEval2017-STS development and test sets. Appendix A.2 (p. 25) benchmarks response latency, testing each classifier 100 times on comparison/retrieval of an input sentence against 100 sentences; these are model runs and sentences, not people. GPT-4 was not deployed as assistance to ideators. The human threshold-calibration dataset is recorded separately as S3: 10 raters, 84 sampled pairs and 100 prepared ideas (p. 26, Appendix A.3). Only pair presentation order, not generative-AI assistance, was randomized for the raters; the retained rating count is unknown. Appendix D.1 (pp. 28-29, Fig. 12) evaluates the bandit in simulated idea-generation and idea-selection environments, including up to 50 trials; these trials do not represent randomized people. S2 reuses S1 chatbot outputs in its non-randomized comparisons; its human workshop and expert interview are separate from S1, and its participants cannot be added to S1 to meet the sample threshold (pp. 17-19, Sections 8-9). Expert interview findings and participant satisfaction, usability, creativity-support and self-rating measures are qualitative or self-reported evidence, not independent creativity ratings (pp. 12-18, Sections 6.4, 7.2.2, 7.3 and 8). S1 idea-similarity ANOVA degrees of freedom do not establish a participant analysis count; no participant-level standard error for this contrast is supplied (p. 13, Section 7.2.1; pp. 25-29, Appendices A-D). The full markdown, including references and Appendices A-D, was read; recorded numerical evidence was checked against the local PDF.",
+ "fix": {
+  "applied": [
+   {
+    "field": "source.supplement",
+    "old": "{\"exists\": \"not_stated\", \"in_this_pdf\": false, \"where\": \"\", \"holds\": \"\"}",
+    "new": "{\"exists\": \"yes\", \"in_this_pdf\": true, \"where\": \"Appendices A-D, PDF pp. 25-29. Section 5 (p. 9) refers to technical descriptions and evaluations in Appendices A and B. Appendix C (p. 27) also refers to Supplementary.C without a separate usable link.\", \"holds\": \"Classifier implementation, prediction and latency benchmarks (Appendix A.1-A.2, p. 25), human calibration of similarity thresholds (A.3, p. 26), bandit algorithm, actions and rewards (B-D, pp. 26-28), and simulated evaluations (D.1, pp. 28-29). These appendices do not report participant-level standard errors for the main experimental contrasts; the standard-error formula in Appendix D defines a bandit reward from idea ratings.\"}",
+    "quote": "We provide detailed technical descriptions of the methods and their evaluations in Appendix A and B.",
+    "locator": "p. 9, Section 5; pp. 25-29, Appendices A-D; p. 27, Appendix C (Supplementary.C reference)"
+   },
+   {
+    "field": "studies[1]; paper_design_summary; open_questions (workshop count)",
+    "old": "{\"studies[1]\": null, \"paper_design_summary\": \"48 people recruited through social networks were randomly assigned, 24 per group, to one of two Telegram chatbot facilitators (structured or adaptive) and generated and selected ideas for daily life during a pandemic over five days online. The chatbots show other members' ideas as inspiration and suggest ideation methods; they use a fine-tuned DistilBERT similarity classifier and, for the adaptive bot, a multi-armed bandit, and they generate no content. The paper reports idea counts, each idea's semantic similarity to one seed idea, self-ratings of ideas, usability and creativity-support surveys, and satisfaction with the selected ideas.\", \"open_questions\": []}",
+    "new": "{\"studies[1]\": {\"study_id\": \"S2\", \"label\": \"Study 2: expert evaluation and non-randomized human-facilitated workshop baseline\", \"design_class\": \"other\", \"assignment\": {\"randomized\": \"not_stated\", \"what_was_assigned\": \"A separate in-person workshop led by a human expert was compared with the existing chatbot groups from S1. No random allocation between the human workshop and chatbot conditions is reported; the expert was subsequently interviewed.\", \"unit\": \"other\", \"structure\": \"between\", \"quote\": \"We used them as a baseline to further analyze the chatbot-facilitated ideation.\", \"locator\": \"p. 17, Section 8 Expert evaluation; p. 19, Section 9 explicitly identifies Study 2\", \"preregistered\": \"not_stated\", \"prereg_locator\": \"\"}, \"arms\": [{\"name\": \"Structured facilitator\", \"description\": \"The structured chatbot group from S1 is reused for the comparison with the human workshop; this is not a newly randomized group in S2.\", \"ai\": \"other_aid\", \"n_randomized\": null, \"n_analyzed\": null}, {\"name\": \"Adaptive facilitator\", \"description\": \"The adaptive chatbot group from S1 is reused for the comparison with the human workshop; this is not a newly randomized group in S2.\", \"ai\": \"other_aid\", \"n_randomized\": null, \"n_analyzed\": null}, {\"name\": \"Human facilitator (workshop baseline)\", \"description\": \"An expert facilitated an hour-long in-person ideation workshop without chatbots, following the same ideation structure and goal. The stated workshop count conflicts with the demographic counts; no analysis-specific count is supplied.\", \"ai\": \"other_aid\", \"n_randomized\": null, \"n_analyzed\": null}], \"participants\": {\"n_randomized\": null, \"n_analyzed\": null, \"counts_are\": \"people\", \"exclusions\": \"No participant exclusions or analysis-specific counts are reported. The stated workshop total is internally inconsistent with its demographic counts, so the analyzed count is left null.\", \"population\": null, \"who\": \"The workshop is reported as having 11 participants (mean age 27.18, SD 7.55), but the same passage reports 8 men and 4 women, inconsistent with that total. Recruitment details and occupations of workshop participants are not stated. Separately, the interviewed facilitator was a woman aged 49 with over 25 years of facilitation experience; she is not counted as an ideating participant. The chatbot comparator samples are reused from S1, not additional participants.\", \"country\": \"\", \"quote\": \"The workshop was held for an hour with 11 participants (Mean age = 27.18, SD = 7.55, self-identified as men = 8 and women = 4)\", \"locator\": \"p. 17, Section 8 Expert evaluation; p. 18, Fig. 11\"}, \"ai_tool\": {\"name_model\": \"No chatbot used in the human workshop; comparison groups reused the non-generative DistilBERT-based Telegram facilitators from S1\", \"role\": \"other\", \"how_used\": \"The expert independently led the workshop, then saw the chatbot demonstration and was interviewed. Neither the human workshop nor the reused chatbot conditions supplied generative-AI assistance (p. 17, Section 8; p. 9, Section 5.1).\"}, \"task\": {\"type\": \"idea_generation\", \"description\": \"Human-facilitated in-person idea generation and selection with the same pandemic-related goal and ideation structure as S1, followed by an expert interview; workshop ideas were compared non-randomly with S1 outputs (p. 17, Section 8).\", \"duration\": \"One hour for the workshop (p. 17, Section 8); interview duration not stated.\"}, \"outcomes\": [{\"outcome_id\": \"S2-O1\", \"name\": \"Proportion of notable ideas retained after similarity filtering\", \"construct\": \"other\", \"question\": \"none\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Notable ideas are those not filtered out as too similar or repetitive (p. 13, Fig. 7 caption; p. 26, Appendix A.3, similarity above 3.0 filtered out). Fig. 11 reports the group proportions. Comparisons use a chi-square test of independence with a Bonferroni correction (p. 17, Section 8). This is a retention proportion, not an expert creativity rating; the expert supplied an interview, not ratings of idea creativity.\", \"unit\": \"output\", \"n_units\": null, \"ai_available_when_produced\": \"no\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Structured facilitator\", \"control_arm\": \"Human facilitator (workshop baseline)\", \"comparison_type\": \"other\", \"direction\": \"no_clear_difference\", \"statistics_available\": [\"p_value_only\"], \"reported\": \"Proportion of notable ideas: structured 0.66, human 0.64; structured versus human p > 0.1 (chi-square test of independence with Bonferroni correction). No chi-square statistic or confidence interval is printed.\", \"locator\": \"p. 17, Section 8, first result bullet; p. 18, Fig. 11, top left\"}, {\"treatment_arm\": \"Adaptive facilitator\", \"control_arm\": \"Human facilitator (workshop baseline)\", \"comparison_type\": \"other\", \"direction\": \"no_clear_difference\", \"statistics_available\": [\"p_value_only\"], \"reported\": \"Proportion of notable ideas: adaptive 0.51, human 0.64; adaptive versus human p > 0.1 (chi-square test of independence with Bonferroni correction). No chi-square statistic or confidence interval is printed.\", \"locator\": \"p. 17, Section 8, first result bullet; p. 18, Fig. 11, top left\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}, {\"outcome_id\": \"S2-O2\", \"name\": \"Semantic similarity of ideas to the fixed seed used in S1\", \"construct\": \"other\", \"question\": \"none\", \"scored_on_output\": true, \"measure\": \"automated_score\", \"measure_detail\": \"The same fine-tuned DistilBERT seed-similarity measure used in S1 (p. 13, Section 7.2.1), with chatbot and human distributions compared by Kruskal-Walis H test and Dunn's post-hoc test (p. 17, Section 8; p. 18, Fig. 11, top right). Numerical means and standard deviations for the human baseline are not printed. Higher scores mean greater similarity to the seed, not a direct across-participant diversity measure.\", \"unit\": \"output\", \"n_units\": null, \"ai_available_when_produced\": \"no\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Structured facilitator\", \"control_arm\": \"Human facilitator (workshop baseline)\", \"comparison_type\": \"other\", \"direction\": \"no_clear_difference\", \"statistics_available\": [\"p_value_only\"], \"reported\": \"Structured versus human idea similarity: p = 0.80 (Kruskal-Walis H test with Dunn's post-hoc test); no test statistic or human-baseline mean/SD is printed.\", \"locator\": \"p. 17, Section 8, second result bullet; p. 18, Fig. 11, top right\"}, {\"treatment_arm\": \"Adaptive facilitator\", \"control_arm\": \"Human facilitator (workshop baseline)\", \"comparison_type\": \"other\", \"direction\": \"treatment_higher\", \"statistics_available\": [\"p_value_only\"], \"reported\": \"Adaptive group idea similarity was higher than the human baseline: p < 0.01 (Kruskal-Walis H test with Dunn's post-hoc test); no test statistic or human-baseline mean/SD is printed.\", \"locator\": \"p. 17, Section 8, second result bullet; p. 18, Fig. 11, top right\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}]}, \"paper_design_summary\": \"Study 1 randomly assigned 48 people, 24 per group, to structured or adaptive Telegram chatbot facilitators for five days of asynchronous pandemic-related ideation, measuring idea counts, similarity to a fixed seed idea, self-ratings and surveys (pp. 11-15, Sections 6-7). Study 2 interviewed an expert after an hour-long human-facilitated workshop, reported as 11 participants despite demographic counts of 8 men and 4 women, and compared its notable-idea proportions and seed similarity with the reused Study 1 groups without reported random assignment to the human baseline (pp. 17-18, Section 8 and Fig. 11). The deployed chatbots retrieved other collaborators' ideas using a fine-tuned DistilBERT classifier and, for adaptive facilitation, a bandit algorithm; GPT-4 was tested only in classifier benchmarks, with separate human threshold calibration and simulated bandit evaluations in the appendices (p. 9, Section 5.1; pp. 25-29, Appendices A-D).\", \"open_questions\": [\"Section 8 (p. 17) reports an 11-participant workshop but also 8 men and 4 women. The internally inconsistent headcount cannot be resolved from this PDF; no corrected or analysis-specific count is supplied.\"]}",
+    "quote": "The workshop was held for an hour with 11 participants (Mean age = 27.18, SD = 7.55, self-identified as men = 8 and women = 4)",
+    "locator": "p. 3, study overview; p. 17, Section 8; p. 18, Fig. 11; p. 19, Section 9"
+   },
+   {
+    "field": "studies[2]; notes; open_questions (calibration and supplement)",
+    "old": "{\"studies[2]\": null, \"notes\": \"\", \"open_questions\": []}",
+    "new": "{\"studies[2]\": {\"study_id\": \"S3\", \"label\": \"Auxiliary human threshold calibration (Appendix A.3; not an ideation intervention)\", \"design_class\": \"other\", \"assignment\": {\"randomized\": \"yes\", \"what_was_assigned\": \"Only the presentation order of prepared idea pairs was randomized for the raters. Pairs were also randomly sampled across classifier-score intervals. People were not assigned to generative-AI-assisted creation.\", \"unit\": \"within_person_order\", \"structure\": \"within\", \"quote\": \"10 participants (Mean age = 24.80, SD = 4.26, 5 males) reviewed the selected pairs in a randomized order\", \"locator\": \"p. 26, Appendix A.3, steps 3-4\", \"preregistered\": \"not_stated\", \"prereg_locator\": \"\"}, \"arms\": [{\"name\": \"Human similarity raters\", \"description\": \"Raters judged prepared idea pairs; there were no generative-AI assistance conditions.\", \"ai\": \"none\", \"n_randomized\": null, \"n_analyzed\": null}], \"participants\": {\"n_randomized\": null, \"n_analyzed\": null, \"counts_are\": \"people\", \"exclusions\": \"Neutral-labeled pairs were excluded, and similar/very similar and dissimilar/very dissimilar labels were collapsed. The number of retained judgments and any post-exclusion rater count are not stated.\", \"population\": null, \"who\": \"10 raters reviewed prepared pairs (mean age 24.80, SD 4.26, 5 males). Recruitment details are not stated. They supplied calibration judgments, not ideas created under assigned assistance; they are not added to S1.\", \"country\": \"\", \"quote\": \"10 participants (Mean age = 24.80, SD = 4.26, 5 males) reviewed the selected pairs in a randomized order\", \"locator\": \"p. 26, Appendix A.3, steps 3-6\"}, \"ai_tool\": {\"name_model\": \"Fine-tuned DistilBERT semantic-similarity classifier\", \"role\": \"other\", \"how_used\": \"Classifier predictions were calibrated against human labels of prepared pairs. This evaluated a scoring tool, not generative assistance to ideators (p. 26, Appendix A.3).\"}, \"task\": {\"type\": \"other\", \"description\": \"Rate similarity of 84 pairs sampled from 100 prepared ideas. Raters judged pairs in randomized order using a 5-point Likert scale (1 = very dissimilar; 5 = very similar); they did not generate creative output as an intervention task (p. 26, Appendix A.3, steps 1-4).\", \"duration\": \"\"}, \"outcomes\": [{\"outcome_id\": \"S3-O1\", \"name\": \"Human similarity judgments used to calibrate classifier thresholds\", \"construct\": \"other\", \"question\": \"none\", \"scored_on_output\": true, \"measure\": \"human_raters\", \"measure_detail\": \"Neutral judgments were excluded; the retained number of ratings is not reported, so n_units is null. The paper reports classifier-human agreement of 83% at a similarity threshold of 2.0 and 84% at a very-similar threshold of 3.0 (p. 26, Appendix A.3, steps 4-6). These are calibration accuracies, not creativity effects or participant counts.\", \"unit\": \"rating\", \"n_units\": null, \"ai_available_when_produced\": \"no\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}]}, \"notes\": \"Separate technical evaluations: Appendix A.1 (p. 25) compares fine-tuned DistilBERT and prompt-based GPT-4 (gpt-4-0613) predictions with human annotations on the SemEval2017-STS development and test sets. Appendix A.2 (p. 25) benchmarks response latency, testing each classifier 100 times on comparison/retrieval of an input sentence against 100 sentences; these are model runs and sentences, not people. GPT-4 was not deployed as assistance to ideators. The human threshold-calibration dataset is recorded separately as S3: 10 raters, 84 sampled pairs and 100 prepared ideas (p. 26, Appendix A.3). Only pair presentation order, not generative-AI assistance, was randomized for the raters; the retained rating count is unknown. Appendix D.1 (pp. 28-29, Fig. 12) evaluates the bandit in simulated idea-generation and idea-selection environments, including up to 50 trials; these trials do not represent randomized people. S2 reuses S1 chatbot outputs in its non-randomized comparisons; its human workshop and expert interview are separate from S1, and its participants cannot be added to S1 to meet the sample threshold (pp. 17-19, Sections 8-9). Expert interview findings and participant satisfaction, usability, creativity-support and self-rating measures are qualitative or self-reported evidence, not independent creativity ratings (pp. 12-18, Sections 6.4, 7.2.2, 7.3 and 8). S1 idea-similarity ANOVA degrees of freedom do not establish a participant analysis count; no participant-level standard error for this contrast is supplied (p. 13, Section 7.2.1; pp. 25-29, Appendices A-D). The full markdown, including references and Appendices A-D, was read; recorded numerical evidence was checked against the local PDF.\", \"open_questions\": [\"Appendix A.3 (p. 26) excludes neutral-labeled pairs without stating the retained number of ratings or any post-exclusion rater count; these counts remain null.\", \"Appendix C (p. 27) refers to Supplementary.C but supplies no separate usable link. The local PDF includes Appendices A-D.\"]}",
+    "quote": "10 participants (Mean age = 24.80, SD = 4.26, 5 males) reviewed the selected pairs in a randomized order",
+    "locator": "p. 25, Appendix A.1-A.2; p. 26, Appendix A.3, steps 1-6; p. 27, Appendix C; pp. 28-29, Appendix D.1"
+   },
+   {
+    "field": "studies[0].outcomes[*].question; studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].contrasts[0].comparison_type",
+    "old": "Both S1 outcomes: question = with_ai; ai_available_when_produced = yes; comparison_type = ai_design.",
+    "new": "Both S1 outcomes: question = none; ai_available_when_produced = no; comparison_type = other.",
+    "quote": "Accordingly, we conclude the fine-tuned classifier is more suited to our interaction scenario and used it for our chatbots.",
+    "locator": "pp. 7-8, Section 4 and Fig. 4; p. 9, Section 5.1; p. 10, Fig. 5; p. 27, Appendix C"
+   },
+   {
+    "field": "studies[0].outcomes[0].measure; studies[0].outcomes[0].measure_detail",
+    "old": "{\"measure\": \"embedding_similarity\", \"measure_detail\": \"\"}",
+    "new": "{\"measure\": \"automated_score\", \"measure_detail\": \"A learned semantic-textual-similarity prediction from DistilBERT base-uncased, fine-tuned on the English portion of SemEval2017-STS using mean-squared-error loss (p. 25, Appendix A). Each generated idea is scored against the single seed, A clear mask that allows people to see your expressions (p. 13, Section 7.2.1). Section 5.1 (p. 9) calls this a 5-point scale; Fig. 9 (p. 14) displays similarity scores from 0 to 5. The paper does not specify an embedding-distance or cosine-similarity calculation for this outcome. This is similarity to a fixed seed, not diversity across different participants' outputs.\"}",
+    "quote": "Internally, the fine-tuned classifier predicts a score on a 5-point scale.",
+    "locator": "p. 9, Section 5.1; p. 13, Section 7.2.1; p. 14, Fig. 9; p. 25, Appendix A"
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0].statistics_available",
+    "old": "[]",
+    "new": "[\"test_statistic\"]",
+    "quote": "The statistical analysis shows that there was a significant main effect of chatbot facilitators on the similarity of ideas",
+    "locator": "p. 13, Section 7.2.1 Ideas similarity; all reported F statistics and p values verified against the PDF"
+   },
+   {
+    "field": "eligibility.criterion_3_outcome_scored_on_output; eligibility.reason",
+    "old": "{\"criterion_3_outcome_scored_on_output\": \"unclear\", \"reason\": \"48 people were randomized (24 per arm, p. 11, Fig. 6), so fewer than 50 people were analyzed across arms whatever the exclusions. Assignment was random (pp. 11-12), but both arms use scripted chatbot facilitators that show other members' ideas and suggest methods; they generate no content (DistilBERT similarity classifier plus a multi-armed bandit), so the contrast is not generative-AI assistance and there is no no-AI arm. The only computed output measure is each idea's similarity to one seed idea, not rated creativity or diversity across people; self-ratings and surveys are self-reports. Listed in the screening report as a small randomized experiment.\"}",
+    "new": "{\"criterion_3_outcome_scored_on_output\": \"met\", \"reason\": \"S1 randomized 48 people, 24 per arm, so it cannot have at least 50 people analyzed; its analysis-specific participant count remains unreported (pp. 11-12, Section 6.2 and Fig. 6). Both randomized arms used non-generative facilitation: retrieval of collaborators' ideas, predetermined prompts, fine-tuned DistilBERT similarity predictions and, for the adaptive condition, a bandit. GPT-4 was only benchmarked as a similarity classifier (pp. 7-10, Sections 4-5; p. 25, Appendix A). Criterion 3 is met for the output-level fluency measure: counts of generated ideas, a construct and category-count measure included in the codebook (p. 12, Section 7; p. 13, Fig. 7). Seed similarity is not a direct across-people diversity measure, and self-reported creativity support and satisfaction do not qualify (pp. 13-15, Sections 7.2-7.3). S2 adds a non-randomized human-workshop baseline with an internally inconsistent count, and S3 supplies human calibration judgments with randomized pair order; neither supplies randomized generative-AI assistance or additional S1 ideators (p. 17, Section 8; p. 26, Appendix A.3). Classifier benchmarks and bandit simulations also provide no eligible human creative-assistance study (pp. 25 and 28-29). No study meets all core criteria, and there is no eligible generative-AI context comparison.\"}",
+    "quote": "Each group of participants generated 474 and 395 ideas by interacting with the structured facilitator (i.e., structured group) and the adaptive facilitator (i.e., adaptive group), respectively",
+    "locator": "p. 12, Section 7; p. 13, Fig. 7; creativity-codebook.md Sections 3 and 6 (fluency/category_count). Eligibility reassessed; core = no and context_class = none remain unchanged."
+   }
+  ],
+  "rejected": []
+ }
+}

@@ -1,0 +1,357 @@
+{
+ "cid": "c020",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Russell et al (2025) - AI Use in American Newspapers.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Russell et al (2025) - AI Use in American Newspapers.pdf",
+  "version": "arXiv:2510.18774v4 [cs.CL], 26 Apr 2026 (stamp in left margin of p. 1)",
+  "title_on_document": "AI use in American newspapers is widespread, uneven, and rarely disclosed",
+  "authors_on_document": [
+   "Jenna Russell",
+   "Marzena Karpinska",
+   "Destiny Akinode",
+   "James Zhou",
+   "Katherine Thai",
+   "Bradley Emi",
+   "Max Spero",
+   "Mohit Iyyer"
+  ],
+  "pages": 27,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A to D are included in this PDF (pp. 13-27). The project data, analysis code, and interactive dashboard are linked at https://ainewsaudit.github.io/ (p. 1 header; p. 2, Contributions and footnotes 3-4). The release contains article links and metadata, not full texts (p. 2, footnote 3; p. 10, Ethical Considerations). No separate supplement or code-repository URL is stated.",
+   "holds": "A: collection details, topic prompt and definitions, circulation and ownership sources (Figures 5-7, Tables 4-5, pp. 13-16). B: how Pangram's fine-grained labels are combined into three, and the GPTZero comparison (p. 16). C and D.3: the ai_reporters dataset (Figure 8, Table 6, Table 13, Figures 20-24, pp. 16-27). D.1: more recent_news results, including the newspaper-level circulation test, hallucination audit, quote-level detection, duplicate clusters, machine-translation test (Table 10), and topic-bias test (pp. 17-22). D.2: opinions label distribution, Table 11, and the op-ed examples in Table 12 (pp. 22-24). No creativity or diversity statistics."
+  }
+ },
+ "paper_design_summary": "The authors analyzed three corpora of published U.S. newspaper articles with the Pangram v2 AI-text detector: 186,507 articles from 1,528 newspapers (June 15 to September 15, 2025), 44,803 opinion pieces from the NYT, WaPo, and WSJ (August 2022 to September 2025), and 20,132 articles by 10 reporters selected for detected AI use (2011 to 2025) (p. 3, Sections 2.1-2.3 and Table 1; p. 16, Appendix C; p. 17, Figure 8). They report the share of articles labeled AI-generated or mixed by circulation, topic, ownership, language, outlet, and year, plus manual audits of disclosure and hallucinations. No person is assigned to AI, and no creativity, novelty, or diversity outcome is scored.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "recent_news audit (186,507 articles from 1,528 newspapers, June 15 to September 15, 2025)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Nothing was assigned. Published articles were collected from RSS feeds (some outlets via ProQuest) and labeled by an AI-text detector.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "we form the recent_news dataset by collecting 186,507 articles published online by 1,528 unique newspapers between June 15th, 2025 and September 15th, 2025, accessed via url RSS feeds.",
+    "locator": "p. 3, Section 2.1; ProQuest for some outlets in p. 13, Appendix A, footnote 31",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No participants. The counts are articles: Table 1 lists 186,507 articles by 34,608 authors from 1,528 newspapers.",
+    "population": "professionals",
+    "who": "Authors of published U.S. newspaper articles (staff reporters, wire services, and other contributors); they are not study participants.",
+    "country": "United States",
+    "quote": "# Articles 186,507 ... # Authors 34,608 ... # Newspapers 1,528",
+    "locator": "p. 3, Table 1"
+   },
+   "ai_tool": {
+    "name_model": "No AI tool is given to writers. The researchers use Pangram v2.0 to label every article and Qwen3-8B to assign topics; GPT-4.1 only translates 300 articles for a robustness test. The writers' own AI tools are unknown.",
+    "role": "other",
+    "how_used": "Pangram labels each article HUMAN-WRITTEN, MIXED, or AI-GENERATED; the paper calls MIXED or AI-GENERATED 'AI use' and cannot say what role AI played in a MIXED article."
+   },
+   "task": {
+    "type": "other",
+    "description": "Published newspaper articles (news reporting) collected after publication; not a creative or ideation task set by the researchers.",
+    "duration": ""
+   },
+   "outcomes": []
+  },
+  {
+   "study_id": "S2",
+   "label": "opinions audit (44,803 opinion articles from NYT, WaPo, WSJ, August 2022 to September 2025)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Nothing was assigned. Opinion articles were collected from ProQuest Recent Newspapers and labeled by the detector; the AI-use share is compared over time and with the same outlets' news articles in recent_news.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "we also collect a dataset of opinions articles published by The New York Times, Wall Street Journal, and Washington Post between August 2022 and September 2025.",
+    "locator": "p. 3, Section 2.2",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No participants. The counts are articles: Table 1 lists 44,803 articles by 9,863 authors from 3 newspapers.",
+    "population": "mixed",
+    "who": "Opinion writers at three national newspapers, including guest contributors and staff columnists; not study participants.",
+    "country": "United States",
+    "quote": "In total, we collected 44,803 articles during this time period: 16,964 from WSJ, 15,977 from WP, and 11,862 from NYT.",
+    "locator": "p. 3, Section 2.2; Table 1"
+   },
+   "ai_tool": {
+    "name_model": "No AI tool is given to writers. The researchers use Pangram v2.0 to label every article and Qwen3-8B to assign topics. The writers' own AI tools are unknown.",
+    "role": "other",
+    "how_used": "Pangram labels each opinion article; AI use = MIXED or AI-GENERATED."
+   },
+   "task": {
+    "type": "other",
+    "description": "Published opinion articles; the paper measures the share with detected AI text, not creativity.",
+    "duration": ""
+   },
+   "outcomes": []
+  },
+  {
+   "study_id": "S3",
+   "label": "ai_reporters longitudinal audit (20,132 articles by 10 reporters in 14 newspapers, 2011 to 2025)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Nothing was assigned. Ten reporters from recent_news were selected because they published before November 2022 and had at least three AI-flagged articles; all their available articles were scraped and labeled by the detector.",
+    "unit": "other",
+    "structure": "within",
+    "quote": "We identify a set of 10 veteran reporters from recent_news who meet two criteria: (1) they have published articles prior to November 2022, and (2) at least three of their articles were identified as MIXED or AI-GENERATED.",
+    "locator": "p. 16, Appendix C",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No participants. The counts are 20,132 articles from 14 newspapers by 10 reporters chosen on detected AI use; the paper says they are not representative of all reporters (p. 16).",
+    "population": "professionals",
+    "who": "Ten newspaper reporters (5 male, 5 female). The paper calls them veteran, but footnote 33 says one began in 2021. They did not take part in a study.",
+    "country": "United States",
+    "quote": "resulting in a final dataset of 20,132 articles from 14 newspapers.",
+    "locator": "p. 16, Appendix C"
+   },
+   "ai_tool": {
+    "name_model": "No AI tool is given to reporters. The researchers use Pangram v2 to label every article and Qwen3-8B to assign topics. The reporters' own AI tools are unknown.",
+    "role": "other",
+    "how_used": "Pangram labels each article; the flagged share is reported by year (Figure 8, p. 17) and by reporter (Table 13, p. 25; Figures 23-24)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Published news articles over time. The paper remarks on qualitative differences (up to 11.53 times more em dashes in AI-assisted articles, p. 17, citing Table 6 on p. 18) but scores no creativity or diversity outcome.",
+    "duration": ""
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Four of the eight authors carry the Pangram Labs affiliation mark: Destiny Akinode, Katherine Thai (also UMass Amherst), Bradley Emi, and Max Spero. Pangram Labs makes the detector that produces every AI-use label, and the paper cites Pangram Labs blog posts for the detector's false-positive rates. The stated funding is NSF awards IIS-2046248 and IIS-2312949 and an Open Philanthropy award.",
+  "locator": "p. 1, author block (affiliation icons); p. 3, Section 2.3; p. 10, Acknowledgments"
+ },
+ "data_and_code": {
+  "data_url": "https://ainewsaudit.github.io/",
+  "code_url": "https://ainewsaudit.github.io/"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "none",
+  "reason": "This is a corpus audit of detected AI text in published U.S. newspaper articles. The corpora were collected after publication and labeled by Pangram; people were not assigned to AI assistance (p. 3, Sections 2.1-2.3; p. 16, Appendix C). There is no participant sample in an AI-assistance study: article and corpus-author counts do not establish an analyzed sample of at least 50 participants (p. 3, Table 1; p. 16, Appendix C). The analyses concern AI-text prevalence, disclosure, factuality, and detector robustness, with no scored creativity or diversity outcome (pp. 3-9, Sections 2-6; pp. 16-27, Appendices B-D). Cosine similarity identifies republished-article clusters whose AI-label rates are counted; it does not measure an AI-related change in diversity across different writers (p. 20, Appendix D.1, Effects of republishing articles). The em-dash and specificity discussion supplies stylistic observations, not a creativity or diversity score (p. 17, Appendix C; p. 18, Table 6). Under the codebook, AI-text prevalence studies without a diversity outcome are excluded from both the core dataset and observational context."
+ },
+ "one_line_finding": "Pangram labels 9.1 percent of 186,507 recent U.S. newspaper articles as AI-generated (5.2 percent) or mixed (3.9 percent) (p. 4, Section 3.1) and flags NYT, WaPo, and WSJ opinion pieces 6.4 times as often as the same outlets' news articles (4.56 vs. 0.71 percent; p. 8 and Table 11, p. 23); a manual audit finds that 96.5 percent of authors of 200 AI-flagged articles did not disclose AI use (p. 6), and the paper scores no creativity or diversity outcome.",
+ "open_questions": [],
+ "notes": "Out of scope for the creativity section: the paper measures how often published journalism contains detected AI text and whether that use is disclosed. No outcome bears on with_ai, across_people, or after_ai, so every outcomes list is empty. Analyses not coded as outcomes: AI-use share by circulation, state, topic, ownership, language, outlet, and year (Figures 1-4, 8-15, 18-24; Tables 1, 11, 13); disclosure audit of 200 AI-flagged articles (96.5 percent of authors and 94.0 percent of publishers did not disclose; p. 6, footnote 23); hallucination audit of 100 AI-GENERATED vs. 100 HUMAN-WRITTEN articles (41 vs. 5 percent; p. 7 and pp. 18-19); quote-level detection (pp. 19-20); AI labels among duplicate clusters formed by cosine similarity of 0.85 or more (6.7 percent of all duplicates, 3.1 percent of exact duplicates, 14.3 percent of semantically similar ones; p. 20); machine-translation test (Table 10, p. 22); topic-bias test (pp. 21-22). Overlap is within the paper only: ai_reporters is drawn from recent_news, and Table 11's news articles come from recent_news (p. 8, footnote 29). The finalizer read the entire markdown conversion, including Appendices A-D through Figure 24, and independently checked the eligibility evidence and recorded numbers against the PDF. The earlier note that the markdown stopped at Appendix B was incorrect. Internal inconsistencies in the paper, none of which affects screening: Table 1 (p. 3) prints MIXED 3.98 percent while Section 3.1 (p. 4) and Appendix D.1 (p. 17) print 3.9 percent; Appendix A (p. 14) counts 1,560 unique newspapers against 1,528 in Table 1 (p. 3); Table 7 (p. 18) totals 186,512 articles against 186,507 in Table 1 (p. 3). The candidate record's library labels ('Corpus', theme 'Academic & scientific writing') do not match the document, which studies newspapers. Screener B's S2 assignment quote dropped a comma; this form uses the verbatim text. No c020 challenge files were present. There were no open questions or unresolved reconciliation differences to carry forward; the final challenge counts are therefore zero. Provenance wording and the eligibility explanation were clarified independently of challenges.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "company_involvement.description",
+    "a": "Two authors (Bradley Emi, Max Spero) are affiliated with Pangram Labs, the maker of the AI detector used to label every article.",
+    "b": "Three authors (Destiny Akinode, Bradley Emi, Max Spero) are affiliated with Pangram Labs, the maker of the AI detector that produces every label in the paper.",
+    "resolved": "Neither form is complete. Four of the eight authors carry the Pangram Labs mark: Destiny Akinode, Katherine Thai (also UMass Amherst), Bradley Emi, and Max Spero. Pangram Labs makes the detector that produces every label. any = true is unchanged.",
+    "quote": "Jenna Russell Marzena Karpinska Destiny Akinode James Zhou Katherine Thai Bradley Emi Max Spero Mohit Iyyer University of Maryland, College Park Simon Fraser University UMass Amherst Pangram Labs",
+    "locator": "p. 1, author block. Affiliations are marked by icons, not superscripts. The icon printed before 'Pangram Labs' (the same embedded image, PDF xref 114) follows the names Akinode, Thai, Emi, and Spero; Thai also carries the UMass Amherst icon (xref 115).",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1-S3].ai_tool.name_model and how_used",
+    "a": "S1: 'Pangram v2.0 AI-text detector (used to label articles); the generative tools used by writers are unknown'; S2: 'Pangram v2.0 AI-text detector (labels only)'; S3: 'Pangram AI-text detector (labels only)'. how_used describes the detector labels.",
+    "b": "S1: 'Not an intervention. Pangram v2.0 detector used to label articles; Qwen3-8B used to assign topics.'; S2: 'Not an intervention. Pangram v2.0 detector.'; S3: 'Not an intervention. Pangram detector.' how_used says the writers' AI use is unknown and inferred from detector labels.",
+    "resolved": "Both are correct and complementary; B's Qwen3-8B addition applies to all three corpora. No AI tool is given to anyone. The researchers use Pangram v2 to label every article and Qwen3-8B to assign topics in all three corpora; GPT-4.1 only machine-translates 300 recent_news articles for a robustness test. The writers' own AI tools are unknown. role = other in both forms and is unchanged.",
+    "quote": "For each of the 251,442 total articles across all datasets, we use Pangram (v2.0) to obtain an AI detection label and score. We also classify each article into one of 19 topics",
+    "locator": "p. 3, Section 2.3 (251,442 = 186,507 + 44,803 + 20,132); Qwen3-8B in 'Topic classification', p. 3; Pangram v2 for all results, p. 16, Appendix B; GPT-4.1 for translation, p. 5, footnote 21",
+    "status": "resolved"
+   },
+   {
+    "field": "one_line_finding",
+    "a": "Pangram labels 9.1 percent of 186,507 recent U.S. newspaper articles as AI-generated or mixed (p. 4, Section 3.1; Table 1, p. 3), and opinion pieces at NYT, WaPo, and WSJ are 6.4 times more likely to be flagged than news articles from the same outlets (4.56 vs. 0.71 percent; p. 8 and Table 11, p. 23); no creativity outcome is measured.",
+    "b": "Pangram labels 9.1 percent of 186K recent U.S. newspaper articles as AI-generated (5.2 percent) or mixed (3.9 percent) (p. 4, Section 3.1; Table 1, p. 3), with higher rates in small local papers and in NYT/WaPo/WSJ opinion pieces (4.56 vs 0.71 percent, Table 11, p. 23), and 96.5 percent of authors in a 200-article audit did not disclose AI use (p. 6).",
+    "resolved": "Every number in both forms matches the PDF; the final sentence merges them. Both forms also cite Table 1, p. 3 for 9.1 percent, but Table 1 prints 5.24 and 3.98 percent (summing to 9.22), so the final form cites Section 3.1, p. 4, which prints 9.1 = 5.2 + 3.9.",
+    "quote": "We find that 9.1% of the 186K articles in recent_news are labeled by Pangram as either AI-GENERATED (5.2%) or MIXED (3.9%), while the remaining 90.9% of articles are classified as HUMAN-WRITTEN.",
+    "locator": "p. 4, Section 3.1; 6.4 times and 4.56 vs. 0.71 percent on p. 8 and Table 11, p. 23; 96.5 percent on p. 6 and footnote 23",
+    "status": "resolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "studies[S1].assignment.randomized",
+    "value": "no; nothing assigned, published articles collected from RSS feeds and labeled by a detector",
+    "quote": "we form the recent_news dataset by collecting 186,507 articles published online by 1,528 unique newspapers between June 15th, 2025 and September 15th, 2025, accessed via url RSS feeds.",
+    "locator": "p. 3, Section 2.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].assignment.randomized",
+    "value": "no; nothing assigned, opinion articles taken from ProQuest and labeled by a detector",
+    "quote": "The full text and metadata of these articles were accessed via ProQuest Recent Newspapers.",
+    "locator": "p. 3, Section 2.2",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S3].assignment.randomized",
+    "value": "no; reporters selected on detected AI use, then their article histories scraped and labeled",
+    "quote": "We note that since the reporters selected for this analysis have multiple articles flagged for AI use in recent_news, they are not representative of all reporters.",
+    "locator": "p. 16, Appendix C",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1-S2].participants.n_analyzed",
+    "value": "null; no participants, the counts are articles (186,507 and 44,803) and their authors (34,608 and 9,863)",
+    "quote": "# Articles 186,507 44,803 # Authors 34,608 9,863 # Newspapers 1,528 3",
+    "locator": "p. 3, Table 1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S3].participants.n_analyzed",
+    "value": "null; the count is 20,132 articles by 10 reporters, who are not participants",
+    "quote": "resulting in a final dataset of 20,132 articles from 14 newspapers.",
+    "locator": "p. 16, Appendix C",
+    "confirmed": true
+   },
+   {
+    "field": "eligibility.criterion_3_outcome_scored_on_output",
+    "value": "not_met; the only score computed on each article is Pangram's AI likelihood and label, not creativity or diversity",
+    "quote": "We feed each article in both datasets through Pangram’s API to obtain both an AI likelihood (from 0-100%) and a categorical label in { HUMAN-WRITTEN , MIXED , AI-GENERATED }.",
+    "locator": "p. 2, Audit design",
+    "confirmed": true
+   },
+   {
+    "field": "AI availability when the output was produced",
+    "value": "not observed; AI use is inferred from detector labels, and the role of AI in a MIXED article is unknown",
+    "quote": "Importantly, for articles labeled MIXED, we cannot infer the role that AI played in the authorship process: we only know that some parts of a MIXED article are classified as human-written while other parts are classified as AI-generated.",
+    "locator": "p. 2, Audit design",
+    "confirmed": true
+   },
+   {
+    "field": "AI availability when the output was produced (authorship attribution)",
+    "value": "the paper makes no authorship claim; labels are detector outputs",
+    "quote": "All findings in this paper rely on the outputs of an automated AI detector and should be interpreted accordingly. We do not assert definitive authorship attributions for any article.",
+    "locator": "p. 1, Disclaimer box",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].outcomes (duplicate clustering is not a diversity outcome)",
+    "value": "[]; cosine similarity only defines duplicate clusters, whose AI-label rates are then counted",
+    "quote": "We examine how AI-generated content propagates via redistribution. Using recent_news, we cluster articles by cosine similarity and define exact duplicates for scores ≥ 0.95 and semantically similar for 0.85 ≤ score < 0.95.",
+    "locator": "p. 20, Appendix D.1, 'Effects of republishing articles'",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S3].outcomes (stylistic remarks are not a scored outcome)",
+    "value": "[]; em-dash and specificity differences are qualitative examples from three reporters",
+    "quote": "Perhaps not surprisingly, we observe qualitative differences between the articles marked for AI use and the human-written ones. For instance, AI-assisted articles in this subset have up to 11.53× more em dashes than those authored entirely by humans",
+    "locator": "p. 17, Appendix C, 'AI traces are visible in the articles'; examples in Table 6, p. 18",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].design_class and eligibility.context_class",
+    "value": "observational; context_class none (prevalence of AI text with no diversity outcome)",
+    "quote": "We find that AI use is both widespread and uneven: roughly 9% of recent articles are flagged as either partially or completely AI-generated",
+    "locator": "p. 9, Section 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].assignment.preregistered",
+    "value": "not_stated",
+    "quote": "",
+    "locator": "whole PDF, pp. 1-27: no preregistration, registry, or OSF mention (keyword search of the text layer)",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement.any",
+    "value": "true; the detector's makers are authors",
+    "quote": "Emi and Spero (2024) introduce Pangram; a robust AI-generated text detection tool.",
+    "locator": "p. 3, Section 2.3, 'Detecting AI use'",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement (funding)",
+    "value": "NSF and Open Philanthropy; no company funding stated",
+    "quote": "This project was partially supported by awards IIS-2046248 and IIS-2312949 from the National Science Foundation (NSF) as well as an award from Open Philanthropy.",
+    "locator": "p. 10, Acknowledgments",
+    "confirmed": true
+   },
+   {
+    "field": "sample_overlap",
+    "value": "empty; overlap is only within the paper (Table 11's news articles and the ai_reporters reporters come from recent_news)",
+    "quote": "These non-opinion articles are extracted from recent_news, which includes WSJ, WaPo, and NYT; see Table 11 for more details.",
+    "locator": "p. 8, footnote 29",
+    "confirmed": true
+   },
+   {
+    "field": "data_and_code",
+    "value": "ainewsaudit.github.io; article links, not full texts; code said to be released",
+    "quote": "We release our datasets, analysis code, and an interactive dashboard to facilitate further exploration of AI use in newspapers. ... We release links to the articles involved in our study (not full texts).",
+    "locator": "p. 2, Contributions and footnote 3; URL in footnote 4",
+    "confirmed": true
+   },
+   {
+    "field": "source.version",
+    "value": "arXiv:2510.18774v4 [cs.CL], 26 Apr 2026",
+    "quote": "arXiv:2510.18774v4 [cs.CL] 26 Apr 2026",
+    "locator": "p. 1, left margin",
+    "confirmed": true
+   },
+   {
+    "field": "source.pages and source.supplement.in_this_pdf",
+    "value": "27 pages; Appendices A to D on pp. 13-27",
+    "quote": "In this section of the appendix we provide more details on our data collection process.",
+    "locator": "p. 13, Appendix A; last page p. 27 (Figure 24)",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].participants.country",
+    "value": "United States",
+    "quote": "We address this gap by auditing a large-scale dataset of 186K articles from online editions of 1.5K American newspapers published in the summer of 2025.",
+    "locator": "p. 1, Abstract",
+    "confirmed": true
+   }
+  ],
+  "n_differences": 3,
+  "n_unresolved": 0
+ },
+ "final": {
+  "core": "no",
+  "criteria": {
+   "random_assignment_of_ai": "not_met",
+   "at_least_50_people": "not_met",
+   "outcome_scored_on_output": "not_met"
+  },
+  "challenge_resolution": [],
+  "open_items": [],
+  "n_corrected": 0,
+  "n_rejected": 0,
+  "n_open": 0
+ }
+}

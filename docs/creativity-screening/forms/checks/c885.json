@@ -1,0 +1,72 @@
+{
+ "cid": "c885",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "eligibility.core",
+   "form_value": "no",
+   "source_says": "Use unclear. Case Study 2 randomly assigns people to no AI, one AI suggestion, or five AI suggestions and scores their stories, but neither its randomized nor analyzed people count is stated. The figure reports an output count only. Thus the 50-person criterion is unresolved for this study, rather than demonstrably failed; retain the paper in the two-screener pipeline. Case Study 1 separately fails the size criterion with 35 analyzed people. The short-screen rule invoked in eligibility.reason is not specified in the supplied form rules.",
+   "quote": "31 stories",
+   "locator": "PDF p. 11, Fig. 3a diagram and caption; p. 12, Case Study 2 results; p. 9, Fig. 2 caption; form-spec.md, eligibility.core field notes; creativity-codebook.md, sections 3 and 7."
+  },
+  {
+   "field": "studies[1].ai_tool.name_model",
+   "form_value": "LLM-based AI advisors configured in Epitome; model not stated",
+   "source_says": "The AI-1 workflow in Fig. 3c explicitly labels the AI-1-JUNGLE, AI-1-OCEAN, and AI-1-PLANETS model nodes gpt-4. Record GPT-4 for this displayed one-idea workflow, with no dated model snapshot stated. The five-idea workflow is a separate tab whose internal model settings are not shown; do not assume its model from this screenshot.",
+   "quote": "gpt-4",
+   "locator": "PDF p. 11, Fig. 3c, AI-1 Workflow screenshot, three model-node labels (visually inspected; absent from the markdown text)."
+  },
+  {
+   "field": "studies[1].outcomes[0].contrasts",
+   "form_value": "[{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": [], \"reported\": \"One AI idea versus human-only: individual creativity increased by 42.1% (T-test result: t = 5.30, p < 0.01, df = 149). Experts assessed writing quality, content quality and originality, but the main text does not define how these scores produce the reported creativity outcome or identify the statistical observation unit.\", \"locator\": \"PDF p. 12, 'Human creativity and generative AI', first paragraph; expert assessment described on p. 11, Fig. 3 caption. Supplementary Figures 21-22 are cited but unavailable.\"}]",
+   "source_says": "Add the omitted Five AI-generated suggestions versus Human-only contrast: individual creativity increased by 16.4% (T-test result: t = 2.52, p < 0.05, df = 149). The one-idea result already recorded is correct: 42.1%, t = 5.30, p < 0.01, df = 149. For both contrasts, populate the named treatment and control arms, comparison_type=ai_vs_bau, direction=treatment_higher, and statistics_available=[test_statistic]. Do not convert the degrees of freedom into people counts or infer a score standardizer.",
+   "quote": "16.4% with 5 AI ideas (T-test result: t = 2.52, p < 0.05, df = 149)",
+   "locator": "PDF p. 12, Human creativity and generative AI, first paragraph; p. 11, Fig. 3a caption for the three arms."
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0]",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "The reported string correctly gives the effect, but its structured contrast fields are empty. Populate treatment_arm=ChatGPT, control_arm=Overleaf, comparison_type=ai_vs_active (consistent with the form's Overleaf other_aid arm), direction=treatment_higher, and statistics_available=[test_statistic]. The printed output-quality improvement is 18% (t = 3.18, p < 0.01, df = 68); its aggregation and analysis unit remain unspecified.",
+   "quote": "improves output quality by 18% (t = 3.18, p < 0.01, df = 68; Supplementary Figure 10).",
+   "locator": "PDF p. 10, Productivity effects of generative AI, second paragraph; p. 9, Fig. 2 caption for ChatGPT and Overleaf."
+  },
+  {
+   "field": "studies[1].outcomes[1].contrasts[0]; studies[1].outcomes[1].diversity_detail",
+   "form_value": "{\"contrast\": {\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}, \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "The decrease and t-tests are correctly transcribed in reported but omitted from the structured fields. Record the combined AI-suggestion conditions versus Human-only, comparison_type=ai_vs_bau, direction=treatment_lower for diversity, and statistics_available=[test_statistic]. In diversity_detail, state that t-tests are reported but the diversity metric, embedding model, computation set, statistical unit, and mapping of each percentage/test to an AI arm or language are not stated. Do not invent separate arm estimates or a standard error.",
+   "quote": "collective diversity decreased by 5.64%-6.47% as outputs converged (T-test result: t = 5.52; T-test result: t = 54.80, p < 0.05, df = 28).",
+   "locator": "PDF p. 12, Human creativity and generative AI, first paragraph; p. 11, Fig. 3a caption for the conditions; form-spec.md, diversity_detail field note."
+  },
+  {
+   "field": "studies[0].outcomes; studies[1].outcomes",
+   "form_value": "S1 lists only Output quality; S2 lists only Individual creativity and Collective diversity of stories. Both expert-rated outcomes have empty measure_detail fields.",
+   "source_says": "Both writing studies explicitly score writing quality, content quality, and originality. Record these stated scoring dimensions in the outcome inventory and measure details, including originality as novelty and the quality dimensions as usefulness, rather than retaining only an undefined aggregate. The source does not provide separate numerical results or explain how the dimensions map to the reported aggregate quality/creativity effects; leave those separate statistics unspecified. This is an omission under form rule 7, not a correction to the printed aggregate percentages.",
+   "quote": "writing quality, content quality, and originality",
+   "locator": "PDF p. 9, Fig. 2a and caption (expert blind review); p. 11, Fig. 3 caption (expert story evaluation); form-spec.md, rule 7."
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "Populate https://github.com/epitome-AISS/epitome, which is explicitly linked by the PDF and contains the platform code. This is a platform-code repository, not confirmation that the story-study analysis code or its supplementary statistics are available.",
+   "quote": "For more and latest information, refer to GitHub - epitome-AISS/epitome.",
+   "locator": "PDF p. 18, Data, Materials, Software Availability, text and hyperlink annotation; linked repository README.md and source tree inspected via the GitHub API."
+  }
+ ],
+ "confirmed": [
+  "Source identity and scope: the local PDF has 25 pages and is byte-for-byte identical to https://arxiv.org/src/2507.01061v3. The arXiv API entry for 2507.01061v3 gives updated=2025-12-24T08:52:29Z. The full markdown, including all references through its end, was read; the PDF ends with references and contains no appended or embedded supplement (PDF pp. 19-25; arXiv API and source download read in memory).",
+  "The document title and all listed authors match the form (PDF p. 1).",
+  "Case Study 1 is a randomized human-AI assistance experiment: conditions were assigned using the Random Design module, and the text explicitly describes tightly controlled randomization; ChatGPT is compared with Overleaf, with expert blind evaluation of writing quality, content quality, and originality (PDF pp. 9-10, Fig. 2 caption and Productivity effects of generative AI).",
+  "Case Study 1 reports 46 management professionals initially and a final analyzed sample of 35 after excluding occupational misreporting or failure to meet time requirements. It is below 50 analyzed people; assignment-stage and per-arm counts are not given, so n_randomized and arm counts should remain null (PDF p. 9, Fig. 2a and caption).",
+  "Case Study 1 reported output quality is 18% higher, with t = 3.18, p < 0.01, df = 68, exactly as recorded. Neither 68 nor the two writing tasks establishes a people count or a defined statistical observation unit (PDF p. 10, Productivity effects of generative AI, second paragraph; p. 9, Fig. 2 caption).",
+  "Case Study 2 explicitly randomly assigns people to Human-only, one AI-generated suggestion, or five AI-generated suggestions for adventure-story writing. Experts evaluate the produced stories, so random assignment and an output-scored creativity outcome are established and has_randomized_people_study is true (PDF p. 11, Fig. 3a caption; between-subjects design on p. 10).",
+  "Figure 3a labels 31 stories, an output count, not an explicit analyzed people count. No total or per-arm randomized/analyzed people count is stated for Case Study 2 in the supplied full text; the form correctly leaves those counts null, and the test degrees of freedom must not be used to infer them (PDF p. 11, Fig. 3a visually inspected; p. 12, results; full document reviewed).",
+  "The one-idea creativity reported string matches the PDF: 42.1%, t = 5.30, p < 0.01, df = 149. The one-line finding also correctly includes the five-idea increase of 16.4% and the collective-diversity decrease of 5.64%-6.47% (PDF p. 12, Human creativity and generative AI, first paragraph).",
+  "The diversity reported string preserves the printed t = 5.52 and t = 54.80, p < 0.05, df = 28. The main text does not unambiguously assign these tests or the two percentage endpoints to particular AI arms or languages, or define the diversity measure; no standardization or confidence interval should be inferred (PDF p. 12, Human creativity and generative AI, first paragraph).",
+  "English and Chinese conditions are explicitly mentioned, but separate language-specific numerical estimates and people counts are not provided in this version (PDF p. 11, Fig. 3 caption; p. 12, first paragraph).",
+  "Case Study 3 combines an AI-only moral-dilemma simulation with a human-AI courtroom phase; the source does not establish random assignment of human AI assistance or a creativity/diversity outcome there. Its other design class and empty relevant outcome list are supported (PDF pp. 12-14, Moral reasoning in human-AI interactions and Fig. 4).",
+  "The paper reports original platform case studies, not a review or meta-analysis; synthesis fields should remain at their defaults. Context_class=none is appropriate for the relevant randomized assistance studies, rather than ai_vs_human, observational, or synthesis (PDF pp. 9-14, Case studies validate platform capabilities).",
+  "Supplementary Information and a Nature Research Reporting Summary are mentioned, but neither is contained in the PDF. The main text cites Supplementary Figure 10 for quality, Figures 21-22 for creativity, and Tables 2-3/Figure 33 for moral reasoning; these cannot supply checked extra statistics without the supplement (PDF pp. 10, 12, 16, 18). The arXiv v3 source download is only the same PDF, and the inspected linked GitHub tree has no supplementary document resolving the story-study count."
+ ],
+ "summary": "The paper contains randomized human-AI writing studies: the managerial study analyzed 35 people, while the story study reports 31 stories without an analyzed people count. The quoted statistics match arXiv v3, but core eligibility remains unclear and the form omits the five-idea contrast, the GPT-4 label in Figure 3c, and other supported extraction details."
+}

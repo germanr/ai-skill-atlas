@@ -1,0 +1,87 @@
+{
+ "cid": "c570",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "eligibility.core",
+   "form_value": "unclear",
+   "source_says": "Under the supplied codebook and form rules, core should be yes for Phase 1: people were randomly assigned to Human-Only, Standard Chatbot or Engage-to-Unlock; the analyzed arm counts are 99, 98 and 107; and semantic diversity was scored on their final essays. Retain referral to the two-screener pipeline. The separate Time-Matched Unlock cohort does not supply randomized contrasts.",
+   "quote": "In Phase 1, participants were randomly assigned to Human-Only, Standard Chatbot, or Engage-to-Unlock.",
+   "locator": "PDF p. 6, sections 3.1-3.2; p. 9, section 3.5.3; p. 13, Table 1; p. 20, section 5.3; creativity-codebook.md section 3 and form-spec.md eligibility.core."
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any to true and describe the documented involvement: author affiliations include Google DeepMind and Google Research, and the work was completed during a student researcher internship at Google DeepMind. The document does not establish a separate funding amount or sponsor role.",
+   "quote": "This work was completed during my student researcher internship at Google DeepMind in London,",
+   "locator": "PDF p. 1, author affiliations and copyright; p. 21, Acknowledgements."
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Populate the exclusion field with the attention-check restriction already described elsewhere in the form: 445 respondents completed the session, and 398 passed both embedded checks and entered the analysis. Pre-exclusion randomized counts and exclusions by arm are not reported, so n_randomized should remain null. Pilot data were excluded; attention-check-passing Time-Matched Unlock sessions affected by the delivery deviation were retained.",
+   "quote": "Of 445 respondents who completed the session, 398 passed two embedded attention checks and were included in the final analysis",
+   "locator": "PDF p. 6, section 3.2; p. 7, section 3.4, Pilot Testing; p. 8, section 3.5.2."
+  },
+  {
+   "field": "studies[0].participants.country",
+   "form_value": "",
+   "source_says": "Populate the country field with Canada, India, South Africa, UK and USA, as already correctly stated in participants.who.",
+   "quote": "across five English-speaking countries (Canada, India, South Africa, UK, USA)",
+   "locator": "PDF p. 6, section 3.2; p. 26, Appendix A, Table 3."
+  },
+  {
+   "field": "studies[0].outcomes[0]",
+   "form_value": "{\"measure_detail\": \"\", \"ai_available_when_produced\": \"\", \"timing\": \"\", \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "Complete the structured outcome fields using the methods already described correctly in reported: whitespace-normalized complete final essays were embedded with Gemini Embedding 2, SEMANTIC_SIMILARITY, in 3,072 dimensions; D_c is mean squared Euclidean distance to the within-condition centroid, and HI_c = 1 - D_c/D_Human-Only. Uncertainty is a 95% percentile bootstrap interval from 5,000 resamples; no formal between-condition difference or equivalence test was performed. AI was available during production in the AI-assisted arms (Human-Only had none), so code the assisted outcome as ai_available_when_produced=yes and timing=immediate. Retain construct=diversity, question=across_people and unit=set.",
+   "quote": "We report 95% percentile bootstrap confidence intervals from 5,000 resamples and a homogenization index relative to Human-Only:",
+   "locator": "PDF p. 6, section 3.1, Condition Definitions; p. 7, sections 3.3-3.4; p. 9, section 3.5.3, Semantic Content and Dispersion; p. 13, Table 1."
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0]",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "The recorded statistics describe Standard Chatbot versus Human-Only: populate treatment_arm=Standard Chatbot, control_arm=Human-Only, comparison_type=ai_vs_bau and statistics_available=[confidence_interval]. The dispersion point estimate is descriptively higher under Standard Chatbot; any treatment_higher direction must be explicitly descriptive, because the paper does not test this difference. The reported intervals are within-condition intervals, not an interval for the treatment-control difference.",
+   "quote": "Standard Chatbot 98 0.188 [0.178, 0.194] -0.050 (-5.0%)",
+   "locator": "PDF p. 13, Table 1; p. 9, section 3.5.3, inferential limitation."
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts",
+   "form_value": "Only Standard Chatbot versus Human-Only is recorded; the Engage-to-Unlock result is omitted.",
+   "source_says": "Include the other randomized AI configuration: Engage-to-Unlock n=107, D_c=0.187, 95% bootstrap CI [0.178, 0.193], HI=-0.045 (-4.5%). Its comparisons with Standard Chatbot and Human-Only are eligible AI-design and AI-versus-no-AI contrasts, respectively, but remain descriptive for dispersion. For complete coverage of Table 1, separately label Time-Matched Unlock n=94, D_c=0.188 [0.177, 0.195], HI=-0.048 (-4.8%) as a non-randomized cohort, and AI-only reference n=100 essays, D_c=0.065 [0.061, 0.068], HI=+0.636 (+63.6%) as an output corpus, not people or a randomized arm. Do not calculate unreported contrast estimates or confidence intervals.",
+   "quote": "Engage-to-Unlock 107 0.187 [0.178, 0.193] -0.045 (-4.5%) Time-Matched Unlock 94 0.188 [0.177, 0.195] -0.048 (-4.8%) Standard Chatbot 98 0.188 [0.178, 0.194] -0.050 (-5.0%) AI-only reference 100 0.065 [0.061, 0.068] +0.636 (+63.6%)",
+   "locator": "PDF p. 13, Table 1; p. 6, sections 3.1-3.2; p. 8, section 3.5.3, AI-Only Reference Corpus; p. 20, section 5.3."
+  },
+  {
+   "field": "studies[0].outcomes (essay length)",
+   "form_value": "Only semantic dispersion is listed; final-essay word count is omitted.",
+   "source_says": "Add final-essay word count as an output-scored elaboration outcome under the supplied codebook. Printed means (SDs) are Human-Only 277.11 (102.70), Standard Chatbot 308.32 (138.92), Engage-to-Unlock 299.21 (101.27), and Time-Matched Unlock 285.60 (96.67). The four-condition omnibus result is F(3, 216.55)=1.43, p=.234, omega-squared=.004, eta-squared=.012; it includes the non-randomized cohort and is not a pairwise randomized effect. Do not infer pairwise effect estimates or tests.",
+   "quote": "An analysis of essay length revealed that participants wrote an average of 277.11 words in the Human-Only",
+   "locator": "PDF p. 8, section 3.5.3; p. 14, section 4.2.3; p. 15, continuation and Table 2. Form-spec.md rule 7; creativity-codebook.md section 6, elaboration."
+  },
+  {
+   "field": "studies[0].outcomes (argumentative structure)",
+   "form_value": "Only semantic dispersion is listed; output-scored discourse measures are omitted.",
+   "source_says": "Add the classifier-based output measures described in the methods: total discourse elements, within-essay category diversity, and element density; also retain the reported counterclaim result. Within-essay category diversity is not across-people diversity. Total-element means are 8.30 for Human-Only, 9.71 for Standard Chatbot, 9.66 for Engage-to-Unlock and 9.16 for Time-Matched Unlock; the four-condition omnibus F(3, 394)=4.66, p=.003 includes the non-randomized cohort. Engage-to-Unlock had fewer counterclaims than Standard Chatbot (p_Holm=.031); its comparison with Time-Matched Unlock was not significant (p_Holm=.532). Remaining planned discourse comparisons are described as not statistically significant. Leave unreported means, standard errors and intervals null.",
+   "quote": "We measured final-essay word count and used the discourse classifier described above to derive the total number of discourse elements, category diversity (distinct categories present, 0–7), and element density per 100 words.",
+   "locator": "PDF p. 8, section 3.5.3, Essay Length and Argumentative Structure; p. 15, section 4.2.4. Form-spec.md rule 7."
+  }
+ ],
+ "confirmed": [
+  "The local markdown was read completely, including Appendices A-E. The PDF has 31 pages and identifies arXiv:2610.01518v1, 1 Oct 2026, with manuscript date 2026-09-11; the form's title and author list match (PDF p. 1; appendices pp. 26-31).",
+  "Phase 1 is an online randomized people study conducted through Prolific: Human-Only, Standard Chatbot and Engage-to-Unlock were randomly assigned, and diversity was scored on participants' final essays (PDF p. 6, sections 3.1-3.2; p. 9, section 3.5.3).",
+  "The analyzed counts are people: Human-Only 99, Standard Chatbot 98, Engage-to-Unlock 107 and Time-Matched Unlock 94; 398 is the analyzed total across both recruitment phases. The randomized phase exceeds the 50-person threshold without the separate cohort (PDF p. 6, section 3.2; p. 26, Table 3).",
+  "The 445 count refers to respondents who completed the session, not the number randomized. The pre-exclusion randomized counts are not reported, so the form's null n_randomized fields are appropriate (PDF p. 6, section 3.2).",
+  "Time-Matched Unlock recruited a separate sample excluding Phase 1 participants; comparisons involving it may reflect cohort differences. The form correctly limits online_rct to Phase 1 comparisons; the qualifying randomized component should not be relegated to observational context (PDF p. 6, section 3.1; p. 20, section 5.3).",
+  "The AI-only reference contains 100 generated essays, not participants, and is explicitly not a randomized condition; the pooled embedding analysis contains 498 essays (PDF p. 8, section 3.5.3; p. 9, Semantic Content and Dispersion).",
+  "Both assistant modes use gemini-3.1-pro-preview. The form correctly distinguishes Teach-me guidance from Tell-me generation and the requirement to select Tell-me after unlocking (PDF pp. 5-6, section 3.1; pp. 26-29, Appendix D).",
+  "Task 1 required at least 200 words about the four-day workweek using four source summaries. Task 2 evaluated eight 150-word AI-generated passages without assistance; both tasks had suggested, unenforced 20-minute durations (PDF p. 7, sections 3.3-3.4).",
+  "All numeric values in the existing reported string match Table 1: Standard Chatbot n=98, D_c=0.188 [0.178, 0.194], HI=-0.050 (-5.0%); Human-Only n=99, D_c=0.179 [0.167, 0.188], HI=0.000 (baseline). The existing one_line_finding also matches (PDF p. 13, Table 1).",
+  "The 95% intervals use 5,000 percentile bootstrap resamples. Negative homogenization indices indicate greater dispersion, and the authors explicitly decline formal tests of between-condition differences or equivalence; the existing reported string and one-line finding preserve this limitation (PDF p. 9, section 3.5.3; p. 13, Table 1 caption).",
+  "The unit=set and question=across_people fit within-condition dispersion around a centroid; PCA is explicitly a semantic-location analysis rather than a diversity measure (PDF p. 9, section 3.5.3).",
+  "Task 2 scores judgments of supplied AI passages, not creativity of participants' newly produced output, so its unassisted timing does not by itself establish an after_ai creative-output outcome (PDF p. 7, section 3.3; p. 10, section 3.5.5).",
+  "The supplement description is accurate: Table 3 demographics, Figure 6 task durations, Figure 7 lexical frequencies, assistant prompts and a sample conversation are included in Appendices A-E; dispersion estimates and bootstrap intervals are in main-text Table 1 (PDF pp. 26-31; p. 13).",
+  "This is an original two-phase experiment with a descriptive AI-only corpus, not a synthesis; no study-count or pooled meta-analytic estimate needs extraction (PDF pp. 5-9, section 3)."
+ ],
+ "summary": "Phase 1 randomly assigned people to writing conditions with scored essay diversity and analyzed arm counts of 99, 98 and 107, so this paper belongs in the two-screener pipeline. The recorded dispersion numbers and source version are correct, but core eligibility, company involvement, incomplete fields and omitted output results need correction."
+}

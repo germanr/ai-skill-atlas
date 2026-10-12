@@ -1,0 +1,703 @@
+{
+ "cid": "c094",
+ "analyst": "B",
+ "script": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/analysis/c094/B.py",
+ "data_files": [
+  "D:/projects/ai-skill-atlas/creativity-data/github-SM2982-replication-creativity-CHI2026/replication-creativity-CHI2026-unpacked/replication-creativity-CHI2026-HEAD/analysis/Study1/data/data_clean.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/github-SM2982-replication-creativity-CHI2026/replication-creativity-CHI2026-unpacked/replication-creativity-CHI2026-HEAD/analysis/Study1/data/data_group_summary.csv",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/extraction/c094.json",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/retrieval.json",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-codebook.md",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/extraction-spec.md",
+  "C:/Dropbox/Research/ai-lab/literature/creativity/Maier Schneider Feuerriegel (2026) - Partnering with Generative AI.md",
+  "C:/Dropbox/Research/ai-lab/literature/creativity/Maier Schneider Feuerriegel (2026) - Partnering with Generative AI.pdf",
+  "D:/projects/ai-skill-atlas/creativity-data/manifest.json",
+  "D:/projects/ai-skill-atlas/creativity-data/github-SM2982-replication-creativity-CHI2026/replication-creativity-CHI2026-unpacked/replication-creativity-CHI2026-HEAD/analysis/Study1/analysisR/Analysis_Study.Rmd",
+  "D:/projects/ai-skill-atlas/creativity-data/github-SM2982-replication-creativity-CHI2026/replication-creativity-CHI2026-unpacked/replication-creativity-CHI2026-HEAD/analysis/Study1/embeddings/refined_idea_similarity_analysis.py",
+  "D:/projects/ai-skill-atlas/creativity-data/github-SM2982-replication-creativity-CHI2026/replication-creativity-CHI2026-unpacked/replication-creativity-CHI2026-HEAD/analysis/Study1/embeddings/improved_embedding_storage.py"
+ ],
+ "results": [
+  {
+   "slug": "s1_quality_question_mode_vs_control",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 96,
+     "computed": 96,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 2.96,
+     "computed": 2.959791666666667,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.78,
+     "computed": 0.7845078633890793,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.t",
+     "printed": 2.49,
+     "computed": 2.4904390784538712,
+     "match": true
+    },
+    {
+     "statistic": "test.df",
+     "printed": 481,
+     "computed": 481,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": 0.02,
+     "computed": 0.01964235336936012,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.d",
+     "printed": 0.36,
+     "computed": 0.35673031249732395,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 96,
+    "n_control": 99,
+    "treatment_mean": 2.959791666666667,
+    "treatment_sd": 0.7845078633890793,
+    "control_mean": 2.6817171717171715,
+    "control_sd": 0.8477437526825705,
+    "difference": 0.2780744949494953,
+    "difference_se": 0.11691985303322812,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 3, PDF p. 12: reproduce the five-arm linear model with df=481, common residual variance and Holm adjustment of the four one-sided quality contrasts. The posted Rmd lines 504-512 confirms that Cohen's d uses the residual SD of that full five-arm model. This original model is used only for reproduction. All checked printed statistics reproduce. The requested new analysis is OLS of the participant quality score on an intercept and the treatment indicator, restricted to these two arms, with HC2 covariance (residual squared divided by 1 minus leverage). difference is treatment mean minus control mean; HC2 difference_se is equivalently sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). Randomization is individual; there are no randomized clusters."
+  },
+  {
+   "slug": "s1_quality_suggestion_mode_vs_control",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 95,
+     "computed": 95,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 2.78,
+     "computed": 2.7830526315789474,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.63,
+     "computed": 0.629542342523706,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.t",
+     "printed": 0.91,
+     "computed": 0.9051464132545579,
+     "match": true
+    },
+    {
+     "statistic": "test.df",
+     "printed": 481,
+     "computed": 481,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": 0.366,
+     "computed": 0.3658409734643668,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.d",
+     "printed": 0.13,
+     "computed": 0.12999908628843118,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 95,
+    "n_control": 99,
+    "treatment_mean": 2.7830526315789474,
+    "treatment_sd": 0.629542342523706,
+    "control_mean": 2.6817171717171715,
+    "control_sd": 0.8477437526825705,
+    "difference": 0.10133545986177595,
+    "difference_se": 0.10691639039976658,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 3, PDF p. 12: reproduce the five-arm linear model with df=481, common residual variance and Holm adjustment of the four one-sided quality contrasts. The posted Rmd lines 504-512 confirms that Cohen's d uses the residual SD of that full five-arm model. This original model is used only for reproduction. All checked printed statistics reproduce. The requested new analysis is OLS of the participant quality score on an intercept and the treatment indicator, restricted to these two arms, with HC2 covariance (residual squared divided by 1 minus leverage). difference is treatment mean minus control mean; HC2 difference_se is equivalently sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). Randomization is individual; there are no randomized clusters."
+  },
+  {
+   "slug": "s1_quality_model_led_vs_control",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 101,
+     "computed": 101,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 3.11,
+     "computed": 3.107227722772277,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.74,
+     "computed": 0.7440539211802881,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.t",
+     "printed": 3.86,
+     "computed": 3.8596904642843928,
+     "match": true
+    },
+    {
+     "statistic": "test.df",
+     "printed": 481,
+     "computed": 481,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": "<.001",
+     "computed": 0.00025805084224022484,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.d",
+     "printed": 0.55,
+     "computed": 0.545869954295396,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 101,
+    "n_control": 99,
+    "treatment_mean": 3.107227722772277,
+    "treatment_sd": 0.7440539211802881,
+    "control_mean": 2.6817171717171715,
+    "control_sd": 0.8477437526825705,
+    "difference": 0.4255105510551056,
+    "difference_se": 0.11287442786240949,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 3, PDF p. 12: reproduce the five-arm linear model with df=481, common residual variance and Holm adjustment of the four one-sided quality contrasts. The posted Rmd lines 504-512 confirms that Cohen's d uses the residual SD of that full five-arm model. This original model is used only for reproduction. All checked printed statistics reproduce. The requested new analysis is OLS of the participant quality score on an intercept and the treatment indicator, restricted to these two arms, with HC2 covariance (residual squared divided by 1 minus leverage). difference is treatment mean minus control mean; HC2 difference_se is equivalently sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). Randomization is individual; there are no randomized clusters."
+  },
+  {
+   "slug": "s1_quality_vanilla_vs_control",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 95,
+     "computed": 95,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 2.7,
+     "computed": 2.696105263157895,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.87,
+     "computed": 0.8676114125977579,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.t",
+     "printed": 0.13,
+     "computed": 0.12851700065222407,
+     "match": true
+    },
+    {
+     "statistic": "test.df",
+     "printed": 481,
+     "computed": 481,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": 0.449,
+     "computed": 0.4488967809391665,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.d",
+     "printed": 0.02,
+     "computed": 0.018457889699022914,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 95,
+    "n_control": 99,
+    "treatment_mean": 2.696105263157895,
+    "treatment_sd": 0.8676114125977579,
+    "control_mean": 2.6817171717171715,
+    "control_sd": 0.8477437526825705,
+    "difference": 0.014388091440723283,
+    "difference_se": 0.12321918353596335,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 3, PDF p. 12: reproduce the five-arm linear model with df=481, common residual variance and Holm adjustment of the four one-sided quality contrasts. The posted Rmd lines 504-512 confirms that Cohen's d uses the residual SD of that full five-arm model. This original model is used only for reproduction. All checked printed statistics reproduce. The requested new analysis is OLS of the participant quality score on an intercept and the treatment indicator, restricted to these two arms, with HC2 covariance (residual squared divided by 1 minus leverage). difference is treatment mean minus control mean; HC2 difference_se is equivalently sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). Randomization is individual; there are no randomized clusters."
+  },
+  {
+   "slug": "s1_quality_question_mode_vs_control_dunn",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 96,
+     "computed": 96,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 2.96,
+     "computed": 2.959791666666667,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.78,
+     "computed": 0.7845078633890793,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.z",
+     "printed": 2.23,
+     "computed": 2.230136176717355,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": 0.09,
+     "computed": 0.09008441320016539,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.r",
+     "printed": 0.16,
+     "computed": 0.15970336872807311,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 96,
+    "n_control": 99,
+    "treatment_mean": 2.959791666666667,
+    "treatment_sd": 0.7845078633890793,
+    "control_mean": 2.6817171717171715,
+    "control_sd": 0.8477437526825705,
+    "difference": 0.2780744949494953,
+    "difference_se": 0.11691985303322812,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 14, PDF p. 25: Dunn z uses all 486 quality scores, pooled midranks and tie correction. The posted Rmd lines 1555-1559 applies Holm to all ten two-sided pairwise p values, then divides the adjusted p by two for the positive treatment-control z. Its r formula is z/sqrt(n_treatment+n_control). This robustness record reuses the same outcome and participants as the matching main record; it is not an independent sample. All checked printed statistics reproduce. The requested new analysis is OLS of the participant quality score on an intercept and the treatment indicator, restricted to these two arms, with HC2 covariance (residual squared divided by 1 minus leverage). difference is treatment mean minus control mean; HC2 difference_se is equivalently sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). Randomization is individual; there are no randomized clusters."
+  },
+  {
+   "slug": "s1_quality_suggestion_mode_vs_control_dunn",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 95,
+     "computed": 95,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 2.78,
+     "computed": 2.7830526315789474,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.63,
+     "computed": 0.629542342523706,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.z",
+     "printed": 1.07,
+     "computed": 1.0664522471898443,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": 0.5,
+     "computed": 0.5,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.r",
+     "printed": 0.08,
+     "computed": 0.07656680916461694,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 95,
+    "n_control": 99,
+    "treatment_mean": 2.7830526315789474,
+    "treatment_sd": 0.629542342523706,
+    "control_mean": 2.6817171717171715,
+    "control_sd": 0.8477437526825705,
+    "difference": 0.10133545986177595,
+    "difference_se": 0.10691639039976658,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 14, PDF p. 25: Dunn z uses all 486 quality scores, pooled midranks and tie correction. The posted Rmd lines 1555-1559 applies Holm to all ten two-sided pairwise p values, then divides the adjusted p by two for the positive treatment-control z. Its r formula is z/sqrt(n_treatment+n_control). This robustness record reuses the same outcome and participants as the matching main record; it is not an independent sample. All checked printed statistics reproduce. The requested new analysis is OLS of the participant quality score on an intercept and the treatment indicator, restricted to these two arms, with HC2 covariance (residual squared divided by 1 minus leverage). difference is treatment mean minus control mean; HC2 difference_se is equivalently sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). Randomization is individual; there are no randomized clusters."
+  },
+  {
+   "slug": "s1_quality_model_led_vs_control_dunn",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 101,
+     "computed": 101,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 3.11,
+     "computed": 3.107227722772277,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.74,
+     "computed": 0.7440539211802881,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.z",
+     "printed": 3.88,
+     "computed": 3.8843515583740076,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": 0.001,
+     "computed": 0.000513016779971884,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.r",
+     "printed": 0.28,
+     "computed": 0.27466513274387944,
+     "match": false
+    }
+   ],
+   "computed": {
+    "n_treatment": null,
+    "n_control": null,
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "control_mean": null,
+    "control_sd": null,
+    "difference": null,
+    "difference_se": null,
+    "se_type": null,
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 14, PDF p. 25: Dunn z uses all 486 quality scores, pooled midranks and tie correction. The posted Rmd lines 1555-1559 applies Holm to all ten two-sided pairwise p values, then divides the adjusted p by two for the positive treatment-control z. Its r formula is z/sqrt(n_treatment+n_control). This robustness record reuses the same outcome and participants as the matching main record; it is not an independent sample. REPRODUCTION FAILED: paper_effect.r: printed 0.28, computed 0.274665132743879. For the model-led Dunn record, z/sqrt(101+99)=0.274665132743879, rounding to 0.27 rather than the printed 0.28. Counts, means, SDs, z and p all match. Nevertheless, no new contrast statistics are computed for this record under rule 3; all computed fields, including se_type, are null. It remains in results to retain the attempted reproduction rather than being silently dropped."
+  },
+  {
+   "slug": "s1_quality_vanilla_vs_control_dunn",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 95,
+     "computed": 95,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 99,
+     "computed": 99,
+     "match": true
+    },
+    {
+     "statistic": "treatment_mean",
+     "printed": 2.7,
+     "computed": 2.696105263157895,
+     "match": true
+    },
+    {
+     "statistic": "treatment_sd",
+     "printed": 0.87,
+     "computed": 0.8676114125977579,
+     "match": true
+    },
+    {
+     "statistic": "control_mean",
+     "printed": 2.68,
+     "computed": 2.6817171717171715,
+     "match": true
+    },
+    {
+     "statistic": "control_sd",
+     "printed": 0.85,
+     "computed": 0.8477437526825705,
+     "match": true
+    },
+    {
+     "statistic": "test.z",
+     "printed": 0.21,
+     "computed": 0.21365992521620644,
+     "match": true
+    },
+    {
+     "statistic": "p_value_Holm_one_sided",
+     "printed": 0.5,
+     "computed": 0.5,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.r",
+     "printed": 0.02,
+     "computed": 0.01533988864786312,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 95,
+    "n_control": 99,
+    "treatment_mean": 2.696105263157895,
+    "treatment_sd": 0.8676114125977579,
+    "control_mean": 2.6817171717171715,
+    "control_sd": 0.8477437526825705,
+    "difference": 0.014388091440723283,
+    "difference_se": 0.12321918353596335,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Study 1, individually randomized between-person design; round=all. Use all 486 unique participants in analysis/Study1/data/data_clean.csv, with no additional exclusions. Section 4.3 (PDF p. 7) reports 502 recruited and 16 excluded: 10 attention-check failures, 2 unauthorized AI use, 2 nonsense answers, 1 duplicate participation, and 1 incomplete questionnaire. The released file is already post-exclusion; excluded records are not available for an independent audit. All retained rows have questionnaire_completed=Yes, ac1=2, ac2=5 and honesty_question_answer=no. Retain the 97 rows labeled page_visit_only: they have complete quality ratings and belong to the published analyzed sample. Mapping from the deposited Rmd lines 38-47: feedback=Question-mode, suggestion=Suggestion-mode, improvement=Model-led, vanilla=Vanilla, control=Control. Each person has one scored final idea and four rater composites. PDF pp. 7 and 22 define the score as average originality/usefulness across raters, judging only the first idea if several were submitted. Average and Idea_quality are identical and equal the four-rater mean rounded half-up to two decimals; 246 values are 0.005 above their unrounded rater mean. This script reconstructs and uses the published rounded participant outcome, because the Rmd analyzes Average (lines 476 and 1555). Using unrounded rater means would fail the printed Vanilla mean (2.693421 -> 2.69 rather than 2.70). Arm means, sample SDs (n-1), and counts are checked against Table 2, PDF p. 12, and also against the deposited data_group_summary.csv. Matching is evaluated at PDF precision: means/SDs/test statistics/effect sizes to two decimals, p values to three decimals, counts/df exactly, and inequality p values against the printed bound. This is not a randomized-order within-person study, so no first_round record is appropriate. Table 14, PDF p. 25: Dunn z uses all 486 quality scores, pooled midranks and tie correction. The posted Rmd lines 1555-1559 applies Holm to all ten two-sided pairwise p values, then divides the adjusted p by two for the positive treatment-control z. Its r formula is z/sqrt(n_treatment+n_control). This robustness record reuses the same outcome and participants as the matching main record; it is not an independent sample. All checked printed statistics reproduce. The requested new analysis is OLS of the participant quality score on an intercept and the treatment indicator, restricted to these two arms, with HC2 covariance (residual squared divided by 1 minus leverage). difference is treatment mean minus control mean; HC2 difference_se is equivalently sqrt(treatment_sd^2/n_treatment + control_sd^2/n_control). Randomization is individual; there are no randomized clusters."
+  }
+ ],
+ "skipped": [
+  {
+   "slug": "s1_diversity_question_mode_vs_model_led",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_question_mode_vs_vanilla",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_suggestion_mode_vs_model_led",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_suggestion_mode_vs_vanilla",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_question_mode_vs_control_descriptive",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_suggestion_mode_vs_control_descriptive",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_model_led_vs_control_descriptive",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_vanilla_vs_control_descriptive",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_question_mode_vs_model_led_logit",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_question_mode_vs_vanilla_logit",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_suggestion_mode_vs_model_led_logit",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_suggestion_mode_vs_vanilla_logit",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_question_mode_vs_model_led_dunn",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_question_mode_vs_vanilla_dunn",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_suggestion_mode_vs_model_led_dunn",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_suggestion_mode_vs_vanilla_dunn",
+   "reason": "The diversity outcome is cosine distance from each final idea to the leave-one-out centroid of the other final ideas in its condition (refined_div_condition; PDF p. 7). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_change_question_mode_vs_model_led",
+   "reason": "The randomized between-arm change outcome requires initial idea_div_condition and refined_div_to_initial_centroid recomputed from initial/refined embedding sets, using each condition's initial centroid (PDF pp. 8-9 and 24). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  },
+  {
+   "slug": "s1_diversity_change_question_mode_vs_suggestion_mode",
+   "reason": "The randomized between-arm change outcome requires initial idea_div_condition and refined_div_to_initial_centroid recomputed from initial/refined embedding sets, using each condition's initial centroid (PDF pp. 8-9 and 24). Exact recomputation requires the original text-embedding-3-large vectors and matching texts. The permitted CSV inputs contain idea texts and supplied distance scores, but no embedding vectors. The deposit lists analysis/Study1/data/ideas_with_diversity_scores_embeddings.npz; NPZ is outside the brief's enumerated readable data formats, so that file was not opened. The matching ideas_with_diversity_scores_data.csv and embeddings_metadata.json named by the storage code are also absent from the deposited file inventory. Exact model/text-based reconstruction was therefore not established. Under rule 5, supplied distances were not substituted for a recomputed set measure, and no participant-level SD or HC2 SE was assigned to this set outcome."
+  }
+ ]
+}

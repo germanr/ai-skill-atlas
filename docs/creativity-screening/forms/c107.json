@@ -1,0 +1,698 @@
+{
+ "cid": "c107",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Radensky et al (2026) - Scideator.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Radensky et al (2026) - Scideator.pdf",
+  "version": "arXiv:2409.14634v7, 16 May 2026 (arXiv stamp, p. 1); camera-ready text for ACM CAIS '26 (San Jose, May 26-29, 2026), with the CAIS '26 copyright block and DOI 10.1145/3786335.3813161 on p. 1",
+  "title_on_document": "Scideator: Human-LLM Compound System for Scientific Ideation through Facet Recombination and Novelty Evaluation",
+  "authors_on_document": [
+   "Marissa Radensky",
+   "Simra Shahid",
+   "Raymond Fok",
+   "Pao Siangliulue",
+   "Tom Hope",
+   "Daniel S. Weld"
+  ],
+  "pages": 27,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A to H inside this PDF, pp. 11-27 (Appendix Overview on p. 11; p. 10 holds references); no separate online supplement is mentioned",
+   "holds": "User-study design, baseline tool, treatment-tool modifications, procedure, and participant demographics (A, pp. 11-12); remaining CSI factor results and participants' own ratings of their favorite ideas' feasibility, specificity, imaginativeness, and impact (B.1, p. 12; Figure 5, p. 13); annotation study (C); retrieval-overlap table (D, Table 3); sample ideas (E, Table 4); implementation details (F); UI and module figures (G); prompt pseudocode (H). No standard errors, standard deviations, or confidence intervals appear anywhere: the CSI is reported as medians with quartiles, and the idea-rating differences as 'M' with quartiles, with M never defined."
+  }
+ },
+ "paper_design_summary": "The user study analyzed 22 computer-science researchers who each completed two 20-minute research-ideation sessions, one with Scideator and one with a paper-selection/free-text baseline using the same LLM (gpt-4o-2024-08-06), in randomized condition order and with randomized topic assignment (p. 6, Section 4.1; p. 11, A.2-A.3). Creativity-related user-study outcomes were participants' self-reports of tool support, favorite-idea qualities, and novelty-assessment confidence; the novelty checker's classifications served as tool feedback and grouping information, with no independent creativity or diversity outcome comparison (pp. 6-7, Sections 4.1.1-4.1.3; p. 12, A.4-A.5). Separate model-only ablations tested novelty-checker retrieval and classification on fixed test sets (pp. 7-8, Section 4.2).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Within-subjects user study: Scideator vs paper-level baseline on the same LLM (research ideation)",
+   "design_class": "lab_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Order of the two tool conditions (Scideator vs baseline) and which ideation topic went with each condition",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "We conducted a within-subjects study, in which each participant completed tasks for the treatment and baseline conditions in randomized order. The ideation topics for the treatment and baseline conditions were also randomized.",
+    "locator": "p. 11, Appendix A.2; also p. 6, Section 4.1",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Scideator (treatment)",
+     "description": "Facet-based human-LLM ideation system: retrieves analogous papers at four conceptual distances, extracts purpose, mechanism, and evaluation facets, and an LLM (gpt-4o-2024-08-06) recombines user- or system-selected facets into ideas. For the study, on-demand novelty evaluation, manual idea addition, and facet generation without a query were disabled; the novelty checker ran only in a separate novelty-evaluation tab (p. 12, A.4).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 22
+    },
+    {
+     "name": "Baseline (paper-level interaction)",
+     "description": "The participant selects any of the three input papers and may add free-text custom instructions; the same LLM (gpt-4o-2024-08-06) generates ideas with a simplified prompt that uses no facets; its novelty-evaluation tab gives no novelty-checker output (pp. 11-12, A.3).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 22
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 22,
+    "counts_are": "people",
+    "exclusions": "The paper reports a user-study sample of 22 people, each completing both conditions (p. 3, contributions; p. 6, Section 4.1); no exclusions are reported for CSI or favorite-idea ratings. The CSI test's exact paired analysis count is not stated in p. 6, footnote 5. RQ3 analyzed 17 participants: one participant did not receive the full allotted time and four experienced a different novelty-checker version because of an API issue (p. 7, Section 4.1.3 and footnote 6). In two instances a participant saved only one idea within the allotted time and was asked to select a next favorite idea (p. 12, A.5). The 22 recruited participants are reported in p. 11, A.1, but no separate assignment-stage count is given; n_randomized is therefore null. The two arms contain the same people.",
+    "population": "mixed",
+    "who": "Computer-science researchers: 16 PhD students, 5 master's students, 1 industry researcher; 12 HCI and 10 NLP (three of the NLP group focused on other ML areas, p. 6, fn. 4); 7 women, 15 men; all had authored at least one paper; recruited through institutional mailing lists and academic social networks; paid a $60 Amazon gift card",
+    "country": "not_stated",
+    "quote": "We recruited 22 computer-science researchers (W: 7, M: 15) through institutional mailing lists and academic social networks. We compensated them with a $60 Amazon gift card.",
+    "locator": "p. 11, Appendix A.1; p. 6, Section 4.1; p. 3, contributions list (N=22)"
+   },
+   "ai_tool": {
+    "name_model": "Scideator (the authors' system) built on gpt-4o-2024-08-06 (temperature 0.75 in the idea generator); its novelty checker uses SPECTER embeddings, gpt-4o re-ranking, and o3-mini classification. The baseline uses gpt-4o-2024-08-06 with a simplified prompt.",
+    "role": "other",
+    "how_used": "In both arms an LLM generates research ideas that the participant selects and saves. Scideator: the participant selects facets (or lets the system select them) from input and retrieved analogous papers, and the LLM recombines them into ideas. Baseline: the participant selects input papers and writes optional custom instructions, and the LLM generates ideas directly. A later novelty-evaluation tab offered a ChatGPT-like chat in both tools and the novelty checker's output only in Scideator. The contrast is facet-level vs paper-level interaction with the same LLM, not AI vs no AI."
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Generate and save as many research ideas as possible on an assigned topic (HCI: human-AI collaboration in art, AI tools for education; NLP: dealing with LLM hallucinations, LLM explainability), starting from three assigned input papers; then pick two favorite ideas and rate them; then a separate 5-minute novelty-evaluation task on the two favorites.",
+    "duration": "20 minutes of idea generation per condition after up to 2 minutes reviewing the input papers, plus 5 minutes of novelty evaluation; each session 105 minutes overall (p. 12, A.5)"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Creativity Support Index (CSI), overall score (0-100)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Participants' questionnaire ratings of the tool's creativity support (Cherry and Latulipe 2014, ref. [12]), completed after each idea-generation session; rates the experience with the tool, not the ideas. Figure 5a plots each participant's difference in unweighted CSI scores (treatment minus baseline).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Scideator (treatment)",
+       "control_arm": "Baseline (paper-level interaction)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "CSI scores: Scideator median=70.50 (Q1=57.50, Q3=79.00), baseline median=61.00 (Q1=42.25, Q3=71.50). Wilcoxon signed-rank test, V=208.50, p<.01.",
+       "locator": "p. 6, Section 4.1.1 and footnote 5; p. 13, Figure 5a"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Self-rated newness of favorite ideas (7-point)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Each participant's own 7-point rating of the newness of their two favorite ideas; no external rater or computed score. The paper does not say which item this is: at saving, participants rated how different the idea was from ideas they had or encountered before the study; after the session they rated each favorite idea's perceived novelty (p. 12, A.5).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Scideator (treatment)",
+       "control_arm": "Baseline (paper-level interaction)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "“participants rated their favorite ideas’ newness on a 7-point scale, showing only a slight advantage for Scideator (median difference: 0.5 points)”; no test statistic or p-value reported",
+       "locator": "p. 6, Section 4.1.1 (Exploration Factor)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Self-rated imaginativeness of favorite ideas (7-point)",
+     "construct": "overall_creativity",
+     "question": "with_ai",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Each participant's own 7-point Likert-type rating of the imaginativeness of their two favorite ideas, averaged; reported as the difference between conditions (Scideator minus baseline) with quartiles.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Scideator (treatment)",
+       "control_arm": "Baseline (paper-level interaction)",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "imaginativeness (M=0.00, Q1=-0.50, Q3=0.38); M is not defined; no test reported",
+       "locator": "p. 12, Appendix B.1 (Results-Worth-Effort)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Self-rated feasibility, specificity, and impact of favorite ideas (7-point)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Three 7-point Likert-type self-ratings of each of the participant's two favorite ideas, averaged; reported as differences between conditions (Scideator minus baseline) with quartiles. Feasibility and impact fit the codebook's usefulness; specificity could also be read as elaboration.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Scideator (treatment)",
+       "control_arm": "Baseline (paper-level interaction)",
+       "comparison_type": "ai_design",
+       "direction": "mixed",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "feasibility (M=0.00, Q1=-0.50, Q3=0.50), specificity (M=0.00, Q1=-0.88, Q3=0.50); “the baseline tool performed slightly better with respect to generating impactful ideas (M=-0.25, Q1=-0.50, Q3=0.00)”; M is not defined; no tests reported",
+       "locator": "p. 12, Appendix B.1 (Results-Worth-Effort)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "CSI factor scores (exploration, expressiveness, enjoyment, immersion, results worth effort)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Per-factor CSI ratings of the tool, shown as within-person differences (treatment minus baseline) in box plots with no numbers printed. Text: exploration and expressiveness benefited most; immersion showed no difference; enjoyment slightly favored Scideator with a small difference; results-worth-effort generally favored Scideator. Figure 5c shows how participants ranked the factors' importance.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Scideator (treatment)",
+       "control_arm": "Baseline (paper-level interaction)",
+       "comparison_type": "ai_design",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "No numbers printed; Figure 5b box plots of factor differences (treatment-baseline). Text: “participants benefited most from Scideator in exploration and expressiveness”; immersion “showed no differences”; enjoyment: “the difference from the baseline was small”.",
+       "locator": "p. 6, Section 4.1.1; p. 12, Appendix B.1; p. 13, Figure 5b"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Perceived novelty of favorite ideas before and after the novelty-evaluation task, and confidence in the novelty assessment (RQ3)",
+     "construct": "novelty",
+     "question": "none",
+     "scored_on_output": false,
+     "measure": "self_report",
+     "measure_detail": "Participants' own 7-point perceived-novelty ratings of their two favorite ideas before and after using the assigned tool's novelty-evaluation tab, grouped by the tool's novelty classification (novel, not novel, none), plus their confidence in their novelty assessment. Tests whether the novelty checker changes participants' assessments, not the creativity of the ideas. The analysis included 17 participants; the paper does not say which paired quantities the sign test compares.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Scideator (treatment)",
+       "control_arm": "Baseline (paper-level interaction)",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Novelty checker “did not significantly improve overall confidence in novelty assessments (sign test, S=5.00, p=n.s.)”; 17 participants analyzed. Figure 4 shows average perceived novelty before and after by the tool's classification, with no numbers printed; participants changed their assessments most when Scideator classified an idea as “not novel”.",
+       "locator": "p. 7, Section 4.1.3, footnote 6, Figure 4"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Novelty-checker ablations (retrieval and classifier) on author-labeled test sets, model only",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Not applicable: system variants run on fixed test sets of ideas",
+    "unit": "other",
+    "structure": "between",
+    "quote": "We run two ablations to isolate the contributions of the novelty checker’s main components",
+    "locator": "p. 7, Section 4.2; pp. 7-8, Tables 1-2",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "mixed",
+    "who": "No human participants. The test sets come from an expert annotation study in which the first two authors labeled 51 ideas (46 generated by Scideator, 5 adapted from OpenReview), yielding 67 consensus-labeled examples (39 novel, 28 not novel) split into an in-context training pool and a held-out test set (p. 5). Retrieval ablation: 58 ideas with known overlapping prior work, 13 held-out 'not novel' ideas plus 45 published NLP papers (p. 7). Classifier ablation: held-out set of 26 novel and 17 not-novel ideas (p. 8).",
+    "country": "",
+    "quote": "Our test set contains 58 ideas with known overlapping prior work: 13 “not novel” instances from the held-out set (Section 2) plus 45 published NLP papers.",
+    "locator": "p. 5, Expert Annotation Study; p. 7, Section 4.2.1; p. 8, Section 4.2.2"
+   },
+   "ai_tool": {
+    "name_model": "SPECTER embeddings (filtering), gpt-4o (re-ranking), o3-mini (novelty classification)",
+    "role": "other",
+    "how_used": "Model-only comparison of retrieval pipelines (Table 1) and classifier prompts (Table 2) for classifying research ideas as novel or not novel"
+   },
+   "task": {
+    "type": "other",
+    "description": "Classify research ideas as novel or not novel against retrieved literature. Complete-system retrieval accuracy 89.66% vs 5.17% to 13.79% for the ablated variants (p. 8, Table 1); best classifier accuracy 0.81 and macro F1 0.79 (p. 8, Table 2).",
+    "duration": ""
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "One co-first author (Simra Shahid) lists Microsoft (Delhi, India) as affiliation; Pao Siangliulue, Tom Hope, and Daniel S. Weld list the Allen Institute for AI. The authors built and evaluate their own system (Scideator). Idea generation in both tools runs on gpt-4o-2024-08-06; the document does not name the model's maker. No funding or acknowledgments statement appears in the PDF.",
+  "locator": "p. 1, author block; p. 11, Appendix A.3"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "none",
+  "reason": "Criterion 1 is met: participants used two generative-AI configurations in randomized within-person order, with topic assignment also randomized (p. 11, A.2-A.3; p. 6, Section 4.1). This is an ai_design comparison. Criterion 2 is not met: the user study analyzed 22 unique people across both conditions (p. 3, contributions; p. 6, Section 4.1), with 17 analyzed for RQ3 after the exclusions in p. 7, footnote 6. Criterion 3 is not met: the CSI measures self-reported tool support, and participants rated their own ideas and their own novelty-assessment confidence (p. 6, Section 4.1; p. 12, A.5). The novelty-checker classifications were tool feedback and grouping information, not an independent creativity/diversity outcome comparison for the randomized study (p. 12, A.4; p. 7, Section 4.1.3). The separately reported retrieval/classifier ablations are model-only (pp. 7-8, Section 4.2). Exclude from core and context evidence; retain in the screening report as a randomized experiment below 50 people with only self-reported creativity-related outcomes."
+ },
+ "one_line_finding": "In a randomized-order within-subjects study analyzing 22 computer-science researchers, Scideator scored higher than a same-LLM baseline on the self-reported Creativity Support Index (median 70.50 vs 61.00; Wilcoxon V=208.50, p<.01; p. 6, footnote 5), while participants' own ratings of their favorite ideas barely differed (newness median difference 0.5, p. 6, Section 4.1.1; feasibility, specificity, and imaginativeness M=0.00 and impact M=-0.25, p. 12, B.1).",
+ "open_questions": [
+  "Appendix B.1 reports M with quartiles for favorite-idea rating differences but does not define M (p. 12); authors would need to identify the summary statistic.",
+  "The reported favorite-idea newness difference (p. 6, Section 4.1.1) is not explicitly linked to either the save-time differentness item or the post-session perceived-novelty item (p. 12, A.5); authors would need to identify the item and aggregation. This is also the unresolved reconciliation difference.",
+  "The exact number of paired observations entering the CSI test is not stated (p. 6, footnote 5), although the paper reports N=22 for the user study (p. 3, contributions; p. 6, Section 4.1). Participant-level CSI data and analysis inclusion information would settle this.",
+  "The RQ3 sign test (S=5.00, p=n.s.; p. 7, Section 4.1.3) does not identify the paired quantities compared; authors would need to specify the contrast and pairing.",
+  "No separate assignment-stage participant count is stated; p. 11, A.1 reports 22 recruited and A.2 describes randomized order. n_randomized remains null pending author confirmation."
+ ],
+ "notes": "No arm works without AI; every contrast is ai_design (two generative-AI configurations on the same LLM). Process measures (facet selection, facet distances, custom-instruction use), interviews, and the authors' annotation study are not outcomes scored on participants' output and are not listed. The number of ideas saved per participant is not reported. Code release is promised “upon acceptance of the paper” (p. 18, Appendix H); no data or code URL is given. The markdown conversion drops minus signs in Appendix A.2 (familiarity Q1=-1.00, p. 11) and B.1 (specificity Q1=-0.88, p. 12); the numbers here follow the PDF. The Appendix Overview (p. 11) labels the prompt section 'G' instead of 'H'. retrieval.json records that earlier arXiv versions of this paper (v1, September 2024) carried a different title. Finalization: the entire markdown, including Appendices A-H, was read; retained screening statistics were checked against PDF text. No c107 challenge files were present, so challenge_resolution and its three counters are empty/zero. Current-spec normalization leaves assignment-stage counts null because the reported 22 is the recruited/user-study count, not a separately reported randomization count. The original claim of 22 plotted markers is not used to establish the CSI test's paired analysis count. The remote supervised sessions remain lab_rct under the codebook's supervised-session definition (p. 12, A.5); this design-label question needs no further source. The reconciliation object is preserved unchanged, including its historical count decisions and unresolved newness-item entry.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "source.supplement.where",
+    "a": "Appendices A to H inside this PDF (pp. 10-27); no separate online supplement is referenced",
+    "b": "Appendices A-H at the end of this PDF (Appendix Overview, p. 11). No external supplement is mentioned.",
+    "resolved": "Appendices A to H inside this PDF, pp. 11-27; p. 10 holds references [1]-[44], and the Appendix Overview starts on p. 11 (B is right)",
+    "quote": "This appendix provides supplementary material organized into the following sections",
+    "locator": "p. 11, Appendix Overview; p. 10, References",
+    "status": "resolved"
+   },
+   {
+    "field": "source.supplement.holds",
+    "a": "Lists appendix contents A-H; says nothing about missing statistics",
+    "b": "Lists appendix contents; calls the B.1 values medians and says 'No participant-level standard errors or means anywhere.'",
+    "resolved": "Appendix contents as both list. No standard errors, standard deviations, or confidence intervals appear anywhere. B's 'medians' and 'no means' are not established: B.1 prints 'M' values that the paper never defines as mean or median.",
+    "quote": "there was little difference in participants’ average ratings of their favorite ideas in terms of perceived feasibility (M=0.00, Q1=-0.50, Q3=0.50), specificity (M=0.00, Q1=-0.88, Q3=0.50), and imaginativeness (M=0.00, Q1=-0.50, Q3=0.38)",
+    "locator": "p. 12, Appendix B.1",
+    "status": "resolved"
+   },
+   {
+    "field": "studies.S1.outcomes[CSI overall].contrasts[0].statistics_available",
+    "a": [
+     "test_statistic"
+    ],
+    "b": [
+     "test_statistic",
+     "p_value_only"
+    ],
+    "resolved": [
+     "test_statistic"
+    ],
+    "quote": "CSI scores: Scideator median=70.50 (Q1=57.50, Q3=79.00), baseline median=61.00 (Q1=42.25, Q3=71.50). Wilcoxon signed-rank test, V=208.50, p<.01.",
+    "locator": "p. 6, footnote 5",
+    "status": "resolved"
+   },
+   {
+    "field": "studies.S1.outcomes: CSI factor scores",
+    "a": "Not listed; factor differences mentioned only in the CSI outcome's measure_detail",
+    "b": "Listed (S1-O2): construct other, question none, self_report, figure_only, direction mixed",
+    "resolved": "Kept as S1-O5 with B's coding: the source reports factor-level differences in Figure 5b and in the text",
+    "quote": "Of the CSI factors, participants benefited most from Scideator in exploration and expressiveness — the factors participants ranked as first- and third-most important for this ideation task (Figure 5).",
+    "locator": "p. 6, Section 4.1.1; p. 12, Appendix B.1; p. 13, Figure 5b",
+    "status": "resolved"
+   },
+   {
+    "field": "studies.S1.outcomes[self-rated newness].measure_detail (which item)",
+    "a": "Participants rated their own two favorite ideas on a 7-point scale for how different/new the idea was (A's design summary places newness among the post-session ratings)",
+    "b": "The idea's author rated how different it was from ideas they had or encountered before the study (the save-time item), for their two favorite ideas",
+    "resolved": "Final measure_detail names both candidate items and says the paper does not identify which one the reported newness difference uses",
+    "quote": "While participants rated their favorite ideas’ newness on a 7-point scale, showing only a slight advantage for Scideator (median difference: 0.5 points)",
+    "locator": "p. 6, Section 4.1.1; p. 12, Appendix A.5 (save-time 'how different' item and post-session 'perceived novelty' item)",
+    "status": "unresolved"
+   },
+   {
+    "field": "studies.S1.outcomes[self-rated newness].primary",
+    "a": "not_stated",
+    "b": "secondary",
+    "resolved": "secondary: RQ1 is measured by the CSI, which both forms code paper_primary; newness appears as a side result in the Exploration Factor paragraph",
+    "quote": "RQ1 tests whether faceted interaction leads to more creativity support.",
+    "locator": "p. 6, Section 4.1",
+    "status": "resolved"
+   },
+   {
+    "field": "studies.S1.outcomes: self-rated feasibility, specificity, imaginativeness, impact (split and construct)",
+    "a": "Two outcomes: imaginativeness (construct overall_creativity); feasibility, specificity, and impact (construct usefulness)",
+    "b": "One outcome covering all four ratings, construct other",
+    "resolved": "A's split: imaginativeness as overall_creativity (S1-O3); feasibility, specificity, and impact as usefulness (S1-O4). The four are separate ratings, not robustness variants, and the codebook's usefulness covers feasibility and quality.",
+    "quote": "answer additional 7-point Likert-type questions about their perceived novelty, feasibility, specificity, impact, and imaginativeness of each idea",
+    "locator": "p. 12, Appendix A.5",
+    "status": "resolved"
+   },
+   {
+    "field": "studies.S1.outcomes[feasibility, specificity, impact].contrasts[0].direction",
+    "a": "mixed",
+    "b": "no_clear_difference (for all four ratings together)",
+    "resolved": "mixed: feasibility and specificity M=0.00, while impact favored the baseline (M=-0.25)",
+    "quote": "Meanwhile, the baseline tool performed slightly better with respect to generating impactful ideas (M=-0.25, Q1=-0.50, Q3=0.00).",
+    "locator": "p. 12, Appendix B.1",
+    "status": "resolved"
+   },
+   {
+    "field": "studies.S1.outcomes: RQ3 perceived novelty and confidence",
+    "a": "Not listed (notes call it a self-assessment of novelty, not a creativity outcome)",
+    "b": "Listed (S1-O5): construct novelty, question none, self_report, n = 17, sign test S=5.00, p=n.s.",
+    "resolved": "Kept as S1-O6 with question none: the source reports this analysis, which is self-reported and answers none of the three questions",
+    "quote": "Among the 17 participants who completed the novelty evaluation task with the intended setup, Scideator’s novelty checker did not significantly improve overall confidence in novelty assessments (sign test, S=5.00, p=n.s.).",
+    "locator": "p. 7, Section 4.1.3, footnote 6, Figure 4",
+    "status": "resolved"
+   },
+   {
+    "field": "studies.S2.label and participants.who (test sets)",
+    "a": "Label covers the ablations only; 'test sets of 58 ideas (retrieval) and 43 held-out ideas (classifier) labeled by the first two authors'",
+    "b": "Label adds the expert annotation study; retrieval set is 13 held-out not-novel ideas plus 45 published NLP papers; classifier set is 26 novel and 17 not-novel ideas",
+    "resolved": "B's description of the test sets: only 13 of the 58 retrieval ideas come from the authors' labeled set. S2 stays the two ablations; the annotation study is described in S2 participants.who as the source of the test sets and in-context examples.",
+    "quote": "Our test set contains 58 ideas with known overlapping prior work: 13 “not novel” instances from the held-out set (Section 2) plus 45 published NLP papers.",
+    "locator": "p. 7, Section 4.2.1; p. 5, Expert Annotation Study",
+    "status": "resolved"
+   },
+   {
+    "field": "company_involvement.description",
+    "a": "Microsoft and Allen Institute for AI affiliations; 'Both conditions use OpenAI's gpt-4o; no funding statement found.'",
+    "b": "Authors built and test their own system; Microsoft and Allen Institute for AI affiliations; no funding statement",
+    "resolved": "Affiliations and own-system note kept; vendor attribution dropped, because the document names the model (gpt-4o-2024-08-06) but never its maker",
+    "quote": "participants could select any combination of the three input papers as input to the LLM gpt-4o-2024-08-06, the same LLM used for most of Scideator’s functionality",
+    "locator": "p. 1, author block; p. 11, Appendix A.3",
+    "status": "resolved"
+   },
+   {
+    "field": "one_line_finding",
+    "a": "CSI result plus newness median difference 0.5; no B.1 values",
+    "b": "CSI result, newness 0.5, and 'self-rated feasibility, specificity, and imaginativeness by a median 0.00'",
+    "resolved": "Final sentence keeps both forms' content but reports the B.1 values as M=0.00 (and impact M=-0.25), since the paper never says M is a median",
+    "quote": "However, there was little difference in participants’ average ratings of their favorite ideas in terms of perceived feasibility (M=0.00, Q1=-0.50, Q3=0.50)",
+    "locator": "p. 12, Appendix B.1",
+    "status": "resolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "studies.S1.assignment (randomized, unit, structure)",
+    "value": "randomized yes; within_person_order; within (order of conditions and topic pairing randomized)",
+    "quote": "We conducted a within-subjects study, in which each participant completed tasks for the treatment and baseline conditions in randomized order. The ideation topics for the treatment and baseline conditions were also randomized.",
+    "locator": "p. 11, Appendix A.2",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.participants.n_analyzed and arms[].n_analyzed",
+    "value": "22 people, each in both arms; 17 in the RQ3 analysis",
+    "quote": "A within-subjects user study (N=22) showing that Scideator provides significantly more creativity support than a baseline using the same LLM without faceted interaction",
+    "locator": "p. 3, contributions list; p. 6, Section 4.1; p. 13, Figure 5a (22 participant markers, counted from the figure image); p. 7, footnote 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.participants.n_randomized and arms[].n_randomized",
+    "value": "22 (all recruited participants did both conditions in randomized order; no separate count at assignment)",
+    "quote": "We recruited 22 computer-science researchers (W: 7, M: 15) through institutional mailing lists and academic social networks.",
+    "locator": "p. 11, Appendix A.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.outcomes[CSI].scored_on_output and measure",
+    "value": "false; self_report (rates the tool experience, not the ideas)",
+    "quote": "After each session, participants rated their experience using the Creativity Support Index (CSI) [12], a validated instrument that measures factors of creative support such as exploration, expressiveness, enjoyment.",
+    "locator": "p. 6, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.outcomes[idea ratings].scored_on_output and measure",
+    "value": "false; self_report (the idea's author rates it; no external raters or computed measure anywhere in the user study)",
+    "quote": "the participant opened a “Saved Ideas” tab to select their two favorite ideas and answer additional 7-point Likert-type questions about their perceived novelty, feasibility, specificity, impact, and imaginativeness of each idea.",
+    "locator": "p. 12, Appendix A.5",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.outcomes[].ai_available_when_produced",
+    "value": "yes: the same LLM generated ideas in both arms",
+    "quote": "Both tools use the same LLM, so the comparison isolates the effect of organizing interaction around a structured faceted representation versus free-text prompting.",
+    "locator": "p. 6, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.design_class",
+    "value": "lab_rct (coordinator-supervised sessions held over Google Meet)",
+    "quote": "Each within-subjects study session was 105 minutes. The sessions were recorded and transcribed using Google Meet. In each condition, the session coordinator provided the participant with the assigned tool",
+    "locator": "p. 12, Appendix A.5",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1 contrasts[].comparison_type",
+    "value": "ai_design: both arms use generative AI; no arm works without AI",
+    "quote": "The baseline represents paper-level interaction: participants select which of the starting papers the LLM should utilize and provide any free-text instructions, and the model generates ideas directly.",
+    "locator": "p. 6, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "eligibility.criterion_2_at_least_50_people",
+    "value": "not_met: 22 people analyzed",
+    "quote": "22 computer-science researchers participated (16 PhD students, 5 master’s students, 1 industry), each completing two 20-minute ideation sessions",
+    "locator": "p. 6, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.participants.population",
+    "value": "mixed (21 students, 1 industry researcher)",
+    "quote": "Most were PhD students (PhD student: 16, master’s student: 5, industry researcher: 1).",
+    "locator": "p. 11, Appendix A.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.outcomes[CSI].contrasts[0].reported",
+    "value": "Scideator median 70.50 (Q1 57.50, Q3 79.00) vs baseline 61.00 (Q1 42.25, Q3 71.50); Wilcoxon V=208.50, p<.01",
+    "quote": "CSI scores: Scideator median=70.50 (Q1=57.50, Q3=79.00), baseline median=61.00 (Q1=42.25, Q3=71.50). Wilcoxon signed-rank test, V=208.50, p<.01.",
+    "locator": "p. 6, footnote 5 (checked against the PDF page)",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.outcomes[CSI].primary",
+    "value": "paper_primary (the paper names the user study as its primary evaluation and headlines the CSI result for RQ1)",
+    "quote": "Our primary evaluation of system utility is a within-subjects study with 22 computer-science researchers (Section 4.1)",
+    "locator": "pp. 5-6, Section 4",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.outcomes[newness].contrasts[0].reported",
+    "value": "median difference 0.5 points; no test",
+    "quote": "While participants rated their favorite ideas’ newness on a 7-point scale, showing only a slight advantage for Scideator (median difference: 0.5 points)",
+    "locator": "p. 6, Section 4.1.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.outcomes[idea ratings].contrasts[0].reported",
+    "value": "feasibility M=0.00 (Q1=-0.50, Q3=0.50); specificity M=0.00 (Q1=-0.88, Q3=0.50); imaginativeness M=0.00 (Q1=-0.50, Q3=0.38); impact M=-0.25 (Q1=-0.50, Q3=0.00)",
+    "quote": "specificity (M=0.00, Q1=-0.88, Q3=0.50), and imaginativeness (M=0.00, Q1=-0.50, Q3=0.38). Meanwhile, the baseline tool performed slightly better with respect to generating impactful ideas (M=-0.25, Q1=-0.50, Q3=0.00).",
+    "locator": "p. 12, Appendix B.1 (PDF shows the minus sign on specificity Q1 that the markdown drops)",
+    "confirmed": true
+   },
+   {
+    "field": "open_questions: definition of M in Appendix B.1",
+    "value": "M is not defined anywhere in the paper",
+    "quote": "feasibility (M=0.00, Q1=-0.50, Q3=0.50)",
+    "locator": "p. 12, Appendix B.1; full document read",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S1.assignment.preregistered",
+    "value": "not_stated (no preregistration, ethics, funding, or acknowledgments text in the document)",
+    "quote": "",
+    "locator": "Whole document read; keyword search of the markdown for preregistration, IRB, funding, grant, and acknowledgment terms found none",
+    "confirmed": true
+   },
+   {
+    "field": "studies.S2.design_class",
+    "value": "model_only",
+    "quote": "We run two ablations to isolate the contributions of the novelty checker’s main components",
+    "locator": "p. 7, Section 4.2",
+    "confirmed": true
+   },
+   {
+    "field": "data_and_code",
+    "value": "No data or code URL; code promised on acceptance",
+    "quote": "We will release our code upon acceptance of the paper for reproducibility.",
+    "locator": "p. 18, Appendix H",
+    "confirmed": true
+   },
+   {
+    "field": "source.version",
+    "value": "arXiv:2409.14634v7 of 16 May 2026, CAIS '26 camera-ready text",
+    "quote": "arXiv:2409.14634v7 [cs.HC] 16 May 2026",
+    "locator": "p. 1, left margin stamp; p. 1 copyright block with DOI 10.1145/3786335.3813161",
+    "confirmed": true
+   },
+   {
+    "field": "eligibility.context_class",
+    "value": "none: a randomized experiment, not AI-vs-human, observational, or synthesis evidence",
+    "quote": "We conducted a within-subjects study, in which each participant completed tasks for the treatment and baseline conditions in randomized order.",
+    "locator": "p. 11, Appendix A.2",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement.description: 'Allen Institute for AI (a non-profit)'",
+    "value": "Both forms call the Allen Institute for AI a non-profit; the document never says so, so the final form drops the label",
+    "quote": "Pao Siangliulue paos@allenai.org Allen Institute for AI Seattle, Washington, USA",
+    "locator": "p. 1, author block",
+    "confirmed": false
+   },
+   {
+    "field": "studies.S1.participants.exclusions / notes: 'two participants saved only one idea'",
+    "value": "Both forms say two participants; the paper reports two instances, which need not be two different participants, and the final form says two instances",
+    "quote": "There were two instances in which a participant had only saved one idea in the 20 minutes allotted.",
+    "locator": "p. 12, Appendix A.5",
+    "confirmed": false
+   }
+  ],
+  "n_differences": 12,
+  "n_unresolved": 1
+ },
+ "final": {
+  "core": "no",
+  "criteria": {
+   "random_assignment_of_ai": "met",
+   "at_least_50_people": "not_met",
+   "outcome_scored_on_output": "not_met"
+  },
+  "challenge_resolution": [],
+  "open_items": [
+   {
+    "item": "Undefined M in Appendix B.1 (p. 12): authors must identify whether it denotes a mean, median, or another summary. This affects extraction of self-reported ratings, not any eligibility criterion.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Which item underlies favorite-idea newness (p. 6, Section 4.1.1; p. 12, A.5), also the unresolved reconciliation difference: authors must identify the questionnaire item and aggregation. Both candidate items are self-reports, so neither changes criterion 3; criteria 1 and 2 are unaffected.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Exact CSI paired analysis count (p. 6, footnote 5): participant-level CSI scores and analysis inclusion information would settle it. The reported study sample is only 22 (p. 3, contributions; p. 6, Section 4.1), so this cannot change the failure of criterion 2 or the other criteria.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   },
+   {
+    "item": "Remote supervised-session design label is settled: the session coordinator supervised Google Meet sessions (p. 12, A.5), matching lab_rct in codebook Section 4. Randomized within-person condition order is explicit (p. 11, A.2); no eligibility criterion is in doubt.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "RQ3 sign-test contrast and pairing (p. 7, Section 4.1.3): authors must identify the paired quantities used for S=5.00. The outcome remains self-reported confidence and the analysis includes 17 participants, so no eligibility criterion changes.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Assignment-stage count is not separately reported (p. 11, A.1-A.2); authors would need to supply participant-flow counts. This does not change explicit randomization of order or the analyzed study sample below 50, so no eligibility criterion is unresolved.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   }
+  ],
+  "n_corrected": 0,
+  "n_rejected": 0,
+  "n_open": 0
+ }
+}

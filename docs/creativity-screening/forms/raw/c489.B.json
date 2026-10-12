@@ -1,0 +1,712 @@
+{
+  "cid": "c489",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Melumad and Yun (2025) - Experimental evidence of the effects of large language models versus web search.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Melumad and Yun (2025) - Experimental evidence of the effects of large language models versus web search.pdf",
+    "version": "Journal version of record: PNAS Nexus, 2025, 4, pgaf316, Research Report, advance access publication 28 October 2025 (received March 28, 2025, accepted September 11, 2025). Preprint at SSRN 5104064 (p. 10, Preprints).",
+    "title_on_document": "Experimental evidence of the effects of large language models versus web search on depth of learning",
+    "authors_on_document": ["Shiri Melumad", "Jin Ho Yun"],
+    "pages": 11,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "\"Supplementary material is available at PNAS Nexus online.\" (p. 10, Supplementary Material)",
+      "holds": "Three preregistered replications whose results the main text does not report numerically (replication of experiment 1, n = 2,402, healthier-lifestyle topic with a third LLM + real-time web links arm; replication of experiment 1, n = 1,976, financial-scam topic; conceptual replication of experiment 4, n = 1,258); the experiment 2 mediation model; the ex post analysis controlling for number of websites visited; the full survey instruments and the GPT-4o prompts and stimuli for experiment 2. The main text prints arm means and F tests only, with no SDs or SEs, so any SDs would have to come from the supplement or the OSF data."
+    }
+  },
+  "paper_design_summary": "In three experiments (1 and 2 online on Prolific, 3 in a university lab), people were randomly assigned to learn about a topic from an LLM synthesis (in-house ChatGPT, a simulated ChatGPT page showing a GPT-4o summary, or Google AI Overview) or from Google web links, and then wrote advice for a friend on a separate page. The advice was scored with NLP tools for word count, named-entity references, and originality across writers (average pairwise cosine similarity of LDA topic vectors and average pairwise Levenshtein edit distance within condition). In experiment 4, 1,493 MTurk raters blind to condition rated pairs of experiment 3 advice texts for helpfulness, informativeness, trust, and willingness to recommend and adopt.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Experiment 1 (vegetable-garden advice after real ChatGPT vs. Google search)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Search tool used to learn about the topic before writing advice: in-house ChatGPT interface vs. Google search results",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were 1,136 members of the Prolific panel who were randomly assigned to learn about a topic using either ChatGPT or Google and then to write advice for their friend on it",
+        "locator": "p. 3, Experiment 1, Methods",
+        "preregistered": "yes",
+        "prereg_locator": "p. 3, Experiment 1, Methods: https://aspredicted.org/D1G_BRC"
+      },
+      "arms": [
+        { "name": "ChatGPT", "description": "In-house ChatGPT interface embedded in Qualtrics (OpenAI Chat Completion API, GPT-3.5-turbo); participants could enter as many prompts as they wished, then wrote advice on a later survey page", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Google", "description": "In-house page showing actual Google search results (Google Custom Search JSON API), 10 links per page, as many queries as wished", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 1136,
+        "n_analyzed": 1104,
+        "counts_are": "people",
+        "exclusions": "32 participants excluded for failing attention checks, per the preregistered criteria (1,136 to 1,104). Arm sizes are not stated.",
+        "population": "online_panel",
+        "who": "Prolific panel members; final sample mean age 42.40, 53% female",
+        "country": "not_stated",
+        "quote": "we excluded 32 participants for failing attention checks, resulting in a final sample of 1,104 participants",
+        "locator": "p. 3, Experiment 1, Methods"
+      },
+      "ai_tool": {
+        "name_model": "In-house ChatGPT interface using OpenAI Chat Completion API with GPT-3.5-turbo (p. 9, note c)",
+        "role": "open_chat",
+        "how_used": "Used to learn about how to plant a vegetable garden before writing; participants then proceeded to write their advice within the survey. The PDF does not say the chatbot remained available during writing."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Write advice to a friend on how to plant a vegetable garden, based on what was learned from the search",
+        "duration": "Not fixed; mean writing time 246.81 s (Google) vs 221.40 s (ChatGPT); mean search time 742.81 s vs 585.41 s (pp. 4-5)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Uniqueness of advice across writers (pairwise topical similarity and Levenshtein distance)",
+          "construct": "diversity",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Average pairwise cosine similarity between all pairs of advice within each condition, computed on LDA topic distributions reduced with PCA (not neural embeddings). Convergent measure: average pairwise Levenshtein edit distance between all pairs of advice within each condition (lexical, character-level). Higher cosine similarity = less unique; higher edit distance = more unique.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Google",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "cosine similarity: M_Google = 0.057, M_GPT = 0.159; F(1, 1,102) = 168.46, P < 0.001. Levenshtein edit distance: M_Google = 531.86, M_GPT = 481.59; F(1, 1,102) = 13.67, P < 0.001. Direction coded on diversity (sign reversed for cosine similarity): ChatGPT advice less diverse.",
+              "locator": "p. 5, Experiment 1, Results"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Average pairwise cosine similarity of LDA topic vectors (after PCA); average pairwise Levenshtein edit distance",
+            "embedding_model": "None; Latent Dirichlet Allocation topic model with principal component analysis",
+            "computed_over": "All pairs of advice within each condition",
+            "uncertainty": "One-way F test with df (1, 1,102), which matches one score per participant; how a per-advice score was formed from the pairwise similarities is not stated in the PDF",
+            "notes": "Paper frames these as originality or uniqueness of advice to the writer."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Word count of advice",
+          "construct": "elaboration",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Number of words computed with LIWC 2022 (a count, not a creativity model)",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Google",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_Google = 94.64 words, M_GPT = 84.58; F(1, 1,102) = 7.42, P = 0.007",
+              "locator": "p. 5, Experiment 1, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "References to facts (unique named entities) in advice",
+          "construct": "other",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "spaCy Named Entity Recognition count of words or word pairs in seven predefined categories plus a vegetable-gardening domain; paper labels it references to facts (unique entities)",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Google",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "unique entities: M_Google = 0.718, M_GPT = 0.464; F(1, 1,102) = 6.66, P = 0.010",
+              "locator": "p. 5, Experiment 1, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Experiment 2 (vegetable-garden advice, information held constant, simulated ChatGPT vs. simulated Google)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Format of identical search results: a GPT-4o 291-word summary in a simulated ChatGPT interface vs. six links to GPT-4o-written article variants in a simulated Google page",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were 2,016 members of the Prolific panel who were randomly assigned to one of two between-subjects conditions (Google vs. ChatGPT) in a preregistered experiment",
+        "locator": "p. 6, Experiment 2, Methods",
+        "preregistered": "yes",
+        "prereg_locator": "p. 6, Experiment 2, Methods: https://aspredicted.org/3rxx-vktc.pdf"
+      },
+      "arms": [
+        { "name": "ChatGPT (simulated)", "description": "Typed one query into a simulated ChatGPT interface and saw a fixed 291-word GPT-4o summary of seven suggestions", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Google (simulated)", "description": "Typed one query into a simulated Google search bar and saw six links to webpages, each an article variant (written by GPT-4o in the style of a media outlet) containing the same seven suggestions", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 2016,
+        "n_analyzed": 1979,
+        "counts_are": "people",
+        "exclusions": "37 participants excluded for failing an attention check (2,016 to 1,979). Arm sizes are not stated.",
+        "population": "online_panel",
+        "who": "Prolific panel members; mean age 41.28, 49% female",
+        "country": "not_stated",
+        "quote": "We excluded 37 participants for failing an attention check, yielding a final sample of 1,979.",
+        "locator": "p. 6, Experiment 2, Methods"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4o (pre-generated response shown in a simulated ChatGPT interface)",
+        "role": "ideas_supplied",
+        "how_used": "Participants read a fixed GPT-4o summary before writing; they then proceeded to a separate page to write their advice."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Write advice to a friend on how to plant a vegetable garden after the search task",
+        "duration": "Not fixed; mean writing time 208.84 s (Google) vs 185.19 s (ChatGPT) (p. 6)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Uniqueness of advice across writers (pairwise topical similarity and Levenshtein distance)",
+          "construct": "diversity",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same battery as experiment 1: average pairwise cosine similarity of LDA topic vectors within condition; convergent measure is average pairwise Levenshtein edit distance within condition",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT (simulated)",
+              "control_arm": "Google (simulated)",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "cosine similarity: M_Google = 0.072, M_GPT = 0.224; F(1, 1,977) = 330.76, P < 0.001. Levenshtein edit distance: M_Google = 423.98, M_GPT = 346.58; F(1, 1,977) = 105.66, P < 0.001. Direction coded on diversity (sign reversed for cosine similarity).",
+              "locator": "p. 6, Experiment 2, Results"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Average pairwise cosine similarity of LDA topic vectors (after PCA); average pairwise Levenshtein edit distance",
+            "embedding_model": "None; LDA topic model with PCA",
+            "computed_over": "All pairs of advice within each condition",
+            "uncertainty": "One-way F test with df (1, 1,977), one score per participant; construction of the per-advice score not stated",
+            "notes": "Information in the search results was held constant across arms; only its format differed."
+          }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Word count of advice",
+          "construct": "elaboration",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Word count (LIWC battery as in experiment 1)",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT (simulated)",
+              "control_arm": "Google (simulated)",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_Google = 74.22 words, M_GPT = 64.49; F(1, 1,977) = 22.78, P < 0.001",
+              "locator": "p. 6, Experiment 2, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "References to facts (named entities) in advice",
+          "construct": "other",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "spaCy named-entity count as in experiment 1",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT (simulated)",
+              "control_arm": "Google (simulated)",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "references to facts: M_Google = 4.61, M_GPT = 4.00; F(1, 1,977) = 29.05, P < 0.001",
+              "locator": "p. 6, Experiment 2, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S3",
+      "label": "Experiment 3 (healthier-lifestyle advice in the lab, Google standard vs. Google AI Overview; rated by Experiment 4 recipients)",
+      "design_class": "lab_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Computer with or without the Google Chrome \"AI Overview\" extension; LLM arm told to read only the AI Overview, standard arm told to browse the links",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were randomly assigned to one of two between-subjects conditions (Google standard vs. Google LLM).",
+        "locator": "p. 7, Experiment 3, Methods",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Google LLM (AI Overview)", "description": "Searched Google with the AI Overview extension and were told to focus only on the AI Overview summary at the top of the results page", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 125 },
+        { "name": "Google standard", "description": "Searched standard Google (no extension) and were asked to browse through the links", "ai": "other_aid", "n_randomized": null, "n_analyzed": 125 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 250,
+        "counts_are": "people",
+        "exclusions": "253 recruited; 3 excluded for failing an attention check, leaving 250. The PDF does not say whether exclusion came before or after assignment. Arm sizes of 125 come from experiment 4, which drew from \"the 125 texts\" per condition (p. 8).",
+        "population": "mixed",
+        "who": "Members of the behavioral lab panel at an east-coast university; mean age 22.75, 73% female. Student status not stated.",
+        "country": "USA (east-coast university)",
+        "quote": "Three participants were excluded for failing an attention check, leaving a final sample of 250",
+        "locator": "p. 7, Experiment 3, Methods; p. 8, Experiment 4, Method (125 texts per condition)"
+      },
+      "ai_tool": {
+        "name_model": "Google AI Overview (Chrome extension)",
+        "role": "other",
+        "how_used": "LLM synthesis shown at the top of Google results; participants could enter as many queries as they wished in a separate Chrome tab, then returned to the survey tab to write advice. The PDF does not say whether the search tab stayed open during writing."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Write advice to a friend on how to lead a healthier lifestyle after searching",
+        "duration": "Not fixed; mean writing time 159.08 s (standard) vs 134.99 s (LLM) (p. 7)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S3-O1",
+          "name": "Uniqueness of advice across writers (pairwise topical similarity and Levenshtein distance)",
+          "construct": "diversity",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Average pairwise cosine similarity of LDA topic vectors within condition; convergent measure is average pairwise Levenshtein edit distance (\"semantic dissimilarity\") within condition",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "cosine similarity: M_standard-Google = 0.073, M_LLM-Google = 0.214; F(1, 248) = 52.50, P < 0.001. Levenshtein edit distance: M_standard-Google = 502.52, M_LLM-Google = 368.64; F(1, 248) = 56.78, P < 0.001. Direction coded on diversity (sign reversed for cosine similarity).",
+              "locator": "p. 7, Experiment 3, Results"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Average pairwise cosine similarity of LDA topic vectors; average pairwise Levenshtein edit distance",
+            "embedding_model": "None; LDA topic model with PCA",
+            "computed_over": "All pairs of advice within each condition",
+            "uncertainty": "One-way F test with df (1, 248), one score per participant; construction of the per-advice score not stated",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S3-O2",
+          "name": "Word count of advice",
+          "construct": "elaboration",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Word count (same text-analysis battery)",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_standard-Google = 90.17, M_LLM-Google = 65.17; F(1, 248) = 20.14, P < 0.001",
+              "locator": "p. 7, Experiment 3, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O3",
+          "name": "References to facts (named entities) in advice",
+          "construct": "other",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "spaCy named-entity count",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_standard-Google = 0.624, M_LLM-Google = 0.376; F(1, 248) = 2.80, P = 0.096",
+              "locator": "p. 7, Experiment 3, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "Paper says \"referenced slightly fewer facts\"; P = 0.096." }
+        },
+        {
+          "outcome_id": "S3-O4",
+          "name": "Helpfulness of advice rated by recipients (Experiment 4)",
+          "construct": "usefulness",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "1,493 MTurk Connect raters, blind to condition, each rated one randomly selected text from each condition (in randomized order) on 1-5 agreement: \"I find this advice very helpful\"; repeated-measures ANOVA",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_standard-Google = 3.816, M_LLM-Google = 3.553; F(1, 1,492) = 85.013, P < 0.001",
+              "locator": "p. 8, Experiment 4, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O5",
+          "name": "Informativeness of advice rated by recipients (Experiment 4)",
+          "construct": "usefulness",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Item \"This advice is very informative about the topic\" (1-5); 1,493 MTurk raters; repeated-measures ANOVA",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_standard-Google = 3.575, M_LLM-Google = 3.224; F(1, 1,492) = 103.863, P < 0.001",
+              "locator": "p. 8, Experiment 4, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O6",
+          "name": "Trustworthiness of advice rated by recipients (Experiment 4)",
+          "construct": "usefulness",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Item \"I trust this advice\" (1-5); 1,493 MTurk raters; repeated-measures ANOVA",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_standard-Google = 4.171, M_LLM-Google = 3.906; F(1, 1,492) = 126.078, P < 0.001",
+              "locator": "p. 8, Experiment 4, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O7",
+          "name": "Likelihood to recommend the advice to others (Experiment 4)",
+          "construct": "usefulness",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Item \"I would be very likely to recommend this advice to others\" (1-5); 1,493 MTurk raters; repeated-measures ANOVA",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_standard-Google = 3.821, M_LLM-Google = 3.481; F(1, 1,492) = 117.375, P < 0.001",
+              "locator": "p. 8, Experiment 4, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O8",
+          "name": "Willingness to adopt the advice (Experiment 4)",
+          "construct": "usefulness",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Item \"I would be very likely to adopt this advice\" (1-5); 1,493 MTurk raters; repeated-measures ANOVA",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "M_standard-Google = 3.897, M_LLM-Google = 3.711; F(1, 1,492) = 48.481, P < 0.001",
+              "locator": "p. 8, Experiment 4, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O9",
+          "name": "Side-by-side choice of the more helpful advice (Experiment 4)",
+          "construct": "usefulness",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "After separate ratings, raters saw both texts side by side and chose 1 = first friend's advice more helpful, 2 = similarly helpful, 3 = second friend's advice more helpful; chi-square test of choice proportions",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Google LLM (AI Overview)",
+              "control_arm": "Google standard",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "confidence_interval"],
+              "reported": "chi2(2) = 201.156, P < 0.001, \"with the observed proportion of LLM-based advice [50.6%, n = 756; 95% CI = (0.481, 0.532)] being significantly lower than that of advice based on web links [24.6%, n = 367; 95% CI = (0.226, 0.271)]\"",
+              "locator": "p. 8, Experiment 4, Results"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "As printed, 50.6% is called lower than 24.6%; the labels appear swapped. Direction coded from the text's claim that LLM advice was less helpful. See open_questions." }
+        }
+      ]
+    },
+    {
+      "study_id": "S4",
+      "label": "Experiment 4 (recipients rate Experiment 3 advice)",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Which advice texts each rater saw (one randomly selected from each of the two Experiment 3 conditions) and their order; no rater received AI",
+        "unit": "other",
+        "structure": "within",
+        "quote": "one was randomly selected from the 125 texts written by those who learned through standard Google web links; the other from the 125 texts written by those who learned through Google's AI Overview summary",
+        "locator": "p. 8, Experiment 4, Method",
+        "preregistered": "yes",
+        "prereg_locator": "p. 8, Experiment 4, Method: https://aspredicted.org/6py8-ggdn.pdf"
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 1493,
+        "counts_are": "people",
+        "exclusions": "Eight participants excluded for failing two attention checks, leaving 1,493. The PDF does not state the number recruited.",
+        "population": "online_panel",
+        "who": "MTurk Connect panel members acting as advice recipients; mean age 39.79, 52% female",
+        "country": "not_stated",
+        "quote": "Eight participants were excluded for failing two attention checks, resulting in a final sample of 1,493 participants",
+        "locator": "p. 8, Experiment 4, Method"
+      },
+      "ai_tool": {
+        "name_model": "",
+        "role": "other",
+        "how_used": "None for raters. They rated advice written by Experiment 3 participants."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Rate two pieces of healthier-lifestyle advice from Experiment 3 on 1-5 scales and choose the more helpful one",
+        "duration": "not_stated"
+      },
+      "outcomes": []
+    },
+    {
+      "study_id": "S5",
+      "label": "Supplementary replication 1 of Experiment 1 (healthier lifestyle; LLM, web search, LLM + real-time links)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "LLM vs. web search conditions as in Experiment 1, or a third condition where LLM syntheses were augmented by real-time web links",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "randomly assigned them to either the same LLM or web search conditions as in experiment 1, or to a new, third condition where the LLM syntheses were augmented by real-time web links",
+        "locator": "p. 5, Discussion of Experiment 1",
+        "preregistered": "yes",
+        "prereg_locator": "p. 5: \"two preregistered replications of experiment 1\"; links in the Supplementary Material (not in this PDF)"
+      },
+      "arms": [
+        { "name": "LLM", "description": "As in Experiment 1", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "LLM + real-time web links", "description": "LLM syntheses augmented by real-time web links; 26% clicked the links", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Web search", "description": "As in Experiment 1", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 2402,
+        "counts_are": "people",
+        "exclusions": "The main text gives n = 2,402 without saying whether it is before or after exclusions. Recorded as analyzed because the abstract total of 10,462 equals the sum of the main-text final samples (1,104 + 1,979 + 250 + 1,493) plus 2,402 + 1,976 + 1,258.",
+        "population": "not_stated",
+        "who": "Not stated in the main text",
+        "country": "not_stated",
+        "quote": "In the first (n = 2,402), we asked participants to learn about a topic that they confirmed was of high personal relevance to them—how to lead a healthier lifestyle",
+        "locator": "p. 5, Discussion of Experiment 1"
+      },
+      "ai_tool": { "name_model": "not_stated", "role": "other", "how_used": "Not described in the main text" },
+      "task": { "type": "creative_writing", "description": "Write advice on how to lead a healthier lifestyle", "duration": "not_stated" },
+      "outcomes": []
+    },
+    {
+      "study_id": "S6",
+      "label": "Supplementary replication 2 of Experiment 1 (financial-scam topic)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "not_stated",
+        "what_was_assigned": "Presumably LLM vs. web search as in Experiment 1; the main text says only that it replicates Experiment 1",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "In the second (n = 1,976), we confirm the robustness of the effects observed in experiment 1 to another consequential real-world search topic",
+        "locator": "p. 5, Discussion of Experiment 1",
+        "preregistered": "yes",
+        "prereg_locator": "p. 5: \"two preregistered replications of experiment 1\""
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 1976,
+        "counts_are": "people",
+        "exclusions": "Same caveat as S5: n = 1,976 is not labeled before or after exclusions; the sum check against the abstract total suggests a final sample.",
+        "population": "not_stated",
+        "who": "Not stated in the main text",
+        "country": "not_stated",
+        "quote": "In the second (n = 1,976)",
+        "locator": "p. 5, Discussion of Experiment 1"
+      },
+      "ai_tool": { "name_model": "not_stated", "role": "other", "how_used": "Not described in the main text" },
+      "task": { "type": "creative_writing", "description": "Write advice on what to do if one is the victim of a financial scam", "duration": "not_stated" },
+      "outcomes": []
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": {
+    "shares_participants_with": "Within paper only: Experiment 4 (S4) raters scored the advice written by Experiment 3 (S3) participants, so S3-O4 to S3-O9 use the S3 writer sample. A supplementary conceptual replication of Experiment 4 (n = 1,258) is not in this PDF. No overlap with other papers stated.",
+    "quote": "presented with the two pieces of advice from experiment 3 in randomized order",
+    "locator": "p. 8, Experiment 4, Method"
+  },
+  "company_involvement": {
+    "any": false,
+    "description": "Funded by the Wharton Dean's Office and the Wharton Behavioral Lab; authors declare no competing interests. Experiment 3 used Google's AI Overview product, but no company involvement is stated.",
+    "locator": "p. 1, Competing Interest; p. 10, Funding"
+  },
+  "data_and_code": {
+    "data_url": "OSF (\"All relevant data, surveys, and preregistrations used in analysis can be accessed via OSF\"; no URL given, p. 10)",
+    "code_url": ""
+  },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Experiments 1-3 randomly assign individuals to learn from a generative-AI synthesis (ChatGPT, GPT-4o summary, Google AI Overview) vs. Google web links, then score the advice they write for originality across writers (pairwise cosine similarity and Levenshtein distance), which fits the codebook rule that writing tasks compared across writers for similarity belong. Analyzed samples are 1,104, 1,979, and 250 people. The AI was used in a learning phase and the advice was written afterward on a separate page, so all outcomes are after_ai and the comparison is ai_vs_active. A reviewer may question whether advice writing is a creative task and whether AI use for information gathering counts as AI assistance on the task."
+  },
+  "one_line_finding": "Advice written after learning from an LLM rather than web links was more similar across writers (pairwise cosine similarity 0.159 vs 0.057 in Exp. 1, 0.224 vs 0.072 in Exp. 2, 0.214 vs 0.073 in Exp. 3; all P < 0.001), shorter, and rated less helpful by recipients (3.553 vs 3.816, P < 0.001) (pp. 5-8).",
+  "open_questions": [
+    "Is writing advice to a friend a creative task under the codebook, or does it qualify only through the across-writer similarity rule?",
+    "AI was used to learn about the topic and was not described as available while writing; outcomes are coded after_ai with timing immediate. In Experiment 3 the PDF does not say whether the Google tab stayed open during writing.",
+    "The diversity measures are computed over all pairs within each condition, yet tested with F(1, n-2), implying one score per participant; the per-advice score construction is not described in the PDF.",
+    "Experiment 4 choice proportions as printed are internally inconsistent: LLM-based advice 50.6% (n = 756) is called significantly lower than web-link advice 24.6% (n = 367). The labels look swapped.",
+    "Total sample: abstract says n = 10,462, introduction says n = 10,426 (p. 2).",
+    "Experiment 2: both arms saw GPT-4o-generated content (summary vs. GPT-4o-written article variants behind links), so the contrast isolates format, not AI content. Should it be ai_vs_active or ai_design?",
+    "No SDs or SEs in the main text; extraction will need the OSF data or the supplement."
+  ],
+  "notes": "Only outcomes scored on the advice are listed. Not listed: self-reported learning, ownership, comprehensiveness, and effort items; search and writing time; Experiment 4 rating that 'less effort had been put into writing the advice' (M_standard-Google = 3.421, M_LLM-Google = 3.024; F(1, 1,492) = 94.471, P < 0.001, p. 8); the SEM in Fig. 3. Levenshtein edit distance is folded into each diversity outcome as a convergent variant (the paper calls it 'a convergent measure of the originality'), with both sets of numbers in 'reported'. Experiment 1 final sample is 53% female versus 46% at recruitment (p. 3). Supplementary studies S5 and S6 and the Experiment 4 replication (n = 1,258) have no results in this PDF; the Experiment 4 replication is not given its own study entry because it rates advice rather than assigning AI. Experiment 3 preregistration is not stated."
+}

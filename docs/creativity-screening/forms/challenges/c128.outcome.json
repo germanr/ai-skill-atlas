@@ -1,0 +1,53 @@
+{
+  "cid": "c128",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S2-O3 to S2-O9: the seven Table 5 contrasts (AI-assisted vs Human-only)",
+      "field": "contrasts[].comparison_type, treatment_arm, control_arm",
+      "form_value": "comparison_type 'ai_vs_bau'; treatment 'AI-assisted (1-plot and 5-plot combined, as the paper labels it)', control 'Human-only (0-plot, as the paper labels it)', inside study S2 coded online_rct",
+      "source_says": "The text says the groups are the conditions (p. 12), and 97 stories were analyzed as 32 / 33 / 32 (p. 11). Table 5 does not fit those arms. Every count row gives a whole-number total, and a pooled two-sample t-test reproduces every printed t and p, only with 41 'Human' and 56 'AI-Assisted' stories (for example Named Characters 0.634 x 41 = 26.0 and 0.946 x 56 = 53.0; Total Words t = -1.247 at 41/56 but -1.192 at 32/65). With Table 6, this puts 9 writers assigned to an AI arm (6 from 1-plot, 3 from 5-plot) in the 'Human' group, and the plot button was on their writing page. The split looks like plot use, not assignment (checker inference; the paper does not say). So these contrasts are not randomized, and their comparison group is not AI-free. The form flags the conflict only in open_questions. Code these contrasts as non-randomized comparisons, or keep them out of pooled with_ai estimates, until the authors confirm the groups.",
+      "quote": "we analyzed 97 stories: 32 in the control group, 33 in the 1-plot condition, and 32 in the 5-plot condition.",
+      "locator": "p. 11, Section 3.1; p. 12, Section 3.2; p. 16, Table 5; pp. 47-51 (AI button on the writing page); checker arithmetic"
+    },
+    {
+      "where": "S2-O3 to S2-O9: the seven Table 6 contrasts (5-plot vs 1-plot)",
+      "field": "contrasts[].comparison_type, treatment_arm, control_arm",
+      "form_value": "comparison_type 'ai_design'; treatment '5-plot', control '1-plot' (the assigned arms)",
+      "source_says": "Table 6 fits only 27 '1-plot' and 29 '5-plot' stories, not the analyzed arms of 33 and 32. Total Words gives 159.963 x 27 = 4319.0 and 157.379 x 29 = 4564.0, and their sum, 8883, equals Table 5's AI-Assisted total (158.625 x 56). At 33/32 the totals are not whole numbers, and the pooled t is 0.194, not the printed 0.179; the same holds for all seven rows. The 6 and 3 writers left out of each arm are the ones in Table 5's 'Human' group. The contrast compares subsets selected after assignment, so it is not the randomized one-idea-versus-five contrast that 'ai_design' implies.",
+      "quote": "Total Words 159.963 157.379 46.944 59.951 0.179 0.859",
+      "locator": "p. 16, Table 6; p. 11, Section 3.1; checker arithmetic"
+    },
+    {
+      "where": "S2-O2",
+      "field": "unit, n_units (as applied to the story-level statistics in the 'reported' strings)",
+      "form_value": "unit 'pair', n_units 1520. The 5-plot vs 1-plot contrast, and the Cohen's d and Bayesian figures in all three contrasts, sit under this unit without a unit label.",
+      "source_says": "The 1,520 pairs are the unit of the Table 4 mixed model only. The story-level variant has 97 observations, one per story. The 5-plot vs 1-plot contrast has no pair-level estimate: its t = -0.73 comes from 65 stories. Table S3's d values are story-level: d x sqrt(n1 n2 / (n1 + n2)) at 32 / 33 / 32 gives 1.882, 1.452 and -0.726, the printed story-level t values. Table S2's Bayesian model also fits the 97 story averages, not the pairs. With sigma 1.7, a story-level fit gives an intercept SD of 1.7/sqrt(32) = 0.30 (printed 0.3), condition SDs of 0.42 and 0.43 (printed 0.419 and 0.433), and a posterior SD for sigma near 0.12 (printed 0.126). A pair-level fit would have a residual SD near sqrt(5.45) = 2.33 and far smaller posterior SDs (checker arithmetic). Label these figures as story-level (unit output, n = 97; 65 for 1-plot vs 5-plot) in 'reported' and measure_detail, or split the story-level variant into its own record.",
+      "quote": "we calculated each story's average similarity to all other stories within its condition, creating 97 independent observations.",
+      "locator": "p. 13, Section 3.3.2; p. 14, Table 4; p. 52, Table S2; p. 53, Table S3; checker arithmetic"
+    },
+    {
+      "where": "S2-O3, S2-O6, S2-O7, S2-O8, S2-O9 (automated_score); S2-O5 (lexical_overlap)",
+      "field": "measure",
+      "form_value": "automated_score for per-story counts of total words, verbs, adjectives, proper nouns and emotional words; lexical_overlap for the percentage of common words",
+      "source_says": "The paper computes plain NLTK counts per story (tokenizer, part-of-speech tagger, WordNet) and a share of stopwords. Codebook section 6 defines automated_score as 'A scoring model for creativity: semantic-distance scoring of divergent-thinking tests, or a language model used as judge', and lexical_overlap as 'N-gram overlap, type-token ratios, ROUGE, BLEU, distinct-n'. A word or tag count is not a creativity scoring model. A stopword share compares no texts and is not a type-token ratio. No listed code fits these measures, so the values rest on precedent from other forms, not on the definitions. S2-O4 (unique words, a type count) is close to distinct-1 and fits lexical_overlap. The record should say the code is the nearest one available, or the codebook needs a code for plain text counts.",
+      "quote": "particularly its English stopwords corpus, for filtering common words, and its WordNet lexical database for word categorization and semantic analysis",
+      "locator": "p. 15, Section 3.3.3; p. 16, Tables 5-6; codebook section 6 (Measure)"
+    }
+  ],
+  "confirmed": [
+    "S2-O1 and S2-O2 are computed on the participants' own stories (ada-002 embeddings of the 97 analyzed stories). They are a computed measure, not a self-report (p. 11, Section 3.2; p. 52, 'Calculating story diversity').",
+    "AI was available while the scored stories were written in the 1-plot and 5-plot arms. The 'Suggest Story Idea' button and the five 'Idea' buttons sit on the same page as the story box, and asking for or using an idea was optional. So ai_available 'yes' and timing 'immediate' hold for S2-O1 to S2-O9 (p. 43; pp. 47-51).",
+    "Question codes follow the codebook rule. S2-O1 and S2-O2 (diversity, AI available) are across_people. S2-O3 to S2-O9 (other constructs, AI available) are with_ai. No output was produced after AI was removed. S1-O1 scores AI plots that no person wrote, and form-spec allows 'none' for it (codebook section 1; form-spec field note on 'question').",
+    "Constructs hold. S2-O1 and S2-O2 compare stories by different writers (one story each; centroid of all stories in a condition; all pairs within a condition), so 'diversity' fits. The NLTK measures are scored inside one story and are rightly not coded diversity. Total words fits elaboration. The other counts fit 'other' better than flexibility, which the codebook defines as distinct categories among one person's ideas (p. 11; p. 13; p. 16; codebook section 6).",
+    "Units of the main analyses hold. S2-O1 is output (Table 2, 'Observations 97'). S2-O2 is pair (1,520 = 496 + 528 + 496 = C(32,2) + C(33,2) + C(32,2), p. 13). S2-O3 to S2-O9 are output (per-story t-tests, p. 16). S1-O1 is pair (p. 6).",
+    "The two diversity outcomes use the analyzed arms of 32 / 33 / 32: Table 3 prints these counts, the pair counts match them, and the story-level t values 1.88, 1.45 and -0.73 follow from Table S3's d = 0.467, 0.363 and -0.180 at these sizes (p. 13, Table 3; pp. 13-14; p. 53; checker arithmetic).",
+    "Every number in the 21 'reported' strings matches the PDF page images: Table 1 (p. 7), Table 2 (p. 12), Table 3 (p. 13), Table 4 and its text (pp. 13-14), the Bayesian text (pp. 14-15), Tables 5-6 (p. 16), Table S1 (p. 39), and Tables S2-S3 (pp. 52-53).",
+    "Directions follow codebook section 7. S2-O2's 1-plot arm has lower pairwise similarity (-1.073, p = 0.019), coded treatment_higher on diversity with the reversal stated. S2-O7 (p = 0.017) and S2-O9 (p = 0.011) are treatment_higher. All other contrasts have p > 0.05 (pp. 12-16).",
+    "No outcome that bears on the three questions is missing. No creativity rating was collected ('our study focuses only on the mitigation of the homogenization effect', p. 22). Figure 2, the story-level ANOVA, the post-hoc t-tests, the permutation test and the Bayesian model are variants of S2-O2. The consent page's 'ten words' task and follow-up questions are never reported (p. 44). The 0-plot AI-use question is a self-report used only for the exclusions (p. 46; p. 52).",
+    "S1-O1 numbers match Table 1, p. 6 and Table S1, including the D&H benchmark of 90.99 (SD 2.78). The paper itself is inconsistent here: the printed t = 119.9443 does not follow from 4,350 vs 40,500 pairs (about 89-90 by Welch or pooled t), but it fits if within-persona pairs are counted twice (8,700 gives about 120). No estimate is affected, because S1-O1 has question 'none' (pp. 6-7; p. 39; checker arithmetic)."
+  ],
+  "summary": "The two diversity outcomes (S2-O1, centroid similarity, and S2-O2, pairwise similarity) are ada-002 measures computed on the stories that the 97 analyzed writers produced in the assigned arms, with optional AI plot ideas on the writing page; their question, construct, AI availability and every reported number check out, so criterion 3 holds. The coding is still refuted in detail: the 14 NLTK contrasts are coded as randomized arm contrasts although Tables 5-6 fit only groups of 41/56 and 27/29 stories, S2-O2's 'pair' unit hides that its Cohen's d, Bayesian and 5-plot vs 1-plot figures are story-level, and the automated_score and lexical_overlap codes for plain word counts do not match the codebook definitions."
+}

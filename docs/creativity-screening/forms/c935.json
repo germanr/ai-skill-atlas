@@ -1,0 +1,329 @@
+{
+ "cid": "c935",
+ "screener": "single_unstated_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Vartanian et al (2023) - Learning interactions to boost human creativity with bandits and GPT-4.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Vartanian et al (2023) - Learning interactions to boost human creativity with bandits and GPT-4.pdf",
+  "version": "arXiv:2311.10127v1, 16 Nov 2023; full text including Appendix A (version/date printed on p. 1).",
+  "title_on_document": "Learning interactions to boost human creativity with bandits and GPT-4",
+  "authors_on_document": [
+   "Ara Vartanian",
+   "Xiaoxi Sun",
+   "Yun-Shiuan Chuang",
+   "Siddharth Suresh",
+   "Xiaojin Zhu",
+   "Timothy T. Rogers"
+  ],
+  "pages": 14,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendix A, “Supplementary Materials,” pp. 12–14 of this PDF.",
+   "holds": "User-interface and instruction-page screenshots, and pseudocode specifying the vocabulary-based hint algorithms; no additional outcome statistics or standard errors."
+  }
+ },
+ "paper_design_summary": "Study 1 analyzed 36 undergraduates who listed semantic features with and without button-requested bandit hints in counterbalanced online tasks; features and within-participant word types were counted (pp. 4–6, §§3.3–3.4). Random assignment of task order is not stated, and the hints came from vocabulary sampling and fastText neighbor retrieval rather than generative AI (pp. 3–5, §§3.1–3.3). Study 2 used GPT-4 as a simulated respondent in 60 model runs, comparing hinted and unhinted feature production; GPT-4 did not assist the human participants (pp. 7–9, §§4–4.2).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Study 1: Multi-Armed Bandit for Human Creativity",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Each participant completed hinted and unhinted feature-generation tasks, with different concepts in the two conditions. Concept-condition pairing and task order were counterbalanced; the method of allocating participants to sequences is not stated. Counterbalancing alone does not establish random assignment. The hints used vocabulary sampling/retrieval rather than generative AI.",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "For each participant, one concept appeared in the hinted condition and the other the unhinted condition. Pairing of concept and condition, and the ordering of the two tasks, was counterbalanced across participants.",
+    "locator": "p. 5, §3.3 Procedure (condition pairing and order); pp. 3–4, §§3.1–3.2 (hint algorithms).",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Hinted",
+     "description": "Participants could request hints through a button; an EXP3 bandit chose among semantic-neighbor, word-frequency, and semantic-diversity algorithms. The count is the same within-person sample as the unhinted arm (pp. 3–5, §§3.1–3.4).",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": 36
+    },
+    {
+     "name": "Unhinted",
+     "description": "The interface indicated that no hints were available. The count is the same within-person sample as the hinted arm (p. 5, §§3.3–3.4).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 36
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 36,
+    "counts_are": "people",
+    "exclusions": "Of 37 completers, one participant was excluded for producing a feature count more than 3.5 standard deviations above the sample mean, including many highly arbitrary features; 36 people remained for analysis (p. 4, §3.3 Participants; p. 5, §3.4 opening paragraph).",
+    "population": "students",
+    "who": "University of Wisconsin-Madison undergraduates participating for partial course credit. The paper reports 37 completed the study and 36 were analyzed after removing one participant who produced unusually many, highly arbitrary features.",
+    "country": "",
+    "quote": "This participant’s data was removed and analyses were conducted on the remaining 36.",
+    "locator": "p. 4, §3.3 Participants (37 undergraduates); p. 5, §3.4 opening paragraph (one excluded; 36 analyzed)."
+   },
+   "ai_tool": {
+    "name_model": "EXP3 multi-armed bandit with fastText word embeddings and corpus word frequencies; no generative language model provided human assistance.",
+    "role": "other",
+    "how_used": "A requested hint was a list of five words selected by one of three algorithms: semantic neighbors, English-frequency sampling, or diversity-cover sampling. The bandit adapted its algorithm preferences to whether a hint elicited further features. GPT-4 was used only as a simulated respondent in Study 2 (pp. 3–4, §§3.1–3.2; pp. 7–8, §§4–4.1; pp. 12–14, Appendix A)."
+   },
+   "task": {
+    "type": "divergent_test",
+    "description": "Online semantic-feature generation: list as many properties of penguin and journalist as possible, entering each property as a short phrase; each phrase counted as one response (p. 5, §3.3 Procedure).",
+    "duration": "The main procedure reports two 20 minute sessions (p. 5, §3.3). The instruction-page screenshot instead displays 0.33 minutes per concept (p. 12, Figure 5); the paper does not reconcile this discrepancy."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Number of semantic features produced",
+     "construct": "fluency",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "",
+       "direction": "",
+       "statistics_available": [],
+       "reported": "Hinted median = 34 features; unhinted median = 26.5 features. Mixed-effects condition model m: β = 8.0, p < 0.001 versus null model m0. Table 1 reports χ² = 12.1, df = 1, Pr = 0.00047 for m versus m0.",
+       "locator": "p. 5, §3.4, “Do hints lead participants to produce more features?” and Table 1."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Number of unique word types per participant",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "",
+       "direction": "",
+       "statistics_available": [],
+       "reported": "Hinted median = 57 word types; unhinted median = 42 word types. A mixed-effects model regressing word type count per participant on condition reports p < 0.01. Counts use case-folding, stopword removal, stemming, and lemmatization of each participant’s responses; this is not a comparison of similarity across people.",
+       "locator": "p. 6, §3.4, continuation of “Do participants produce more diverse information?”"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Study 2: Multi-Armed Bandit Interacting with GPT-4",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Separate GPT-4 runs received prompts for each hinted/unhinted by penguin/journalist cell. The paper describes simulated participants, not people assigned to AI assistance, and does not state random allocation of runs.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "The GPT-4 experiment was run 60 times, simulating 15 participants in each cell of the condition (hinted/unhinted) by concept (penguin/journalist) design.",
+    "locator": "pp. 7–8, §4.1 Methods, especially p. 8 (runs per cell and between-subjects regression).",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Hinted: penguin",
+     "description": "GPT-4 generated features of penguin with access to bandit-selected hints on request; 15 simulated participants/runs in this cell, not people. Human participant counts are left null (p. 8, §4.1; Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Hinted: journalist",
+     "description": "GPT-4 generated features of journalist with access to bandit-selected hints on request; 15 simulated participants/runs in this cell, not people. Human participant counts are left null (p. 8, §4.1; Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Unhinted: penguin",
+     "description": "GPT-4 generated features of penguin without hints; 15 simulated participants/runs in this cell, not people. Human participant counts are left null (p. 8, §4.1; Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Unhinted: journalist",
+     "description": "GPT-4 generated features of journalist without hints; 15 simulated participants/runs in this cell, not people. Human participant counts are left null (p. 8, §4.1; Table 2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "",
+    "who": "GPT-4 simulated participants: 60 model runs, with 15 runs in each condition-by-concept cell. These are not additional human participants.",
+    "country": "",
+    "quote": "The GPT-4 experiment was run 60 times, simulating 15 participants in each cell of the condition (hinted/unhinted) by concept (penguin/journalist) design.",
+    "locator": "p. 8, §4.1 Methods (60 simulations, 15 per cell); p. 7, §4 (GPT-4 simulates human behavior)."
+   },
+   "ai_tool": {
+    "name_model": "GPT-4 via the OpenAI API; experiments in early May 2023, default temperature 1; exact model snapshot not stated.",
+    "role": "other",
+    "how_used": "GPT-4 generated feature lists as a simulated participant. In hinted runs it could request hints from the same EXP3 bandit and vocabulary-based algorithms used in Study 1. It was instructed to give up when it had exhausted its knowledge (pp. 7–8, §§4–4.1 and Table 2)."
+   },
+   "task": {
+    "type": "divergent_test",
+    "description": "Prompt GPT-4 to list properties of penguin or journalist, with or without the option to request hints; the model could stop by saying “Give Up” (pp. 7–8, §4.1, Table 2).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Number of semantic features produced by GPT-4",
+     "construct": "fluency",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "",
+     "unit": "output",
+     "n_units": 60,
+     "ai_available_when_produced": "",
+     "timing": "",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "",
+       "direction": "",
+       "statistics_available": [],
+       "reported": "Across concepts, hinted median = 31 features and unhinted median = 25 features. The text reports p < 0.001; Table 3 reports F = 13.816, Pr(>F) = 0.0004558 for condition model m versus null model m0. Observations are GPT-4 feature lists from simulated participants, not people.",
+       "locator": "p. 8, §4.2, “Does GPT-4 show human-like behavior with and without hints?”; p. 9, Table 3 and following paragraph."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "The funding acknowledgment states that Intuit supported the project in part. It does not specify the amount of support or a role for Intuit in study design, analysis, or publication.",
+  "locator": "p. 10, funding acknowledgment at the end of §5, immediately before References."
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "ai_vs_human",
+  "reason": "Criterion 1 is not met because the human assistance in Study 1 was outside the generative-AI scope: EXP3 selected vocabulary-sampling and fastText-neighbor hints (pp. 3–4, §§3.1–3.2; pp. 12–14, Appendix A). Concept-condition pairing and task order were counterbalanced, but random allocation was not stated; Study 1 assignment.randomized remains not_stated (p. 5, §3.3). Only 36 people were analyzed, below the codebook’s 50-person threshold; the same people completed both conditions and must not be counted twice (p. 5, §§3.3–3.4). Feature counts and within-participant word-type counts were scored on produced output, satisfying criterion 3 (pp. 5–6, §3.4). GPT-4 served as a simulated respondent in Study 2; the 60 model runs, with 15 per condition-by-concept cell, are output observations and do not add people (pp. 7–8, §§4–4.1). The paper qualifies as ai_vs_human context because Study 2 explicitly compares GPT-4 feature counts with the same Study 1 human sample, including unassisted human output: GPT-4 hinted median 31 versus human 34, and GPT-4 unhinted median 25 versus human 27 as printed in the comparison paragraph (p. 8, §4.2). The original human results instead print 26.5 for the unhinted median (p. 5, §3.4); both source values are preserved. The within-GPT-4 hinted-versus-unhinted contrast remains model_only; the human benchmark is not an additional sample or a randomized generative-AI assistance study. The recorded outcomes remain question=none because they do not test human generative-AI assistance, and within-participant word variety is not across-person diversity."
+ },
+ "one_line_finding": "Among 36 analyzed students, median feature production was 34 with vocabulary-based bandit hints versus 26.5 without (β = 8.0, p < 0.001; p. 5, §3.4); the assistance was not generative AI and random assignment of task order was not stated.",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "eligibility.criterion_1_random_assignment_of_ai",
+    "old": "unclear",
+    "new": "not_met",
+    "quote": "In the following arm descriptions, embeddings ϕ(·) were computed using fastText [3] while distributional data was provided by [21].",
+    "locator": "PDF pp. 3–4, §§3.1–3.2 (EXP3 and vocabulary-based hint algorithms); p. 5, §3.3 Procedure (counterbalancing); p. 7, §4 (GPT-4 simulates human behavior); pp. 12–14, Appendix A."
+   },
+   {
+    "field": "eligibility.context_class; eligibility.reason",
+    "old": "{\"context_class\": \"none\", \"reason\": \"Study 1 states counterbalancing of concept-condition pairing and task order but does not state whether sequence allocation was random; criterion 1 is therefore unclear for assignment (p. 5, §3.3). Only 36 people were analyzed, below the 50-person threshold (p. 5, §3.4); the same people completed both conditions and must not be counted twice. Feature counts and word-type counts are scored on produced output (pp. 5–6, §3.4). Independently, the human assistance is outside the generative-AI scope: EXP3 selects vocabulary-based hints using embeddings and word frequencies, while GPT-4 only replaces human respondents in the model-only study (pp. 3–4, §§3.1–3.2; pp. 7–8, §§4–4.1; pp. 12–14, Appendix A). The 60 simulations do not add people. The recorded outcomes are marked question=none because no human generative-AI-assistance contrast is tested; within-person word variety is not across-person diversity. No applicable generative-AI context category is established.\"}",
+    "new": "{\"context_class\": \"ai_vs_human\", \"reason\": \"Criterion 1 is not met because the human assistance in Study 1 was outside the generative-AI scope: EXP3 selected vocabulary-sampling and fastText-neighbor hints (pp. 3–4, §§3.1–3.2; pp. 12–14, Appendix A). Concept-condition pairing and task order were counterbalanced, but random allocation was not stated; Study 1 assignment.randomized remains not_stated (p. 5, §3.3). Only 36 people were analyzed, below the codebook’s 50-person threshold; the same people completed both conditions and must not be counted twice (p. 5, §§3.3–3.4). Feature counts and within-participant word-type counts were scored on produced output, satisfying criterion 3 (pp. 5–6, §3.4). GPT-4 served as a simulated respondent in Study 2; the 60 model runs, with 15 per condition-by-concept cell, are output observations and do not add people (pp. 7–8, §§4–4.1). The paper qualifies as ai_vs_human context because Study 2 explicitly compares GPT-4 feature counts with the same Study 1 human sample, including unassisted human output: GPT-4 hinted median 31 versus human 34, and GPT-4 unhinted median 25 versus human 27 as printed in the comparison paragraph (p. 8, §4.2). The original human results instead print 26.5 for the unhinted median (p. 5, §3.4); both source values are preserved. The within-GPT-4 hinted-versus-unhinted contrast remains model_only; the human benchmark is not an additional sample or a randomized generative-AI assistance study. The recorded outcomes remain question=none because they do not test human generative-AI assistance, and within-participant word variety is not across-person diversity.\"}",
+    "quote": "Across the two concepts, a median of 31 features were produced in the hinted condition (compare to 34 for human) versus 25 in the unhinted condition (compare to 27 for human).",
+    "locator": "PDF p. 8, §4.2, “Does GPT-4 show human-like behavior with and without hints?”; p. 9, §4.2 (further human/GPT-4 comparisons); p. 5, §3.4 (original human unhinted median 26.5)."
+   },
+   {
+    "field": "studies[0].participants.exclusions",
+    "old": "",
+    "new": "Of 37 completers, one participant was excluded for producing a feature count more than 3.5 standard deviations above the sample mean, including many highly arbitrary features; 36 people remained for analysis (p. 4, §3.3 Participants; p. 5, §3.4 opening paragraph).",
+    "quote": "One participant produced a very large number of features, more than 3.5 standard deviations above the sample mean, including a large number of highly arbitrary features",
+    "locator": "PDF p. 4, §3.3 Participants (37 completers); p. 5, §3.4 opening paragraph (one exclusion and 36 analyzed)."
+   },
+   {
+    "field": "studies[1].outcomes[0].n_units",
+    "old": "null",
+    "new": "60",
+    "quote": "The GPT-4 experiment was run 60 times, simulating 15 participants in each cell of the condition (hinted/unhinted) by concept (penguin/journalist) design.",
+    "locator": "PDF p. 8, §4.1 Methods, paragraph below Table 2 (60 model runs, 15 per condition-by-concept cell; between-subjects regression). Unit remains output; Study 2 human participant counts remain null."
+   },
+   {
+    "field": "company_involvement",
+    "old": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+    "new": "{\"any\": true, \"description\": \"The funding acknowledgment states that Intuit supported the project in part. It does not specify the amount of support or a role for Intuit in study design, analysis, or publication.\", \"locator\": \"p. 10, funding acknowledgment at the end of §5, immediately before References.\"}",
+    "quote": "This project is supported in part by NSF grants 1545481, 1704117, 1836978, 2023239, 2041428, 2202457, ARO MURI W911NF2110317, AF CoE FA9550-18-1-0166, and Intuit.",
+    "locator": "PDF p. 10, funding acknowledgment at the end of §5, immediately before References."
+   }
+  ],
+  "rejected": []
+ }
+}

@@ -1,0 +1,2097 @@
+{
+ "cid": "c570",
+ "extractor": "A",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Su et al (2026) - Who Thinks First.pdf",
+  "version": "arXiv:2610.01518v1 [cs.HC], 1 Oct 2026; manuscript dated 2026-09-11 on PDF p. 1.",
+  "supplement_used": "Appendices A-E in the same PDF, pp. 26-31: demographics, task-duration distributions, lexical-frequency plots, assistant system prompts, and a sample conversation."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Argumentative writing experiment: randomized first phase with a separately recruited nonrandom second phase",
+   "design_class": "online_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": null,
+   "cluster_se_treatment": null,
+   "n_randomized": null,
+   "n_analyzed": 398,
+   "counts_source": {
+    "locator": "PDF p. 6, section 3.2; PDF p. 26, Table 3 column headings",
+    "quote": "445 respondents who completed the session, 398 passed two embedded attention checks and were included in the final analysis ... Engage-to-Unlock Standard Chatbot Human-Only Time-Matched Unlock Total (107) (98) (99) (94) (398)"
+   },
+   "arms": [
+    {
+     "name": "Human-Only",
+     "description": "Randomized first-phase arm: writing without an AI assistant, using the common source readings.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 99
+    },
+    {
+     "name": "Standard Chatbot",
+     "description": "Randomized first-phase arm: Tell-me generative writing assistance available throughout.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 98
+    },
+    {
+     "name": "Engage-to-Unlock",
+     "description": "Randomized first-phase arm: Teach-me process guidance first; Tell-me became available after the draft expressed a position and a distinct supporting argumentative development. Participants explicitly selected Tell-me after unlocking.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 107
+    },
+    {
+     "name": "Time-Matched Unlock",
+     "description": "Nonrandom second-phase cohort, retained here to explain the printed overall study count. Teach-me first, with Tell-me scheduled from an earlier Engage-to-Unlock writer. All comparisons involving this arm are excluded from estimates.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 94
+    }
+   ],
+   "population": "online_panel",
+   "country": "Canada; India; South Africa; United Kingdom; United States",
+   "task_type": "creative_writing",
+   "task": "Write an argumentative essay about the four-day workweek using shared supportive and critical source summaries; the task qualifies through across-writer semantic dispersion.",
+   "ai_role": "other",
+   "ai_tool": {
+    "name": "gemini-3.1-pro-preview",
+    "year": null,
+    "locator": "PDF p. 5, section 3.1; PDF p. 26, Appendix D. Both modes use the same model; the model release year is not stated."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": "No preregistration is identified in the article or included appendices.",
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_semantic_dispersion_standard_chatbot_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Within-condition semantic dispersion of final essays (D_c)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Complete final essays, after whitespace normalization, embedded using Gemini Embedding 2 with the SEMANTIC_SIMILARITY task type and 3,072 dimensions. D_c is the mean squared Euclidean distance to the condition centroid. Within-condition 95% percentile bootstrap intervals use 5,000 resamples.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Standard Chatbot",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 98,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 0.188,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.179,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": 0.178,
+    "ci_upper": 0.194,
+    "ci_level": 95,
+    "ci_of": "treatment_mean",
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "unclear",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "ci_lower",
+      "ci_upper",
+      "n_treatment",
+      "n_control",
+      "notes"
+     ],
+     "locator": "PDF p. 13, Table 1, named condition rows",
+     "quote": "Standard Chatbot 98 0.188 [0.178, 0.194] -0.050 (-5.0%) | Human-Only 99 0.179 [0.167, 0.188] 0.000 (baseline)"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 13, Table 1, dispersion-column heading",
+     "quote": "Mean Semantic Dispersion (𝐷𝑐) [95% Bootstrap CI]"
+    },
+    {
+     "fields": [
+      "measure_detail"
+     ],
+     "locator": "PDF p. 9, section 3.5.3, Semantic Content and Dispersion",
+     "quote": "each complete final essay was embedded as a 3,072-dimensional vector using Gemini Embedding 2 with the SEMANTIC_SIMILARITY task type. ... We report 95% percentile bootstrap confidence intervals from 5,000 resamples"
+    }
+   ],
+   "notes": "The generic CI fields contain only the treatment-arm interval. The control-arm bootstrap interval is [0.167, 0.188]. Printed HI_c relative to Human-Only: treatment -0.050 (-5.0%); control 0.000 (baseline). HI_c is a transformation of dispersion, not a separate outcome or a between-AI-arm effect; higher HI_c means more similarity, opposite to D_c. The paper explicitly treats these summaries as descriptive and prints no difference, difference SE, contrast CI, or between-condition test. The bootstrap resampling unit and procedure are not specified sufficiently to establish participant-level contrast uncertainty. Each condition is an essay set; no pair-specific total number of people or sets is printed."
+  },
+  {
+   "slug": "s1_semantic_dispersion_engage_to_unlock_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Within-condition semantic dispersion of final essays (D_c)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Complete final essays, after whitespace normalization, embedded using Gemini Embedding 2 with the SEMANTIC_SIMILARITY task type and 3,072 dimensions. D_c is the mean squared Euclidean distance to the condition centroid. Within-condition 95% percentile bootstrap intervals use 5,000 resamples.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 0.187,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.179,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": 0.178,
+    "ci_upper": 0.193,
+    "ci_level": 95,
+    "ci_of": "treatment_mean",
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "unclear",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "ci_lower",
+      "ci_upper",
+      "n_treatment",
+      "n_control",
+      "notes"
+     ],
+     "locator": "PDF p. 13, Table 1, named condition rows",
+     "quote": "Engage-to-Unlock 107 0.187 [0.178, 0.193] -0.045 (-4.5%) | Human-Only 99 0.179 [0.167, 0.188] 0.000 (baseline)"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 13, Table 1, dispersion-column heading",
+     "quote": "Mean Semantic Dispersion (𝐷𝑐) [95% Bootstrap CI]"
+    },
+    {
+     "fields": [
+      "measure_detail"
+     ],
+     "locator": "PDF p. 9, section 3.5.3, Semantic Content and Dispersion",
+     "quote": "each complete final essay was embedded as a 3,072-dimensional vector using Gemini Embedding 2 with the SEMANTIC_SIMILARITY task type. ... We report 95% percentile bootstrap confidence intervals from 5,000 resamples"
+    }
+   ],
+   "notes": "The generic CI fields contain only the treatment-arm interval. The control-arm bootstrap interval is [0.167, 0.188]. Printed HI_c relative to Human-Only: treatment -0.045 (-4.5%); control 0.000 (baseline). HI_c is a transformation of dispersion, not a separate outcome or a between-AI-arm effect; higher HI_c means more similarity, opposite to D_c. The paper explicitly treats these summaries as descriptive and prints no difference, difference SE, contrast CI, or between-condition test. The bootstrap resampling unit and procedure are not specified sufficiently to establish participant-level contrast uncertainty. Each condition is an essay set; no pair-specific total number of people or sets is printed."
+  },
+  {
+   "slug": "s1_semantic_dispersion_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Within-condition semantic dispersion of final essays (D_c)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Complete final essays, after whitespace normalization, embedded using Gemini Embedding 2 with the SEMANTIC_SIMILARITY task type and 3,072 dimensions. D_c is the mean squared Euclidean distance to the condition centroid. Within-condition 95% percentile bootstrap intervals use 5,000 resamples.",
+   "unit": "set",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 0.187,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.188,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": 0.178,
+    "ci_upper": 0.193,
+    "ci_level": 95,
+    "ci_of": "treatment_mean",
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "unclear",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "ci_lower",
+      "ci_upper",
+      "n_treatment",
+      "n_control",
+      "notes"
+     ],
+     "locator": "PDF p. 13, Table 1, named condition rows",
+     "quote": "Engage-to-Unlock 107 0.187 [0.178, 0.193] -0.045 (-4.5%) | Standard Chatbot 98 0.188 [0.178, 0.194] -0.050 (-5.0%)"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 13, Table 1, dispersion-column heading",
+     "quote": "Mean Semantic Dispersion (𝐷𝑐) [95% Bootstrap CI]"
+    },
+    {
+     "fields": [
+      "measure_detail"
+     ],
+     "locator": "PDF p. 9, section 3.5.3, Semantic Content and Dispersion",
+     "quote": "each complete final essay was embedded as a 3,072-dimensional vector using Gemini Embedding 2 with the SEMANTIC_SIMILARITY task type. ... We report 95% percentile bootstrap confidence intervals from 5,000 resamples"
+    }
+   ],
+   "notes": "The generic CI fields contain only the treatment-arm interval. The control-arm bootstrap interval is [0.178, 0.194]. Printed HI_c relative to Human-Only: treatment -0.045 (-4.5%); control -0.050 (-5.0%). HI_c is a transformation of dispersion, not a separate outcome or a between-AI-arm effect; higher HI_c means more similarity, opposite to D_c. The paper explicitly treats these summaries as descriptive and prints no difference, difference SE, contrast CI, or between-condition test. The bootstrap resampling unit and procedure are not specified sufficiently to establish participant-level contrast uncertainty. Each condition is an essay set; no pair-specific total number of people or sets is printed."
+  },
+  {
+   "slug": "s1_word_count_standard_chatbot_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Final-essay word count",
+   "question": "with_ai",
+   "construct": "elaboration",
+   "measure": "length",
+   "measure_detail": "Total words in the final submitted essay; one essay per participant. The prose gives more precise means and SDs than the rounded table.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Standard Chatbot",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 98,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 308.32,
+    "treatment_sd": 138.92,
+    "treatment_se": null,
+    "control_mean": 277.11,
+    "control_sd": 102.7,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 14, section 4.2.3, Essay Length",
+     "quote": "308.32 words in the Standard Chatbot (𝑀𝑑𝑛= 253.5, 𝑆𝐷= 138.92)"
+    },
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 14, section 4.2.3, Essay Length",
+     "quote": "participants wrote an average of 277.11 words in the Human-Only (𝑀𝑑𝑛= 248.0, 𝑆𝐷= 102.70)"
+    }
+   ],
+   "notes": "Higher values mean a longer essay, an elaboration proxy; the paper does not establish that additional words represent greater creative quality. The current codebook supplies the length measure code, superseding the screening form. Participant-level arm SDs and analyzed counts are printed; no pair-specific test statistic, difference, SE, or CI is printed. The word-count ANOVA and its effect sizes summarize all human conditions, including the nonrandom cohort, and are not assigned to this contrast. The arm comparison here uses only the printed full-sample summaries."
+  },
+  {
+   "slug": "s1_word_count_engage_to_unlock_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Final-essay word count",
+   "question": "with_ai",
+   "construct": "elaboration",
+   "measure": "length",
+   "measure_detail": "Total words in the final submitted essay; one essay per participant. The prose gives more precise means and SDs than the rounded table.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 299.21,
+    "treatment_sd": 101.27,
+    "treatment_se": null,
+    "control_mean": 277.11,
+    "control_sd": 102.7,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 14, section 4.2.3, Essay Length",
+     "quote": "299.21 words in the Engage-to-Unlock (𝑀𝑑𝑛= 267.0, 𝑆𝐷= 101.27)"
+    },
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 14, section 4.2.3, Essay Length",
+     "quote": "participants wrote an average of 277.11 words in the Human-Only (𝑀𝑑𝑛= 248.0, 𝑆𝐷= 102.70)"
+    }
+   ],
+   "notes": "Higher values mean a longer essay, an elaboration proxy; the paper does not establish that additional words represent greater creative quality. The current codebook supplies the length measure code, superseding the screening form. Participant-level arm SDs and analyzed counts are printed; no pair-specific test statistic, difference, SE, or CI is printed. The word-count ANOVA and its effect sizes summarize all human conditions, including the nonrandom cohort, and are not assigned to this contrast. The arm comparison here uses only the printed full-sample summaries."
+  },
+  {
+   "slug": "s1_word_count_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Final-essay word count",
+   "question": "with_ai",
+   "construct": "elaboration",
+   "measure": "length",
+   "measure_detail": "Total words in the final submitted essay; one essay per participant. The prose gives more precise means and SDs than the rounded table.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 299.21,
+    "treatment_sd": 101.27,
+    "treatment_se": null,
+    "control_mean": 308.32,
+    "control_sd": 138.92,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 14, section 4.2.3, Essay Length",
+     "quote": "299.21 words in the Engage-to-Unlock (𝑀𝑑𝑛= 267.0, 𝑆𝐷= 101.27)"
+    },
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 14, section 4.2.3, Essay Length",
+     "quote": "308.32 words in the Standard Chatbot (𝑀𝑑𝑛= 253.5, 𝑆𝐷= 138.92)"
+    }
+   ],
+   "notes": "Higher values mean a longer essay, an elaboration proxy; the paper does not establish that additional words represent greater creative quality. The current codebook supplies the length measure code, superseding the screening form. Participant-level arm SDs and analyzed counts are printed; no pair-specific test statistic, difference, SE, or CI is printed. The word-count ANOVA and its effect sizes summarize all human conditions, including the nonrandom cohort, and are not assigned to this contrast. The arm comparison here uses only the printed full-sample summaries."
+  },
+  {
+   "slug": "s1_discourse_elements_standard_chatbot_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Total number of discourse elements",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "LLM discourse classifier applied to each final essay. Categories are Lead, Position, Claim, Counterclaim, Rebuttal, Evidence, and Concluding Statement. The classifier model is not separately identified; these are rhetorical structure measures, not rated creativity or idea counts.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Standard Chatbot",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 98,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 9.71,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 8.3,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 15, section 4.2.4, discourse-element means",
+     "quote": "Mean counts were 8.30 for Human-Only, 9.71 for Standard Chatbot, 9.66 for Engage-to-Unlock, and 9.16 for Time-Matched Unlock."
+    }
+   ],
+   "notes": "Higher values mean more classified argumentative elements, not necessarily more creative ideas. No arm SDs or numerical pairwise uncertainty are printed. The omnibus ANOVA is not a test of this arm pair."
+  },
+  {
+   "slug": "s1_discourse_elements_engage_to_unlock_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Total number of discourse elements",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "LLM discourse classifier applied to each final essay. Categories are Lead, Position, Claim, Counterclaim, Rebuttal, Evidence, and Concluding Statement. The classifier model is not separately identified; these are rhetorical structure measures, not rated creativity or idea counts.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 9.66,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 8.3,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 15, section 4.2.4, discourse-element means",
+     "quote": "Mean counts were 8.30 for Human-Only, 9.71 for Standard Chatbot, 9.66 for Engage-to-Unlock, and 9.16 for Time-Matched Unlock."
+    }
+   ],
+   "notes": "Higher values mean more classified argumentative elements, not necessarily more creative ideas. No arm SDs or numerical pairwise uncertainty are printed. The omnibus ANOVA is not a test of this arm pair."
+  },
+  {
+   "slug": "s1_discourse_elements_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Total number of discourse elements",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "LLM discourse classifier applied to each final essay. Categories are Lead, Position, Claim, Counterclaim, Rebuttal, Evidence, and Concluding Statement. The classifier model is not separately identified; these are rhetorical structure measures, not rated creativity or idea counts.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 9.66,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 9.71,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 15, section 4.2.4, discourse-element means",
+     "quote": "Mean counts were 8.30 for Human-Only, 9.71 for Standard Chatbot, 9.66 for Engage-to-Unlock, and 9.16 for Time-Matched Unlock."
+    },
+    {
+     "fields": [
+      "notes"
+     ],
+     "locator": "PDF p. 15, section 4.2.4, remaining discourse outcomes",
+     "quote": "For the remaining outcomes, contrasts between Engage-to-Unlock and the two control conditions were not statistically significant."
+    }
+   ],
+   "notes": "Higher values mean more classified argumentative elements, not necessarily more creative ideas. No arm SDs or numerical pairwise uncertainty are printed. The omnibus ANOVA is not a test of this arm pair. The planned contrast is covered by the statement that remaining discourse outcomes were not statistically significant; no exact pairwise p-value is printed."
+  },
+  {
+   "slug": "s1_discourse_category_count_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Within-essay discourse category count",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "Number of distinct discourse categories present in the final essay, range 0-7. LLM discourse classifier applied to each final essay. Categories are Lead, Position, Claim, Counterclaim, Rebuttal, Evidence, and Concluding Statement. The classifier model is not separately identified; these are rhetorical structure measures, not rated creativity or idea counts.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "measure_detail"
+     ],
+     "locator": "PDF p. 8, section 3.5.3, Essay Length and Argumentative Structure",
+     "quote": "category diversity (distinct categories present, 0–7), and element density per 100 words."
+    },
+    {
+     "fields": [
+      "notes"
+     ],
+     "locator": "PDF p. 15, section 4.2.4, remaining discourse outcomes",
+     "quote": "For the remaining outcomes, contrasts between Engage-to-Unlock and the two control conditions were not statistically significant."
+    }
+   ],
+   "notes": "Higher values mean more rhetorical categories within an essay; no favorable creativity direction is established. The planned contrast is reported only through the statement that remaining discourse outcomes were not statistically significant. No means, SDs, difference, SE, confidence interval, test statistic, or exact pairwise p-value is printed in the text or appendices."
+  },
+  {
+   "slug": "s1_discourse_element_density_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O5",
+   "outcome": "Discourse element density",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "Number of classified discourse elements per 100 essay words. LLM discourse classifier applied to each final essay. Categories are Lead, Position, Claim, Counterclaim, Rebuttal, Evidence, and Concluding Statement. The classifier model is not separately identified; these are rhetorical structure measures, not rated creativity or idea counts.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "measure_detail"
+     ],
+     "locator": "PDF p. 8, section 3.5.3, Essay Length and Argumentative Structure",
+     "quote": "category diversity (distinct categories present, 0–7), and element density per 100 words."
+    },
+    {
+     "fields": [
+      "notes"
+     ],
+     "locator": "PDF p. 15, section 4.2.4, remaining discourse outcomes",
+     "quote": "For the remaining outcomes, contrasts between Engage-to-Unlock and the two control conditions were not statistically significant."
+    }
+   ],
+   "notes": "Higher values mean more rhetorical elements per unit of essay length; no favorable creativity direction is established. The planned contrast is reported only through the statement that remaining discourse outcomes were not statistically significant. No means, SDs, difference, SE, confidence interval, test statistic, or exact pairwise p-value is printed in the text or appendices."
+  },
+  {
+   "slug": "s1_counterclaims_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O6",
+   "outcome": "Counterclaim count",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "LLM discourse classifier applied to each final essay. Categories are Lead, Position, Claim, Counterclaim, Rebuttal, Evidence, and Concluding Statement. The classifier model is not separately identified; these are rhetorical structure measures, not rated creativity or idea counts.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": 0.031,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 15, section 4.2.4, planned counterclaim contrast",
+     "quote": "For counterclaims, Engage- to-Unlock yielded significantly fewer counterclaims than Standard Chatbot (𝑝Holm = .031)"
+    }
+   ],
+   "notes": "Higher values mean more counterclaims, with no established creativity direction. Engage-to-Unlock had fewer counterclaims. The p-value is Holm-adjusted across the planned comparisons within this outcome; methods specify participant-level two-sided Welch tests. Arm means, SDs, difference, test statistic, degrees of freedom, SE, and CI are not printed."
+  },
+  {
+   "slug": "s1_semantic_location_pc1_standard_chatbot_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O7",
+   "outcome": "Semantic location: PC1 score",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Joint PCA of L2-normalized Gemini Embedding 2 essay embeddings, pooled across participant conditions and the separately generated AI-only corpus. Each observation is one final essay. This outcome measures a coordinate in semantic space, not semantic diversity or an embedding distance.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Standard Chatbot",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 98,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": -0.014,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": -0.122,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, Semantic Location",
+     "quote": "Standard Chatbot had the PC1 centroid (𝑀= −0.014)"
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, Semantic Location",
+     "quote": "Human-Only (𝑀= −0.122)"
+    }
+   ],
+   "notes": "Higher coordinates have no inherently favorable creativity interpretation. No arm SDs, difference, SE, or contrast CI are printed. The embedding basis includes the AI-only reference, but the recorded arm levels concern randomized human participants. The five-corpus omnibus test is not entered as a test of this contrast. No available measure code specifically describes PCA coordinates. The grouped screening outcome is separated by component for extraction. This is a descriptive comparison of the printed arm centroids; no pairwise test is reported."
+  },
+  {
+   "slug": "s1_semantic_location_pc1_engage_to_unlock_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O7",
+   "outcome": "Semantic location: PC1 score",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Joint PCA of L2-normalized Gemini Embedding 2 essay embeddings, pooled across participant conditions and the separately generated AI-only corpus. Each observation is one final essay. This outcome measures a coordinate in semantic space, not semantic diversity or an embedding distance.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": -0.09,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": -0.122,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, Semantic Location",
+     "quote": "Essays composed under Engage-to-Unlock (𝑀= −0.090)"
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, Semantic Location",
+     "quote": "Human-Only (𝑀= −0.122)"
+    }
+   ],
+   "notes": "Higher coordinates have no inherently favorable creativity interpretation. No arm SDs, difference, SE, or contrast CI are printed. The embedding basis includes the AI-only reference, but the recorded arm levels concern randomized human participants. The five-corpus omnibus test is not entered as a test of this contrast. No available measure code specifically describes PCA coordinates. The grouped screening outcome is separated by component for extraction. This is a descriptive comparison of the printed arm centroids; no pairwise test is reported."
+  },
+  {
+   "slug": "s1_semantic_location_pc1_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O7",
+   "outcome": "Semantic location: PC1 score",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Joint PCA of L2-normalized Gemini Embedding 2 essay embeddings, pooled across participant conditions and the separately generated AI-only corpus. Each observation is one final essay. This outcome measures a coordinate in semantic space, not semantic diversity or an embedding distance.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": -0.09,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": -0.014,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": "<.001",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, Semantic Location",
+     "quote": "Essays composed under Engage-to-Unlock (𝑀= −0.090)"
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, Semantic Location",
+     "quote": "Standard Chatbot had the PC1 centroid (𝑀= −0.014)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, planned PC1 contrast",
+     "quote": "showed that Engage-to-Unlock differed significantly from Standard Chatbot along PC1 (𝑝Holm < .001)"
+    }
+   ],
+   "notes": "Higher coordinates have no inherently favorable creativity interpretation. No arm SDs, difference, SE, or contrast CI are printed. The embedding basis includes the AI-only reference, but the recorded arm levels concern randomized human participants. The five-corpus omnibus test is not entered as a test of this contrast. No available measure code specifically describes PCA coordinates. The grouped screening outcome is separated by component for extraction. The p-value is Holm-adjusted within this component; methods specify a Welch comparison of essay scores, with one essay per participant."
+  },
+  {
+   "slug": "s1_semantic_location_pc2_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O7",
+   "outcome": "Semantic location: PC2 score",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Joint PCA of L2-normalized Gemini Embedding 2 essay embeddings, pooled across participant conditions and the separately generated AI-only corpus. Each observation is one final essay. This outcome measures a coordinate in semantic space, not semantic diversity or an embedding distance.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "notes"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, contrasts along remaining PCA components",
+     "quote": "Contrasts along the remaining components did not detect significant differences between Engage-to-Unlock and either comparison condition."
+    }
+   ],
+   "notes": "Higher coordinates have no inherently favorable creativity interpretation. The planned contrast is reported only as not statistically significant. No numerical arm centroids, SDs, difference, SE, interval, test statistic, or exact pairwise p-value are printed. The numerical omnibus result includes all corpora and is not entered as a contrast statistic. No coordinate values were read from the figure. The grouped screening outcome is separated by component for extraction."
+  },
+  {
+   "slug": "s1_semantic_location_pc3_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O7",
+   "outcome": "Semantic location: PC3 score",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Joint PCA of L2-normalized Gemini Embedding 2 essay embeddings, pooled across participant conditions and the separately generated AI-only corpus. Each observation is one final essay. This outcome measures a coordinate in semantic space, not semantic diversity or an embedding distance.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "notes"
+     ],
+     "locator": "PDF p. 14, section 4.2.1, contrasts along remaining PCA components",
+     "quote": "Contrasts along the remaining components did not detect significant differences between Engage-to-Unlock and either comparison condition."
+    }
+   ],
+   "notes": "Higher coordinates have no inherently favorable creativity interpretation. The planned contrast is reported only as not statistically significant. No numerical arm centroids, SDs, difference, SE, interval, test statistic, or exact pairwise p-value are printed. The numerical omnibus result includes all corpora and is not entered as a contrast statistic. No coordinate values were read from the figure. The grouped screening outcome is separated by component for extraction."
+  },
+  {
+   "slug": "s1_content_word_frequency_profile_standard_chatbot_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O8",
+   "outcome": "Normalized content-word frequency profiles",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Alphabetic tokens are lowercased, excluding single-character tokens and closed-class stopwords. The 85 most frequent Human-Only content words define the plotting order; each essay token count is normalized per 1,000 essay words. Figure bands show one SEM across essays.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Standard Chatbot",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 98,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "measure_detail"
+     ],
+     "locator": "PDF p. 28, Appendix C, Figure 7 caption",
+     "quote": "Mean normalized frequencies (occurrences per 1,000 words) of the 85 most frequent content words in Human-Only, ordered by descending Human-Only frequency. Points show condition means across essays and shaded bands indicate ±1 SEM."
+    }
+   ],
+   "notes": "Higher values mean more uses of a particular word; there is no common favorable creativity direction across the profile. This is a descriptive vocabulary profile, not cross-writer similarity or a tagged word-type aggregate. No matching measure code is available. Token means and SEMs appear only as plotted points and bands with no numeric table; no values were digitized. All numeric outcome fields remain null. Each essay belongs to one participant, so the displayed across-essay SEM is based on independent writers. The analyzed number of essays is not separately stated for the figure; the people counts are the overall analyzed arm counts."
+  },
+  {
+   "slug": "s1_content_word_frequency_profile_engage_to_unlock_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O8",
+   "outcome": "Normalized content-word frequency profiles",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Alphabetic tokens are lowercased, excluding single-character tokens and closed-class stopwords. The 85 most frequent Human-Only content words define the plotting order; each essay token count is normalized per 1,000 essay words. Figure bands show one SEM across essays.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "measure_detail"
+     ],
+     "locator": "PDF p. 28, Appendix C, Figure 7 caption",
+     "quote": "Mean normalized frequencies (occurrences per 1,000 words) of the 85 most frequent content words in Human-Only, ordered by descending Human-Only frequency. Points show condition means across essays and shaded bands indicate ±1 SEM."
+    }
+   ],
+   "notes": "Higher values mean more uses of a particular word; there is no common favorable creativity direction across the profile. This is a descriptive vocabulary profile, not cross-writer similarity or a tagged word-type aggregate. No matching measure code is available. Token means and SEMs appear only as plotted points and bands with no numeric table; no values were digitized. All numeric outcome fields remain null. Each essay belongs to one participant, so the displayed across-essay SEM is based on independent writers. The analyzed number of essays is not separately stated for the figure; the people counts are the overall analyzed arm counts."
+  },
+  {
+   "slug": "s1_source_text_coverage_standard_chatbot_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O9",
+   "outcome": "Final-essay coverage by verbatim source-document text",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percent of final-essay token positions covered by verbatim matches to the shared source readings; sequences must contain at least eight consecutive words and overlapping matches are merged. Values retain the printed percentage scale. One final essay per participant.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Standard Chatbot",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 98,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 2.94,
+    "treatment_sd": 4.93,
+    "treatment_se": null,
+    "control_mean": 4.88,
+    "control_sd": 10.43,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Coverage, treatment row",
+     "quote": "Standard Chatbot 308.3 ± 138.9 2.94% ± 4.93% 39.8% 8.2% 47.16% ± 43.84% 71.4% 40.8%"
+    },
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Coverage, control row",
+     "quote": "Human-Only 277.1 ± 102.7 4.88% ± 10.43% 46.5% 15.2% — — —"
+    }
+   ],
+   "notes": "Higher values mean greater verbatim reuse of shared readings, not demonstrated creative quality or similarity between different writers. These are descriptive arm means and participant-level SDs; no pairwise test, difference, SE, or CI is printed. Percentages are transcribed without conversion to proportions."
+  },
+  {
+   "slug": "s1_source_text_coverage_engage_to_unlock_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O9",
+   "outcome": "Final-essay coverage by verbatim source-document text",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percent of final-essay token positions covered by verbatim matches to the shared source readings; sequences must contain at least eight consecutive words and overlapping matches are merged. Values retain the printed percentage scale. One final essay per participant.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 4.46,
+    "treatment_sd": 8.01,
+    "treatment_se": null,
+    "control_mean": 4.88,
+    "control_sd": 10.43,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Coverage, treatment row",
+     "quote": "Engage-to-Unlock 299.2 ± 101.3 4.46% ± 8.01% 47.7% 12.1% 27.32% ± 39.81% 46.7% 29.9%"
+    },
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Coverage, control row",
+     "quote": "Human-Only 277.1 ± 102.7 4.88% ± 10.43% 46.5% 15.2% — — —"
+    }
+   ],
+   "notes": "Higher values mean greater verbatim reuse of shared readings, not demonstrated creative quality or similarity between different writers. These are descriptive arm means and participant-level SDs; no pairwise test, difference, SE, or CI is printed. Percentages are transcribed without conversion to proportions."
+  },
+  {
+   "slug": "s1_source_text_coverage_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O9",
+   "outcome": "Final-essay coverage by verbatim source-document text",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percent of final-essay token positions covered by verbatim matches to the shared source readings; sequences must contain at least eight consecutive words and overlapping matches are merged. Values retain the printed percentage scale. One final essay per participant.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 4.46,
+    "treatment_sd": 8.01,
+    "treatment_se": null,
+    "control_mean": 2.94,
+    "control_sd": 4.93,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Coverage, treatment row",
+     "quote": "Engage-to-Unlock 299.2 ± 101.3 4.46% ± 8.01% 47.7% 12.1% 27.32% ± 39.81% 46.7% 29.9%"
+    },
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Coverage, control row",
+     "quote": "Standard Chatbot 308.3 ± 138.9 2.94% ± 4.93% 39.8% 8.2% 47.16% ± 43.84% 71.4% 40.8%"
+    }
+   ],
+   "notes": "Higher values mean greater verbatim reuse of shared readings, not demonstrated creative quality or similarity between different writers. These are descriptive arm means and participant-level SDs; no pairwise test, difference, SE, or CI is printed. Percentages are transcribed without conversion to proportions."
+  },
+  {
+   "slug": "s1_source_text_match_prevalence_standard_chatbot_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O10",
+   "outcome": "Prevalence of final essays with a verbatim source-document match",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percentage of final essays containing at least one verbatim source-reading sequence match of eight or more consecutive words. One final essay per participant; values retain the printed percentage scale.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Standard Chatbot",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 98,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 39.8,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 46.5,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Match, treatment row",
+     "quote": "Standard Chatbot 308.3 ± 138.9 2.94% ± 4.93% 39.8% 8.2% 47.16% ± 43.84% 71.4% 40.8%"
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Match, control row",
+     "quote": "Human-Only 277.1 ± 102.7 4.88% ± 10.43% 46.5% 15.2% — — —"
+    }
+   ],
+   "notes": "The mean fields hold the printed percentage of essays with any match. Higher means more essays reuse source text; no favorable creativity interpretation is established. This is not similarity between writers. No SD, SE, interval, event count, or pairwise test is printed, and none was derived from the rounded percentages. The contrast-specific essay total is not printed."
+  },
+  {
+   "slug": "s1_source_text_match_prevalence_engage_to_unlock_vs_human_only",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O10",
+   "outcome": "Prevalence of final essays with a verbatim source-document match",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percentage of final essays containing at least one verbatim source-reading sequence match of eight or more consecutive words. One final essay per participant; values retain the printed percentage scale.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Human-Only",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 99,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 47.7,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 46.5,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Match, treatment row",
+     "quote": "Engage-to-Unlock 299.2 ± 101.3 4.46% ± 8.01% 47.7% 12.1% 27.32% ± 39.81% 46.7% 29.9%"
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Match, control row",
+     "quote": "Human-Only 277.1 ± 102.7 4.88% ± 10.43% 46.5% 15.2% — — —"
+    }
+   ],
+   "notes": "The mean fields hold the printed percentage of essays with any match. Higher means more essays reuse source text; no favorable creativity interpretation is established. This is not similarity between writers. No SD, SE, interval, event count, or pairwise test is printed, and none was derived from the rounded percentages. The contrast-specific essay total is not printed."
+  },
+  {
+   "slug": "s1_source_text_match_prevalence_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O10",
+   "outcome": "Prevalence of final essays with a verbatim source-document match",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percentage of final essays containing at least one verbatim source-reading sequence match of eight or more consecutive words. One final essay per participant; values retain the printed percentage scale.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 47.7,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 39.8,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Match, treatment row",
+     "quote": "Engage-to-Unlock 299.2 ± 101.3 4.46% ± 8.01% 47.7% 12.1% 27.32% ± 39.81% 46.7% 29.9%"
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, Source Document Usage / Match, control row",
+     "quote": "Standard Chatbot 308.3 ± 138.9 2.94% ± 4.93% 39.8% 8.2% 47.16% ± 43.84% 71.4% 40.8%"
+    }
+   ],
+   "notes": "The mean fields hold the printed percentage of essays with any match. Higher means more essays reuse source text; no favorable creativity interpretation is established. This is not similarity between writers. No SD, SE, interval, event count, or pairwise test is printed, and none was derived from the rounded percentages. The contrast-specific essay total is not printed."
+  },
+  {
+   "slug": "s1_ai_text_coverage_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O11",
+   "outcome": "Final-essay coverage by verbatim AI-response text",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percent of final-essay words covered by verbatim matches to the writer's chatbot responses, with a minimum sequence of eight consecutive words. The entire analyzed assisted arm is retained, including writers who never prompted generation mode. One essay per participant.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 27.32,
+    "treatment_sd": 39.81,
+    "treatment_se": null,
+    "control_mean": 47.16,
+    "control_sd": 43.84,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": 0.002,
+    "paper_effect": {
+     "type": "d",
+     "value": -0.47,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, AI Response Usage / Coverage, Engage-to-Unlock row",
+     "quote": "Engage-to-Unlock 299.2 ± 101.3 4.46% ± 8.01% 47.7% 12.1% 27.32% ± 39.81% 46.7% 29.9%"
+    },
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 15, Table 2, AI Response Usage / Coverage, Standard Chatbot row",
+     "quote": "Standard Chatbot 308.3 ± 138.9 2.94% ± 4.93% 39.8% 8.2% 47.16% ± 43.84% 71.4% 40.8%"
+    },
+    {
+     "fields": [
+      "p_value",
+      "paper_effect.value"
+     ],
+     "locator": "PDF p. 13, section 4.1.2, planned AI-text-coverage contrast",
+     "quote": "Planned Welch contrasts with Holm correction confirmed significantly lower AI text coverage under Engage-to-Unlock (27.32%) than Standard Chatbot (47.16%; 𝑝Holm = .002, 𝑑= −0.47)"
+    }
+   ],
+   "notes": "Higher values mean greater incorporation of AI text, not demonstrated creative quality or cross-writer similarity. Percentages are retained without rescaling. The printed p-value is Holm-adjusted within this outcome; the negative d favors lower AI-text coverage under Engage-to-Unlock. The standardizer for d is not stated. No numerical mean difference, contrast SE, CI, t statistic, or degrees of freedom are printed."
+  },
+  {
+   "slug": "s1_ai_text_match_prevalence_engage_to_unlock_vs_standard_chatbot",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O12",
+   "outcome": "Prevalence of final essays with a verbatim AI-response match",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "Percentage of final essays with at least one verbatim match of eight or more consecutive words to the writer's chatbot responses. All analyzed writers in each assisted arm are included; one final essay per participant.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Engage-to-Unlock",
+   "control_arm": "Standard Chatbot",
+   "within_person": null,
+   "n_treatment": 107,
+   "n_control": 98,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": 46.7,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 71.4,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 6, section 3.2, final analyzed arm counts",
+     "quote": "The final analysis included Human-Only (𝑛= 99), Standard Chatbot (𝑛= 98), Engage-to-Unlock (𝑛= 107), and Time-Matched Unlock (𝑛= 94)."
+    },
+    {
+     "fields": [
+      "treatment_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, AI Response Usage / Match, Engage-to-Unlock row",
+     "quote": "Engage-to-Unlock 299.2 ± 101.3 4.46% ± 8.01% 47.7% 12.1% 27.32% ± 39.81% 46.7% 29.9%"
+    },
+    {
+     "fields": [
+      "control_mean"
+     ],
+     "locator": "PDF p. 15, Table 2, AI Response Usage / Match, Standard Chatbot row",
+     "quote": "Standard Chatbot 308.3 ± 138.9 2.94% ± 4.93% 39.8% 8.2% 47.16% ± 43.84% 71.4% 40.8%"
+    }
+   ],
+   "notes": "The mean fields hold the printed percentage of essays with any AI-response match. Higher values mean more essays incorporate verbatim AI text, with no favorable creativity direction established. No SD, SE, CI, event count, or pairwise test is printed. Human-Only has no corresponding AI-response score; it is not assigned a zero. No event counts or pair totals were computed from the percentages or arm counts."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "All contrasts involving Time-Matched Unlock, including the output outcomes mapped as S1-O1 through S1-O12",
+   "reason": "The separately recruited second-phase cohort was not randomly assigned against the other arms. Its comparisons do not meet the randomized-assistance rule. PDF p. 6, sections 3.1-3.2; PDF p. 20, section 5.3."
+  },
+  {
+   "what": "AI-only reference corpus and comparisons involving AI-only authorship",
+   "reason": "Model-generated essays without human creative work; not an experimental human-assistance arm. PDF p. 8, section 3.5.3; PDF pp. 12-15, Figure 2 and Tables 1-2."
+  },
+  {
+   "what": "Internal pilot sessions and pilot interviews",
+   "reason": "Usability and procedure pilots were excluded from the main analysis, with no eligible randomized creative-output contrast reported. PDF p. 7, section 3.4."
+  },
+  {
+   "what": "PERSUADE discourse-classifier validation",
+   "reason": "Validation on an existing annotated essay corpus evaluates a scoring tool, not randomized AI assistance to writers. PDF p. 6, section 3.1."
+  },
+  {
+   "what": "Passage Evaluation Accuracy",
+   "reason": "Judgments of supplied passages, not scored creative output produced by participants or a convergent creativity test. This does not qualify as after_ai creative production. PDF p. 7, section 3.3; PDF p. 10, section 3.5.5."
+  },
+  {
+   "what": "Error Classification Accuracy conditional on flaw detection",
+   "reason": "Classification of errors in supplied passages rather than participant-produced creative output; also conditions on post-assignment detection. PDF p. 10, section 3.5.5; PDF p. 16, section 4.3.1."
+  },
+  {
+   "what": "Complete Diagnosis Accuracy",
+   "reason": "Accuracy in evaluating supplied flawed passages, not creative production. PDF p. 10, section 3.5.5; PDF p. 15, section 4.3.1."
+  },
+  {
+   "what": "Passage evaluation efficiency",
+   "reason": "Accuracy per evaluation time on supplied passages, not a creativity or diversity score on participant-produced work. PDF p. 16, section 4.3.2; PDF p. 17, Figure 4."
+  },
+  {
+   "what": "Conditional error-classification efficiency",
+   "reason": "Conditional judgment accuracy per evaluation time, not a score on creative production. PDF p. 16, section 4.3.2; PDF p. 17, Figure 4."
+  },
+  {
+   "what": "Complete diagnosis efficiency",
+   "reason": "Diagnosis accuracy per evaluation time, not creative production. PDF p. 16, section 4.3.2; PDF p. 17, Figure 4."
+  },
+  {
+   "what": "Writing-task duration",
+   "reason": "Time investment is a process outcome, not a score on the final creative output. PDF p. 11, section 3.5.6; PDF p. 17, section 4.4; PDF p. 27, Figure 6."
+  },
+  {
+   "what": "Passage-evaluation duration",
+   "reason": "Time spent evaluating supplied passages, not scored creative production. PDF p. 11, section 3.5.6; PDF p. 16, section 4.3.2."
+  },
+  {
+   "what": "Combined active task duration",
+   "reason": "Process time across writing and evaluation, not scored creative output. PDF p. 11, section 3.5.6; PDF pp. 16-17, section 4.4."
+  },
+  {
+   "what": "Change in duration across tasks and condition-by-task duration contrasts",
+   "reason": "Effort-allocation process measures, not creativity or diversity scores on produced work. PDF p. 11, section 3.5.6; PDF pp. 17-18, section 4.4 and Figure 5."
+  },
+  {
+   "what": "Number of prompts submitted",
+   "reason": "Interaction frequency is not a creativity score on participants' final essays. PDF p. 11, section 3.5.6; PDF p. 12, section 4.1.2."
+  },
+  {
+   "what": "Unlocking status, prompting by mode, mode switching, and revision telemetry",
+   "reason": "Intervention delivery and interaction behavior, including selected subsets of writers; not full-sample scores on final creative output. PDF pp. 11-13, sections 3.5.6 and 4.1."
+  },
+  {
+   "what": "Explicit paste from source documents",
+   "reason": "Logged drafting action may not remain in the final essay; this is not the separately retained final-text coverage or match outcome. PDF p. 9, section 3.5.3; PDF p. 15, Table 2."
+  },
+  {
+   "what": "Explicit paste from AI responses",
+   "reason": "Logged drafting action independent of retention in the submitted essay; not a final-output score. PDF p. 9, section 3.5.3; PDF p. 15, Table 2."
+  },
+  {
+   "what": "Process Control",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "Outcome Satisfaction",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "Document Ownership",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "Mental demand",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "Temporal demand",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "Required effort",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "Frustration",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "Workflow disruption",
+   "reason": "Self-reported experience or workload, not a creativity or diversity score on produced output. PDF p. 10, section 3.5.4; PDF p. 18, section 4.4."
+  },
+  {
+   "what": "t-SNE visualization and AI-only nearest-neighbor condition purity",
+   "reason": "The paper designates t-SNE as visualization only. The numerical neighborhood-purity summary concerns the AI-only corpus and is not a randomized human-assistance contrast. PDF p. 9, section 3.5.3; PDF p. 12, Figure 2."
+  },
+  {
+   "what": "Individual participant conversation and final-essay example",
+   "reason": "Illustrative case selected for the appendix, not a full-sample randomized contrast. PDF pp. 29-31, Appendix E."
+  },
+  {
+   "what": "Omnibus tests and omnibus effect sizes for writing length, discourse elements, and PCA components",
+   "reason": "These tests pool more than the two named arms and include the nonrandom cohort, or the AI-only reference. They cannot be assigned as statistics for a randomized arm pair. Printed pairwise results and arm summaries are retained separately. PDF pp. 12-15, Figure 2 and sections 4.2.1, 4.2.3, and 4.2.4."
+  }
+ ],
+ "open_items": [
+  "Assignment-stage counts, pre-exclusion counts by phase and arm, and arm-specific attention-check exclusions are unreported. The overall completer count is not a randomized count. PDF p. 6, section 3.2.",
+  "The printed overall analyzed count includes the nonrandom second-phase arm. No randomized-phase subtotal or pair-specific people total is printed; no totals were computed. PDF p. 6, section 3.2; PDF p. 26, Table 3.",
+  "Dispersion has within-arm bootstrap intervals but no between-arm uncertainty. The precise resampling unit and algorithm are not stated. PDF p. 9, section 3.5.3; PDF p. 13, Table 1.",
+  "Discourse means, SDs, pairwise differences, SEs, degrees of freedom, and intervals are mostly absent despite the methods saying they are reported. PDF p. 8, section 3.5.3; PDF p. 15, section 4.2.4; included appendices on PDF pp. 26-31.",
+  "PCA arm SDs and contrast precision are missing; the remaining tested component contrasts are described only qualitatively. PDF pp. 12-14, Figure 2 and section 4.2.1.",
+  "Content-word means and SEM bands are plotted without numerical values. No token-level figures were digitized. PDF p. 28, Figure 7.",
+  "The denominator for the reported d on AI-text coverage is not specified. PDF p. 13, section 4.1.2.",
+  "The assistant model release year, the separate discourse-classifier model identity, and a preregistration or public data/code repository are not stated."
+ ],
+ "notes": "Extracted independently by A on 2026-10-11. Read the entire markdown in order, including references and all appendices, then checked cited PDF pages with pymupdf. All PDF page numbers cited here match the printed page numbers. Only comparisons among the first-phase Human-Only, Standard Chatbot, and Engage-to-Unlock arms are randomized; the study-level analyzed count retains the paper's overall count, including Time-Matched Unlock. Participants were analyzed after attention-check exclusions. The study-level AI role is other because the protocol combines open generative chat with an initial coaching policy in Engage-to-Unlock; the arm descriptions specify that difference. Prior cross-paper sample reuse is not stated, and the second phase explicitly excluded first-phase participants. All extracted outputs are the final assisted-task essays; the subsequent passage task does not produce creative output. Dispersion establishes eligibility; the ancillary structural, lexical, and semantic-location measures are not relabeled as rated creativity. Numeric full-arm summaries are retained for every available randomized arm pair, including pairs omitted from the screening map; this does not imply a pairwise significance test. Qualitative and figure-only findings remain as records with null numeric outcome fields. The PCA components grouped in the form are separated for extraction. The homogenization index remains alongside dispersion in notes, not as a duplicate outcome. For dispersion, treatment-arm intervals occupy the generic CI fields and control-arm intervals are preserved in notes with the same table-row provenance. No sums, differences, standard errors, standardized effects, proportions, or event counts were calculated; printed precision and signs are retained in source quotes. All n_total and n_units fields are null because the source does not print totals for the individual extracted arm pairs."
+}

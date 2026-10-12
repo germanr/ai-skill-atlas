@@ -1,0 +1,88 @@
+{
+ "cid": "c298",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].design_class",
+   "form_value": "quasi_people",
+   "source_says": "Use other for this experiment under the supplied form vocabulary: both conditions used a human-operated robot delivering previously collected children's ideas, with no generative-AI assistance. The form defines quasi_people as a nonrandom comparison involving AI assistance; the existing description correctly identifies this experiment as outside that scope.",
+   "quote": "To generate the behavior of the robot, the tele-operator randomly chose from a pool of ideas that was extracted from a storytelling dataset previously collected with children who used the same software",
+   "locator": "PDF p. 5, Section 3.2.2.2 (Experimental design); form-spec.md, Field notes, design_class."
+  },
+  {
+   "field": "studies[0].assignment.randomized",
+   "form_value": "no",
+   "source_says": "Use not_stated. The paper describes matching groups on creativity, age, and gender, but does not explicitly state whether allocation involved randomization; matching alone does not establish that random assignment was absent. The randomized counts should remain null, and this experiment remains ineligible because it used no generative AI and analyzed fewer than 50 children.",
+   "quote": "We opted to split our sample into two evenly matched groups based on creativity levels, age, and gender and allocated them to either the creative or the non-creative condition.",
+   "locator": "PDF p. 5, Sections 3.2.1 and 3.2.2.1-3.2.2.2; form-spec.md, Rule 1."
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Populate the structured exclusions field with the six children who withdrew or did not interact with the robot. This information is already correct in participants.who: 38 recruited and 32 analyzed; the paper does not specify exclusion timing relative to allocation.",
+   "quote": "Six children who either withdrew from the activity or did not interact with the robot were excluded, leaving data from 32 participants (15 males, 17 females) for analysis.",
+   "locator": "PDF p. 5, Section 3.2.1 (Participants)."
+  },
+  {
+   "field": "studies[1].participants.exclusions",
+   "form_value": "",
+   "source_says": "Populate the structured exclusions field with 10 children excluded for missing data or inconsistencies in data collection. This information is already correct in participants.who; 103 is the recruited count, not a confirmed randomized count, and the analyzed total of 93 is explicitly documented in the form as arithmetic from the printed counts.",
+   "quote": "Due to either missing data or inconsistencies in data collection, data from 10 users was excluded.",
+   "locator": "PDF p. 8, Section 3.4.1 (Participants)."
+  },
+  {
+   "field": "studies[1].outcomes (missing average-originality outcome)",
+   "form_value": "Only S2-O1 fluency, S2-O2 flexibility, and S2-O3 elaboration are listed; average originality appears only in the narrative finding.",
+   "source_says": "Add the scored average originality outcome (construct novelty, participant unit): coders rated each story idea on a scale from 1 to 3 and averaged the ratings within each child. Creative versus non-creative robot conditions had no significant effect on average originality; an exact p-value, mean, SD, and confidence interval for that contrast are not supplied and should not be invented.",
+   "quote": "Originality: there was no significant effect of the robot’s creativity level on children’s average level of originality.",
+   "locator": "PDF p. 10, Table 5, Section 3.4.4, and Section 3.4.5.1, Originality bullet; form-spec.md, Rule 7."
+  },
+  {
+   "field": "studies[1].outcomes (missing frequency of medium-originality ideas)",
+   "form_value": "No outcome or measure detail records the frequency of medium-originality ideas.",
+   "source_says": "Record the separately reported frequency of medium-originality ideas, distinct from average originality: children in creative conditions produced more ideas rated level 2 on the 1-to-3 originality scale, with p < 0.05, Mean = 2.68, SD = 3.27. As with the three existing reported strings, the prose does not identify this single mean/SD pair as an arm-specific or whole-sample summary; Figure 5D plots the frequency of medium-originality ideas, not average originality.",
+   "quote": "children in the creative conditions significantly expressed more medium originality level ideas",
+   "locator": "PDF p. 10, Section 3.4.5.1, Originality bullet; p. 11, Figure 5D; form-spec.md, Rule 7."
+  },
+  {
+   "field": "studies[1].outcomes[*].contrasts (missing collaboration contrast)",
+   "form_value": "All listed reported contrasts compare creative with non-creative robot conditions; no collaboration-versus-non-collaboration results are recorded.",
+   "source_says": "Also record the comparison of collaborative with non-collaborative interaction: the MANOVA found no significant effect on fluency, flexibility, elaboration, or originality. No exact p-values or effect estimates are printed for these contrasts; use no_clear_difference and retain that reporting limitation.",
+   "quote": "We found no significant effect of the type of interaction (collaborative versus non-collaborative) on the four creativity metrics in children’s stories (fluency, flexibility, elaboration and originality).",
+   "locator": "PDF p. 10, Section 3.4.5.2 (Effects of the collaborative nature of the interaction on children’s creativity skills)."
+  },
+  {
+   "field": "studies[1].outcomes[*].contrasts[0].{treatment_arm,control_arm,comparison_type,direction,statistics_available}",
+   "form_value": "For S2-O1, S2-O2, and S2-O3, treatment_arm, control_arm, comparison_type, and direction are empty strings and statistics_available is [], although reported contains the results.",
+   "source_says": "Populate the structured contrast fields consistently with the verified prose: treatment is Creative Collaborative plus Creative Non-Collaborative; control is Non-creative Collaborative plus Non-creative Non-Collaborative; comparison_type is ai_design and direction is treatment_higher for each listed outcome. The p-value thresholds and Figure 5 support p_value_only and figure_only; complete arm-specific means/SDs, standardized effects, and confidence intervals are not supplied.",
+   "quote": "Fluency: children assigned to the creative conditions significantly exhibited higher fluency than children assigned to the non-creativeconditions (p < 0.01,Mean = 83.68,SD = 79.67) as displayed on Figure 5A.",
+   "locator": "PDF p. 9, Table 3; p. 10, Section 3.4.5.1; p. 11, Figure 5A-C; form-spec.md, statistics_available field note."
+  },
+  {
+   "field": "data_and_code.data_url",
+   "form_value": "",
+   "source_says": "The paper provides https://osf.io/rm4cz/?view_only=ac999ab27fd34f6ab4de5bf1c957d92a for the story-idea dataset and creativity ratings used to fine-tune the models. Record that URL with its training-data scope; the paper does not establish that the analyzed Study 2 participant data are in this repository, and p. 13 instead says raw data supporting the conclusions will be made available by the authors.",
+   "quote": "The dataset of story ideas with their creativity ratings used for fine- tuning the ML models is available at:",
+   "locator": "PDF p. 3, footnote 3; p. 13, Data availability statement."
+  }
+ ],
+ "confirmed": [
+  "Source is the journal article Fostering children’s creativity through LLM-driven storytelling with a social robot by Maha Elgarf, Hanan Salam, and Christopher Peters, published 13 December 2024 in Frontiers in Robotics and AI; DOI 10.3389/frobt.2024.1457429 (PDF p. 1). The local PDF has 15 pages; the complete markdown was read, including the references on pp. 13-15, and no appendix or supplementary-material section is present.",
+  "No randomized generative-AI assistance study is established in this source. Study 2 describes balanced groups without specifying allocation (PDF p. 8, Section 3.4.2.1); random assignment on p. 10, Section 3.4.4 concerns recordings assigned to coders. Accordingly, has_randomized_people_study=false means unconfirmed, not proof of nonrandom assignment.",
+  "Study 2 design_class=other, assignment.randomized=not_stated, core=unclear, criterion_1=unclear, and context_class=none are appropriately cautious. It compares AI configurations and scores children’s output, so the unresolved allocation procedure should remain in the two-screener pipeline rather than be treated as a confirmed RCT or automatically classified as observational (PDF pp. 7-10, Sections 3.3-3.4.4).",
+  "Study 1 recruited 38 children aged 5-10 at the Museum of Technology in Stockholm, Sweden, excluded six, and analyzed 32 children (15 males, 17 females); arm-specific analyzed counts and randomized counts are not stated. This is fewer than 50 analyzed people, independent of Study 2, and human-selected prior story ideas were supplied by the tele-operator (PDF p. 5, Sections 3.2.1-3.2.2.2).",
+  "Study 1 used spoken Swedish collaborative storytelling, capped at 10 minutes, within an experiment typically lasting 15-20 minutes (PDF p. 5, Sections 3.2.2.2 and 3.2.3). Its finding of no significant fluency or originality difference is supported by p. 7, Section 3.2.5 and Figure 3.",
+  "Study 2 recruited 103 children aged 7-9 from three British international schools in Stockholm, Sweden, and excluded 10. Printed analyzed counts are CC 24, CNC 23, NCC 23, and NCNC 23; the form transparently derives 93 analyzed children as 24 + 23 + 23 + 23, also 103 minus 10. These are people, not story ideas or ratings, and no randomized total is reported (PDF p. 8, Section 3.4.1).",
+  "The Study 2 robot used creative and non-creative models fine-tuned from Open AI GPT-3; the document gives no more specific model identifier. Collaborative arms alternated child and robot story ideas; non-collaborative arms had the robot tell a story before the child told another (PDF pp. 7-8, Sections 3.3 and 3.4.2.2; p. 9, Table 3).",
+  "Study 2 interaction was open-ended and lasted 5-25 minutes; the child could end it by saying the end. The assessed output was children’s speech during the interaction, with no delayed assessment reported (PDF p. 10, continuation of Section 3.4.3 and Section 3.4.4; p. 12, Section 4).",
+  "Table 5 defines fluency as story-element count, flexibility as the number of different story-element categories, and elaboration as word count minus story-element count. These are child-level output measures; flexibility concerns categories within a child’s story, not diversity across people (PDF p. 10, Table 5).",
+  "All numbers in S2-O1.reported match the PDF: higher fluency in creative conditions, p < 0.01, Mean = 83.68, SD = 79.67 (PDF p. 10, Section 3.4.5.1; p. 11, Figure 5A).",
+  "All numbers in S2-O2.reported match the PDF: higher flexibility in creative conditions, p < 0.05, Mean = 3.02, SD = 0.41 (PDF p. 10, Section 3.4.5.1; p. 11, Figure 5B).",
+  "All numbers in S2-O3.reported match the PDF: greater elaboration in creative conditions, p < 0.05, Mean = 88.45, SD = 87.7 (PDF p. 10, Section 3.4.5.1; p. 11, Figure 5C).",
+  "The reported results used MANOVA after log transformation. The form correctly avoids assigning the single printed mean/SD pair for each outcome to a specific arm; Figure 5 provides boxplots without printed arm-specific numerical summaries (PDF p. 10, Section 3.4.5.1; p. 11, Figure 5, inspected directly).",
+  "The one-line finding is accurate: creative-robot conditions had higher fluency at p < 0.01, flexibility and elaboration at p < 0.05, and no significant average-originality effect; random allocation is not stated (PDF p. 10, Section 3.4.5.1; p. 8, Section 3.4.2.1).",
+  "The ancillary model validation involved 26 users rating 10 model-generated stories, five from each model; these are raters and AI outputs, not additional children assigned AI assistance to produce creative work. This is primary empirical research, not a synthesis, so the synthesis defaults appropriately contain no pooled estimates (PDF p. 8, Section 3.3; p. 1, Original Research designation)."
+ ],
+ "summary": "The journal PDF confirms the recorded counts and statistics, but does not establish random assignment to generative-AI assistance; Study 2 has 93 analyzed children and remains eligibility-unclear. Corrections concern Study 1 coding, omitted originality and collaboration results, incomplete exclusion and contrast fields, and the missing training-data URL."
+}

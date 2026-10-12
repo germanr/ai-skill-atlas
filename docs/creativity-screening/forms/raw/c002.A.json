@@ -1,0 +1,412 @@
+{
+  "cid": "c002",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Ashkinaze et al (2025) - How AI Ideas Affect Creativity Diversity Evolution.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Ashkinaze et al (2025) - How AI Ideas Affect Creativity Diversity Evolution.pdf",
+    "version": "arXiv:2401.13481v3 [cs.CY], 31 Jul 2025 (side stamp, p. 1); the document is the Collective Intelligence Conference (CI 2025, August 4-6, 2025, San Diego) paper, ACM, 29 pages, DOI 10.1145/3715928.3737481",
+    "title_on_document": "How AI Ideas Affect the Creativity, Diversity, and Evolution of Human Ideas: Evidence From a Large, Dynamic Experiment",
+    "authors_on_document": ["Joshua Ashkinaze", "Julia Mendelsohn", "Li Qiwei", "Ceren Budak", "Eric Gilbert"],
+    "pages": 29
+  },
+  "paper_design_summary": "Online volunteers (844 unique participants from Reddit, Facebook ads, and the Creative Mornings newsletter) each completed up to five Alternate Uses Task trials. Before each trial they ranked six example ideas, and the share of ChatGPT-3.5 ideas among the examples (0, 2, or 4) and whether AI ideas were labeled were varied across five conditions, with each person randomized to a sequence that visits each condition once with a different item. Human examples came from prior participants in the same condition (dynamic response chains); the submitted ideas were scored for originality by a fine-tuned GPT-3 classifier and for diversity with SBERT embeddings.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Dynamic online AUT experiment (AI exposure x disclosure)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "A sequence of five (condition, item) trials. Each of the five conditions (Control: 0 AI + 6 human examples; Low exposure: 2 AI + 4 human; High exposure: 4 AI + 2 human; each exposure level with AI ideas labeled or unlabeled) is mapped to one of five AUT items so that neither conditions nor items repeat within a person's sequence.",
+        "unit": "within_person_order",
+        "structure": "within",
+        "quote": "Participants are randomized to a sequence of 5 trials. In each trial, participants generate a creative use for an item under a specific experimental condition. Neither items nor conditions repeat in a 5-trial sequence.",
+        "locator": "p. 5, Figure 2 caption and Section 3.4.2 (Randomization); conditions in p. 2, Figure 1",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Control", "description": "Six human example ideas (most recent ideas from prior participants in the same condition-item chain, seeded from the Organisciak dataset); no AI ideas; disclosure = No", "ai": "other_aid", "n_randomized": null, "n_analyzed": null },
+        { "name": "Low Exposure, Undisclosed", "description": "2 ChatGPT ideas + 4 human ideas; AI ideas not labeled", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Low Exposure, Disclosed", "description": "2 ChatGPT ideas + 4 human ideas; AI ideas labeled as AI", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "High Exposure, Undisclosed", "description": "4 ChatGPT ideas + 2 human ideas; AI ideas not labeled", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "High Exposure, Disclosed", "description": "4 ChatGPT ideas + 2 human ideas; AI ideas labeled as AI", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 844,
+        "counts_are": "people",
+        "exclusions": "Only participants who completed at least one trial are analyzed (number who consented but completed none is not given). 2 responses that should not have been shown and 36 profane responses were removed: 3,414 responses analyzed of 3,452 (SI 3, pp. 17-18). Average 4.05 responses per participant (Table 2). The regression models for creativity and local diversity report 3,271 observations (Tables 14, 18); the gap from 3,414 is not explained.",
+        "population": "general_public",
+        "who": "Unpaid adult volunteers (verified 18+) recruited through the Creative Mornings newsletter (343, 40.6%), r/InternetIsBeautiful (298, 35.3%), r/samplesize (94), shared links (61), other subreddits and Facebook ads; the paper describes them as technology-interested users and creative professionals. Mean age 34.92 (SD 10.86).",
+        "country": "48 countries; top five by responses (77.85% of responses): United States, Canada, Germany, United Kingdom, Australia",
+        "quote": "Unique Participants 844; Total Responses 3414; Avg Responses/Participant 4.05",
+        "locator": "p. 7, Table 2 and Section 5.1; p. 8, Table 3; p. 20, SI 6"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT-3.5, zero-shot prompt adapted from Stevenson et al. with an added instruction to match mean human word count",
+        "role": "ideas_supplied",
+        "how_used": "Pre-generated ChatGPT AUT ideas were inserted among the example ideas shown before each trial (passive exposure). Participants ranked the six examples by creativity and then wrote their own idea; they did not interact with the model. In disclosed conditions AI examples carried a 'Source: A.I' label (p. 4, Section 3.2; p. 16, Figure 12)."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Alternate Uses Task variant: one creative use per item for tire, pants, shoe, table, or bottle, after ranking six example ideas. Ideas fed forward as examples for later participants in the same condition-item response chain (chains reset every 20 trials; 7 chains per condition-item, 175 chains, 3,500 targeted responses).",
+        "duration": "Study described to participants as taking 3-6 minutes; average 144.31 seconds per response (Table 2)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Creativity (originality) of the submitted idea",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Predicted originality from the fine-tuned GPT-3 Davinci classifier of Organisciak et al. (r = 0.81 with human ratings overall; items chosen with r = 0.88-0.91). The paper calls it 'creativity' but it is the AUT originality score. Mixed model with crossed random intercepts for participant and response chain nested in item-condition; joint F test via emmeans. Evolution variant: likelihood-ratio test of a condition x trial-number interaction, chi2(4) = 6.52, p = 0.16 (p. 8).",
+          "unit": "output",
+          "n_units": 3271,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "High Exposure, Undisclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "conditionHiExposure_Undisclosed 0.050 (0.113), t = 0.443; joint test of condition F(4, 19.86) = 0.12, p = 0.97",
+              "locator": "p. 26, Table 18; p. 8, Section 5.4"
+            },
+            {
+              "treatment_arm": "High Exposure, Disclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "conditionHiExposure_Disclosed -0.025 (0.113), t = -0.221",
+              "locator": "p. 26, Table 18"
+            },
+            {
+              "treatment_arm": "Low Exposure, Undisclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "conditionLoExposure_Undisclosed 0.019 (0.112), t = 0.166",
+              "locator": "p. 26, Table 18"
+            },
+            {
+              "treatment_arm": "Low Exposure, Disclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "conditionLoExposure_Disclosed 0.011 (0.112), t = 0.095",
+              "locator": "p. 26, Table 18"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Global idea diversity (median pairwise distance among submitted ideas in a condition)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Median pairwise SBERT cosine distance (x100) among 50 randomly sampled submitted ideas per condition-item, 50 Monte Carlo runs, ideas after the sixth trial of a chain. Robustness: mean pairwise distance (Table 11, p. 21) and mean distance to centroid (Table 13, p. 22), directionally similar. Arm levels with 95% CIs shown only in Figure 7 (p. 7). Higher = more diverse; no sign reversal needed.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "High Exposure, Disclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Dif in Means 1.21; Adj P Value 0.001; Cliff's Delta 0.31 (text: delta = 0.31; p = 0.001)",
+              "locator": "p. 22, Table 12; p. 7, Section 5.2 and Figure 7"
+            },
+            {
+              "treatment_arm": "High Exposure, Undisclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Dif in Means 0.81; Adj P Value 0.001; Cliff's Delta 0.26 (text: delta = 0.26; p = 0.001)",
+              "locator": "p. 22, Table 12; p. 7, Section 5.2 and Figure 7"
+            },
+            {
+              "treatment_arm": "Low Exposure, Disclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Dif in Means 0.47; Adj P Value 0.001; Cliff's Delta 0.11 (Table 12). The text on p. 8 attributes delta = 0.11, p = 0.001 to [Low Exposure, Undisclosed] instead; Table 12 and Figure 7 place it on Low Exposure, Disclosed.",
+              "locator": "p. 22, Table 12; p. 8, Section 5.2; p. 7, Figure 7"
+            },
+            {
+              "treatment_arm": "Low Exposure, Undisclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Dif in Means -0.61; Adj P Value 0.0063; Cliff's Delta -0.06 (Table 12). Figure 7 shows this arm below Control. The text on p. 8 says this arm had higher diversity (delta = 0.11), which conflicts with the table.",
+              "locator": "p. 22, Table 12; p. 7, Figure 7; p. 8, Section 5.2"
+            },
+            {
+              "treatment_arm": "High Exposure, Disclosed",
+              "control_arm": "High Exposure, Undisclosed",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "standardized_effect"],
+              "reported": "HighExposureDisclosed-HighExposureUndisclosed: Dif in Means 0.41; Adj P Value 0.0328; Cliff's Delta 0.04",
+              "locator": "p. 22, Table 12"
+            },
+            {
+              "treatment_arm": "Low Exposure, Disclosed",
+              "control_arm": "Low Exposure, Undisclosed",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only", "standardized_effect"],
+              "reported": "LowExposureDisclosed-LowExposureUndisclosed: Dif in Means 1.08; Adj P Value 0.001; Cliff's Delta 0.15",
+              "locator": "p. 22, Table 12"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Median pairwise cosine distance between SBERT embeddings, scaled by 100",
+            "embedding_model": "SBERT (Sentence-BERT); the specific checkpoint is not named",
+            "computed_over": "All pairs within a random sample of 50 submitted ideas per condition-item combination, repeated for 50 Monte Carlo runs; only ideas submitted after the sixth trial of a response chain",
+            "uncertainty": "Two-tailed paired permutation tests (10,000 iterations), paired on Monte Carlo seed and item, with +1 adjustment and Holm-Bonferroni correction; Cliff's delta as effect size. No participant-level standard error.",
+            "notes": "Ideas within a response chain are not independent because each participant sees the previous participants' ideas. Figure 7 gives arm-level medians with 95% CIs only graphically."
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Evolution of idea diversity (slope of diversity on trial number in the response chain)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Median pairwise SBERT cosine distance (x100) of the pool of ideas at each (item, condition, trial number) across chains, trials after the sixth; mixed model with item random intercepts, controlling for pool size (Nobs); contrasts are condition x trial-number interactions relative to Control. Robustness: mean pairwise distance and centroid distance, Table 17 columns 2-3 (similar). Control slope: beta = -0.39, t(349) = -2.23, 95% CI [-0.73, -0.05], p = 0.03.",
+          "unit": "set",
+          "n_units": 362,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "High Exposure, Undisclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "test_statistic"],
+              "reported": "Slope difference beta = 0.53, t(349) = 2.2, 95% CI = [0.06, 0.99], p = 0.03; Table 17 col (1): 0.525** (0.239), t = 2.200",
+              "locator": "p. 8, Section 5.3 and Figure 8; p. 25, Table 17"
+            },
+            {
+              "treatment_arm": "High Exposure, Disclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "test_statistic"],
+              "reported": "Slope difference beta = 0.57, t(349) = 2.37, 95% CI = [0.1, 1.03], p = 0.02; Table 17 col (1): 0.566** (0.239), t = 2.371",
+              "locator": "p. 8, Section 5.3 and Figure 8; p. 25, Table 17"
+            },
+            {
+              "treatment_arm": "Low Exposure, Undisclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "Table 17 col (1): conditionLow ExposureUndisclosed:trial_no 0.140 (0.231), t = 0.605",
+              "locator": "p. 25, Table 17"
+            },
+            {
+              "treatment_arm": "Low Exposure, Disclosed",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "Table 17 col (1): conditionLow ExposureDisclosed:trial_no 0.368 (0.233), t = 1.578",
+              "locator": "p. 25, Table 17"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Slope over trial number of the median pairwise cosine distance (x100) between SBERT embeddings",
+            "embedding_model": "SBERT (Sentence-BERT); the specific checkpoint is not named",
+            "computed_over": "All pairs within each pool of submitted ideas sharing item, condition, and trial number (pooled across response chains), trials 7 onward",
+            "uncertainty": "Linear mixed model on 362 pool-level observations with item random intercepts; t statistics and 95% CIs",
+            "notes": "This is a rate-of-change outcome, not a level."
+          }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Local idea diversity (distance between a participant's idea and the examples that participant saw)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Median pairwise SBERT cosine distance (x100) between the submitted idea and the six example ideas shown (robustness: mean pairwise distance, centroid distance; Table 14 cols 2-3). Coded 'other' because it compares a person's idea with the stimuli (which mix AI ideas, seeds, and prior participants' ideas), not different people's outputs with each other. The model includes condition x moderator interactions (self-perceived creativity, AI-human creativity), so condition coefficients are at moderator values of zero. Reported only in the SI.",
+          "unit": "output",
+          "n_units": 3271,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "All four AI-exposure conditions",
+              "control_arm": "Control",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "test_statistic"],
+              "reported": "No main effect of condition, F(4, 19.95) = 0.09, p = 0.98. Table 14 col (1): LoExposure_Disclosed -1.467 (1.864); LoExposure_Undisclosed 0.272 (1.861); HiExposure_Disclosed 1.051 (1.864); HiExposure_Undisclosed -0.744 (1.866)",
+              "locator": "p. 23, SI 8.2 and Table 14"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "AI adoption (maximum cosine similarity between the submitted idea and the AI examples seen)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Max SBERT cosine similarity (x100) to AI examples; robustness with mean and median similarity (Table 22). Defined only in the four AI conditions. The paper calls it a secondary outcome and does not interpret main effects because max similarity rises mechanically with more AI examples. Coded question 'none': it measures convergence toward AI examples, not creativity or diversity across people.",
+          "unit": "output",
+          "n_units": 2618,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Disclosed AI conditions",
+              "control_arm": "Undisclosed AI conditions",
+              "comparison_type": "ai_design",
+              "direction": "mixed",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "test_statistic", "standardized_effect"],
+              "reported": "Main effect of condition F(3, 16.59) = 4.33, p = 0.02 (not interpreted). Self-perceived creativity x [High Exposure, Disclosed] beta = 0.11, t(2588) = 3.93, 95% CI = [0.06, 0.17], p = 0.0001. Exposure effect, undisclosed minus disclosed: high-creativity participants Delta = -1.69, d = -0.14, p = 0.59; low-creativity participants Delta = 7.77, d = 0.65, p = 0.03.",
+              "locator": "p. 9, Section 5.5.1 and Figure 9; p. 27, SI 10 and Table 19; p. 28, Table 22"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "SI 4 stimulus check: ChatGPT ideas vs prior human ideas (predicted originality)",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing; 1,500 ChatGPT ideas from the modified prompt compared with a random sample of 1,500 human ideas from the Organisciak dataset for the five items",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We compared a sample of 1500 ideas from our modified Stevenson prompt in the prompt experiment and a random sample of 1500 ideas from the Organisciak Dataset for our 5 items.",
+        "locator": "p. 19, SI 4",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "ChatGPT ideas", "description": "1,500 AUT ideas from the length-limited zero-shot ChatGPT prompt", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Human ideas", "description": "1,500 AUT ideas sampled from the Organisciak et al. dataset", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "",
+        "population": "mixed",
+        "who": "No new participants; human ideas come from the Organisciak et al. dataset (whose full version holds 20,121 responses from 2,025 participants, p. 13, A.1). The number of people behind the 1,500 sampled ideas is not stated.",
+        "country": "",
+        "quote": "",
+        "locator": "p. 19, SI 4; p. 13, Appendix A.1"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT-3.5, length-limited zero-shot prompt",
+        "role": "other",
+        "how_used": "AI generated AUT ideas on its own; no person received AI help"
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "AUT ideas for tire, pants, shoe, table, bottle",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Predicted originality of ChatGPT vs human ideas",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Organisciak et al. fine-tuned GPT-3 classifier, originality 1-5; OLS with item dummies",
+          "unit": "output",
+          "n_units": 3000,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT ideas",
+              "control_arm": "Human ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "test_statistic"],
+              "reported": "sourcechatgpt 0.618*** (0.027); text: beta = 0.62, t(2994) = 22.49, 95% CI = [0.56, 0.67]; Observations 3,000",
+              "locator": "p. 19, SI 4 and Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": {
+    "shares_participants_with": "No overlap for the S1 experiment participants. S2 and the S1 seed examples reuse human AUT responses from the Organisciak et al. (2023) dataset; those people are not S1 participants.",
+    "quote": "The seeds for each {[condition], item} combination came from prior responses from the Organisciak Dataset.",
+    "locator": "p. 6, Section 3.4.4 (Human Seeds); p. 19, SI 4"
+  },
+  "company_involvement": {
+    "any": false,
+    "description": "None stated. Creative Mornings (a creative-professional community) distributed the study link (p. 4, Section 3.3). Acknowledgments name only academic colleagues.",
+    "locator": "p. 4, Section 3.3; p. 11, Acknowledgments"
+  },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "S1 randomizes each participant to a within-person sequence in which the condition order (and item-condition mapping) is randomized (p. 5, Figure 2, Section 3.4.2); AI arms receive ChatGPT-generated example ideas (ideas_supplied) versus a control that sees only human examples. 844 unique participants analyzed (p. 7, Table 2). Originality is scored on each submitted idea by an automated classifier and diversity by SBERT distances. Caveats: AI help is passive exposure to example ideas, not interaction with a chatbot; per-arm participant counts are not reported and each person contributes to up to five arms (4.05 trials on average); outputs within response chains are not independent. S2 is ai_vs_human context only."
+  },
+  "one_line_finding": "Among 844 online volunteers (3,414 AUT ideas), seeing ChatGPT example ideas did not change classifier-scored originality (joint F(4, 19.86) = 0.12, p = 0.97; p. 8 and Table 18, p. 26), but high AI exposure raised global idea diversity over the human-examples control (Cliff's delta 0.31 disclosed, 0.26 undisclosed, adjusted p = 0.001; Table 12, p. 22).",
+  "open_questions": [
+    "Text on p. 8 says only [Low Exposure, Undisclosed] had higher global diversity than Control (delta = 0.11, p = 0.001), but Table 12 (p. 22) gives Low Exposure Disclosed - Control = +0.47, delta 0.11, and Low Exposure Undisclosed - Control = -0.61, delta -0.06, adj p 0.0063; Figure 7 (p. 7) agrees with the table. The text appears to mislabel the arm.",
+    "The abstract says 'There were no main effects of disclosure', yet Table 12 reports disclosed > undisclosed global diversity at both exposure levels (0.41, adj p 0.0328; 1.08, adj p 0.001). The abstract claim may refer only to creativity.",
+    "Per-arm participant counts are not reported. Each person can appear in up to five arms (within-person design), so n_treatment and n_control for any contrast cannot be read from the paper.",
+    "3,414 responses are analyzed (Table 2, SI 3), but the creativity and local-diversity models report 3,271 observations (Tables 14, 18); the paper does not explain the difference.",
+    "Comparison type coded ai_vs_active because the control sees six human-written example ideas; a reviewer may prefer ai_vs_bau.",
+    "Whether passive exposure to AI example ideas (no interaction with the model) counts as 'generative-AI assistance' under criterion 1; coded met via the ideas_supplied role.",
+    "No participant-level standard error for diversity: global diversity uses Monte Carlo set samples with permutation tests; evolution uses 362 pool-level observations."
+  ],
+  "notes": "Version read is arXiv v3 of 31 Jul 2025, the CI 2025 paper. Not extracted as outcomes: the word-length prompt experiment (Appendix A.2, Table 5, p. 13 and p. 17), which compares ChatGPT and human word counts and is not a creativity outcome; ranking accuracy and per-trial feedback (SI 5); moderator analyses of local diversity (Tables 15-16) beyond the main condition test; AI adoption tables by perceived AI creativity (Tables 20-21) and the task-difficulty correlation (rho = 0.8 vs 0.3, p. 9, Figure 10, based on five items). Participant counts per recruitment source sum to 844 (Table 3, p. 8)."
+}

@@ -1,0 +1,420 @@
+{
+  "cid": "c059",
+  "screener": "final",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Gero et al (2026) - From Planning to Revision.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Gero et al (2026) - From Planning to Revision.pdf",
+    "version": "arXiv 2604.11009v2 [cs.HC], side stamp 11 Jun 2026 (p. 1), typeset in the DIS '26 format (June 13-17, 2026, Singapore; DOI 10.1145/3800645.3813003; the ACM reference block says 32 pages). The candidate record lists the proceedings version (pp. 2903-2934, same DOI); the PDF on file does not show those page numbers.",
+    "title_on_document": "From Planning to Revision: How AI Writing Support at Different Stages Alters Ownership",
+    "authors_on_document": ["Katy Ilonka Gero", "Tao Long", "Carly Schnitzler", "Paramveer S. Dhillon"],
+    "pages": 32,
+    "supplement": {
+      "exists": "no",
+      "in_this_pdf": false,
+      "where": "No supplement or online appendix is referenced. Appendices A to I (essay prompts, interface, LLM prompts, survey items, quality control, grading procedure, thematic codebook, model specifications, full results) are printed in this PDF, pp. 16-32.",
+      "holds": "Nothing outside this PDF. The appendix tables hold the arm-level adjusted means with 95% CIs (Table 6, p. 29), AI engagement (Table 7, p. 31), and the active-user robustness means (Table 8, p. 32). No standard deviations of essay quality by arm are printed; Figure 11c (p. 30) shows box plots only."
+    }
+  },
+  "paper_design_summary": "Prolific participants in the US, UK, and Australia wrote a 200-300 word argumentative essay in three timed stages (outline, draft, revision) and were randomly assigned to no AI, AI thesis ideas and outlines during planning, an AI-generated draft from their own outline, or AI revision suggestions (gpt-4.1-mini); 253 were analyzed. The paper measures self-reported ownership and self-reported attribution of ideas and text to AI, and scores essay quality 0-9 on an IELTS-based rubric with an LLM grader (o4-mini) given 30 teacher-graded essays as few-shot examples and validated on 20 held-out essays. No creativity, novelty, or across-people diversity outcome is scored.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Online between-subjects experiment on the writing stage of AI support (argumentative essay)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Writing stage at which AI support was offered: no ai, ai plan, ai draft, or ai revision. Separately, participants were randomly assigned to one of two sets of essay topics and then chose one of the three topics in that set.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "We designed our conditions to match typical AI support for writing in each stage. Participants were randomly assigned to one of four conditions:",
+        "locator": "p. 4, Section 3.3; between-subjects design p. 3, Section 3; topic-set randomization p. 3, Section 3.1",
+        "preregistered": "not_stated",
+        "prereg_locator": "No preregistration or registry is mentioned anywhere in the document. The paper calls its exclusion criteria 'pre-specified' (p. 5, Section 3.4) and its contrasts C1-C3 'pre-specified' (p. 7, Section 4.4)."
+      },
+      "arms": [
+        { "name": "no ai", "description": "No AI support; the participant writes the outline, the draft, and the revision alone.", "ai": "none", "n_randomized": null, "n_analyzed": 60 },
+        { "name": "ai plan", "description": "During planning only, the participant can request AI thesis statements (three at first, then one at a time) and a full outline for any generated thesis, and can copy and paste them; drafting and revision are done alone.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 66 },
+        { "name": "ai draft", "description": "The participant writes an outline, then clicks a button for a one-shot AI-generated draft based on that outline (the drafting stage is skipped); the draft fills the revision textbox and the participant revises it.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 66 },
+        { "name": "ai revision", "description": "The participant plans and drafts alone; in revision, three AI tools (argument improver, writing clarity, proof-reader) give suggestions with an option to auto-implement them, and each tool can be rerun.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 61 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 253,
+        "counts_are": "people",
+        "exclusions": "18% of submissions were rejected before analysis under exclusion criteria the paper calls 'pre-specified': use of external AI tools outside the assigned condition, large pastes of text from outside the study interface, or an outline or draft flagged >99% AI-generated together with unusual interaction patterns. Detection used telemetry, keystroke and paste logs, manual inspection, and the Pangram AI detector (p. 5, Section 3.4; p. 23, Appendix E). A participant's logs were inspected by hand if the participant typed fewer than 1000 characters in the whole study or pasted more than 500 characters at once, and these thresholds 'were determined based on manual inspection of the first 50 participants' (p. 23, Appendix E). An additional two participants were excluded for data loss (p. 23, Appendix E). The number of submissions before exclusion and the exclusions by arm are not stated. The exclusions depend on behavior during the task, so they came after assignment. Primary analyses keep all remaining participants by assigned condition regardless of tool use; a robustness check restricts to active tool users (ai plan 43, ai revision 51; p. 32, Table 8).",
+        "population": "online_panel",
+        "who": "Prolific workers, desktop users, English-speaking adults aged 22-65, 100% approval rate and at least 100 prior submissions, pilot participants excluded; mean age 38 (SD 10); 250/253 native English speakers.",
+        "country": "Residents of the United States, United Kingdom, or Australia (split not stated)",
+        "quote": "Our final data sample consisted of 253 participants distributed almost evenly across the four study conditions (no ai: n=60; ai plan: n=66; ai draft: n=66; ai revision: n=61).",
+        "locator": "p. 5, Section 3.4; demographics p. 6, Section 3.6"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI gpt-4.1-mini, accessed August 2025 (p. 5, Section 3.3). The document is inconsistent: p. 6 (Section 4.1) and p. 24 (Appendix F.2) call the support model 'GPT-4o'. Essay grader: OpenAI o4-mini.",
+        "role": "other",
+        "how_used": "Stage-specific tools in a side panel, not open chat; the role differs by arm. ai plan = ideas_supplied (thesis statements and outlines on request); ai draft = the AI writes a full draft from the participant's own outline (one shot, no regeneration); ai revision = refinement (suggestions on the participant's own draft with optional auto-implementation). Use was optional in ai plan and ai revision: 43 of 66 (65.2%) requested at least one idea and 51 of 61 (83.6%) ran at least one revision tool (p. 31, Table 7). Primary analyses compare participants by assigned condition."
+      },
+      "task": {
+        "type": "other",
+        "description": "200-300 word argumentative essay on one of three TOEFL/IELTS-style debate prompts (e.g., banning smartphones in schools; genetic editing of unborn children), written in three stages: outline, draft, revision.",
+        "duration": "Planning max 10 min (min 60 words), drafting max 15 min (min 300 words), revision max 10 min (min 250 words) (p. 4, Section 3.1); paid for an estimated 40-minute session (p. 5). Mean time on task: no ai 25.1, ai plan 26.6, ai draft 13.7, ai revision 26.0 minutes (p. 8, Table 1)."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Essay quality (quality_overall), mean of three IELTS-based subscores",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "0-9 composite = mean of (i) quality of argument, (ii) coherence and cohesion, (iii) lexical resource and grammar, adapted from the IELTS Writing Task 2 band descriptors. Graded by OpenAI o4-mini (reasoning effort high) prompted as an IELTS examiner with the band descriptors and 30 teacher-graded essays as few-shot examples; agreement with the teacher on 20 held-out essays: tolerance-based Cohen's kappa = 0.85 (pp. 6-7, Section 4.1; pp. 24-25, Appendix F). This is a writing-proficiency score, not a rating of creativity, novelty, or the usefulness of ideas; the paper says the scheme 'may be biased towards stylistic fluency' (p. 13, Section 8). Coded other; Review 1 may recode it as usefulness (see open_questions). The model includes prompt fixed effects plus final word count and total minutes on task, both post-treatment (the paper leaves them out of RQ1/RQ2 for that reason, p. 7, Section 4.2), with heteroskedasticity-robust SEs (p. 28, Appendix H.4). Subscores are not reported separately. Robustness: active tool users only (p. 32, Table 8). A $5 bonus went to the top 5% of essays 'based on our independent quality scoring procedure' (p. 5, Section 3.4).",
+          "unit": "participant",
+          "n_units": 253,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "ai draft",
+              "control_arm": "no ai",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["confidence_interval"],
+              "reported": "Adjusted means (0-9; prompt-adjusted, word count and minutes held at sample means), 95% CI from robust SEs: AI-DRAFT 7.27 [7.06, 7.48] (n = 66) vs NO-AI 5.69 [5.50, 5.88] (n = 60). The CIs are for each arm's mean; no CI or test for this pairwise difference is reported. Text: 'markedly higher for ai draft (7.27)'. Active users: 7.25 [7.03, 7.46] vs 5.67 [5.48, 5.87].",
+              "locator": "p. 29, Table 6(c); p. 11, Section 5.4 and Figure 6a; p. 32, Table 8"
+            },
+            {
+              "treatment_arm": "ai plan",
+              "control_arm": "no ai",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["confidence_interval"],
+              "reported": "Adjusted means, 95% CI: AI-PLAN 5.85 [5.62, 6.08] (n = 66) vs NO-AI 5.69 [5.50, 5.88] (n = 60); arm-level CIs only, no pairwise test. Text: 'quality was similar for ai plan (5.85)'. Active users: 5.93 [5.63, 6.23] (n = 43) vs 5.67 [5.48, 5.87] (n = 60).",
+              "locator": "p. 29, Table 6(c); p. 11, Section 5.4; p. 32, Table 8"
+            },
+            {
+              "treatment_arm": "ai revision",
+              "control_arm": "no ai",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["confidence_interval"],
+              "reported": "Adjusted means, 95% CI: AI-REVISION 5.79 [5.55, 6.03] (n = 61) vs NO-AI 5.69 [5.50, 5.88] (n = 60); arm-level CIs only, no pairwise test. Text: quality 'similar for ... ai revision (5.79)'. Active users: 5.88 [5.60, 6.15] (n = 51) vs 5.67 [5.48, 5.87] (n = 60).",
+              "locator": "p. 29, Table 6(c); p. 11, Section 5.4; p. 32, Table 8"
+            },
+            {
+              "treatment_arm": "average of ai plan, ai draft, ai revision (contrast C1)",
+              "control_arm": "no ai",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["confidence_interval"],
+              "reported": "C1 'No-AI vs AI avg': Figure 6b prints -0.62 [-0.83, -0.40], which is no-AI minus the average of the three AI arms as defined in Appendix H.2 (p. 27); text: 'a +0.62-point advantage for AI support (p < .001)'.",
+              "locator": "p. 11, Figure 6b and Section 5.4; contrast definition p. 27, Appendix H.2, eq. H.3"
+            },
+            {
+              "treatment_arm": "ai draft",
+              "control_arm": "average of ai plan and ai revision (contrast C2)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["confidence_interval"],
+              "reported": "C2 'AI Draft vs (AI Plan, AI Rev)': Figure 6b prints 1.45 [1.14, 1.77]; text: 'ai-draft scored +1.45 points higher than the average of ai-plan and ai-revision (p < .001)'.",
+              "locator": "p. 11, Figure 6b and Section 5.4"
+            },
+            {
+              "treatment_arm": "ai plan",
+              "control_arm": "ai revision (contrast C3)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["confidence_interval"],
+              "reported": "C3 'AI Plan vs AI Rev': Figure 6b prints 0.06 [-0.26, 0.37] with a hollow marker (not significant at p < 0.05); text: 'C3 finds ai-plan and ai-revision statistically indistinguishable on quality'. No p-value printed.",
+              "locator": "p. 11, Figure 6b and Section 5.4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Word count of final essay",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Number of words in the final submitted essay, reported as editing telemetry, mean (SD) by condition, with no test (p. 8, Table 1). Not a creativity rating: the paper uses it as an 'effort proxy' covariate in the quality model (p. 7, Section 4.2), and the task fixed the length (200-300 word essay; revision-stage minimum of 250 words unless time ran out, p. 4, Section 3.1; the AI draft prompt asks for about 300 words, p. 19, Appendix C.2). Coded other rather than elaboration for that reason. No measure code fits exactly: this is a plain word count, not a scoring model.",
+          "unit": "participant",
+          "n_units": 253,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ai draft",
+              "control_arm": "no ai",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Word count mean (SD): ai-draft 342 (45) vs no-ai 344 (96); arm ns 66 and 60 (p. 5). No test reported; text: 'similar word count'.",
+              "locator": "p. 8, Table 1 and Section 5.1"
+            },
+            {
+              "treatment_arm": "ai plan",
+              "control_arm": "no ai",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Word count mean (SD): ai-plan 341 (106) vs no-ai 344 (96); arm ns 66 and 60. No test reported; text: 'similar word count'.",
+              "locator": "p. 8, Table 1 and Section 5.1"
+            },
+            {
+              "treatment_arm": "ai revision",
+              "control_arm": "no ai",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Word count mean (SD): ai-revision 387 (94) vs no-ai 344 (96); arm ns 61 and 60. No test reported; text: 'higher word count'.",
+              "locator": "p. 8, Table 1 and Section 5.1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": false,
+    "description": "No company author, funder, or data partner is stated; the authors list university affiliations (Sydney, Columbia, Johns Hopkins, Michigan). OpenAI models were used as tools (gpt-4.1-mini for support, o4-mini for grading) and the Pangram API as an AI detector.",
+    "locator": "p. 1 affiliations; p. 5, Section 3.3; p. 23, Appendix E; p. 24, Appendix F.2"
+  },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "not_met",
+    "context_class": "none",
+    "reason": "Criterion 1: individuals were randomly assigned to no AI or one of three generative-AI conditions (p. 4, Section 3.3). It is coded met for the assignment. The codebook's 'creative or ideation task' clause raises the same scope question as criterion 3 and stands or falls with it. Criterion 2: 253 people analyzed, 60 to 66 per arm (p. 5, Section 3.4). Criterion 3 not met: the task is a 200-300 word argumentative essay, and nothing is judged for creativity, novelty, or diversity across people. The two measures scored on the output are an IELTS-based writing-proficiency composite graded by an LLM (pp. 6-7, Section 4.1) and the final word count, which the paper treats as an effort proxy (p. 7, Section 4.2). The headline outcomes (ownership, attribution of ideas and text) are self-reports, and n-gram retention compares one person's own texts across stages (p. 8, Table 2). The codebook's construct table defines usefulness to include 'quality of a single output' and elaboration as 'Detail or length of a single output', so a literal reading of that table could admit both measures. Its scope lists 'essays judged for creativity' among creative tasks, and this form reads that as excluding an essay scored only for writing proficiency. Review 1 decides (open question 1). Both screeners, the reconciler, and the final check coded criterion 3 not met."
+  },
+  "one_line_finding": "In an online RCT with 253 Prolific participants analyzed, an AI-generated draft raised IELTS-rubric essay quality (adjusted mean 7.27 vs 5.69 with no AI; C2 +1.45 [1.14, 1.77] over the other AI arms), while AI planning (5.85) and revision support (5.79) were similar to no AI (p. 29, Table 6c; p. 11, Figure 6b); the paper scores writing quality and self-reported ownership, not creativity or diversity.",
+  "open_questions": [
+    "Should an IELTS-based writing-quality composite on an argumentative essay count as 'usefulness', and the word count of a length-constrained essay as 'elaboration'? This form codes both as other and marks criterion 3 not met. If Review 1 says yes, criterion 3 and the creative-task wording of criterion 1 need a second look.",
+    "The number randomized is not reported. 18% of submissions were rejected after assignment for external AI use or large pastes, and exclusions by arm are not given, so differential exclusion by arm cannot be checked.",
+    "The quality model adjusts for final word count and time on task, which are post-treatment (ai draft took 13.7 vs 25.1 minutes for no ai, p. 8, Table 1). No unadjusted quality means or SDs are printed.",
+    "The document names the support model gpt-4.1-mini (p. 5) and GPT-4o (pp. 6 and 24)."
+  ],
+  "notes": "Outcomes not listed because they are self-reports, not scored on the output: ownership (own_primary, 1-7; adjusted means no-ai 6.74, ai-plan 6.30, ai-draft 4.29, ai-revision 5.57; p. 29, Table 6a), control/agency and effort items, and percent of ideas and text attributed to AI (p. 29, Table 6b). Process measures not listed: keystrokes, time, backspace %, and paste events (p. 8, Table 1); k-gram retention between a person's own outline, draft, and final text (p. 8, Table 2), which is within-person carryover, not a diversity measure; AI engagement and AI character shares in the ai plan and ai revision arms only (p. 31, Table 7). The paper reports no diversity or homogenization measure across participants. Inconsistencies in the document: the support model is gpt-4.1-mini on p. 5 but GPT-4o on pp. 6 and 24; the revision tools give '2-4 suggestions' on p. 5 but '2-3' in the Figure 3 caption (p. 6) and in the Appendix C.3 prompts (pp. 20-21); the Figure 6a axis says 'Graded 1-9' while the text says 0-9 (p. 11); C1 for quality is +0.62 in the text (AI advantage) and -0.62 in Figure 6b (no-AI minus AI average, as defined on p. 27); the Table 8 text says 'UNKNOWN and AI DRAFT are unchanged' (p. 32), apparently meaning no-ai. No data or code links, preregistration, or funding statement appear in the document. This reconciled form adds S1-O2 (word count) from screener B, recoded from elaboration to other. Final check, 2026-10-05: no challenge files exist for c059, because the checkers ran only on forms coded core yes or unclear. The finalizer re-checked the form's numbers, quotes, and locators against the PDF (pp. 1-32) and found no error. The finalizer made four edits. one_line_finding now says 'analyzed'. participants.exclusions adds the Appendix E inspection thresholds and how they were set (p. 23). The S1-O1 bonus sentence now quotes the paper's 'independent quality scoring procedure' (p. 5), which the paper does not tie to the o4-mini composite. eligibility.reason now names the codebook definitions behind open question 1.",
+  "reconciliation": {
+    "differences": [
+      {
+        "field": "studies[S1].outcomes[S1-O1].construct",
+        "a": "other",
+        "b": "usefulness",
+        "resolved": "other. The composite rates writing proficiency: two of its three subscores are coherence and cohesion and lexical resource and grammar, and the paper says the scheme 'may be biased towards stylistic fluency' (p. 13, Section 8). The essay is not judged for creativity, novelty, or the usefulness of ideas. Coding it usefulness would also contradict criterion 3 = not_met, on which both forms agree. Review 1 can recode it (open_questions).",
+        "quote": "We score writing quality on a 0–9 scale using three rubric dimensions adapted from the IELTS Writing Band Descriptors [29]: (i) Quality of argument, (ii) Coherence and cohesion, and (iii) Lexical resource and grammar.",
+        "locator": "p. 6, Section 4.1; also p. 13, Section 8 (Limitations)",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes: word count of the final essay (B's S1-O2)",
+        "a": "not listed",
+        "b": "listed as S1-O2: construct elaboration, with_ai, automated_score, unit participant, n_units 253, secondary; arm means (SD) from Table 1 with directions no_clear_difference (ai draft, ai plan) and treatment_higher (ai revision)",
+        "resolved": "Kept as S1-O2 with B's arms, numbers, and directions, but construct other instead of elaboration. Table 1 reports the final essay's word count by arm, so the source supports listing it. The paper treats it as an effort proxy ('the RQ3 models additionally control for two effort proxies: final word count and total time-on-task', p. 7, Section 4.2), and the task fixed the length (200-300 words; revision minimum 250 words, p. 4), so it is not elaboration of a creative output. Numbers checked on the PDF: 344 (96), 341 (106), 342 (45), 387 (94).",
+        "quote": "Editing telemetry by condition; we report mean (SD). Word count reports words in final essay.",
+        "locator": "p. 8, Table 1 caption and row 'Word count'; p. 8, Section 5.1 for 'similar' and 'higher word count'",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1].contrasts[C1: average of AI arms vs no ai].statistics_available",
+        "a": "confidence_interval",
+        "b": "confidence_interval, p_value_only",
+        "resolved": "confidence_interval. The code p_value_only applies when a p-value is the only statistic; here Figure 6b prints the estimate with its 95% CI, -0.62 [-0.83, -0.40]. The text's p < .001 stays in 'reported'.",
+        "quote": "First, comparing no-ai to the average of the three AI stages (C1) shows a +0.62-point advantage for AI support (p < .001).",
+        "locator": "p. 11, Section 5.4; CI printed in Figure 6b",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1].contrasts[C2: ai draft vs average of ai plan and ai revision].statistics_available",
+        "a": "confidence_interval",
+        "b": "confidence_interval, p_value_only",
+        "resolved": "confidence_interval. Figure 6b prints the estimate with its 95% CI, 1.45 [1.14, 1.77], so p_value_only does not apply. The text's p < .001 stays in 'reported'.",
+        "quote": "Second, C2 isolates drafting from the other assisted stages: ai–draft scored +1.45 points higher than the average of ai–plan and ai–revision (p < .001).",
+        "locator": "p. 11, Section 5.4; CI printed in Figure 6b",
+        "status": "resolved"
+      },
+      {
+        "field": "source.supplement.where (page range of the appendices)",
+        "a": "Appendices A-I printed at the end of this PDF (no page range given)",
+        "b": "Appendices A to I inside this PDF, pp. 18-32",
+        "resolved": "Appendices A to I are on pp. 16-32: Appendix A (Table 3) is on p. 16 and Appendix B starts on p. 17. B's pp. 18-32 is wrong.",
+        "quote": "Table 3: List of essay prompts used in the study. Participant selected one prompt from either set A or set B.",
+        "locator": "p. 16, Appendix A; Appendix I ends on p. 32",
+        "status": "resolved"
+      },
+      {
+        "field": "paper_design_summary (size of the grader calibration set)",
+        "a": "LLM grader (o4-mini) calibrated on expert grades",
+        "b": "graded by o4-mini calibrated on 50 essays graded by an English teacher",
+        "resolved": "The teacher graded 50 essays: 30 served as few-shot calibration examples in the grading prompt and 20 were held out for validation (kappa = 0.85). B's 'calibrated on 50' overstates the calibration set.",
+        "quote": "From this set of 50 human-graded essays, 30 were used as few-shot calibration examples in the LLM grading prompt, and the remaining 20 were held out for validation.",
+        "locator": "p. 24, Appendix F.1",
+        "status": "resolved"
+      }
+    ],
+    "agreed_fields_checked": [
+      {
+        "field": "studies[S1].assignment (randomized, unit, structure)",
+        "value": "randomized yes; unit individual; structure between",
+        "quote": "We designed our conditions to match typical AI support for writing in each stage. Participants were randomly assigned to one of four conditions:",
+        "locator": "p. 4, Section 3.3; 'between-subjects experiment (n=253)' p. 3, Section 3",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.n_analyzed and arms[].n_analyzed",
+        "value": "253 people: no ai 60, ai plan 66, ai draft 66, ai revision 61 (sum 253)",
+        "quote": "Our final data sample consisted of 253 participants distributed almost evenly across the four study conditions (no ai: n=60; ai plan: n=66; ai draft: n=66; ai revision: n=61).",
+        "locator": "p. 5, Section 3.4; Table 3 prompt counts on p. 16 also sum to 253",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.n_randomized and exclusions",
+        "value": "null; 18% of submissions rejected plus 2 for data loss, after assignment, counts by arm not given",
+        "quote": "submissions were excluded if participants used external AI tools outside of their assigned study condition or copy-pasted substantial text from outside the study interface.",
+        "locator": "p. 5, Section 3.4; '18% of submissions were excluded. An additional two participants were excluded due to data loss.' p. 23, Appendix E",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1].scored_on_output",
+        "value": "true: every participant's final essay was graded by the LLM pipeline on the rubric",
+        "quote": "Based on this validation, we graded all essays using our method. Our composite quality outcome variable (quality_overall) is the mean of the three rubric subscores (range 0–9; higher is better).",
+        "locator": "p. 7, Section 4.1",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].outcomes[*].ai_available_when_produced and timing",
+        "value": "yes, immediate: the scored essay was written in the same session in which AI support was offered (planning stage only in ai plan; AI draft then revision in ai draft; revision stage in ai revision); no later unassisted session",
+        "quote": "Participants were split into four conditions: no AI support, AI support for outlining (thesis and whole outline ideas), AI-generated draft based on their outline, or revision suggestions (there were three revision tools: argument improver, writing clarity, and proof-reader).",
+        "locator": "p. 4, Figure 1 caption; post-survey follows submission, p. 4, Section 3.1",
+        "confirmed": true
+      },
+      {
+        "field": "eligibility.criterion_3 (ownership and attribution are self-reports)",
+        "value": "not scored on the output",
+        "quote": "Our first outcome is participants’ sense of ownership over the essay, measured post-task with a single 7-point Likert item (1 = strongly disagree, 7 = strongly agree):",
+        "locator": "p. 6, Section 4.1; attribution sliders also p. 6, Section 4.1",
+        "confirmed": true
+      },
+      {
+        "field": "no across-people diversity outcome (k-gram retention excluded)",
+        "value": "the only text-overlap measure is within-person carryover between a participant's own stages",
+        "quote": "To characterize how much participants revised their draft, we report a 3-gram and 5-gram word overlap metric for outline → draft and draft → final that indicates how much text is retained between stages.",
+        "locator": "p. 7, Section 4.3; values p. 8, Table 2",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1] arm adjusted means and 95% CIs",
+        "value": "no-ai 5.69 [5.50, 5.88]; ai-plan 5.85 [5.62, 6.08]; ai-draft 7.27 [7.06, 7.48]; ai-revision 5.79 [5.55, 6.03]",
+        "quote": "relative to no ai (5.69), quality was similar for ai plan (5.85) and ai revision (5.79), but markedly higher for ai draft (7.27).",
+        "locator": "p. 11, Section 5.4; CIs read from the PDF page, p. 29, Table 6(c)",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1] contrasts C1-C3",
+        "value": "C1 -0.62 [-0.83, -0.40]; C2 1.45 [1.14, 1.77]; C3 0.06 [-0.26, 0.37], C3 hollow (not significant)",
+        "quote": "Third, C3 finds ai–plan and ai–revision statistically indistinguishable on quality.",
+        "locator": "p. 11, Section 5.4; interval labels read from Figure 6b on the PDF page",
+        "confirmed": true
+      },
+      {
+        "field": "Table 8 active-user robustness for essay quality",
+        "value": "no-ai 5.67 [5.48, 5.87] (n=60); ai-plan 5.93 [5.63, 6.23] (n=43); ai-draft 7.25 [7.03, 7.46] (n=66); ai-revision 5.88 [5.60, 6.15] (n=51)",
+        "quote": "This reduces ai plan from n = 66 to n = 43 (65%) and ai revision from n = 61 to n = 51 (84%).",
+        "locator": "p. 32, Appendix I.2, Table 8",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].design_class",
+        "value": "online_rct",
+        "quote": "The experiment was run on the Prolific platform in August 2025. This experiment was approved by IRB.",
+        "locator": "p. 3, Section 3",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].assignment.preregistered",
+        "value": "not_stated",
+        "quote": "applied pre-specified exclusion criteria to protect the study manipulations.",
+        "locator": "p. 5, Section 3.4; no registry or preregistration named anywhere in the full text",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1].primary",
+        "value": "paper_primary (listed under Section 4.1 'Primary Outcomes'; no preregistration)",
+        "quote": "Our analysis for RQ3 models this composite outcome while controlling for final word count and total writing time.",
+        "locator": "p. 7, Section 4.1 (section heading 'Primary Outcomes' on p. 6)",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].ai_tool.name_model",
+        "value": "gpt-4.1-mini, with 'GPT-4o' on pp. 6 and 24",
+        "quote": "AI support was provided using OpenAI’s gpt-4.1-mini model, accessed in August 2025.",
+        "locator": "p. 5, Section 3.3; 'GPT-4o' on p. 6, Section 4.1 and p. 24, Appendix F.2",
+        "confirmed": true
+      },
+      {
+        "field": "source.version",
+        "value": "arXiv 2604.11009v2, 11 Jun 2026, DIS '26 format, 32 pages",
+        "quote": "arXiv:2604.11009v2 [cs.HC] 11 Jun 2026",
+        "locator": "p. 1, side stamp; ACM reference block p. 1",
+        "confirmed": true
+      },
+      {
+        "field": "company_involvement.any",
+        "value": "false",
+        "quote": "Thanks to Ray Zhou for support with the grading rubric and the essay grading.",
+        "locator": "p. 13, Acknowledgments (no funding statement); university affiliations p. 1",
+        "confirmed": true
+      }
+    ],
+    "n_differences": 6,
+    "n_unresolved": 0
+  },
+  "final": {
+    "core": "no",
+    "criteria": {
+      "random_assignment_of_ai": "met",
+      "at_least_50_people": "met",
+      "outcome_scored_on_output": "not_met"
+    },
+    "challenge_resolution": [],
+    "open_items": [
+      {
+        "item": "Whether the IELTS-based writing-quality composite (S1-O1) counts as usefulness, and the final word count (S1-O2) as elaboration (open question 1). The codebook's construct table could admit both ('quality of a single output'; 'Detail or length of a single output'), but its scope lists 'essays judged for creativity', and this argumentative essay is scored only for writing proficiency. If Review 1 counts either measure, criterion 3 becomes met, the creative-task clause of criterion 1 is met with it, and the paper becomes core. The source already shows what both measures score, so Review 1 decides from the codebook.",
+        "affects_eligibility": true,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "The number randomized and the exclusions by arm (open question 2). 18% of submissions were rejected after assignment and two more participants for data loss, and the thresholds for manual log inspection were set from the first 50 participants (p. 23, Appendix E). Criterion 2 rests on the 253 people analyzed and criterion 1 on the stated random assignment, so eligibility does not depend on these counts. They bear on bias from differential exclusion.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Unadjusted essay-quality means and SDs by arm (open question 3). The quality model adjusts for final word count and time on task, which are post-treatment, and the paper prints only adjusted means with 95% CIs (p. 29, Table 6c) and box plots (p. 30, Figure 11c). This matters for effect-size extraction if Review 1 admits the outcome, not for eligibility. The paper names no posted data or code.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Which model gave the AI support: gpt-4.1-mini (p. 5, Section 3.3) or GPT-4o (p. 6, Section 4.1; p. 24, Appendix F.2) (open question 4). Both are generative AI, so criterion 1 holds either way.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      }
+    ],
+    "n_corrected": 0,
+    "n_rejected": 0,
+    "n_open": 0
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "cid": "c194",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Atzori et al (2026) - Human-AI Interaction in Creative Tasks.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Atzori et al (2026) - Human-AI Interaction in Creative Tasks.pdf",
+    "version": "Ca' Foscari University of Venice, Department of Economics Working Paper No. 16/WP/2026 (ISSN 1827-3580), with the Online Appendix bound in; the Online Appendix title page is dated February 2026; the main text carries no date.",
+    "title_on_document": "Human-AI Interaction in Creative Tasks: an Experimental Investigation",
+    "authors_on_document": ["Federico Atzori", "Luca Corazzini", "Valeria Maggian", "Filippo Pavesi", "Massimo Scotti"],
+    "pages": 54,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Online Appendix bound at the end of this PDF (PDF pp. 30-54); data, Stata do-files and code at https://doi.org/10.6084/m9.figshare.32132980",
+      "holds": "Appendix A: laboratory and rater instructions (rating question uses a 0-10 scale); Appendix B: Python code building Idea request, Idea request index and Similarity; Appendix C Table 1: mediation SEMs with AI-first and User-first keywords (AI arms only). No additional treatment-effect statistics on creativity sit outside this PDF."
+    }
+  },
+  "paper_design_summary": "In a 2 x 3 between-subjects lab experiment at VERALabEx (Ca' Foscari, Venice), 360 mostly economics students were randomly assigned to treatments crossing access to an embedded ChatGPT assistant (AI vs No AI) with three incentive schemes (tournament, piece rate, lottery). Each wrote a roughly 150-word composition answering 'If you had the talent to create something simply with your thoughts, what would you create?'. Four Italian-speaking Prolific raters, blind to treatment, scored each text's creativity; the main outcome is the mean of the four ratings.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Lab experiment: ChatGPT access x incentive scheme, creative composition",
+      "design_class": "lab_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Access to a ChatGPT assistant embedded in the oTree interface (AI vs No AI), crossed with incentive scheme (tournament, piece rate, lottery)",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "The experiment was implemented in oTree (Chen et al., 2016). Participants were randomly assigned to treatments and completed comprehension questions before the task.",
+        "locator": "PDF p. 8 (paper p. 5), Section 2.1, Experimental Procedures; 2 x 3 between-subjects design at PDF pp. 6-7 (paper pp. 3-4)",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "T", "description": "Tournament incentive, no AI", "ai": "none", "n_randomized": null, "n_analyzed": 52 },
+        { "name": "PR", "description": "Piece-rate incentive, no AI", "ai": "none", "n_randomized": null, "n_analyzed": 47 },
+        { "name": "L", "description": "Lottery (performance-independent) incentive, no AI", "ai": "none", "n_randomized": null, "n_analyzed": 49 },
+        { "name": "T&AI", "description": "Tournament incentive, with ChatGPT access", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 88 },
+        { "name": "PR&AI", "description": "Piece-rate incentive, with ChatGPT access", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 62 },
+        { "name": "L&AI", "description": "Lottery incentive, with ChatGPT access", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 62 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 360,
+        "counts_are": "people",
+        "exclusions": "None reported. The paper says the experiment was run 'with 360 participants' and every analysis of the full sample uses 360 observations (148 No AI, 212 AI). It gives no separate count at assignment.",
+        "population": "students",
+        "who": "Lab participants, primarily students in economics-related programs; Italian as first language required; sessions of up to 20, gender-balanced",
+        "country": "Italy",
+        "quote": "The experiment was conducted at VERALabEx (Ca' Foscari University of Venice) with 360 participants, primarily students in economics-related programs. Eligibility required Italian as a first language.",
+        "locator": "PDF p. 8 (paper p. 5), Experimental Procedures; arm counts PDF p. 14 (paper p. 11), Table 1, row Obs.; PDF p. 16 (paper p. 13), Table 2, Obs. 360 / 148 / 212"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT-4.2 (as named in the paper), accessed via API and embedded in the oTree interface",
+        "role": "open_chat",
+        "how_used": "Participants in AI arms could send any queries, with no restriction on form or number, while writing; access ended when they submitted the composition. 67.7 to 81.8 percent of AI-arm participants sent at least one query (Table 1)."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Short creative composition (about 150 words suggested) answering 'If you had the talent to create something simply with your thoughts, what would you create?' (Charness and Grieco 2019); in Italian",
+        "duration": "Participants encouraged to spend no more than 15 minutes; sessions lasted about 50 minutes"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Average creativity score (mean of four Prolific raters)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Four independent Italian-speaking Prolific raters per text, blind to treatment, each rated creativity; main text says a 1 to 10 scale (PDF p. 9), rater instructions say 'from 0 to 10' (PDF p. 34). Each rater scored four texts; order balanced across positions. Outcome = mean of the four ratings per text (one text per participant). Regressions are OLS with robust SEs, one row per participant.",
+          "unit": "participant",
+          "n_units": 360,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI (T&AI + PR&AI + L&AI pooled)",
+              "control_arm": "No AI (T + PR + L pooled)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 5 col. (1), OLS with Tournament and Piece Rate dummies: AI 0.398** (0.139), constant 5.681 (0.147), N = 360. Table 2 col. (1), OLS with characters, male, DAT, DAT^2: AI 0.299* (0.131), N = 360. Table 2 col. (2) splits AI arms by self-selected use: AI (use) 0.411** (0.138), AI (no use) -0.082 (0.231).",
+              "locator": "PDF p. 23 (paper p. 20), Table 5 col. (1); PDF p. 16 (paper p. 13), Table 2 cols. (1)-(2)"
+            },
+            {
+              "treatment_arm": "T&AI",
+              "control_arm": "T",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Average score T&AI 6.281 (SD 1.363, n = 88) vs T 5.615 (SD 1.317, n = 52)",
+              "locator": "PDF p. 14 (paper p. 11), Table 1, cols. (1) and (4)"
+            },
+            {
+              "treatment_arm": "PR&AI",
+              "control_arm": "PR",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Average score PR&AI 6.000 (SD 1.363, n = 62) vs PR 5.681 (SD 1.089, n = 47)",
+              "locator": "PDF p. 14 (paper p. 11), Table 1, cols. (2) and (5)"
+            },
+            {
+              "treatment_arm": "L&AI",
+              "control_arm": "L",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Average score L&AI 5.972 (SD 1.329, n = 62) vs L 5.816 (SD 1.311, n = 49)",
+              "locator": "PDF p. 14 (paper p. 11), Table 1, cols. (3) and (6)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Number of characters in the composition",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "No vocabulary code fits exactly: this is a mechanical character count of the submitted composition, not a creativity scoring model. The paper treats it mainly as a control and a measure of effort; it is reported as an outcome in Table 5 col. (2).",
+          "unit": "participant",
+          "n_units": 360,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI (pooled)",
+              "control_arm": "No AI (pooled)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns"],
+              "reported": "Table 5 col. (2): AI 84.268** (31.587), constant 893.283 (32.489), N = 360. Table 1 cell means (SD): T 890.192 (259.377), PR 936.638 (386.247), L 886.429 (298.735), T&AI 1000.227 (272.121), PR&AI 976.839 (280.282), L&AI 982.968 (245.820)",
+              "locator": "PDF p. 23 (paper p. 20), Table 5 col. (2); PDF p. 14 (paper p. 11), Table 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Divergent Association Task (DAT) score, post-experimental questionnaire",
+          "construct": "other",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "DAT (Olson et al. 2021): average semantic distance (0 to 100) between words the participant lists. Taken in the post-experimental questionnaire, after AI access ended with the composition. The paper uses it as a baseline creative-ability covariate; Table 5 col. (3) regresses it on AI and incentive dummies, which works as a balance or after-AI check.",
+          "unit": "participant",
+          "n_units": 360,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "same session, after Stages 1-3",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI (pooled)",
+              "control_arm": "No AI (pooled)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "arm_means_sds_ns"],
+              "reported": "Table 5 col. (3): AI -0.064 (0.577), constant 83.760 (0.583), N = 360. Table 1 cell means (SD): T 83.705 (6.323), PR 82.582 (5.231), L 84.233 (5.198), T&AI 83.518 (4.834), PR&AI 83.535 (5.070), L&AI 83.323 (4.832)",
+              "locator": "PDF p. 23 (paper p. 20), Table 5 col. (3); PDF p. 14 (paper p. 11), Table 1; timing PDF p. 8 (paper p. 5)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": []
+  },
+  "sample_overlap": {
+    "shares_participants_with": "A separate, unnamed study by the authors on Stage 2 (competition choice) of the same lab sessions",
+    "quote": "The impact of AI on competition choices (i.e. Stage 2) is examined in a separate study.",
+    "locator": "PDF p. 8 (paper p. 5), Section 2.1"
+  },
+  "company_involvement": { "any": false, "description": "Funded by PRIN 2022 project GENS (N. 20229RB8HY); no company involvement stated. ChatGPT and Claude APIs were used as tools.", "locator": "PDF p. 3, funding footnote; PDF p. 27 (paper p. 24), AI declaration" },
+  "data_and_code": { "data_url": "https://doi.org/10.6084/m9.figshare.32132980", "code_url": "https://doi.org/10.6084/m9.figshare.32132980" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Participants were randomly assigned to ChatGPT access or no AI (PDF p. 8); 360 people analyzed, 212 with AI and 148 without (Table 1, Table 2); creativity of each composition rated by four blind Prolific raters (PDF p. 9)."
+  },
+  "one_line_finding": "ChatGPT access raised the mean rater creativity score by 0.398 points (SE 0.139) on a roughly 1-10 scale, from a lottery-arm No-AI constant of 5.681 (Table 5 col. 1, PDF p. 23), with the gain concentrated among participants who actually queried the AI (Table 2 col. 2, PDF p. 16).",
+  "open_questions": [
+    "Cell sizes are unequal (T&AI 88 vs T 52, others 47-62) and the paper does not explain why. Stage 2 instructions say tournament entrants are matched with participants 'from sessions conducted under the tournament condition', which suggests the incentive scheme (and possibly AI access) was assigned by session, while the paper states that participants were randomly assigned. Standard errors are robust, not clustered by session.",
+    "The main text gives the rating scale as 1 to 10 (PDF p. 9); the rater instructions say 0 to 10 (PDF pp. 32, 34).",
+    "The main text says raters were paid 3 Euro (PDF p. 9); the rater instructions say 3 British pounds (PDF p. 34).",
+    "Whether the post-task DAT score (S1-O3) should count as an after_ai outcome: the paper treats it as a baseline covariate measured after the task, in the same session."
+  ],
+  "notes": "Not listed as outcomes: Similarity (TF-IDF cosine between a participant's final text and the AI responses they received) and the idea-request measures, which describe AI reliance within the AI arms only and are not creativity or across-people diversity outcomes; Table 3 SEM mediation and Table 4 determinants of AI use are within-AI-arm, non-randomized analyses. Table 2 cols. (3)-(5) relate scores to number of queries (concave, peak about eight queries) and are not randomized contrasts. Table 5 also tests incentive schemes against lottery (no significant effects on score). No outcome measures diversity across participants. PDF page = paper page + 3 for the main text; Online Appendix page n = PDF page n + 29."
+}

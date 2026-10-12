@@ -1,0 +1,61 @@
+{
+ "cid": "c160",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "eligibility.criterion_2_at_least_50_people",
+   "form_value": "not_met",
+   "source_says": "Use unclear for the creator sample-size criterion: the paper does not explicitly report the number of distinct human creators analyzed. Tables 12-14 label their corpus counts as observations, not people; these cannot establish a below-50 sample. Keep creator n_randomized and n_analyzed null and core=no because there is no random assignment to AI assistance.",
+   "quote": "# Observations 85 83 84",
+   "locator": "p. 6, Section 3.1; pp. 36-37, Tables 12-14; p. 7, Section 3.2"
+  },
+  {
+   "field": "paper_design_summary; studies[*].participants.exclusions",
+   "form_value": "The authors compare creative outputs from humans (collected in two earlier experiments) with outputs from GPT-4 (Text and Alternative Uses tasks) and GPT-4 with DALL-E 2 (Draw task) under a naive prompt (the human instructions) and an expert prompt (a system prompt written by GPT-4). 199 student evaluators recruited through the Strasbourg LEES lab rated the outputs of one task each on 0-5 criteria (validity, form, elaboration, originality, feasibility) without being told some were AI-made, and the authors add theme-based and embedding-based measures. No participant used AI to produce anything. All three participants.exclusions fields are empty.",
+   "source_says": "Distinguish the initial pool of 201 evaluators from the 199 retained after two evaluators dropped out before completing the experiment. Record this evaluator attrition explicitly; neither number is the number of creators randomized to AI assistance, and the paper does not give an initial assignment count by task.",
+   "quote": "Only two evaluators were removed from the original pool of 201 evaluators because they dropped out before completing the experiment.",
+   "locator": "p. 8, Section 3.3 and footnote 1"
+  },
+  {
+   "field": "sample_overlap",
+   "form_value": "{\"shares_participants_with\": \"\", \"quote\": \"\", \"locator\": \"\"}",
+   "source_says": "Record that the human-output corpus reuses the experimental protocols of Maltese et al. (2023) and Guichardaz et al. (2024), already acknowledged in the design summary. The exact participant overlap, task-to-source mapping, and overlap counts are not specified and should remain unconfirmed.",
+   "quote": "In the case of human data, these were collected through three different creativity tasks conducted during two experimental protocols [Maltese et al., 2023, Guichardaz et al., 2024].",
+   "locator": "p. 6, Section 3.1"
+  },
+  {
+   "field": "studies[2].outcomes",
+   "form_value": "Only S3-O1, Originality rating of the drawing (0-5), is recorded.",
+   "source_says": "Add the drawing distance-to-centroid outcome, which is already mentioned in one_line_finding. It measures spread of CLIP image embeddings around the centroid for each agent type: construct=diversity, question=none, measure=embedding_similarity, unit=output. Table 10 reports Expert AI vs Naive AI -0.02***, Human vs Naive AI 0.01***, and Human vs Expert AI 0.03***; Table 17 repeats these values. Naive AI is less dispersed than humans. Centroid arm means, SEs, and a test-specific observation count are not printed.",
+   "quote": "Distance to centroid -0.02∗∗∗ 0.01∗∗∗ 0.03∗∗∗",
+   "locator": "p. 11, Section 5.2; p. 17, Table 10; p. 38, Table 17"
+  },
+  {
+   "field": "studies[*].outcomes[0].contrasts[0].statistics_available",
+   "form_value": "[] for S1-O1, S2-O1, and S3-O1",
+   "source_says": "The originality contrasts have arm means with parenthesized dispersion and evaluation counts, plus regression coefficients with parenthesized standard errors. Populate at least arm_means_sds_ns and regression_coefficient_se for these three contrasts; the sample counts accompanying the means count evaluations, not creators.",
+   "quote": "Mean Originality 3.506 (1.103) 3.728 (1.063) 2.972 (1.445)",
+   "locator": "p. 14, Table 7; p. 16, Table 9; p. 18, Table 11; pp. 36-37, Tables 12-14"
+  }
+ ],
+ "confirmed": [
+  "The source is the complete 54-page arXiv:2409.18776v1 PDF, dated 27 Sep 2024, including Appendix 9 on pp. 25-54 (p. 1 version stamp; document page count and appendix).",
+  "All three design_class values and eligibility.context_class=ai_vs_human are supported; core=no and criterion_1=not_met are correct. Human outputs came from earlier experiments and were compared with separately generated AI outputs (pp. 6-7, Section 3.1; p. 10, Section 5.1).",
+  "Randomization concerns evaluators assigned to task pools and their matching to outputs, not people assigned to AI assistance; no qualifying randomized people study or sub-50 randomized AI-assistance experiment is reported (p. 7, Section 3.2).",
+  "Retained evaluator counts are Text 70, Alternative Uses 64, Draw 65. Ratings run from 0 to 5, and evaluators were not told during scoring that some outputs were AI-generated (pp. 7-8, Sections 3.2-3.3 and Tables 2-3).",
+  "Corpus observations in Naive AI / Expert AI / Human order are Text 85 / 83 / 84, Alternative Uses 54 / 54 / 54, and Draw 90 / 90 / 90; the form correctly avoids treating these as confirmed creator counts (pp. 36-37, Tables 12-14).",
+  "Evaluation counts are Text 330 / 323 / 327, Alternative Uses 192 per agent, and Draw 325 per agent; regression observation counts are 980, 576, and 975 respectively, not participant sample sizes (pp. 36-37, Tables 12-14; pp. 14, 16, 18, Tables 7, 9, 11).",
+  "GPT-4 generates Text and Alternative Uses outputs; GPT-4 coupled with DALL-E 2 generates Draw outputs. Section 5.1 specifies temperature 0.9 and a GPT-4-generated system prompt for Expert AI (p. 7, Section 3.1; p. 10, Section 5.1).",
+  "The recorded task descriptions and durations match the instructions: ten required story words, five AUT objects with three minutes each, and an alien drawing from front and profile; the maximum task duration is 15 minutes (pp. 25-26, Sections 9.1.1-9.1.3).",
+  "Every number and significance marker in S1-O1.reported matches the PDF: originality means, parenthesized values, evaluation counts, Tukey differences, logit coefficients, their parenthesized values, and regression observations; the Table 5 ordering is also transcribed correctly (p. 13, Table 5; p. 14, Tables 6-7; p. 36, Table 12).",
+  "Every number and significance marker in S1-O2.reported matches Tables 6 and 15; Table 5 gives H > E > N, and centroid arm means are not printed (p. 13, Table 5; p. 14, Table 6; p. 37, Table 15).",
+  "Every number and significance marker in S2-O1.reported matches the PDF tables, including the two originality regression columns and their standard errors (p. 16, Tables 8-9; p. 36, Table 13).",
+  "Every number and significance marker in S2-O2.reported matches the PDF, including Human vs Expert AI 0.015** in Tukey and 0.015*** in Wilcoxon; Table 5 gives H > E = N (p. 13, Table 5; p. 16, Table 8; p. 38, Table 16).",
+  "Every number and significance marker in S3-O1.reported matches the PDF: originality means, parenthesized values, counts, Tukey differences, and logit coefficients with and without evaluator fixed effects (p. 17, Table 10; p. 18, Table 11; p. 37, Table 14).",
+  "The one-line finding is supported: all its numeric values match, the naive-AI story originality advantage is not significant after the length control, naive-AI drawings do not differ significantly from human drawings in originality, and humans have greater centroid distance in all three tasks (pp. 14-18, Tables 6-11; pp. 36-37, Tables 12-14).",
+  "The textual centroid measures use sentence or idea embeddings from Sentence-CamemBERT-Large and compare outputs with their agent-type centroid, rather than measuring effects of AI assistance on people (pp. 11-12, Sections 5.2 and 6.1).",
+  "This is an original comparison of three task datasets, not a synthesis; leaving pooled-study and pooled-effect fields empty is appropriate (pp. 6-7, Section 3; pp. 12-18, Section 6)."
+ ],
+ "summary": "The design and all recorded statistics are supported: this is AI-versus-human context evidence, with no randomized study of people receiving AI assistance. Five corrections clarify counts and complete the sample-overlap, drawing-diversity, and statistics-availability fields."
+}

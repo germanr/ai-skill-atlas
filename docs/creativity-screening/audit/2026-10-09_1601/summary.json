@@ -1,0 +1,152 @@
+{
+ "findings": 7,
+ "confirmed": 6,
+ "refuted": 1,
+ "cannot_tell": 0,
+ "by_lane": {
+  "prose": {
+   "findings": 1,
+   "confirmed": 1
+  },
+  "coverage": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "links": {
+   "findings": 2,
+   "confirmed": 2
+  },
+  "tables": {
+   "findings": 2,
+   "confirmed": 2
+  },
+  "classes": {
+   "findings": 1,
+   "confirmed": 0
+  },
+  "sources": {
+   "findings": 1,
+   "confirmed": 1
+  },
+  "citations": {
+   "findings": 0,
+   "confirmed": 0
+  }
+ },
+ "confirmed_items": [
+  {
+   "id": "prose-1",
+   "cid": null,
+   "section": "Experiments with full text not obtained",
+   "location": "Line 1403: \"37 papers that appear in other sections because they were screened from their abstracts.\"",
+   "claim": "The 37 additional papers in to-download.html were screened from their abstracts.",
+   "problem": "The count of 37 is correct for download-list entries outside the experiment table, but their screening-source label is wrong. This group includes papers screened from complete remote PDFs or full-text XML, as well as papers screened from metadata without an abstract. Having no full text saved locally does not establish abstract-only screening.",
+   "evidence": "to-download.html contains 264 distinct paper IDs; report-data.json.status_by_cid identifies 227 of them as no_fulltext, leaving 37, including c029, c049, c134, and c061. forms/c029.json.source.version records reading the journal full-text JATS XML (PMC12546817). forms/c049.json.source.version records reading the complete 11-page preprint PDF in memory. forms/c134.json.source.version records reading the 15-page CHI version-of-record PDF in memory. forms/c061.json.source.version says \"metadata only\" and explicitly states that no abstract was available. tools/assemble_report.py, download_sentence(), counts the set difference without checking these source fields.",
+   "severity": "serious",
+   "verdict": {
+    "id": "prose-1",
+    "cid": null,
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/assemble_report.py:download_sentence(), sentence constructed at lines 126-127",
+    "correct_value": "`docs/creativity-screening/to-download.html` lists the 264 papers on the screening paths that have no full text on file, with every link found: the 227 papers in this table and 37 papers that appear in other sections.",
+    "evidence": "Independently read creativity-screening-2026-10-04.md:1403 and verified the disputed description is present. Parsed to-download.html and report-data.json.status_by_cid: 264 distinct download-list IDs, 227 with status no_fulltext, and 37 others; all 37 have entries in other report sections. The 37 include c029, c049, c134, and c061. Reading source.version directly in each corresponding forms/<cid>.json (line 7) shows that c029 was screened from Europe PMC full-text JATS XML, c049 from the complete preprint PDF read in memory, c134 from the version-of-record PDF read in memory, and c061 from metadata only with no abstract available. Thus the group cannot be described as screened from abstracts. tools/assemble_report.py:121-130 computes the set difference and unconditionally attaches the abstract-screening description at line 127; line 178 inserts it into this report section. The sentence is absent from report-prose.md and report-generated.md. The fix belongs in the assembler; retain the computed counts and remove the unsupported screening-source explanation."
+   }
+  },
+  {
+   "id": "links-1",
+   "cid": "c159",
+   "section": "Recommended for the core dataset / Notes on each recommended paper",
+   "location": "creativity-screening-2026-10-04.md, line 801, c159 Version read: \"PsyArXiv preprint (DOI 10.31234/osf.io/xm2f5), version 3 (xm2f5_v3)\"",
+   "claim": "The DOI for the version-3 preprint is 10.31234/osf.io/xm2f5.",
+   "problem": "This incomplete DOI omits the required _v3 suffix and does not resolve. The registered DOI is 10.31234/osf.io/xm2f5_v3, which the citation heading at line 799 already uses correctly.",
+   "evidence": "GET https://doi.org/10.31234/osf.io/xm2f5 returned HTTP 404 on two checks, with HTML title \"Error: DOI Not Found\"; GET https://api.crossref.org/works/10.31234/osf.io/xm2f5 also returned 404. GET https://api.crossref.org/works/10.31234/osf.io/xm2f5_v3 returned 200 with message.DOI = \"10.31234/osf.io/xm2f5_v3\" and message.title[0] = \"The Roles of Idea Generation and Elaboration in Human-AI Collaborative Creativity\". C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/citations/c159.json, latest_version.doi and pdf_version, also give the complete version-3 DOI. HTTP checks performed 2026-10-09.",
+   "severity": "serious",
+   "verdict": {
+    "id": "links-1",
+    "cid": "c159",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "forms/c159.json: source.version",
+    "correct_value": "PsyArXiv preprint (DOI 10.31234/osf.io/xm2f5_v3), version 3 (xm2f5_v3), posted 2025-05-26 according to retrieval.json, which lists it as the latest PsyArXiv version (v1 and v2 were .docx uploads the same day). No journal version found. The document itself shows no date, journal, or version label.",
+    "evidence": "Independently checked on 2026-10-09. C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:801 prints the unversioned DOI, copied from C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c159.json:7 (source.version). GET https://doi.org/10.31234/osf.io/xm2f5 returned HTTP 404 with title Error: DOI Not Found; GET https://api.crossref.org/works/10.31234/osf.io/xm2f5 also returned HTTP 404. GET https://doi.org/10.31234/osf.io/xm2f5_v3 returned HTTP 200 after redirecting to https://osf.io/xm2f5_v3. GET https://api.crossref.org/works/10.31234/osf.io/xm2f5_v3 returned HTTP 200, message.DOI=10.31234/osf.io/xm2f5_v3, the matching paper title, and posted date 2025-05-26. PDF p. 1 of C:/Dropbox/Research/ai-lab/literature/creativity/Luchini et al (2025) - The Roles of Idea Generation and Elaboration in Human-AI Collaborative Creativit.pdf was opened with PyMuPDF and confirms the title and authors; the versioned DOI comes from the registry metadata, not that page. forms/citations/c159.json already has the complete DOI in latest_version.doi and pdf_version, and the report heading at line 799 uses it correctly. tools/build_report.py:267-269 prints source.version without changing its DOI; report-generated.md:754 contains the same error. The exact replacement above changes only the DOI in the form field."
+   }
+  },
+  {
+   "id": "links-2",
+   "cid": "c475",
+   "section": "Recommended for the core dataset / Notes on each recommended paper",
+   "location": "creativity-screening-2026-10-04.md, line 803, c159 Sample overlap note referring to c475: \"(PsyArXiv, DOI 10.31234/osf.io/jszrn, v1 posted 2025-11-14)\"",
+   "claim": "The DOI for \"Generative AI Does Not Erase Individual Differences in Human Creativity\" is 10.31234/osf.io/jszrn.",
+   "problem": "This incomplete DOI omits the required _v1 suffix and does not resolve. The registered DOI for the cited version is 10.31234/osf.io/jszrn_v1.",
+   "evidence": "GET https://doi.org/10.31234/osf.io/jszrn returned HTTP 404 on two checks, with HTML title \"Error: DOI Not Found\"; GET https://api.crossref.org/works/10.31234/osf.io/jszrn also returned 404. GET https://api.crossref.org/works/10.31234/osf.io/jszrn_v1 returned 200 with message.DOI = \"10.31234/osf.io/jszrn_v1\" and message.title[0] = \"Generative AI Does Not Erase Individual Differences in Human Creativity\". C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/candidates.json, record cid = c475, url = \"https://doi.org/10.31234/osf.io/jszrn_v1\", also retains the complete identifier. HTTP checks performed 2026-10-09.",
+   "severity": "serious",
+   "verdict": {
+    "id": "links-2",
+    "cid": "c475",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "forms/c159.json: sample_overlap.shares_participants_with",
+    "correct_value": "c475: Luchini, Kaufman and Beaty (2025), 'Generative AI Does Not Erase Individual Differences in Human Creativity' (PsyArXiv, DOI 10.31234/osf.io/jszrn_v1, v1 posted 2025-11-14). Its Study 1 reanalyzes this paper's 263 analyzed participants and cites this paper as Luchini et al. (2025c), so the two papers share one sample. The c159 PDF (v3, posted 2025-05-26) names no other paper using these participants.",
+    "evidence": "Independently checked on 2026-10-09. C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:803 prints the unversioned c475 DOI within the c159 sample-overlap note. The wrong text originates in C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c159.json:211 (sample_overlap.shares_participants_with); the correction belongs to the c159 form although the cited paper is c475. GET https://doi.org/10.31234/osf.io/jszrn returned HTTP 404 with title Error: DOI Not Found. GET https://api.crossref.org/works/10.31234/osf.io/jszrn initially returned HTTP 429 and returned HTTP 404 on retry. GET https://doi.org/10.31234/osf.io/jszrn_v1 returned HTTP 200 after redirecting to https://osf.io/jszrn_v1. GET https://api.crossref.org/works/10.31234/osf.io/jszrn_v1 returned HTTP 200, message.DOI=10.31234/osf.io/jszrn_v1, the matching paper title, and posted date 2025-11-14. https://api.osf.io/v2/preprints/jszrn_v1/ independently identifies version 1 and links.preprint_doi=https://doi.org/10.31234/osf.io/jszrn_v1. Its primary PDF GenAIdoesnoteraseIndDiffCrea_Preprint.pdf was downloaded into memory from https://osf.io/download/zxmwb/ and opened with PyMuPDF: p. 1 confirms the title and authors; p. 6 explicitly describes reanalysis of 263 participants from Luchini et al. (2025c); p. 35 identifies that reference as the c159 paper. The corrected DOI is supported by the registry and OSF metadata. candidates.json also gives the complete versioned URL for c475. tools/build_report.py:271-273 prints the overlap field without changing its DOI; report-generated.md:756 contains the same error. The exact replacement above changes only the DOI in the form field."
+   }
+  },
+  {
+   "id": "tables-03-1",
+   "cid": "c255",
+   "section": "Candidates that need clarification",
+   "location": "c255 row, People analyzed, by study cell (report line 1364)",
+   "claim": "not reported (60 randomized)",
+   "problem": "The count cell labels the 60 students as randomized without preserving the form's explicit qualification that random assignment is only a provisional claim. The final form leaves the allocation procedure unresolved. The supported count is 60 assigned, with randomization unconfirmed; the adjacent explanation preserves this uncertainty but the count label does not.",
+   "evidence": "forms/c255.json: studies[0].participants.n_randomized = 60, but studies[0].assignment.what_was_assigned says that field_rct, randomized=yes, and unit=individual record the literal random-assignment claim provisionally and that the actual allocation procedure is not established. final.criteria.random_assignment_of_ai = \"unclear\". final.challenge_resolution[6].what_changed explicitly retains 60 overall and 30 per arm as \"the reported assignment counts, with the existing allocation caveat\" (p. 7, section 3.2).",
+   "severity": "serious",
+   "verdict": {
+    "id": "tables-03-1",
+    "cid": "c255",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:count_text (lines 101-111), called at line 295 for the c255 People analyzed, by study cell",
+    "correct_value": "not reported (60 assigned; randomization unconfirmed)",
+    "evidence": "Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Cheng (2025) - The Application of Multimodal Generative AI in College English Creative Writing.pdf with PyMuPDF. PDF p. 7, section 3.2, gives 60 students in two natural classes and 30 per group; the same paragraph calls the design quasi-experimental and says students are randomly assigned. PDF p. 15, section 6.3, describes the sample as two classes at one university. These passages support the assignment count but leave the conflicting allocation descriptions unresolved. forms/c255.json studies[0].assignment.what_was_assigned explicitly treats randomized=yes and field_rct as provisional records of the paper's claim; final.criteria.random_assignment_of_ai is unclear. final.challenge_resolution[6].what_changed retains 60 overall and 30 per arm as assignment counts with the allocation caveat; participants.n_analyzed is null. The assembled report creativity-screening-2026-10-04.md line 1364 and report-generated.md line 1315 instead display not reported (60 randomized). The adjacent explanation retains the caveat, but the count label does not. Reproducing count_text on this form returns that exact label: line 111 unconditionally appends randomized to an integer n_randomized, and line 295 passes only participants, omitting the assignment and final-criterion qualifications. The fix belongs in the builder; the reported counts should remain unchanged."
+   }
+  },
+  {
+   "id": "tables-03-2",
+   "cid": "c411",
+   "section": "Candidates that need clarification",
+   "location": "c411 row, People analyzed, by study cell (report line 1376)",
+   "claim": "not reported (76 randomized)",
+   "problem": "The count cell calls the 76 students randomized, although the finalized form explicitly retains 76 only as an assignment count and withdraws confirmation of randomization. The count should be labeled assigned or explicitly qualified as having unconfirmed randomization. The adjacent explanation does not make the unqualified count label faithful to the final form.",
+   "evidence": "forms/c411.json: studies[0].assignment.randomized = null; studies[0].design_class = null; final.criteria.random_assignment_of_ai = \"unclear\". studies[0].participants.exclusions says: \"The n_randomized fields retain the paper's reported assignment counts only; the conflicting design descriptions leave actual randomization unconfirmed.\" final.challenge_resolution[0].what_changed confirms that the 76 overall and 38 per arm remain \"explicitly qualified as assignment counts with unconfirmed randomization\" (PDF pp. 1, 5-6).",
+   "severity": "serious",
+   "verdict": {
+    "id": "tables-03-2",
+    "cid": "c411",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:count_text (lines 101-111), called at line 295 for the c411 People analyzed, by study cell",
+    "correct_value": "not reported (76 assigned; randomization unconfirmed)",
+    "evidence": "Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Kizilates (2026) - GenAI-driven storytelling on senior secondary students' Generative AI literacy a.pdf with PyMuPDF. PDF p. 5 (journal p. 83), section 3.1, gives 76 students divided into experimental and control groups of 38 each. PDF p. 1 (journal p. 79), abstract, claims random assignment; PDF p. 6 (journal p. 84), section 3.3, describes a quasi-experimental design and assignment through simple random sampling without reconciling those descriptions. forms/c411.json studies[0].assignment.randomized and studies[0].design_class are null, and final.criteria.random_assignment_of_ai is unclear. studies[0].participants.exclusions explicitly says n_randomized retains assignment counts only and randomization is unconfirmed; final.challenge_resolution[0].what_changed preserves that qualification for 76 overall and 38 per arm. The assembled report creativity-screening-2026-10-04.md line 1376 and report-generated.md line 1327 nevertheless display not reported (76 randomized). The adjacent explanation correctly leaves randomization unresolved. Reproducing count_text on this form returns the unqualified label because line 111 always appends randomized to an integer n_randomized, and the line 295 caller supplies only participants. The fix belongs in the builder; retain the assignment counts and their uncertainty."
+   }
+  },
+  {
+   "id": "sources-16-1",
+   "cid": "c094",
+   "section": "Notes on each recommended paper",
+   "location": "Maier, Schneider, and Feuerriegel (2026), Needs posted data, open question 10 (report line 846): \"the SEs and 95 percent CIs that Section 4.5 promises for the main contrasts are not printed\"",
+   "claim": "Section 4.5 promises both standard errors and 95% confidence intervals for the main contrasts.",
+   "problem": "Section 4.5 promises 95% confidence intervals but does not promise standard errors. The report incorrectly attributes both promises to that section; the promise should be attributed only to confidence intervals.",
+   "evidence": "C:/Dropbox/Research/ai-lab/literature/creativity/Maier Schneider Feuerriegel (2026) - Partnering with Generative AI.pdf, PDF pp. 7-8, Section 4.5 (Analysis): \"each estimate is reported alongside its 95% confidence interval (CI).\" The complete section contains no promise to report standard errors.",
+   "severity": "minor",
+   "verdict": {
+    "id": "sources-16-1",
+    "cid": "c094",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "final.open_items[9].item",
+    "correct_value": "Cohen's d standardizer is not stated; Tables 3 and 4 print no SEs or 95 percent CIs for the main contrasts. Section 4.5 promises the 95 percent CIs (open question 10).",
+    "evidence": "Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Maier Schneider Feuerriegel (2026) - Partnering with Generative AI.pdf using pymupdf doc[page_index].get_text(). The complete Section 4.5 spans PDF pp. 7-8 and states on p. 8: 'each estimate is reported alongside its 95% confidence interval (CI).' The section contains no promise to report standard errors. Tables 3 and 4 on PDF p. 12 give test statistics, p-values and Cohen's d, with no SE or CI columns. C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md line 846 incorrectly attributes a promise of both SEs and CIs to Section 4.5. This wording is already present in forms/c094.json at final.open_items[9].item; tools/build_report.py lines 285-287 carries that item's text into report-generated.md line 799. The form's open_questions[9] already attributes the promise only to CIs. The correction therefore belongs in final.open_items[9].item, not the builder or prose."
+   }
+  }
+ ]
+}

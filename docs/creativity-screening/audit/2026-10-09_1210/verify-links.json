@@ -1,0 +1,20 @@
+[
+  {
+    "id": "links-1",
+    "cid": "c180",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py: link(p), used by paper_cell(p) and where(p); c180 Paper URL and Where to get it",
+    "correct_value": "https://jurnalfaktarbiyah.iainkediri.ac.id/index.php/jeels/article/view/7402",
+    "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1061 and report-generated.md:1011: both cells contain https://doi.org/10.30762/jeels.v13i2.7402. Two independent Python GETs on 2026-10-09, using User-Agent atlas-screening/0.1, returned HTTP 404 at that same URL with the title 'Error: DOI Not Found'. The publisher URL given in correct_value returned HTTP 200 and displayed the matching article title, Ajeng and coauthors, and the same DOI. candidates.json[cid=c180].url already contains that working publisher URL, and its DOI agrees with the publisher. tools/build_report.py:165-169 always prefers the DOI; lines 263-269 reuse that choice for Where to get it. No forms/c180.json or forms/citations/c180.json exists. This confirms a generated-link problem, not an incorrect DOI transcription or an incorrect screening classification; replace both generated URLs with the verified publisher URL."
+  },
+  {
+    "id": "links-2",
+    "cid": "c968",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py: paper_cell(p) and where(p); c968 Paper URL presentation and Where to get it",
+    "correct_value": "In the Paper cell, replace the parenthesized event-page URL with '(original event page unavailable; HTTP 404 on 2026-10-09)'. Set Where to get it to 'Original event page unavailable (HTTP 404 on 2026-10-09).'",
+    "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1247 and report-generated.md:1197: both cells contain https://student.uva.nl/en/events/2026-presentation-master-s-thesis-leyla-yang-brain-cognition. Two independent Python GETs on 2026-10-09, using User-Agent atlas-screening/0.1, returned HTTP 404 at that same URL, with title '404 Error - student.uva.nl' and text 'The page you are looking for no longer exists.' candidates.json[cid=c968].evidence and triage/decisions.json[cid=c968].note_a/note_b already record the unavailable event page; the report's middle cell truncates the warning after 'returns 40'. tools/build_report.py:165-169 emits the candidate URL in Paper, and lines 263-269 emit it again under Where to get it without an availability label. No forms/c968.json or forms/citations/c968.json exists. The confirmed defect is the broken retrieval link, not the disclosed lack of full text. The correction labels the verified failure and does not invent a replacement URL."
+  }
+]

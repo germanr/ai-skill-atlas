@@ -1,0 +1,46 @@
+{
+ "cid": "c076",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.population",
+   "form_value": "general_public",
+   "source_says": "Recruitment and occupational/student status are not stated. The source identifies participants only as people who regularly use AI for creative tasks; general_public is an unsupported inference. Set population to null and remove the best-fit population inference from participants.who.",
+   "quote": "who regularly use AI for creative tasks (Table 4).",
+   "locator": "PDF p. 7, Section 4.4 User Study; p. 9, Table 4"
+  },
+  {
+   "field": "studies[0].ai_tool.how_used",
+   "form_value": "Participants read one pre-generated output per system per task and rated it; they did not prompt or write with the system. The paper states: 'Each system produced a single output per task' and leaves 'iterative human–AI co-writing' to future work (p. 8).",
+   "source_says": "The procedure establishes that participants reviewed and rated one AI output per system per task, and leaves iterative co-writing to future work. It does not state who supplied the prompts or when the outputs were generated. Remove the unsupported assertions that participants did not prompt and that outputs were pre-generated; also qualify the pre-generated wording in eligibility.reason. No participant-produced creative output is reported as scored.",
+   "quote": "Each system produced a single output per task to enable controlled within-subjects comparison across all four conditions simultaneously; iterative human–AI co-writing is an important direction we leave to future work.",
+   "locator": "PDF p. 8, Section 4.4 User Study, Procedure"
+  },
+  {
+   "field": "studies[1]",
+   "form_value": "One S2 entry: Computational evaluation (model outputs only: system comparison, ablation, lambda sweep)",
+   "source_says": "The paper distinguishes three computational experiments: the five-system comparison (1,500 generated outputs), the factorial ablation (1,200 outputs), and the lambda sweep (750 outputs). Form-spec rule 6 requires a separate entry per experiment/dataset. Split this combined record into three model_only study entries, retaining the human-rating study separately; these output counts are not people.",
+   "quote": "For reproducibility, we define all six metrics used across Experiments 1–3.",
+   "locator": "PDF pp. 5-7, Sections 4.1-4.3; p. 11, Appendix A (Experiment 2); p. 12, Appendix B (Experiment 3); p. 13, Appendix C; form-spec.md, Rules 6"
+  }
+ ],
+ "confirmed": [
+  "The source is arXiv:2606.09587v1 [cs.HC], dated 8 Jun 2026, with 18 PDF pages; the title and authors Muhammad Haris Khan and Joel Wester match the form (PDF p. 1, title block and arXiv stamp).",
+  "The human study is a within-subjects evaluation of AI-generated responses, with no stated random assignment of AI assistance and no scored participant-produced creative output. Design other, core=no, and context_class=none are supported under the codebook (PDF pp. 7-9, Section 4.4).",
+  "N = 16 refers to the same people rating all systems, not separate groups; the Friedman analyses also use N = 16. No randomized count or participant exclusions are reported, and the analyzed sample is below 50 (PDF pp. 7-9, Section 4.4).",
+  "The demographic figures match: ages 22–48, mean age 28.1, 4 female and 12 male (PDF p. 9, Table 4).",
+  "Each participant reviewed four systems across three tasks, giving 12 response evaluations per participant, with 5-point ratings for originality, coherence, creativity, and usefulness (PDF p. 8, Section 4.4, Procedure).",
+  "Ratings were aggregated across three tasks per participant-system before Friedman tests. The reported p values concern omnibus differences across the four systems, not documented pairwise tests of SRT-Strong versus Baseline-Pure (PDF p. 8, Section 4.4, Analysis and Results).",
+  "Originality matches: SRT-Strong M = 3.40 versus Baseline-Pure M = 2.85 (+19%); chi2(3, N = 16) = 7.34, p = .062, W = .153 (PDF p. 9, Section 4.4, Originality, Coherence, and Transparency).",
+  "Usefulness matches: SRT-Strong M = 3.60 versus Baseline-Pure M = 3.10, described as 16% higher; chi2(3, N = 16) = 9.99, p = .019, Kendall’s W = .208 (PDF p. 8, Section 4.4, Perceived Usefulness).",
+  "Figure 6a labels usefulness means as Baseline-Pure 3.10, Baseline-HighTemp 2.77, SRT-Mild 2.94, and SRT-Strong 3.60; the caption specifies 95% confidence intervals (PDF p. 10, Figure 6a and caption; figure visually checked in memory).",
+  "Coherence matches: SRT-Strong M = 3.92, Mdn = 4.00 versus Baseline-Pure M = 3.48, Mdn = 3.50; chi2(3, N = 16) = 12.47, p = .006, Kendall’s W = .260 (PDF p. 8, Section 4.4, Perceived Coherence).",
+  "The one-line finding reproduces the reported means and p values correctly; its evidence concerns human ratings of AI output rather than creativity of assisted human output (PDF pp. 8-9, Section 4.4).",
+  "The computational counts match: 30 prompts, 10 per mode, five systems and 10 outputs per system/prompt yield the reported 1,500 outputs; the ablation reports 1,200 and the lambda sweep 750 outputs (PDF pp. 5-7, Sections 4.1-4.3).",
+  "The models and settings match: Qwen2.5-7B-Instruct with Qwen2.5-1.5B-Instruct for SRT, all-MiniLM-L6-v2 embeddings, baseline temperature 1.0/top-p 0.9, high temperature 1.5, beam count 5, and SRT lambda values 0.6 and 1.2 (PDF p. 3, Section 3.2; p. 5, Table 1 and Section 4.1).",
+  "The computational reported string matches Creative-mode diversity 0.49 versus 0.40 and Baseline-Beam 0.00, plus originality 0.50 versus 0.27, described as an 85% improvement. Diversity compares generated outputs from the same system and prompt, not different people (PDF p. 6, Section 4.1; p. 7, Figure 3, visually checked in memory).",
+  "Appendices A-D and their figures occupy pp. 11-17; Tables 5-8 are on p. 13, Tables 9-11 on p. 14, and Algorithm 1 on p. 18. These concern the computational experiments, with no additional human experiment or synthesis; leaving synthesis counts and pooled estimates empty is appropriate (PDF pp. 11-18)."
+ ],
+ "summary": "The paper reports a 16-person evaluation of AI-generated text, with no randomized study of people producing scored creative work, so core exclusion and context_class=none are supported. The recorded numbers and source version match the PDF; corrections concern unsupported population and prompting claims and the grouping of three computational experiments."
+}

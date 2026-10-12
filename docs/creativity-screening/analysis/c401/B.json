@@ -1,0 +1,242 @@
+{
+ "cid": "c401",
+ "analyst": "B",
+ "script": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/analysis/c401/B.py",
+ "data_files": [
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/extraction/c401.json",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/retrieval.json",
+  "D:/projects/ai-skill-atlas/creativity-data/manifest.json",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-codebook.md",
+  "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/extraction-spec.md",
+  "C:/Dropbox/Research/ai-lab/literature/creativity/Kelley Cremer Riedl (2026) - Personalized AI Scaffolds Synergistic Multi-Turn Collaboration in Creative Work.md",
+  "C:/Dropbox/Research/ai-lab/literature/creativity/Kelley Cremer Riedl (2026) - Personalized AI Scaffolds Synergistic Multi-Turn Collaboration in Creative Work.pdf",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/code/preprocessing/preprocessing.R",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/code/preprocessing/extract_campaign_edits.R",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/code/figures/fig4_causal_mediation/compute_CI_measures.R",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/code/figures/fig2_quality_creativity/creativity_analysis.R",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/codebook.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/processed/creativity_df_CI.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/processed/campaign_text_overlap.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/human/human_campaign_evaluations.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/processed/Batch_5322742_batch_results.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/supplementary/human_expertise_campaigns.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/supplementary/all_campaigns.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/supplementary/creativity_df_evaluated_scored.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/elo_ratings/elo_ratings_gpt-4o-mini.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/llm_scores/campaign_evaluations_gpt-4o-mini.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/elo_ratings/elo_real_vs_simulated.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/elo_runs/elo_eval_run_1_gpt-4o-mini.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/supplementary/simulated_campaigns.csv"
+ ],
+ "results": [
+  {
+   "slug": "s1_campaign_word_count_personalized_vs_generic",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 114,
+     "computed": 114,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 116,
+     "computed": 116,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed",
+     "printed": 331,
+     "computed": 331,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 1.5,
+     "computed": 1.4944041137329211,
+     "match": true
+    },
+    {
+     "statistic": "p_value_conventional_OLS_three_arms",
+     "printed": 0.94,
+     "computed": 0.9390804150107126,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_mean_PDF_p19",
+     "printed": 355.4,
+     "computed": 355.41389728096675,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_sd_PDF_p19",
+     "printed": 148.0,
+     "computed": 148.0326980267137,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_min_PDF_p19",
+     "printed": 128,
+     "computed": 128,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_max_PDF_p19",
+     "printed": 2217,
+     "computed": 2217,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 114,
+    "n_control": 116,
+    "treatment_mean": 362.67543859649123,
+    "treatment_sd": 127.01700085596062,
+    "control_mean": 361.1810344827586,
+    "control_sd": 208.12791213841177,
+    "difference": 1.494404113732628,
+    "difference_se": 22.69239333912724,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "PDF p. 19 and Table S2 (PDF p. 52): analyzed sample after the stated exclusions, 116 Generic AI (basegpt), 114 Personalized AI (creativegpt), and 101 Partially personalized AI (creativegpt_rand). All 331 deposited rows are unique people and pass the posted attention, other-AI, engagement, and >=30-minute exclusion rules. No further exclusions, trimming, or winsorization were applied. One final campaign per person; outcome is the deposited campaign_wc. Author code code/figures/fig4_causal_mediation/compute_CI_measures.R lines 35-39 and 266-268 defines alphabetic-word counting with internal hyphens/apostrophes; the underlying human campaign text is not deposited, so the stored count is used. The printed betas and p-values reproduce using campaign_wc ~ randomization on all three arms with ordinary OLS. The computed fields use an unadjusted two-arm OLS with participant-level HC2, SD denominator n-1. Units: words. Higher word count indicates length, not necessarily creativity. The two contrasts share the Generic AI control. This is a between-person experiment, so first_round is inapplicable."
+  },
+  {
+   "slug": "s1_campaign_word_count_partially_personalized_vs_generic",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 101,
+     "computed": 101,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 116,
+     "computed": 116,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed",
+     "printed": 331,
+     "computed": 331,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": -20.6,
+     "computed": -20.586975076817748,
+     "match": true
+    },
+    {
+     "statistic": "p_value_conventional_OLS_three_arms",
+     "printed": 0.31,
+     "computed": 0.3079918891893573,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_mean_PDF_p19",
+     "printed": 355.4,
+     "computed": 355.41389728096675,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_sd_PDF_p19",
+     "printed": 148.0,
+     "computed": 148.0326980267137,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_min_PDF_p19",
+     "printed": 128,
+     "computed": 128,
+     "match": true
+    },
+    {
+     "statistic": "overall_word_count_max_PDF_p19",
+     "printed": 2217,
+     "computed": 2217,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 101,
+    "n_control": 116,
+    "treatment_mean": 340.5940594059406,
+    "treatment_sd": 62.8423707728825,
+    "control_mean": 361.1810344827586,
+    "control_sd": 208.12791213841177,
+    "difference": -20.58697507681802,
+    "difference_se": 20.310711632828433,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "PDF p. 19 and Table S2 (PDF p. 52): analyzed sample after the stated exclusions, 116 Generic AI (basegpt), 114 Personalized AI (creativegpt), and 101 Partially personalized AI (creativegpt_rand). All 331 deposited rows are unique people and pass the posted attention, other-AI, engagement, and >=30-minute exclusion rules. No further exclusions, trimming, or winsorization were applied. One final campaign per person; outcome is the deposited campaign_wc. Author code code/figures/fig4_causal_mediation/compute_CI_measures.R lines 35-39 and 266-268 defines alphabetic-word counting with internal hyphens/apostrophes; the underlying human campaign text is not deposited, so the stored count is used. The printed betas and p-values reproduce using campaign_wc ~ randomization on all three arms with ordinary OLS. The computed fields use an unadjusted two-arm OLS with participant-level HC2, SD denominator n-1. Units: words. Higher word count indicates length, not necessarily creativity. The two contrasts share the Generic AI control. This is a between-person experiment, so first_round is inapplicable."
+  },
+  {
+   "slug": "s1_final_campaign_word_changes_personalized_vs_generic",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "printed_treatment_level_adjusted_arm_intercept_percent",
+     "printed": 64.5,
+     "computed": 64.50667946207133,
+     "match": true
+    },
+    {
+     "statistic": "printed_control_level_adjusted_arm_intercept_percent",
+     "printed": 80.5,
+     "computed": 80.54665312600216,
+     "match": true
+    },
+    {
+     "statistic": "n_treatment_study_arm_PDF_p19_Table_S2",
+     "printed": 114,
+     "computed": 114,
+     "match": true
+    },
+    {
+     "statistic": "n_control_study_arm_PDF_p19_Table_S2",
+     "printed": 116,
+     "computed": 116,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed",
+     "printed": 331,
+     "computed": 331,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 114,
+    "n_control": 116,
+    "treatment_mean": 51.202455190822235,
+    "treatment_sd": 37.92577409278649,
+    "control_mean": 61.209651297272956,
+    "control_sd": 42.51580058718652,
+    "difference": -10.00719610645072,
+    "difference_se": 5.310360808429101,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "PDF pp. 50-51 (supplement pp. 22-23) prints 64.5% Personalized and 80.5% Generic. These are NOT unadjusted arm means: they reproduce as the condition intercepts at msg_count=0 of the Gaussian model AI_overlap ~ randomization + msg_count - 1 (author code code/preprocessing/extract_campaign_edits.R lines 373-378). The fitted levels in percentage units are 64.50667946207133 and 80.54665312600216. The unadjusted observed means are 51.20245519082224 and 61.209651297272956. This resolves the extraction open item: the published percentages condition on post-treatment chat turns and should be flagged under extraction rule 5. As requested by this data-analysis brief, computed fields provide the unadjusted participant-level contrast from the reproduced underlying outcome; they do not reuse the adjusted intercept difference. Read campaign_text_overlap.csv, sort by row_index, and attach it positionally to creativity_df_CI.csv exactly as the author code does. row_index is not the anonymous participant_id. Its 331 unique positions and Generic-versus-other flags agree with the cohort. Outcome = 100*(1-overlap_score), in percentage points. The posted score is the maximum Jaccard overlap of unique lowercased word sets between the final campaign and any AI response classified as containing a full or partial campaign (author code lines 218-261 and 290-336). The maximum is the definition of one participant outcome, not a set of repeated ratings to average. The authors assign zero overlap when no qualifying draft is detected: 53 Generic, 14 Personalized, and 15 Partial participants. Preserve these zeros as part of the published measure, yielding 100% difference for those people. This is not a literal percentage of token-level edits and more editing does not imply more creativity. No additional exclusions; one outcome per person, HC2 for individual assignment, sample SDs with denominator n-1. The paper gives no estimate-specific counts; the reproduction counts use the study totals on PDF p. 19/Table S2. Construct other; never pool as a creativity effect. First_round is inapplicable."
+  }
+ ],
+ "skipped": [
+  {
+   "slug": "s1_quality_expert_elo_personalized_vs_generic",
+   "reason": "Cannot reproduce the expert-human Elo coefficient 158.2 (p=0.14), PDF p. 32. The deposit lacks expert Prolific pairwise choices or the corresponding campaign-level human Elo scores and model specification. human_campaign_evaluations.csv instead has five-domain Likert means for all 331 campaigns; they exactly equal the averages of five MTurk ratings per participant in Batch_5322742_batch_results.csv (1655 ratings). These are not the expert pairwise-Elo validation of 100 campaigns. The 100-row files human_expertise_campaigns.csv and all_campaigns.csv contain only index, condition, campaign_id, batch_num, local_id, and marketing_score, not human Elo scores or pairwise decisions. The available Elo ratings/runs are LLM judgments; substituting those would change the outcome. No participant effect or uncertainty is computed."
+  },
+  {
+   "slug": "s1_theme_diversity_personalized_vs_generic",
+   "reason": "Cannot exactly rerun the campaign-theme diversity procedure required by rule 5. The author code creativity_analysis.R extracts themes with GPT-4o, embeds them with text-embedding-3-large, constructs a pooled centroid including 100 AI-only campaigns, and maps 1-cosine-similarity to percentiles. The posted elo_real_vs_simulated.csv has 431 downstream creativity scores and condition labels, but the original campaign_themes.rds, the original human campaign texts, and the 3072-dimensional theme embeddings are absent. The published aggregate levels cannot be independently recomputed using the same texts and embeddings. Response/message embeddings and simulated campaign text describe different objects and cannot replace these inputs. Do not treat stored diversity percentiles as independent participant outcomes or invent a participant SD/HC2 SE."
+  },
+  {
+   "slug": "s1_theme_diversity_partially_personalized_vs_generic",
+   "reason": "Cannot exactly rerun the campaign-theme diversity procedure required by rule 5. The author code creativity_analysis.R extracts themes with GPT-4o, embeds them with text-embedding-3-large, constructs a pooled centroid including 100 AI-only campaigns, and maps 1-cosine-similarity to percentiles. The posted elo_real_vs_simulated.csv has 431 downstream creativity scores and condition labels, but the original campaign_themes.rds, the original human campaign texts, and the 3072-dimensional theme embeddings are absent. The published aggregate levels cannot be independently recomputed using the same texts and embeddings. Response/message embeddings and simulated campaign text describe different objects and cannot replace these inputs. Do not treat stored diversity percentiles as independent participant outcomes or invent a participant SD/HC2 SE."
+  }
+ ]
+}

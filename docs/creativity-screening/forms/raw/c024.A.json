@@ -1,0 +1,514 @@
+{
+  "cid": "c024",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wenger and Kenett (2025) - Creative Homogeneity Across LLMs.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wenger and Kenett (2025) - Creative Homogeneity Across LLMs.pdf",
+    "version": "arXiv preprint arXiv:2501.19361v1 [cs.CY], 31 Jan 2025 (stamp on p. 1); footnote 2 on p. 5 says 'IRB information redacted for anonymous submission', so this is a submission draft",
+    "title_on_document": "We're Different, We're the Same: Creative Homogeneity Across LLMs",
+    "authors_on_document": ["Emily Wenger (Duke University)", "Yoed Kenett (Technion - Israel Institute of Technology)"],
+    "pages": 18,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendices A-C at the end of this PDF (pp. 16-18). No separate online supplement is mentioned.",
+      "holds": "Appendix A: exact test wording for humans and LLMs. Appendix B: originality scoring formulas for AUT, FF, DAT. Appendix C: t-SNE plots for FF and DAT (Fig. 10). No additional statistics or standard errors."
+    }
+  },
+  "paper_design_summary": "The authors gave three divergent-thinking tests (Alternative Uses Task, Forward Flow, Divergent Association Task) to 22 LLMs through public APIs and to 102 Prolific participants (114 recruited). They compare LLM-generated responses with human responses on individual originality (GloVe semantic distance) and on population-level variability (cosine distance between sentence embeddings of different respondents' responses), using a 7-model subset with one model per family for statistical tests. No person received AI help; a secondary analysis compares their Prolific sample with public pre-LLM human datasets from prior work.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "LLMs vs. Prolific humans on AUT, Forward Flow, and DAT",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned to people. Humans completed the tests unaided; LLMs were prompted to complete the same tests. The comparison is LLM output vs. human output.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "we elicit creative responses from humans and a broad set of LLMs using standardized creativity tests and compare the population-level diversity of responses.",
+        "locator": "p. 1, Abstract; p. 4-5, Section 3.3",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        {
+          "name": "LLMs",
+          "description": "22 LLMs with public APIs; statistical tests use a 7-model subset with one model per family: AI21 Jamba 1.5 Large, Google Gemini 1.5, Cohere Command R Plus, Meta Llama 3 70B Instruct, Mistral Large, gpt 4o, Phi 3 medium 128k Instruct. Default system prompt 'You are a helpful assistant'.",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": null
+        },
+        {
+          "name": "Humans (Prolific user study)",
+          "description": "Prolific participants who completed DAT, FF, and AUT without AI assistance.",
+          "ai": "none",
+          "n_randomized": null,
+          "n_analyzed": 102
+        }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 102,
+        "counts_are": "people",
+        "exclusions": "114 recruited; 12 removed on suspicion of being bots (response time < 5 minutes or failed attention checks); 102 in final dataset. No one was randomized, so n_randomized is null; 114 is the recruited count.",
+        "population": "online_panel",
+        "who": "Prolific workers screened for English fluency and approval rating > 95; paid $15/hour; demographics in Table 1 (51% female, 53% White, 28% Black or African American, ages 18 to 55+)",
+        "country": "not_stated",
+        "quote": "We recruited 114 initial participants from the Prolific platform, screening for English fluency and an approval rating > 95. Of these, 12 were removed on suspicion of being bots ... so the final dataset contains 102 human responses.",
+        "locator": "p. 5, Section 3.3 'Human subjects' and Table 1"
+      },
+      "ai_tool": {
+        "name_model": "22 LLMs via public APIs (GitHub Models): AI21-Jamba-Instruct, Cohere Command R, Cohere Command R Plus, Meta Llama 3 70B/8B Instruct, Meta Llama 3.1 405B/70B/8B Instruct, Mistral large, Mistral large 2407, Mistral Nemo, Mistral small, Google Gemini 1.5, gpt 4o, gpt 4o mini, six Phi 3 variants, Phi 3.5 mini instruct. Statistical tests use the 7-model subset listed in the LLM arm.",
+        "role": "other",
+        "how_used": "No human used AI. Each LLM was prompted directly to complete the tests (Appendix A wording, AUT prompt version 3 in the main analysis) and its responses were treated as respondents' outputs."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "AUT: up to 10 creative uses for each of book, fork, table, hammer, pants. Forward Flow: chain of up to 20 words from start words candle, table, bear, snow, toaster. DAT: 10 nouns as unrelated as possible, under four minutes.",
+        "duration": "Humans took 19 minutes on average to complete the survey (p. 5)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Population-level AUT variability (V_AUT): cosine distance between sentence embeddings of different respondents' AUT responses",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Each respondent's responses to one prompt joined as one string (punctuation and stopwords removed), embedded with all-MiniLM-L6-v2; V = 1 - cosine similarity between pairs of different respondents for the same prompt. Higher = more variable. Robustness variants: AUT prompt versions v1, v2, v3 and v3 one-word answers only (Table 5); LLM system prompts baseline, more creative, very creative, not creative (Table 7).",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLMs (7-model subset, AUT prompt v3, baseline system prompt)",
+              "control_arm": "Humans (Prolific, n = 102)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "mu(V_t(LLM)) 0.459 vs mu(V_t(Human)) 0.738; t(10078) = 19.1, p = 3.9e-80; effect size 2.2; test power 1.0",
+              "locator": "p. 8, Table 3 (AUT row); also p. 11, Table 5 (v3 row)"
+            },
+            {
+              "treatment_arm": "LLMs, AUT prompt v1",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "0.427 vs 0.738; t(10102) = 24.5, p = 1.0e-128; effect size 2.5; power 1.0",
+              "locator": "p. 11, Table 5"
+            },
+            {
+              "treatment_arm": "LLMs, AUT prompt v2",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "0.466 vs 0.738; t(10053) = 15.2, p = 5.1e-52; effect size 2.2; power 1.0",
+              "locator": "p. 11, Table 5"
+            },
+            {
+              "treatment_arm": "LLMs, AUT prompt v3, one-word answers only",
+              "control_arm": "Humans (Prolific), one-word answers only",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "0.708 vs 0.850; t(10078) = 8.9, p = 2.3e-19; effect size 1.1; power 1.0",
+              "locator": "p. 11, Table 5; Fig. 6"
+            },
+            {
+              "treatment_arm": "LLMs, system prompt 'More creative'",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only"],
+              "reported": "0.503 vs humans 0.738; t(10078) = 16.1, 3.5e-58",
+              "locator": "p. 13, Table 7"
+            },
+            {
+              "treatment_arm": "LLMs, system prompt 'Very creative'",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only"],
+              "reported": "0.576 vs humans 0.738; t(10078) = 11.1, 5.6e-29",
+              "locator": "p. 13, Table 7"
+            },
+            {
+              "treatment_arm": "LLMs, system prompt 'Not creative'",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only"],
+              "reported": "0.492 vs humans 0.738; t(10078) = 16.8, 1.1e-62",
+              "locator": "p. 13, Table 7"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean cosine distance (1 - cosine similarity) between embedded response sets of two different respondents; higher = more diverse (no sign reversal needed)",
+            "embedding_model": "all-MiniLM-L6-v2 (sentence_transformers)",
+            "computed_over": "All pairs of different population members (LLMs or humans) responding to the same prompt p, within each population",
+            "uncertainty": "Welch's t-test on the pairwise distances, treating pairs as independent observations (df about 10,000 for AUT); one-sided alternative stated as mu(V(LLM)) > mu(V(Human)); significance threshold 0.01",
+            "notes": "Figure 2 (p. 8) shows the distributions. Llama-family comparison (Table 6) is LLM-only and not listed here."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Population-level Forward Flow variability (V_FF)",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same pairwise cosine-distance measure as S1-O1, applied to each respondent's Forward Flow word chain per start word.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLMs (7-model subset)",
+              "control_arm": "Humans (Prolific, n = 102)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "mu(V_t(LLM)) 0.534 vs mu(V_t(Human)) 0.835; t(90) = 26.1, p = 2.8e-66; effect size 2.0; test power 1.0",
+              "locator": "p. 8, Table 3 (FF row)"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean cosine distance between embedded response sets of two different respondents; higher = more diverse",
+            "embedding_model": "all-MiniLM-L6-v2 (sentence_transformers)",
+            "computed_over": "All pairs of different population members responding to the same start word, within each population",
+            "uncertainty": "Welch's t-test on pairwise distances; one-sided alternative stated as mu(V(LLM)) > mu(V(Human))",
+            "notes": "Figure 2 (p. 8) and Fig. 10 (p. 17) t-SNE."
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Population-level DAT variability (V_DAT)",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same pairwise cosine-distance measure as S1-O1, applied to each respondent's 10-word DAT list.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLMs (7-model subset)",
+              "control_arm": "Humans (Prolific, n = 102)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "mu(V_t(LLM)) 0.665 vs mu(V_t(Human)) 0.819; t(30) = 9.9, p = 6.2e-11; effect size 1.4; test power 1.0",
+              "locator": "p. 8, Table 3 (DAT row)"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean cosine distance between embedded response sets of two different respondents; higher = more diverse",
+            "embedding_model": "all-MiniLM-L6-v2 (sentence_transformers)",
+            "computed_over": "All pairs of different population members, within each population (single DAT prompt)",
+            "uncertainty": "Welch's t-test on pairwise distances; one-sided alternative stated as mu(V(LLM)) > mu(V(Human))",
+            "notes": "Figure 2 (p. 8)."
+          }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Word overlap between pairs of full responses (AUT, FF, DAT)",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Number of overlapping words (stopwords removed) between pairs of full responses from different respondents; shown as percent of response pairs by overlap count.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLMs",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["figure_only"],
+              "reported": "Fig. 4 caption: 'LLM responses have far more words in common than do human responses.' No numbers in text.",
+              "locator": "p. 8, text; p. 9, Fig. 4"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Count of overlapping words between two respondents' full responses (more overlap = less diverse; direction coded as lower diversity for LLMs)",
+            "embedding_model": "",
+            "computed_over": "Pairs of full responses from different respondents within each population",
+            "uncertainty": "None reported (histogram only)",
+            "notes": "Paper presents this as a partial explanation of S1-O1 to S1-O3."
+          }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Individual originality, AUT (O_AUT)",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "TF-IDF-weighted semantic distance between the prompt object and each word of a response, GloVe 840B embeddings (Appendix B, eq. 2). Robustness variants: AUT prompt v1 and v2 (Table 4); LLM system prompts (Table 7).",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLMs (AUT prompt v3, baseline system prompt)",
+              "control_arm": "Humans (Prolific, n = 102)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "mu(O_t(LLM)) 0.711 vs mu(O_t(Human)) 0.696; t(2094) = -3.4, p = 0.001; effect size 0.1; test power 0.84",
+              "locator": "p. 7, Table 2 (AUT row); p. 10, Table 4 (v3 row)"
+            },
+            {
+              "treatment_arm": "LLMs, AUT prompt v1",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "0.744 vs 0.696; t(2094) = -11.8, p = 8.3e-32; effect size 0.35; power 1.0",
+              "locator": "p. 10, Table 4"
+            },
+            {
+              "treatment_arm": "LLMs, AUT prompt v2",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "0.715 vs 0.696; t(2094) = -4.04, p = 2.7e-05; effect size 0.14; power 0.97",
+              "locator": "p. 10, Table 4"
+            },
+            {
+              "treatment_arm": "LLMs, system prompt 'More creative'",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only"],
+              "reported": "0.733 vs humans 0.695; t(5020) = -9.8, 1.0e-22",
+              "locator": "p. 13, Table 7"
+            },
+            {
+              "treatment_arm": "LLMs, system prompt 'Very creative'",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only"],
+              "reported": "0.754 vs humans 0.695; t(5206) = -15.9, 3.2e-56",
+              "locator": "p. 13, Table 7"
+            },
+            {
+              "treatment_arm": "LLMs, system prompt 'Not creative'",
+              "control_arm": "Humans (Prolific)",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "p_value_only"],
+              "reported": "0.702 vs humans 0.695; t(2507) = -1.28, 0.1",
+              "locator": "p. 13, Table 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Individual originality, Forward Flow (O_FF)",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Forward Flow score following Gray et al. (2019): mean semantic distance of each word to all preceding words, GloVe 840B embeddings (Appendix B, eq. 3).",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLMs",
+              "control_arm": "Humans (Prolific, n = 102)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "mu(O_t(LLM)) 0.603 vs mu(O_t(Human)) 0.637; t(164) = 5.2, p = 2.9e-07; effect size 0.52; test power 0.99",
+              "locator": "p. 7, Table 2 (FF row); Fig. 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Individual originality, DAT (O_DAT)",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "DAT score following Olson et al. (2021): mean semantic distance between all pairs of words in the response, GloVe 840B embeddings (Appendix B, eq. 4).",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLMs",
+              "control_arm": "Humans (Prolific, n = 102)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "mu(O_t(LLM)) 0.801 vs mu(O_t(Human)) 0.753; t(159) = -5.12, p = 8.7e-07; effect size 0.77; test power 0.99",
+              "locator": "p. 7, Table 2 (DAT row); Fig. 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Validation: Prolific sample vs. public pre-LLM human datasets from prior work",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing. Human responses from this paper's Prolific study are compared with public human datasets from earlier in-person studies (around 2022). No AI involved.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "we use public datasets of human responses to the AUT, FF, and DAT from prior work as a secondary validation dataset.",
+        "locator": "p. 5, Section 3.3; p. 13, Section 5.4",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Our study (Prolific)", "description": "This paper's Prolific participants", "ai": "none", "n_randomized": null, "n_analyzed": 102 },
+        { "name": "Prior studies (public OSF datasets)", "description": "In-person creativity tests run before the rise of LLMs; OSF u3yv4 (AUT), 7p5mt (FF), kbeq6 (DAT); n = 141 for DAT, n = 92 for AUT, n = 146 for FF", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "Prior-study counts differ by test (DAT 141, AUT 92, FF 146) and come from separate datasets, so no single total is stated. This paper's sample is 102.",
+        "population": "mixed",
+        "who": "Prolific workers (this paper) and participants in prior in-person creativity studies",
+        "country": "not_stated",
+        "quote": "Figure 8 compares individual creativity results for our study (n = 102) to that of prior studies (n = 141 for DAT, n = 92 for AUT, n = 146 for FF).",
+        "locator": "p. 13, Section 5.4"
+      },
+      "ai_tool": { "name_model": "", "role": "other", "how_used": "No AI used; human-only comparison." },
+      "task": {
+        "type": "divergent_test",
+        "description": "AUT, Forward Flow, DAT as in S1",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Individual originality (AUT, FF, DAT): our study vs. prior studies",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Same originality scores as S1-O5 to S1-O7",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Our study (Prolific)",
+              "control_arm": "Prior studies",
+              "comparison_type": "other",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "figure_only"],
+              "reported": "AUT t(5064) = 3.21, p = 0.001; DAT t(206) = 3.32, p = 0.001; FF t(892) = 6.91, p < 0.0001 (prior study higher on all three)",
+              "locator": "p. 13, Fig. 8 caption"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Population-level variability (AUT, FF, DAT): our study vs. prior studies",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same pairwise cosine-distance measure as S1-O1 to S1-O3",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Our study (Prolific)",
+              "control_arm": "Prior studies",
+              "comparison_type": "other",
+              "direction": "mixed",
+              "statistics_available": ["test_statistic", "p_value_only", "figure_only"],
+              "reported": "AUT: prior study higher, t(1046) = 11.0, p < 0.001; FF: our study higher, t(366689) = -28.9, p < 0.001; DAT: our study higher, t(19832) = -19.6, p < 0.001",
+              "locator": "p. 14, Fig. 9 caption; p. 13, Section 5.4 text"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean cosine distance between embedded response sets of two different respondents",
+            "embedding_model": "all-MiniLM-L6-v2 (sentence_transformers)",
+            "computed_over": "All pairs of different respondents within each sample",
+            "uncertainty": "Two-sided t-test on pairwise distances",
+            "notes": "Human-vs-human validation, not an AI contrast."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": {
+    "shares_participants_with": "S2 reuses public human datasets from prior work (OSF u3yv4 for AUT, 7p5mt for FF, kbeq6 for DAT); the text does not name the source papers. S1 uses only this paper's own Prolific sample.",
+    "quote": "we use public datasets of human responses to the AUT, FF, and DAT from prior work as a secondary validation dataset.",
+    "locator": "p. 5, Section 3.3, footnotes 3-5"
+  },
+  "company_involvement": { "any": false, "description": "No company involvement stated; authors at Duke University and Technion. LLMs accessed through public APIs (GitHub Models).", "locator": "p. 1; p. 4, footnote 1" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "ai_vs_human",
+    "reason": "No person receives AI assistance: LLM-generated test responses are compared with unaided human responses (102 Prolific participants). Criterion 2 is marked met only in the sense that 102 humans were analyzed (p. 5); no one was randomized. Outcomes are computed on outputs (embedding distances), but they compare AI output with human output, so this is ai_vs_human context evidence."
+  },
+  "one_line_finding": "Responses from 7 LLMs of distinct families were much less variable across respondents than responses from 102 Prolific participants on the AUT (mean cosine distance 0.459 vs 0.738, effect size 2.2), Forward Flow (0.534 vs 0.835, 2.0), and DAT (0.665 vs 0.819, 1.4) (p. 8, Table 3), while individual originality was similar (p. 7, Table 2).",
+  "open_questions": [
+    "Whether the individual-originality tests in Table 2 (p. 7) use the 7-model subset or all 22 LLMs: Section 3.3 (p. 5) says statistical tests use the subset, but Section 4.1 does not restate it.",
+    "The number of LLM responses and human responses (outputs and pairs) behind each t-test is not stated; only degrees of freedom are printed.",
+    "Whether S2's prior-study participant counts (141, 92, 146) should count as people analyzed for this paper; they are separate public datasets and I left the S2 total null."
+  ],
+  "notes": "Paper-internal inconsistencies: (1) p. 7 text says 'Table 1 gives statistics comparing population means' but the statistics are in Table 2 (Table 1 is demographics). (2) Human AUT originality mean is 0.696 in Tables 2 and 4 but 0.695 in Table 7. (3) The full model list (p. 4) names 'AI21-Jamba-Instruct' while the 7-model subset names 'AI21 Jamba 1.5 Large'. (4) Tables 2, 3, 5 state the one-sided alternative as mu(LLM) > mu(Human) even where LLM is lower; the sign of printed t statistics appears to be human minus LLM. (5) Table 6 caption says Llama models have 'lower population-level creativity' though t(248) = 0.2, p = 0.41 (Llama 0.441 vs unrelated LLMs 0.445); this is an LLM-only comparison and is not coded as an outcome. Effect size is defined as difference in means divided by pooled SD (p. 7). ai_available_when_produced is 'mixed' because the LLM arm is AI output and the human arm is unaided. AUT used 5 objects in the main analysis and 10 in the Llama analysis (p. 12, Appendix A.1)."
+}

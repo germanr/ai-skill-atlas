@@ -1,0 +1,20 @@
+[
+  {
+    "id": "classes-06-1",
+    "cid": "c678",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "forms/c678.json: eligibility.core",
+    "correct_value": "no",
+    "evidence": "The assembled report, C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, line 1051, places c678 under Candidates that need clarification; report-data.json status_by_cid.c678 is clarify. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Zhao (2023) - Exploring the Application and Influence of Artificial Intelligence AIGC Technolo.pdf with PyMuPDF. PDF p. 5 (printed p. 455), section 3.1(3)-(4), describes an online questionnaire and random sampling of 50 design professionals, not assignment of logo creators to AI assistance. Section 3.2 explicitly compares AIGC-generated and manually designed logos; Table 1 scores those outputs. The full nine-page PDF describes no experiment assigning people to AI help. creativity-codebook.md section 3 classifies AI-generated versus human-generated output comparisons as context. forms/c678.json already records design_class and context_class as ai_vs_human, and its contrasts also have comparison_type ai_vs_human. Set eligibility.core to no and retain context_class = ai_vs_human. This yields the supported report status context_ai_vs_human (Context: AI versus human output). I verified in memory that this single field correction makes tools/build_report.py classify() return that status; no source file was changed."
+  },
+  {
+    "id": "classes-06-2",
+    "cid": "c150",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py: classify(), lines 99-104; generated report-data.json status_by_cid.c150",
+    "correct_value": "core",
+    "evidence": "The assembled report, C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, line 1052, places c150 under Candidates that need clarification because of the Training randomization contradiction; report-data.json status_by_cid.c150 is clarify. Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Zhu and Zou (2026) - Generative AI Adoption in Human Creative Tasks.pdf at PDF pp. 2-6, 8 and 17 using PyMuPDF. Page 2 explicitly states that 246 first-wave participants were randomly assigned to HI, HAT or HHT, with ChatGPT available to HAT during the creative tasks. Page 4 gives 63 HI, 61 HAT and 122 HHT participants. Page 17, Appendix B.2, excludes one HAT participant from grade analyses, yielding 245 first-wave people analyzed, including 123 in HAT versus HI (both derived from the printed counts and exclusion). Page 6 describes external creativity ratings of participants' submitted texts; page 8, Tables 2-3, reports the text-only outcomes and treatment comparisons. Pages 3 and 5 identify Training as a separately recruited second wave and caution against causal comparisons involving it; the conflicting all-four-groups wording on page 17 therefore does not unsettle the explicit first-wave randomization. form-spec.md line 144 requires all three eligibility criteria in at least one study. forms/c150.json eligibility.core and final.core are yes, every final criterion is met, and final.open_items[1] explicitly limits its concern to S2 and says S1 already secures paper-level core eligibility. tools/build_report.py lines 101-103 nevertheless downgrade the entire paper whenever any final open item has affects_eligibility=true; I reproduced this return value in memory. Correct classify() to return (core, empty reason) for this paper and place it in Recommended for the core dataset: an S2-only open issue must not override the independently qualifying S1. Retain the Training caveat for S2."
+  }
+]

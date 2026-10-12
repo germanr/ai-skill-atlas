@@ -1,0 +1,95 @@
+{
+ "findings": 5,
+ "confirmed": 3,
+ "refuted": 2,
+ "cannot_tell": 0,
+ "by_lane": {
+  "prose": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "coverage": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "links": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "tables": {
+   "findings": 1,
+   "confirmed": 1
+  },
+  "classes": {
+   "findings": 1,
+   "confirmed": 0
+  },
+  "sources": {
+   "findings": 1,
+   "confirmed": 1
+  },
+  "citations": {
+   "findings": 2,
+   "confirmed": 1
+  }
+ },
+ "confirmed_items": [
+  {
+   "id": "tables-00-1",
+   "cid": "c710",
+   "section": "Recommended for the core dataset",
+   "location": "Baumler et al. (2026) [c710], report line 78: People analyzed, by randomized study; Design; Task",
+   "claim": "The row lists 81; 88 people, online_rct/other designs, and creative_writing/other tasks among the randomized studies.",
+   "problem": "The 88-person entry is a separate formative survey, not a randomized AI-assistance experiment. Only the order of survey scenarios was randomized; respondents received no AI assistance and produced no scored creative output. Including this survey adds an inapplicable experimental sample and its design/task labels to the row. For the randomized AI-assistance study, these cells should read 81, online_rct, and creative_writing.",
+   "evidence": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c710.json: studies[study_id=S2].participants.n_analyzed = 88; design_class = other; assignment.what_was_assigned states that only presentation order was randomized and that there was no assignment to AI assistance, no AI condition, and no scored writing task; ai_tool.how_used states that no AI assistance was used; outcomes = []. eligibility.reason explicitly distinguishes S2 as a separate formative survey without AI assistance or scored creative output. studies[study_id=S1] records n_analyzed = 81, design_class = online_rct, and task.type = creative_writing. Independently checked C:/Dropbox/Research/ai-lab/literature/creativity/Baumler et al (2026) - Can You Make It Sound Like You.pdf, PDF pp. 22-23, Appendix C: randomized presentation of candidate scenarios, 102 survey completers with 88 passing attention checks, and survey participants barred from the main study.",
+   "severity": "blocker",
+   "verdict": {
+    "id": "tables-00-1",
+    "cid": "c710",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:rct_studies; Recommended for the core dataset, c710 row: People analyzed, by randomized study; Design; Task",
+    "correct_value": "| Baumler et al. (2026) [c710] | 81 | online_rct | online_panel | other | creative_writing | with_ai, across_people | on file |",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:78 and report-generated.md:31 contain the disputed row. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Baumler et al (2026) - Can You Make It Sound Like You.pdf with pymupdf. PDF p. 22, Appendix C, describes a formative survey for choosing writing scenarios and randomizes only their presentation order. PDF p. 23 describes selecting scenarios where personal style matters, reports 102 completers with 88 passing attention checks, and prohibits those respondents from completing the main study. This survey supplies no AI-assisted writing condition or scored creative output. PDF pp. 4-5, section 4 and Figures 1-2, describe the main randomized writing/post-editing blocks; p. 13, Appendix A.1, confirms 81 analyzed Prolific participants after exclusions; p. 24, Table 9, confirms each of the 81 selected six writing tasks, four randomly allocated to treatment and two to control. forms/c710.json correctly records S1 as n_analyzed=81, design_class=online_rct, task.type=creative_writing, and S2 as a separate survey with n_analyzed=88, design_class=other, task.type=other, only an ai=none arm, and outcomes=[]. S2.assignment.randomized=yes is explicitly qualified as scenario-order randomization only. tools/build_report.py:95-98 accepts any assignment.randomized=yes, regardless of what was randomized; executing that isolated function in memory selects both S1 and S2. Lines 254-264 then aggregate their counts, designs, and tasks. The builder must exclude S2 from this randomized AI-assistance table and render the supplied replacement row from S1; the survey values in the form are supported by the PDF."
+   }
+  },
+  {
+   "id": "sources-07-1",
+   "cid": "c065",
+   "section": "Notes on each recommended paper",
+   "location": "Hemmatian et al. (2026), Needs posted data: Count conflicts (open question 5), report line 462: \"three seed sets of n = 21 (63) vs N = 62\"",
+   "claim": "The three seed conditions each contain exactly 21 participants, yielding a conflicting total of 63 rather than the reported N = 62.",
+   "problem": "The report converts approximate condition sizes into exact counts. The PDF labels the seed conditions as approximately 21 participants each; it does not establish a 63-person total or a contradiction with N = 62.",
+   "evidence": "C:/Dropbox/Research/ai-lab/literature/creativity/Hemmatian et al (2026) - Two-Player Alternate Uses Test.pdf: PDF p. 3, Figure 1, labels the three CON seed conditions n ≈ 21. Its caption on PDF p. 4 explicitly says \"with ~21 participants each\". Section 3.2 on PDF p. 3 reports 62 students. Exact seed-condition counts are not supplied by these approximate labels.",
+   "severity": "serious",
+   "verdict": {
+    "id": "sources-07-1",
+    "cid": "c065",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "final.open_items[4].item",
+    "correct_value": "Count discrepancies (open question 5): 1,928 vs 1,923 ideas, 226 vs 225 raters, and 61 in GPT in Figure 3 versus the overall N = 62. These overall participant counts exceed 50. Figure 1 describes approximately 21 participants per CON seed set (PDF pp. 3-4); these approximate counts do not establish an exact total of 63 or a conflict with N = 62. Exact seed-set counts are not reported.",
+    "evidence": "Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Hemmatian et al (2026) - Two-Player Alternate Uses Test.pdf with PyMuPDF, extracted PDF pp. 3-4, and rendered Figures 1 and 3. PDF p. 3, Section 3.2, reports 62 students; Figure 1 labels gpt_con, high_con, and low_con n ≈ 21. The Figure 1 text alternative on PDF p. 4 says \"with ~21 participants each\". Section 4.3 on PDF p. 6 says the CON sub-arms were unevenly assigned. Thus the source gives approximate seed-set sizes, not three exact counts summing to 63. Figure 3 on PDF p. 6 labels the GPT subgroups n = 32 and n = 29, supporting the separate total of 61 retained in the replacement. C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:462 contains \"three seed sets of n = 21 (63) vs N = 62\". C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c065.json, final.open_items[4].item, contains that same unsupported claim; tools/build_report.py:288-290 directly emits the item text. This is a form error, not a builder error. The same exact-count mistake also occurs in open_questions[4], studies[0].arms[2].description through studies[0].arms[5].description, studies[0].participants.exclusions, studies[0].outcomes[1].measure_detail, notes, and final.challenge_resolution[2].problem/locator; those references should likewise describe approximately 21 per seed set, with no asserted 63-versus-62 conflict."
+   }
+  },
+  {
+   "id": "citations-01-1",
+   "cid": "c471",
+   "section": "Recommended for the core dataset / Notes on each recommended paper",
+   "location": "c089 sample-overlap note, report line 739, reference to c471: \"Liu, Li, Zuo, Lu, and Feng (2026)\"",
+   "claim": "Liu, Li, Zuo, Lu, and Feng (2026)",
+   "problem": "This author-year label spells out five surnames. The required rule uses the first family name plus et al. for four or more authors, so this label should be Liu et al. (2026).",
+   "evidence": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/citations/c471.json: latest_version.authors_family = [\"Liu\", \"Li\", \"Zuo\", \"Lu\", \"Feng\"]; latest_version.year = 2026. Independently checked PDF page 1 (printed page 39) of C:/Dropbox/Research/ai-lab/literature/creativity/Liu Zuo Feng Lu (2026) - Exploring the impact of ChatGPT on college students' mathematical creativity.pdf: byline lists Zhiwei Liu, Gang Li, Haode Zuo, Yongjing Lu, and Jue Feng.",
+   "severity": "serious",
+   "verdict": {
+    "id": "citations-01-1",
+    "cid": "c471",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "forms/c089.json: sample_overlap.shares_participants_with (embedded c471 author-year label)",
+    "correct_value": "Liu et al. (2026)",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, line 739, prints \"Liu, Li, Zuo, Lu, and Feng (2026)\" in the c089 sample-overlap note; report-generated.md, line 692, has the same wording. Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Liu Zuo Feng Lu (2026) - Exploring the impact of ChatGPT on college students' mathematical creativity.pdf with pymupdf: PDF page 1 (printed page 39) lists Zhiwei Liu, Gang Li, Haode Zuo, Yongjing Lu, and Jue Feng, and its journal header gives 2026. PDF page 21 (printed page 59), \"Please cite as\", confirms those five family names in that order and the year 2026. forms/citations/c471.json, latest_version.authors_family and latest_version.year, agree with the PDF. tools/codex_audit.py, lines 98-100, explicitly requires \"four or more, A et al.\" and directs auditors to flag every label that breaks the rule. The expanded label is already present in forms/c089.json, sample_overlap.shares_participants_with; tools/build_report.py, lines 274-276, copies that field into the note. Replace only \"Liu, Li, Zuo, Lu, and Feng (2026)\" with \"Liu et al. (2026)\" in that c089 form field."
+   }
+  }
+ ]
+}

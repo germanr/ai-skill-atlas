@@ -1,0 +1,83 @@
+{
+  "cid": "c096",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O1",
+      "field": "unit",
+      "form_value": "participant",
+      "source_says": "The paper analyzes Study 1 expert creativity in one one-way ANOVA with one row per poem, in three groups: 48 human poems, 48 human-AI poems, and 50 AI-only poems that no participant wrote. The human-AI vs human result is a post hoc pairwise test inside that ANOVA. The paper states it for poems ('Poems in the human condition ... were regarded as more creative than poems in the human-AI condition'), while Study 2 states its results for participants. form-spec.md defines unit as 'The unit of the paper's own analysis for that outcome', so the unit is output. The form codes this same ANOVA as output (n_units 146) in S1-O2, so S1-O1 and S1-O2 disagree about one analysis. The reconciliation justifies the recode with 'the coding reconciled c010 used for the same design (one output per person plus an AI-only set in one three-group ANOVA)'. But reconciled c010 codes that design (Experiment 2B, S3-O1 and S3-O2: one idea per participant plus 100 ChatGPT-only responses in one ANOVA, t297) as output with n_units 300. Arm means and SDs do not change, because each participant wrote one poem.",
+      "quote": "A one-way ANOVA revealed that the creativity of the poems differed significantly across the three experimental groups, F(2, 145) = 63.48, p < 0.001, partial η2 = 0.47 (see Table 1).",
+      "locator": "PDF p. 4, Results, Study 1 (ANOVA and post hoc sentences; Table 1); PDF p. 6 (Study 2 states results for participants); form-spec.md, Field notes, unit; forms/c010.json, S3-O1 and S3-O2 (last written 2026-10-04, before this form)"
+    },
+    {
+      "where": "S1-O1",
+      "field": "n_units",
+      "form_value": "null",
+      "source_says": "This follows from the unit. With unit output, n_units counts the observations in the paper's analysis: the 146 poems, the value the form records for the same ANOVA in S1-O2. The printed error df (145) does not match 146 poems, and open_questions already says so.",
+      "quote": "Therefore, in sum, each poet evaluated the same set of 146 poems.",
+      "locator": "PDF p. 4, Results, Study 1"
+    }
+  ],
+  "confirmed": [
+    {
+      "statement": "S1-O1 and S2-O1 are scored on the produced poems by raters, not self-reported. In Study 1, 10 professional poets with published poems (6 with a graduate degree) rated 'the creativity of each poem' from 1 to 40 under the Consensual Assessment Technique. They saw the poems in random orders and knew nothing about the authors. Study 2 used '10 (different) poets', 'As in Study 1'. 'Professional' and the 1 to 40 scale carry over through 'The study followed the same procedure as Study 1'. Study 2 does not restate them.",
+      "locator": "PDF p. 3 (poets); PDF p. 4 (procedure, 146 poems); PDF p. 5 (Study 2)"
+    },
+    {
+      "statement": "AI was available while the scored AI-arm poems were written. Study 1 editors could edit the AI poem 'before submitting it', with dropdowns of alternative AI lines. Study 2 co-creators alternated lines with the system and were 'free to edit all and any aspects of the poem at any stage'. So ai_available_when_produced yes and question with_ai are right for S1-O1 and S2-O1.",
+      "locator": "PDF p. 3 (Study 1 human-AI instructions and interface); PDF p. 5 (co-creator arm)"
+    },
+    {
+      "statement": "No outcome was produced after AI was removed: the paper names long-term and deskilling effects only as untested future work. No outcome compares outputs across people. So after_ai and across_people do not apply, and no diversity outcome is missing.",
+      "locator": "PDF p. 8, Discussion (limitations and future research); PDF pp. 2-7 (all measures)"
+    },
+    {
+      "statement": "S1-O2 is coded correctly under form-spec.md. The 50 AI-condition poems were 'generated autonomously by the poetry generation system' as a benchmark, so question none (the spec's own example is AI output compared with human output), ai_available_when_produced mixed, unit output, and n_units 146 all fit.",
+      "locator": "PDF p. 2 (AI condition, n = 50); PDF p. 4 (benchmark sentence, 146 poems); form-spec.md, Field notes, question"
+    },
+    {
+      "statement": "construct overall_creativity is right for every outcome. The poets give one 1 to 40 creativity rating, and the participants give one 1 to 40 self-rating. The paper scores no novelty, usefulness, fluency, flexibility, elaboration, or diversity.",
+      "locator": "PDF p. 3 and p. 5 (self-rating item); PDF p. 4 (expert rating)"
+    },
+    {
+      "statement": "S1-O3 and S2-O2 are self-ratings ('rate the extent to which you think the poem you submitted is creative'), so scored_on_output false and measure self_report are right. unit participant matches the Study 1 independent samples t-test and the Study 2 ANOVA (error df 149).",
+      "locator": "PDF p. 3 and p. 5 (item); PDF p. 4 (t-test); PDF p. 5 (F(2, 149) = 6.08)"
+    },
+    {
+      "statement": "S2-O1 unit participant matches the paper's analysis. The text states each comparison for participants, the error df of F(2, 149) equals 152 participants minus 3 arms, and Study 2 rated no AI-only poems.",
+      "locator": "PDF p. 6, Expert evaluations of creativity; PDF pp. 4-5 (arm sizes 51, 50, 51)"
+    },
+    {
+      "statement": "The Study 1 numbers in S1-O1, S1-O2, and S1-O3 match the text and Table 1 exactly. Expert ratings: AI 9.45 (2.00), human-AI 12.55 (4.32), human 18.23 (4.94). ANOVA: F(2, 145) = 63.48, p < 0.001, partial η2 = 0.47. All three post hoc tests: p < 0.001. Self-rating: human 23.88 (8.40) vs human-AI 19.13 (10.40), p = 0.016, Cohen's D = 0.47. Arm sizes: 48 and 48. The form records D as printed, but the printed means and SDs give a pooled-SD d near 0.50.",
+      "locator": "PDF p. 4, Results, Study 1 and Table 1; PDF p. 2 (arm sizes)"
+    },
+    {
+      "statement": "The S2-O1 numbers match. Table 2: human-AI 12.53 (4.45), co-creator 14.70 (5.06), human 15.74 (4.98); the form records the text's SD = 9.24 as a discrepancy. ANOVA: F(2, 149) = 5.77, p = 0.004, partial η2 = 0.07. Post hoc: p = 0.001, 0.026, and 0.278, plus the stray 'p = 0.280'. Fig. 4: 'Δ = 3.21**' and 'Δ = 2.17*'. Mediation: B = 0.78, SE = 0.39, 95% CI [0.16, 1.68], and B = 0.09, SE = 0.29, 95% CI [−0.50, 0.78]. Fig. 5 paths: .09 ns, .96**, .96 ns, and .88**, .88**, 1.39 ns.",
+      "locator": "PDF p. 6, Expert evaluations of creativity and Fig. 4; PDF p. 7, Table 2, Mediation analyses, Fig. 5"
+    },
+    {
+      "statement": "Table 2's human SD (4.98) is the correct one. A one-way ANOVA rebuilt from the Table 2 means, SDs, and arm sizes gives F(2, 149) = 5.77, as printed. Its pairwise t values (3.33, 2.25, and 1.09) give p = 0.0011, 0.026, and 0.278, as printed. The text's 9.24 would give F = 3.09. This is the checker's arithmetic, not a printed value.",
+      "locator": "PDF p. 6; PDF p. 7, Table 2"
+    },
+    {
+      "statement": "The S2-O2 numbers match. Table 2: human-AI 16.96 (9.56), co-creator 21.16 (9.03), human 23.29 (9.24). ANOVA: F(2, 149) = 6.08, p = 0.003, partial η2 = 0.08. Post hoc: p = 0.001, 0.025, and 0.247, plus the stray 'p = 0.246'.",
+      "locator": "PDF pp. 5-6, Self-reported creativity; PDF p. 7, Table 2"
+    },
+    {
+      "statement": "Directions and comparison types follow the printed means and p-values. Editing lowers expert creativity compared with writing alone in both studies. Co-creating does not differ from writing alone (p = 0.278). Co-creating scores higher than editing (p = 0.026). In that ai_design contrast, the treatment is the co-creator arm that the paper proposes, and the control is the editor role, which the paper calls the default.",
+      "locator": "PDF p. 2 (editor role 'by default'); PDF p. 4; PDF p. 6; PDF p. 7, Table 2"
+    },
+    {
+      "statement": "No outcome that bears on the three questions is missing. The poets' rating is the only score of the poems. Creative self-efficacy is a self-reported mediator, and the form rightly keeps it in notes. The paper prints neither how the 10 ratings were combined nor any inter-rater reliability. Its only alpha (0.92) belongs to the self-efficacy scale.",
+      "locator": "PDF pp. 1-11, read in full; PDF p. 5 (self-efficacy scale)"
+    },
+    {
+      "statement": "primary paper_primary for S1-O1 and S2-O1 rests on the paper's framing, because the paper never uses the word 'primary'. It states its headline finding 'as judged by professional poets', and Study 2 tests whether the redesign 'would improve expert evaluations of creativity'.",
+      "locator": "PDF p. 2, last paragraph before Results; PDF p. 4, Study 2"
+    }
+  ],
+  "summary": "In both studies, 10 professional poets scored each submitted poem with the Consensual Assessment Technique (S1-O1, S2-O1), AI was available while the AI-arm poems were written, and every question, construct, measure, direction, and printed number checks out against PDF pp. 2-7, so criterion 3 holds. One coding is wrong: S1-O1 has unit participant and n_units null, but the paper's Study 1 analysis is one ANOVA over 146 poems that includes 50 AI-only poems with no participant, so the unit is output with n_units 146, as the form itself codes S1-O2 and as reconciled c010 codes the same design (the form cites c010 for the opposite)."
+}

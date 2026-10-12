@@ -1,0 +1,693 @@
+{
+  "cid": "c018",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Padmakumar and He (2024) - Does Writing With Language Models Reduce Content Diversity.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Padmakumar and He (2024) - Does Writing With Language Models Reduce Content Diversity.pdf",
+    "version": "arXiv:2309.05196v3 dated 1 Jul 2024; running header reads 'Published as a conference paper at ICLR 2024'",
+    "title_on_document": "Does Writing with Language Models Reduce Content Diversity?",
+    "authors_on_document": [
+      "Vishakh Padmakumar",
+      "He He"
+    ],
+    "pages": 30
+  },
+  "paper_design_summary": "38 native-English writers recruited on Upwork each completed one to three sessions of three argumentative essays (about 300 words, New York Times Student Opinion prompts) on the CoAuthor platform: one essay without model help (Solo), one with inline continuations from base GPT3 (davinci), and one with continuations from InstructGPT (text-davinci-003); the order of settings and the topics were randomized within each session. The 300 essays (100 per setting, 10 per topic) were scored for homogenization (each essay's mean pairwise Rouge-L or BertScore similarity to other essays on the same topic, at key-point and raw-essay level) and for corpus diversity (fraction of unique n-grams, unique key-point clusters, compression ratios).",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Argumentative essay co-writing experiment (Solo vs GPT3 vs InstructGPT)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Within each session, the order of the three writing settings (Solo, GPT3, InstructGPT) and the topic assigned to each essay. Every participant writes in all three settings.",
+        "unit": "within_person_order",
+        "structure": "within",
+        "quote": "Each participant is asked to complete a session consisting of three essay writing tasks—one in each of the three settings and each on a different topic. In each session, the order of the three settings and the assignment of topics are randomized.",
+        "locator": "p. 3, Section 2.2; repeated p. 14, Appendix A.1",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        {
+          "name": "Solo",
+          "description": "Participant writes the essay without model help.",
+          "ai": "none",
+          "n_randomized": null,
+          "n_analyzed": null
+        },
+        {
+          "name": "GPT3",
+          "description": "Participant writes with inline continuations (5 per TAB request) from the base model davinci; at least 5 requests per essay required, acceptance optional. 100 essays.",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": null
+        },
+        {
+          "name": "InstructGPT",
+          "description": "Participant writes with inline continuations (5 per TAB request) from the feedback-tuned model text-davinci-003; at least 5 requests per essay required, acceptance optional. 100 essays.",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": null
+        }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 38,
+        "counts_are": "people",
+        "exclusions": "After each participant's first session the authors reviewed essays for relevance and coherence; 'This was used to filter out a few participants whose sessions were reassigned' (p. 14). The number filtered is not stated, and the paper does not say whether the 38 includes them. The text says 'each of the 38 participants completed between 1 and 3 sessions' (p. 15), giving 300 essays (100 per setting). Per-arm people counts are not stated; in a within-person design each participant contributes to every arm.",
+        "population": "professionals",
+        "who": "Upwork freelancers who are native English speakers with prior writing or copyediting experience on the platform (5 to over 200 previously completed tasks); paid $20 per hour prorated.",
+        "country": "United States",
+        "quote": "We recruit a total of 38 participants from Upwork, all of whom are native English speakers and have prior experience in writing or copyediting on the platform.",
+        "locator": "p. 14, Appendix A.1; also p. 1 ('We hired 38 writers from Upwork') and p. 15"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI API: davinci (base GPT3) and text-davinci-003 (InstructGPT); temperature 0.9, top p 1, frequency and presence penalty 0.5, 30 word-piece continuations",
+        "role": "suggestions",
+        "how_used": "CoAuthor editor: pressing TAB returns 5 continuations in a dropdown; the writer may accept and edit one or reject all. Writers had to request suggestions at least 5 times per essay. Model-written share of characters averaged 32.45 percent (InstructGPT) and 35.57 percent (GPT3) (p. 3, Table 1)."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Argumentative opinion essay of about 300 words (3 to 4 short paragraphs) on one of 10 New York Times Student Opinion prompts (Table 5, p. 16).",
+        "duration": "About 15 minutes per essay on average; a three-essay session usually under one hour (p. 3, p. 14)."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Homogenization score, Rouge-L (key-point level main; raw-essay level as variant)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Each essay's homogenization = average pairwise Rouge-L similarity to all other essays on the same topic; corpus homogenization = mean over essays. Main version represents each essay by its gpt-3.5-turbo key points; variant uses the raw essay text (Table 10, Figure 8a, Table 8). Higher = more similar, so the sign is reversed relative to diversity.",
+          "unit": "output",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "Direction coded on diversity (homogenization higher = diversity lower). Corpus homogenization, key point Rouge-L: Solo 0.1536, InstructGPT 0.1660; essay level Rouge-L: Solo 0.1498, InstructGPT 0.1621; InstructGPT higher, p < 0.05, independent samples t-test. Per-topic p-values (Solo vs InstructGPT): key point level Table 7, essay level Table 8. No SDs printed (boxplots only).",
+              "locator": "p. 5, Section 4.2 and Figure 2; p. 22, Table 10; p. 19, Tables 7-8; p. 23, Figure 8a; p. 24, Figure 9a"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "Key point Rouge-L: Solo 0.1536, GPT3 0.1578; essay level Rouge-L: Solo 0.1498, GPT3 0.1523. 'there is no statistically significant difference between the corpus homogenization score of GPT3 and that of Solo at the 5% significance level using an independent samples t-test.'",
+              "locator": "p. 5, Section 4.2; p. 22, Table 10"
+            },
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "Direction coded on diversity. Key point Rouge-L: GPT3 0.1578, InstructGPT 0.1660; essay level Rouge-L: GPT3 0.1523, InstructGPT 0.1621; InstructGPT higher homogenization, p < 0.05, independent samples t-test.",
+              "locator": "p. 5, Section 4.2; p. 22, Table 10"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Homogenization = mean pairwise Rouge-L similarity of an essay (or its key points) to all other essays on the same topic, averaged over essays",
+            "embedding_model": "",
+            "computed_over": "Each essay against all other essays on the same topic (the paper's formula sums over D_t, the essays on topic t); appears to pool across settings, though the text does not state whether D_t is restricted to the same setting",
+            "uncertainty": "Independent samples t-test on essay-level homogenization scores (pooled and per topic)",
+            "notes": "Key-point level is the reported main version because string metrics are less reliable on long documents (p. 22)."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Homogenization score, BertScore (key-point level and raw-essay level)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same homogenization definition as S1-O1 with BertScore (microsoft/deberta-xlarge-mnli) as the pairwise similarity. Higher = more similar (sign reversed relative to diversity).",
+          "unit": "output",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "Direction coded on diversity. Key point BertScore: Solo 0.6305, InstructGPT 0.6437; essay level BertScore: Solo 0.6044, InstructGPT 0.6318; InstructGPT higher homogenization than both other groups, p-value < 0.05. Per-topic p-values in Tables 7-8 (BertScore panels).",
+              "locator": "p. 22, Table 10; p. 19, Tables 7-8; p. 23, Figure 8b; p. 24, Figure 9b"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "figure_only"
+              ],
+              "reported": "Key point BertScore: Solo 0.6305, GPT3 0.6284; essay level BertScore: Solo 0.6044, GPT3 0.6130. No pooled test of GPT3 vs Solo printed for BertScore; per-topic p-values in Tables 7-8.",
+              "locator": "p. 22, Table 10; p. 19, Tables 7-8"
+            },
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "Direction coded on diversity. Key point BertScore: GPT3 0.6284, InstructGPT 0.6437; essay level BertScore: GPT3 0.6130, InstructGPT 0.6318; p-value < 0.05.",
+              "locator": "p. 22, Table 10"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Homogenization = mean pairwise BertScore of an essay (or its key points) to all other essays on the same topic",
+            "embedding_model": "microsoft/deberta-xlarge-mnli (BertScore)",
+            "computed_over": "Each essay against all other essays on the same topic",
+            "uncertainty": "Independent samples t-test on essay-level scores (pooled and per topic)",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Key-point diversity: fraction of unique key points after agglomerative clustering",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Key points from all essays in a setting pooled and clustered (complete linkage, distance = 1 - Rouge-L; BertScore variant in Table 12b); diversity = number of clusters / number of key points, reported at four distance thresholds. Higher = more diverse.",
+          "unit": "set",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only"
+              ],
+              "reported": "Rouge-L thresholds 0.5/0.6/0.7/0.8: Solo 0.982/0.941/0.792/0.543; InstructGPT 0.950/0.877/0.738/0.494. BertScore thresholds 0.1/0.2/0.3/0.4: Solo 0.998/0.981/0.805/0.321; InstructGPT 0.992/0.941/0.730/0.292. Bold InstructGPT values 'different from other columns by a statistically significant margin (p < 0.05)' by permutation test.",
+              "locator": "p. 6, Table 3b and Section 5.2; p. 27, Table 12; p. 17, Appendix B.1"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "Rouge-L thresholds 0.5/0.6/0.7/0.8: Solo 0.982/0.941/0.792/0.543; GPT3 0.971/0.927/0.779/0.514. BertScore 0.1/0.2/0.3/0.4: Solo 0.998/0.981/0.805/0.321; GPT3 0.997/0.976/0.787/0.338. GPT3 values are not bolded; no GPT3 vs Solo test result printed. Direction is mixed for BertScore (GPT3 higher at 0.4).",
+              "locator": "p. 6, Table 3b; p. 27, Table 12"
+            },
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only"
+              ],
+              "reported": "Rouge-L: GPT3 0.971/0.927/0.779/0.514 vs InstructGPT 0.950/0.877/0.738/0.494; BertScore: GPT3 0.997/0.976/0.787/0.338 vs InstructGPT 0.992/0.941/0.730/0.292; InstructGPT lower than both Solo and GPT3, p < 0.05, pairwise permutation test.",
+              "locator": "p. 6, Section 5.2 and Table 3b; p. 27, Table 12"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Fraction of unique key points (clusters / key points) under agglomerative clustering",
+            "embedding_model": "Rouge-L main; BertScore variant (microsoft/deberta-xlarge-mnli)",
+            "computed_over": "Each setting's whole pool of 100 essays' key points",
+            "uncertainty": "Two-tailed permutation test: union of two settings' essays randomly split into two equal sets, 1000 permutations",
+            "notes": "Corpus-level statistic, one value per setting and threshold."
+          }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Lexical diversity: fraction of unique n-grams (n = 1 to 5)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Corpus of a setting treated as a bag of n-grams; diversity = unique n-grams / total n-grams (type-token ratio), n = 1 to 5. Higher = more diverse.",
+          "unit": "set",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "n = 1/2/3/4/5: Solo 0.119/0.602/0.898/0.973/0.991; InstructGPT 0.115/0.579/0.869/0.953/0.977. Bold marks the lowest value; the table caption reports no significance test for these ratios.",
+              "locator": "p. 6, Table 3a; p. 27, Table 11"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "n = 1/2/3/4/5: Solo 0.119/0.602/0.898/0.973/0.991; GPT3 0.116/0.585/0.886/0.967/0.988. Text: 'GPT3 does not significantly decrease the diversity score.'",
+              "locator": "p. 6, Table 3a and Section 5.2"
+            },
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "n = 1/2/3/4/5: GPT3 0.116/0.585/0.886/0.967/0.988; InstructGPT 0.115/0.579/0.869/0.953/0.977.",
+              "locator": "p. 6, Table 3a; p. 27, Table 11"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Fraction of unique n-grams (distinct-n type-token ratio), n = 1 to 5",
+            "embedding_model": "",
+            "computed_over": "Each setting's whole pool of 100 essays",
+            "uncertainty": "None printed for the ratios",
+            "notes": "Robustness: unique POS n-grams (S1-O6) and n-gram frequency concentration (S1-O5)."
+          }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Repetition of common higher-order n-grams (top-50 5-gram frequency distribution)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Distribution of the 50 most frequent n-grams in each setting's corpus (Figure 3, Figure 10 for n = 1 to 5; most frequent 5-grams with counts in Table 4). More mass on common n-grams = less diverse.",
+          "unit": "set",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "InstructGPT shows higher repetition of common 5-grams; chi-square test on counts of the union of top-50 5-grams, p < 0.05. Top 5-gram count: Solo 7 ('keeping up with the news'), InstructGPT 14 ('keep up with the news').",
+              "locator": "p. 7, Section 5.2, Figure 3b and Table 4; p. 17, Appendix B.2; p. 25, Figure 10"
+            },
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "'the repetition of n-grams when writing with InstructGPT is more similar by a significant margin compared to both other setups' (chi-square, p < 0.05).",
+              "locator": "p. 17, Appendix B.2; p. 6, Figure 3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Probability mass of the top-50 most frequent 5-grams in each setting",
+            "embedding_model": "",
+            "computed_over": "Each setting's whole pool of essays",
+            "uncertainty": "Chi-square test on occurrence counts of the union of the top-50 5-grams from both corpora",
+            "notes": "GPT3 vs Solo chi-square result not separately reported. Decomposition by author (Figure 4b, Figure 11) shows user-written n-gram distributions similar across settings and InstructGPT-contributed text concentrated on common 3- to 5-grams."
+          }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Compression ratio of each setting's concatenated essays (LZMA, ZLIB, GZIP)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "All essays of a setting concatenated into one file; ratio of compressed to original size. Lower ratio = more compressible = less diverse.",
+          "unit": "set",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "p_value_only"
+              ],
+              "reported": "LZMA: Solo 0.305, InstructGPT 0.293; ZLIB: Solo 0.353, InstructGPT 0.342; GZIP: Solo 0.352, InstructGPT 0.350. Bold InstructGPT values 'different from each of the other columns with statistical significance (p < 0.05) using permutation tests.'",
+              "locator": "p. 27, Table 13; p. 22-27, Appendix C text"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "LZMA: Solo 0.305, GPT3 0.302; ZLIB: Solo 0.353, GPT3 0.351; GZIP: Solo 0.352, GPT3 0.341. No GPT3 vs Solo test printed.",
+              "locator": "p. 27, Table 13"
+            },
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "mixed",
+              "statistics_available": [
+                "p_value_only"
+              ],
+              "reported": "LZMA: GPT3 0.302, InstructGPT 0.293; ZLIB: GPT3 0.351, InstructGPT 0.342; GZIP: GPT3 0.341, InstructGPT 0.350. As printed, the GZIP InstructGPT ratio is above GPT3 although the caption says InstructGPT has lower ratios; all InstructGPT values bolded as significant (p < 0.05).",
+              "locator": "p. 27, Table 13"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Compression ratio (compressed size / original size) under LZMA, ZLIB, GZIP",
+            "embedding_model": "",
+            "computed_over": "Each setting's whole pool of essays concatenated",
+            "uncertainty": "Two-tailed permutation test, 1000 permutations (Appendix B.1)",
+            "notes": "Measure coded lexical_overlap as the closest code: compression ratio is an information-theoretic redundancy measure on the text, not in the codebook list."
+          }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Unique POS n-grams (n = 1 to 5)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Count of unique part-of-speech n-grams in each setting's essays; Figure 6 shows top-50 POS n-gram distributions.",
+          "unit": "set",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "n = 1/2/3/4/5: Solo 73/487/1297/2044/2423; InstructGPT 58/426/1235/1988/2414. No test printed.",
+              "locator": "p. 20, Table 9; p. 21, Figure 6"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "n = 1/2/3/4/5: Solo 73/487/1297/2044/2423; GPT3 56/437/1261/1975/2338. No test printed.",
+              "locator": "p. 20, Table 9"
+            },
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "mixed",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "n = 1/2/3/4/5: GPT3 56/437/1261/1975/2338; InstructGPT 58/426/1235/1988/2414. Text: 'The effect here is even between GPT3 and InstructGPT'.",
+              "locator": "p. 20, Table 9 and Appendix C"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Number of unique POS n-grams",
+            "embedding_model": "",
+            "computed_over": "Each setting's whole pool of essays",
+            "uncertainty": "None printed",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "Homogenization of user-contributed vs model-contributed key points",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Key points attributed to user or model by Rouge-L alignment to sentences and keystroke logs; homogenization (Rouge-L) computed separately for each part. Only the two AI arms are compared.",
+          "unit": "output",
+          "n_units": 200,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "GPT3",
+              "comparison_type": "ai_design",
+              "direction": "mixed",
+              "statistics_available": [
+                "p_value_only",
+                "figure_only"
+              ],
+              "reported": "User-contributed key points: average homogenization 'does not change between the two groups'; model-contributed key points: InstructGPT higher homogenization than GPT3 (p < 0.05). Boxplot only, no numbers printed.",
+              "locator": "p. 8, Section 6 and Figure 4a"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Homogenization (mean pairwise Rouge-L) of user-attributed and model-attributed key points",
+            "embedding_model": "",
+            "computed_over": "Each essay's user (or model) key points against other essays on the same topic",
+            "uncertainty": "Not stated beyond p < 0.05",
+            "notes": "Comparison with Solo key points is not made because user key points in co-written essays are a subset (footnote 16, p. 8)."
+          }
+        },
+        {
+          "outcome_id": "S1-O9",
+          "name": "Human quality ratings (relevance to prompt, grammaticality, depth of discussion)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Authors' quality-control ratings of a random sample of one essay per topic per setup (10 essays per setup) on three dimensions; rater identity is the authors ('we rate'), rating scale not stated.",
+          "unit": "output",
+          "n_units": 30,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "Relevance 4.30 (Solo) vs 4.10 (InstructGPT); Grammaticality 4.00 vs 4.00; Depth of Discussion 3.95 vs 3.80. Caption: 'there is no significance in essay quality across setups.'",
+              "locator": "p. 20, Table 9 and Appendix C"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "Relevance 4.30 (Solo) vs 4.15 (GPT3); Grammaticality 4.00 vs 4.10; Depth of Discussion 3.95 vs 3.85.",
+              "locator": "p. 20, Table 9"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O10",
+          "name": "Essay length (words)",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Mean word count per essay, standard errors in brackets. Computed word count; no closer measure code exists.",
+          "unit": "output",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "Essay length (in words): Solo 376.44 (8.03), InstructGPT 368.39 (8.43); values in brackets are standard errors, not SDs. Arm means with standard errors; no SD or per-arm n printed in the table (100 essays per setting stated on p. 3).",
+              "locator": "p. 20, Table 9"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "Solo 376.44 (8.03), GPT3 380.87 (9.30); standard errors in brackets. Arm means with standard errors; no SD or per-arm n printed in the table (100 essays per setting stated on p. 3).",
+              "locator": "p. 20, Table 9"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O11",
+          "name": "Perplexity of essays (via GPT2)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "GPT2 perplexity, reported as an average over each setting's essays; lower = more predictable text. Not a creativity score.",
+          "unit": "output",
+          "n_units": 300,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "InstructGPT",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "Perplexity: Solo 25.067, InstructGPT 20.26.",
+              "locator": "p. 20, Table 9"
+            },
+            {
+              "treatment_arm": "GPT3",
+              "control_arm": "Solo",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "none"
+              ],
+              "reported": "Perplexity: Solo 25.067, GPT3 22.10.",
+              "locator": "p. 20, Table 9"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [
+      {
+        "comparison": "",
+        "estimate": "",
+        "interval": "",
+        "what_it_standardizes": "",
+        "locator": ""
+      }
+    ]
+  },
+  "sample_overlap": {
+    "shares_participants_with": "",
+    "quote": "",
+    "locator": "Uses the CoAuthor platform and prompt set of Lee et al. (2022a) but collects new essays from its own 38 Upwork writers (p. 2-3); no reuse of another paper's participants stated."
+  },
+  "company_involvement": {
+    "any": true,
+    "description": "Funding: 'This work is supported by Open Philanthropy, AWS AI, and the National Science Foundation'. AI tools are OpenAI API models (davinci, text-davinci-003; gpt-3.5-turbo for key-point summaries). Authors are at New York University.",
+    "locator": "p. 10, Acknowledgements; p. 3, Section 2.2"
+  },
+  "data_and_code": {
+    "data_url": "https://github.com/vishakhpk/hai-diversity",
+    "code_url": "https://github.com/vishakhpk/hai-diversity"
+  },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Within-person experiment with randomized order of the no-AI, GPT3, and InstructGPT settings (p. 3, Section 2.2), and diversity is computed on the essays, but only 38 people took part ('We recruit a total of 38 participants from Upwork', p. 14; 'We hired 38 writers from Upwork', p. 1). The 300 essays do not count toward 50. A randomized experiment below 50 participants goes to the screening report, not the dataset; the codebook names this paper in Section 13 as excluded by the 50-person rule."
+  },
+  "one_line_finding": "Writing with InstructGPT suggestions raised key-point Rouge-L homogenization from 0.1536 (Solo) to 0.1660 (p < 0.05) and lowered unique key-point and n-gram diversity, while GPT3 (0.1578) did not differ significantly from Solo (p. 5, Section 4.2; p. 6, Table 3; p. 22, Table 10).",
+  "open_questions": [
+    "Whether the 38 participants include the 'few participants whose sessions were reassigned' (p. 14); the number analyzed may be below 38.",
+    "Whether the homogenization score for an essay is computed against essays from all three settings on the same topic or only its own setting; the formula on p. 4 defines D_t as 'the set of essays on topic t'.",
+    "Design class: participants are Upwork freelancers writing remotely through an online editor; coded online_rct, though they are hired professionals rather than a survey panel.",
+    "All t-tests treat essays as independent although each participant wrote up to 3 essays per setting; no participant-level standard errors."
+  ],
+  "notes": "Outcomes omitted from the list: sentence length and syntax-tree height (Table 9, p. 20), which measure complexity rather than creativity or diversity; diversity of the five suggestions presented per query (Figure 12, p. 28; InstructGPT 0.20 vs GPT3 0.11 Rouge-L, p. 7), which is scored on model output, not participants' essays; homogenization of essays generated solely by the models (Figure 14, p. 29), which is model-only; and the correlation between model-written fraction and homogenization (Figure 13, p. 27-28). Usage statistics (Table 1, p. 3): queries per essay 9.15 (InstructGPT) and 9.62 (GPT3), acceptance 70.49 and 71.32 percent, model-written share 32.45 and 35.57 percent. Data collected March to July 2023; IRB approved (p. 10). Direction fields for diversity outcomes are coded on diversity: 'treatment_lower' means the AI arm's essays are less diverse (more homogeneous)."
+}

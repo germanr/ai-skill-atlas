@@ -1,0 +1,20 @@
+[
+  {
+    "id": "tables-03-1",
+    "cid": "c255",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:count_text (lines 101-111), called at line 295 for the c255 People analyzed, by study cell",
+    "correct_value": "not reported (60 assigned; randomization unconfirmed)",
+    "evidence": "Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Cheng (2025) - The Application of Multimodal Generative AI in College English Creative Writing.pdf with PyMuPDF. PDF p. 7, section 3.2, gives 60 students in two natural classes and 30 per group; the same paragraph calls the design quasi-experimental and says students are randomly assigned. PDF p. 15, section 6.3, describes the sample as two classes at one university. These passages support the assignment count but leave the conflicting allocation descriptions unresolved. forms/c255.json studies[0].assignment.what_was_assigned explicitly treats randomized=yes and field_rct as provisional records of the paper's claim; final.criteria.random_assignment_of_ai is unclear. final.challenge_resolution[6].what_changed retains 60 overall and 30 per arm as assignment counts with the allocation caveat; participants.n_analyzed is null. The assembled report creativity-screening-2026-10-04.md line 1364 and report-generated.md line 1315 instead display not reported (60 randomized). The adjacent explanation retains the caveat, but the count label does not. Reproducing count_text on this form returns that exact label: line 111 unconditionally appends randomized to an integer n_randomized, and line 295 passes only participants, omitting the assignment and final-criterion qualifications. The fix belongs in the builder; the reported counts should remain unchanged."
+  },
+  {
+    "id": "tables-03-2",
+    "cid": "c411",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:count_text (lines 101-111), called at line 295 for the c411 People analyzed, by study cell",
+    "correct_value": "not reported (76 assigned; randomization unconfirmed)",
+    "evidence": "Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Kizilates (2026) - GenAI-driven storytelling on senior secondary students' Generative AI literacy a.pdf with PyMuPDF. PDF p. 5 (journal p. 83), section 3.1, gives 76 students divided into experimental and control groups of 38 each. PDF p. 1 (journal p. 79), abstract, claims random assignment; PDF p. 6 (journal p. 84), section 3.3, describes a quasi-experimental design and assignment through simple random sampling without reconciling those descriptions. forms/c411.json studies[0].assignment.randomized and studies[0].design_class are null, and final.criteria.random_assignment_of_ai is unclear. studies[0].participants.exclusions explicitly says n_randomized retains assignment counts only and randomization is unconfirmed; final.challenge_resolution[0].what_changed preserves that qualification for 76 overall and 38 per arm. The assembled report creativity-screening-2026-10-04.md line 1376 and report-generated.md line 1327 nevertheless display not reported (76 randomized). The adjacent explanation correctly leaves randomization unresolved. Reproducing count_text on this form returns the unqualified label because line 111 always appends randomized to an integer n_randomized, and the line 295 caller supplies only participants. The fix belongs in the builder; retain the assignment counts and their uncertainty."
+  }
+]

@@ -1,0 +1,506 @@
+{
+  "cid": "c128",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wan and Kalman (2026) - Diverse AI personas can mitigate the homogenization effect in human-AI collabora.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wan and Kalman (2026) - Diverse AI personas can mitigate the homogenization effect in human-AI collabora.pdf",
+    "version": "arXiv 2504.13868 preprint (retrieved from arxiv.org/pdf/2504.13868), a revised version carrying the journal title; page 1 states '(accepted and forthcoming in Computers in Human Behavior: Artificial Humans)'. The arXiv version number and date are not printed on the document. Not the journal version of record.",
+    "title_on_document": "Diverse AI Personas Can Mitigate the Homogenization Effect in Human-AI Collaborative Ideation",
+    "authors_on_document": ["Yun Wan", "Yoram M Kalman"],
+    "pages": 53,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Supplementary Materials appended to the PDF, pp. 28-53 (table of contents p. 28).",
+      "holds": "Persona construction and prompts (pp. 29-38), Table S1 per-persona similarity (p. 39), Figures S1-S3 (pp. 40-42), recruitment and randomization statement plus interface screenshots (pp. 43-51), Table S2 Bayesian results and Bayes factors (p. 52), Table S3 Cohen's d, ANOVA effect size and power analysis (p. 53). The full list of 300 plots is 'available from the corresponding author' (p. 31)."
+    }
+  },
+  "paper_design_summary": "Phase 1 (model only): GPT-4o prompted as 10 distinct personas generated 300 three-sentence plot ideas, and the authors compared within-persona and between-persona embedding similarity, plus 30 plots from a Doshi-and-Hauser-style generic prompt. Phase 2: 100 UK Prolific participants were randomly assigned to write an eight-sentence story about an adventure on another planet with no AI, with the option to request one plot idea, or with the option to request up to five plot ideas drawn at random from the persona pool. Stories (97 analyzed) were scored for semantic similarity across writers within each condition (embedding cosine similarity to condition centroid and pairwise) and for per-story linguistic features with NLTK; creativity was not rated.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Phase 1: AI persona plot diversification (model only)",
+      "design_class": "model_only",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "No people. GPT-4o was prompted as 10 personas to generate 30 plots each; a separate set of 30 plots used the generic Doshi and Hauser (2024) prompt on GPT-4.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We developed 10 distinct GenAI personas using ChatGPT's o1-preview model through a systematic, multi-stage process designed to maximize diversity across multiple dimensions.",
+        "locator": "p. 5, Section 2.1",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "",
+        "population": "mixed",
+        "who": "No human participants; 300 AI-generated plots (10 personas x 30) plus 30 plots from a generic prompt.",
+        "country": "",
+        "quote": "",
+        "locator": "pp. 5-6, Sections 2.1-2.2"
+      },
+      "ai_tool": {
+        "name_model": "Personas designed with ChatGPT o1-preview; plots generated with GPT-4o (version 2024-05-13, temperature 0.9, top P 1) on Azure OpenAI; comparison set of 30 plots with GPT-4 on the Azure OpenAI chat playground",
+        "role": "other",
+        "how_used": "Each persona was prompted to 'Create thirty-one plot ideas of exactly three sentences each that [persona name] would write'; the first 30 were kept."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Three-sentence plot ideas for a story about an adventure on another planet.",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Intra-persona vs inter-persona cosine similarity of AI-generated plots",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity (x100) of text-embedding-ada-002 embeddings; 4,350 within-persona pairs and 40,500 between-persona pairs; per-persona distinctiveness = mean intra minus mean inter similarity (Table S1). Also the intra-group similarity of 30 plots from the generic Doshi and Hauser prompt. AI outputs only; no person received AI help.",
+          "unit": "pair",
+          "n_units": 44850,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Plots from the same persona (intra-persona pairs)",
+              "control_arm": "Plots from different personas (inter-persona pairs)",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Mean intra-persona similarity 87.41 ± 3.17; mean inter-persona similarity 82.93 ± 3.12; difference 4.49; t = 119.9443, p < 0.00000001; Cohen's d 1.4254; most distinctive Persona 6 (score 7.69), least Persona 7 (2.48). Generic Doshi and Hauser prompt plots: intra-group similarity 90.99 (SD = 2.78).",
+              "locator": "p. 7, Table 1 and text; p. 39, Table S1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Phase 2: story writing with or without persona plot ideas (Prolific)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Condition: no AI (0-plot), option to request one AI plot idea (1-plot), or option to request up to five AI plot ideas (5-plot); plots drawn at random from the 300-plot persona pool.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "The participants were randomly assigned to write an eight-sentence short story under one of three experimental conditions",
+        "locator": "p. 10, Section 3.1; also p. 43 ('Each participant was randomly assigned to one of the three conditions')",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "0-plot (control, human only)", "description": "Wrote the story with no AI support; afterwards asked whether they used ChatGPT or similar to inspire the story.", "ai": "none", "n_randomized": null, "n_analyzed": 32 },
+        { "name": "1-plot", "description": "Option to click 'Suggest Story Idea' to receive one AI plot idea drawn at random from the 300 persona plots; free to use or ignore it.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 33 },
+        { "name": "5-plot", "description": "Option to request up to five AI plot ideas (five 'Idea' buttons) drawn at random from the 300 persona plots; free to use or ignore them.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 32 }
+      ],
+      "participants": {
+        "n_randomized": 100,
+        "n_analyzed": 97,
+        "counts_are": "people",
+        "exclusions": "Three participants in the control group were excluded because they reported using external AI to inspire their stories. Per-arm counts at assignment are not stated. Table S3 labels the analysis 'Intent-to-Treat' with n = 97, but the three assigned controls are dropped, so it does not keep everyone assigned.",
+        "population": "online_panel",
+        "who": "UK-based Prolific participants with approval rating at or above 95 percent and between 100 and 1,000,000 prior submissions (same criteria as Doshi and Hauser 2024); paid 3 pounds for about 15-20 minutes; over 18.",
+        "country": "United Kingdom",
+        "quote": "After excluding data from three participants in the control group who reported using external AI to inspire their stories, we analyzed 97 stories: 32 in the control group, 33 in the 1-plot condition, and 32 in the 5-plot condition.",
+        "locator": "p. 10-11, Section 3.1; p. 43; p. 44 (consent page); p. 52"
+      },
+      "ai_tool": {
+        "name_model": "Pre-generated plot ideas from 10 GPT-4o personas (version 2024-05-13, Azure OpenAI)",
+        "role": "ideas_supplied",
+        "how_used": "Participants in AI arms could choose whether to request plot ideas (one, or up to five) and were not required to use them. Ideas were drawn at random from the pool of 300 persona plots. The paper does not report how many participants requested ideas."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Write a story about an adventure on another planet, exactly eight sentences long, in English, for a teenage and young adult audience (15-24). The consent page also mentions a prior short task of providing ten words, which is not analyzed in the paper.",
+        "duration": "Whole study expected to take about 15-20 minutes (consent page, p. 44)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Story similarity to condition centroid (replication of Doshi and Hauser)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity (x100) between each story's text-embedding-ada-002 embedding and the centroid of all stories in its condition; higher = more homogeneous, so the sign is reversed for diversity. One story per participant, so the 97 stories are 97 people. Analyzed by OLS with control as reference and by one-way ANOVA.",
+          "unit": "output",
+          "n_units": 97,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "1-plot",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "test_statistic"],
+              "reported": "Similarity (not diversity). Regression: Human with 1 GenAI idea -0.493 (0.5); Constant 90.588*** (0.3); Observations 97; F-Stat 0.57; Adj R-squared -0.009; text: b = -0.493, p = 0.301. Table 3 means: 0-plot 90.588 (std 2.383, count 32) vs 1-plot 90.095 (std 1.864, count 33). ANOVA across three conditions F(2, 94) = 0.573, p = 0.57.",
+              "locator": "p. 12, Section 3.3.1 and Table 2; p. 13, Table 3"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se", "test_statistic"],
+              "reported": "Similarity (not diversity). Regression: Human with 5 GenAI idea -0.356 (0.5); text: b = -0.356, p = 0.459. Table 3 means: 0-plot 90.588 (std 2.383, count 32) vs 5-plot 90.233 (std 1.349, count 32).",
+              "locator": "p. 12, Section 3.3.1 and Table 2; p. 13, Table 3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine similarity (x100) of each story to its condition's centroid embedding; condition mean reported",
+            "embedding_model": "OpenAI text-embedding-ada-002 (1,536 dimensions)",
+            "computed_over": "Each story against the centroid (average) of all stories in the same condition",
+            "uncertainty": "OLS regression of story-level centroid similarity on condition dummies (SEs printed to one decimal); one-way ANOVA F(2, 94)",
+            "notes": "Table 2 prints Doshi and Hauser (2024) coefficients alongside (0.871*** and 0.718**, n = 293); those are from the other paper, not this sample."
+          }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Pairwise cosine similarity between stories within condition",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity (x100) of text-embedding-ada-002 embeddings for every pair of stories within a condition (496 pairs 0-plot, 528 1-plot, 496 5-plot). Main analysis: mixed-effects linear model, similarity ~ condition + (1|story1_id) + (1|story2_id), REML. Robustness variants of the same outcome: one-way ANOVA and post-hoc t-tests on each story's average similarity to the other stories in its condition (97 story-level observations), a 10,000-iteration permutation test, and a Bayesian hierarchical model (4 chains x 2,000 iterations) with ROPE ±0.5 and Bayes factors. Higher = more homogeneous; sign reversed for diversity.",
+          "unit": "pair",
+          "n_units": 1520,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "1-plot",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "test_statistic", "standardized_effect"],
+              "reported": "Diversity higher in treatment (similarity lower). Mixed model: Baseline (Control: 0-plot) 82.699 (SE 0.327); 1-plot effect -1.073, SE 0.458, z = -2.341, p = 0.019, 95% CI [-1.971, -0.175]; story-level variance 2.765 (0.212); residual variance 5.45. Story-level robustness: one-way ANOVA F(2, 94) = 2.33, p = 0.103; 0-plot vs 1-plot t = 1.88, p = 0.064; permutation test p = 0.113. Bayesian: mean difference -0.88, 95% HDI [-1.69, -0.04] (Table S2: condition[1-plot] -0.882, sd 0.419, HDI [-1.7, -0.042]); BF01 = 0.548. Table S3: Cohen's d = 0.467 (0-plot vs 1-plot); 1-plot (81.74) < control (82.62).",
+              "locator": "p. 13, Section 3.3.2; p. 14, Table 4; p. 15; p. 52, Table S2; p. 53, Table S3"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "test_statistic", "standardized_effect"],
+              "reported": "Similarity lower in treatment, not significant. Mixed model: 5-plot effect -0.488, SE 0.462, z = -1.056, p = 0.291, 95% CI [-1.394, 0.418]. Story-level: 0-plot vs 5-plot t = 1.45, p = 0.151. Bayesian: mean difference -0.63, 95% HDI [-1.49, 0.20] (Table S2: -0.625, sd 0.433, HDI [-1.5, 0.203]); BF01 = 1.72 (Table S2: 1.724). Table S3: Cohen's d = 0.363 (0-plot vs 5-plot); 5-plot (82.00) < control (82.62).",
+              "locator": "p. 13, Section 3.3.2; p. 14, Table 4; p. 15; p. 52, Table S2; p. 53, Table S3"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "Story-level: 1-plot vs 5-plot t = -0.73, p = 0.470. Bayesian 5-plot vs 1-plot: mean difference 0.258, 95% HDI [-0.594, 1.080]; 68.2% of posterior in ROPE ±0.5; BF01 = 3.97 (Table S2: 3.968). Table S3: Cohen's d = -0.180 (1-plot vs 5-plot). Neither arm is the paper's proposed configuration; 5-plot is entered as treatment by convention.",
+              "locator": "p. 14-15, Section 3.3.2; p. 52, Table S2; p. 53, Table S3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Pairwise cosine similarity (x100) between story embeddings within a condition",
+            "embedding_model": "OpenAI text-embedding-ada-002 (1,536 dimensions)",
+            "computed_over": "All pairs of stories within a condition (C(32,2) = 496, C(33,2) = 528, C(32,2) = 496); robustness version averages each story's similarity to all other stories in its condition",
+            "uncertainty": "Mixed-effects model with crossed random intercepts for both stories in each pair (REML); robustness: one-way ANOVA and t-tests on 97 story-level averages; 10,000-iteration permutation test; Bayesian hierarchical model",
+            "notes": "The story-level average version matches the codebook's Section 11 rule 1 measure; its arm means appear only in Table S3 ('1-plot condition (81.74) < control (82.62)', '5-plot condition (82.00) < control (82.62)'), without SDs."
+          }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "Total words per story (NLTK)",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "NLTK word tokenizer count per story. Not a creativity rating. Compared AI-assisted (1-plot and 5-plot pooled) vs human-only with independent-samples t-tests (Table 5), and 1-plot vs 5-plot (Table 6). Group sizes are not printed in Tables 5-6.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-assisted (1-plot and 5-plot combined)",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "Human Mean 144.634, AI-Assisted Mean 158.625, Human Std 55.89, AI-Assisted Std 53.602, t-statistic -1.247, p-value 0.215",
+              "locator": "p. 16, Table 5"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "1-plot mean 159.963, 5-plot mean 157.379, 1-plot Std 46.944, 5-plot Std 59.951, t-statistic 0.179, p-value 0.859",
+              "locator": "p. 16, Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O4",
+          "name": "Unique words per story (NLTK)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Count of unique words within each story (within-story lexical variety, not a comparison across people). NLTK pipeline; independent-samples t-tests.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-assisted (1-plot and 5-plot combined)",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "Human Mean 89.415, AI-Assisted Mean 99.232, Human Std 29.196, AI-Assisted Std 29.354, t-statistic -1.631, p-value 0.106",
+              "locator": "p. 16, Table 5"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "1-plot mean 100.815, 5-plot mean 97.759, 1-plot Std 26.458, 5-plot Std 32.215, t-statistic 0.386, p-value 0.701",
+              "locator": "p. 16, Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O5",
+          "name": "Common words percentage per story (NLTK)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Share of common (stopword) words in each story, using the NLTK English stopwords corpus.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-assisted (1-plot and 5-plot combined)",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "Common Words %: Human Mean 37.322, AI-Assisted Mean 36.593, Human Std 4.299, AI-Assisted Std 3.322, t-statistic 0.942, p-value 0.349",
+              "locator": "p. 16, Table 5"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "1-plot mean 36.27, 5-plot mean 36.893, 1-plot Std 3.482, 5-plot Std 3.199, t-statistic -0.698, p-value 0.488",
+              "locator": "p. 16, Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O6",
+          "name": "Action words (verbs) per story (NLTK)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of verbs identified by NLTK part-of-speech tagging.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-assisted (1-plot and 5-plot combined)",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "Human Mean 12.951, AI-Assisted Mean 14.232, Human Std 3.619, AI-Assisted Std 3.823, t-statistic -1.667, p-value 0.099",
+              "locator": "p. 16, Table 5"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "1-plot mean 14.37, 5-plot mean 14.103, 1-plot Std 3.488, 5-plot Std 4.169, t-statistic 0.259, p-value 0.797",
+              "locator": "p. 16, Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O7",
+          "name": "Descriptive words (adjectives) per story (NLTK)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of adjectives identified by NLTK part-of-speech tagging. The paper calls this 'greater diversity in descriptive words', but it is a per-story count, not a comparison across writers.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-assisted (1-plot and 5-plot combined)",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "Human Mean 15.854, AI-Assisted Mean 18.321, Human Std 5.116, AI-Assisted Std 4.794, t-statistic -2.434, p-value 0.017*",
+              "locator": "p. 16, Table 5; p. 15, Section 3.3.3"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "1-plot mean 18.889, 5-plot mean 17.793, 1-plot Std 4.66, 5-plot Std 4.938, t-statistic 0.853, p-value 0.398",
+              "locator": "p. 16, Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O8",
+          "name": "Named characters (proper nouns) per story (NLTK)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of character names (proper nouns) identified by NLTK part-of-speech tagging.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-assisted (1-plot and 5-plot combined)",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "Human Mean 0.634, AI-Assisted Mean 0.946, Human Std 0.733, AI-Assisted Std 1.227, t-statistic -1.45, p-value 0.15",
+              "locator": "p. 16, Table 5"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "1-plot mean 0.926, 5-plot mean 0.966, 1-plot Std 1.107, 5-plot Std 1.349, t-statistic -0.12, p-value 0.905",
+              "locator": "p. 16, Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O9",
+          "name": "Emotional words per story (NLTK)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of emotional vocabulary per story (NLTK with WordNet). The paper calls this 'greater diversity in ... emotional words', but it is a per-story count, not a comparison across writers.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-assisted (1-plot and 5-plot combined)",
+              "control_arm": "0-plot (control, human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "Human Mean 6.829, AI-Assisted Mean 8.018, Human Std 2.12, AI-Assisted Std 2.308, t-statistic -2.592, p-value 0.011*",
+              "locator": "p. 16, Table 5; p. 15, Section 3.3.3"
+            },
+            {
+              "treatment_arm": "5-plot",
+              "control_arm": "1-plot",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic"],
+              "reported": "1-plot mean 7.926, 5-plot mean 8.103, 1-plot Std 2.235, 5-plot Std 2.41, t-statistic -0.285, p-value 0.777",
+              "locator": "p. 16, Table 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": {
+    "shares_participants_with": "",
+    "quote": "",
+    "locator": "New sample. The paper reuses the Doshi and Hauser (2024) recruitment criteria and protocol and prints their published coefficients beside its own in Table 2 (p. 12), but it does not reanalyze their participants."
+  },
+  "company_involvement": { "any": false, "description": "No company involvement or funding statement found; the paper uses OpenAI models via Azure OpenAI.", "locator": "" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Study S2 randomly assigned 100 Prolific participants to no AI, one optional AI plot idea, or up to five optional AI plot ideas (p. 10, p. 43); 97 people analyzed (p. 11); outcomes are embedding similarity across writers' stories (across_people) and per-story NLTK counts. No creativity rating. Study S1 is model only. Note that AI-arm access was optional and use rates are not reported."
+  },
+  "one_line_finding": "With plot ideas drawn from 10 diverse GPT-4o personas, story similarity did not rise relative to a no-AI control: centroid similarity 90.588 (control) vs 90.095 (1-plot) and 90.233 (5-plot), F(2, 94) = 0.573, p = 0.57 (pp. 12-13, Tables 2-3), and pairwise similarity fell in the 1-plot arm (beta = -1.073, 95% CI [-1.971, -0.175], p = 0.019; p. 14, Table 4).",
+  "open_questions": [
+    "Per-arm counts at assignment are not stated; only 100 recruited and randomized and 3 control exclusions are given.",
+    "The story-level ANOVA statistic differs between the text (F(2, 94) = 2.33, p = 0.103, p. 13) and Table S3 ('Observed F = 2.720', p. 53).",
+    "Control-arm means for the story-level pairwise measure differ slightly across reports: Table 4 baseline 82.699, Table S2 intercept 82.616, Table S3 control 82.62.",
+    "Tables 5 and 6 do not print group sizes. Screener arithmetic check (not a statement in the paper): the printed means are not consistent with n = 32 human-only and n = 65 AI-assisted stories (for example 144.634 x 32 is not a whole number of words).",
+    "The paper does not report how many participants in the AI arms requested plot ideas, so treatment is an offer of access, not use."
+  ],
+  "notes": "Supplement is included in the PDF (pp. 28-53). The AI arms use persona-generated plots only; there is no arm with plots from a generic prompt, so the contrast with Doshi and Hauser (2024) in Table 2 is across studies. One story per participant, so story-level analyses are participant-level. Table 3 SDs are of centroid similarity at the story level. The paper does not rate creativity and says whether individual creativity gains are maintained 'remains an important question for future research' (p. 23). Cohen's d values in Table S3 are post-hoc and labeled 'Intent-to-Treat Analysis' with n = 97."
+}

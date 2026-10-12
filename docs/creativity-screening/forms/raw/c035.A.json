@@ -1,0 +1,559 @@
+{
+  "cid": "c035",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Bohren Hakimov Lalive (2024) - Creative and Strategic Capabilities of Generative AI.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Bohren Hakimov Lalive (2024) - Creative and Strategic Capabilities of Generative AI.pdf",
+    "version": "IZA Discussion Paper No. 17302, dated September 2024 (working paper). Locators below give the PDF page first; the printed page number equals the PDF page minus 2.",
+    "title_on_document": "Creative and Strategic Capabilities of Generative AI: Evidence from Large-Scale Experiments",
+    "authors_on_document": ["Noah Bohren", "Rustamdjan Hakimov", "Rafael Lalive"],
+    "pages": 40,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "The paper says: \"Comprehensive experimental instructions and additional data supporting our conclusions are available in the supplementary materials.\" (PDF p. 12, printed p. 10, end of Section 2.2). No URL given.",
+      "holds": "Experimental instructions and unspecified additional data. The appendix in this PDF (Tables 13-16, Figures 6-8, PDF pp. 33-40) holds the sub-dimension regressions, the >180s robustness table, and the unique-idea curves; all statistics coded here are in this PDF."
+    }
+  },
+  "paper_design_summary": "1,250 US adults on Prolific were randomly assigned to write one creative text (up to 1,000 characters, max 10 minutes) either alone (HumanBaseline, 688), alone but told they compete with AI (HumanAgainstAI, 253), or with access to Bard or ChatGPT 3.5/4 (HumanPlusAI, 309). ChatGPT-4 and Bard produced 224 and 216 texts for the same prompts. 3,336 separate Prolific raters, randomized to three information conditions, and five research assistants rated every text 0-10 on creativity, originality, surprise and usefulness; the paper also counts unique ideas per source with sBERT embeddings and hierarchical clustering, and runs a rock-paper-scissors strategic task.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Writer experiment (creative text with or without AI access)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Writing condition: HumanBaseline (no AI, standard top-10% bonus), HumanAgainstAI (no AI, told entries compete with AI texts for the bonus), HumanPlusAI (may use Bard or ChatGPT 3.5/4 to produce the text).",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Human participants were randomly assigned to one of three treatments",
+        "locator": "PDF p. 9 (printed p. 7), Section 2.1.1",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 3, title footnote: \"pre-registered on AEA Registry, AEARCTR-0011584\"; PDF p. 9 footnote 3 gives preregistered targets of 700, 300 and 300 participants"
+      },
+      "arms": [
+        { "name": "HumanBaseline", "description": "Writes the creative text alone; top 10% most creative humans receive a GBP 5 bonus.", "ai": "none", "n_randomized": null, "n_analyzed": 688 },
+        { "name": "HumanAgainstAI", "description": "Writes alone but is told the entry competes with human and AI-generated texts for the top-10% bonus.", "ai": "none", "n_randomized": null, "n_analyzed": 253 },
+        { "name": "HumanPlusAI", "description": "Had the choice to use Bard or ChatGPT (3.5 or 4); declared the tool before writing (Bard 39, ChatGPT-3.5 184, ChatGPT-4 86). Prolific listing requested participants who already had an OpenAI or Bard account.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 309 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 1250,
+        "counts_are": "people",
+        "exclusions": "Section 2.1.1 lists 688, 253 and 309 participants (sum 1,250, matching the 1,250 recruited and the Table 1 N). Footnote 3 says the paper received 702, 304 and 315 complete responses against targets of 700, 300 and 300; the paper does not explain the gap between 1,321 complete responses and the 1,250 analyzed. No count is given at the moment of assignment, so n_randomized is null. Table 15 drops writers who spent under 180 seconds (19.5 percent of participants) as a robustness check.",
+        "population": "online_panel",
+        "who": "US adults recruited on Prolific; described as a representative population of US adults; mean age about 44, about 49 percent male (Table 1).",
+        "country": "United States",
+        "quote": "We recruited 1250 participants from the U.S. through the Prolific platform to participate in a divergent (unconstrained) creative task",
+        "locator": "PDF p. 9 (printed p. 7), Section 2.1.1; arm counts PDF pp. 9-10; Table 1 PDF p. 13 (printed p. 11)"
+      },
+      "ai_tool": {
+        "name_model": "Google Bard, ChatGPT-3.5 or ChatGPT-4 through participants' own accounts (Bard 39, ChatGPT-3.5 184, ChatGPT-4 86; footnote 4)",
+        "role": "open_chat",
+        "how_used": "Participants in HumanPlusAI \"had the choice to utilize Bard or ChatGPT (3.5 or 4) for help in producing their responses\" and declared which tool they would use before writing; the introduction says they \"were instructed to use them when generating the answers\" (PDF p. 5). Use was not logged in the reported analysis."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Divergent creativity task after Charness and Grieco (2019): write a text of up to 1,000 characters (about 150 words), as creative as possible, on one of two prompts: \"If you had the talent to invent things just by thinking of them, what would you create?\" or \"Imagine and describe a town, city, or society in the future.\" GBP 2 base pay; GBP 5 bonus for texts in the top 10 percent by rater scores.",
+        "duration": "Maximum 10 minutes; mean time 5.98 (Baseline), 6.67 (AgainstAI), 5.55 (PlusAI) minutes (Table 1)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Overall creativity rated by online raters (\"In general, how creative was this response?\", 0-10)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Prolific raters (3,336 after exclusions, across three rater conditions) each rated 20 random texts; every text rated at least 10 times (a few 8 or 9). OLS on individual ratings with rater fixed effects; SEs clustered at the response (text) level; each writer produced one text. Reference group HumanBaseline; the regression pools ratings of ChatGPT-4 and Bard texts too. Robustness: prompt control (col 2), all controls (col 5), gender interactions (cols 6-8), writers >180 s only (Table 15).",
+          "unit": "rating",
+          "n_units": 63812,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 2: HumanPlusAI 0.500*** (0.052) in col (1) no controls and col (2) prompt control; 0.474*** (0.052) col (5) all controls (46,845 obs); by gender col (6): Female 0.565*** (0.065), Male 0.435*** (0.073). Observations 63,812. Table 15 (writing time >180 s): 0.458*** (0.054) col (1), 54,771 obs. Table 3 means for HumanPlusAI texts by tool: Bard 5.57 (n=39), ChatGPT 3.5 5.93 (n=184), ChatGPT 4.0 5.84 (n=86); no HumanBaseline mean printed.",
+              "locator": "PDF p. 15 (printed p. 13), Table 2; PDF p. 16 (printed p. 14), Table 3; PDF p. 37 (printed p. 35), Table 15"
+            },
+            {
+              "treatment_arm": "HumanAgainstAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "other",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Competition framing, not AI assistance. Table 2: HumanAgainstAI -0.032 (0.054) col (1); col (3) Female -0.152** (0.073), Male 0.075 (0.071). Table 15 (>180 s): -0.117** (0.056).",
+              "locator": "PDF p. 15 (printed p. 13), Table 2; PDF p. 37, Table 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Originality rated by online raters (\"To what extent is this response new or original?\", 0-10)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same raters and specification as S1-O1 (rater FE, SEs clustered by response).",
+          "unit": "rating",
+          "n_units": 63812,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 14 (original): HumanPlusAI 0.335*** (0.052) col (1); 0.304*** (0.051) col (5) all controls. Observations 63,812.",
+              "locator": "PDF p. 36 (printed p. 34), Table 14, top panel"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Surprise rated by online raters (\"How surprised were you by this response?\", 0-10)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same raters and specification as S1-O1.",
+          "unit": "rating",
+          "n_units": 63812,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 14 (surprise): HumanPlusAI 0.193*** (0.048) col (1); 0.163*** (0.048) col (5). Observations 63,812.",
+              "locator": "PDF p. 36 (printed p. 34), Table 14, middle panel"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Usefulness rated by online raters (\"How would you rate the usefulness of this response?\", 0-10)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same raters and specification as S1-O1.",
+          "unit": "rating",
+          "n_units": 63812,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 14 (useful): HumanPlusAI 0.362*** (0.046) col (1); 0.365*** (0.047) col (5). Observations 63,812.",
+              "locator": "PDF p. 36 (printed p. 34), Table 14, bottom panel"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Overall creativity rated by five research assistants (0-10)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Five RAs (two art-school students in Lausanne, three business-school students) rated all texts in the CorrectedRaters condition (grammar-corrected human texts). OLS with rater and rating-order fixed effects; SEs clustered by response. The paper calls this a robustness check. Coded human_raters because the RAs are students, not domain professionals.",
+          "unit": "rating",
+          "n_units": 8423,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 5: HumanPlusAI 0.142** (0.067) cols (1)-(3); 0.118* (0.067) col (5) all controls; col (6) Female 0.264*** (0.082), Male 0.008 (0.091). Observations 8,423. Text says HumanPlusAI \"did not yield responses that were statistically more creative than those from the HumanBaseline group\" despite the starred coefficient.",
+              "locator": "PDF p. 19 (printed p. 17), Table 5; text PDF p. 18 (printed p. 16), Section 3.1.2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Originality rated by research assistants (0-10)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same five RAs and specification as S1-O5.",
+          "unit": "rating",
+          "n_units": 8422,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 16 (Original Rating): HumanPlusAI -0.416*** (0.088) col (1); -0.457*** (0.088) col (5). Observations 8,422.",
+              "locator": "PDF p. 38 (printed p. 36), Table 16, top panel"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Surprise rated by research assistants (0-10)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same five RAs and specification as S1-O5.",
+          "unit": "rating",
+          "n_units": 8423,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 16 (Surprise Rating): HumanPlusAI -0.338*** (0.081) col (1); -0.348*** (0.082) col (5). Observations 8,423.",
+              "locator": "PDF p. 38 (printed p. 36), Table 16, middle panel"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "Usefulness rated by research assistants (0-10)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same five RAs and specification as S1-O5.",
+          "unit": "rating",
+          "n_units": 8424,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 16 (Useful Rating): HumanPlusAI 0.006 (0.067) col (1); -0.025 (0.067) col (5). Observations 8,424.",
+              "locator": "PDF p. 38 (printed p. 36), Table 16, bottom panel"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O9",
+          "name": "Ratio of unique ideas within each condition's pool of texts",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Each text embedded with Sentence-BERT (all-mpnet-base-v2); pairwise cosine distances within each source; hierarchical clustering with Ward linkage; clusters below a global distance threshold count as one idea; ratio = unique ideas / number of texts. Reported at thresholds 0.5 and 1 for all texts, the top 100 texts within each source, and the top 10 percent of texts pooled across sources; Figures 6-8 show all thresholds. Table 7 labels the AI-access arm \"HumanAndAI\".",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "HumanPlusAI (HumanAndAI in Table 7)",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_bau",
+              "direction": "mixed",
+              "statistics_available": ["none"],
+              "reported": "Point values only, no test or uncertainty. Table 7, ALL texts: HumanAndAI 29.9% vs HumanBaseline 30.2% (threshold 0.5); 7.3% vs 6.7% (threshold 1). Top 100 within source: 38.0% vs 52.0% (0.5); 6.0% vs 10.0% (1). Top 10% pooled: 50.0% vs 64.5% (0.5); 12.5% vs 9.7% (1). HumanAgainstAI ALL: 35.9% (0.5), 6.9% (1).",
+              "locator": "PDF p. 23 (printed p. 21), Table 7; method PDF pp. 21-22 (printed pp. 19-20), Section 3.1.4; Figures 6-8 PDF pp. 39-40"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Ratio of unique ideas (number of clusters below a global distance threshold divided by number of texts); higher means more diverse",
+            "embedding_model": "Sentence-BERT all-mpnet-base-v2",
+            "computed_over": "All pairwise cosine distances among texts within each source/condition, then Ward hierarchical clustering of that condition's pool",
+            "uncertainty": "None reported; one ratio per condition and threshold",
+            "notes": "Sign: higher ratio = more diverse, so no reversal needed. Pools differ in size (309 HumanPlusAI vs 688 HumanBaseline texts in ALL; 100 each in Top 100), which may affect the ratio; the paper does not discuss this."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "AI-generated texts (ChatGPT-4, Bard) versus human texts",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Not applicable: ChatGPT-4 and Bard outputs, generated by the researchers in May 2023 with the prompt \"Give 4 alternative and creative answers to the following question within 1,000 characters for each answer\", are compared with the human writers' texts. Raters saw texts mixed and blind to source (except AIRaters, who were told some might be AI).",
+        "unit": "other",
+        "structure": "between",
+        "quote": "This yielded 216 unique responses from Bard and 224 from ChatGPT-4",
+        "locator": "PDF p. 9 (printed p. 7), Section 2.1.1",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 3 footnote (AEARCTR-0011584); PDF p. 9 footnote 2: 200 responses per AI were preregistered"
+      },
+      "arms": [
+        { "name": "ChatGPT-4", "description": "224 texts from ChatGPT-4 via the standard chat interface", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Bard", "description": "216 texts from Bard via the standard chat interface", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "HumanBaseline", "description": "Texts of the 688 unassisted writers from S1", "ai": "none", "n_randomized": null, "n_analyzed": 688 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 688,
+        "counts_are": "people",
+        "exclusions": "Human side is the S1 HumanBaseline arm; AI side counts texts, not people.",
+        "population": "online_panel",
+        "who": "S1 Prolific writers (human side); ChatGPT-4 and Bard (AI side)",
+        "country": "United States",
+        "quote": "This yielded 216 unique responses from Bard and 224 from ChatGPT-4",
+        "locator": "PDF p. 9 (printed p. 7); Table 1 PDF p. 13"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT-4 and Google Bard (May 2023, default parameters)",
+        "role": "other",
+        "how_used": "AI produced the texts on its own; no person received AI help."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Same two prompts as S1, four alternative answers per isolated chat, up to 1,000 characters each.",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Overall creativity rated by online raters (0-10)",
+          "construct": "overall_creativity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same regression as S1-O1 (rater FE, SEs clustered by response); HumanBaseline is the reference group.",
+          "unit": "rating",
+          "n_units": 63812,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT-4",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 2 col (1): ChatGPT4 1.879*** (0.039). Table 3: ChatGPT (4.0) mean 7.24, 224 texts. ChatGPT-4 alone also beats HumanPlusAI users of ChatGPT (P < 0.001, text p. 13).",
+              "locator": "PDF p. 15 (printed p. 13), Table 2; PDF p. 16, Table 3"
+            },
+            {
+              "treatment_arm": "Bard",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 2 col (1): Bard -0.924*** (0.051). Table 3: Bard mean 4.46, 216 texts.",
+              "locator": "PDF p. 15 (printed p. 13), Table 2; PDF p. 16, Table 3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Overall creativity rated by research assistants (0-10)",
+          "construct": "overall_creativity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same as S1-O5.",
+          "unit": "rating",
+          "n_units": 8423,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT-4",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table 5 col (1): ChatGPT4 0.551*** (0.072); Bard -1.176*** (0.064).",
+              "locator": "PDF p. 19 (printed p. 17), Table 5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "Ratio of unique ideas per source",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Same method as S1-O9.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT-4",
+              "control_arm": "HumanBaseline",
+              "comparison_type": "ai_vs_human",
+              "direction": "mixed",
+              "statistics_available": ["none"],
+              "reported": "Table 7, ALL: ChatGPT-4 28.1% vs HumanBaseline 30.2% (0.5), 6.7% vs 6.7% (1); Top 100: 36.0% vs 52.0% (0.5), 7.0% vs 10.0% (1); Top 10%: 35.9% vs 64.5% (0.5), 7.8% vs 9.7% (1). Bard ALL: 12.5% (0.5), 5.1% (1).",
+              "locator": "PDF p. 23 (printed p. 21), Table 7"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Ratio of unique ideas (clusters below threshold / texts)",
+            "embedding_model": "Sentence-BERT all-mpnet-base-v2",
+            "computed_over": "All pairwise cosine distances within each source, Ward hierarchical clustering",
+            "uncertainty": "None reported",
+            "notes": "Context only (AI output vs human output)."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S3",
+      "label": "Rater experiment (information given to raters)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "not_stated",
+        "what_was_assigned": "Rater condition: BaselineRaters (original texts), CorrectedRaters (human texts grammar-corrected by ChatGPT), AIRaters (corrected texts, told some are AI-generated, asked to guess source). The paper calls these treatment groups and a random selection of 20 texts per rater; it does not say in words that raters were randomly assigned to conditions.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "The raters were divided into three treatment groups",
+        "locator": "PDF p. 10 (printed p. 8), Section 2.1.2",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 3 footnote (AEARCTR-0011584)"
+      },
+      "arms": [
+        { "name": "BaselineRaters", "description": "Rate 20 original texts (human or AI)", "ai": "none", "n_randomized": null, "n_analyzed": 1100 },
+        { "name": "CorrectedRaters", "description": "Rate 20 texts, human texts grammar-corrected", "ai": "none", "n_randomized": null, "n_analyzed": 1090 },
+        { "name": "AIRaters", "description": "As CorrectedRaters, told some texts are AI-generated and asked to identify the source", "ai": "none", "n_randomized": null, "n_analyzed": 1146 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 3336,
+        "counts_are": "people",
+        "exclusions": "Footnote 6: 3,424 raters hired; 81 who gave fewer than 10 ratings excluded; 7 who took part twice in the same treatment had their 40 ratings removed; 11 who took part in two treatments kept only their first participation. Arm counts 1,100 + 1,090 + 1,146 = 3,336.",
+        "population": "online_panel",
+        "who": "New Prolific participants, GBP 2 fixed pay",
+        "country": "not_stated",
+        "quote": "Subsequently, 3336 new participants were recruited to evaluate the text produced by humans and AI",
+        "locator": "PDF p. 10 (printed p. 8), Section 2.1.2; footnote 6 PDF p. 11 (printed p. 9)"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT used by the researchers to grammar-correct human texts",
+        "role": "other",
+        "how_used": "Raters did not use AI; the manipulation concerns what raters saw or were told."
+      },
+      "task": {
+        "type": "other",
+        "description": "Rate 20 texts 0-10 on creativity, originality, surprise and usefulness; AIRaters also guess human vs AI source.",
+        "duration": ""
+      },
+      "outcomes": []
+    },
+    {
+      "study_id": "S4",
+      "label": "Strategic task (rock-paper-scissors), out of scope",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Opponent strategy: Balanced (equal-probability moves) or Unbalanced (rock and paper only); also task order (writing first or game first). Humans are compared with 200 ChatGPT-4 games.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were divided into two random groups",
+        "locator": "PDF p. 11 (printed p. 9), Section 2.2",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 12 (printed p. 10): two preregistered measures"
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "Same writers as S1. Tables 11-12 report 1,590 observations including 200 ChatGPT-4 games; the human count is not printed separately.",
+        "population": "online_panel",
+        "who": "S1 writers",
+        "country": "United States",
+        "quote": "All participants involved in the writing task also took part in 24 rounds of Rock-Paper-Scissors against a computer opponent.",
+        "locator": "PDF p. 11 (printed p. 9)"
+      },
+      "ai_tool": { "name_model": "ChatGPT-4 (as a player, not as an aid)", "role": "other", "how_used": "No person received AI help." },
+      "task": { "type": "other", "description": "24 rounds of rock-paper-scissors against predetermined moves; not a creative task.", "duration": "" },
+      "outcomes": []
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": []
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Funding from the Swiss National Science Foundation (100018 207722) and Swiss Research Programme 77; no company involvement stated.", "locator": "PDF p. 3, title footnote" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "S1: the paper states that writers were randomly assigned to HumanPlusAI (AI chatbot access, 309) or HumanBaseline (no AI, 688) among three arms (PDF p. 9); 1,250 writers analyzed; creativity, originality, surprise and usefulness are rated by blind raters on the writers' texts, and a diversity measure is computed on them. Caveat for review: the Prolific description for the AI arm requested people who already had an OpenAI or Bard account, and footnote 3 gives per-arm recruitment targets, so it is not fully clear whether HumanPlusAI was recruited from the same pool at the moment of randomization. S2 (AI vs human texts) is context of type ai_vs_human."
+  },
+  "one_line_finding": "Writers randomly given access to Bard or ChatGPT scored 0.500 points higher (SE 0.052, 0-10 scale) on online-rater creativity than unassisted writers (Table 2, PDF p. 15) and 0.142 (SE 0.067) with five RAs (Table 5, PDF p. 19), but RAs rated them lower on originality (-0.416, SE 0.088; Table 16) and the unique-idea ratio was about equal (29.9% vs 30.2% at threshold 0.5; Table 7, PDF p. 23).",
+  "open_questions": [
+    "Was HumanPlusAI recruited from the same Prolific pool as the other arms? The paper says writers were randomly assigned but also that the AI-arm listing requested participants with an OpenAI or Bard account (PDF p. 10) and gives per-arm targets (footnote 3, PDF p. 9).",
+    "Footnote 3 reports 702, 304 and 315 complete responses, but the analysis uses 688, 253 and 309; the paper does not say why 71 responses are missing.",
+    "No HumanBaseline arm mean or SD for creativity is printed; only regression coefficients on rating-level data with SEs clustered by response (one response per writer).",
+    "Text on PDF p. 18 says HumanPlusAI was not statistically more creative than HumanBaseline in RA ratings, while Table 5 shows 0.142** (0.067)."
+  ],
+  "notes": "PDF page = printed page + 2. Table 4 (PDF p. 18) also reports the share of top-10/5/1 percent texts by source (HumanPlusAI 31, 17, 3). A follow-up survey two months later collected only self-reports (income, self-rated creativity), not a new creative output, so there is no after_ai outcome. The candidate record's note that HumanPlusAI use was optional matches the text (\"had the choice\"), but footnote 4 assigns all 309 participants to a tool (Bard 39, ChatGPT-3.5 184, ChatGPT-4 86). Rater experiment (S3) and strategic task (S4) are listed for completeness; they have no outcomes on the three questions."
+}

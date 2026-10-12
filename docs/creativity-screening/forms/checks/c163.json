@@ -1,0 +1,64 @@
+{
+ "cid": "c163",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_analyzed",
+   "form_value": "50",
+   "source_says": "The manuscript explicitly reports 50 recruited writers, but does not separately report the number of writers retained in the fitted models. It later states that two outliers were removed without identifying their source or analysis; set n_analyzed to null and retain 50 as the recruited/collected sample, with criterion_2_at_least_50_people remaining unclear.",
+   "quote": "Our sample of human participants (n = 50) was recruited online via Prolific.",
+   "locator": "NIH author manuscript PMC11065427, Methods, paragraph 1 (XML S1/P7); Statistical Analyses (S5/P14)."
+  },
+  {
+   "field": "studies[0].outcomes[*].n_units",
+   "form_value": "S1-O1: 600; S1-O2: 720; S1-O3: 600; S1-O4: 720",
+   "source_says": "These are corpus totals before exclusions, not stated observation counts for the fitted contrasts. The manuscript reports collecting 300 human, 300 GPT-3, and 120 GPT-4 stories, then removing two outliers; it does not give the retained count for each model or identify the excluded stories. Set each analysis n_units to null and preserve the collected counts in the descriptions; do not infer 598 or 718.",
+   "quote": "Two outliers exceeding four standard deviations from the mean were removed.",
+   "locator": "NIH author manuscript PMC11065427, Methods, paragraphs 2-3 (S1/P8-P9); Statistical Analyses (S5/P14)."
+  },
+  {
+   "field": "studies[0].outcomes[S1-O1,S1-O3,S1-O4].contrasts[0].statistics_available",
+   "form_value": "Each includes regression_coefficient_se, confidence_interval, and test_statistic.",
+   "source_says": "The source gives regression coefficients, 95% confidence intervals, t statistics, and p values, but no standard errors. Remove regression_coefficient_se from these three contrasts; retain confidence_interval and test_statistic.",
+   "quote": "To summarize the output for our variables of interest, we report the regression parameters (β) with corresponding 95% confidence intervals (CIs).",
+   "locator": "NIH author manuscript PMC11065427, Statistical Analyses (S5/P14); Results, paragraphs 3, 6, and 7 (S6/P17, P20, P21)."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].locator",
+   "form_value": "S1-O1: Results, 2nd paragraph; S1-O2: Results, 3rd paragraph; S1-O3: Results, 5th paragraph; S1-O4: Results, 6th paragraph",
+   "source_says": "All four paragraph locators are one paragraph early in the cited XML. The correct Results locators are S1-O1: paragraph 3 (P17); S1-O2: paragraph 4 (P18); S1-O3: paragraph 6 (P20); S1-O4: paragraph 7 (P21). The first Results paragraph is the posterior-predictive-check/exploratory-analysis paragraph (P15).",
+   "quote": "First, we performed a posterior predictive check to ensure that the model usefully mimics the observed data.",
+   "locator": "NIH author manuscript PMC11065427, Results (S6), paragraphs P15-P21."
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced",
+   "form_value": "yes for S1-O1, S1-O2, S1-O3, and S1-O4",
+   "source_says": "Each contrast combines stories written by unassisted people with stories generated separately by GPT-3 or GPT-4. Use mixed for the pooled output sources and retain question = none; yes does not describe the human-produced outputs, and no participant received AI assistance.",
+   "quote": "Additionally, we used OpenAI’s API to request stories from GPT-3 for each of the prompts administered to humans.",
+   "locator": "NIH author manuscript PMC11065427, Methods, paragraphs 2-3 (S1/P8-P9)."
+  },
+  {
+   "field": "source.pages",
+   "form_value": "9",
+   "source_says": "Set to null for the XML source actually read. Its metadata gives the journal pagination 128-136, which does not establish the NIH author manuscript's page count. No PDF was obtained for this check, and the form identifies XML as its source; the journal page range can remain in source.version.",
+   "quote": "<fpage>128</fpage><lpage>136</lpage>",
+   "locator": "NCBI E-utilities full-text XML, article/front/article-meta/fpage = 128 and lpage = 136; manuscript-id = NIHMS1959465. PDF unavailable: PMC returned a download challenge and Europe PMC returned HTTP 403."
+  }
+ ],
+ "confirmed": [
+  "Read the complete NIH author manuscript XML, including references and Figure 1 caption, through NCBI E-utilities (db=pmc&id=11065427); no PDF was obtainable. Metadata confirms NIHMS1959465, the title/authors, J Creat Behav 58(1), 128-136, and electronic publication on 11 January 2024 (article/front/article-meta).",
+  "ai_vs_human, context_class = ai_vs_human, core = no, criterion_1 = not_met, and criterion_3 = met are correct. Randomized prompt order and random selection of stories for raters do not assign people to AI assistance (Methods S1/P7-P9; Creativity Assessment S2/P10).",
+  "The manuscript reports 50 Prolific writers aged 18-35, all native English speakers, supplying six stories each: 300 human stories. GPT-3 supplied 300 stories and GPT-4 supplied 120 replication stories. These are collected counts; no people-randomized count or explicit final writer count is supplied (Methods S1/P7-P9; Statistical Analyses S5/P14).",
+  "The task used three cue words, about five sentences, six prompts in randomized order, and five minutes per human story. The GPT-3 engine is called davinci-003; temperature was sampled from .65-.80, with frequency and presence penalties each set to 1 (Methods S1/P8-P9).",
+  "The manuscript states 240 independent Prolific raters, 12 ratings per story, a 1-5 scale, and 30 stories per rater; GPT-4 supplied one rating per story. It does not reconcile this allocation across the original and additional GPT-4 corpora (Creativity Assessment S2/P10-P11).",
+  "S1-O1's reported values are exact: human minus GPT-3 β = .07, 95% CI [−0.02, 0.16], t = 1.59, p = .11; R2 = .39. The source explicitly interprets this as 0.07 creativity points for the same length and prompt (Results, paragraph 3, S6/P17).",
+  "S1-O2's reported values and its caveat are exact: pooled human-rated comparisons give GPT-3 t = −1.66, p = .10 and GPT-4 t = 1.98, p = .05. The source calls both tendencies lower and nonsignificant despite printing a positive GPT-4 t; the checker preserves that inconsistency (Results, paragraph 4, S6/P18).",
+  "S1-O3's reported values are exact: human minus GPT-3 on GPT-rated creativity β = .14, 95% CI [0.02, 0.25], t = 2.36, p = .02. The human-GPT-4 rating correlation r = .65 is also printed (Results, paragraphs 5-6, S6/P19-P20).",
+  "S1-O4's reported values are exact: GPT-4 versus human stories on GPT-rated creativity β = .76, 95% CI [0.60, 0.91], t = 9.74, p < .001. Its measure_detail also faithfully reproduces the pooled GPT-3 coefficient β = −.14, CI [−0.25, −0.02], t = 2.36, p = .02, including the source's positive t (Results, paragraph 7, S6/P21).",
+  "All numbers in one_line_finding match Results S6/P17-P18 and P21; its nonsignificance statements reproduce the authors' interpretation. These are regression differences in creativity ratings, not pooled standardized effects from a synthesis (Statistical Analyses S5/P14; Results S6).",
+  "DSI compares word embeddings within each story, so it is not diversity across different people's outputs under the codebook. The manuscript uses DSI and LIWC perceptual detail as predictors, with no randomized AI-assistance or post-AI outcome (Semantic Diversity S3/P12; Perceptual Details S4/P13; Statistical Analyses S5/P14).",
+  "This is an empirical report, so empty synthesis fields are appropriate. The XML includes no appendix and metadata says has-supplement = no. Funding is from the National Institute on Aging; conflicts are denied and data are available on request, with no public data/code URL stated (front metadata; back matter; S8/P27)."
+ ],
+ "summary": "The NIH author manuscript confirms an AI-versus-human output comparison, with no randomized assignment of people to AI assistance, and all reported effect numbers match the source. Corrections concern unsupported post-exclusion counts, standard-error availability, result locators, AI-availability coding, and the page count of the XML source."
+}

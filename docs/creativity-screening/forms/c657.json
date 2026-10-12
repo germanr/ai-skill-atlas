@@ -1,0 +1,806 @@
+{
+ "cid": "c657",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Yeverechyahu Mayya Oestreicher-Singer (2026) - The Impact of Large Language Models on Open-source Innovation.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Yeverechyahu Mayya Oestreicher-Singer (2026) - The Impact of Large Language Models on Open-source Innovation.pdf",
+  "version": "arXiv 2409.08379 PDF on file (53 pages), title page reads 'Updated: 24th May 2026'; entire markdown read, including Appendices A-D. Numerical results checked directly against PDF pp. 19, 21, 22, 38 and 41; design, sample sizes and timing checked against the cited PDF passages. Crossref metadata for SSRN 10.2139/ssrn.4684662 was checked and has the same title and authors with a 2024 posted date; the SSRN full text was not read.",
+  "title_on_document": "The Impact of Large Language Models on Open-Source Innovation: Evidence from GitHub Copilot",
+  "authors_on_document": [
+   "Doron Yeverechyahu",
+   "Raveesh Mayya",
+   "Gal Oestreicher-Singer"
+  ],
+  "pages": 53,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices after the references in the same PDF (Appendix Tables begin PDF p. 38); the title page also links a 'Latest Version'.",
+   "holds": "Table A1 summary statistics; Tables A2 and A3 triple-difference tests of the incremental-versus-substantive gap; Tables A4 to A10 robustness; Appendix B Rust/Haskell replication (Tables B1 to B18); Appendix C LLM annotation guidelines; Appendix D function-detection details."
+  }
+ },
+ "paper_design_summary": "Natural experiment at the level of open-source packages: GitHub Copilot launched in October 2021 supporting Python (and Rust) but not R (or Haskell). The authors compare quarterly commit counts of 1,187 propensity-matched Python/R package pairs (1,187 Python packages and an equal number of R packages) by difference-in-differences (TWFE, balanced TWFE, synthetic DiD), and replicate with a within-Python temporal-control design and a Rust/Haskell pair. Commits are classified as substantive (net new function definitions in the code diff; or 'Code Development' by GPT-4o from the commit message) or incremental (no new function; or 'Maintenance'). No people are assigned to conditions and no creativity rating is scored.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Python (Copilot-supported) vs matched R (unsupported) packages, DiD",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "individual | team | class | session | within_person_order | other",
+    "structure": "between | within | crossover | mixed",
+    "quote": "the assignment of treatment (i.e., language supported by GitHub Copilot) was a business decision",
+    "locator": "PDF p. 15 (printed p. 14), Section 4.1.",
+    "preregistered": "yes | no | not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "",
+     "description": "",
+     "ai": "none | generative_ai | other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "students | online_panel | professionals | general_public | mixed",
+    "who": "Corpus of GitHub commits to open-source packages: 1,187 matched Python/R package pairs (top-2,000 PyPI packages vs all CRAN packages, dropping packages not updated in the two years before Copilot), over 620,000 commits, aggregated to package-quarters (29,050 observations in TWFE). Contributors are not counted. Locators: PDF p. 12 (printed p. 11), Section 3.2; PDF p. 19, Table 3 note.",
+    "country": "",
+    "quote": "our primary dataset comprises 1,187 matched Python/R package pairs, aggregated at a quarterly level",
+    "locator": "PDF p. 12 (printed p. 11), Section 3.2 and Table 2; PDF p. 19, Table 3; PDF pp. 31-32, Section 6.3."
+   },
+   "ai_tool": {
+    "name_model": "GitHub Copilot (powered by OpenAI Codex); model upgrade in June 2022",
+    "role": "suggestions",
+    "how_used": "Available to developers in IDEs for supported languages from October 2021; individual use is not observed, treatment is language-level availability."
+   },
+   "task": {
+    "type": "other",
+    "description": "Voluntary contributions (commits) to open-source software packages on GitHub",
+    "duration": "Quarterly panel; Section 3.2 states October 2019 to October 2022 (PDF p. 11), the introduction states October 2019 to December 2022 (PDF p. 5)"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Commits that add new functions (substantive, code-based) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commits with a positive net addition of function definitions across all files in the code diff, the substantive-contribution proxy (PDF p. 13, Section 3.3.1; p. 53, Appendix D). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Robustness and heterogeneity variants: project activity and model upgrade (PDF pp. 24-25, Tables 6-7), logged outcome, omitted initial quarters and earlier treatment date (PDF pp. 39-40, Tables A5, A7, A9); pooled-language version in Table B16 (PDF p. 45). Availability is mixed across languages and periods; timing denotes contributions during the observation window, not a later unassisted task. No individual Copilot adoption or formal primary-outcome designation is established.",
+     "unit": "set",
+     "n_units": 29050,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Python packages after Copilot launch",
+       "control_arm": "Matched R packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, New Functions Added: TWFE 0.800*** (0.190); Balanced TWFE 0.626*** (0.188); SynthDiD 0.600*** (0.172); # of Obs. 29,050 / 24,739 / 24,739. Matched Python/R sample summary: Commits (j=NewFunction) mean 2.51, SD 8.49, 29,050 package-quarter observations (Table A1); not identified as pre-treatment or treated-group-only statistics.",
+       "locator": "PDF p. 21 (printed p. 20), Table 4 Panel A, cols 1-3; PDF p. 38, Table A1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Commits without new functions (incremental, code-based) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commits without a positive net addition of function definitions, the incremental-contribution proxy (PDF p. 13, Section 3.3.1; p. 53, Appendix D). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. The incremental-versus-substantive triple difference is Table A2 (PDF p. 38). Robustness and heterogeneity variants: Tables 6-7 (PDF pp. 24-25), A5, A7, A9 (PDF pp. 39-40), and pooled-language Table B16 (PDF p. 45). Availability is mixed across languages and periods; timing denotes contributions during the observation window, not a later unassisted task. No individual Copilot adoption or formal primary-outcome designation is established.",
+     "unit": "set",
+     "n_units": 29050,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Python packages after Copilot launch",
+       "control_arm": "Matched R packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "New Functions Not Added: TWFE 6.016*** (0.761); Balanced TWFE 4.870*** (0.806); SynthDiD 4.226*** (0.787). Triple difference (Table A2): TreatmentLang X afterCopilot 0.919*** (0.206) / 0.626*** (0.188); X Category_NoNewFunction 4.979*** (0.653) / 4.244*** (0.697); # of Obs. 58,100 / 49,478.",
+       "locator": "PDF p. 21 (printed p. 20), Table 4 Panel A, cols 4-6; PDF p. 38 (appendix p. 3), Table A2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Code Development commits (substantive, GPT-4o classification of commit messages) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commit messages classified as Code Development by GPT-4o, the substantive-contribution proxy; this is a category count rather than a creativity rating (PDF pp. 13-15, Section 3.3.2; pp. 51-52, Appendix C). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Robustness and heterogeneity variants: Tables 6-7 (PDF pp. 24-25), logged outcome, omitted initial quarters and earlier treatment date in Tables A6, A8, A10 (PDF pp. 39-40); pooled-language version in Table B18 (PDF p. 45). Availability is mixed across languages and periods; timing denotes contributions during the observation window, not a later unassisted task. No individual Copilot adoption or formal primary-outcome designation is established.",
+     "unit": "set",
+     "n_units": 29050,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Python packages after Copilot launch",
+       "control_arm": "Matched R packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Code Development: TWFE 1.472*** (0.257); Balanced TWFE 1.270*** (0.266); SynthDiD 1.105*** (0.253); # of Obs. 29,050 / 24,739 / 24,739.",
+       "locator": "PDF p. 22 (printed p. 21), Table 5 Panel A, cols 1-3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Maintenance commits (incremental, GPT-4o classification of commit messages) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commit messages classified as Maintenance by GPT-4o, the incremental-contribution proxy; this is a category count rather than a creativity rating (PDF pp. 13-15, Section 3.3.2; pp. 51-52, Appendix C). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. The incremental-versus-substantive triple difference is Table A3 (PDF p. 38). Robustness and heterogeneity variants: Tables 6-7 (PDF pp. 24-25), A6, A8, A10 (PDF pp. 39-40), and pooled-language Table B18 (PDF p. 45). Availability is mixed across languages and periods; timing denotes contributions during the observation window, not a later unassisted task. No individual Copilot adoption or formal primary-outcome designation is established.",
+     "unit": "set",
+     "n_units": 29050,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Python packages after Copilot launch",
+       "control_arm": "Matched R packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Maintenance: TWFE 2.299*** (0.371); Balanced TWFE 2.023*** (0.391); SynthDiD 1.873*** (0.376). Triple difference (Table A3): TreatmentLang X afterCopilot 1.474*** (0.258) / 1.270*** (0.266); X Category_Maintenance 0.822** (0.267) / 0.753** (0.280); # of Obs. 58,100 / 49,478.",
+       "locator": "PDF p. 22 (printed p. 21), Table 5 Panel A, cols 4-6; PDF p. 38 (appendix p. 3), Table A3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Total commits per package-quarter (volume)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of all new commits, a contribution-volume outcome (PDF p. 12, Table 2; p. 19, Section 5.1). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Package version releases are an alternative volume measure in Table A4 (PDF p. 38; Section 5.4.2, PDF p. 27); the pooled-language volume analysis is Table B14 (PDF p. 44). Availability is mixed across languages and periods; timing denotes contributions during the observation window, not a later unassisted task. No individual Copilot adoption or formal primary-outcome designation is established.",
+     "unit": "set",
+     "n_units": 29050,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Python packages after Copilot launch",
+       "control_arm": "Matched R packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Number of New Commits: TWFE 6.816*** (0.892); Balanced TWFE 5.496*** (0.941); SynthDiD 4.894*** (0.907). Text: 'a 39.55% increase relative to the pre-treatment mean of the treated group of 17.235 commits per quarter'; 31.89% balanced; 28.40% synthetic DiD.",
+       "locator": "PDF p. 19 (printed p. 18), Section 5.1 and Table 3, cols 1-3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Same Python packages, 2016 Q2 to 2018 Q4 control era vs 2020 Q2 to 2022 Q4 treatment era (temporal controls)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "individual | team | class | session | within_person_order | other",
+    "structure": "between | within | crossover | mixed",
+    "quote": "Specifically, we compare the same Python packages across two windows: a control period (2016 Q2 to 2018 Q4) and a treatment period (2020 Q2 to 2022 Q4)",
+    "locator": "PDF p. 18 (printed p. 17), Section 4.3.",
+    "preregistered": "yes | no | not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "",
+     "description": "",
+     "ai": "none | generative_ai | other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "students | online_panel | professionals | general_public | mixed",
+    "who": "The Python packages of S1 observed in two eras; an additional 273,000 Python commits from 2016 to 2018 form the control era (PDF p. 12, Section 3.2). Package-quarter observations: 22,677 in TWFE (PDF p. 19, Table 3, col 4).",
+    "country": "",
+    "quote": "An additional 273,000 Python commits from 2016 to 2018 serve as temporal controls",
+    "locator": "PDF p. 12 (printed p. 11), Section 3.2; PDF p. 18, Section 4.3; PDF p. 19, Table 3, cols. 4-6."
+   },
+   "ai_tool": {
+    "name_model": "GitHub Copilot (powered by OpenAI Codex)",
+    "role": "suggestions",
+    "how_used": "Available for Python from October 2021 in the treatment era; individual use not observed."
+   },
+   "task": {
+    "type": "other",
+    "description": "Voluntary contributions (commits) to open-source Python packages on GitHub",
+    "duration": "Control era 2016 Q2 to 2018 Q4; treatment era 2020 Q2 to 2022 Q4 (PDF p. 19, Table 3 note)"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Commits that add new functions (substantive, code-based) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commits with a positive net addition of function definitions across all files in the code diff, the substantive-contribution proxy (PDF p. 13, Section 3.3.1; p. 53, Appendix D). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Temporal controls reuse the Python packages in S1, comparing the treatment era with calendar-quarter-aligned historical observations; this is not an independent participant sample (PDF p. 18, Section 4.3). Availability is mixed across periods; timing denotes contributions during the observation windows, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome.",
+     "unit": "set",
+     "n_units": 22677,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Same Python packages in the treatment era (2020 Q2 to 2022 Q4), with Copilot available after October 2021",
+       "control_arm": "Same Python packages in the calendar-quarter-aligned historical control era (2016 Q2 to 2018 Q4), before Copilot",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, New Functions Added: TWFE 1.069* (0.439); Balanced TWFE 0.795 (0.490); SynthDiD 0.575+ (0.341); # of Obs. 22,677 / 19,426 / 19,426. Significance marks copied as printed; Table 4 does not define the + symbol in its note.",
+       "locator": "PDF p. 21 (printed p. 20), Table 4 Panel B, cols. 1-3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O2",
+     "name": "Commits without new functions (incremental, code-based) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commits without a positive net addition of function definitions, the incremental-contribution proxy (PDF p. 13, Section 3.3.1; p. 53, Appendix D). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Temporal controls reuse the Python packages in S1, comparing the treatment era with calendar-quarter-aligned historical observations; this is not an independent participant sample (PDF p. 18, Section 4.3). Availability is mixed across periods; timing denotes contributions during the observation windows, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome.",
+     "unit": "set",
+     "n_units": 22677,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Same Python packages in the treatment era (2020 Q2 to 2022 Q4), with Copilot available after October 2021",
+       "control_arm": "Same Python packages in the calendar-quarter-aligned historical control era (2016 Q2 to 2018 Q4), before Copilot",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, New Functions Not Added: TWFE 3.606** (1.323); Balanced TWFE 3.511* (1.534); SynthDiD 2.722+ (1.400); # of Obs. 22,677 / 19,426 / 19,426. Significance marks copied as printed; Table 4 does not define the + symbol in its note.",
+       "locator": "PDF p. 21 (printed p. 20), Table 4 Panel B, cols. 4-6."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O3",
+     "name": "Code Development commits (substantive, GPT-4o classification of commit messages) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commit messages classified as Code Development by GPT-4o, the substantive-contribution proxy; this is a category count rather than a creativity rating (PDF pp. 13-15, Section 3.3.2; pp. 51-52, Appendix C). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Temporal controls reuse the Python packages in S1, comparing the treatment era with calendar-quarter-aligned historical observations; this is not an independent participant sample (PDF p. 18, Section 4.3). Availability is mixed across periods; timing denotes contributions during the observation windows, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome.",
+     "unit": "set",
+     "n_units": 22677,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Same Python packages in the treatment era (2020 Q2 to 2022 Q4), with Copilot available after October 2021",
+       "control_arm": "Same Python packages in the calendar-quarter-aligned historical control era (2016 Q2 to 2018 Q4), before Copilot",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, Code Development: TWFE 1.404** (0.536); Balanced TWFE 1.351* (0.618); SynthDiD 0.835* (0.404); # of Obs. 22,677 / 19,426 / 19,426.",
+       "locator": "PDF p. 22 (printed p. 21), Table 5 Panel B, cols. 1-3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O4",
+     "name": "Maintenance commits (incremental, GPT-4o classification of commit messages) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commit messages classified as Maintenance by GPT-4o, the incremental-contribution proxy; this is a category count rather than a creativity rating (PDF pp. 13-15, Section 3.3.2; pp. 51-52, Appendix C). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Temporal controls reuse the Python packages in S1, comparing the treatment era with calendar-quarter-aligned historical observations; this is not an independent participant sample (PDF p. 18, Section 4.3). Availability is mixed across periods; timing denotes contributions during the observation windows, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome.",
+     "unit": "set",
+     "n_units": 22677,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Same Python packages in the treatment era (2020 Q2 to 2022 Q4), with Copilot available after October 2021",
+       "control_arm": "Same Python packages in the calendar-quarter-aligned historical control era (2016 Q2 to 2018 Q4), before Copilot",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, Maintenance: TWFE 2.349** (0.775); Balanced TWFE 2.356** (0.904); SynthDiD 2.010* (0.931); # of Obs. 22,677 / 19,426 / 19,426.",
+       "locator": "PDF p. 22 (printed p. 21), Table 5 Panel B, cols. 4-6."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O5",
+     "name": "Total commits per package-quarter (volume)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of all new commits, a contribution-volume outcome (PDF p. 12, Table 2; p. 19, Section 5.1). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Temporal controls reuse the Python packages in S1, comparing the treatment era with calendar-quarter-aligned historical observations; this is not an independent participant sample (PDF p. 18, Section 4.3). Availability is mixed across periods; timing denotes contributions during the observation windows, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome.",
+     "unit": "set",
+     "n_units": 22677,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Same Python packages in the treatment era (2020 Q2 to 2022 Q4), with Copilot available after October 2021",
+       "control_arm": "Same Python packages in the calendar-quarter-aligned historical control era (2016 Q2 to 2018 Q4), before Copilot",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, Number of New Commits: TWFE 4.638** (1.624); Balanced TWFE 4.328* (1.874); SynthDiD 3.431* (1.732); # of Obs. 22,677 / 19,426 / 19,426. Section 5.1 reports increases of 27.13% / 25.31% / 20.07%, respectively, and a treated-group pre-treatment mean of 17.097 commits.",
+       "locator": "PDF p. 19 (printed p. 18), Section 5.1 and Table 3, cols. 4-6."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S3",
+   "label": "Rust (Copilot-supported) vs matched Haskell (unsupported) packages, DiD replication",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "",
+    "unit": "individual | team | class | session | within_person_order | other",
+    "structure": "between | within | crossover | mixed",
+    "quote": "Rust was supported by GitHub Copilot at launch while Haskell was not",
+    "locator": "PDF p. 26 (printed p. 25), Section 5.4.1; PDF p. 15, Section 4.1.",
+    "preregistered": "yes | no | not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "",
+     "description": "",
+     "ai": "none | generative_ai | other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "",
+    "population": "students | online_panel | professionals | general_public | mixed",
+    "who": "Top 2,000 Rust packages (Crates.io) and top 2,000 Haskell packages (Hackage), yielding 1,373 matched pairs and approximately 314,000 commits (PDF p. 12, Section 3.2). The five commit-count outcomes are extracted from Appendix B, Tables B2-B4 (PDF p. 41); each TWFE regression has 33,685 package-quarter observations, not people.",
+    "country": "",
+    "quote": "Note: The final matched sample has 1,373 Rust and Haskell packages each",
+    "locator": "PDF p. 41 (appendix p. 6), Tables B1-B4; PDF p. 12, Section 3.2; PDF pp. 31-32, Section 6.3."
+   },
+   "ai_tool": {
+    "name_model": "GitHub Copilot (powered by OpenAI Codex)",
+    "role": "suggestions",
+    "how_used": "Available for Rust from October 2021, not for Haskell; individual use not observed."
+   },
+   "task": {
+    "type": "other",
+    "description": "Voluntary contributions (commits) to open-source Rust and Haskell packages on GitHub",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Commits that add new functions (substantive, code-based) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commits with a positive net addition of function definitions across all files in the code diff, the substantive-contribution proxy (PDF p. 13, Section 3.3.1; p. 53, Appendix D). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Availability is mixed across languages and periods; individual adoption is unobserved. Timing denotes contributions during the observation window, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome. Robustness and heterogeneity variants: Tables B5-B6 (PDF p. 42), B8 and B10 (PDF p. 43), B12 (PDF p. 44), and pooled-language Table B16 (PDF p. 45).",
+     "unit": "set",
+     "n_units": 33685,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Rust packages after Copilot launch",
+       "control_arm": "Matched Haskell packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, New Functions Added: TWFE 1.879*** (0.284); Balanced TWFE 1.238*** (0.274); SynthDiD 0.859*** (0.212); # of Obs. 33,685 / 28,197 / 28,197.",
+       "locator": "PDF p. 41 (appendix p. 6), Table B3, cols. 1-3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O2",
+     "name": "Commits without new functions (incremental, code-based) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commits without a positive net addition of function definitions, the incremental-contribution proxy (PDF p. 13, Section 3.3.1; p. 53, Appendix D). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Availability is mixed across languages and periods; individual adoption is unobserved. Timing denotes contributions during the observation window, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome. Robustness and heterogeneity variants: Tables B5-B6 (PDF p. 42), B8 and B10 (PDF p. 43), B12 and triple-difference Table B15 (PDF p. 44), and pooled-language Table B16 (PDF p. 45).",
+     "unit": "set",
+     "n_units": 33685,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Rust packages after Copilot launch",
+       "control_arm": "Matched Haskell packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, New Functions Not Added: TWFE 3.704*** (0.841); Balanced TWFE 2.824** (0.932); SynthDiD 2.621** (0.805); # of Obs. 33,685 / 28,197 / 28,197.",
+       "locator": "PDF p. 41 (appendix p. 6), Table B3, cols. 4-6."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O3",
+     "name": "Code Development commits (substantive, GPT-4o classification of commit messages) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commit messages classified as Code Development by GPT-4o, the substantive-contribution proxy; this is a category count rather than a creativity rating (PDF pp. 13-15, Section 3.3.2; pp. 51-52, Appendix C). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Availability is mixed across languages and periods; individual adoption is unobserved. Timing denotes contributions during the observation window, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome. Robustness and heterogeneity variants: Tables B5-B6 (PDF p. 42), B9 and B11 (PDF p. 43), B13 (PDF p. 44), and pooled-language Table B18 (PDF p. 45).",
+     "unit": "set",
+     "n_units": 33685,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Rust packages after Copilot launch",
+       "control_arm": "Matched Haskell packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, Code Development: TWFE 1.755*** (0.306); Balanced TWFE 1.146*** (0.279); SynthDiD 0.855*** (0.214); # of Obs. 33,685 / 28,197 / 28,197.",
+       "locator": "PDF p. 41 (appendix p. 6), Table B4, cols. 1-3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O4",
+     "name": "Maintenance commits (incremental, GPT-4o classification of commit messages) per package-quarter",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of commit messages classified as Maintenance by GPT-4o, the incremental-contribution proxy; this is a category count rather than a creativity rating (PDF pp. 13-15, Section 3.3.2; pp. 51-52, Appendix C). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Availability is mixed across languages and periods; individual adoption is unobserved. Timing denotes contributions during the observation window, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome. Robustness and heterogeneity variants: Tables B5-B6 (PDF p. 42), B9 and B11 (PDF p. 43), B13 (PDF p. 44), and triple-difference Table B17 and pooled-language Table B18 (PDF p. 45).",
+     "unit": "set",
+     "n_units": 33685,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Rust packages after Copilot launch",
+       "control_arm": "Matched Haskell packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, Maintenance: TWFE 2.330*** (0.409); Balanced TWFE 1.754*** (0.438); SynthDiD 1.373*** (0.300); # of Obs. 33,685 / 28,197 / 28,197.",
+       "locator": "PDF p. 41 (appendix p. 6), Table B4, cols. 4-6."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O5",
+     "name": "Total commits per package-quarter (volume)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of all new commits, a contribution-volume outcome (PDF p. 12, Table 2; p. 19, Section 5.1). The analysis unit is a package-quarter pool of commits (coded set); n_units is the TWFE observation count, not a people count. TWFE standard errors are clustered by package; SynthDiD uses jackknife variance estimation. Availability is mixed across languages and periods; individual adoption is unobserved. Timing denotes contributions during the observation window, not a later unassisted task. Balanced TWFE and SynthDiD are specifications of the same outcome. Package version releases are an alternative volume measure in Table B7 (PDF p. 42); the pooled-language volume analysis is Table B14 (PDF p. 44).",
+     "unit": "set",
+     "n_units": 33685,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Rust packages after Copilot launch",
+       "control_arm": "Matched Haskell packages (Copilot unsupported)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "TreatmentLang X afterCopilot, Number of New Commits: TWFE 5.583*** (1.081); Balanced TWFE 4.062*** (1.165); SynthDiD 3.458*** (0.977); # of Obs. 33,685 / 28,197 / 28,197.",
+       "locator": "PDF p. 41 (appendix p. 6), Table B2, cols. 1-3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "observational",
+  "reason": "Core=no. Criterion 1 is not met: language support was a business decision, and the temporal comparison uses historical observations of the same Python packages; no people are randomly assigned AI assistance (PDF p. 15, Section 4.1; p. 18, Section 4.3; p. 26, Section 5.4.1). Criterion 2 is unclear: sample sizes count packages, commits and package-quarters; the number of analyzed people is not reported (PDF p. 12, Section 3.2 and Table 2; p. 19, Table 3; p. 41, Tables B1-B4; pp. 31-32, Section 6.3). Criterion 3 is not met under the core creativity/diversity requirement: the outcomes count actual contributions by function addition or commit-message category, rather than scoring output creativity, originality or between-person diversity (PDF pp. 12-15, Sections 3.3-3.3.2; pp. 51-53, Appendices C-D). Retained as borderline observational context because new functionality serves as an innovation/novelty-type proxy in real code output; these are raw contribution-count effects, not creativity ratings. Language-level availability does not establish individual Copilot use (PDF pp. 31-32, Section 6.3)."
+ },
+ "one_line_finding": "Copilot availability raised commits to Python packages relative to matched R packages by 6.816 per package-quarter (39.55 percent; 28.40 percent in synthetic DiD; PDF p. 19, Table 3), with a smaller rise in substantive commits (new functions 0.800; Code Development 1.472) than in incremental commits (no new function 6.016; Maintenance 2.299) (PDF pp. 21-22, Tables 4-5), a gap the triple-difference terms confirm (4.979 and 0.822; PDF p. 38, Tables A2-A3).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].outcomes[0].contrasts[0].reported",
+    "old": "TreatmentLang X afterCopilot, New Functions Added: TWFE 0.800*** (0.190); Balanced TWFE 0.626*** (0.188); SynthDiD 0.600*** (0.172); # of Obs. 29,050 / 24,739 / 24,739. Pre-treatment summary: Commits (j=NewFunction) mean 2.51, SD 8.49 (Table A1).",
+    "new": "TreatmentLang X afterCopilot, New Functions Added: TWFE 0.800*** (0.190); Balanced TWFE 0.626*** (0.188); SynthDiD 0.600*** (0.172); # of Obs. 29,050 / 24,739 / 24,739. Matched Python/R sample summary: Commits (j=NewFunction) mean 2.51, SD 8.49, 29,050 package-quarter observations (Table A1); not identified as pre-treatment or treated-group-only statistics.",
+    "quote": "Commits (j=NewFunctiont)ijt 29,050 2.51 8.49 0 441",
+    "locator": "PDF p. 38 (appendix p. 3), Table A1, NewFunction row, column headings and matched-sample note; PDF p. 19, Table 3, observation count."
+   },
+   {
+    "field": "paper_design_summary",
+    "old": "Natural experiment at the level of open-source packages: GitHub Copilot launched in October 2021 supporting Python (and Rust) but not R (or Haskell). The authors compare quarterly commit counts of 1,187 propensity-matched Python and R packages by difference-in-differences (TWFE, balanced TWFE, synthetic DiD), and replicate with a within-Python temporal-control design and a Rust/Haskell pair. Commits are classified as substantive (net new function definitions in the code diff; or 'Code Development' by GPT-4o from the commit message) or incremental (no new function; or 'Maintenance'). No people are assigned to conditions and no creativity rating is scored.",
+    "new": "Natural experiment at the level of open-source packages: GitHub Copilot launched in October 2021 supporting Python (and Rust) but not R (or Haskell). The authors compare quarterly commit counts of 1,187 propensity-matched Python/R package pairs (1,187 Python packages and an equal number of R packages) by difference-in-differences (TWFE, balanced TWFE, synthetic DiD), and replicate with a within-Python temporal-control design and a Rust/Haskell pair. Commits are classified as substantive (net new function definitions in the code diff; or 'Code Development' by GPT-4o from the commit message) or incremental (no new function; or 'Maintenance'). No people are assigned to conditions and no creativity rating is scored.",
+    "quote": "Note: The final matched sample has 1,187 Python and R packages each.",
+    "locator": "PDF p. 38 (appendix p. 3), Table A1 note; PDF p. 12 (printed p. 11), Section 3.2; PDF p. 5 (printed p. 4), Introduction."
+   },
+   {
+    "field": "studies[*].assignment.randomized; studies[*].assignment.quote; studies[*].assignment.locator; eligibility.criterion_1_random_assignment_of_ai",
+    "old": "All three assignment.randomized values: yes | no | not_stated; quotes and locators empty; criterion_1_random_assignment_of_ai: met | not_met | unclear.",
+    "new": "All three assignment.randomized values: no; source quotes and locators added for the business-decision and historical-control designs; criterion_1_random_assignment_of_ai: not_met.",
+    "quote": "the assignment of treatment (i.e., language supported by GitHub Copilot) was a business decision",
+    "locator": "PDF p. 15, Section 4.1; PDF p. 18, Section 4.3; PDF p. 26, Section 5.4.1."
+   },
+   {
+    "field": "studies[*].participants.counts_are; studies[*].participants.quote; studies[*].participants.locator; eligibility.criterion_2_at_least_50_people",
+    "old": "All three counts_are values: people | teams | other; quotes and locators empty; criterion_2_at_least_50_people: met | not_met | unclear.",
+    "new": "All three counts_are values: other; corpus-unit evidence and locators added; people n_randomized and n_analyzed remain null; criterion_2_at_least_50_people: unclear because analyzed people are not counted.",
+    "quote": "The number of new commits of the package i in the quarter t",
+    "locator": "PDF p. 12, Section 3.2 and Table 2; PDF p. 19, Table 3; PDF p. 41, Tables B1-B4; PDF pp. 31-32, Section 6.3."
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].statistics_available; studies[0].outcomes[*].measure_detail",
+    "old": "statistics_available=[] and measure_detail empty for all five outcomes.",
+    "new": "statistics_available=[\"regression_coefficient_se\"] for all five outcomes; measure_detail identifies the commit-count measure, package-quarter unit, uncertainty method and robustness variants.",
+    "quote": "Standard errors clustered around package in parentheses for TWFE models. The variance for SynthDiD is estimated using the jackknife variance procedure.",
+    "locator": "PDF p. 19, Table 3 note; PDF pp. 21-22, Tables 4-5 notes; PDF p. 38, Tables A2-A3; PDF pp. 13-15, Sections 3.3.1-3.3.2; PDF pp. 24-28, Sections 5.3-5.4."
+   },
+   {
+    "field": "studies[1].outcomes",
+    "old": "[]",
+    "new": "Populated S2-O1 through S2-O5 with function-adding, non-function-adding, Code Development, Maintenance and total commit counts. Each retains all three reported specifications and standard errors; n_units=22677 for TWFE; balanced and synthetic analyses each report 19,426 observations. The same Python packages are reused from S1.",
+    "quote": "Panel B of Table 4 replicates this analysis using our temporal controls design.",
+    "locator": "PDF p. 19, Table 3, cols. 4-6; PDF p. 21, Table 4 Panel B; PDF p. 22, Table 5 Panel B; PDF p. 18, Section 4.3."
+   },
+   {
+    "field": "studies[2].outcomes; studies[2].participants.who",
+    "old": "outcomes=[]; participants.who ends: Results only in Appendix B; not extracted here.",
+    "new": "Populated S3-O1 through S3-O5 with function-adding, non-function-adding, Code Development, Maintenance and total commit counts, including all three specifications and standard errors. n_units=33685 for TWFE; balanced and synthetic analyses each report 28,197 observations. Removed the obsolete not-extracted statement.",
+    "quote": "Appendix B reports the complete set of results.",
+    "locator": "PDF p. 41 (appendix p. 6), Tables B2-B4; PDF p. 26 (printed p. 25), Section 5.4.1."
+   },
+   {
+    "field": "eligibility.criterion_3_outcome_scored_on_output; eligibility.reason",
+    "old": "met | not_met | unclear; reason: Natural experiment at the programming-language level (Copilot availability for Python/Rust but not R/Haskell); no people are assigned to AI and contributors are not counted. Outcomes are counts of commits by type (new-function or 'Code Development' versus incremental or 'Maintenance'), a novelty-type proxy for exploration versus exploitation in real output, not a rated creativity or diversity measure. Borderline fit for observational context.",
+    "new": "not_met; reason: Core=no. Criterion 1 is not met: language support was a business decision, and the temporal comparison uses historical observations of the same Python packages; no people are randomly assigned AI assistance (PDF p. 15, Section 4.1; p. 18, Section 4.3; p. 26, Section 5.4.1). Criterion 2 is unclear: sample sizes count packages, commits and package-quarters; the number of analyzed people is not reported (PDF p. 12, Section 3.2 and Table 2; p. 19, Table 3; p. 41, Tables B1-B4; pp. 31-32, Section 6.3). Criterion 3 is not met under the core creativity/diversity requirement: the outcomes count actual contributions by function addition or commit-message category, rather than scoring output creativity, originality or between-person diversity (PDF pp. 12-15, Sections 3.3-3.3.2; pp. 51-53, Appendices C-D). Retained as borderline observational context because new functionality serves as an innovation/novelty-type proxy in real code output; these are raw contribution-count effects, not creativity ratings. Language-level availability does not establish individual Copilot use (PDF pp. 31-32, Section 6.3).",
+    "quote": "we classify a commit as a substantive contribution only if there is a positive net addition of functions across all files in the commit",
+    "locator": "PDF p. 13, Section 3.3.1; PDF pp. 14-15, Section 3.3.2; PDF pp. 51-53, Appendices C-D; creativity-codebook.md, Section 3."
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing; studies[0].outcomes[*].primary; studies[0].outcomes[*].measure_detail",
+    "old": "ai_available_when_produced=yes | no | mixed; timing=immediate | delayed; primary=preregistered_primary | paper_primary | secondary | not_stated for all five outcomes.",
+    "new": "All five: ai_available_when_produced=mixed; timing=immediate (contributions during the observation window, not unassisted follow-up); primary=not_stated. measure_detail explains the availability/timing mapping and unobserved individual use.",
+    "quote": "Python was supported from the start, while R was not.",
+    "locator": "PDF p. 10, Section 3.1; PDF pp. 31-32, Section 6.3; primary designation not stated in the full document."
+   },
+   {
+    "field": "source.version",
+    "old": "arXiv 2409.08379 PDF on file (53 pages), title page reads 'Updated: 24th May 2026'; SSRN 10.2139/ssrn.4684662 is an earlier version of the same work (not read). Numbers checked against PDF pages 19, 21, 22, and 38.",
+    "new": "arXiv 2409.08379 PDF on file (53 pages), title page reads 'Updated: 24th May 2026'; entire markdown read, including Appendices A-D. Numerical results checked directly against PDF pp. 19, 21, 22, 38 and 41; design, sample sizes and timing checked against the cited PDF passages. Crossref metadata for SSRN 10.2139/ssrn.4684662 was checked and has the same title and authors with a 2024 posted date; the SSRN full text was not read.",
+    "quote": "Updated: 24th May 2026",
+    "locator": "PDF p. 1, title page and Latest Version link; PDF pp. 19, 21, 22, 38, 41, results tables; https://api.crossref.org/works/10.2139/ssrn.4684662 (metadata only)."
+   }
+  ],
+  "rejected": []
+ }
+}

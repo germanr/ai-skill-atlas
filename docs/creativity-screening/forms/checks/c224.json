@@ -1,0 +1,84 @@
+{
+ "cid": "c224",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].design_class",
+   "form_value": "quasi_people",
+   "source_says": "Use observational under the supplied definitions. Visitors chose machines with different scoring/feedback configurations, and image generation was available across configurations. The form-spec definition of quasi_people specifically concerns non-random comparisons with and without AI; this study has no such contrast. Machine-level randomization does not establish random assignment of people or within-person condition order, so the existing observational context class and exclusion from the core remain appropriate.",
+   "quote": "Participants select a machine and either enter a prompt to generate an image via FLUX.1 [50] or upload an image.",
+   "locator": "PDF p. 3, Section IV.C; p. 4, Section IV.E; p. 13, Appendix F.D. Classification follows form-spec.md, Field notes (design_class), and creativity-codebook.md, Section 4."
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Record the reported exclusions: prelaunch test submissions, incomplete records missing prompt text, score or condition assignment, and inappropriate submissions removed through keyword filtering; the Ethical Impact Statement also mentions manual review. These are record exclusions, with neither an exact excluded-person count nor a final distinct-person analysis count given. Keep person counts null.",
+   "quote": "Prior to analysis, we removed test-phase submissions sent before public launch, incomplete records missing key fields (prompt text, score, or condition assignment)",
+   "locator": "PDF p. 4, Section IV.F, opening paragraph; p. 7, Ethical Impact Statement; supplement checked on pp. 11-18."
+  },
+  {
+   "field": "studies[0].outcomes (omitted RQ1 outcome and contrasts)",
+   "form_value": "Only prompt predictability, raw phobia scores contrasted by scoring condition, and gallery-centroid convergence are recorded.",
+   "source_says": "Add the collective semantic-diversity outcome: sliding-window pairwise cosine distances over text-embedding-3-large prompt embeddings declined over time (mixed-effects model, p < .001). Within-machine distances were smaller than between-machine distances for the same phobia, which were smaller than between-phobia distances (Mann-Whitney U, p < .001 for both transitions). Also add the reported time contrast to the existing raw-phobia outcome: scores rose through the first 30 prompts and then declined toward baseline (mixed-effects model, p < .05). Figure 3 labels the diversity outcome mean pairwise cosine distance. Appendix E.A separately describes cumulative MST dispersion; record that distinction instead of silently treating the two methods as identical. These are output-based observational results, not additional studies or people counts.",
+   "quote": "Semantic diversity declined over time (mixed-effects model, 𝑝< .001), consistent with participants converging on what worked for predecessors, while phobia scores followed a rise-then-decline pattern:",
+   "locator": "PDF p. 4, Section IV.F.1; p. 5, Section V.A and Figure 3; p. 11, Appendix E.A. Form-spec.md, Rule 7 requires relevant output outcomes."
+  },
+  {
+   "field": "studies[0].outcomes (omitted spookiness-score outcome)",
+   "form_value": "No outcome entry for the refined spookiness score; only the raw GPT-4o phobia score is recorded.",
+   "source_says": "Add the refined spookiness score as a separate task-effectiveness proxy. Among accepted artifacts, combined versus spookiness-only scoring gave M = 57.0 versus 67.9; d = -1.37, p < .0001. Within the combined condition, habituated versus accepted artifacts had M = 68.5 versus 57.0; d = 1.65, p < .0001. The latter is an artifact-category contrast within a condition, not a comparison of randomized people. Methods name Cohen's d and bootstrap confidence intervals across machines for the accepted-artifact scoring comparisons.",
+   "quote": "Accepted artifacts in the combined condition had lower spookiness scores (𝑀= 57.0 vs. 67.9; 𝑑= −1.37, 𝑝< .0001)",
+   "locator": "PDF p. 5, Section V.B, paragraphs on gallery composition and habituation; p. 6, Figure 4A; p. 4, Section IV.F.2; p. 13, Appendix F.D."
+  },
+  {
+   "field": "studies[0].outcomes (omitted uncertainty-score outcome)",
+   "form_value": "No outcome entry for uncertainty/novelty scores.",
+   "source_says": "Add the uncertainty score as the paper's novelty proxy: accepted artifacts in the combined versus spookiness-only condition had M = 35.1 versus 15.5; d = 2.0, p < .0001. This score is derived from the scoring model's uncertainty about an artifact relative to prior artifacts, rather than an independently validated human originality rating.",
+   "quote": "but higher uncertainty scores (𝑀= 35.1 vs. 15.5; 𝑑= 2.0, 𝑝< .0001)",
+   "locator": "PDF p. 5, Section V.B; p. 6, Figure 4B; p. 4, Sections IV.C and IV.F.2; p. 13, Appendix F.D."
+  },
+  {
+   "field": "studies[0].outcomes (omitted artifact-acceptance outcome)",
+   "form_value": "No outcome entry for acceptance rates.",
+   "source_says": "Add the scored task-success outcome: combined versus spookiness-only first-attempt acceptance was 38% versus 32%, reversing by the fifth attempt to 32% versus 40%; condition-by-attempt interaction p = .004. The methods specify a logistic mixed-effects model. Acceptance is determined from artifact scores and moderation, and these percentages must not be interpreted as participant sample sizes.",
+   "quote": "first-attempt acceptance was higher in the combined condition (38% vs. 32%), but by the fifth attempt the pattern reversed (32% vs. 40%)",
+   "locator": "PDF p. 5, Section V.B; p. 6, Figure 4C; p. 4, Sections IV.C and IV.F.2."
+  },
+  {
+   "field": "studies[0].outcomes (omitted emotional-condition output contrasts)",
+   "form_value": "The sole recorded high-emotion versus neutral contrast concerns convergence toward the gallery.",
+   "source_says": "Include the reported null emotional-condition contrasts for phobia scores, quality, novelty and acceptance rates alongside the gallery-convergence result. The source summarizes these together with engagement volume and depth as all |d| < 0.06 and all p > .05; it gives bounds, not a separate exact d or p for each outcome. Do not replace the bounds with zero effects or invent outcome-specific estimates.",
+   "quote": "phobia scores, quality, novelty, acceptance rates, engagement volume, and depth were all indistinguishable across conditions (all |𝑑| < 0.06, all 𝑝> .05).",
+   "locator": "PDF p. 6, Section V.C, final paragraph."
+  },
+  {
+   "field": "studies[0].outcomes[0].measure_detail and studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"measure_detail\": \"\", \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "Fill the required diversity details using the already supported definition: GPT-2 contextual minus isolated prompt log-likelihood, with the preceding 20 prompts to the same machine as context; higher values mean greater repetition. GPT-2 is the scoring model, not an embedding model for this metric. Analysis regresses predictability on prompt order; Figure 5 shows binned means with bootstrap 95% confidence intervals and linear regression with 95% confidence bands. Include the robustness variants in measure_detail: gallery-visible context with all submissions as targets, and gallery-visible context with accepted submissions only. Appendix B reports amplified divergence for the former and the same trend with reduced power for the latter.",
+   "quote": "Panel B restricts context to gallery-visible (accepted) artifacts only, showing that the divergence between conditions is amplified when context reflects what users could actually see.",
+   "locator": "PDF p. 11, Appendices B and E.B; p. 13, Figure 8; pp. 5-6, Section V.B and Figure 5. Form-spec.md, Rule 7 and diversity_detail field note."
+  },
+  {
+   "field": "studies[0].outcomes[2].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "Populate the required diversity fields with the method already described in reported: L2 distance from each submission to the centroid of accepted-artifact embeddings in 50-dimensional PCA space, examined over attempts using OLS with machine fixed effects and a condition-by-attempt interaction. Smaller distances mean greater convergence. The paper does not separately identify an embedding model for this particular gallery-centroid analysis, so do not infer one from the scoring or other diversity analyses.",
+   "quote": "Convergence toward gallery content was measured as L2-distance to the gallery centroid (mean embedding of accepted artifacts) in 50-dimensional PCA space over successive attempts, fitted via",
+   "locator": "PDF pp. 4-5, Section IV.F.3; p. 6, Section V.C. Form-spec.md, diversity_detail field note."
+  }
+ ],
+ "confirmed": [
+  "The title and author list match the PDF; the margin identifies arXiv:2609.15472v1, 14 Sep 2026, and the header identifies ACII 2026. The PDF has 18 pages and includes Supplementary Material, Appendices A-I (PDF p. 1; pp. 11-18).",
+  "Visitors selected machines and could generate images with FLUX.1 or upload images; GPT-4o interpreted artifacts, assigned phobia scores and generated reactions (PDF pp. 3-4, Sections IV.B-C; p. 13, Figure 9).",
+  "The factorial design assigns machines to scoring/emotion cells; only scoring-rule assignment is explicitly randomized. Emotional condition flips after five successful scares, and the authors acknowledge success-confounded within-person exposure. No random assignment of people or condition order is documented (PDF pp. 3-4, Sections IV.B-E; p. 7, Section VI; p. 13, Appendix F.D).",
+  "The deployment reports 832 unique participants, 89 machines, 15,719 artifacts and 7,650 scored artifacts. These are deployment counts, not a reported final distinct-person analysis count or arm counts; leaving analyzed/randomized people counts null and the sample-size criterion unclear is justified (PDF p. 4, Sections IV.E-F; supplement pp. 11-18).",
+  "Participants were self-selected public visitors recruited organically through media coverage and Hacker News, and no demographics were collected (PDF p. 4, Section IV.E; p. 8, Ethical Impact Statement).",
+  "S1-O1 numbers match: spookiness-only b = 0.0075 per prompt, p < .001; combined b = 0.0004, p = .776; early prompts 1-30 p = .689; late prompts 31-70 d = 0.611, p = .012 (PDF p. 5, Section V.B).",
+  "S1-O1 correctly describes preceding-20-prompt contextual versus isolated GPT-2 log-likelihood and the caveat that this measures surface-text repetition rather than established conceptual breadth (PDF p. 11, Appendix E.B; p. 6, Section V.B and Figure 5).",
+  "S1-O2 correctly reports raw phobia-score d = 0.05, n.s.; GPT-4o uses a 0-100 phobia scale, and the paper explicitly cautions that these scores are not independently validated creativity measures (PDF p. 5, Section V.B; p. 3, Section IV.C; p. 4, Section IV.F).",
+  "S1-O3 correctly reports faster gallery convergence for high-emotion machines, interaction p = .005, with L2 distances in 50-dimensional PCA space and OLS machine fixed effects. No numerical interaction coefficient or standard error is supplied for that result (PDF pp. 4-5, Section IV.F.3; p. 6, Section V.C; supplement pp. 11-18).",
+  "The one-line finding accurately preserves the reported late-prompt d = 0.611, p = .012 and raw-phobia d = 0.05, n.s., with an observational interpretation (PDF p. 5, Section V.B; p. 6, continuation).",
+  "This is a single public-deployment empirical study, not a synthesis; the synthesis fields appropriately remain at their defaults, and the supplement adds no separate randomized people study (PDF pp. 3-7, Methods and Results; pp. 11-18, Appendices A-I)."
+ ],
+ "summary": "No randomized people study is reported; the form's numerical claims, source version, and observational-context decision are supported. Corrections concern the design label, exclusion details, omitted output outcomes and contrasts, and missing diversity-measure details."
+}

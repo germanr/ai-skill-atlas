@@ -1,0 +1,594 @@
+{
+  "cid": "c078",
+  "screener": "final",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Komura et al (2026) - Deepening ideas vs exploring new ones.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Komura et al (2026) - Deepening ideas vs exploring new ones.pdf",
+    "version": "Journal version of record: PLoS One 21(1): e0340449, published January 7, 2026 (received August 12, 2025; accepted December 22, 2025), as printed on p. 1",
+    "title_on_document": "Deepening ideas vs. exploring new ones: AI strategy effects in human-AI creative collaboration",
+    "authors_on_document": [
+      "Kazuki Komura",
+      "Seiji Yamada"
+    ],
+    "pages": 26,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "PLOS One Supporting information listed on p. 23: S1 File (DOCX), S2 File (DOCX), S3 File (XLSX). The document prints no URL for them beyond the article DOI, https://doi.org/10.1371/journal.pone.0340449.",
+      "holds": "S1: prompt templates for the Vertical and Horizontal strategies and the API settings (GPT-4.1, temperature 0.0, max_tokens 400, n = 1, JSON output). S2: interface instructions with video explanations, experimental materials, and the complete questionnaire items (GQS, MDMT). S3: the complete dataset. The descriptions list no result tables. Every statistic recorded here is printed in the main text (Tables 1-7, Figs 6 and 8)."
+    }
+  },
+  "paper_design_summary": "Japanese crowd workers on Yahoo! Crowdsourcing (165 recruited, 148 analyzed after those who experienced GPT API errors were excluded) each did one 15-minute brainstorming session on 'How to increase sales for a city cafe', taking turns with GPT-4.1 to place ideas on a shared 15x15 grid (20 ideas each). They were divided, by a method the paper does not state, into three between-participants arms that differ only in the AI's strategy: Vertical (deepens existing ideas, 52 analyzed), Horizontal (opens new topics, 50 analyzed), or Random (the AI picks either strategy at random, the paper's control, 46 analyzed). The outcomes are counts of the session ideas each participant would 'actually want to adopt', trust (MDMT) and Godspeed questionnaires, and a t-SNE plot of idea embeddings, with no rater or computed creativity or diversity score of the output.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Turn-based human-AI brainstorming with three AI strategies (Vertical, Horizontal, Random)",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "not_stated",
+        "what_was_assigned": "The AI partner's strategy: Vertical (deepening), Horizontal (broadening), or Random (the AI picks between the two at random). All arms work with GPT-4.1, and no arm works without AI. The paper does not describe how participants were allocated to conditions.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "We divided 148 participants into three groups: a deepening strategy (vertical), a diffusion strategy (horizontal), and a random control condition.",
+        "locator": "p. 3, Introduction; p. 10, Study design and conditions ('This study conducted a one-factor, three-level between-participants experiment.'). No sentence states how participants were allocated; 'random' in the Random condition (p. 11) refers to the AI's choice of strategy.",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        {
+          "name": "Vertical (Deepening)",
+          "description": "GPT-4.1 deepens an existing idea by adding a related idea in the same column, taking the leftmost column with fewer than nine ideas (Algorithm 1, p. 9).",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": 52
+        },
+        {
+          "name": "Horizontal (Broadening)",
+          "description": "GPT-4.1 places ideas in new or sparsely filled columns from a completely new direction; an idea placed in row 1 or later derives from the row-0 idea of its column (Algorithm 2, p. 10).",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": 50
+        },
+        {
+          "name": "Random (Control)",
+          "description": "The AI randomly selects between the Vertical and Horizontal strategies. The paper calls this arm 'A control group'.",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": 46
+        }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 148,
+        "counts_are": "people",
+        "exclusions": "165 participants were recruited on May 24-25, 2025. Those who experienced GPT API errors were excluded, leaving 148 in the final analysis (17 fewer, by subtraction). The paper gives no exclusions by condition and no count at assignment; 165 is a recruitment count.",
+        "population": "online_panel",
+        "who": "Yahoo! Crowdsourcing workers paid 70 JPY each. Of the 148 analyzed, 115 were male (77.7%), 32 female (21.6%), and one other (0.7%), with a mean age of 47.93 (SD 10.56, median 49.0). No prior survey of AI proficiency or creative-task experience was run.",
+        "country": "Japan (p. 22: 'the study was conducted only with Japanese participants')",
+        "quote": "we recruited 165 participants between May 24,2025 and May 25, 2025 via Yahoo! Crowdsourcing, with a compensation of 70 JPY each. After excluding those who experienced GPT API errors, 148 participants were included in the final analysis.",
+        "locator": "p. 11, Study design and conditions; p. 11, Table 1 (Horizontal 50, Vertical 52, Random 46, Total 148); p. 22, Limitations"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4.1 via the OpenAI API (temperature 0.0, max_tokens 400, n = 1, JSON response format)",
+        "role": "other",
+        "how_used": "Strict turn-taking co-ideation partner: the participant and the AI alternately place one idea on a shared 15x15 grid, 20 ideas each and up to 40 per session (p. 8). The AI's prompt asks for an idea of about 15 characters (pp. 9-10). The paper states no length limit for participants' ideas. The system prompts the AI with the session theme and the content and position of all existing ideas, and the AI places its idea where the arm's strategy dictates (Algorithms 1 and 2, pp. 9-10). The paper describes no chat with the AI. The nearest listed role is ideas_supplied."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Brainstorm ideas on 'How to increase sales for a city cafe' with the AI on the grid; then, in an evaluation phase shown without the grid layout, select from all session ideas (human and AI) those the participant would 'actually want to adopt'; then a post-session questionnaire.",
+        "duration": "15-minute main session (p. 11), after a briefing with video instructions and a practice session"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Number of AI-generated ideas the participant selected for adoption",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": false,
+          "measure": "behavioral",
+          "measure_detail": "After the session each participant picks, from all ideas of their own session shown without the grid layout, the ideas they would 'actually want to adopt' (p. 11). The outcome counts the picked ideas that the AI generated. It is a choice recorded in the evaluation interface, an adoption intention rather than an adoption, and not a creativity rating by raters or a computed score: the authors say whether selected ideas are truly creative 'requires separate evaluation' (p. 20). Kruskal-Wallis test across the three arms with post-hoc pairwise tests (method not named).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "AI Ideas Selected, mean (SD): Vertical 6.98 (5.13), n = 52 vs Random 6.20 (4.89), n = 46 (n from Table 1). Three-arm Kruskal-Wallis H(2) = 6.71, p = 0.035; eta^2 = 0.033 in the text (p. 13) and 0.032 on the Fig 6 label (p. 15). Table 4 note: only Horizontal vs Vertical is significant; 'other pairwise comparisons non-significant' (no pairwise p printed).",
+              "locator": "p. 14, Table 4 and note; p. 13, AI idea selection results; p. 15, Fig 6 (AI Note Selection panel); p. 11, Table 1"
+            },
+            {
+              "treatment_arm": "Horizontal (Broadening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "AI Ideas Selected, mean (SD): Horizontal 5.22 (5.43), n = 50 vs Random 6.20 (4.89), n = 46. Three-arm H(2) = 6.71, p = 0.035. Pairwise comparison non-significant (no p printed).",
+              "locator": "p. 14, Table 4 and note; p. 11, Table 1"
+            },
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Horizontal (Broadening)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "p_value_only"
+              ],
+              "reported": "AI Ideas Selected, mean (SD): Vertical 6.98 (5.13), n = 52 vs Horizontal 5.22 (5.43), n = 50. Post-hoc Horizontal vs Vertical p = 0.037. Text: 'This difference of 1.76 ideas per session represents a 34% improvement' (p. 18); p. 21 also says 'a 35% higher selection rate'.",
+              "locator": "p. 14, Table 4 note; p. 18, RQ2; p. 21, Practical implications; p. 11, Table 1"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Number of human-generated ideas the participant selected for adoption",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": false,
+          "measure": "behavioral",
+          "measure_detail": "Count of the participant's own ideas among those they would 'actually want to adopt', chosen in the same evaluation phase as S1-O1. The participant judges their own output; no rater or computed creativity score is involved. Kruskal-Wallis test. Fig 6 calls this panel 'User Note Selection' and labels it p = 0.179, eta^2 = 0.010 (p. 15).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "Human Ideas Selected, mean (SD): Vertical 6.25 (4.85), n = 52 vs Random 4.85 (5.13), n = 46. Three-arm H(2) = 3.44, p = 0.179; Fig 6 label eta^2 = 0.010. Table 4 note: no significant pairwise differences.",
+              "locator": "p. 14, Table 4 and note; p. 15, Fig 6 (User Note Selection panel); p. 18, RQ2; p. 11, Table 1"
+            },
+            {
+              "treatment_arm": "Horizontal (Broadening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "Human Ideas Selected, mean (SD): Horizontal 6.22 (5.65), n = 50 vs Random 4.85 (5.13), n = 46. Three-arm H(2) = 3.44, p = 0.179. No significant pairwise differences.",
+              "locator": "p. 14, Table 4 and note; p. 11, Table 1"
+            },
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Horizontal (Broadening)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "Human Ideas Selected, mean (SD): Vertical 6.25 (4.85), n = 52 vs Horizontal 6.22 (5.65), n = 50. Three-arm H(2) = 3.44, p = 0.179. No significant pairwise differences.",
+              "locator": "p. 14, Table 4 and note; p. 11, Table 1"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Total number of ideas (human plus AI) the participant selected for adoption",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": false,
+          "measure": "behavioral",
+          "measure_detail": "Total ideas the participant would 'actually want to adopt'. The paper calls it 'an indicator of idea fluency' (p. 12), but it counts ideas selected, not ideas produced: the participant and the AI each generated 20 ideas by design (p. 8). Kruskal-Wallis test. Fig 6 'Total Note Selection' panel labeled p = 0.169, eta^2 = 0.011 (p. 15).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "Total Ideas Selected, mean (SD): Vertical 13.23 (8.77), n = 52 vs Random 11.04 (9.42), n = 46. Three-arm H(2) = 3.55, p = 0.169; Fig 6 label eta^2 = 0.011. Table 4 note: no significant pairwise differences.",
+              "locator": "p. 14, Table 4 and note; p. 15, Fig 6 (Total Note Selection panel); p. 18, RQ2; p. 11, Table 1"
+            },
+            {
+              "treatment_arm": "Horizontal (Broadening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "Total Ideas Selected, mean (SD): Horizontal 11.44 (9.20), n = 50 vs Random 11.04 (9.42), n = 46. Three-arm H(2) = 3.55, p = 0.169. No significant pairwise differences.",
+              "locator": "p. 14, Table 4 and note; p. 11, Table 1"
+            },
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Horizontal (Broadening)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "arm_means_sds_ns",
+                "test_statistic",
+                "p_value_only"
+              ],
+              "reported": "Total Ideas Selected, mean (SD): Vertical 13.23 (8.77), n = 52 vs Horizontal 11.44 (9.20), n = 50. Three-arm H(2) = 3.55, p = 0.169. No significant pairwise differences.",
+              "locator": "p. 14, Table 4 and note; p. 11, Table 1"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Probability that an idea is selected (idea-level mixed-effects logistic regression, strategy terms)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": false,
+          "measure": "behavioral",
+          "measure_detail": "Binary selection of each idea (human and AI ideas, all three arms) regressed on AI condition, creator (AI vs human), standardized grid row and column, content length, and five embedding-similarity metrics, with a participant (sessionId) random effect; AUC = 0.799 (p. 16). Pairwise strategy comparisons come from emmeans (Table 7). The Table 7 note says the strategy differences are under 3 percentage points in predicted probabilities, and the Conclusion cites a '2.36 percentage point improvement for the Vertical strategy over Random' (p. 23); no table prints these probabilities.",
+          "unit": "output",
+          "n_units": 5848,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "confidence_interval",
+                "p_value_only"
+              ],
+              "reported": "Vertical vs. Random: OR 1.13, 95% CI 0.658-1.95, p = 0.658 (N = 5,848 ideas from 148 participants)",
+              "locator": "p. 17, Table 5; p. 19, Table 7"
+            },
+            {
+              "treatment_arm": "Horizontal (Broadening)",
+              "control_arm": "Random (Control)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "confidence_interval",
+                "p_value_only"
+              ],
+              "reported": "Horizontal vs. Random: OR 1.04, 95% CI 0.600-1.81, p = 0.882",
+              "locator": "p. 17, Table 5; p. 19, Table 7"
+            },
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Horizontal (Broadening)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": [
+                "confidence_interval",
+                "p_value_only"
+              ],
+              "reported": "Vertical vs. Horizontal: OR 1.09, 95% CI 0.626-1.89, p = 0.765",
+              "locator": "p. 19, Table 7 and RQ3 text"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Dispersion of ideas in a t-SNE map of idea embeddings, by AI strategy",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Each idea is converted to an embedding with unnamed 'text embedding models' (p. 12) and projected to two dimensions with t-SNE. Fig 8A colors the Vertical (n=2071 ideas) and Horizontal (n=1942 ideas) pools; the Random arm is not shown. The comparison is visual: Vertical ideas 'appear in relatively dense clusters' and Horizontal ideas are 'more widely dispersed' (p. 15). Each pool mixes human and AI ideas (Fig 8B: Human n = 1973, AI n = 2040), so the plot does not isolate participants' own outputs. The Discussion adds that ideas 'generated under different AI strategies occupy different regions in the semantic space' (p. 19). The field scored_on_output is true only because the map is computed from the ideas' embeddings. The paper reports no dispersion or similarity number by arm, so this outcome does not meet criterion 3 (see eligibility.reason).",
+          "unit": "set",
+          "n_units": 4013,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Vertical (Deepening)",
+              "control_arm": "Horizontal (Broadening)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": [
+                "figure_only"
+              ],
+              "reported": "Fig 8 panel A legend: Horizontal (n=1942), Vertical (n=2071) ideas. Text: 'ideas from the vertical condition appear in relatively dense clusters while ideas from the horizontal condition are more widely dispersed across the latent space.' No metric, interval, or test.",
+              "locator": "p. 15, t-SNE visualization of the latent space; p. 16, Fig 8 panel A; p. 19, RQ3 ('distinct strategy-based clustering patterns')"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Visual dispersion of each condition's ideas on a 2-D t-SNE map; no numeric diversity metric",
+            "embedding_model": "not stated ('text embedding models', p. 12)",
+            "computed_over": "All ideas (human and AI) pooled across sessions within each of the Vertical and Horizontal arms, projected jointly",
+            "uncertainty": "None; no statistic, interval, or test",
+            "notes": "Direction is coded on dispersion (higher means more diverse), so no sign reversal: Vertical, the treatment, is less dispersed. Counts are ideas, not people. The AI's prompts set how each AI idea relates to existing ideas (pp. 9-10), and the plot does not separate human ideas by condition. The per-idea similarity metrics (theme similarity; average, maximum, minimum, and SD of similarity to other ideas in the same session) enter only as predictors of selection (Table 5) and are never compared across arms."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [
+      {
+        "comparison": "",
+        "estimate": "",
+        "interval": "",
+        "what_it_standardizes": "",
+        "locator": ""
+      }
+    ]
+  },
+  "sample_overlap": {
+    "shares_participants_with": "",
+    "quote": "",
+    "locator": ""
+  },
+  "company_involvement": {
+    "any": false,
+    "description": "None stated. JST CREST (JPMJCR21D4) funded the study, and the funders had no role in it. The authors declare no competing interests. GPT-4.1 is used through the OpenAI API, and the paper states no role for OpenAI.",
+    "locator": "p. 2, left column (Funding; Competing interests); p. 9 (OpenAI API)"
+  },
+  "data_and_code": {
+    "data_url": "S3 File (complete dataset, XLSX) in the article's Supporting information (p. 23), https://doi.org/10.1371/journal.pone.0340449. Data availability statement: 'All relevant data are within the manuscript and its Supporting information files' (p. 2).",
+    "code_url": ""
+  },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "unclear",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "not_met",
+    "context_class": "none",
+    "reason": "Criterion 3 is not met. No creativity or diversity score of the output, by raters or by a computed measure, is compared across arms. The outcomes are counts of ideas each participant would 'actually want to adopt' and their idea-level logit (the participant's own choice, whose creativity the authors say 'requires separate evaluation', p. 20), trust and Godspeed questionnaires, and perception of the AI's strategy. The only diversity evidence is a t-SNE plot with no metric or test. It pools participants' ideas with the AI's ideas, which follow each arm's prompt (pp. 9-10), and it omits the Random arm (Fig 8A, p. 16). Criterion 1 is unclear: all three arms use GPT-4.1 and differ only in strategy (an ai_design comparison), but the paper says only that participants were 'divided' into three groups (p. 3) and never states random allocation. 'Random' names an AI condition. S1 is therefore coded design_class other, as in the final c168. Random allocation would make it an online_rct and meet criterion 1, and the paper would still fail criterion 3. Criterion 2 is met: 148 people analyzed of 165 recruited (52, 50, and 46; Table 1, p. 11), well above 50. Context class is none: there is no AI-free arm, and the paper studies how people trust and adopt AI-made ideas, which the codebook lists in the screening report and omits from the dataset."
+  },
+  "one_line_finding": "With GPT-4.1 as a turn-taking brainstorming partner in every arm, participants whose AI deepened existing ideas (Vertical) selected more AI ideas to adopt than those whose AI broadened (Horizontal), 6.98 vs 5.22 (three-arm Kruskal-Wallis H(2) = 6.71, p = 0.035; post-hoc p = 0.037; Table 4, p. 14), and reported higher competence trust (4.79 vs 4.04 Horizontal and 4.16 Random; F(2,145) = 5.07, p = 0.007; Table 2, p. 13), while total ideas selected did not differ (H = 3.55, p = 0.169; Table 4) and no creativity or diversity score of the output was reported.",
+  "open_questions": [
+    "How were participants allocated to the three conditions? The paper says only 'We divided 148 participants into three groups' (p. 3) and never states random assignment, so S1 is coded design_class other. Random allocation would make S1 an online_rct and meet criterion 1, but criterion 3 would still fail.",
+    "How were the 17 participants excluded for GPT API errors (165 recruited, 148 analyzed) spread across the arms? The paper gives no per-arm exclusions.",
+    "Does the S3 dataset hold the idea texts with creator and condition? If so, a computed diversity measure of participants' own ideas across arms could be built, though the paper reports none."
+  ],
+  "notes": "Outcomes compared across arms but not listed, because they are questionnaires rather than scores of the output: perception of the AI's strategy (chi2(4, N = 148) = 23.09, p = .0001, Cramer's V = .279; 'unclear' 7.7% Vertical, 28.0% Horizontal, 23.9% Random; p. 13), MDMT trust (Table 2, p. 13: Competence Trust Vertical 4.79 (1.11), Horizontal 4.04 (1.42), Random 4.16 (1.26), F(2,145) = 5.07, p = 0.007, eta^2 = 0.065; Moral Trust F(2,145) = 4.12, p = 0.018, eta^2 = 0.054), and Godspeed scales (Table 3, p. 14; only Perceived Safety reaches F(2,145) = 3.06, p = 0.050). Also not listed: Fig 8 panel B, which contrasts human ideas (n = 1973) with AI ideas (n = 2040) from the same assisted sessions and answers none of the three questions; the grid heatmaps (Fig 7); and the per-idea similarity metrics, used only as predictors of selection (Table 5). Both Fig 8 panels total 4,013 ideas, against 5,848 ideas from 148 sessions in the selection analyses (pp. 13, 16). Fig 6 (p. 15) labels each panel with p and eta^2: AI 0.035* and 0.032, user (human) 0.179 and 0.010, total 0.169 and 0.011. Inconsistencies in the PDF: the average-similarity OR is 1.37 in the p. 16 text, 1.35 in Table 5 (p. 17) and on pp. 19-20, and 1.33 on pp. 20, 21, and 23; the grid-row OR is 0.716 in the p. 16 text and 0.719 in Table 5 and on pp. 19 and 22; the content-length OR is 1.17 in the p. 16 text and 1.15 in Table 5; eta^2 for AI ideas selected is 0.033 in the text (p. 13) and 0.032 on Fig 6; the Vertical gain over Horizontal in AI ideas selected is '34%' on pp. 18, 21, and 22 and '35%' on p. 21; the Conclusion's '2.36 percentage point improvement for the Vertical strategy over Random' (p. 23) comes from a predictive probability analysis that no table reports. Page numbers are the printed page numbers, which match the PDF page indices (1/26 to 26/26). Reconciled from forms A and B against the full markdown and PDF pp. 1-3 and 7-23, with Fig 6 and Fig 8 read from high-resolution renders. This file replaces a reconciliation of October 4, 2026 built from earlier raw forms; that version coded design_class other, ai_tool.role ideas_supplied, the selection outcomes as self_report, and S1-O5 as secondary. Final check, 2026-10-05: no challenge files exist for c078. The checkers run only on forms reconciled as core yes or unclear, and this form was reconciled as core no. No checker problem was resolved, so final.challenge_resolution is empty. The finalizer checked the form against the PDF instead: the page images of pp. 1-3 and 6-23, the text layer of pp. 1-23, and the full markdown with its reference list. Every number in the reported strings, the notes, and one_line_finding matches its cited page. The Fig 6 panel labels and the Fig 8 legends were read again from high-resolution renders. The two reconciler additions marked confirmed false in reconciliation.agreed_fields_checked match the PDF: the S1-O2 Vertical vs Horizontal contrast (Table 4 and its note, p. 14) and the Fig 6 labels (p. 15). A search of the text layer of pp. 1-23 for random, assign, allocat, counterbalanc, divided, batch, and registration terms finds no statement of how participants were allocated. The finalizer made five edits. (1) studies[S1].design_class is now other, not online_rct. The codebook reserves online_rct for randomized experiments, the paper never states random allocation, and the final c168 codes the same situation as other. The reconciliation says that c168 keeps online_rct, which does not hold, and the c054 assignment checker refuted online_rct on the same ground. (2) paper_design_summary gives the 165 recruited and says 'analyzed' for the 148 and for each arm, and participants.who ties the gender and age figures to the 148 analyzed. (3) ai_tool.how_used attributes the 'about 15 characters' limit to the AI's prompt only (pp. 9-10), because the paper states no length limit for participants' ideas. (4) S1-O5 cites the p. 19 statement that ideas under different strategies 'occupy different regions in the semantic space', and its measure_detail says why scored_on_output true does not meet criterion 3. (5) Open question 1 and eligibility.reason follow the design-class change, and eligibility.reason adds that the AI half of the t-SNE pool follows each arm's prompt. The criteria and core are unchanged. The reconciliation object is unchanged, so its agreed field for design_class keeps online_rct. On p. 6 the ethics approval number breaks across a line ('R5-' then '20-2'), so the reconciliation's 'R520-2' may be 'R5-20-2'.",
+  "reconciliation": {
+    "differences": [
+      {
+        "field": "source.supplement.holds",
+        "a": "S1: full prompt templates and API configuration. S2: user interface instructions, experimental materials, and complete questionnaire items (GQS, MDMT). S3: complete dataset. 'All summary statistics used here are in the main text (Tables 1-7).'",
+        "b": "Same S1-S3 contents, with video explanations in S2, plus: 'The main text says no additional statistics sit in the supplement; all reported tables (Tables 1-7) are in this PDF.'",
+        "resolved": "A, with B's detail on video explanations. The paper never says that the supplement holds no further statistics, so B's attribution has no source. The p. 23 descriptions list prompt templates and API settings (S1), interface instructions with video explanations and the questionnaire items (S2), and the complete dataset (S3), and no result tables. Every statistic recorded in this form is printed in the main text (Tables 1-7, Figs 6 and 8).",
+        "quote": "S2 File. User Interface Instructions and Experimental Materials. Comprehensive user instructions for the frontend interface, including video explanations, screen-by-screen interface descriptions, and complete questionnaire items.",
+        "locator": "p. 23, Supporting information; p. 2, Data availability statement",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes: which outcomes are listed",
+        "a": "Three outcomes: S1-O1 AI ideas selected; S1-O2 total ideas selected, with human ideas selected and the idea-level mixed logit (N = 5,848 ideas) folded in as variants on a participant unit; S1-O3 t-SNE dispersion.",
+        "b": "Five outcomes: S1-O1 AI ideas selected; S1-O2 human ideas selected; S1-O3 total ideas selected; S1-O4 idea-level mixed logit of selection (unit output, n_units 5,848); S1-O5 t-SNE dispersion.",
+        "resolved": "Five outcomes, as in B, with B's IDs. Human Ideas Selected is its own row of Table 4 with its own Kruskal-Wallis test (H = 3.44, p = 0.179), so it is a separate count, not a robustness variant. The mixed logit is a separate analysis with one row per idea (N = 5,848) that reports odds ratios with intervals, so folding it into a participant-level count would mix units.",
+        "quote": "Mixed-effects logistic regression results with standardized variables and Creator control variable showing main effects on idea selection (N = 5,848 ideas from 148 participants).",
+        "locator": "p. 14, Table 4; p. 17, Table 5 title; p. 19, Table 7",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O1, S1-O2, S1-O3, and B's S1-O4].measure",
+        "a": "self_report",
+        "b": "behavioral",
+        "resolved": "behavioral, as in B. The count records a choice each participant makes in the evaluation interface after the session. The paper lists the selection counts among its 'quantitative metrics' and keeps 'subjective evaluations' for the questionnaires (p. 12), and it calls the AI idea selection rate a participant behavior indicator (p. 21). The reconciled c125 codes a participant's idea-ranking revision as behavioral too. The choice states which ideas the participant would want to adopt and is not a creativity score, so scored_on_output stays false, as in both forms.",
+        "quote": "the system monitors participant behavior indicators (e.g., AI idea selection rate, session continuation intent) in real-time",
+        "locator": "p. 21, Practical implications; p. 12, Evaluation metrics and analysis",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O3 total ideas selected].contrasts: statistics_available, reported, and the Vertical vs Horizontal contrast",
+        "a": "Vertical vs Random and Horizontal vs Random list [arm_means_sds_ns, test_statistic, confidence_interval, p_value_only] because 'reported' carries the logit odds ratios and the human-idea counts; a Vertical vs Horizontal contrast reports the logit OR 1.09 (95% CI 0.626-1.89, p = 0.765).",
+        "b": "Vertical vs Random and Horizontal vs Random only, with [arm_means_sds_ns, test_statistic, p_value_only] and the Table 4 total counts (H = 3.55, p = 0.169); no Vertical vs Horizontal contrast.",
+        "resolved": "B's statistics, plus A's Vertical vs Horizontal contrast. The total-count contrasts carry only the Table 4 numbers: Vertical 13.23 (8.77), Horizontal 11.44 (9.20), Random 11.04 (9.42), H = 3.55, p = 0.169, with eta^2 = 0.011 on the Fig 6 panel. The odds ratios move to S1-O4 and the human counts to S1-O2. The Table 4 note covers every pair, so Vertical vs Horizontal is kept with [arm_means_sds_ns, test_statistic, p_value_only] and no_clear_difference.",
+        "quote": "Human and Total selection showed no significant pairwise differences.",
+        "locator": "p. 14, Table 4 and note; p. 15, Fig 6 (Total Note Selection panel)",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[S1].outcomes[S1-O5 t-SNE dispersion].unit",
+        "a": "set",
+        "b": "output",
+        "resolved": "set, as in A. The outcome is the dispersion of each condition's pool of ideas, judged by eye on the t-SNE map. No idea carries its own dispersion score, and the only comparison is between the Vertical and Horizontal pools. The reconciled forms code pool-level dispersion as set (c021 S1-O2) and keep output for per-idea distances (c052 S1-O6, c109 S1-O4). n_units stays 4013, the number of ideas the paper gives for the two pools, as both forms record.",
+        "quote": "Panel A shows the distribution by AI strategy, where ideas from the vertical condition appear in relatively dense clusters while ideas from the horizontal condition are more widely dispersed across the latent space.",
+        "locator": "p. 15, t-SNE visualization of the latent space; p. 16, Fig 8 panel A legend (Horizontal n=1942, Vertical n=2071)",
+        "status": "resolved"
+      },
+      {
+        "field": "one_line_finding",
+        "a": "Vertical participants 'adopted more AI ideas' than Horizontal (6.98 vs 5.22; H = 6.71, p = 0.035; post-hoc p = 0.037; Table 4) and 'reported higher trust (p. 13, Table 2)', but 'total ideas adopted did not differ (p = 0.169) and no creativity rating was made'.",
+        "b": "Vertical participants 'selected more AI ideas' (6.98 vs 5.22, post-hoc p = 0.037; omnibus H = 6.71, p = 0.035) and 'reported higher competence trust (4.79 vs 4.04 Horizontal and 4.16 Random, F(2,145) = 5.07, p = 0.007)'; 'no creativity or diversity of output was scored'.",
+        "resolved": "A merged sentence. It says 'selected', as B does, because participants chose ideas they would want to adopt and adopted none. It keeps B's competence-trust numbers and A's null result for total ideas selected. Every number was checked on PDF pp. 13-14.",
+        "quote": "After the session, participants moved to an idea evaluation phase where they selected one or more ideas they would “actually want to adopt” from all the generated ideas.",
+        "locator": "p. 11, Experimental procedure; p. 14, Table 4; p. 13, Table 2",
+        "status": "resolved"
+      }
+    ],
+    "agreed_fields_checked": [
+      {
+        "field": "studies[S1].assignment.randomized and eligibility.criterion_1_random_assignment_of_ai",
+        "value": "not_stated / unclear. The paper describes a between-participants experiment and never says how participants were allocated. A full-text search for random, assign, and allocat finds only the Random condition (the AI's random choice of strategy, p. 11), the participant random effect (p. 12), and 'randomization of initial placements' as future work (p. 23).",
+        "quote": "We divided 148 participants into three groups: a deepening strategy (vertical), a diffusion strategy (horizontal), and a random control condition.",
+        "locator": "p. 3, Introduction; p. 10, Study design and conditions; p. 11, Random condition",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].design_class",
+        "value": "online_rct with randomized = not_stated: an online between-participants experiment on Yahoo! Crowdsourcing workers with three experimenter-defined AI conditions. The reconciled c054 and c168, also between-subjects AI experiments that do not state random assignment, keep online_rct with criterion 1 unclear.",
+        "quote": "This study conducted a one-factor, three-level between-participants experiment.",
+        "locator": "p. 10, Study design and conditions; p. 11 (Yahoo! Crowdsourcing); p. 1, Abstract ('a controlled experiment with 148 participants')",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.n_analyzed, arms[].n_analyzed, and eligibility.criterion_2_at_least_50_people",
+        "value": "148 people analyzed (Vertical 52, Horizontal 50, Random 46); met, far above 50",
+        "quote": "After excluding those who experienced GPT API errors, 148 participants were included in the final analysis.",
+        "locator": "p. 11, Study design and conditions; p. 11, Table 1",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].participants.n_randomized and arms[].n_randomized",
+        "value": "null. 165 were recruited; the paper gives no count at assignment and no exclusions by condition.",
+        "quote": "we recruited 165 participants between May 24,2025 and May 25, 2025 via Yahoo! Crowdsourcing",
+        "locator": "p. 11, Study design and conditions",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O1 to S1-O4].scored_on_output and eligibility.criterion_3_outcome_scored_on_output",
+        "value": "false; not_met. The selection counts and the idea-level logit record the participant's own choice of ideas to adopt, not a creativity or diversity score of the output by raters or a computed measure. Trust, Godspeed, and strategy perception are questionnaires.",
+        "quote": "However, it’s crucial to note that this study measured “selectability by humans,” and whether selected ideas are truly creative requires separate evaluation.",
+        "locator": "p. 20, Convergent strategies for divergent goals; p. 22, Limitations ('the qualitative evaluation of the ideas selected by participants was not conducted by experts')",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O5]: scored_on_output true, statistics_available figure_only, direction treatment_lower",
+        "value": "The t-SNE map is computed from idea embeddings, but the paper prints no dispersion or similarity number per condition and no test; Vertical ideas are described as more clustered. It pools human and AI ideas and omits the Random arm, so it does not meet criterion 3.",
+        "quote": "To analyze the semantic similarity of ideas, we performed dimensionality reduction on the embedding vectors using t-SNE (t-distributed Stochastic Neighbor Embedding) for 2D visualization.",
+        "locator": "p. 15, t-SNE visualization of the latent space; p. 16, Fig 8 (panel A: Horizontal n=1942, Vertical n=2071; panel B: Human n=1973, AI n=2040)",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O1 to S1-O5].ai_available_when_produced and timing",
+        "value": "yes; immediate. Every arm worked with GPT-4.1, and the ideas were produced in the 15-minute session with the AI taking alternate turns. Selection followed in the same sitting.",
+        "quote": "In this session, the participant and the AI alternately generated ideas, producing a maximum total of 40 ideas.",
+        "locator": "p. 11, Experimental procedure; pp. 10-11, Study design and conditions",
+        "confirmed": true
+      },
+      {
+        "field": "contrasts[*].comparison_type and eligibility.context_class",
+        "value": "ai_design; none. All three arms use GPT-4.1 and differ only in strategy, and there is no AI-free arm or observational data. Fig 8 panel B contrasts human and AI ideas from the same assisted sessions, which is not the codebook's AI-versus-human context (there, no person receives AI help).",
+        "quote": "Random condition: A control group where the AI randomly selects between Vertical and Horizontal strategies.",
+        "locator": "p. 11, Study design and conditions; p. 16, Fig 8 panel B",
+        "confirmed": true
+      },
+      {
+        "field": "studies[S1].assignment.preregistered",
+        "value": "not_stated. No registration is mentioned; the paper reports a G*Power sample-size calculation and ethics approval (National Institute of Informatics Ethics Committee, Approval No. R520-2, p. 6).",
+        "quote": "Based on a sample size calculation using G∗Power by Faul et al. (effect size f = 0.25, power = 0.8, significance level 𝛼= .05), we recruited 165 participants",
+        "locator": "p. 11, Study design and conditions; p. 6, Materials and method",
+        "confirmed": true
+      },
+      {
+        "field": "company_involvement.any",
+        "value": "false",
+        "quote": "The funders (JST, CREST; JPMJCR21D4) had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.",
+        "locator": "p. 2, left column (Funding; Competing interests: 'The authors have declared that no competing interests exist.')",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O1].primary",
+        "value": "paper_primary. The paper names 'selectability by humans' as its primary metric (p. 22) and reports the AI-idea count as its main adoption result (abstract; Conclusion, p. 23). p. 12 calls the total 'an indicator of idea fluency' with the AI and human counts as its breakdown, so the total could also claim primary status; the flag has no consequence because these outcomes answer none of the three questions.",
+        "quote": "The results showed that the deepening strategy was significantly superior to the broadening strategy in building trust , and the selection rate of AI ideas was also higher .",
+        "locator": "p. 23, Conclusion; p. 22, Limitations; p. 12, Evaluation metrics and analysis",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[S1-O2].contrasts (neither form lists Vertical vs Horizontal for human ideas selected)",
+        "value": "Added Vertical vs Horizontal, no_clear_difference: 6.25 (4.85), n = 52 vs 6.22 (5.65), n = 50. The Table 4 note covers every pair.",
+        "quote": "Human and Total selection showed no significant pairwise differences.",
+        "locator": "p. 14, Table 4 note",
+        "confirmed": false
+      },
+      {
+        "field": "outcomes[S1-O2, S1-O3]: Fig 6 panel labels (neither form records them)",
+        "value": "Added to 'reported' and measure_detail: the human panel prints p = 0.179, eta^2 = 0.010; the total panel prints p = 0.169, eta^2 = 0.011. Read from a high-resolution render of p. 15.",
+        "quote": "p = 0.179, η² = 0.010",
+        "locator": "p. 15, Fig 6 (User Note Selection and Total Note Selection panel labels)",
+        "confirmed": false
+      }
+    ],
+    "n_differences": 6,
+    "n_unresolved": 0
+  },
+  "final": {
+    "core": "no",
+    "criteria": {
+      "random_assignment_of_ai": "unclear",
+      "at_least_50_people": "met",
+      "outcome_scored_on_output": "not_met"
+    },
+    "challenge_resolution": [],
+    "open_items": [
+      {
+        "item": "Allocation to the three arms (open question 1): the paper says only 'We divided 148 participants into three groups' (p. 3) and calls the study a 'one-factor, three-level between-participants experiment' (p. 10). No sentence in pp. 1-23 says how participants were allocated, and 'Random' names the arm in which the AI picks a strategy at random (p. 11). Random allocation would make S1 an online_rct and meet criterion 1. It cannot make the paper core, because criterion 3 is not met. The supplement descriptions (p. 23) do not mention allocation.",
+        "affects_eligibility": true,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Exclusions by arm (open question 2): 165 were recruited and 148 analyzed after those who experienced GPT API errors were excluded (17 fewer, by subtraction). The paper gives no count at assignment and no split by arm. Criterion 2 rests on the 148 analyzed (52, 50, and 46; Table 1, p. 11) and holds under any split. The split bears on n_randomized and on differential exclusion, not on eligibility.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Contents of the S3 dataset (open question 3): whether it holds each idea's text with its creator and condition. Criterion 3 asks for a creativity or diversity score of the output, and the paper reports none, so S3 does not change eligibility under the codebook as written. It would matter only if Review 1 decided to compute a diversity measure of participants' own ideas from posted data.",
+        "affects_eligibility": false,
+        "settled_by": "posted_data"
+      }
+    ],
+    "n_corrected": 0,
+    "n_rejected": 0,
+    "n_open": 0
+  }
+}

@@ -1,0 +1,364 @@
+{
+ "cid": "c842",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2024) - How AI Processing Delays Foster Creativity.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2024) - How AI Processing Delays Foster Creativity.pdf",
+  "version": "arXiv 2310.06155 v3 dated 20 Mar 2024 (author version carrying the CHI '24 ACM rights block and DOI 10.1145/3613904.3642698; title differs from the published CHI title verified in Crossref), 25 pages. Complete markdown, including appendices, read; recorded numbers checked against the corresponding PDF pages.",
+  "title_on_document": "CoQuest: Exploring Research Question Co-Creation with an LLM-based Agent",
+  "authors_on_document": [
+   "Yiren Liu",
+   "Si Chen",
+   "Haocong Cheng",
+   "Mengxia Yu",
+   "Xiao Ran",
+   "Andrew Mo",
+   "Yiliu Tang",
+   "Yun Huang"
+  ],
+  "pages": 25,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendix A, pp. 22-25 of this PDF",
+   "holds": "Post-session survey items (A.1, Table 3); mixed-effects model of user feedback length, including coefficients and standard errors (A.2, Table 4); LLM agent prompts (A.3). No additional creativity-outcome statistics. No separate supplementary material is mentioned."
+  }
+ },
+ "paper_design_summary": "Twenty HCI researchers (graduate students or recent graduates) each used the CoQuest LLM agent to co-create research questions under two AI designs, breadth-first (three questions at once) and depth-first (three questions in sequence), one design per task, with the order of designs and topics randomly assigned. Participants rated at least six AI-generated research questions of their choice per task on novelty, value, surprise, and relevance during the task and rated the system after each task; the paper also counts the questions generated.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Within-subjects user study: breadth-first vs depth-first CoQuest",
+   "design_class": "lab_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Order of the two CoQuest designs (breadth-first, depth-first) and of the two task topics, counterbalanced",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "we followed a counterbalanced design [57] by randomizing the experiment conditions so that all possible orders and combinations were randomly assigned to an equal number of participants.",
+    "locator": "p. 9, Section 6.1",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Breadth-first",
+     "description": "Each generation produces three follow-up RQs in parallel at the same level; user picks and gives feedback each turn",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 20
+    },
+    {
+     "name": "Depth-first",
+     "description": "Each generation produces three RQs in sequence, each building on the previous one without user input (more AI initiative)",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 20
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 20,
+    "counts_are": "people",
+    "exclusions": "",
+    "population": "students",
+    "who": "HCI researchers from 8 institutions; all graduate students currently enrolled or just graduated, with prior research experience; sessions run remotely over video calls",
+    "country": "",
+    "quote": "we conducted a within-subjects user study with 20 HCI researchers from 8 different institutions",
+    "locator": "p. 8, Section 6; p. 9, Section 7.1.1 (\"In total, 20 participants created 504 RQs throughout the study\")"
+   },
+   "ai_tool": {
+    "name_model": "CoQuest agent (AutoGPT/ReAct prompting on OpenAI gpt3.5-turbo-16k; text-embedding-ada-002 for paper retrieval)",
+    "role": "other",
+    "how_used": "Agent generates research questions from the user's initial idea and typed feedback, shows related papers and its rationale (AI Thoughts); the user picks, rates, and refines the questions"
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Co-create research questions with the agent on two topics: \"AR/VR for education and learning\" and \"AI and crowdsourcing\", one topic per design",
+    "duration": "Studies lasted 1-2 hours, including two tasks, a survey after each task, and an exit interview"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Participant rating of RQ novelty (5-point Likert, rated during task on at least six RQs per task)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "self_report",
+     "measure_detail": "Participants' own ratings of at least six RQs of their choice per task, using 5-point Likert sliders (p. 9, Section 6.2.1). Table 1 reports a separate linear regression for each rating item, with Condition (Depth-First=1; breadth-first=0), Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity as predictors (pp. 14-15, Section 7.3). The regression sample size, analysis unit, and standard-error basis are not stated; unit=rating describes the collected scores, not a confirmed regression observation unit.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Depth-first",
+       "control_arm": "Breadth-first",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "MANOVA on RQ ratings F(4, 209) = 3.79, p = .0057**, Wilk's Lambda = 0.909; Mann-Whitney novelty U = 2199.5, p = .002**, d = .40, Power = .89; depth-first (M=3.78, SD=1.29) vs breadth-first (M=3.28, SD=1.22) [this one M/SD pair follows both the novelty and surprise tests; the text does not say which rating it describes]; Table 1 linear regression: Condition (Depth-First=1), β (S.E.) = 1.53 (.63)*; *: p < 0.05. Other predictors are Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity. Regression sample size, analysis unit, and standard-error basis are not stated.",
+       "locator": "p. 10, Section 7.1.2; p. 15, Table 1; p. 14, Section 7.3 (regression specification)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Participant rating of RQ surprise (5-point Likert, rated during task)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "self_report",
+     "measure_detail": "Participants' own ratings of at least six RQs of their choice per task, using 5-point Likert sliders (p. 9, Section 6.2.1). Table 1 reports a separate linear regression for each rating item, with Condition (Depth-First=1; breadth-first=0), Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity as predictors (pp. 14-15, Section 7.3). The regression sample size, analysis unit, and standard-error basis are not stated; unit=rating describes the collected scores, not a confirmed regression observation unit.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Depth-first",
+       "control_arm": "Breadth-first",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "Mann-Whitney surprise U = 2387.5, p = 0.017*, d = .32, Power = .75; RQs rated higher under depth-first; Table 1 linear regression: Condition (Depth-First=1), β (S.E.) = 1.52 (.60)*; *: p < 0.05. Other predictors are Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity. Regression sample size, analysis unit, and standard-error basis are not stated.",
+       "locator": "p. 10, Section 7.1.2; p. 15, Table 1; p. 14, Section 7.3 (regression specification)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Number of RQs co-created per participant",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "System-log count of RQs generated with CoQuest (p. 9, Section 6.2.3). The paper reports condition means and SDs but does not separately state the analysis n underlying either condition summary (p. 9, Section 7.1.1).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Depth-first",
+       "control_arm": "Breadth-first",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "504 RQs in total: 276 RQs (M=14.53, SD=6.19) under breadth-first and 228 RQs (M=12, SD=5.31) under depth-first; no test printed; the paper states 20 participants overall but does not separately report the per-condition analysis n for these means and SDs. The statistics_available category arm_means_sds_ns is not used because that complete set is not confirmed.",
+       "locator": "p. 9, Section 7.1.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Participant rating of RQ value (5-point Likert, rated during task)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "self_report",
+     "measure_detail": "Participants' own ratings of at least six RQs of their choice per task, using 5-point Likert sliders (p. 9, Section 6.2.1). Table 1 reports a separate linear regression for each rating item, with Condition (Depth-First=1; breadth-first=0), Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity as predictors (pp. 14-15, Section 7.3). The regression sample size, analysis unit, and standard-error basis are not stated; unit=rating describes the collected scores, not a confirmed regression observation unit.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Depth-first",
+       "control_arm": "Breadth-first",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table 1 linear regression with value as dependent variable: Condition (Depth-First=1), β (S.E.) = 1.54 (.64)*; *: p < 0.05. Breadth-first is coded 0. Other predictors are Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity. Regression sample size, analysis unit, and standard-error basis are not stated.",
+       "locator": "p. 15, Table 1; p. 14, Section 7.3 (regression specification); p. 9, Section 6.2.1 (rating procedure)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Participant rating of RQ relevance (5-point Likert, rated during task)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "self_report",
+     "measure_detail": "Participants' own ratings of at least six RQs of their choice per task, using 5-point Likert sliders (p. 9, Section 6.2.1). Table 1 reports a separate linear regression for each rating item, with Condition (Depth-First=1; breadth-first=0), Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity as predictors (pp. 14-15, Section 7.3). The regression sample size, analysis unit, and standard-error basis are not stated; unit=rating describes the collected scores, not a confirmed regression observation unit.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Depth-first",
+       "control_arm": "Breadth-first",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Table 1 linear regression with relevance as dependent variable: Condition (Depth-First=1), β (S.E.) = 1.70 (.68)*; *: p < 0.05. Breadth-first is coded 0. Other predictors are Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity. Regression sample size, analysis unit, and standard-error basis are not stated.",
+       "locator": "p. 15, Table 1; p. 14, Section 7.3 (regression specification); p. 9, Section 6.2.1 (rating procedure)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": "https://github.com/yiren-liu/coquest"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "unclear",
+  "context_class": "none",
+  "reason": "Randomized, counterbalanced order of two generative-AI configurations in a within-person experiment meets criterion 1 (p. 9, Section 6.1). Only 20 people were analyzed, below 50, so criterion 2 is not met and core eligibility is no (p. 8, Section 6; p. 9, Section 7.1.1). Novelty, surprise, value, and relevance are participants' own ratings of AI-generated RQs (p. 9, Section 6.2.1), and fluency counts questions generated with CoQuest (p. 9, Sections 6.2.3 and 7.1.1). Whether these participant self-ratings and AI-generated question counts satisfy the output criterion remains unclear. This small randomized experiment belongs in the screening report; it does not fit a context class."
+ },
+ "one_line_finding": "With 20 HCI researchers, RQs from the depth-first design got higher participant ratings for novelty (U = 2199.5, p = .002, d = .40) and surprise (U = 2387.5, p = .017, d = .32) than breadth-first (p. 10, Section 7.1.2), while the post-task survey rated breadth-first more creative (M = 3.78 vs 3.18, U = 288.0, p = .015; pp. 9-10, Section 7.1.1).",
+ "open_questions": [],
+ "notes": "The code_url points to the CoQuest system implementation, not identified analysis code (p. 2, Abstract; p. 8, footnote 5). For S1-O3, statistics_available=[\"none\"] means that none of the listed complete statistic packages is confirmed: arm means and SDs are printed, but their per-condition analysis n is not separately stated. Those descriptive numbers remain in reported (p. 9, Section 7.1.1). The Table 1 regression observation unit and standard-error basis are not stated (pp. 14-15, Section 7.3). The post-task creativity survey combines a rating of generated RQs with how creative participants felt, so it is retained only in one_line_finding rather than added as an output-only outcome (p. 22, Table 3).",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].outcomes (value and relevance ratings missing)",
+    "old": "Only S1-O1 novelty, S1-O2 surprise, and S1-O3 RQ count were recorded.",
+    "new": "Added S1-O4 value and S1-O5 relevance, both construct=usefulness, measure=self_report, unit=rating, scored_on_output=true, question=with_ai, and direction=treatment_higher. Value: β (S.E.) = 1.54 (.64)*; relevance: 1.70 (.68)*; *: p < 0.05. Their statistics_available is [\"regression_coefficient_se\"]. Eligibility was re-evaluated: all labels are unchanged, and eligibility.reason now explicitly covers all four ratings.",
+    "quote": "Condition (Depth-First=1) 1.53 (.63)* 1.54 (.64)* 1.52 (.60)* 1.70 (.68)*",
+    "locator": "p. 9, Section 6.2.1; p. 14, Section 7.3; p. 15, Table 1; p. 8, Section 6 and p. 9, Sections 6.1 and 7.1.1 (eligibility)"
+   },
+   {
+    "field": "studies[0].outcomes[S1-O1, S1-O2].contrasts[0].reported",
+    "old": "{\"S1-O1\":\"MANOVA on RQ ratings F(4, 209) = 3.79, p = .0057**, Wilk's Lambda = 0.909; Mann-Whitney novelty U = 2199.5, p = .002**, d = .40, Power = .89; depth-first (M=3.78, SD=1.29) vs breadth-first (M=3.28, SD=1.22) [this one M/SD pair follows both the novelty and surprise tests; the text does not say which rating it describes]\",\"S1-O2\":\"Mann-Whitney surprise U = 2387.5, p = 0.017*, d = .32, Power = .75; RQs rated higher under depth-first\"}",
+    "new": "{\"S1-O1\":\"MANOVA on RQ ratings F(4, 209) = 3.79, p = .0057**, Wilk's Lambda = 0.909; Mann-Whitney novelty U = 2199.5, p = .002**, d = .40, Power = .89; depth-first (M=3.78, SD=1.29) vs breadth-first (M=3.28, SD=1.22) [this one M/SD pair follows both the novelty and surprise tests; the text does not say which rating it describes]; Table 1 linear regression: Condition (Depth-First=1), β (S.E.) = 1.53 (.63)*; *: p < 0.05. Other predictors are Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity. Regression sample size, analysis unit, and standard-error basis are not stated.\",\"S1-O2\":\"Mann-Whitney surprise U = 2387.5, p = 0.017*, d = .32, Power = .75; RQs rated higher under depth-first; Table 1 linear regression: Condition (Depth-First=1), β (S.E.) = 1.52 (.60)*; *: p < 0.05. Other predictors are Feedback Length, Total # of RQs Created, Acted During Wait, and Familiarity. Regression sample size, analysis unit, and standard-error basis are not stated.\"} Added the regression specification and unresolved analysis unit/standard-error basis to measure_detail and extended the locators.",
+    "quote": "Condition (Depth-First=1) 1.53 (.63)* 1.54 (.64)* 1.52 (.60)* 1.70 (.68)*",
+    "locator": "p. 15, Table 1; p. 14, Section 7.3; p. 10, Section 7.1.2"
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+    "old": "S1-O1=[], S1-O2=[], S1-O3=[].",
+    "new": "S1-O1 and S1-O2=[\"test_statistic\",\"standardized_effect\",\"regression_coefficient_se\"]; S1-O3=[\"none\"]. RQ-count means and SDs remain in reported, with the missing per-condition analysis n documented in reported, measure_detail, and notes. The form has no separate category for means and SDs without n, so arm_means_sds_ns is not asserted. New S1-O4 and S1-O5 each have [\"regression_coefficient_se\"].",
+    "quote": "both the novelty (𝑈= 2199.5, 𝑝= .002∗∗,𝑑= .40, 𝑃𝑜𝑤𝑒𝑟= .89) and surprise (𝑈= 2387.5, 𝑝= 0.017∗,𝑑= .32, 𝑃𝑜𝑤𝑒𝑟= .75)",
+    "locator": "p. 10, Section 7.1.2; p. 15, Table 1; p. 9, Section 7.1.1"
+   },
+   {
+    "field": "data_and_code.code_url",
+    "old": "",
+    "new": "https://github.com/yiren-liu/coquest (system implementation, as clarified in notes; no data link is stated)",
+    "quote": "The system’s source is available at: https://github.com/yiren-liu/coquest.",
+    "locator": "p. 2, Abstract; p. 8, footnote 5"
+   },
+   {
+    "field": "paper_design_summary",
+    "old": "Twenty HCI researchers (graduate students or recent graduates) each used the CoQuest LLM agent to co-create research questions under two AI designs, breadth-first (three questions at once) and depth-first (three questions in sequence), one design per task, with the order of designs and topics randomly assigned. Participants rated each AI-generated research question on novelty, value, surprise, and relevance during the task and rated the system after each task; the paper also counts the questions generated.",
+    "new": "Twenty HCI researchers (graduate students or recent graduates) each used the CoQuest LLM agent to co-create research questions under two AI designs, breadth-first (three questions at once) and depth-first (three questions in sequence), one design per task, with the order of designs and topics randomly assigned. Participants rated at least six AI-generated research questions of their choice per task on novelty, value, surprise, and relevance during the task and rated the system after each task; the paper also counts the questions generated.",
+    "quote": "The RQ ratings are collected on the fly during each task of the study, where participants were asked to rate at least six RQs of their choice.",
+    "locator": "p. 9, Section 6.2.1"
+   },
+   {
+    "field": "studies[0].participants.locator",
+    "old": "p. 8, Section 6; p. 9, Section 7.1.1 (\"In total, 20 participants co-created 504 RQs\")",
+    "new": "p. 8, Section 6; p. 9, Section 7.1.1 (\"In total, 20 participants created 504 RQs throughout the study\")",
+    "quote": "In total, 20 participants created 504 RQs throughout the study",
+    "locator": "p. 9, Section 7.1.1"
+   },
+   {
+    "field": "source.version",
+    "old": "arXiv 2310.06155 v3 dated 20 Mar 2024 (CHI '24 text, DOI 10.1145/3613904.3642698), 25 pages; read pages 1-13 of the PDF and searched the markdown for the rest",
+    "new": "arXiv 2310.06155 v3 dated 20 Mar 2024 (author version carrying the CHI '24 ACM rights block and DOI 10.1145/3613904.3642698; title differs from the published CHI title verified in Crossref), 25 pages. Complete markdown, including appendices, read; recorded numbers checked against the corresponding PDF pages.",
+    "quote": "arXiv:2310.06155v3 [cs.HC] 20 Mar 2024",
+    "locator": "p. 1, arXiv margin stamp, title, and ACM rights block; p. 2, ACM Reference Format; Crossref API https://api.crossref.org/works/10.1145/3613904.3642698 (published title and page range; consulted 2026-10-09)"
+   },
+   {
+    "field": "source.supplement",
+    "old": "{\"exists\":\"not_stated\",\"in_this_pdf\":false,\"where\":\"\",\"holds\":\"\"}",
+    "new": "{\"exists\":\"yes\",\"in_this_pdf\":true,\"where\":\"Appendix A, pp. 22-25 of this PDF\",\"holds\":\"Post-session survey items (A.1, Table 3); mixed-effects model of user feedback length, including coefficients and standard errors (A.2, Table 4); LLM agent prompts (A.3). No additional creativity-outcome statistics. No separate supplementary material is mentioned.\"}",
+    "quote": "The complete list of survey questions can be found in Appendix A.1.",
+    "locator": "p. 9, Section 6.2.2; p. 14, Section 7.2.2; pp. 22-25, Appendix A"
+   }
+  ],
+  "rejected": []
+ }
+}

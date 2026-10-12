@@ -1,0 +1,511 @@
+{
+  "cid": "c094",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Maier Schneider Feuerriegel (2026) - Partnering with Generative AI.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Maier Schneider Feuerriegel (2026) - Partnering with Generative AI.pdf",
+    "version": "arXiv 2510.23324v3 of 9 Mar 2026 (stamp in left margin of p. 1); the document carries the CHI '26 ACM reference format and DOI 10.1145/3772318.3791185, i.e., the camera-ready text of the CHI '26 proceedings paper, 28 pages",
+    "title_on_document": "Partnering with Generative AI: Experimental Evaluation of Human-Led and Model-Led Interaction in Human-AI Co-Creation",
+    "authors_on_document": ["Sebastian Maier", "Manuel Schneider", "Stefan Feuerriegel"],
+    "pages": 28,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "GitHub repository https://github.com/SM2982/replication-creativity-CHI2026 (p. 5, Section 4; p. 15, Data availability). Appendices A-I are inside this PDF (pp. 19-28).",
+      "holds": "Questionnaire, anonymized data, analysis code, full measurement details and item wordings (p. 7, Section 4.4), and regression diagnostic plots (p. 25, Appendix H). The PDF itself gives arm means/SDs/Ns only for Study 1 (Table 2); main contrasts report t or z, Holm-adjusted p, and Cohen's d but no standard errors or CIs for the quality and diversity contrasts. Study 2 per-arm Ns, means and SDs for quality and diversity are not printed in the PDF."
+    }
+  },
+  "paper_design_summary": "Two preregistered online experiments. In Study 1, 502 UK Prolific participants were randomly assigned to one of five conditions (GPT-4.1 question-mode, suggestion-mode, model-led one-shot rewriting, vanilla GPT-4.1 chat, or no-LLM control) and submitted one idea for repurposing car features (an adapted Alternative Uses Test); 486 were analyzed. Ideas were scored for quality by four automotive-industry experts (originality and usefulness averaged) and for diversity by embedding distance to the leave-one-out condition centroid; Study 2 (N = 640, six conditions adding an iterative model-led arm) repeated this on a product-ideation task with ideas rated by 320 student raters.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Study 1 (main study): repurposing car features, five conditions",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Interaction mode: one of four GPT-4.1 conditions (question-mode, suggestion-mode, model-led, vanilla) or a control without LLM support",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "After providing informed consent, participants were randomly assigned to one of the five experimental conditions.",
+        "locator": "p. 5, Section 4.1 Procedure; also p. 2, Figure 1 caption",
+        "preregistered": "yes",
+        "prereg_locator": "p. 5, Section 4 (https://aspredicted.org/nf5r-cmrt.pdf); p. 7, Section 4.3 (\"we aimed for 100 participants per group as preregistered\")"
+      },
+      "arms": [
+        { "name": "Question-mode (Q)", "description": "Human-led. Participant writes an initial idea without the LLM; in an exploration phase GPT-4.1 shares knowledge or an analogy and asks a question to prompt alternative ideas, participant chooses one, then GPT-4.1 asks targeted elaboration questions; participant refines the idea", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 96 },
+        { "name": "Suggestion-mode (S)", "description": "Human-led. GPT-4.1 gives three alternative ideas (exploration) and then three elaboration suggestions; participant refines the idea independently", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 95 },
+        { "name": "Model-led (M)", "description": "Participant provides an initial idea (max 10 words); a one-shot GPT-4.1 prompt rewrites it to be more novel, useful and elaborate (max 40 words); participant may refine the output before submitting", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 101 },
+        { "name": "Vanilla (V)", "description": "Same chat interface as question-mode with no system prompt or intervention logic; free chat with GPT-4.1, participant can formulate or copy and paste the idea", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 95 },
+        { "name": "Control (C)", "description": "Participants generated and refined their idea without any LLM support", "ai": "none", "n_randomized": null, "n_analyzed": 99 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 486,
+        "counts_are": "people",
+        "exclusions": "502 participants recruited (p. 7: \"Overall, N = 502 participants from the U.K. were recruited\"; p. 5 calls it an experiment \"with N = 502 participants\"). The paper does not state how many were randomized. 16 were removed under preregistered criteria: failed at least one attention check (10), acknowledged unauthorized AI use (2), nonsense answers (2), participated more than once (1), did not finish the questionnaire (1). Final N = 486; Table 2 arm Ns sum to 486. Per-arm exclusions not reported.",
+        "population": "online_panel",
+        "who": "Prolific participants, minimum age 18, English as a first language, approval rate at least 98 percent, at least 50 previous submissions; age 18-78 (M = 41.34, SD = 12.99); 49.21% female",
+        "country": "United Kingdom",
+        "quote": "Overall, N = 502 participants from the U.K. were recruited via the platform Prolific. ... This resulted in a final sample of N = 486 participants.",
+        "locator": "p. 7, Section 4.3 Sample; p. 12, Table 2 (arm Ns)"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4.1 via OpenAI API (snapshot gpt-4.1-2025-04-14), temperature 0.7",
+        "role": "other",
+        "how_used": "Arms differ in AI role: vanilla = open chat; model-led = AI rewrites the participant's short initial idea (refinement); suggestion-mode = AI supplies three alternative ideas and three elaboration suggestions (ideas supplied); question-mode = AI gives knowledge/analogies and asks reflective and elaboration questions (coach-like, though it also presents alternatives). Prompts in Appendix A, Table 5 (p. 19)."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Adapted Alternative Uses Test: come up with a creative way to repurpose existing car features (steering wheels, brakes, cameras, sensors, screens, lights, speakers) for new uses beyond vehicles; each participant submits one final idea",
+        "duration": "Not stated as a time limit; total study time M = 493.33 s (SD = 418.94) (p. 22, Table 8)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Idea quality (expert CAT, originality and usefulness averaged)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Consensual Assessment Technique: four domain experts (each with at least five months in the innovation department of a major automotive manufacturer) rated every idea on 7-point originality and usefulness scales (adapted from Lee and Chung); the two ratings were averaged across raters into one quality score; ICC(3,k) = .60 (p. 7, Section 4.4). Linear model with condition as predictor, contrasts of estimated marginal means, one-sided preregistered tests, Holm-adjusted p (pp. 7-8, Section 4.5). Robustness: Kruskal-Wallis with Dunn's tests (p. 25, Table 14). Composite of originality and usefulness; coded overall_creativity because the paper defines creativity as original and appropriate.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vanilla (V)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Vanilla 2.70 (SD 0.87, N = 95) vs Control 2.68 (SD 0.85, N = 99); H1d t(481) = 0.13, p = .449, d = 0.02. Dunn z = 0.21, p = .415, p_adj = .500, r = 0.02",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.1; p. 25, Table 14"
+            },
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Question 2.96 (SD 0.78, N = 96) vs Control 2.68 (SD 0.85, N = 99); H1a t(481) = 2.49, p = .020, d = 0.36. Dunn z = 2.23, p = .013, p_adj = .090, r = 0.16",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.1; p. 25, Table 14"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Suggestion 2.78 (SD 0.63, N = 95) vs Control 2.68 (SD 0.85, N = 99); H1b t(481) = 0.91, p = .366, d = 0.13. Dunn z = 1.07, p = .143, p_adj = .500, r = 0.08",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.1; p. 25, Table 14"
+            },
+            {
+              "treatment_arm": "Model-led (M)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Model-led 3.11 (SD 0.74, N = 101) vs Control 2.68 (SD 0.85, N = 99); H1c t(481) = 3.86, p < .001, d = 0.55. Dunn z = 3.88, p < .001, p_adj = .001, r = 0.28",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.1; p. 25, Table 14"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Idea diversity (embedding distance to leave-one-out condition centroid)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Per-idea diversity = cosine distance between the idea's OpenAI text-embedding-3-large embedding and the mean of all other embeddings in the same condition (p. 7, Section 4.4). Higher = more diverse. Table 2 note calls it \"within-condition similarity measures\", but the column is labeled diversity and the text treats higher values as more diverse. Robustness: logit-transformed parametric test and Kruskal-Wallis/Dunn (p. 25, Table 15). Preregistered hypotheses compare AI arms with each other only; no test against the no-LLM control is reported, but Table 2 gives the control arm's mean and SD.",
+          "unit": "output",
+          "n_units": 486,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vanilla (V)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Descriptive only, no test reported: Vanilla 0.378 (SD 0.103, N = 95) vs Control 0.343 (SD 0.108, N = 99)",
+              "locator": "p. 12, Table 2"
+            },
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Descriptive only, no test reported: Question 0.379 (SD 0.079, N = 96) vs Control 0.343 (SD 0.108, N = 99)",
+              "locator": "p. 12, Table 2"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Descriptive only, no test reported: Suggestion 0.333 (SD 0.104, N = 95) vs Control 0.343 (SD 0.108, N = 99)",
+              "locator": "p. 12, Table 2"
+            },
+            {
+              "treatment_arm": "Model-led (M)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns"],
+              "reported": "Descriptive only, no test reported: Model-led 0.309 (SD 0.059, N = 101) vs Control 0.343 (SD 0.108, N = 99)",
+              "locator": "p. 12, Table 2"
+            },
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Model-led (M)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Question 0.379 (SD 0.079, N = 96) vs Model-led 0.309 (SD 0.059, N = 101); H2a t(481) = 5.33, p < .001, d = 0.76. Logit: t(481) = 5.20, p < .001, d = 0.74; Dunn z = 5.72, p_adj < .001, r = 0.41",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.2; p. 25, Table 15"
+            },
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Vanilla (V)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Question 0.379 (SD 0.079) vs Vanilla 0.378 (SD 0.103); H2b t(481) = 0.02, p = .984 (Table 3; text p. 8 says p = .983), d = 0.003",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.2; p. 25, Table 15"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Model-led (M)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Suggestion 0.333 (SD 0.104) vs Model-led 0.309 (SD 0.059); H3a t(481) = 1.87, p = .093, d = 0.27 (Table 3; text p. 8 says d = 0.29). Dunn z = 2.40, p = .008, p_adj = .024 (Table 15)",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.2; p. 25, Table 15"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Vanilla (V)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "Suggestion 0.333 (SD 0.104) vs Vanilla 0.378 (SD 0.103); H3b t(481) = -3.37, one-sided p = .999, d = -0.49",
+              "locator": "p. 12, Tables 2 and 3; p. 8, Section 5.1.2"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine distance of each idea to the leave-one-out centroid (mean of all other embeddings) within its condition",
+            "embedding_model": "OpenAI text-embedding-3-large",
+            "computed_over": "Each output against the centroid of all other outputs in the same condition (leave-one-out)",
+            "uncertainty": "Linear model on output-level diversity scores with condition as predictor; emmeans contrasts, one-sided, Holm-adjusted; robustness with logit transform and Kruskal-Wallis/Dunn tests",
+            "notes": "One idea per participant, so output-level scores equal participant-level scores; scores within a condition are not independent because each is computed against the others' centroid"
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Within-subject change in diversity from initial to refined idea (exploratory)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "For question-, suggestion- and model-led arms only: each participant's initial idea (written without the LLM) and refined idea (after LLM interaction) are both measured against the centroid of the initial ideas in that condition (text-embedding-3-large). Linear mixed-effects model with participant random intercepts (p. 24, Tables 12-13; pp. 8-9, Section 5.3; p. 10, Figure 6).",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Question-mode (Q), refined idea",
+              "control_arm": "Question-mode (Q), initial idea",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["mean_difference_se", "confidence_interval", "test_statistic"],
+              "reported": "Change 0.067, SE 0.009, t = 7.20, p < .001, 95% CI [0.049, 0.086] (Table 13); text: Delta = 0.07, 95% CI [0.05, 0.09], t(295) = 7.20",
+              "locator": "p. 24, Table 13; p. 9, Section 5.3"
+            },
+            {
+              "treatment_arm": "Model-led (M), refined idea",
+              "control_arm": "Model-led (M), initial idea",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["mean_difference_se", "confidence_interval", "test_statistic"],
+              "reported": "Change -0.089, SE 0.009, t = -9.80, p < .001, 95% CI [-0.107, -0.071] (Table 13); text: Delta = -0.09, t(295) = -9.80",
+              "locator": "p. 24, Table 13; p. 9, Section 5.3"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S), refined idea",
+              "control_arm": "Suggestion-mode (S), initial idea",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["mean_difference_se", "confidence_interval", "test_statistic"],
+              "reported": "Change -0.026, SE 0.009, t = -2.78, p = .006, 95% CI [-0.045, -0.008] (Table 13); text p. 9 gives t(295) = -2.67, p = .006",
+              "locator": "p. 24, Table 13; p. 9, Section 5.3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine distance to the centroid of the condition's initial ideas (leave-one-out for initial ideas)",
+            "embedding_model": "OpenAI text-embedding-3-large",
+            "computed_over": "Each initial and each refined idea against the centroid of all (other) initial ideas in the same condition",
+            "uncertainty": "Linear mixed-effects model with participant random intercepts; emmeans contrasts; unadjusted 95% CIs",
+            "notes": "Not a randomized contrast: compares the same participants before and after AI interaction. Model-interaction table (Table 12) also reports Model-Led x Time = -0.157 (SE 0.013) and Suggestion-Mode x Time = -0.093 (SE 0.013) relative to question-mode."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Study 2 (validation study): product ideas for UK university students, six conditions",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "not_stated",
+        "what_was_assigned": "One of six conditions: question-mode, suggestion-mode, model-led one-shot, model-led iterative, vanilla GPT-4.1, or no-LLM control",
+        "unit": "other",
+        "structure": "between",
+        "quote": "we conducted a preregistered replication study (https://aspredicted.org/de6md8.pdf).",
+        "locator": "p. 10, Section 6.1; p. 11, Section 6.1 (\"Our final sample in the validation study consisted of N = 640 participants across six conditions\")",
+        "preregistered": "yes",
+        "prereg_locator": "p. 10, Section 6.1 (https://aspredicted.org/de6md8.pdf)"
+      },
+      "arms": [
+        { "name": "Question-mode (Q)", "description": "As in Study 1, adapted prompts for product ideas (Table 6, p. 20); initial idea limited to 15 words", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Suggestion-mode (S)", "description": "As in Study 1, adapted prompts; initial idea limited to 15 words", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Model-led one-shot (M)", "description": "One-shot rewriting of the initial idea, as in Study 1; initial idea limited to 15 words", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Model-led iterative (M-I)", "description": "New arm: three AI suggestions in an exploration stage, then an elaboration stage choosing among the participant's choice and two further suggestions, then refinement", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Vanilla (V)", "description": "Free chat with GPT-4.1 without system prompt", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Control (C)", "description": "No LLM support", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 640,
+        "counts_are": "people",
+        "exclusions": "Not stated. The paper gives only the final sample of 640 across six conditions; per-arm Ns, recruitment count and exclusions are not reported. Regression df of 634 is consistent with 640 participants and six conditions.",
+        "population": "general_public",
+        "who": "Not described for Study 2 participants; the limitations section says participants were drawn from the general public. Idea raters (not participants) were 320 Prolific users with active student status.",
+        "country": "not_stated",
+        "quote": "Our final sample in the validation study consisted of N = 640 participants across six conditions.",
+        "locator": "p. 11, Section 6.1; p. 15, Section 7.6"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4.1, temperature 0.7 (Table 6 note, p. 20)",
+        "role": "other",
+        "how_used": "Same arm structure as Study 1 plus an iterative model-led arm; prompts in Appendix A, Table 6 (p. 20)"
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Product ideation task adapted from Girotra et al.: a physical product idea for university students in the United Kingdom with a retail price under GBP 40",
+        "duration": "not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Idea quality rated by student raters",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "N = 320 raters with active student status recruited via Prolific, each rating 20 ideas; dependent measures stated to be identical to Study 1 (originality and usefulness). Section 6.2 says linear mixed-effects models with random intercepts for raters and ideas; Table 4 caption says the quality contrasts are z-statistics from an ordinal mixed model. Robustness: cumulative link mixed model (p. 26, Table 17). Holm-adjusted one-sided p.",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vanilla (V)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "standardized_effect", "regression_coefficient_se"],
+              "reported": "H1e z = -0.94, p = .826, d = -0.08 (Table 4); ordinal model estimate -0.17, SE 0.16, z = -1.09, p = .899 (Table 17)",
+              "locator": "p. 12, Table 4; p. 26, Table 17"
+            },
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "standardized_effect", "regression_coefficient_se"],
+              "reported": "H1a z = 5.59, p < .001, d = 0.49 (Table 4); ordinal estimate 0.86, SE 0.16, z = 5.55 (Table 17)",
+              "locator": "p. 12, Table 4; p. 13, Section 6.3; p. 26, Table 17"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "standardized_effect", "regression_coefficient_se"],
+              "reported": "H1b z = 0.41, p = .684, d = 0.04 (Table 4); ordinal estimate 0.02, SE 0.15, z = 0.13, p = .899 (Table 17)",
+              "locator": "p. 12, Table 4; p. 26, Table 17"
+            },
+            {
+              "treatment_arm": "Model-led one-shot (M)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "standardized_effect", "regression_coefficient_se"],
+              "reported": "H1c z = 6.38, p < .001, d = 0.50 (Table 4); ordinal estimate 0.87, SE 0.14, z = 6.21 (Table 17)",
+              "locator": "p. 12, Table 4; p. 13, Section 6.3; p. 26, Table 17"
+            },
+            {
+              "treatment_arm": "Model-led iterative (M-I)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "standardized_effect", "regression_coefficient_se"],
+              "reported": "H1d z = 4.48, p < .001, d = 0.39 (Table 4); ordinal estimate 0.68, SE 0.15, z = 4.38 (Table 17)",
+              "locator": "p. 12, Table 4; p. 13, Section 6.3; p. 26, Table 17"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Idea diversity (embedding distance to leave-one-out condition centroid)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Stated to be identical to Study 1; simple linear regressions, t(634), Holm-adjusted one-sided p; robustness with logit transform and Dunn tests (p. 26, Table 18). Only AI-arm-versus-AI-arm contrasts are reported; no arm means and no comparison with the control are printed.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Vanilla (V)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "H2c t(634) = -3.35, one-sided p = .999, d = -0.48",
+              "locator": "p. 12, Table 4; p. 26, Table 18"
+            },
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Model-led one-shot (M)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "H2a t(634) = 3.01, p = .006, d = 0.39",
+              "locator": "p. 12, Table 4; p. 13, Section 6.3"
+            },
+            {
+              "treatment_arm": "Question-mode (Q)",
+              "control_arm": "Model-led iterative (M-I)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "H2b t(634) = 1.01, p = .400, d = 0.14",
+              "locator": "p. 12, Table 4; p. 13, Section 6.3"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Vanilla (V)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "H3c t(634) = 1.11, p = .400, d = 0.16",
+              "locator": "p. 12, Table 4"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Model-led one-shot (M)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "H3a t(634) = 8.00, p < .001, d = 1.04",
+              "locator": "p. 12, Table 4; p. 13, Section 6.3"
+            },
+            {
+              "treatment_arm": "Suggestion-mode (S)",
+              "control_arm": "Model-led iterative (M-I)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "standardized_effect"],
+              "reported": "H3b t(634) = 5.54, p < .001, d = 0.79",
+              "locator": "p. 12, Table 4; p. 13, Section 6.3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine distance of each idea to the leave-one-out centroid within its condition (as in Study 1)",
+            "embedding_model": "OpenAI text-embedding-3-large (stated as identical to Study 1)",
+            "computed_over": "Each output against the centroid of all other outputs in the same condition",
+            "uncertainty": "Simple linear regression on output-level scores; Holm-adjusted one-sided p; robustness with logit transform and Dunn tests",
+            "notes": "No arm-level means or SDs and no AI-vs-control diversity contrast in the PDF"
+          }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "Purchase intent (intention-to-buy) rated by student raters (exploratory)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Single intention-to-buy item added to the rating instrument, rated by the 320 student raters on a 1-7 scale (Figure 8 caption); describes perceived market viability of the idea. Means and SDs per condition printed in text, no Ns and no tests.",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Vanilla (V)",
+              "control_arm": "Control (C)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Descriptive only: Vanilla M = 2.30, SD = 0.55 vs Control M = 2.34, SD = 0.62; other arms: Question 2.51 (0.58), Model-led iterative 2.50 (0.56), Model-led one-shot 2.24 (0.49), Suggestion 2.20 (0.53); 95% CIs in Figure 8; no Ns",
+              "locator": "p. 13, Section 6.3; p. 27, Figure 8"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "No company authorship or funding stated. Study 1 quality raters were four experts from the innovation department of a major automotive manufacturer (p. 7, Section 4.4).", "locator": "p. 7, Section 4.4" },
+  "data_and_code": { "data_url": "https://github.com/SM2982/replication-creativity-CHI2026", "code_url": "https://github.com/SM2982/replication-creativity-CHI2026" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Study 1 randomly assigned Prolific participants to four GPT-4.1 conditions or a no-LLM control (p. 5, Section 4.1; p. 2, Figure 1); 486 people analyzed (p. 7, Section 4.3; p. 12, Table 2); outcomes are expert-rated idea quality and embedding diversity of the submitted ideas (p. 7, Section 4.4). Study 2 (N = 640 analyzed) is described as a preregistered replication experiment, but its text does not state random assignment explicitly and gives no per-arm counts."
+  },
+  "one_line_finding": "In Study 1 (N = 486), expert-rated idea quality exceeded the no-AI control for model-led rewriting (d = 0.55) and question-mode (d = 0.36) but not for vanilla GPT-4.1 chat (d = 0.02) or suggestion-mode (d = 0.13), and question-mode ideas were more diverse than model-led ideas (d = 0.76) (p. 12, Tables 2-3).",
+  "open_questions": [
+    "Study 2 does not state random assignment, recruitment platform, exclusions, or per-arm Ns; the GitHub repository or authors may supply them.",
+    "Study 1 diversity: no AI-versus-control test is reported; only arm means and SDs (Table 2, p. 12). Output-level scores are computed against a shared leave-one-out centroid, so they are not independent.",
+    "Table 2 note calls idea diversity a 'within-condition similarity measure', while Section 4.4 defines it as cosine distance (higher = more diverse). The sign convention should be confirmed in the data.",
+    "Text vs table mismatches: H2b p = .983 (p. 8) vs .984 (Table 3, p. 12); H3a d = 0.29 (p. 8) vs 0.27 (Table 3); within-subject suggestion-mode t(295) = -2.67 (p. 9) vs t = -2.78 (Table 13, p. 24).",
+    "Study 2 quality: Section 6.2 describes linear mixed-effects models but Table 4 caption attributes the z-statistics to an ordinal mixed model, and Table 17's ordinal z values differ slightly (e.g., 5.55 vs 5.59).",
+    "Figures 8 and 9 (pp. 27-28) label six conditions including 'Generation-Mode', a name not used in the text; Figure 8 caption says 'five conditions'. Mapping of 'Model-Led' and 'Generation-Mode' to the one-shot and iterative arms is not stated.",
+    "Figure 1 caption (p. 2) says all participants were instructed to refine their idea using the LLM, which conflicts with the no-LLM control (Section 4.1, p. 5: participants in all conditions could refine the idea themselves).",
+    "Cohen's d standardizer is not stated."
+  ],
+  "notes": "Self-reported outcomes omitted from the outcome list: perceived idea ownership (preregistered H4-H5; Tables 2-4, p. 12; Tables 16 and 19), perceived cognitive workload (Table 10, p. 23; Figure 9), creative self-efficacy (Table 2), user-experience scales, and Study 2 'self vs. AI' perceived contribution (Figure 9, p. 28). Elaboration depth (qualitative 5-level coding of the refinement turns in 20 conversations per AI condition, 80 in total, p. 9, Section 5.4) is omitted because it codes the chat interaction rather than scoring the submitted idea; it is descriptive (e.g., 90 percent of model-led participants accepted the model refinement). Study 1 arm-level randomized counts are not reported; 502 were recruited and 16 excluded. Study 1 Ns per arm (96, 95, 101, 95, 99) are after exclusions. Primary-record rule 3 points to Vanilla vs Control for both with_ai (S1-O1, d = 0.02) and across_people (S1-O2, descriptive means only). The paper reports Holm-adjusted one-sided p-values for preregistered hypotheses. Pilot study with 50 participants (p. 7) was used to test the system and is not analyzed."
+}

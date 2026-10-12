@@ -1,0 +1,1374 @@
+{
+ "cid": "c526",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rottger Hackenburg Kirk Summerfield (2026) - Measuring and Mitigating Persona Distortions from AI Writing Assistance.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rottger Hackenburg Kirk Summerfield (2026) - Measuring and Mitigating Persona Distortions from AI Writing Assistance.pdf",
+  "version": "arXiv:2604.22503v2 [cs.CL], 29 June 2026, as printed on PDF p. 1; saved preprint.",
+  "title_on_document": "Measuring and mitigating persona distortions from AI writing assistance",
+  "authors_on_document": [
+   "Paul Röttger",
+   "Kobi Hackenburg",
+   "Hannah Rose Kirk",
+   "Christopher Summerfield"
+  ],
+  "pages": 20,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": false,
+   "where": "https://github.com/paul-rottger/ai-distortion (p. 16, Data and Code Availability Statement). The saved PDF ends with references on p. 20; it has no supplementary appendix or embedded attachment.",
+   "holds": "The main paper refers to SI:1.4 for attrition; SI:2.3-2.4 for exact writer/reader questions; SI:5.1 and SI:8.3 for rating distributions; SI:5.2 and SI:5.6 for robustness/main regressions; SI:5.7-5.8 for model/input comparisons; SI:5.9 for SD/entropy homogenization analyses; SI:4.2, SI:7.3 and SI:8.5 for editing/preferences; SI:8.2 for reward-model evaluation; SI:8.4 for mitigation regressions; and SI:9.4 and SI:10.4 for trust/persuasion regressions (pp. 4, 11-15). These references establish where fuller results are said to be available; the actual supplement and its numerical SEs/CIs could not be inspected. GitHub API, raw GitHub, and the OSF preregistration API were inaccessible."
+  }
+ },
+ "paper_design_summary": "UK Prolific writers first composed political opinion paragraphs and then edited AI-generated alternatives; independent blinded readers rated originality, writing quality, and perceived writer characteristics in Studies 1 and 3. The main Study 1 AI-versus-unaided comparisons used a fixed order, whereas Study 3 randomized the order of three AI configurations within writers and supports core ai_design comparisons. Study 2 randomized disclaimers but collected no third-party output ratings; Studies 4 and 5 randomized reader exposure to existing paragraphs and measured trust or persuasion.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Study 1: Main writing and persona-perception study",
+   "design_class": "quasi_people",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "The recorded pooled AI-versus-unaided contrasts compare the same writers in a fixed human-first sequence; AI availability and its order were not randomized. Within that study, AI models and input formats were randomly paired across each writer, rewrite versus improve was randomized for paragraph input, and reader paragraph assignments were randomized (pp. 3, 12, Figure 1 and Sections 4.4, 4.6). Those configuration manipulations do not randomize the pooled contrast recorded here; their attribute-specific estimates are referred to SI:5.7-5.8.",
+    "unit": "individual",
+    "structure": "within",
+    "quote": "after writers had composed their own paragraph and edited the AI-generated version to their satisfaction",
+    "locator": "p. 3, Figure 1 and Section 2; p. 4, Section 2.1; p. 12, Sections 4.4 and 4.6",
+    "preregistered": "yes",
+    "prereg_locator": "p. 11, Methods: https://osf.io/6exf2 (registration reported by the paper; registry not independently opened)."
+   },
+   "arms": [
+    {
+     "name": "Own paragraph (unaided reference)",
+     "description": "Writers first compose their own paragraph. Same writer sample as the AI condition; no independent no-AI group (p. 3, Figure 1). Arm-specific distinct writer counts after the analysis restriction are not stated.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "AI-assisted paragraph (including writer edits)",
+     "description": "AI drafts from stance, bullets, or the existing paragraph and the writer may edit it. Main comparison includes edits and excludes cases where AI text was strictly dispreferred (pp. 3-4, Figure 1 and Section 2.2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 1501,
+    "counts_are": "people",
+    "exclusions": "Initial assignment and attrition counts are not supplied; attrition is referred to absent SI:1.4 (p. 11). The main perception analysis removes 708 of 4,503 writer-proposition cases (15.7%) where AI text was strictly dispreferred and includes writer edits (p. 4, Section 2.2). These are output-pair exclusions, not 708 excluded people. The number of distinct writers remaining for each restricted outcome is not stated.",
+    "population": "online_panel",
+    "who": "Adults aged 18+ recruited on Prolific in the UK. The analyzed writer study sample is reported as 1,501 completers; writers were sampled to match UK census age, gender, and race. An additional 10,017 readers rated the writing; those raters are not added to the writer sample size (p. 11, Section 4.1).",
+    "country": "United Kingdom",
+    "quote": "Study 1 was completed by 1,501 writers and 10,017 readers",
+    "locator": "p. 11, Section 4.1"
+   },
+   "ai_tool": {
+    "name_model": "Claude Sonnet 4, DeepSeek V3, and ChatGPT-4o (the ChatGPT version of GPT-4o)",
+    "role": "other",
+    "how_used": "Structured drafting from the writer's stance rating or bullet points, or rewriting/improving the writer's own paragraph, followed by writer editing. Model/input pairings are randomized within writers in Studies 1 and 2. This is human use and editing of AI assistance, not an AI-only versus human-only output comparison. Models are accessed through OpenRouter (pp. 11-12, Sections 4.3-4.5)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Write political opinion paragraphs on three propositions sampled from a pool of 100. Writers first give a 0-100 stance rating, at least two explanatory bullet points, and their own paragraph of at least 100 words; they then edit an AI-generated paragraph until it reflects their opinion. AI paragraphs based on stance/bullets are requested at 100-150 words; paragraph-input conditions rewrite or improve the existing paragraph without changing its length (pp. 3, 11-12, Sections 2, 4.2, 4.4-4.5).",
+    "duration": "not_stated"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Dispersion of perceived writer confidence across paragraphs",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "The main text gives confidence as its numeric example of homogenization, reporting separate SDs for human-written and AI-assisted paragraphs. The observational and resampling units and any aggregation of ratings by paragraph or writer are not specified. These are dispersion outcomes, not the SDs for a creativity mean-difference effect. No confidence-specific uncertainty is printed (p. 4, Section 2.2; SI:5.9 referenced).",
+     "unit": null,
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted paragraph (including writer edits)",
+       "control_arm": "Own paragraph (unaided reference)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [],
+       "reported": "Perceived writer confidence: human-written paragraphs 24.1 SD versus AI-assisted paragraphs 20.5 SD. No attribute-specific p-value, CI, SE, or final analysis count is printed.",
+       "locator": "p. 4, Section 2.2, paragraph beginning \"AI writing assistance also homogenised perceived writer personas\"; details referred to SI:5.9, not in this PDF."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Standard deviation of perceived writer confidence ratings",
+      "embedding_model": "",
+      "computed_over": "Distributions of perceptions of human-written versus AI-assisted paragraphs across writers. The main text does not state whether ratings were first aggregated by paragraph or writer; the implementation is in unavailable SI:5.9 (p. 4, Section 2.2).",
+      "uncertainty": "The main text reports significant SD/entropy reductions for 22 of 29 attributes at p<.001 after Bonferroni correction. Attribute-specific tests, SEs/CIs, resampling method, and the independent unit used for uncertainty are not supplied in this PDF; see SI:5.9 (p. 4, Section 2.2).",
+      "notes": "Lower dispersion means less diversity. This is dispersion of reader perceptions elicited by writing, not embedding similarity or lexical overlap. The analysis unit is null because the saved PDF does not specify the observational or resampling unit, or whether ratings were aggregated by paragraph or writer. A distributional summary alone does not establish unit=set under codebook Section 6. SI:5.9 is needed to identify the analysis unit (p. 4, Section 2.2)."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Perceived paragraph originality",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Blinded lay readers rate the paragraph on a 0-100 scale. Average marginal effects are from beta regressions, on the original rating scale, with reader random effects only; writer and proposition effects were omitted because of convergence problems. Unit is an individual reader rating, not a writer mean. The exact number of ratings in each fitted analysis is not stated. The full paragraph pool includes edited and unedited AI versions and is not the final analysis count. Robustness analyses excluding edits and model/input variants are referred to SI:5.6-5.8, absent here (pp. 5, 12-13, Figure 2 and Sections 4.6-4.7). Originality is explicitly shown in Figure 2B, although omitted from the markdown image conversion; no exact question wording is printed outside SI:2.4.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted paragraph (including writer edits)",
+       "control_arm": "Own paragraph (unaided reference)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "+12.5 pts more original for AI-assisted versus human writing; *** denotes p<.001 after Bonferroni correction across all 29 attributes. AME on the original 0-100 scale; no numeric SE, CI, arm means, or arm SDs for this outcome are printed.",
+       "locator": "p. 5, Figure 2B and caption"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Paragraph clarity",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Blinded lay readers rate the paragraph on a 0-100 scale. Average marginal effects are from beta regressions, on the original rating scale, with reader random effects only; writer and proposition effects were omitted because of convergence problems. Unit is an individual reader rating, not a writer mean. The exact number of ratings in each fitted analysis is not stated. The full paragraph pool includes edited and unedited AI versions and is not the final analysis count. Robustness analyses excluding edits and model/input variants are referred to SI:5.6-5.8, absent here (pp. 5, 12-13, Figure 2 and Sections 4.6-4.7).",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted paragraph (including writer edits)",
+       "control_arm": "Own paragraph (unaided reference)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "+9.0 pts clearer for AI-assisted versus human writing; *** denotes p<.001 after Bonferroni correction across all 29 attributes. AME on the original 0-100 scale; no numeric SE, CI, arm means, or arm SDs for this outcome are printed.",
+       "locator": "p. 5, Figure 2B and caption; p. 4, Section 2.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Paragraph informativeness",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Blinded lay readers rate the paragraph on a 0-100 scale. Average marginal effects are from beta regressions, on the original rating scale, with reader random effects only; writer and proposition effects were omitted because of convergence problems. Unit is an individual reader rating, not a writer mean. The exact number of ratings in each fitted analysis is not stated. The full paragraph pool includes edited and unedited AI versions and is not the final analysis count. Robustness analyses excluding edits and model/input variants are referred to SI:5.6-5.8, absent here (pp. 5, 12-13, Figure 2 and Sections 4.6-4.7).",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted paragraph (including writer edits)",
+       "control_arm": "Own paragraph (unaided reference)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "+22.7 pts more informative for AI-assisted versus human writing; *** denotes p<.001 after Bonferroni correction across all 29 attributes. AME on the original 0-100 scale; no numeric SE, CI, arm means, or arm SDs for this outcome are printed.",
+       "locator": "p. 5, Figure 2B and caption; p. 4, Section 2.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Paragraph relevance",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Blinded lay readers rate the paragraph on a 0-100 scale. Average marginal effects are from beta regressions, on the original rating scale, with reader random effects only; writer and proposition effects were omitted because of convergence problems. Unit is an individual reader rating, not a writer mean. The exact number of ratings in each fitted analysis is not stated. The full paragraph pool includes edited and unedited AI versions and is not the final analysis count. Robustness analyses excluding edits and model/input variants are referred to SI:5.6-5.8, absent here (pp. 5, 12-13, Figure 2 and Sections 4.6-4.7).",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted paragraph (including writer edits)",
+       "control_arm": "Own paragraph (unaided reference)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "+8.3 pts more relevant for AI-assisted versus human writing; *** denotes p<.001 after Bonferroni correction across all 29 attributes. AME on the original 0-100 scale; no numeric SE, CI, arm means, or arm SDs for this outcome are printed.",
+       "locator": "p. 5, Figure 2B and caption; p. 4, Section 2.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Paragraph formality",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Blinded lay readers rate the paragraph on a 0-100 scale. Average marginal effects are from beta regressions, on the original rating scale, with reader random effects only; writer and proposition effects were omitted because of convergence problems. Unit is an individual reader rating, not a writer mean. The exact number of ratings in each fitted analysis is not stated. The full paragraph pool includes edited and unedited AI versions and is not the final analysis count. Robustness analyses excluding edits and model/input variants are referred to SI:5.6-5.8, absent here (pp. 5, 12-13, Figure 2 and Sections 4.6-4.7). Formality is a writing-style rating, not a measure of overall creativity; its direction is descriptive.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted paragraph (including writer edits)",
+       "control_arm": "Own paragraph (unaided reference)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "+28.6 pts more formal for AI-assisted versus human writing; *** denotes p<.001 after Bonferroni correction across all 29 attributes. AME on the original 0-100 scale; no numeric SE, CI, arm means, or arm SDs for this outcome are printed.",
+       "locator": "p. 5, Figure 2B and caption"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O7",
+     "name": "Dispersion of paragraph originality ratings across writers",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Section 2.2 describes dispersion analyses across the 29 reader-rated attributes; this writing attribute is identified in Figure 2B. Its individual SDs, direction, and test result are not printed in the saved PDF. The reported 22-of-29 family result does not identify this attribute as significant. No individual contrast is inferred; SI:5.9 is needed (pp. 4-5, Section 2.2 and Figure 2B).",
+     "unit": null,
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "Standard deviation of paragraph originality ratings",
+      "embedding_model": "",
+      "computed_over": "Distributions of perceptions of human-written versus AI-assisted paragraphs across writers. The main text does not state whether ratings were first aggregated by paragraph or writer; the implementation is in unavailable SI:5.9 (p. 4, Section 2.2).",
+      "uncertainty": "The main text reports significant SD/entropy reductions for 22 of 29 attributes at p<.001 after Bonferroni correction. Attribute-specific tests, SEs/CIs, resampling method, and the independent unit used for uncertainty are not supplied in this PDF; see SI:5.9 (p. 4, Section 2.2).",
+      "notes": "Lower dispersion means less diversity. This is dispersion of reader perceptions elicited by writing, not embedding similarity or lexical overlap. The analysis unit is null because the saved PDF does not specify the observational or resampling unit, or whether ratings were aggregated by paragraph or writer. A distributional summary alone does not establish unit=set under codebook Section 6. SI:5.9 is needed to identify the analysis unit (p. 4, Section 2.2)."
+     }
+    },
+    {
+     "outcome_id": "S1-O8",
+     "name": "Dispersion of paragraph clarity ratings across writers",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Section 2.2 describes dispersion analyses across the 29 reader-rated attributes; this writing attribute is identified in Figure 2B. Its individual SDs, direction, and test result are not printed in the saved PDF. The reported 22-of-29 family result does not identify this attribute as significant. No individual contrast is inferred; SI:5.9 is needed (pp. 4-5, Section 2.2 and Figure 2B).",
+     "unit": null,
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "Standard deviation of paragraph clarity ratings",
+      "embedding_model": "",
+      "computed_over": "Distributions of perceptions of human-written versus AI-assisted paragraphs across writers. The main text does not state whether ratings were first aggregated by paragraph or writer; the implementation is in unavailable SI:5.9 (p. 4, Section 2.2).",
+      "uncertainty": "The main text reports significant SD/entropy reductions for 22 of 29 attributes at p<.001 after Bonferroni correction. Attribute-specific tests, SEs/CIs, resampling method, and the independent unit used for uncertainty are not supplied in this PDF; see SI:5.9 (p. 4, Section 2.2).",
+      "notes": "Lower dispersion means less diversity. This is dispersion of reader perceptions elicited by writing, not embedding similarity or lexical overlap. The analysis unit is null because the saved PDF does not specify the observational or resampling unit, or whether ratings were aggregated by paragraph or writer. A distributional summary alone does not establish unit=set under codebook Section 6. SI:5.9 is needed to identify the analysis unit (p. 4, Section 2.2)."
+     }
+    },
+    {
+     "outcome_id": "S1-O9",
+     "name": "Dispersion of paragraph informativeness ratings across writers",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Section 2.2 describes dispersion analyses across the 29 reader-rated attributes; this writing attribute is identified in Figure 2B. Its individual SDs, direction, and test result are not printed in the saved PDF. The reported 22-of-29 family result does not identify this attribute as significant. No individual contrast is inferred; SI:5.9 is needed (pp. 4-5, Section 2.2 and Figure 2B).",
+     "unit": null,
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "Standard deviation of paragraph informativeness ratings",
+      "embedding_model": "",
+      "computed_over": "Distributions of perceptions of human-written versus AI-assisted paragraphs across writers. The main text does not state whether ratings were first aggregated by paragraph or writer; the implementation is in unavailable SI:5.9 (p. 4, Section 2.2).",
+      "uncertainty": "The main text reports significant SD/entropy reductions for 22 of 29 attributes at p<.001 after Bonferroni correction. Attribute-specific tests, SEs/CIs, resampling method, and the independent unit used for uncertainty are not supplied in this PDF; see SI:5.9 (p. 4, Section 2.2).",
+      "notes": "Lower dispersion means less diversity. This is dispersion of reader perceptions elicited by writing, not embedding similarity or lexical overlap. The analysis unit is null because the saved PDF does not specify the observational or resampling unit, or whether ratings were aggregated by paragraph or writer. A distributional summary alone does not establish unit=set under codebook Section 6. SI:5.9 is needed to identify the analysis unit (p. 4, Section 2.2)."
+     }
+    },
+    {
+     "outcome_id": "S1-O10",
+     "name": "Dispersion of paragraph relevance ratings across writers",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Section 2.2 describes dispersion analyses across the 29 reader-rated attributes; this writing attribute is identified in Figure 2B. Its individual SDs, direction, and test result are not printed in the saved PDF. The reported 22-of-29 family result does not identify this attribute as significant. No individual contrast is inferred; SI:5.9 is needed (pp. 4-5, Section 2.2 and Figure 2B).",
+     "unit": null,
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "Standard deviation of paragraph relevance ratings",
+      "embedding_model": "",
+      "computed_over": "Distributions of perceptions of human-written versus AI-assisted paragraphs across writers. The main text does not state whether ratings were first aggregated by paragraph or writer; the implementation is in unavailable SI:5.9 (p. 4, Section 2.2).",
+      "uncertainty": "The main text reports significant SD/entropy reductions for 22 of 29 attributes at p<.001 after Bonferroni correction. Attribute-specific tests, SEs/CIs, resampling method, and the independent unit used for uncertainty are not supplied in this PDF; see SI:5.9 (p. 4, Section 2.2).",
+      "notes": "Lower dispersion means less diversity. This is dispersion of reader perceptions elicited by writing, not embedding similarity or lexical overlap. The analysis unit is null because the saved PDF does not specify the observational or resampling unit, or whether ratings were aggregated by paragraph or writer. A distributional summary alone does not establish unit=set under codebook Section 6. SI:5.9 is needed to identify the analysis unit (p. 4, Section 2.2)."
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Study 2: Randomized writer disclaimers",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Disclaimer content was randomized between writers: acceptable distortions, unacceptable distortions, both, or no disclaimer. All writers used AI; this was not randomized AI availability. Models/input formats were varied within writers as in Study 1. Disclaimer order within a message was also randomized (p. 13, Section 4.9).",
+    "unit": "individual",
+    "structure": "mixed",
+    "quote": "The content of the disclaimer was randomly assigned at the writer level across three disclaimer conditions and a no-disclaimer control.",
+    "locator": "p. 13, Section 4.9",
+    "preregistered": "yes",
+    "prereg_locator": "p. 11, Methods: https://osf.io/sf7rg (registration reported by the paper; registry not independently opened)."
+   },
+   "arms": [
+    {
+     "name": "No disclaimer",
+     "description": "AI assistance without the pop-up disclaimer; control count is not printed in the saved PDF and is not obtained by subtraction (p. 13, Section 4.9).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Acceptable-distortions disclaimer",
+     "description": "AI assistance plus warning about clearer and more relevant writing. Printed N=160 is recorded as an analyzed writer count in the reported completed sample, not an initial randomized count (p. 13, Section 4.9; p. 11, Section 4.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 160
+    },
+    {
+     "name": "Unacceptable-distortions disclaimer",
+     "description": "AI assistance plus warning about more extreme views and less openness to change (p. 13, Section 4.9).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 154
+    },
+    {
+     "name": "Both-types disclaimer",
+     "description": "AI assistance plus all four distortion warnings (p. 13, Section 4.9).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 185
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 669,
+    "counts_are": "people",
+    "exclusions": "Analyzed study sample: 669 writers, reported as study completers. Initial randomized counts and exclusions are not stated in this PDF; SI:1.4 is cited for attrition information (p. 11, Section 4.1; p. 13, Section 4.9).",
+    "population": "online_panel",
+    "who": "UK adults on Prolific; new writer sample, targeted census representativeness as in Study 1. No third-party rating panel was collected for this study (pp. 11-12, Sections 4.1 and 4.6).",
+    "country": "United Kingdom",
+    "quote": "Study 2 by 669 writers",
+    "locator": "p. 11, Section 4.1"
+   },
+   "ai_tool": {
+    "name_model": "Claude Sonnet 4, DeepSeek V3, and ChatGPT-4o (the ChatGPT version of GPT-4o)",
+    "role": "other",
+    "how_used": "Structured drafting from the writer's stance rating or bullet points, or rewriting/improving the writer's own paragraph, followed by writer editing. Model/input pairings are randomized within writers in Studies 1 and 2. This is human use and editing of AI assistance, not an AI-only versus human-only output comparison. Models are accessed through OpenRouter (pp. 11-12, Sections 4.3-4.5)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Write political opinion paragraphs on three propositions sampled from a pool of 100. Writers first give a 0-100 stance rating, at least two explanatory bullet points, and their own paragraph of at least 100 words; they then edit an AI-generated paragraph until it reflects their opinion. AI paragraphs based on stance/bullets are requested at 100-150 words; paragraph-input conditions rewrite or improve the existing paragraph without changing its length (pp. 3, 11-12, Sections 2, 4.2, 4.4-4.5). Study 2 did not collect third-party ratings of originality or quality; its outcomes concern writer editing and preference (p. 12, Section 4.6; p. 13, Section 4.9).",
+    "duration": "not_stated"
+   },
+   "outcomes": []
+  },
+  {
+   "study_id": "S3",
+   "label": "Study 3: Randomized AI mitigation configurations",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Each writer experienced Prompting, Reranking, and No Intervention across their three propositions in random order. This supports a randomized within-person ai_design comparison. The writer's own unaided paragraph remains a preceding reference, not a randomized no-AI arm (pp. 12-14, Sections 4.4 and 4.10).",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "Assignment was such that each writer, across the three propositions they were assigned, experienced all three conditions in random order, in a within-subjects design.",
+    "locator": "p. 13, Section 4.10",
+    "preregistered": "yes",
+    "prereg_locator": "p. 11, Methods: https://osf.io/sf7rg (registration reported by the paper; registry not independently opened)."
+   },
+   "arms": [
+    {
+     "name": "No Intervention",
+     "description": "Default AI paragraph generation from writer bullet points; every writer experiences this and both mitigation configurations. No separately stated final arm-level writer count (pp. 12-14, Sections 4.4 and 4.10).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Prompting",
+     "description": "The AI generation prompt adds a 113-word instruction asking the model to preserve writer stance (p. 14, Section 4.10).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Reranking",
+     "description": "The assigned AI model generates two sets of five candidate paragraphs; reward models select the candidate predicted to minimize stance discrepancy, with directional weighting against polarization (p. 14, Section 4.10).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Own paragraph (unaided reference)",
+     "description": "Writer-produced paragraph before AI generation, used as a reference for distortion; this baseline is not one of the three randomized AI configurations (pp. 12-14, Sections 4.4 and 4.10).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 769,
+    "counts_are": "people",
+    "exclusions": "Analyzed study sample: 769 writers, reported as study completers, not as an initial randomized total (p. 11, Section 4.1; p. 13, Section 4.10). Initial assignment, attrition, and outcome-specific distinct writer counts are unavailable in the main PDF; SI:1.4 is cited for attrition (p. 11). No condition-specific participant losses are reported; no zero-attrition assumption is made.",
+    "population": "online_panel",
+    "who": "New sample of UK adult writers recruited through Prolific with census-representative targets. A separate panel of 2,543 readers rated the paragraphs; 1,469 of those readers also took part in Study 1. Readers are not counted as writers assigned writing assistance (p. 11, Section 4.1).",
+    "country": "United Kingdom",
+    "quote": "Study 3 by 769 writers and 2,543 readers",
+    "locator": "p. 11, Section 4.1"
+   },
+   "ai_tool": {
+    "name_model": "Claude Sonnet 4, DeepSeek V3, and ChatGPT-4o (the ChatGPT version of GPT-4o); GPT-4.1-based fine-tuned reward models for Reranking",
+    "role": "other",
+    "how_used": "The system supplies a complete opinion paragraph generated from the writer's bullet points; the writer can edit that draft and choose it instead of their own paragraph. This is full-paragraph drafting followed by human revision. Prompting asks the model to preserve stance, and Reranking selects a candidate using two GPT-4.1-based reward models trained on Study 1 data (pp. 12-14, Sections 4.4-4.5 and 4.10)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Political opinion writing as in Study 1, with three propositions per writer; AI generation uses bullet-point inputs only. After generating a paragraph under the assigned mitigation configuration, writers can edit it. Separate blinded readers score the same 29 attributes, including originality, clarity, informativeness, relevance, and formality (pp. 7, 12-14, Sections 2.5, 4.4, 4.6, 4.10; attribute labels p. 5, Figure 2B).",
+    "duration": "not_stated"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Perceived paragraph originality",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Study 3 collected blinded ratings on the same 29 attributes as Study 1, including originality and writing quality. Models use an intervention-condition regressor and reader random effects; the analysis unit is a reader rating. The printed reductions describe changes in AI-induced distortion relative to human writing, not standardized creativity effects or absolute arm means. Precise model outputs and additional contrasts are in unavailable SI:8.4. The paragraph pool of 5,016 is not a verified final per-outcome rating count (pp. 7, 12, 14, Sections 2.5, 4.6, 4.10). Originality is one of the writing-quality attributes shown in Figure 2B (p. 5). Study 3 rates the same attributes, but an identifiable originality effect, direction, SE, or CI for Reranking/Prompting versus No Intervention is not supplied in the main PDF. No direction is inferred from unlabeled points in Figure 4E.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O2",
+     "name": "Paragraph clarity",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Study 3 collected blinded ratings on the same 29 attributes as Study 1, including originality and writing quality. Models use an intervention-condition regressor and reader random effects; the analysis unit is a reader rating. The printed reductions describe changes in AI-induced distortion relative to human writing, not standardized creativity effects or absolute arm means. Precise model outputs and additional contrasts are in unavailable SI:8.4. The paragraph pool of 5,016 is not a verified final per-outcome rating count (pp. 7, 12, 14, Sections 2.5, 4.6, 4.10).",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Reranking",
+       "control_arm": "No Intervention",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "-26.9% reduction in distortion from Reranking versus No Intervention; p<.001 from Figure 4 significance marks. This is the reported relative attenuation of the AI-induced increase, not an arm mean difference. No numeric SE, CI, or arm mean/SD is printed for this contrast.",
+       "locator": "p. 8, Figure 4D and caption; Section 2.5 continuation below the figure; p. 14, Section 4.10 (model and SI:8.4 reference)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O3",
+     "name": "Paragraph informativeness",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Study 3 collected blinded ratings on the same 29 attributes as Study 1, including originality and writing quality. Models use an intervention-condition regressor and reader random effects; the analysis unit is a reader rating. The printed reductions describe changes in AI-induced distortion relative to human writing, not standardized creativity effects or absolute arm means. Precise model outputs and additional contrasts are in unavailable SI:8.4. The paragraph pool of 5,016 is not a verified final per-outcome rating count (pp. 7, 12, 14, Sections 2.5, 4.6, 4.10).",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Reranking",
+       "control_arm": "No Intervention",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "-12.5% reduction in distortion from Reranking versus No Intervention; p<.001 from Figure 4 significance marks. This is the reported relative attenuation of the AI-induced increase, not an arm mean difference. No numeric SE, CI, or arm mean/SD is printed for this contrast.",
+       "locator": "p. 8, Figure 4D and caption; p. 14, Section 4.10 (model and SI:8.4 reference)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O4",
+     "name": "Paragraph relevance",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Study 3 collected blinded ratings on the same 29 attributes as Study 1, including originality and writing quality. Models use an intervention-condition regressor and reader random effects; the analysis unit is a reader rating. The printed reductions describe changes in AI-induced distortion relative to human writing, not standardized creativity effects or absolute arm means. Precise model outputs and additional contrasts are in unavailable SI:8.4. The paragraph pool of 5,016 is not a verified final per-outcome rating count (pp. 7, 12, 14, Sections 2.5, 4.6, 4.10).",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Reranking",
+       "control_arm": "No Intervention",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "-17.7% reduction in distortion from Reranking versus No Intervention; p<.001 from Figure 4 significance marks. This is the reported relative attenuation of the AI-induced increase, not an arm mean difference. No numeric SE, CI, or arm mean/SD is printed for this contrast.",
+       "locator": "p. 8, Figure 4D and caption; p. 14, Section 4.10 (model and SI:8.4 reference)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S3-O5",
+     "name": "Paragraph formality",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Study 3 collected blinded ratings on the same 29 attributes as Study 1, including originality and writing quality. Models use an intervention-condition regressor and reader random effects; the analysis unit is a reader rating. The printed reductions describe changes in AI-induced distortion relative to human writing, not standardized creativity effects or absolute arm means. Precise model outputs and additional contrasts are in unavailable SI:8.4. The paragraph pool of 5,016 is not a verified final per-outcome rating count (pp. 7, 12, 14, Sections 2.5, 4.6, 4.10). Formality is a style attribute, not overall creativity; its direction is descriptive.",
+     "unit": "rating",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Reranking",
+       "control_arm": "No Intervention",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "-4.5% reduction in distortion from Reranking versus No Intervention; p<.05 from Figure 4 significance marks. This is the reported relative attenuation of the AI-induced increase, not an arm mean difference. No numeric SE, CI, or arm mean/SD is printed for this contrast.",
+       "locator": "p. 8, Figure 4D and caption; p. 14, Section 4.10 (model and SI:8.4 reference)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S4",
+   "label": "Study 4: Randomized reader exposure in a Trust Game",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Readers saw one paragraph from each human/AI-assisted by low/high-distortion cell in random order. Assignment is to text exposure, not AI-assisted writing. Each cell had 200 stimulus paragraphs, not 200 participants.",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "Paragraph assignment was such that each Study 4 reader was assigned one paragraph from each cell in random order in a within-subjects design, without ever being assigned more than one paragraph per proposition.",
+    "locator": "p. 15, Section 4.11",
+    "preregistered": "yes",
+    "prereg_locator": "p. 11, Methods: https://osf.io/38sg7 (registration reported by the paper; registry not independently opened)."
+   },
+   "arms": [
+    {
+     "name": "Human, low-distortion pair",
+     "description": "Human-written member of a low-distortion Study 1 pair; reader receives no AI tool (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Human, high-distortion pair",
+     "description": "Human-written member of a high-distortion Study 1 pair; reader receives no AI tool (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "AI-assisted, low distortion",
+     "description": "AI-assisted paragraph from a low-distortion Study 1 pair; completed stimulus, not AI assistance to reader (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "AI-assisted, high distortion",
+     "description": "AI-assisted paragraph from a high-distortion Study 1 pair; completed stimulus, not AI assistance to reader (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 802,
+    "counts_are": "people",
+    "exclusions": "Analyzed study sample: 802 readers, reported as study completers. Initial randomized counts and exclusions are not stated in this PDF. Attrition is referred to SI:1.4 (p. 11, Section 4.1; p. 14, Section 4.11).",
+    "population": "online_panel",
+    "who": "New UK adult reader sample recruited on Prolific; these are Trust Game decision-makers, not writers or the prior rating panel (pp. 11, 14-15, Sections 4.1 and 4.11).",
+    "country": "United Kingdom",
+    "quote": "Study 4 by 802 readers",
+    "locator": "p. 11, Section 4.1"
+   },
+   "ai_tool": {
+    "name_model": "Claude Sonnet 4, DeepSeek V3, and ChatGPT-4o (the ChatGPT version of GPT-4o) generated the source paragraphs in Study 1; no AI tool used by the new readers",
+    "role": "other",
+    "how_used": "Existing human-written and AI-assisted paragraphs from Study 1 are shown to readers. This study does not assign a tool for producing new writing (pp. 14-15, Sections 4.11-4.12)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Read four existing paragraphs in randomized order and allocate part of a 20p endowment to each paragraph's author in a Trust Game. Source material comprises 800 Study 1 paragraphs, 200 per source-type by distortion cell. Primary outcome is allocation to the author, a measure of trust rather than creativity or diversity of newly produced output (pp. 14-15, Section 4.11).",
+    "duration": "not_stated"
+   },
+   "outcomes": []
+  },
+  {
+   "study_id": "S5",
+   "label": "Study 5: Randomized reader exposure and political persuasion",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Random order within reader of one paragraph from each human/AI-assisted by low/high-distortion cell plus an off-topic control. Readers are assigned exposure, not AI help for producing output.",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "Paragraph assignment was such that each reader was assigned one paragraph from each cell plus control in random order in a within-subjects design, without ever being assigned more than one paragraph per proposition.",
+    "locator": "p. 15, Section 4.12",
+    "preregistered": "yes",
+    "prereg_locator": "p. 11, Methods: https://osf.io/e48g2 (registration reported by the paper; registry not independently opened)."
+   },
+   "arms": [
+    {
+     "name": "Human, low-distortion pair",
+     "description": "Human-written member of a low-distortion Study 1 pair; reader receives no AI tool (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Human, high-distortion pair",
+     "description": "Human-written member of a high-distortion Study 1 pair; reader receives no AI tool (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "AI-assisted, low distortion",
+     "description": "AI-assisted paragraph from a low-distortion Study 1 pair; completed stimulus, not AI assistance to reader (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "AI-assisted, high distortion",
+     "description": "AI-assisted paragraph from a high-distortion Study 1 pair; completed stimulus, not AI assistance to reader (p. 15, section 4.11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Off-topic control",
+     "description": "Informational paragraph with no political stance; authorship/model not specified. Reader receives no AI tool (p. 15, section 4.12).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 7996,
+    "counts_are": "people",
+    "exclusions": "Analyzed study sample: 7,996 readers, reported as study completers. Initial randomized counts and exclusions are not supplied in the main PDF. Attrition is referred to SI:1.4 (p. 11, Section 4.1; p. 15, Section 4.12).",
+    "population": "online_panel",
+    "who": "New UK adult readers recruited on Prolific. These participants report political stance before and after paragraph exposure; they are not assigned writing assistance (pp. 11, 15, Sections 4.1 and 4.12).",
+    "country": "United Kingdom",
+    "quote": "Study 5 by 7,996 readers",
+    "locator": "p. 11, Section 4.1"
+   },
+   "ai_tool": {
+    "name_model": "Claude Sonnet 4, DeepSeek V3, and ChatGPT-4o (the ChatGPT version of GPT-4o) generated the source paragraphs in Study 1; no AI tool used by the new readers",
+    "role": "other",
+    "how_used": "Existing human-written and AI-assisted paragraphs from Study 1 are shown to readers. This study does not assign a tool for producing new writing (pp. 14-15, Sections 4.11-4.12)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Read five paragraphs and report stance before and after each on political propositions. Four paragraphs come from the same Study 1 subset used in Study 4 and one is off-topic control text. Primary outcome is the signed stance change toward the paragraph position, not creativity/diversity of output produced by these readers (p. 15, Section 4.12).",
+    "duration": "not_stated"
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "No reuse of another paper's participants is stated. Within this paper, 1,469 Study 3 readers also participated in Study 1; writers are distinct across studies and separate from readers. Study 3 reward models reuse Study 1 training data. Studies 4 and 5 reuse Study 1 paragraph material, with new reader samples; their writer source corpus must not be treated as new independent writers.",
+  "quote": "1,469 readers in Study 3 had previously participated as readers in Study 1 approximately five months earlier.",
+  "locator": "p. 11, Section 4.1; pp. 14-15, Sections 4.10-4.12"
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "Authors list University of Oxford and UK AI Security Institute affiliations. Funding is from the UK AI Security Institute Systemic AI Safety Grants programme; authors declare no competing interests. Commercial model/API use is described, but company funding, employment, or research sponsorship is not stated.",
+  "locator": "p. 1, affiliations; p. 16, Funding Statement and Competing Interests; pp. 11-12, Section 4.3; p. 14, Section 4.10"
+ },
+ "data_and_code": {
+  "data_url": "https://github.com/paul-rottger/ai-distortion",
+  "code_url": "https://github.com/paul-rottger/ai-distortion"
+ },
+ "eligibility": {
+  "core": "yes",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "Study 3 meets all three criteria in the same study. Each writer experienced Prompting, Reranking and No Intervention in random within-person order (p. 13, Section 4.10). Its analyzed study sample is 769 writers, reported as completers, well above the people threshold; auxiliary readers are not added (p. 11, Section 4.1; p. 13, Section 4.10). Blinded readers scored participant-produced paragraphs on the same attributes as Study 1, including originality and writing quality (p. 5, Figure 2B; p. 12, Sections 4.5-4.6; p. 14, Section 4.10). Figure 4D reports Reranking-versus-No-Intervention attenuation of clarity, informativeness, relevance and formality distortions (p. 8); the unreported Study 3 originality estimate limits extraction, not confirmation that originality was scored. Study 1 supplies observational context for the recorded fixed-order AI-versus-unaided contrasts; its model/input randomization does not randomize that pooled comparison (p. 3, Figure 1; p. 12, Section 4.4). Study 2 has no third-party output ratings (p. 12, Section 4.6). Studies 4-5 randomize reader exposure to existing paragraphs, not AI assistance for new creative production (pp. 14-15, Sections 4.11-4.12). Unverified Study 1 dispersion units are now null. Missing supplement details, exact counts in restricted output analyses and writer-level uncertainty remain extraction or pooling gaps; none leaves an eligibility criterion unresolved. No after_ai creative task is reported."
+ },
+ "one_line_finding": "In the fixed-order comparison, AI-assisted paragraphs were rated +12.5 points more original (p. 5, Figure 2B) and showed lower dispersion on 22 of 29 attributes (p. 4, Section 2.2), while randomized reranking attenuated the AI-induced clarity increase by 26.9% (p. 8, Figure 4D).",
+ "open_questions": [
+  "SI:8.4 is needed for Study 3 originality estimates, all configuration contrasts, numerical SEs/CIs and outcome-specific analysis counts.",
+  "SI:5.9 is needed for attribute-specific dispersion results, rating-versus-paragraph aggregation, repeated-output dependence and uncertainty procedures; the 22-of-29 summary does not identify every affected attribute.",
+  "SI:1.4 is needed for initial assignment totals and attrition; final distinct-writer counts after output-based preference restrictions are not printed in the main PDF.",
+  "Before pooling, determine uncertainty that respects writer-level assignment and repeated outputs: the reader-perception models include reader random effects only (pp. 12-14, Sections 4.7 and 4.10).",
+  "SI:5.7-5.8 may supply randomized AI-model/input comparisons in Study 1; its recorded pooled AI-versus-unaided contrast remains non-randomized."
+ ],
+ "notes": "Finalized on 2026-10-09 after independently reading all 390 markdown lines, including references, and checking the saved PDF passages and the embedded Figures 2 and 4 in memory. The saved PDF has 20 pages, ends with references, and contains no appendix or embedded attachment. Repeated Python urllib requests to the named GitHub API, raw GitHub README and OSF API, with User-Agent atlas-screening/0.1 and no personal identifier, all failed with WinError 10013; no supplementary information was obtained. One challenge correction changes the five unverified dispersion units from set to null; the omitted-outcomes challenge is rejected under the current 15-outcome rule. All existing reported outcome numbers and contrast arrays are retained after PDF verification. Count prose now identifies analyzed study samples while preserving the source completer basis; unknown assignment totals and restricted-analysis counts remain null. All five prior open questions are assessed in final.open_items, with counts split into initial attrition and restricted-analysis counts. Reconciliation has no unresolved differences and its object is preserved unchanged. The following records the earlier reconciliation and retained coding rationale. Reconciled on 2026-10-09 from both valid raw forms. Read all 390 markdown lines, including references; no appendix is included. Checked the PDF text on design, methods, sample and result pages; extracted tables on pp. 5 and 8 (none found) and inspected those embedded figure images in memory. Every retained outcome number was verified against its PDF page or printed figure label; no effect size, standard error, arm size, mean or unlabeled figure coordinate was calculated. GitHub API (api.github.com/repos/paul-rottger/ai-distortion/contents), raw GitHub README, and OSF API (api.osf.io/v2/nodes/sf7rg/) requests used Python urllib and User-Agent atlas-screening/0.1; all failed with WinError 10013 (socket access forbidden). No supplementary content or preregistration was obtained. Difference counting aligns outcomes and arms by meaning, not array position or outcome_id. Equivalent wording, capitalization, compatible supplementary-section detail, /overview URL variants and empty synthesis placeholders are not substantive differences. Both forms contain the same 15 outcomes with the same construct, question, measure, analysis unit, AI availability, timing, primary status, directions and numerical estimates. The five statistics_available disagreements are retained as coding differences; their printed point estimates and locators agree. Coding decisions: Study 1 is quasi_people for the pooled contrasts actually recorded; its model/input randomization is documented separately. Its individual unit denotes the writer in the fixed-order comparison, not a claim of randomized AI access. Studies 4-5 are online_rct because reader exposure/order was randomized on Prolific; design class does not itself establish core eligibility. Their arms are coded ai=none because current participants receive existing reading stimuli, not assistance to produce writing; the description preserves each stimulus's AI authorship. Study 3 role=other describes complete-paragraph drafting followed by human editing; it does not describe open chat or delivery of ideation examples. The statistics_available label p_value_only describes the available inferential precision for numerically labeled AMEs and percentage attenuations without numerical SEs/CIs. The exact printed values and figure locations remain in reported and locator; figure_only is not needed to convey those already-transcribed numerical labels. Confidence dispersion retains an empty availability list because SDs alone match none of the supplied complete-statistic formats. The context_class=observational entry describes Study 1 and is compatible with core=yes through Study 3. Participant n_analyzed fields retain the paper's reported completed study samples: writers in Studies 1-3, behavioral reader subjects in Studies 4-5. These are not initial randomized totals. Distinct-writer counts in restricted outcome analyses remain unknown; none is imputed. Within-person arm Ns must not be summed. Separate rating panels are described but never added to the writer counts. Study 1 is explicitly the main study, with 1,501 writers; the qualifying randomized Study 3 has 769 writers (p. 11). Study 1 paragraph/rating pool totals of 10,008 and 2,903,596 (p. 3, Figure 1) and Study 3's 5,016 paragraphs (p. 12, Section 4.6) are not final per-outcome Ns, so n_units remains null. The 15-outcome cap retains the five writing attributes in each of Studies 1 and 3 plus Study 1 dispersion of confidence, originality, clarity, informativeness and relevance. The other 24 Study 1 attribute-specific dispersion analyses are not entered separately; the 22-of-29 family result is retained without assigning unreported individual effects. Changes in inferred writer traits/demographics, political extremity, preferences, tolerance, editing rates, model prediction error, reader trust and reader persuasion are not entered as creativity outcomes. Formality is coded other and is not interpreted as greater creativity. The common one-line finding was substantively identical in both raw forms; it is retained with explicit fixed-order versus randomized attribution. No after_ai creative task is reported: unaided writing came first, and later ratings concern already-produced text. Missing supplement-based estimates and counts are shared extraction gaps in open_questions, not unresolved A-versus-B disagreements.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "studies[S1].design_class",
+    "a": "quasi_people",
+    "b": "online_rct",
+    "resolved": "quasi_people",
+    "quote": "after writers had composed their own paragraph and edited the AI-generated version to their satisfaction",
+    "locator": "p. 4, Section 2.1; p. 3, Figure 1; codebook Sections 3-4 (classify the recorded contrast)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].assignment.randomized",
+    "a": "no",
+    "b": "yes",
+    "resolved": "no",
+    "quote": "An AI model (randomly assigned) then generated another opinion paragraph based on one of these responses from the writer (also randomly assigned).",
+    "locator": "p. 3, Figure 1A; p. 12, Section 4.4 (model/input assignment, after own paragraph)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].assignment.unit",
+    "a": "individual",
+    "b": "other",
+    "resolved": "individual",
+    "quote": "between human-written and AI-generated paragraphs (with human edits) from the same writers.",
+    "locator": "p. 3, Figure 1C; p. 12, Section 4.4; unit here identifies the repeated writer in the recorded fixed-order contrast",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S2].task.description",
+    "a": "Write political opinion paragraphs on three propositions sampled from a pool of 100. Writers first give a 0-100 stance rating, at least two explanatory bullet points, and their own paragraph of at least 100 words; they then edit an AI-generated paragraph until it reflects their opinion. AI paragraphs based on stance/bullets are requested at 100-150 words; paragraph-input conditions rewrite or improve the existing paragraph without changing its length (pp. 3, 11-12, Sections 2, 4.2, 4.4-4.5).",
+    "b": "Political opinion writing: for each of 3 propositions sampled from 100, provide a 0-100 stance rating, at least 2 bullet-point reasons and an unaided paragraph of at least 100 words, then review and optionally edit an AI-generated paragraph. AI prompts request 100-150 words from stance/bullet inputs or rewriting/improvement without changing length from paragraph inputs (p. 3, Figure 1 and Results; p. 11, section 4.2; p. 12, sections 4.4-4.5). These are open-ended paragraphs assessed for originality and quality, not a divergent-thinking test.",
+    "resolved": "Write political opinion paragraphs on three propositions sampled from a pool of 100. Writers first give a 0-100 stance rating, at least two explanatory bullet points, and their own paragraph of at least 100 words; they then edit an AI-generated paragraph until it reflects their opinion. AI paragraphs based on stance/bullets are requested at 100-150 words; paragraph-input conditions rewrite or improve the existing paragraph without changing its length (pp. 3, 11-12, Sections 2, 4.2, 4.4-4.5). Study 2 did not collect third-party ratings of originality or quality; its outcomes concern writer editing and preference (p. 12, Section 4.6; p. 13, Section 4.9).",
+    "quote": "We did not collect third-party ratings for Study 2, i.e. the writer-focused disclaimer study.",
+    "locator": "p. 12, Section 4.6; p. 13, Section 4.9; B incorrectly carries the originality/quality-assessment statement into Study 2",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S3].ai_tool.role",
+    "a": "other",
+    "b": "ideas_supplied",
+    "resolved": "other",
+    "quote": "edit the AI-written paragraph until you feel that it reflects your opinion about the [proposition]",
+    "locator": "p. 12, Sections 4.4-4.5; p. 14, Section 4.10; full-paragraph drafting and revision, as described in ai_tool.how_used",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S4].design_class",
+    "a": "other",
+    "b": "online_rct",
+    "resolved": "online_rct",
+    "quote": "each Study 4 reader was assigned one paragraph from each cell in random order in a within-subjects design",
+    "locator": "p. 15, Section 4.11; p. 11, Section 4.1 (online Prolific sample); this is randomized reader exposure, not qualifying writing assistance",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S4].arms[AI-assisted, low distortion].ai",
+    "a": "generative_ai",
+    "b": "none",
+    "resolved": "none",
+    "quote": "In every round of this Game, readers were shown a paragraph which they were told was written by another study participant (the “author”).",
+    "locator": "pp. 14-15, Section 4.11; ai codes the assistance available to the current reader participant, not the authorship of the stimulus",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S4].arms[AI-assisted, high distortion].ai",
+    "a": "generative_ai",
+    "b": "none",
+    "resolved": "none",
+    "quote": "In every round of this Game, readers were shown a paragraph which they were told was written by another study participant (the “author”).",
+    "locator": "pp. 14-15, Section 4.11; ai codes the assistance available to the current reader participant, not the authorship of the stimulus",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S5].design_class",
+    "a": "other",
+    "b": "online_rct",
+    "resolved": "online_rct",
+    "quote": "each reader was assigned one paragraph from each cell plus control in random order in a within-subjects design",
+    "locator": "p. 15, Section 4.12; p. 11, Section 4.1 (online Prolific sample); this is randomized reader exposure, not qualifying writing assistance",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S5].arms[AI-assisted, low distortion].ai",
+    "a": "generative_ai",
+    "b": "none",
+    "resolved": "none",
+    "quote": "Four paragraphs were sampled from the same 800 paragraphs selected for Study 4 described above",
+    "locator": "p. 15, Section 4.12; ai codes the assistance available to the current reader participant, not the authorship of the stimulus",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S5].arms[AI-assisted, high distortion].ai",
+    "a": "generative_ai",
+    "b": "none",
+    "resolved": "none",
+    "quote": "Four paragraphs were sampled from the same 800 paragraphs selected for Study 4 described above",
+    "locator": "p. 15, Section 4.12; ai codes the assistance available to the current reader participant, not the authorship of the stimulus",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S5].arms[Off-topic control].ai",
+    "a": "other_aid",
+    "b": "none",
+    "resolved": "none",
+    "quote": "One paragraph corresponded to a control condition and showed off-topic informational writing (e.g. about coral reefs, lighthouses).",
+    "locator": "p. 15, Section 4.12; this is a reading stimulus, not an aid for producing writing; source authorship is not specified",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].outcomes[S1-O2].contrasts[0].statistics_available",
+    "a": [
+     "figure_only",
+     "p_value_only"
+    ],
+    "b": [
+     "p_value_only"
+    ],
+    "resolved": [
+     "p_value_only"
+    ],
+    "quote": "+12.5 pts more original ***",
+    "locator": "p. 5, Figure 2B and significance key in caption (figure label checked directly; numeric point estimate is printed)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].outcomes[S1-O6].contrasts[0].statistics_available",
+    "a": [
+     "figure_only",
+     "p_value_only"
+    ],
+    "b": [
+     "p_value_only"
+    ],
+    "resolved": [
+     "p_value_only"
+    ],
+    "quote": "+28.6 pts more formal ***",
+    "locator": "p. 5, Figure 2B and significance key in caption (figure label checked directly; numeric point estimate is printed)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S3].outcomes[S3-O3].contrasts[0].statistics_available",
+    "a": [
+     "figure_only",
+     "p_value_only"
+    ],
+    "b": [
+     "p_value_only"
+    ],
+    "resolved": [
+     "p_value_only"
+    ],
+    "quote": "−12.5%***",
+    "locator": "p. 8, Figure 4D, Informativeness row; significance key in caption (figure label checked directly; numeric point estimate is printed)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S3].outcomes[S3-O4].contrasts[0].statistics_available",
+    "a": [
+     "figure_only",
+     "p_value_only"
+    ],
+    "b": [
+     "p_value_only"
+    ],
+    "resolved": [
+     "p_value_only"
+    ],
+    "quote": "−17.7%***",
+    "locator": "p. 8, Figure 4D, Relevance row; significance key in caption (figure label checked directly; numeric point estimate is printed)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S3].outcomes[S3-O5].contrasts[0].statistics_available",
+    "a": [
+     "figure_only",
+     "p_value_only"
+    ],
+    "b": [
+     "p_value_only"
+    ],
+    "resolved": [
+     "p_value_only"
+    ],
+    "quote": "−4.5%*",
+    "locator": "p. 8, Figure 4D, Formality row; significance key in caption (figure label checked directly; numeric point estimate is printed)",
+    "status": "resolved"
+   },
+   {
+    "field": "eligibility.context_class",
+    "a": "observational",
+    "b": "none",
+    "resolved": "observational",
+    "quote": "after writers had composed their own paragraph and edited the AI-generated version to their satisfaction",
+    "locator": "p. 4, Section 2.1; p. 3, Figure 1; codebook Section 3; context classification applies to Study 1 and coexists with core Study 3",
+    "status": "resolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "eligibility.criterion_1_random_assignment_of_ai; studies[S3].assignment",
+    "value": {
+     "criterion": "met",
+     "randomized": "yes",
+     "unit": "within_person_order",
+     "structure": "within"
+    },
+    "quote": "Assignment was such that each writer, across the three propositions they were assigned, experienced all three conditions in random order, in a within-subjects design.",
+    "locator": "p. 13, Section 4.10",
+    "confirmed": true
+   },
+   {
+    "field": "studies[].participants.n_analyzed; eligibility.criterion_2_at_least_50_people",
+    "value": {
+     "S1_writers": 1501,
+     "S2_writers": 669,
+     "S3_writers": 769,
+     "S4_reader_subjects": 802,
+     "S5_reader_subjects": 7996,
+     "S1_auxiliary_raters": 10017,
+     "S3_auxiliary_raters": 2543,
+     "criterion": "met",
+     "count_basis": "Reported completed study samples; initial assignment counts and exact distinct-writer counts in restricted output analyses are not reported."
+    },
+    "quote": "Study 1 was completed by 1,501 writers and 10,017 readers, Study 2 by 669 writers, Study 3 by 769 writers and 2,543 readers, Study 4 by 802 readers, and Study 5 by 7,996 readers.",
+    "locator": "p. 11, Section 4.1; p. 7, Section 2.5 and p. 13, Section 4.10 confirm the Study 3 writer sample",
+    "confirmed": true
+   },
+   {
+    "field": "eligibility.criterion_3_outcome_scored_on_output; studies[S1,S3].outcomes[].scored_on_output",
+    "value": {
+     "criterion": "met",
+     "scored_on_output": true,
+     "studies": [
+      "S1",
+      "S3"
+     ],
+     "method": "Blinded readers rated the produced paragraphs; originality is identified in Figure 2B."
+    },
+    "quote": "readers were each randomly assigned ten paragraphs, which they rated across 29 dimensions of reader perception",
+    "locator": "p. 12, Section 4.6; p. 5, Figure 2B; p. 14, Section 4.10",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1,S3].outcomes[].ai_available_when_produced",
+    "value": "yes: generated AI paragraphs were available to writers during editing of the scored assisted output.",
+    "quote": "In Studies 1-3, writers were asked to “edit the AI-written paragraph until you feel that it reflects your opinion about the [proposition]”.",
+    "locator": "p. 12, Section 4.5; p. 3, Figure 1A",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1,S3].outcomes[].timing; absence of after_ai outputs",
+    "value": {
+     "timing": "immediate",
+     "after_ai_outcomes": false
+    },
+    "quote": "Next, writers were asked to edit the AI paragraph until it reflected their opinion.",
+    "locator": "p. 3, Figure 1A; pp. 12-14, Sections 4.4-4.10; unaided writing precedes AI, and later reader evaluation uses these same outputs",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes[originality,clarity,informativeness,relevance,formality].construct,question,measure,unit and reported estimates",
+    "value": {
+     "originality": "novelty",
+     "clarity": "usefulness",
+     "informativeness": "usefulness",
+     "relevance": "usefulness",
+     "formality": "other",
+     "question": "with_ai",
+     "measure": "human_raters",
+     "unit": "rating",
+     "AME_points": {
+      "originality": 12.5,
+      "clarity": 9.0,
+      "informativeness": 22.7,
+      "relevance": 8.3,
+      "formality": 28.6
+     }
+    },
+    "quote": "+8.3 pts more relevant ***\n+9.0 pts clearer ***\n+28.6 pts more formal ***\n+22.7 pts more informative ***\n+12.5 pts more original ***",
+    "locator": "p. 5, Figure 2B (labels checked visually); pp. 12-13, Sections 4.6-4.7 for the rating-level analysis",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes[originality,clarity,informativeness,relevance,formality].contrasts[].reported significance",
+    "value": "p<.001 after Bonferroni correction across all 29 attributes; no numerical outcome-specific SEs or CIs are printed.",
+    "quote": "*** indicates significance at p<.001 after Bonferroni correction across all 29 rating attributes.",
+    "locator": "p. 5, Figure 2 caption",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].participants.exclusions",
+    "value": {
+     "excluded_writer_proposition_cases": 708,
+     "total_cases": 4503,
+     "percent": 15.7,
+     "excluded_people": null
+    },
+    "quote": "cases where writers strictly dispreferred the AI-generated paragraphs (708 of 4,503 cases, 15.7%) were excluded.",
+    "locator": "p. 4, Section 2.2; these are output-pair cases, not a reported number of excluded writers",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1,S3].outcomes[writing ratings].measure_detail and analysis unit",
+    "value": {
+     "unit": "rating",
+     "reader_random_effects": true,
+     "writer_random_effects": false,
+     "proposition_random_effects": false
+    },
+    "quote": "models with additional writer and proposition random effects did not converge reliably.",
+    "locator": "pp. 12-13, Section 4.7; p. 14, Section 4.10; reader-only effects do not establish writer-level precision",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes[S1-O1].contrasts[0].reported",
+    "value": {
+     "human_SD": 24.1,
+     "AI_SD": 20.5,
+     "confidence_specific_p_value": null
+    },
+    "quote": "perceived writer confidence varied considerably across human-written paragraphs but converged toward a narrower, more confident range for AI paragraphs (24.1 vs 20.5 SD).",
+    "locator": "p. 4, Section 2.2",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes[dispersion].construct,question,measure and family-level result",
+    "value": {
+     "construct": "diversity",
+     "question": "across_people",
+     "measure": "human_raters",
+     "attributes_with_reduced_dispersion": 22,
+     "attributes_tested": 29,
+     "aggregation_and_individual_tests": "not_stated in the main PDF"
+    },
+    "quote": "significant reduction in standard deviation [scale attributes] or entropy [categorical attributes] for 22 of 29 rating attributes at p<.001 after Bonferroni correction; see SI:5.9",
+    "locator": "p. 4, Section 2.2; p. 5, Figure 2 identifies measured attributes; exact dispersion implementation is in the absent SI",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].assignment.randomized,unit,structure",
+    "value": {
+     "randomized": "yes",
+     "unit": "individual",
+     "structure": "mixed"
+    },
+    "quote": "The content of the disclaimer was randomly assigned at the writer level across three disclaimer conditions and a no-disclaimer control.",
+    "locator": "p. 13, Section 4.9; p. 12, Section 4.4 for within-writer model/input factors",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].arms[Acceptable-distortions disclaimer].n_analyzed",
+    "value": 160,
+    "quote": "The first disclaimer (N=160 writers)",
+    "locator": "p. 13, Section 4.9; completed sample context p. 11, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].arms[Unacceptable-distortions disclaimer].n_analyzed",
+    "value": 154,
+    "quote": "The second disclaimer (N=154)",
+    "locator": "p. 13, Section 4.9; completed sample context p. 11, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].arms[Both-types disclaimer].n_analyzed",
+    "value": 185,
+    "quote": "The third disclaimer (N=185) highlighted all four of these observed AI distortions.",
+    "locator": "p. 13, Section 4.9; no-disclaimer count is not printed and remains null",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].outcomes",
+    "value": [],
+    "quote": "We did not collect third-party ratings for Study 2, i.e. the writer-focused disclaimer study.",
+    "locator": "p. 12, Section 4.6; p. 13, Section 4.9 reports preferences/editing",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S3].ai_tool.how_used and task",
+    "value": "Only writer bullet points were passed to AI in Study 3; writers could revise the resulting paragraph.",
+    "quote": "In Study 3, we used only bullet point inputs, as pre-registered",
+    "locator": "p. 12, Sections 4.4-4.5; p. 14, Section 4.10",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S3].outcomes[].primary",
+    "value": "secondary: the retained writing-quality attributes are non-targeted outcomes of the stance-polarity intervention.",
+    "quote": "While Reranking succeeded in reducing distortion in writer stance polarity, it also attenuated a range of non-targeted distortions",
+    "locator": "p. 8, Figure 4D caption; pp. 7 and 13, Sections 2.5 and 4.10 specify the targeted distortion",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S3].outcomes[S3-O2].contrasts[0].reported",
+    "value": "-26.9% attenuation of the AI-induced clarity increase; p<.001; not an arm-mean difference or a standardized effect.",
+    "quote": "such as appearing more confident, clearer, and more knowledgeable (-27.3%, -26.9%, and -16.7% reduction in distortion from Reranking vs No Intervention, all p<.001).",
+    "locator": "p. 8, Section 2.5 continuation and Figure 4D",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S3].outcomes[S3-O1].contrasts; complete mitigation statistics",
+    "value": "Originality was measured but no identifiable intervention-specific originality estimate is printed; contrasts remain empty.",
+    "quote": "we fit the same generalised linear mixed-effects regressions as in Study 1 with an intervention condition regressor and reader random effects to each of the 29 rating attributes.",
+    "locator": "p. 14, Section 4.10; p. 5, Figure 2B identifies originality; p. 8, Figure 4D lacks a labeled originality estimate",
+    "confirmed": true
+   },
+   {
+    "field": "studies[].assignment.preregistered",
+    "value": {
+     "value": "yes",
+     "scope": "As stated by the paper; registrations could not be independently inspected."
+    },
+    "quote": "All studies were preregistered (1: osf.io/6exf2, 2 & 3: osf.io/sf7rg, 4: osf.io/38sg7, 5: osf.io/e48g2).",
+    "locator": "p. 11, Methods; deviations described on pp. 12-13",
+    "confirmed": true
+   },
+   {
+    "field": "source.version, source.pages and source.supplement",
+    "value": {
+     "version": "arXiv:2604.22503v2, 29 June 2026",
+     "pages": 20,
+     "supplement_exists": "yes",
+     "in_this_pdf": false
+    },
+    "quote": "All code, data and supplementary information are available at: github.com/paul-rottger/ai-distortion",
+    "locator": "p. 1, arXiv stamp; p. 16, Data and Code Availability Statement; complete saved PDF, ending in references on p. 20",
+    "confirmed": true
+   },
+   {
+    "field": "sample_overlap",
+    "value": {
+     "Study3_readers_previously_in_Study1": 1469,
+     "writer_overlap_across_studies": false,
+     "other_paper_overlap": "not_stated",
+     "Study4_Study5_texts": "reuse Study 1 paragraphs with new readers"
+    },
+    "quote": "1,469 readers in Study 3 had previously participated as readers in Study 1 approximately five months earlier.",
+    "locator": "p. 11, Section 4.1; pp. 14-15, Sections 4.11-4.12 for source-text reuse",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement",
+    "value": {
+     "any": false,
+     "scope": "No corporate affiliation, funding or research role disclosed; use of commercial models/APIs alone is not company involvement."
+    },
+    "quote": "This work was funded under the UK AI Security Institute’s Systemic AI Safety Grants programme.",
+    "locator": "p. 1, affiliations; p. 16, Funding Statement, Author Contributions and Competing Interests",
+    "confirmed": true
+   }
+  ],
+  "n_differences": 18,
+  "n_unresolved": 0
+ },
+ "final": {
+  "core": "yes",
+  "criteria": {
+   "random_assignment_of_ai": "met",
+   "at_least_50_people": "met",
+   "outcome_scored_on_output": "met"
+  },
+  "challenge_resolution": [
+   {
+    "lens": "outcome",
+    "problem": "S1: outcomes[S1-O1,S1-O7,S1-O8,S1-O9,S1-O10].unit is recorded as set although the analysis unit is not specified.",
+    "action": "corrected",
+    "what_changed": "Changed unit from set to null for all five retained dispersion outcomes and removed the notes justifying set as a distributional summary. The PDF reports SDs/entropies and refers details to SI:5.9, but does not establish the observational or resampling unit. The codebook defines unit as an observation in the analysis, so a condition-level summary is insufficient. The actual unit remains an extraction question for the supplement; Study 3 eligibility is unaffected.",
+    "quote": "perceived writer confidence varied considerably across human-written paragraphs but converged toward a narrower, more confident range for AI paragraphs (24.1 vs 20.5 SD).",
+    "locator": "PDF p. 4, Section 2.2, homogenization paragraph and SI:5.9 reference; pp. 12-13, Section 4.7; creativity-codebook.md, Section 6, Unit; form-spec.md, Field notes, unit."
+   },
+   {
+    "lens": "outcome",
+    "problem": "S1: formality dispersion and other attribute-specific dispersion outcomes, including categorical entropy, are omitted from the outcome array.",
+    "action": "rejected",
+    "what_changed": "No outcome rows added. The paper confirms dispersion analyses across the reader-rated attributes, but the current specification limits this form to 15 outcomes and requires disclosure of omissions. The form already contains 15 outcomes and its notes explicitly disclose the other 24 Study 1 dispersion analyses. This is compliant disclosed coverage, not a missing required row. The family-level result does not identify the individual directions or effects of omitted attributes, which remain unavailable without SI:5.9.",
+    "quote": "If a paper has more than 15 such outcomes, list the main 15, primary ones first, and say in `notes` what you left out.",
+    "locator": "form-spec.md, Rules, item 7; PDF p. 4, Section 2.2, SD/entropy analysis; p. 5, Figure 2A-D; p. 12, Section 4.7; existing form notes, 15-outcome cap."
+   }
+  ],
+  "open_items": [
+   {
+    "item": "Study 3 originality estimates, full configuration contrasts and numerical SEs/CIs remain unavailable; inspect SI:8.4 (p. 14, Section 4.10). This limits effect extraction, not criterion 3: the main paper already establishes output scoring.",
+    "affects_eligibility": false,
+    "settled_by": "supplement"
+   },
+   {
+    "item": "Study 1 dispersion analysis unit, rating aggregation, repeated-output dependence, uncertainty methods and attribute-specific SD/entropy results, including omitted attributes, require SI:5.9 (p. 4, Section 2.2). These are contextual outcome-extraction gaps; Study 3 independently meets the output criterion.",
+    "affects_eligibility": false,
+    "settled_by": "supplement"
+   },
+   {
+    "item": "Initial assignment totals and participant attrition require SI:1.4 (p. 11, Section 4.1). They do not leave criterion 2 unresolved: the reported analyzed Study 3 sample comprises 769 writers, with completer status explicit (pp. 11 and 13, Sections 4.1 and 4.10).",
+    "affects_eligibility": false,
+    "settled_by": "supplement"
+   },
+   {
+    "item": "Exact distinct-writer counts by outcome and arm after output-based restrictions are not printed (p. 4, Section 2.2; pp. 12-14, Sections 4.6-4.10). Posted data linking included ratings and paragraphs to writer IDs would settle them. These counts are needed for extraction; the reported Study 3 study-level sample already establishes criterion 2.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   },
+   {
+    "item": "Uncertainty suitable for pooling must respect writer-level assignment and repeated outputs; reader-perception regressions use reader random effects only (pp. 12-14, Sections 4.7 and 4.10). Reanalysis of posted data with writer-linked observations would settle this. It affects pooling, not any of the three screening criteria.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   },
+   {
+    "item": "Study 1 randomized AI-model/input contrasts may be extractable from SI:5.7-5.8 (p. 13, Section 4.7). This could add eligible configuration contrasts but is not needed for criterion 1, already met by Study 3; the recorded pooled AI-versus-unaided comparison remains nonrandomized.",
+    "affects_eligibility": false,
+    "settled_by": "supplement"
+   }
+  ],
+  "n_corrected": 1,
+  "n_rejected": 1,
+  "n_open": 0
+ }
+}

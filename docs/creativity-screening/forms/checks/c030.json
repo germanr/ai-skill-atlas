@@ -1,0 +1,88 @@
+{
+  "cid": "c030",
+  "agrees": false,
+  "has_randomized_people_study": false,
+  "corrections": [
+    {
+      "field": "one_line_finding",
+      "form_value": "Under the primary semantic kernel, all nine model-task combinations (...) were less diverse than matched unaided human baselines, with human-relative diversity ratios from 0.179 (...) to 0.672 (...) and every 95% bootstrap upper bound below 1",
+      "source_says": "The result that all nine fall below parity, with every upper bound below 1, holds for the neutral main protocol (neutral prompt, T = 1.0), which is what Table 6 reports. The sentence should say so. Under persona mixing, Claude Sonnet 4.5 on slogans reaches rho = 0.960 with a confidence interval that crosses one (p. 8). The numbers 0.179 and 0.672 are correct.",
+      "quote": "All nine neutral model-task combinations fall below this boundary, and in every case, the upper 95% bootstrap confidence bound is also below one.",
+      "locator": "pp. 6-7, Section 5.1; p. 8, Section 5.5"
+    },
+    {
+      "field": "studies[S2].participants.n_analyzed and counts_are",
+      "form_value": "null and \"\"",
+      "source_says": "109 and 'people'. The paper gives the number of people whose ideas are analyzed (n_k^H = 109 for each object). The form records the parallel count for S3 (95 people).",
+      "quote": "The retained human baseline contains 109 participants, 5 object conditions, and 3,047 unaided ideas (see Table 2).",
+      "locator": "p. 13, Appendix B.2, Table 2"
+    },
+    {
+      "field": "studies[S2].outcomes[S2-O2].contrasts[0].locator",
+      "form_value": "pp. 20-21, Appendix H.3, Figure 11; p. 8, Section 5.4",
+      "source_says": "Figure 11 is on p. 23, not pp. 20-21. The rho values and CIs are printed in the Appendix H.3 text on pp. 20-21. Suggested locator: pp. 20-21, Appendix H.3; p. 23, Figure 11; p. 8, Section 5.4.",
+      "quote": "Figure 11: AUT crowding under semantic and concept-bucket kernels.",
+      "locator": "p. 23, Figure 11"
+    },
+    {
+      "field": "studies[].outcomes[].diversity_detail (all six diversity outcomes)",
+      "form_value": "all strings empty",
+      "source_says": "The form spec asks for this block on every diversity outcome, and the paper states each part. metric: mean off-diagonal pairwise crowding kappa under the kernel, summarized as rho = (1 - kappa_A)/(1 - kappa_H) and Delta = max{0, kappa_A - kappa_H}. embedding_model: sentence-transformers/all-mpnet-base-v2 with normalized embeddings (semantic and plot-synopsis kernels, and retrieval in the concept-bucket pipeline; none for the Jaccard kernels). computed_over: all pairs within each bootstrap draw of b = min{n_H, n_A} human units and model generations, separately for humans and for the model, within each task condition (one response per sampled participant for AUT and slogans), then equal-weight averages across conditions. uncertainty: 95% percentile bootstrap intervals for rho.",
+      "quote": "Each bootstrap replicate samples b_{m,k} = min{n^H_k, n^A_{m,k}} human units and model generations with replacement, then computes the mean off-diagonal pairwise crowding",
+      "locator": "p. 4, Eqs. 1-3; p. 6, Section 4, Eqs. 12-13; p. 16, Appendix D"
+    },
+    {
+      "field": "eligibility.criterion_2_at_least_50_people",
+      "form_value": "not_met",
+      "source_says": "met, by the form spec's count of people analyzed: 109 people in S2 and 95 in S3. Nobody is in an AI arm, but that is the criterion 1 failure, so core stays 'no'.",
+      "quote": "For slogans, we conducted an IRB-approved study with 95 human contributors who generated 659 creative marketing slogans for a new smartphone, of which 650 are unique.",
+      "locator": "p. 5, Section 4 (quote); p. 13, Appendix B.2, Table 2; p. 14, Table 4"
+    },
+    {
+      "field": "eligibility.criterion_3_outcome_scored_on_output",
+      "form_value": "not_met",
+      "source_says": "met. The outcome is diversity computed on outputs (pairwise crowding of human outputs and of model outputs), not a self-report. The form itself sets scored_on_output to true for all six outcomes. Core stays 'no' because criterion 1 fails.",
+      "quote": "pairs of unaided human outputs estimate κ^H_k, and pairs of model-only generations estimate κ^A_{m,k}.",
+      "locator": "p. 4, Section 3.1"
+    },
+    {
+      "field": "sample_overlap.shares_participants_with",
+      "form_value": "\"\"",
+      "source_says": "S2's 109 participants and their ideas come from the socialmuse dataset of ref. [10]: Baten, Bangash, Veera, Ghoshal, and Hoque, 'AI can enhance creativity in social networks,' arXiv:2410.15264 (2024). S1's stories come from the public WritingPrompts corpus, ref. [21] (Fan, Lewis, and Dauphin 2018). Ref. [10] is not in candidates.json. Its arXiv abstract (v3) describes a peer-recommendation engine, which the codebook places outside the scope (recommender systems).",
+      "quote": "The Alternative Uses Task (AUT) baseline comes from the socialmuse dataset [10].",
+      "locator": "p. 13, Appendix B.2; p. 12, Appendix B.1; p. 26, ref. [10]; p. 27, ref. [21]"
+    },
+    {
+      "field": "studies[S1,S2,S3].assignment.randomized and preregistered",
+      "form_value": "\"\" (blank in all three studies)",
+      "source_says": "randomized should be 'no' (allowed values: yes | no | not_stated). No person was assigned to AI or to any other condition. preregistered should be 'not_stated'. The text never mentions preregistration.",
+      "quote": "We introduce a human-relative framework for benchmarking AI-induced human diversity collapse without requiring human–AI interaction data",
+      "locator": "p. 1, Abstract; p. 13, Appendix B.3"
+    },
+    {
+      "field": "studies[].outcomes S1-O2, S2-O2, S3-O2",
+      "form_value": "three separate secondary outcomes (plot-synopsis, concept-bucket, and lexical-template kernels)",
+      "source_says": "The paper presents these kernels as robustness checks of the one human-relative diversity outcome. Form-spec rule 7 says to treat robustness variants as a single outcome and mention them in measure_detail (here, of S1-O1, S2-O1, and S3-O1). Their printed numbers are correct (see confirmed).",
+      "quote": "We next test whether the below-parity conclusion persists under task-specific crowding kernels.",
+      "locator": "p. 8, Section 5.4 ('Robustness across narrative, lexical, and concept-level kernels'); p. 19, Appendix H ('Kernel Robustness')"
+    }
+  ],
+  "confirmed": [
+    "No study randomizes people to generative AI. The paper compares model-only generations from three LLMs with unaided human baselines and uses no human-AI interaction data. The text never mentions random assignment or preregistration (p. 1, Abstract; pp. 5-6, Section 4; full-text search).",
+    "design_class ai_vs_human for S1-S3 and context_class ai_vs_human fit codebook section 3: AI output is compared with human output, and no person receives AI help. core 'no' and criterion 1 'not_met' are right.",
+    "source.version is right: arXiv:2605.06540v1 [cs.AI], 7 May 2026, footer 'Preprint.' The arXiv API lists v1 as the only version on 2026-10-05 (p. 1).",
+    "Title, authors (Nafis Saami Azad, Raiyan Abdul Baten), and 29 pages match. Appendices A-I fill pp. 11-25, and their contents match supplement.holds. The paper gives no data or code URL and no funding or acknowledgment statement, so company_involvement false and the empty data_and_code fit.",
+    "S1: 87 WritingPrompts stories, 35 + 32 + 20 for prompts 10491, 93742, and 93855. The quote is verbatim (p. 5; p. 13, Table 1). A null people count is defensible because the paper counts stories per prompt and does not say whether authors repeat across prompts.",
+    "S2: 109 participants and 3,047 unaided ideas. Per-object ideas 604 + 603 + 612 + 613 + 615 = 3,047. The quote is verbatim (p. 5; p. 13, Table 2).",
+    "S3: 95 U.S.-based Prolific participants, 659 slogans, 650 unique, 6.94 per participant, 3-minute task. The age, gender, education, and Hispanic-origin rows of Table 3 each sum to 95. The quote is verbatim (pp. 13-14, Tables 3-4).",
+    "Model side: GPT-5.4, Claude Sonnet 4.5, and Gemini 2.5 Flash, neutral prompt at T = 1.0, 50 generations per task condition, 32 persona profiles, 10 generations per non-default temperature (p. 6; pp. 14-15, Table 5).",
+    "Every kappa_H, kappa_A, Delta, rho, and 95% CI in the S1-O1, S2-O1, and S3-O1 reported strings matches Table 6 (p. 18). The p. 7 example values (rho 0.179, Delta 0.331) match too.",
+    "S1-O2 values (0.372 to 0.509, 0.485 to 0.594, 0.446 to 0.519) match p. 8, Section 5.4 and pp. 19-20, Appendix H.1. CIs appear only in Figure 6 (p. 20).",
+    "S2-O2 values (0.866 [0.833, 0.894], 0.715 [0.665, 0.759], 0.938 [0.920, 0.953]) match pp. 20-21, Appendix H.3. The MuseScorer settings (llama3.3:70b-Instruct, all-mpnet-base-v2, K_c = 10) match p. 17, Appendix D.2.",
+    "S3-O2 values (GPT-5.4 rho 0.368 under non-stopword Jaccard and 0.305 under character-trigram Jaccard; Claude and Gemini below one, figure only) match p. 8, Section 5.4 and p. 21, Figure 8.",
+    "notes: Table 9 prints main-protocol rho values that differ from Table 6 in exactly the four listed cells (0.526 vs 0.525, 0.673 vs 0.672, 0.660 vs 0.662, 0.486 vs 0.485). Persona mixing raises rho in eight of nine cells (p. 8; p. 23, Table 9).",
+    "one_line_finding numbers: rho ranges from 0.179 (GPT-5.4, slogans) to 0.672 (Claude Sonnet 4.5, slogans), and the highest upper bound is 0.746, so every upper bound is below 1 (p. 18, Table 6).",
+    "Not a synthesis: the synthesis block correctly keeps its defaults."
+  ],
+  "summary": "The classification holds: c030 compares model-only outputs of three LLMs with unaided human baselines (87 stories, 109 AUT participants, 95 Prolific slogan writers), no one was randomized to AI, and every rho, kappa, Delta, and CI in the reported strings matches the PDF. The corrections are a missing 'neutral prompt, T = 1.0' qualifier in the one-line finding, the unrecorded 109 people in S2, a wrong page for Figure 11, empty diversity_detail blocks, criteria 2 and 3 coded not_met against the source, blank sample_overlap and assignment fields, and kernel robustness variants split into separate outcomes contrary to rule 7."
+}

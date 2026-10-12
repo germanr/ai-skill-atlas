@@ -1,0 +1,81 @@
+{
+ "cid": "c319",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_analyzed",
+   "form_value": "169",
+   "source_says": "The paper separately reports 97 HA participants and 72 HH participants, but does not print an aggregate analyzed-person count. The form transparently identifies 169 as their sum, and that arithmetic is consistent with the non-overlapping cohorts; nevertheless, form-spec.md Rule 1 requires null for a number the paper does not give. Set this aggregate field to null and retain the reported arm counts and the explanation of non-overlap. The at-least-50-people criterion remains met.",
+   "quote": "The HH condition used the same turn-taking structure as the HA condition and included 72 participants",
+   "locator": "PDF p. 3, §3.1 Human–LLM and Human–Human; p. 12, Appendix A.1 (non-overlap); form-spec.md, Rule 1."
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Record the documented removal of incomplete sessions, empty turns, and malformed outputs before analysis. Appendix A.1 also says that stories with missing turns contributed only valid adjacent exchange pairs and that prior HA participants were excluded from HH recruitment. Numbers of people removed and initial recruitment counts are not reported; do not invent attrition counts.",
+   "quote": "We removed incomplete sessions, empty turns, and malformed outputs before analysis.",
+   "locator": "PDF p. 3, §3.2 and Table 1 caption; p. 12, Appendix A.1."
+  },
+  {
+   "field": "studies[0].participants.country",
+   "form_value": "",
+   "source_says": "Set country to Denmark; the recruitment country is explicitly stated.",
+   "quote": "a university context in Denmark.",
+   "locator": "PDF p. 10, Ethics Statement, final sentence."
+  },
+  {
+   "field": "sample_overlap",
+   "form_value": "{\"shares_participants_with\": \"\", \"quote\": \"\", \"locator\": \"\"}",
+   "source_says": "Populate the sample-overlap record: the HA data are reused from Fundal and Bizzoni (2026), Directional alignment and narrative agency in human-llm co-writing, arXiv:2604.23676. The HH cohort is newly recruited and excludes the HA participants. Although the paper-design prose already acknowledges reuse, the structured sample_overlap fields are empty.",
+   "quote": "The Human–LLM data comes from Fundal and Bizzoni (2026).",
+   "locator": "PDF p. 3, §3.1 Human–LLM; p. 11, Fundal and Bizzoni reference; p. 12, Appendix A.1."
+  },
+  {
+   "field": "data_and_code",
+   "form_value": "{\"data_url\": \"\", \"code_url\": \"\"}",
+   "source_says": "Both data_url and code_url should record the repository printed in the document: https://github.com/Halfidaldal/penpal-emnlp-acl. Appendix A.2 says it contains the analysis scripts, prompts, and final analytic dataset. This verifies the reported link, not the contents or current availability of the repository.",
+   "quote": "Datasets and analysis code:",
+   "locator": "PDF p. 3, footnote 1; p. 12, Appendix A.2, final paragraph."
+  },
+  {
+   "field": "studies[0].outcomes[1].question",
+   "form_value": "with_ai",
+   "source_says": "Use none for this particular contrast. It compares human-authored turns with model-authored turns inside HA stories, not human output under different assistance conditions. The numerical result can remain as an author-role comparison, with that limitation explicit; it is not an estimate of the effect of AI assistance on people. This does not change the observational classification of the separate HA-versus-HH comparisons.",
+   "quote": "Since agent identity is meaningful in the HA condition",
+   "locator": "PDF p. 6, §4.4, Within HA analysis; p. 7, §5.3, Humans contribute higher novelty and resonance in HA stories; form-spec.md, question field note."
+  },
+  {
+   "field": "studies[0].outcomes (omitted output-scored outcomes)",
+   "form_value": "[\"Novelty asymmetry between co-writers: absolute difference between their mean turn scores within a story\", \"Contextual novelty of human versus LLM turns within Human–LLM stories\", \"Resonance asymmetry between co-writers: absolute difference between their mean narrative-influence scores within a story\"]",
+   "source_says": "The extraction omits relevant narrative-influence and local semantic-distance results. Transience asymmetry is HA mean 0.484, 95% CI [0.432, 0.537], n = 97 stories, versus HH mean 0.300, 95% CI [0.233, 0.370], n = 36 stories, with Cliff’s δ = 0.397 (Table 8). Table 3 also reports human-to-AI transience −1.02 and uptake 30.0%, versus human-to-human transience −0.83 and uptake 17.2%; its values are story-level clustered means. Novelty–resonance coupling slopes are HA 1.217, 95% CI [1.184, 1.250]; HH 1.066, 95% CI [1.003, 1.128]; and AA 0.956, 95% CI [0.913, 0.999] (§5.3). Adjacent semantic distance is HA 0.316, AA 0.296, and HH 0.287, with HA minus HH Δ = 0.0299, p < .0001 (§5.2). Record these as distinct output-scored measures, using other where appropriate for narrative-process constructs; adjacent-turn distance is local dissimilarity, not diversity across independent writers’ output sets. The within-HA resonance means (human −0.796 versus LLM −2.07) can be retained as author-role context with question none, not as an assistance-effect estimate. Form-spec.md Rule 7 requires coverage of relevant output outcomes rather than only the three currently listed.",
+   "quote": "resonance predicted by novelty, with condition as an interaction term.",
+   "locator": "PDF pp. 4–6, §§4.3–4.4; p. 6, §5.2; p. 7, §5.3 and Figure 4; p. 8, Tables 2–3; p. 15, Table 8; form-spec.md, Rule 7."
+  },
+  {
+   "field": "studies[0].outcomes[*].measure_detail, ai_available_when_produced, timing, and contrasts[*] metadata",
+   "form_value": "For all three outcomes, measure_detail, ai_available_when_produced, timing, treatment_arm, control_arm, comparison_type, and direction are empty strings, and statistics_available is [].",
+   "source_says": "Populate the structured fields from the already reported results. For S1-O1 and S1-O3, identify HA as treatment and HH as control, the human partner as the active comparator (ai_vs_active), direction treatment_higher for the asymmetry metric, and available confidence intervals; the comparison remains nonrandomized. AI availability is mixed across these HA/HH outputs. For S1-O2, label the human-turn and LLM-turn roles within HA, use comparison_type other, direction treatment_higher when human turns are the named treatment, and include p_value_only among the available-statistic flags; AI was available in this condition, but its question code should be none as noted separately. Timing is immediate for these outputs. Describe the main google/gemma-4-31B excess-surprisal scoring in measure_detail: novelty is contextual minus context-free mean token surprisal, resonance is novelty minus transience, and the story-level asymmetry outcomes are absolute differences between co-writers’ mean scores. Mention the shuffled-context and simpler-baseline checks as robustness information, including the google/gemma-4-12B scorer used for the shuffled-context check. Keep unavailable score-specific observation totals null rather than deriving them from corpus-wide turn counts.",
+   "quote": "Am denotes the per-story absolute difference between slot-level mean metric values.",
+   "locator": "PDF p. 3, §3.1 and Table 1 caption; pp. 5–6, §4.4, Eqs. (5)–(7); p. 7, §5.3; p. 8, Robustness and Permutation and subsequent checks; p. 15, Table 8."
+  }
+ ],
+ "confirmed": [
+  "Read the entire local markdown (including Appendix A) and extracted text from all PDF pages. The document is arXiv:2609.07920v2, dated 9 Sep 2026, with 15 pages; the form’s title and author list match the title page (PDF p. 1).",
+  "Appendix A is included on PDF pp. 12–15: recruitment/preprocessing, generation and scoring, qualitative examples, diagnostics, valence descriptives in Table 7, and complete asymmetry estimates in Table 8. The form’s supplement description is supported.",
+  "The main comparison is a reused HA cohort, a separately recruited HH cohort, and AA simulations; HH recruitment excludes HA participants. No random assignment of people between partner types or LLM configurations is reported. quasi_people, observational context, core no, and null randomized-person counts are supported (PDF p. 3, §3.1; p. 12, Appendix A.1).",
+  "The paper reports 97 HA participants and 72 HH participants. Both reported human cohorts exceed 50 people; the HH count of 36 is stories, not people. AA comprises 80 model-generated stories and supplies no human participant count (PDF p. 3, §3.1 and Table 1).",
+  "Table 1 explicitly describes the final analytic corpus and distinguishes stories, exchanges, and turns; Table 7 counts scored turns, not people. Initial recruitment and exclusion counts are not supplied (PDF p. 3, §3.2 and Table 1 caption; p. 12, Appendix A.1; p. 14, Table 7).",
+  "Participants were mostly students at one university; HH participants were university or graduate students in English-taught Aarhus University programs, participating voluntarily without compensation (PDF p. 3, §3.1; p. 10, Limitations and Ethics Statement).",
+  "The storytelling instructions allow 10 exchanges; analyzed HA stories had 9 full exchanges. These are exchange counts, not elapsed task duration (PDF p. 3, §§3.1–3.2).",
+  "The listed generation models match the PDF: gpt-4.1-2025-04-14, claude-sonnet-4-5-20250929, Llama-3.3-70B-Instruct, and Qwen2.5-72B-Instruct. Human turns were spell-corrected with gpt-4o-mini before scoring; that is preprocessing, not HH participants receiving assistance during writing (PDF p. 3, §3.1; p. 12, Appendix A.1–A.2).",
+  "Novelty is scored on produced turns using google/gemma-4-31B and contextual minus context-free mean token surprisal; less negative values indicate greater contextual novelty. Resonance is novelty minus transience. These are computational output measures, not self-reports or human creativity ratings (PDF p. 5, §4.4, Eqs. (4)–(6)).",
+  "S1-O1 reported numbers exactly match Table 8: HA novelty asymmetry 0.828, 95% CI [0.732, 0.926], n = 97 stories; HH 0.355, 95% CI [0.284, 0.428], n = 36 stories; Cliff’s δ = 0.591 (PDF p. 15, Novelty rows).",
+  "S1-O2 reported numbers exactly match the text: human mean Novelty −1.82 and 30.2% of turn-information explained by prior context; LLM −2.65 and 52.8%; p < .0001. These are within-HA author-role results (PDF p. 7, §5.3, Humans contribute higher novelty and resonance in HA stories).",
+  "S1-O3 reported numbers exactly match Table 8: HA resonance asymmetry 1.290, 95% CI [1.149, 1.432], n = 97 stories; HH 0.605, 95% CI [0.482, 0.733], n = 36 stories; Cliff’s δ = 0.572 (PDF p. 15, Resonance rows).",
+  "Table 8 defines asymmetry as the per-story absolute difference between writer-slot mean scores, and its caption explicitly says Cliff’s δ compares HA against each baseline. The form correctly distinguishes these gaps from overall story creativity (PDF p. 6, Eq. (7); p. 15, Table 8 caption).",
+  "The one_line_finding is supported: HA versus HH novelty asymmetry is 0.828 versus 0.355, and within HA human versus LLM novelty is −1.82 versus −2.65, p < .0001 (PDF p. 15, Table 8; p. 7, §5.3).",
+  "This is an empirical corpus comparison, not a review or meta-analysis; the empty synthesis estimates and null synthesis study/effect counts are appropriate (PDF pp. 3–8, Datasets, Methods, and Results)."
+ ],
+ "summary": "The paper supports observational context, with no reported randomized people study, and its quoted novelty/resonance statistics match the PDF. Corrections concern the derived total, outcome coding and completeness, exclusions, sample overlap, and missing metadata."
+}

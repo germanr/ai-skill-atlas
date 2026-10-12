@@ -1,0 +1,66 @@
+{
+  "cid": "c065",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O3",
+      "field": "scored_on_output",
+      "form_value": "true",
+      "source_says": "The paper does not say whose ideas the manipulation check rated. The check tests the seed sets' intended quality gradient, and Section 3.4 aligns crowd originality on 'the curated non-interactive sets' with the two researchers' curation ratings. Those ratings exist only for seed-idea texts: the researchers filtered the Stevenson et al. sets (p. 3), and ratings of participants' ideas by research assistants are only 'planned' (p. 4). So the crowd rated seed texts, either the seed lists themselves or participants' copies of them. Figure 3's CON dots vary by participant, so participants' CON picks were rated for that figure, but the text never ties the manipulation check to those picks. The form's own measure_detail calls this unresolved, so 'true' has no explicit support.",
+      "quote": "Aggregate crowdsourced originality on the curated non-interactive sets was reasonably aligned with the two researchers’ curation ratings (r = .54)",
+      "locator": "p. 4, Section 3.4 (Rating protocol); p. 3, Section 3.2 (Non-interactive baselines); p. 6, Figure 3 (CON dots)"
+    },
+    {
+      "where": "S1-O3",
+      "field": "question; ai_available_when_produced",
+      "form_value": "with_ai; yes",
+      "source_says": "Section 4.1 reports the check as GPT-4 ideas rated against the two human seed sets. Read that way, the check compares AI-written ideas with human-written ideas and involves no participant output, and the form spec codes such an outcome as question 'none' with scored_on_output false. with_ai and 'yes' hold only if the rated ideas are participants' curated CON ideas, which the source does not state.",
+      "quote": "In the non-interactive condition, GPT-4 ideas were rated more original than the uncreative human set but less than the highly creative human set.",
+      "locator": "p. 4, Section 4.1"
+    },
+    {
+      "where": "S1-O4",
+      "field": "question",
+      "form_value": "after_ai (with ai_available_when_produced: mixed)",
+      "source_says": "The scored output pools each participant's later HUM and GPT sessions, and the paper prints only the pooled estimate. In the GPT sessions a GPT-4 partner was present, so AI was not removed for about half of the scored output. The codebook rule gives after_ai only for output produced after AI is removed, and with_ai for a non-diversity construct produced with AI available. The codebook also frames after_ai as unassisted work, and every scored session had a partner. The rule does not yield after_ai for this pooled outcome. The form itself calls the code a judgment (open_questions).",
+      "quote": "For participants whose first session was non-interactive, subsequent originality in their HUM and GPT sessions depended on the initial seed set (F(2, 1963) = 4.68, p = .009)",
+      "locator": "p. 6, Section 4.3"
+    },
+    {
+      "where": "S1-O3 and S1-O4",
+      "field": "contrasts[].comparison_type (under study design_class lab_rct)",
+      "form_value": "ai_vs_active",
+      "source_says": "Both outcomes compare participants by the seed set they read in CON. The paper says only that the sets were 'assigned between participants' (Figure 1) and 'unevenly assigned' (Section 4.3). It never says this assignment was random. Codebook Section 5 applies ai_vs_active to randomized experiments, and Section 4 codes design per estimate, so the randomized contrast code is not supported for these two outcomes. The within-person order behind S1-O1 is stated as random and is not affected.",
+      "quote": "Because CON sub-arms were unevenly assigned, we report this as an exploratory but directionally consistent finding that we are currently replicating in a larger sample.",
+      "locator": "p. 6, Section 4.3; p. 3, Figure 1 subtitle ('The CON arm draws one of three pre-rated seed sets, assigned between participants.')"
+    },
+    {
+      "where": "S1-O1",
+      "field": "primary",
+      "form_value": "paper_primary",
+      "source_says": "The paper names no primary outcome. It calls all effect estimates exploratory (p. 4, Section 4) and gives the platform demonstration as the pilot's primary role. GPT vs HUM is the first finding in the abstract and the conclusion, which makes it the headline, not a named primary outcome. Under form-spec rule 1 the literal code is not_stated. The flag matters because S1-O3 is also coded with_ai and ai_vs_active in the same sample, and codebook Section 8 lets one record per sample, question, and comparison type enter a pooled estimate.",
+      "quote": "The primary role of the pilot is to demonstrate that the platform can separately detect and relate trait-, perception-, and interaction-level influences within a single experimental framework.",
+      "locator": "p. 7, Section 5 (Discussion); p. 4, Section 4"
+    }
+  ],
+  "confirmed": [
+    "No outcome in the form is self-reported. All four are originality ratings by crowd workers: 1,923 distinct ideas, 226 crowdsourced workers, 5-point Likert scale, median 6 ratings per idea (range 5–12). Locator: p. 4, Section 3.4.",
+    "Criterion 3 holds through S1-O1. Participants 'curated the “best” creative uses inspired by the chat in a separate survey tab', and 'Curated ideas are rated by crowdsourced workers'. Locator: p. 3, Section 3.2; p. 4, Figure 1 caption.",
+    "Caveat, already in open_questions: the rated pool is larger than the curated picks. Figure 1 gives 1,928 ideas 'generated in chat + curated', against at most 62 × 3 × 5 = 930 'best 5' picks, so the pool likely includes chat ideas, possibly GPT-4's own. Locator: p. 3, Figure 1 (step 2.c and data-flow box).",
+    "Construct novelty is right for all four outcomes: originality is 'how unlikely others would be to generate the idea'. Measure human_raters is right: '225 Prolific raters · 5-pt Likert'. Locator: p. 4, Section 3.4; p. 3, Figure 1 data-flow box.",
+    "S1-O1 unit rating: the LMM has random intercepts for subject, item-within-subject, and rater, and rater identity is a crossed random intercept 'in all mixed-effects analyses'. Locator: p. 4, Section 4 and Section 3.4.",
+    "S1-O1 and S1-O2 AI availability 'yes' and question with_ai: the GPT arm chats with a GPT-4 partner, participants curate right after that chat, and the construct is not diversity. Locator: p. 3, Sections 3.1 and 3.2.",
+    "S1-O1 reported numbers match: β_{GPT−HUM} = −0.11, SE = 0.13, 95% CI [−0.37, +0.16], p = .42; TOST |β| ≤ 0.33; BF₀₁ = 10.95, posterior median +0.06, 95% credible interval [−0.06, +0.20]. Locator: p. 4, Section 4.1.",
+    "Figure 3 values in S1-O1 and S1-O2 match the embedded image (1317 × 888 pixels): low Drive CON 3.44, GPT 3.20, HUM 3.10 (n = 32 each); high Drive CON 3.24 (n = 30), GPT 3.48 (n = 29), HUM 3.29 (n = 30); high Drive 'CON vs GPT: Δ = +0.25, p = 0.046*, d = +0.53'; low Drive 'CON vs GPT: p = 0.06 (†)' and 'GPT vs HUM: p = 0.32 (n.s.)'; high Drive 'GPT vs HUM: p = 0.08 (†)'; grand mean 3.29; median BAS_Drive 14.0. Locator: p. 6, Figure 3.",
+    "S1-O2 numbers match: β_{BAS-Drive × GPT-vs-CON} = +0.20, 95% CI [+0.05, +0.38], p = .034, BF₁₀ = 3.37; top-quality rate p = .033; failure rate p = .030. Locator: p. 5, Section 4.2.",
+    "S1-O2 unit participant is explicit for the Figure 3 contrasts ('Pairwise contrasts: Welch t-test on subject-level means'). The interaction's model and unit are not stated, as measure_detail says. Locator: p. 6, Figure 3 note; pp. 4–5, Section 4.2.",
+    "S1-O2's CON arm is scored on each participant's own CON ideas: the CON dots ('individual participant means') take far more distinct values than the nine seed lists (three sets × three objects) could give. Locator: p. 6, Figure 3.",
+    "S1-O3 numbers and directions match: β_{low−gpt} = −0.48 and β_{high−gpt} = +0.23, both p < .001, so gpt_con is above low_con and below high_con. Locator: p. 3, Section 3.2.",
+    "S1-O4 numbers and direction match: F(2, 1963) = 4.68, p = .009; β_{high vs gpt} = +0.32, p = .016, so gpt_con is below high_con. Availability 'mixed' is right, because the scored sessions had either a human or a GPT-4 partner. Locator: p. 6, Section 4.3.",
+    "S1-O4 unit rating fits the printed test: its 1,963 denominator df exceed the 1,923 distinct ideas in the whole dataset, so the rows of this subsample test are neither participants nor ideas. Locator: p. 6, Section 4.3; p. 4, Section 3.4.",
+    "No outcome that bears on the three questions is missing. The paper computes no similarity across people. Its other analyses are CON vs HUM (no AI contrast), trait and perception predictors, and the RMET correlation with the within-subject range of originality. Utility is not reported ('utility results are available on request'). Locator: p. 4, Section 3.4; pp. 4–5, Section 4.2; p. 6, Figure 3."
+  ],
+  "summary": "Criterion 3 holds: S1-O1 scores crowd-rated originality of the ideas participants curated after each chat, and every number in the four outcomes matches the PDF, including the Figure 3 image text. The coding is still refuted on detail: S1-O3's with_ai and scored_on_output codes lack support because the paper leaves open whether the seed texts or participants' ideas were rated, S1-O4 pools GPT-partner sessions under an after_ai code, the seed-set contrasts rest on an assignment the paper never calls random, and S1-O1's paper_primary status is not stated in the paper."
+}

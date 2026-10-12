@@ -1,0 +1,754 @@
+{
+ "cid": "c025",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu Black Chandrasekaran (2024) - Generative Monoculture in LLMs.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu Black Chandrasekaran (2024) - Generative Monoculture in LLMs.pdf",
+  "version": "arXiv:2407.02209v1 [cs.CL], 2 Jul 2024 (side stamp on p. 1); footer reads 'Preprint. Under review.' (p. 1)",
+  "title_on_document": "Generative Monoculture in Large Language Models",
+  "authors_on_document": [
+   "Fan Wu",
+   "Emily Black",
+   "Varun Chandrasekaran"
+  ],
+  "pages": 31,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A to F, pp. 13-31 of this PDF; code at https://github.com/GeMoLLM/GeMO (p. 5, p. 13)",
+   "holds": "Sampling parameters and generation length (A, p. 13); source-data construction, persona list, and word-processing steps (B, p. 14); perplexity filter, high-temperature results (Fig. 6), topic shifts (Fig. 7), pre-trained Llama-2 (Fig. 8), OpenAI models (Fig. 9), temperature decay (Fig. 10), the word-choice entropy heatmap (Fig. 11), unique-word counts (Table 2), and Figs. 12-13 (C, pp. 14-21); coding details (D, pp. 20-22); plagiarism examples, prompt trials, the authors' check of GPT-3.5 code summaries (Table 3, p. 24), and the full GPT-4 and Claude-3-Sonnet coding results, Figs. 20-29 (E, pp. 22-31); compute and licenses (F, pp. 26 and 31). No standard errors, confidence intervals, or inferential tests are reported in the main text or appendices."
+  }
+ },
+ "paper_design_summary": "The authors compare LLM-generated book reviews and Python solutions with existing human-written Goodreads reviews and CodeContests solutions; no people are assigned to AI assistance. After corpus filtering, the review study analyzed 742 books with 10 human reviews per book and up to 10 generated reviews per book and setting; the coding study analyzed 100 Codeforces level-A problems with 20 sampled correct human solutions per problem (pp. 6-7; App. B.1, p. 14). Scored attributes include review sentiment, topic and word choice, plus code similarity, complexity, runtime dispersion and correctness.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Book reviews: LLM-generated vs Goodreads human reviews",
+   "design_class": "ai_vs_human",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Nothing was assigned to people. LLM-generated reviews (gen) are compared with existing human-written Goodreads reviews (src) of the same books; model, sampling parameters, and prompt vary by design.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "we compare the diversity in sentiment of Goodreads reviews [12] (i.e., src)—very likely a portion of LLM training data [13]—with LLM-generated reviews (i.e., gen).",
+    "locator": "p. 1, Section 1; p. 4, Section 4.1; pp. 5-6, Section 6.1",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "gen (LLM-generated reviews)",
+     "description": "Llama-2-13b, Llama-2-13b-chat, Vicuna-13b-v1.5, GPT-3.5-turbo-instruct (0914), GPT-4-turbo (0125). For each combination of model, sampling setting (T in {0.5, 0.8, 1.0, 1.2, 1.5}, top-p in {0.90, 0.95, 0.98, 1.00}) and prompt ((1) plain or (2) celebrity persona), 10 samples were generated per book. After excluding reviews with perplexity above 20, up to 10 reviews per book and setting were analyzed (m_i <= 10; p. 6; App. C.1, p. 14).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "src (Goodreads human reviews)",
+     "description": "Analyzed corpus after filtering: 742 books with English titles, with 10 existing Goodreads reviews per book of 300 to 700 words (p. 6; App. B.1, p. 14).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No human study participants. Corpus filtering: books with 1,000 to 2,500 reviews (750 books), non-English titles dropped, reviews limited to 300-700 words, and 10 reviews sampled per book; 742 books were analyzed after filtering (App. B.1, p. 14). Generated reviews with perplexity above 20 were excluded (p. 6; App. C.1, p. 14).",
+    "population": "",
+    "who": "No human study participants. The analyzed human-review corpus covers 742 books with 10 existing Goodreads reviews each; the paper does not count or describe the reviewers (p. 6; App. B.1, p. 14).",
+    "country": "not_stated",
+    "quote": "craft a final dataset of N = 742 books with English titles, and ∀i, ni = 10 reviews per book such that the review length is between 300 and 700 words.",
+    "locator": "p. 6, Section 6.1; p. 14, Appendix B.1"
+   },
+   "ai_tool": {
+    "name_model": "Llama-2-13b, Llama-2-13b-chat, Vicuna-13b-v1.5, GPT-3.5-turbo-instruct (0914), GPT-4-turbo (0125)",
+    "role": "other",
+    "how_used": "The models write the reviews themselves; no person uses AI. Prompt (1): 'Write a personalized review of the book titled {title}:'; prompt (2): 'Write a book review for the book titled {title} as if you are {person}:', with 10 celebrity personas (App. B.2, p. 14). Nucleus sampling with T in {0.5, 0.8, 1.0, 1.2, 1.5} and top-p in {0.90, 0.95, 0.98, 1.00} (p. 6); at most 500 new tokens (App. A, p. 13); a temperature-decay variant runs T from 10.0 to 1.2 over the first 50 tokens (p. 5)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Write a review of a named popular book (Goodreads books with 1,000 to 2,500 reviews). Reviews are compared on the dispersion of sentiment, topic, and word choice, not judged for creativity.",
+    "duration": "not_stated"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Sentiment: distribution across books of the per-book mean sentiment, and per-book sentiment entropy",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "A fine-tuned DistilBERT SST-2 classifier labels each review 0 or 1 (p. 6; 91.3% accuracy on the SST-2 dev set). Mean and entropy are computed over each book's reviews (conditional distribution) and shown across books as stacked bars of mean-sentiment ranges and entropy histograms. Variants by sampling parameters, prompt, model, and temperature decay: Fig. 4(a)-(c) (p. 8), Fig. 6 (p. 16), Fig. 8 (p. 17), Fig. 9 (p. 18), Fig. 10 (p. 19), Figs. 12-13 (pp. 20-21). The classifier is a sentiment model, not a creativity scorer.",
+     "unit": "set",
+     "n_units": 742,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (LLM-generated reviews)",
+       "control_arm": "src (Goodreads human reviews)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Share of books with mean sentiment in (0.95,1.00], prompt (1), T = 1.2, p = 1.0: source 2.8%, Llama-2 (pre-trained) 5.9%, Vicuna-13b 44.7%, Llama-2-chat 82.1% (p. 9; Fig. 4(c), p. 8). 'for both GPT-3.5 and GPT-4, 100% of the samples have average positivity falling in (0.95,1.00] under prompt (1), and 98.9% and 97.6% under prompt (2)' (pp. 7-8; Fig. 9, p. 18, at T = 1.2, p = 1.0). The text prints these shares; everything else is in figures. No SDs or tests.",
+       "locator": "pp. 7-9, Section 7, Takeaways 1 and 3; p. 8, Fig. 4(a)-(c); p. 18, Fig. 9"
+      },
+      {
+       "treatment_arm": "Llama-2-chat, prompt (2) celebrity persona, T = 1.2, p = 1.0",
+       "control_arm": "Llama-2-chat, prompt (1) plain, T = 1.2, p = 1.0",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Model-only contrast with no people. Prompt (2) 'reduces the percentage of the most positive range from 82.1% to 58.1% in Fig. 4(b) for T = 1.2, p = 1.0. However, the gap is still large.' Source share 2.8% (p. 9).",
+       "locator": "p. 9, Section 7, Takeaway 4; p. 8, Fig. 4(b)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Distribution over books of the per-book mean sentiment (share of books in each range); per-book entropy of the 0/1 sentiment labels",
+      "embedding_model": "",
+      "computed_over": "Within each book: the 10 source reviews vs up to 10 generated reviews per setting (conditional distribution); distribution shown over the 742 books",
+      "uncertainty": "None reported; descriptive figures and shares only",
+      "notes": "Lower dispersion in gen means less diverse. The comparison sets one model's samples against reviews by many human reviewers, not people working with and without AI."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Topic: per-book topic entropy and unconditional top-10 topic distribution",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "BERTopic pre-trained on Wikipedia (MaartenGr/BERTopic_Wikipedia) assigns each review one of about 2,000 topics (p. 6). Entropy of the topics within each book (conditional), shown as KDE across books; shares of the top 10 topics over all reviews (unconditional). Fig. 4(d)-(e) (p. 8), Fig. 7 (p. 17), Figs. 8-10 (pp. 17-19), Figs. 12-13 (pp. 20-21).",
+     "unit": "set",
+     "n_units": 742,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (LLM-generated reviews)",
+       "control_arm": "src (Goodreads human reviews)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only; no values printed. Fig. 4 caption: 'the model-generated reviews are overwhelmingly positive and cover a narrower range of the topics per book; moreover, there is distinctive under- and over-representation of the topics covered overall.' App. C.3: topic group 15 ('rob', 'kill') is under-represented; groups 333 and 666 are over-represented.",
+       "locator": "p. 8, Fig. 4(d)-(e) and caption; p. 15, App. C.3; p. 17, Fig. 7"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Entropy of topic labels within each book; top-10 topic shares over all reviews",
+      "embedding_model": "BERTopic (MaartenGr/BERTopic_Wikipedia), used as a topic classifier",
+      "computed_over": "Reviews of each book within a condition (conditional); all reviews in a condition pooled (unconditional)",
+      "uncertainty": "None reported; KDE plots and bar charts only",
+      "notes": "Lower entropy in gen means less diverse."
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Word choice: count of unique words and entropy of the word distribution (unconditional)",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "All reviews in a condition are concatenated, lowercased, contraction-expanded, tokenized with NLTK word_tokenize, stripped of punctuation and non-alphabetic tokens, and lemmatized with WordNetLemmatizer (App. B.3, p. 14). Count of unique words: Table 2 (p. 19), Llama-2-chat and GPT-3.5, prompt (1), T in {0.5, 0.8, 1.0, 1.2} by top-p in {0.90, 0.95, 0.98, 1.00}. Entropy of the word distribution: Fig. 11 heatmap (p. 19), Llama-2-chat and Vicuna-13b, prompts (1) and (2), same grid.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (LLM-generated reviews)",
+       "control_arm": "src (Goodreads human reviews)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Unique words (Table 2, prompt (1)): source 85,334; Llama-2-chat 18,900 (T = 0.5, p = 0.90) to 33,908 (T = 1.2, p = 1.00); GPT-3.5 15,778 (T = 0.5, p = 0.98) to 21,059 (T = 1.2, p = 1.00). Word-choice entropy (Fig. 11 cell values): source 9.99; Llama-2-chat and Vicuna-13b generations 8.90 to 9.75 across the grid. One value per configuration; no SDs or tests.",
+       "locator": "p. 19, Table 2 and Fig. 11"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Number of unique lemmatized words; entropy of the word-frequency distribution",
+      "embedding_model": "",
+      "computed_over": "All reviews in a condition pooled (unconditional distribution)",
+      "uncertainty": "None reported; one value per configuration",
+      "notes": "Generated sets can hold fewer than 10 reviews per book after the perplexity filter (m_i <= 10, p. 6); the paper states no adjustment of the counts for corpus size."
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Code solutions: LLM-generated vs CodeContests human solutions",
+   "design_class": "ai_vs_human",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Nothing was assigned to people. LLM-generated Python solutions (gen) are compared with existing human-written solutions from CodeContests (src) for the same Codeforces problems.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "the range of algorithms employed in (correct) solutions to a given coding problem (i.e., gen) was much less varied than a sample of human answers (src) available on the web [14]",
+    "locator": "p. 2, Section 1; p. 4, Section 4.1; pp. 6-7, Section 6.2",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "gen (LLM-generated solutions)",
+     "description": "GPT-4 (k = 100 samples per problem) and Claude-3-Sonnet (k = 200), T in {0.5, 1.0}, top-p in {0.9, 1.0}; at least 20 correct solutions per problem (p. 7). All outcomes except accuracy use correct solutions only (p. 7).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "src (CodeContests human solutions)",
+     "description": "100 level-A Codeforces problems, 20 randomly sampled correct python3 solutions per problem (p. 6). Source accuracy uses the CodeContests counts of correct and all solutions (App. D.3, pp. 21-22).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No participants. Restricted to 100 level-A (easiest) Codeforces problems and python3 solutions (p. 6; App. D.1, pp. 20-21). All code outcomes except accuracy use correct solutions only (p. 7).",
+    "population": "",
+    "who": "No human participants. The human outputs are existing CodeContests solutions (100 problems, 20 randomly sampled correct python3 solutions each); the paper does not count or describe the programmers.",
+    "country": "not_stated",
+    "quote": "We limited the scope to a subset (N = 100) of level-A problems (easy problems) on Codeforces [42], and the language of the solutions to python3.",
+    "locator": "p. 6, Section 6.2; pp. 20-21, Appendix D.1"
+   },
+   "ai_tool": {
+    "name_model": "GPT-4-turbo (0125) (called GPT-4) and Claude-3-Sonnet; GPT-3.5-turbo-instruct (0914) extracts code summaries and complexity",
+    "role": "other",
+    "how_used": "The models write the solutions themselves; no person uses AI. Prompt: 'Please read the below problem description and generate a python code to solve the problem {problem description} Please only generate code and nothing else.' (p. 7). T in {0.5, 1.0}, top-p in {0.9, 1.0}; at most 2048 new tokens (App. A, p. 13)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Generate Python solutions to Codeforces level-A competitive programming problems. The paper scores correctness, efficiency and diversity of implementations; it does not rate the solutions for creativity (pp. 6-7, Section 6.2).",
+    "duration": "not_stated"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Plagiarism score: mean pairwise fingerprint similarity of the solutions to each problem",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "COPYDETECT winnowing fingerprints; mean pairwise similarity over all pairs of correct solutions to a problem (p. 5, Section 4.3; p. 7). Fig. 5(b) (p. 9), Fig. 20 right (GPT-4, p. 28), Fig. 25 right (Claude-3-Sonnet, p. 29); example pairs in App. E.1 (pp. 22-24).",
+     "unit": "set",
+     "n_units": 100,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (GPT-4 and Claude-3-Sonnet correct solutions)",
+       "control_arm": "src (CodeContests human correct solutions)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only (histogram and KDE; no values printed). Text: 'the plagiarism scores of the LLM-generated code are extremely high (Fig. 5(b)), compared to the source solutions which achieve an utterly zero plagiarism score for all the problems.' App. E.6: 'The plagiarism scores achieved by Claude-3 remain high, similarly to that on GPT-4.' Sign reversed: higher similarity means less diversity.",
+       "locator": "p. 8, Section 7, Takeaway 1; p. 9, Fig. 5(b); p. 26, App. E.6; p. 28, Fig. 20; p. 29, Fig. 25"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Mean pairwise fingerprint (winnowing) similarity",
+      "embedding_model": "",
+      "computed_over": "All pairs of correct solutions to the same problem within a condition; distribution over the 100 problems",
+      "uncertainty": "None reported; histograms and KDE only",
+      "notes": "Sign reversed: higher similarity means less diversity."
+     }
+    },
+    {
+     "outcome_id": "S2-O2",
+     "name": "Code summary (textual): mean pairwise cosine similarity of GPT-3.5 summaries (description, functionality, algorithm, data structure)",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "GPT-3.5 writes text summaries of each correct solution (prompt in App. D.5, p. 22), embedded with all-MiniLM-L6-v2; mean pairwise cosine similarity within each problem (p. 7). Fig. 5(e) shows the description field (p. 9); Figs. 23 (GPT-4, p. 29) and 28 (Claude-3-Sonnet, p. 30) show all four fields.",
+     "unit": "set",
+     "n_units": 100,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (GPT-4 and Claude-3-Sonnet correct solutions)",
+       "control_arm": "src (CodeContests human correct solutions)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only (KDE plots; no values printed). Text: 'in Fig. 5(e), we see increased similarity in natural language descriptions of LLM-generated code solutions'. App. E.6 on Claude-3 code summaries: 'Similar to GPT-4, Claude-3 also demonstrate a narrower range of expressed ideas.' Sign reversed: higher similarity means less diversity.",
+       "locator": "p. 8, Section 7, Takeaway 1; p. 9, Fig. 5(e); p. 26, App. E.6; p. 29, Fig. 23; p. 30, Fig. 28"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Mean pairwise cosine similarity of summary embeddings",
+      "embedding_model": "all-MiniLM-L6-v2 (summaries written by GPT-3.5)",
+      "computed_over": "All pairs of correct solutions to the same problem within a condition; distribution over the 100 problems",
+      "uncertainty": "None reported; KDE plots only",
+      "notes": "Sign reversed: higher similarity means less diversity."
+     }
+    },
+    {
+     "outcome_id": "S2-O3",
+     "name": "Code summary (categorical): mean pairwise Jaccard index of GPT-3.5-assigned tags, algorithms, and data structures",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "GPT-3.5 assigns tags (from the CodeContests tag list), algorithms, and data structures (from fixed lists) to each correct solution (App. D.5, p. 22); mean pairwise Jaccard index within each problem (p. 7). Fig. 5(f) shows algorithms (p. 9); Figs. 24 (GPT-4, p. 29) and 29 (Claude-3-Sonnet, p. 31) show all three; Fig. 1 right previews it for GPT-4 (p. 1).",
+     "unit": "set",
+     "n_units": 100,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (GPT-4 and Claude-3-Sonnet correct solutions)",
+       "control_arm": "src (CodeContests human correct solutions)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only (stacked bars; no values printed). Text: 'Fig. 5(f) shows the Jaccard similarity of the generated solutions in terms of the inferred algorithms, with the majority of problems displaying high similarity across generated solutions.' Sign reversed: higher similarity means less diversity.",
+       "locator": "p. 8, Section 7, Takeaway 1; p. 1, Fig. 1 (right); p. 9, Fig. 5(f); p. 29, Fig. 24; p. 31, Fig. 29"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Mean pairwise Jaccard index of label sets",
+      "embedding_model": "",
+      "computed_over": "All pairs of correct solutions to the same problem within a condition; distribution over the 100 problems",
+      "uncertainty": "None reported; stacked bar charts only",
+      "notes": "Sign reversed: higher similarity means less diversity."
+     }
+    },
+    {
+     "outcome_id": "S2-O4",
+     "name": "Asymptotic time and space complexity: per-problem entropy and unconditional distribution",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "GPT-3.5 infers the big-O time and space complexity of each correct solution (p. 7; prompt in App. D.5, p. 22). Entropy of the complexity classes within each problem (conditional) and histogram over all solutions (unconditional). Fig. 5(c)-(d) (p. 9) shows time complexity; Figs. 21 (GPT-4, p. 28) and 26 (Claude-3-Sonnet, p. 30) show time and space.",
+     "unit": "set",
+     "n_units": 100,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (GPT-4 and Claude-3-Sonnet correct solutions)",
+       "control_arm": "src (CodeContests human correct solutions)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only (histograms; no values printed). Captions of Fig. 21 (GPT-4) and Fig. 26 (Claude-3-Sonnet): 'The figures suggest that the generated code is more efficient than the source code, while showing a decrease in diversity.'",
+       "locator": "p. 9, Fig. 5(c)-(d); p. 28, Fig. 21; p. 30, Fig. 26"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Entropy of the inferred complexity classes",
+      "embedding_model": "",
+      "computed_over": "Correct solutions to the same problem within a condition (conditional); all correct solutions pooled (unconditional)",
+      "uncertainty": "None reported",
+      "notes": "Lower entropy in gen means less diverse."
+     }
+    },
+    {
+     "outcome_id": "S2-O5",
+     "name": "Runtime and memory dispersion: within-problem standard deviation of runtime and peak memory",
+     "construct": "diversity",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Each correct solution runs on the problem's 10 test cases under /usr/bin/time; the maximum elapsed time (%E) and maximum resident set size (%M) across the 10 cases proxy runtime and memory (App. D.4, p. 22). The SD is taken within each problem's set of correct solutions (conditional distribution, p. 7) and shown as histograms across problems: Fig. 22 (GPT-4, p. 28) and Fig. 27 (Claude-3-Sonnet, p. 30). A program-execution measurement, not a creativity scorer.",
+     "unit": "set",
+     "n_units": 100,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (GPT-4 and Claude-3-Sonnet correct solutions)",
+       "control_arm": "src (CodeContests human correct solutions)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only (histograms; no values printed). The text makes no runtime-specific statement; Takeaway 1 says 'there exists significant narrowing from the source to generation distribution in all attributes considered for both scenarios' (p. 7), and runtime efficiency is one of the listed attributes (Fig. 3, p. 6).",
+       "locator": "p. 6, Fig. 3; p. 7, Section 6.2 (Metric Calculation) and Section 7, Takeaway 1; p. 28, Fig. 22; p. 30, Fig. 27"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Standard deviation of runtime (ms) and of peak memory (KB) within a problem",
+      "embedding_model": "",
+      "computed_over": "Correct solutions to the same problem within a condition; histogram over problems",
+      "uncertainty": "None reported; histograms only",
+      "notes": "Lower SD in gen means less diverse. The figures drop runtimes above 200 ms and memory above 30,000 KB for display. The runtime and memory means are efficiency levels and are recorded in notes, not here."
+     }
+    },
+    {
+     "outcome_id": "S2-O6",
+     "name": "Correctness: per-problem accuracy (share of solutions passing all 10 test cases)",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Simulated autojudge: a solution is correct if it passes all 10 test cases from the dataset (App. D.2, p. 21). Accuracy per problem is n_correct / n_all for the source, from CodeContests counts, and n_correct / k for the generations (App. D.3, pp. 21-22). Uses all solutions, not only correct ones (p. 7). Stacked bars over problems: Fig. 5(a) (p. 9), Fig. 20 left (GPT-4, p. 28), Fig. 25 left (Claude-3-Sonnet, p. 29). A quality measure, not a creativity or diversity score.",
+     "unit": "set",
+     "n_units": 100,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "gen (GPT-4 solutions, all samples)",
+       "control_arm": "src (CodeContests human solutions, correct and incorrect)",
+       "comparison_type": "ai_vs_human",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "'LLM-generated code segments (a) are over 2× more accurate than the average human solutions' (p. 8). For Claude-3-Sonnet the text compares only with GPT-4: 'the accuracy of Claude-3 is much lower' (p. 26). Stacked bars only; no values printed.",
+       "locator": "p. 8, Section 7, Takeaway 2; p. 9, Fig. 5(a); p. 26, App. E.6; p. 28, Fig. 20; p. 29, Fig. 25"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "Authors at the University of Illinois Urbana-Champaign and Barnard College (p. 1). The PDF has no acknowledgment, funding, or competing-interest statement. The commercial models are objects of study, with no stated company role.",
+  "locator": "p. 1; full-text search of pp. 1-31"
+ },
+ "data_and_code": {
+  "data_url": "Goodreads: https://mengtingwan.github.io/data/goodreads.html; CodeContests: https://github.com/google-deepmind/code_contests (p. 31, App. F.2, footnotes 8 and 10)",
+  "code_url": "https://github.com/GeMoLLM/GeMO"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "ai_vs_human",
+  "reason": "Criterion 1 is not met: no people are assigned to AI assistance; models generate outputs for comparison with existing human corpora (p. 4, Section 4.1; pp. 5-7, Section 6). Criterion 2 is not met: there is no human participant sample; the reported 742 books and 100 coding problems are corpus units, and unique human authors are not counted (p. 6, Sections 6.1-6.2; p. 14, App. B.1). Criterion 3 is not met under the current codebook's requirement for output that study participants produce: diversity is scored on archival human texts and model generations, so the outcome-level scored_on_output fields remain true without establishing a qualifying participant outcome (p. 4, Sections 4.1-4.3; pp. 6-7, Section 6). Retain ai_vs_human context under codebook Section 3 because the paper directly compares AI-generated and human-generated outputs. No unresolved source question changes any criterion."
+ },
+ "one_line_finding": "LLM-generated book reviews and code are less diverse than human-written ones: under prompt (1) at T = 1.2 and top-p = 1.0, 82.1 percent of books get Llama-2-chat reviews with mean sentiment in (0.95,1.00] against 2.8 percent for the Goodreads reviews (p. 9; Fig. 4(c), p. 8), and Llama-2-chat reviews use at most 33,908 unique words across the Table 2 settings against 85,334 in the source (p. 19); the paper has no human participants and reports no inferential statistics.",
+ "open_questions": [
+  "The text gives '98.9% and 97.6% under prompt (2)' for GPT-3.5 and GPT-4 without 'respectively' (p. 8), and Fig. 9 (p. 18) prints no values, so the form does not assign the two values to models.",
+  "For Claude-3-Sonnet, App. E.6 (p. 26) says the solutions 'are less efficient than source solutions', while the Fig. 26 caption (p. 30) repeats the GPT-4 caption that 'the generated code is more efficient than the source code'. Both captions report a decrease in diversity, so the S2-O4 direction does not depend on this conflict."
+ ],
+ "notes": "Locators are PDF pages, which match the printed page numbers. Not listed as outcomes: runtime and memory means, which are efficiency levels (Takeaway 2, p. 8: LLM code uses 'less runtime and memory during execution'; Figs. 22 and 27), and the fraction of valid generations by sampling setting (Table 1, p. 9), a quality filter. Model-only contrasts (temperature, top-p, temperature decay, pre-trained vs aligned Llama-2, Llama-2-chat vs Vicuna-13b) are not separate outcomes; the persona-prompt contrast is kept in S1-O1 because the text prints its numbers, and the per-model shares appear in the S1-O1 gen-vs-source contrast. Table 3 (p. 24) is the authors' 1-to-3 check of GPT-3.5 code summaries on 20 solutions, a validation of attribute extraction, not an outcome. The open-source code models (CodeLlama, StarCoder) produced no solutions and were dropped (App. E.4, p. 26). The paper cites Padmakumar and He on essays written with LLM help (p. 3) but runs no human study. Final review: the entire markdown conversion, including Appendices A-F, was read; recorded numerical results and eligibility passages were checked against PDF text and printed figure labels. No c025 challenge files were present. Context placement and criterion-3 interpretation were settled using the current codebook; the two remaining reporting ambiguities do not affect eligibility.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "studies[S1].task.type",
+    "a": "other",
+    "b": "creative_writing",
+    "resolved": "other, as in A. The models write reviews of named books, and the paper scores only the dispersion of sentiment, topic, and word choice, not creativity. The codebook's creative_writing covers stories, poems, essays judged for creativity, slogans, and advertisements; its clause admitting other writing tasks rests on answering across_people, which this design cannot do. The reconciled c011 (peer reviews) and c009 (abstracts) code such writing as other.",
+    "quote": "For sentiment, we calculate mean and entropy for the conditional distribution. For topic, we calculate entropy for the conditional distribution as well as visualize the unconditional distribution of topics across all reviews, focusing on the top 10 classes.",
+    "locator": "p. 6, Section 6.1 (Metric Calculation)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].participants.population; studies[S2].participants.population",
+    "a": "(empty string) in both studies",
+    "b": "general_public in both studies",
+    "resolved": "Empty string, as in A. Neither study has participants. The human outputs come from existing datasets, and the paper does not describe the Goodreads reviewers or the CodeContests programmers, so no population code is supported. The c004 and c019 reconciliations made the same call.",
+    "quote": "For Dsrc, we use the Goodreads dataset [12], which contains multiple books with several reviews each. / For Dsrc, we chose the CodeContests dataset [14], a competitive programming problem dataset where each problem comes with multiple correct and incorrect solutions.",
+    "locator": "p. 5, Section 6.1; p. 6, Section 6.2",
+    "status": "resolved"
+   },
+   {
+    "field": "eligibility.criterion_3_outcome_scored_on_output",
+    "a": "not_met",
+    "b": "met",
+    "resolved": "not_met, as in A. The dispersion measures are computed on outputs (scored_on_output stays true), but the outputs are LLM generations and existing human corpora. No study participant produced any of them, and the criterion asks for output that participants produce. The closest reconciled case, c014 (GPT-4 idea pools against an archival student pool), also codes not_met.",
+    "quote": "In practice, we utilize existing datasets likely to be used during LLM training, and perform filtering and sub-sampling to obtain our Dsrc. To create the model-generated dataset Dgen, for each sample qi, we prompt the LLM",
+    "locator": "p. 4, Section 4.1",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].ai_tool.how_used and arms[gen].description (temperature grid)",
+    "a": "T in {0.5, 0.8, 1.0, 1.2, 1.5}",
+    "b": "T in {0.5, 0.8, 1.0, 1.2} (also 1.5 in Appendix C.2)",
+    "resolved": "A. Section 6.1 lists T = 1.5 in the main grid; Appendix C.2 and Table 1 discuss the T = 1.5 results.",
+    "quote": "(a) temperature T ∈ {0.5, 0.8, 1.0, 1.2, 1.5}, and (b) top-p ∈ {0.90, 0.95, 0.98, 1.00}.",
+    "locator": "p. 6, Section 6.1",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].outcomes[S1-O1].contrasts (persona-prompt contrast)",
+    "a": "One ai_vs_human contrast; the prompt (2) result, 82.1% to 58.1%, sits inside its reported string.",
+    "b": "Adds a second contrast: Llama-2-chat prompt (2) persona vs prompt (1) at T = 1.2, p = 1.0; comparison_type other; direction treatment_higher.",
+    "resolved": "B's separate contrast is kept with comparison_type other, because it compares two configurations of one model with no people; ai_design is defined for randomized experiments with people (codebook Section 5). Direction treatment_higher: the persona prompt cuts the share of books in the most positive range, which widens the sentiment distribution. The ai_vs_human contrast keeps only gen-versus-source numbers.",
+    "quote": "using prompt (2) reduces the percentage of the most positive range from 82.1% to 58.1% in Fig. 4(b) for T = 1.2, p = 1.0. However, the gap is still large.",
+    "locator": "p. 9, Section 7, Takeaway 4; p. 8, Fig. 4(b)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S2].outcomes (runtime and memory; scope of S2-O4)",
+    "a": "S2-O4 covers asymptotic time and space complexity only; notes leave out runtime and memory mean and SD as quality measures.",
+    "b": "S2-O4 covers complexity entropy plus the mean and SD of runtime and memory.",
+    "resolved": "Split. S2-O4 keeps the complexity entropy (category_count). The within-problem SD of runtime and memory is a dispersion measure in the paper's own framework, so it becomes S2-O5 (diversity). The runtime and memory means are efficiency levels, not dispersion, and go to notes.",
+    "quote": "For continuous attributes, we use standard deviation over the conditional distribution to quantify the dispersion of values around the mean ... For runtime efficiency, we calculate mean and standard deviation for the conditional distribution.",
+    "locator": "p. 4, Section 4.3 (B); p. 7, Section 6.2 (Metric Calculation)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S2].outcomes (accuracy)",
+    "a": "Not listed; notes call accuracy a quality measure.",
+    "b": "S2-O5: correctness (accuracy), construct usefulness, ai_vs_human, treatment_higher, figure_only.",
+    "resolved": "Kept, as S2-O6 (construct usefulness, question none). The paper scores correctness on each solution and compares generated with human code in the main text. Like every outcome in this paper, it answers none of the three questions.",
+    "quote": "LLM-generated code segments (a) are over 2× more accurate than the average human solutions",
+    "locator": "p. 8, Section 7, Takeaway 2; p. 9, Fig. 5(a)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S2].outcomes[S2-O2].contrasts[0].reported",
+    "a": "Figure only (KDE), with the text statement on increased similarity.",
+    "b": "Adds 'source mode near 0.6, generations near 0.8 in Fig. 5(e)'.",
+    "resolved": "A. Fig. 5(e) prints no values (checked on a rendered page); B's modes are read off the curves, which form-spec rule 1 rules out. The record keeps the text statement.",
+    "quote": "in Fig. 5(e), we see increased similarity in natural language descriptions of LLM-generated code solutions",
+    "locator": "p. 8, Section 7, Takeaway 1; p. 9, Fig. 5(e)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S2].outcomes[S2-O4].contrasts[0].reported",
+    "a": "Quotes the Fig. 21 and Fig. 26 captions: more efficient, with a decrease in diversity.",
+    "b": "Adds lower asymptotic complexity and App. E.6: Claude-3 solutions 'are less efficient than source solutions'.",
+    "resolved": "A's diversity statement is kept. B's Claude-3 sentence concerns efficiency level, not diversity, and it conflicts with the Fig. 26 caption for Claude-3, which repeats the GPT-4 wording. The conflict is recorded in open_questions.",
+    "quote": "Different from GPT-4, solutions generated by Claude-3 are less efficient than source solutions. / The figures suggest that the generated code is more efficient than the source code, while showing a decrease in diversity.",
+    "locator": "p. 26, App. E.6; p. 30, Fig. 26 caption (same wording as Fig. 21, p. 28)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].participants.who; studies[S2].participants.who",
+    "a": "Adds the products '742 books x 10 reviews = 7,420 reviews' and '100 problems x 20 correct solutions = 2,000 solutions'.",
+    "b": "Says the numbers of reviewers and programmers are not stated; no products.",
+    "resolved": "B's framing, with the printed counts and without the products. Neither 7,420 nor a 2,000-solution total is printed in the PDF (the only '2,000' is the BERTopic topic count on p. 6), and form-spec rule 1 rules out derived counts. The record gives 742 books with 10 reviews each and 100 problems with 20 correct solutions each.",
+    "quote": "craft a final dataset of N = 742 books with English titles, and ∀i, ni = 10 reviews per book / For each problem in the subset, we randomly sampled ∀i, ni = 20 correct solutions",
+    "locator": "p. 6, Sections 6.1 and 6.2; full-text search of the PDF",
+    "status": "resolved"
+   },
+   {
+    "field": "one_line_finding",
+    "a": "Llama-2-chat 82.1 percent vs Goodreads 2.8 percent of books with mean sentiment in (0.95,1.00], cited as p. 9, Fig. 4(c); no inferential statistics.",
+    "b": "GPT-3.5 and GPT-4 100% vs 2.8%; 85,334 vs at most 33,908 unique words; LLM code more similar; cited pp. 7-9 and Table 2, p. 19.",
+    "resolved": "Merged. Every number in both versions matches the PDF. The final sentence uses the Llama-2-chat share under prompt (1) at T = 1.2, p = 1.0, printed on p. 9 with the figure on p. 8 (A placed Fig. 4(c) on p. 9), and the Table 2 unique-word counts.",
+    "quote": "The PT LLM Llama-2 has 5.9% of samples with average sentiment values falling in the range of (0.95,1.00], which is much closer to the source percentage of 2.8% than 44.7% for Vicuna-13b and 82.1% for Llama-2-chat.",
+    "locator": "p. 9, Section 7, Takeaway 3; p. 8, Fig. 4(c); p. 19, Table 2",
+    "status": "resolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "studies[S1,S2].assignment.randomized and eligibility.criterion_1_random_assignment_of_ai",
+    "value": "no / not_met. No person is assigned to anything: the LLMs generate the gen outputs from the authors' prompts, and the src outputs are existing datasets.",
+    "quote": "we compare the diversity in sentiment of Goodreads reviews [12] (i.e., src)—very likely a portion of LLM training data [13]—with LLM-generated reviews (i.e., gen).",
+    "locator": "p. 1, Section 1; p. 4, Section 4.1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1,S2].participants.n_randomized and n_analyzed (people analyzed) and eligibility.criterion_2_at_least_50_people",
+    "value": "null / not_met. No human participants. The word 'participant' does not occur in the PDF; the only people who score anything are the authors, who check GPT-3.5 summaries of 20 code solutions to validate attribute extraction (App. E.3).",
+    "quote": "We annotate the quality of the LLM-generated summary of code given by GPT-3.5.",
+    "locator": "p. 24, App. E.3; full-text search of pp. 1-31",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].outcomes[*].scored_on_output",
+    "value": "true. Every measure is computed on the review texts or the code: classifier labels, word counts, fingerprints, summary embeddings, label sets, complexity classes, runtimes, and test results.",
+    "quote": "Given a set of responses, dispersion metrics aim to capture their breadth or coverage of these attributes.",
+    "locator": "p. 4, Section 4.3",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].outcomes[*].ai_available_when_produced",
+    "value": "Both forms: yes. Corrected to mixed. In every outcome the gen outputs are written by the LLMs and the src outputs are human-written reviews and solutions from existing datasets, so the compared outputs differ in AI availability. The reconciled ai_vs_human forms c003, c007, and c014 use mixed for the same structure.",
+    "quote": "We broadly characterize generative monoculture as a distribution shift from source data (i.e., human-generated training data) to model generated data (i.e., model outputs) for a specific task",
+    "locator": "p. 2, Section 2",
+    "confirmed": false
+   },
+   {
+    "field": "studies[*].outcomes[*].question and eligibility.core",
+    "value": "none / no. No outcome concerns a person working with AI or after AI; every contrast sets model output against human output or one model configuration against another.",
+    "quote": "In this work, we introduce the concept of generative monoculture, a phenomenon where LLMs narrow the diversity of their output relative to their source data for a given task.",
+    "locator": "p. 10, Section 8",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1,S2].design_class and eligibility.context_class",
+    "value": "ai_vs_human for both studies; the S2 task has correct answers and lies outside the creative-task scope (task.type other in both forms).",
+    "quote": "Comparison of the range of average-per-book sentiment scores for book reviews generated by an LLM (gen) and by human reviewers from the Goodreads dataset (src).",
+    "locator": "p. 1, Fig. 1 caption",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1,S2].assignment.preregistered",
+    "value": "not_stated. A full-text search finds no mention of preregistration or registration.",
+    "quote": "",
+    "locator": "full-text search of pp. 1-31",
+    "confirmed": true
+   },
+   {
+    "field": "source.version, title_on_document, authors_on_document, pages",
+    "value": "arXiv:2407.02209v1 [cs.CL], 2 Jul 2024, 'Preprint. Under review.'; title and three authors as both forms give them; 31 pages.",
+    "quote": "arXiv:2407.02209v1 [cs.CL] 2 Jul 2024",
+    "locator": "p. 1 (side stamp and footer)",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement.any",
+    "value": "false. Affiliations are the University of Illinois Urbana-Champaign and Barnard College. The PDF has no acknowledgment, funding, or competing-interest statement.",
+    "quote": "1 University of Illinois Urbana-Champaign 2 Barnard College",
+    "locator": "p. 1; full-text search of pp. 1-31",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes[S1-O1].contrasts[0].reported (sentiment shares)",
+    "value": "Source 2.8%, Llama-2 5.9%, Vicuna-13b 44.7%, Llama-2-chat 82.1%; the Fig. 4(c) panel labels (rendered p. 8) show T = 1.2, p = 1.0 for all three models, under prompt (1) per the caption. GPT-3.5 and GPT-4: 100% under prompt (1), 98.9% and 97.6% under prompt (2), at T = 1.2, p = 1.0 per the Fig. 9 caption (p. 18).",
+    "quote": "for both GPT-3.5 and GPT-4, 100% of the samples have average positivity falling in (0.95,1.00] under prompt (1), and 98.9% and 97.6% under prompt (2).",
+    "locator": "pp. 7-8, Section 7, Takeaway 1 (the quoted sentence runs across the page break; p. 7 ends at 'have average'); p. 9, Takeaway 3; p. 8, Fig. 4(c); p. 18, Fig. 9",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].outcomes[S1-O3].contrasts[0].reported (Table 2 and Fig. 11)",
+    "value": "Table 2 matches the PDF text layer: Llama-2-chat 18,900 (T = 0.5, p = 0.90) to 33,908 (T = 1.2, p = 1.00); GPT-3.5 15,778 (T = 0.5, p = 0.98) to 21,059 (T = 1.2, p = 1.00); source 85,334. Fig. 11 cell values, read on a 400-dpi render: minimum 8.90 (Vicuna-13b, prompt (2), T = 0.5, p = 0.9 and 0.95), maximum 9.75 (Llama-2-chat, prompt (2), T = 1.2, p = 1.0); source 9.99 in the caption.",
+    "quote": "As a reference, the entropy of the source is 9.99, higher than all the entropy values of model generations.",
+    "locator": "p. 19, Table 2 and Fig. 11",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].outcomes[S2-O1, S2-O3].contrasts[0].reported (quotes)",
+    "value": "Both quotes match the PDF; Figs. 5(b) and 5(f) print no values.",
+    "quote": "compared to the source solutions which achieve an utterly zero plagiarism score for all the problems.",
+    "locator": "p. 8, Section 7, Takeaway 1; p. 9, Fig. 5",
+    "confirmed": true
+   },
+   {
+    "field": "statistics_available (all contrasts) and source.supplement.holds (no standard errors or tests)",
+    "value": "figure_only for the figure-based contrasts and none for the S1-O3 set-level values. A full-text search finds no standard error, confidence interval, p-value, or test; 'significant' is descriptive, and 'statistically narrower' appears only in Definition 1.",
+    "quote": "there exists significant narrowing from the source to generation distribution in all attributes considered for both scenarios, book reviews and coding.",
+    "locator": "p. 7, Section 7, Takeaway 1; p. 2, Definition 1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].outcomes[*].primary",
+    "value": "not_stated. The paper names no primary attribute or metric; Fig. 1 previews sentiment and algorithm similarity without calling them primary.",
+    "quote": "",
+    "locator": "pp. 1-10",
+    "confirmed": true
+   },
+   {
+    "field": "studies[*].outcomes[*].unit and n_units",
+    "value": "set; 742 books for the conditional review measures, null for the pooled word-choice measure, 100 problems for the code measures. Conditional metrics are computed within each book's or problem's set of outputs and shown as distributions over the N samples.",
+    "quote": "calculate the mean similarity value for all the pairs of elements within each srci/geni, then show the distribution for all N samples.",
+    "locator": "p. 5, Section 4.3 (C); p. 6, Sections 6.1 and 6.2",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S2].arms[gen] (samples and correct-solution threshold)",
+    "value": "k = 100 samples per problem for GPT-4 and 200 for Claude-3-Sonnet, with at least 20 correct; T in {0.5, 1.0}, top-p in {0.9, 1.0}.",
+    "quote": "We instantiated this by generating k samples (k = 100 for GPT-4 and k = 200 for Claude-3), and verifying that at least 20 of them were correct.",
+    "locator": "p. 7, Section 6.2",
+    "confirmed": true
+   },
+   {
+    "field": "sample_overlap and data_and_code",
+    "value": "sample_overlap empty: no participants. Code at https://github.com/GeMoLLM/GeMO; Goodreads and CodeContests links in footnotes 8 and 10.",
+    "quote": "We open source our code at https://github.com/GeMoLLM/GeMO.",
+    "locator": "p. 5, Section 6; p. 31, App. F.2",
+    "confirmed": true
+   }
+  ],
+  "n_differences": 11,
+  "n_unresolved": 0
+ },
+ "final": {
+  "core": "no",
+  "criteria": {
+   "random_assignment_of_ai": "not_met",
+   "at_least_50_people": "not_met",
+   "outcome_scored_on_output": "not_met"
+  },
+  "challenge_resolution": [],
+  "open_items": [
+   {
+    "item": "Original context-placement question: settled as ai_vs_human under codebook Section 3. The paper compares existing human-written corpora with model-generated responses (p. 4, Section 4.1; pp. 5-7, Section 6). This context label does not make any core eligibility criterion met; nothing further is needed.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "Original criterion-3 interpretation question: settled for c025 as not_met under the current codebook's participant-output requirement. The paper uses archival human corpora and model generations, with no human study participants (p. 4, Section 4.1; pp. 5-7, Section 6). Although this question concerned criterion 3, no uncertainty about that criterion remains; harmonizing other papers is outside this paper's eligibility decision.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "Unresolved model-specific assignment of the 98.9% and 97.6% positivity shares under prompt (2): the text lists both percentages without 'respectively' (pp. 7-8, Takeaway 1), and Fig. 9 (p. 18) has no printed bar values. Labeled posted results would settle the mapping; retain the paired statement without assigning individual values to models. No eligibility criterion depends on this mapping.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   },
+   {
+    "item": "Unresolved Claude-3-Sonnet efficiency conflict: App. E.6 (p. 26) says its solutions are less efficient than source solutions, but the Fig. 26 caption (p. 30) says more efficient. Author clarification would settle which efficiency statement is intended. This concerns efficiency levels, not the reported diversity direction or any eligibility criterion.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   }
+  ],
+  "n_corrected": 0,
+  "n_rejected": 0,
+  "n_open": 0
+ }
+}

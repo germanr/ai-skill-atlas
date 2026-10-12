@@ -1,0 +1,761 @@
+{
+  "cid": "c137",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Yang et al (2025) - Large Language Models Improve Hypothesis Generation by Reducing Effort.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Yang et al (2025) - Large Language Models Improve Hypothesis Generation by Reducing Effort.pdf",
+    "version": "SSRN working paper (DOI 10.2139/ssrn.5339141 per the search record); the document itself carries no date, version label, or journal information. Main text only, 17 pages; the SI Appendix is not included.",
+    "title_on_document": "Large Language Models Improve Hypothesis Generation by Reducing Effort",
+    "authors_on_document": ["Minwen Yang", "Qiurun (Reyna) Wang", "Gülden Ülkümen", "Claire Tsai", "Carey K. Morewedge"],
+    "pages": 17,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "SI Appendix, cited throughout but not attached; OSF holds preregistrations, surveys, raw data and R code: https://osf.io/pdjwh/?view_only=d4d76b6c6e9343e99bcc146a68fbd578 (p. 11-12)",
+      "holds": "Table S1 (data-collection dates, betting odds), Table S2 (preregistered N, dropout rates, final sample sizes), Table S3 (knowledge screen), Table S4 (exclusions of no-LLM participants who used an LLM), Table S5 (accuracy, confidence, calibration statistics), Section 3 (accuracy/confidence/calibration details), Section 4 (robustness: no exclusions, gender covariate, standings benchmark), Tables S12-S16 (percentile benchmarks, quartiles), Table S21 (crowd-level unique teams), Section 5 (ancillary occupation-guessing experiment). Per-arm Ns for every experiment and all statistics for the crowd-level homogeneity analysis sit only there."
+    }
+  },
+  "paper_design_summary": "Four preregistered online experiments (Prolific and MTurk, N = 396, 213, 803, 400) randomly assigned participants to use an LLM (Perplexity AI or Google Bard) or to use their own judgment plus an optional web browser or search engine while listing which MLB or NFL teams would make that season's playoffs. Experiment 3 crossed LLM use with a 10-cent-per-correct-team incentive, and Experiment 4 crossed LLM use in a first and a second listing stage. The scored outputs are the number of teams listed (hypotheses), the number and percent of accurate teams (benchmarked against betting odds), plus self-reported confidence and calibration; a crowd-level count of unique teams is reported only in the SI.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Experiment 1 (2024 MLB playoffs, Prolific, Perplexity AI)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "LLM condition (instructed to use Perplexity AI, given a hyperlink) vs no-LLM condition (own judgment, could use a search engine)",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "In a between-subjects design, we randomly assigned participants to one of two conditions: LLM or no-LLM.",
+        "locator": "p. 12, Materials and Methods, Experiment 1; also p. 11 (randomization administered by Qualtrics)",
+        "preregistered": "yes",
+        "prereg_locator": "p. 5, Results ('As preregistered'); p. 11-12, Materials and Methods (OSF link)"
+      },
+      "arms": [
+        { "name": "LLM", "description": "List playoff teams using Perplexity AI; participants wrote their own prompts and could keep, reject, or add teams", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "no-LLM", "description": "Use own judgment; told they could also use a search engine; participants who reported using an LLM were excluded", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 396,
+        "counts_are": "people",
+        "exclusions": "Preregistered: analyzed only participants who (1) answered all MLB knowledge questions correctly, (2) named at least one team, (3) did not use an LLM unless in the LLM condition. The number excluded and the dropout counts are in SI Tables S2 and S4, not in this PDF. The knowledge screen precedes the manipulation (Fig. 6); the LLM-use exclusion applies after assignment, to the no-LLM arm only.",
+        "population": "online_panel",
+        "who": "Prolific adults with basic MLB knowledge; M age = 40.30, 39.7% female, 59.1% male",
+        "country": "Not stated directly; Prolific sample matched to the US population distribution by age, gender, and ethnicity",
+        "quote": "396 participants recruited from Prolific Academic (Mage = 40.30, 39.7% female, 59.1% male) completed the experiment and passed all pre-registered screenings.",
+        "locator": "p. 12, Materials and Methods, Experiment 1"
+      },
+      "ai_tool": {
+        "name_model": "Perplexity AI",
+        "role": "open_chat",
+        "how_used": "Participants followed a hyperlink, wrote their own prompts, and typed a list of teams; they could keep or reject LLM-suggested teams and add their own (p. 4)."
+      },
+      "task": {
+        "type": "other",
+        "description": "Hypothesis generation as forecasting: list as many or as few teams as they wished that would make the 2024 MLB playoffs (12 of 30 teams qualify). Followed by a confidence question.",
+        "duration": "not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Number of hypotheses generated (unique teams listed)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of unique teams each participant listed. Robustness without exclusions and with a gender covariate in SI Section 4.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "figure_only"],
+              "reported": "M LLM = 8.72, SD = 3.76 vs. M no-LLM = 5.99, SD = 3.56; t(394) = 7.41, p < .001, d = 0.745 (total N = 396; per-arm n not printed). Fig. 1 panel A: means with 95% CI.",
+              "locator": "p. 5, Results, Experiments 1-2; p. 6, Fig. 1A"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Number of accurate hypotheses (listed teams with playoff betting odds favoring qualification)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of listed teams classified as accurate from playoff betting odds at the time of the experiment (SI Table S1); team standings as an alternate benchmark in SI Section 4. Exploratory.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "M LLM = 5.82, SD = 2.42 vs. M no-LLM = 4.29, SD = 2.92; t(380.75) = 5.70, p < .001, d = 0.573 (per-arm n not printed).",
+              "locator": "p. 5, Results, Experiments 1-2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Percent accuracy (accurate hypotheses / total hypotheses)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Actual hit rate per participant. Statistics in SI Table S5 and Section 3; main text shows only Fig. 4b.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Text across Experiments 1-4: LLM use increased total and accurate hypotheses proportionately, 'resulting in a similar percentage of accurate hypotheses'. Fig. 4b plots means with 95% CI only.",
+              "locator": "p. 8, 'LLMs do not reduce accuracy...'; p. 9, Fig. 4b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Crowd-level number of unique teams listed (homogeneity)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Total number of unique hypotheses generated by all participants in each condition, per study.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "'found no difference in the number of unique teams listed by the LLM and non-LLM crowds in each study (see SI Appendix, Table S21)'. No numbers in the main text.",
+              "locator": "p. 11, Robustness Checks, 'Homogeneity of hypotheses generated with and without LLMs'"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Count of unique teams across all participants in a condition",
+            "embedding_model": "",
+            "computed_over": "Whole pool of each condition's listed teams (one value per condition per study)",
+            "uncertainty": "not stated in this PDF (SI Table S21)",
+            "notes": "Ceiling effect likely: only 30 MLB teams exist. Statistics only in SI Table S21, not in this PDF."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Experiment 2 (2024 NFL playoffs, MTurk, Google Bard)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "LLM condition (hyperlink to Google Bard) vs no-LLM condition (own judgment and a browser or search engine)",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "In a between-subjects design, we randomly assigned participants to one of two conditions: LLM or no-LLM. In the LLM condition, participants were provided with a hyperlink to Google Bard.",
+        "locator": "p. 13, Materials and Methods, Experiment 2",
+        "preregistered": "yes",
+        "prereg_locator": "p. 5, Results ('in line with our preregistered predictions'); p. 11-12 (OSF link)"
+      },
+      "arms": [
+        { "name": "LLM", "description": "List playoff teams using Google Bard", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "no-LLM", "description": "Use own judgment and a browser or search engine; participants who reported using an LLM were excluded", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 213,
+        "counts_are": "people",
+        "exclusions": "Same preregistered criteria as Experiment 1 (NFL knowledge screen, at least one team, no LLM use in no-LLM arm), plus participants had to have a Google account. Counts excluded in SI Tables S2 and S4, not in this PDF.",
+        "population": "online_panel",
+        "who": "Amazon Mechanical Turk workers with basic NFL knowledge; M age = 41.90, 33.8% female, 65.3% male",
+        "country": "not stated",
+        "quote": "213 participants recruited from Amazon Mechanical Turk (Mage= 41.90, 33.8% female, 65.3% male) completed the experiment and passed all pre-registered screenings.",
+        "locator": "p. 13, Materials and Methods, Experiment 2"
+      },
+      "ai_tool": {
+        "name_model": "Google Bard",
+        "role": "open_chat",
+        "how_used": "Participants followed a hyperlink, wrote their own prompts, and could keep, reject, or add teams (p. 4)."
+      },
+      "task": {
+        "type": "other",
+        "description": "List the teams likely to make the 2024 NFL playoffs (14 of 32 teams qualify), then pick the single most likely team, then a confidence question.",
+        "duration": "not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Number of hypotheses generated (unique teams listed)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of unique teams listed.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "figure_only"],
+              "reported": "M LLM = 8.43, SD = 5.31 vs. M no-LLM = 5.42, SD = 3.39; t(180.4) = 4.94, p < .001, d = 0.676 (total N = 213; per-arm n not printed). Fig. 1 panel B.",
+              "locator": "p. 5, Results, Experiments 1-2; p. 6, Fig. 1B"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Number of accurate hypotheses",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Listed teams classified as accurate from playoff betting odds. Exploratory.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "M LLM = 6.26, SD = 3.47 vs. M no-LLM = 4.42, SD = 3.21; t(211) = 4.03, p < .001, d = 0.553.",
+              "locator": "p. 5-6, Results, Experiments 1-2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "Percent accuracy (accurate hypotheses / total hypotheses)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Actual hit rate; statistics in SI Table S5.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Text: similar percentage of accurate hypotheses with and without LLMs across Experiments 1-4; Fig. 4b plots means with 95% CI.",
+              "locator": "p. 8; p. 9, Fig. 4b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O4",
+          "name": "Crowd-level number of unique teams listed (homogeneity)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Total unique teams listed by all participants in each condition.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "'no difference in the number of unique teams listed by the LLM and non-LLM crowds in each study' (SI Table S21). No numbers in the main text.",
+              "locator": "p. 11, Robustness Checks, Homogeneity"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Count of unique teams across all participants in a condition",
+            "embedding_model": "",
+            "computed_over": "Whole pool of each condition's listed teams",
+            "uncertainty": "not stated in this PDF (SI Table S21)",
+            "notes": "Only 32 NFL teams exist. Statistics only in SI."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S3",
+      "label": "Experiment 3 (2024 MLB playoffs, Prolific, Perplexity AI, 2 x 2 with incentives)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "2 (LLM: Perplexity AI vs no-LLM) x 2 (incentive: 10 cents per correctly predicted team vs none), between subjects",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "We randomly assigned participants to one of the four conditions in a 2 (LLM: use LLM vs. no-LLM) x 2 (incentive: yes vs. no) between-subjects design.",
+        "locator": "p. 13, Materials and Methods, Experiment 3; p. 6, Results",
+        "preregistered": "yes",
+        "prereg_locator": "p. 6, Results ('consistent with our preregistered prediction'); p. 11-12 (OSF link)"
+      },
+      "arms": [
+        { "name": "LLM, unincentivized", "description": "Perplexity AI, no bonus", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "no-LLM, unincentivized", "description": "Own judgment plus optional search engine, no bonus", "ai": "other_aid", "n_randomized": null, "n_analyzed": null },
+        { "name": "LLM, incentivized", "description": "Perplexity AI, 10 cents per correctly predicted team", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "no-LLM, incentivized", "description": "Own judgment plus optional search engine, 10 cents per correctly predicted team", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 803,
+        "counts_are": "people",
+        "exclusions": "Same preregistered exclusion criteria as Experiment 1; counts in SI Tables S2 and S4. The paper says 395 participants were in the LLM condition (both incentive levels pooled), implying 408 in no-LLM; per-cell Ns not printed.",
+        "population": "online_panel",
+        "who": "Prolific adults with basic MLB knowledge; M age = 42.38, 40.3% female, 58.8% male",
+        "country": "Not stated directly; Prolific sample matched to the US population distribution by age, gender, and ethnicity",
+        "quote": "803 participants recruited from Prolific Academic (Mage= 42.38, 40.3% female, 58.8% male) completed the experiment and passed all pre-registered screenings (as used in Experiment 1).",
+        "locator": "p. 13, Materials and Methods, Experiment 3; p. 10 ('Out of 395 participants in the LLM condition')"
+      },
+      "ai_tool": {
+        "name_model": "Perplexity AI",
+        "role": "open_chat",
+        "how_used": "Own prompts; after the key measures, LLM-arm participants pasted the raw Perplexity output (385 of 395 valid). Participants retained on average 79.7% (SD 27.2%) of LLM-suggested teams; own additions were 3.0% (SD 11.8%) of submitted hypotheses (p. 10)."
+      },
+      "task": {
+        "type": "other",
+        "description": "List teams that would make the 2024 MLB playoffs, as in Experiment 1.",
+        "duration": "not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S3-O1",
+          "name": "Number of hypotheses generated (unique teams listed)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of unique teams listed. Analyzed with a 2 x 2 ANOVA plus simple-effect comparisons.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM, unincentivized",
+              "control_arm": "no-LLM, unincentivized",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "figure_only"],
+              "reported": "M LLM, unincentivized = 8.76, SD = 3.77 vs. M no-LLM, unincentivized = 6.56, SD = 3.47; p < .001 (cell n not printed). ANOVA: main effect of LLM F(1,799) = 29.85, p < .001, partial eta squared = .035; incentives F(1,799) = 50.13, p < .001, partial eta squared = .059; interaction F(1,799) = 8.50, p = .004, partial eta squared = .011.",
+              "locator": "p. 6, Results, Experiment 3; p. 7, Fig. 2"
+            },
+            {
+              "treatment_arm": "LLM, incentivized",
+              "control_arm": "no-LLM, incentivized",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "figure_only"],
+              "reported": "M LLM, incentivized = 9.87, SD = 3.34 vs. M no-LLM, incentivized = 9.22, SD = 4.42; p = .306. Also LLM, unincentivized 8.76 (SD 3.77) vs no-LLM, incentivized 9.22 (SD 4.42), p = .628.",
+              "locator": "p. 6, Results, Experiment 3; p. 7, Fig. 2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O2",
+          "name": "Number of accurate hypotheses",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Listed teams classified as accurate from betting odds. Exploratory.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM (both incentive levels, ANOVA main effect)",
+              "control_arm": "no-LLM (both incentive levels)",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["p_value_only"],
+              "reported": "'a similar pattern of results for the number of accurate hypotheses (both p main effect < .001; p 2-way interaction = .031; p LLM, unincentivized vs. no-LLM, incentivized = .977)'. No means in the main text; Fig. 4a shows unincentivized arms only.",
+              "locator": "p. 6, Results, Experiment 3; p. 9, Fig. 4a"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O3",
+          "name": "Percent accuracy (accurate hypotheses / total hypotheses)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Actual hit rate; Fig. 4 excludes the incentivized conditions; statistics in SI Table S5.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM, unincentivized",
+              "control_arm": "no-LLM, unincentivized",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Text: similar percentage of accurate hypotheses across Experiments 1-4. Fig. 4b plots means with 95% CI (Exp 3 LLM point lies above no-LLM in the figure; no test printed in the main text).",
+              "locator": "p. 8; p. 9, Fig. 4b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O4",
+          "name": "Crowd-level number of unique teams listed (homogeneity)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Total unique teams listed by all participants in LLM vs non-LLM conditions.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "'no difference in the number of unique teams listed by the LLM and non-LLM crowds in each study' (SI Table S21).",
+              "locator": "p. 11, Robustness Checks, Homogeneity"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Count of unique teams across all participants in a condition",
+            "embedding_model": "",
+            "computed_over": "Whole pool of each condition's listed teams",
+            "uncertainty": "not stated in this PDF (SI Table S21)",
+            "notes": "Whether incentive cells were pooled is not stated. Statistics only in SI."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S4",
+      "label": "Experiment 4 (2023 MLB playoffs, MTurk, Google Bard, LLM at stage 1 and/or stage 2)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "2 (Stage 1: LLM vs no-LLM) x 2 (Stage 2: LLM vs no-LLM), between subjects; LLM = Google Bard",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "We randomly assigned participants to one of four conditions in a 2 (Stage 1: LLM vs. no-LLM) × 2 (Stage 2: LLM vs. no-LLM) between-subjects design.",
+        "locator": "p. 13, Materials and Methods, Experiment 4; p. 7, Results",
+        "preregistered": "yes",
+        "prereg_locator": "p. 7, Results ('Confirming our focal prediction'); p. 11-12 (OSF link); p. 5 ('pre-registered screenings')"
+      },
+      "arms": [
+        { "name": "LLM, LLM", "description": "Google Bard in stage 1 and stage 2", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "LLM, no-LLM", "description": "Google Bard in stage 1 only", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "no-LLM, LLM", "description": "Google Bard in stage 2 only", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "no-LLM, no-LLM", "description": "Own judgment with the help of a search engine in both stages", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 400,
+        "counts_are": "people",
+        "exclusions": "Same preregistered screenings as Experiment 2; counts in SI Tables S2 and S4, not in this PDF. Per-cell Ns not printed.",
+        "population": "online_panel",
+        "who": "Amazon Mechanical Turk workers with basic MLB knowledge; Mean age = 40.87, '35.20 female', 64.5% male",
+        "country": "not stated",
+        "quote": "400 participants recruited from Amazon Mechanical Turk (Meanage= 40.87, 35.20 female, 64.5% male) completed the experiment and passed all pre-registered screenings (as used in Experiment 2).",
+        "locator": "p. 13, Materials and Methods, Experiment 4"
+      },
+      "ai_tool": {
+        "name_model": "Google Bard",
+        "role": "open_chat",
+        "how_used": "Used in stage 1 (initial list), stage 2 (optional additions to the stage-1 list), both, or neither, by assignment."
+      },
+      "task": {
+        "type": "other",
+        "description": "Stage 1: list teams that will probably make the 2023 MLB playoffs (during the 2023 season). Stage 2: shown the stage-1 list and invited to add teams (could skip). Then final prediction and confidence.",
+        "duration": "not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S4-O1",
+          "name": "Total number of hypotheses generated (stages 1 and 2)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Total unique teams across both stages. In the LLM, no-LLM and no-LLM, LLM arms part of the total was produced without AI, hence 'mixed'.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM at any stage (arms LLM, LLM; LLM, no-LLM; no-LLM, LLM pooled)",
+              "control_arm": "no-LLM, no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "figure_only"],
+              "reported": "M LLM-pooled = 7.50, SD = 4.29 vs. M no-LLM, no-LLM = 6.07, SD = 3.13; t(238.75) = 3.61, p < .001, d = 0.356 (per-arm n not printed).",
+              "locator": "p. 7, Results, Experiment 4; p. 8, Fig. 3"
+            },
+            {
+              "treatment_arm": "LLM, LLM",
+              "control_arm": "LLM, no-LLM and no-LLM, LLM",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only"],
+              "reported": "M LLM, LLM = 7.72, SD = 4.55 vs. M LLM, no-LLM = 7.85, SD = 4.26; p = .996. M LLM, LLM = 7.72, SD = 4.55 vs. M no-LLM, LLM = 6.97, SD = 4.04; p = .542. All pairwise p's among LLM conditions > .40.",
+              "locator": "p. 7, Results, Experiment 4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S4-O2",
+          "name": "Number of accurate hypotheses",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Listed teams classified as accurate from betting odds.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM at any stage (pooled)",
+              "control_arm": "no-LLM, no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect"],
+              "reported": "M LLM-pooled = 5.99, SD = 3.37 vs. M no-LLM, no-LLM = 5.00, SD = 3.22; t(398) = 2.58, p = .010, d = 0.296.",
+              "locator": "p. 7, Results, Experiment 4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S4-O3",
+          "name": "Percent accuracy (accurate hypotheses / total hypotheses)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Actual hit rate; statistics in SI Table S5.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Text: similar percentage of accurate hypotheses across Experiments 1-4; Fig. 4b plots means with 95% CI. Which Experiment 4 arms form 'LLM' in Fig. 4 is not stated.",
+              "locator": "p. 8; p. 9, Fig. 4b"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S4-O4",
+          "name": "Crowd-level number of unique teams listed (homogeneity)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Total unique teams listed by all participants in LLM vs non-LLM conditions.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "'no difference in the number of unique teams listed by the LLM and non-LLM crowds in each study' (SI Table S21).",
+              "locator": "p. 11, Robustness Checks, Homogeneity"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Count of unique teams across all participants in a condition",
+            "embedding_model": "",
+            "computed_over": "Whole pool of each condition's listed teams",
+            "uncertainty": "not stated in this PDF (SI Table S21)",
+            "notes": "Statistics only in SI."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S5",
+      "label": "Ancillary experiment (occupation guessing; SI Appendix Section 5, not in this PDF)",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "not_stated",
+        "what_was_assigned": "Not described in this PDF beyond use of LLMs",
+        "unit": "other",
+        "structure": "between",
+        "quote": "In an ancillary experiment (SI Appendix, Section 5), participants guessed the (single) occupation of a person after reading a brief profile description.",
+        "locator": "p. 11, Discussion",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "not stated",
+        "population": "online_panel",
+        "who": "not stated in this PDF",
+        "country": "not stated",
+        "quote": "",
+        "locator": "p. 11, Discussion"
+      },
+      "ai_tool": { "name_model": "not stated", "role": "other", "how_used": "not stated" },
+      "task": {
+        "type": "other",
+        "description": "Guess a person's single occupation from a brief profile description.",
+        "duration": "not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S5-O1",
+          "name": "Number of hypotheses (occupation guesses)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Described only in SI Section 5.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "LLM",
+              "control_arm": "no-LLM",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": ["none"],
+              "reported": "'Again, using LLMs increased the number of hypotheses that participants generated.' No numbers in the main text.",
+              "locator": "p. 11, Discussion"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "No company involvement stated; no funding statement in this PDF.", "locator": "" },
+  "data_and_code": {
+    "data_url": "https://osf.io/pdjwh/?view_only=d4d76b6c6e9343e99bcc146a68fbd578",
+    "code_url": "https://osf.io/pdjwh/?view_only=d4d76b6c6e9343e99bcc146a68fbd578"
+  },
+  "eligibility": {
+    "core": "unclear",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "unclear",
+    "context_class": "none",
+    "reason": "Criteria 1 and 2 are met in Experiments 1-4: individuals were randomized by Qualtrics to an LLM (Perplexity or Bard) or to own judgment plus optional search, with 213 to 803 people analyzed per experiment (p. 11-13). The doubt is scope and criterion 3. The task is forecasting which MLB/NFL teams make the playoffs, a closed set with correct answers benchmarked to betting odds (p. 4), not an output judged on novelty, originality, usefulness, or creativity as the codebook's definition of a creative or ideation task requires. The primary outcome is a count of teams listed, which matches the codebook's 'fluency' construct in form, and the paper reports a crowd-level unique-team count as a homogeneity check (p. 11), but that check has no statistics in this PDF (SI Table S21). My lean is exclusion (outside the creativity scope); flagged for Review 1."
+  },
+  "one_line_finding": "In four online RCTs, participants randomly assigned to an LLM listed more playoff teams than those using their own judgment plus search (Exp 1: 8.72 vs 5.99, d = 0.745; Exp 2: 8.43 vs 5.42, d = 0.676; Exp 4 pooled: 7.50 vs 6.07, d = 0.356; pp. 5-7), with similar percent accuracy, and a 10-cent incentive closed the gap in Exp 3 (9.87 vs 9.22, p = .306; p. 6).",
+  "open_questions": [
+    "Is listing which sports teams will make the playoffs (a forecasting task with a closed set of correct answers) inside the creativity section's scope, and does a count of listed hypotheses qualify as 'fluency' under criterion 3?",
+    "Comparison type: the no-LLM control was told it could use a search engine but was not required to; coded ai_vs_active, though ai_vs_bau is arguable.",
+    "Per-arm Ns, randomized counts, dropout, and the number of no-LLM participants excluded for using an LLM are only in SI Tables S2 and S4, which are not in this PDF.",
+    "The crowd-level homogeneity (unique teams) result is reported only in SI Table S21; the SI is needed to extract any diversity statistic.",
+    "Abstract total N = 1,814, but the four experiments sum to 396 + 213 + 803 + 400 = 1,812 (p. 2 vs pp. 12-13).",
+    "Reported percentage gains differ across the document: 36% on average (abstract, p. 2), 18% to 55% (significance statement, p. 2), 30% to 58% (summary of findings, p. 4).",
+    "Fig. 3 legend mentions ** p < 0.01, but the figure shows only * markers (p. 8)."
+  ],
+  "notes": "Self-reported confidence (percent of listed teams the participant expects to be correct) and calibration (confidence minus accuracy) are not listed as outcomes because they rest on self-report; the paper reports LLM users were less confident and underconfident (p. 8, Fig. 4c-d, SI Table S5). Experiment 2 also asked for a single most-likely team (final prediction), not analyzed in the main text. Robustness checks (no exclusions, search users vs non-users, gender covariate, standings benchmark, quartiles, percentile benchmarks) are in SI Sections 4 and Tables S12-S16. PDF page numbers used as locators (title page = p. 1)."
+}

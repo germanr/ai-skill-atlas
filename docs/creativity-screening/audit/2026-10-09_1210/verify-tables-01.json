@@ -1,0 +1,47 @@
+[
+  {
+    "id": "tables-01-1",
+    "cid": "c446",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:210-212; core table, People analyzed, by study; sample_overlap.shares_participants_with rendering",
+    "correct_value": "not printed; no other paper is identified as sharing participants. Experiment II reuses Experiment I teams as comparators; overlap with the individual-AI arm is unconfirmed.",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:108 and report-generated.md:62 contain \"not printed; same participants as No other paper is identified as sharing participants. Within this pap...\" (the report uses a single ellipsis character). I independently read forms/c446.json: sample_overlap.shares_participants_with explicitly says no other paper is identified as sharing participants, describes reuse within this paper, and leaves overlap between its individual and team cohorts unconfirmed; studies[0].participants.n_analyzed is null. C:/Dropbox/Research/ai-lab/literature/creativity/Li Zhou Mikel-Hong (2024) - Generative AI Enhances Team Performance and Reduces Need for Traditional Teams.pdf, PDF p. 11, section 2.2, states that the analysis combines 139 individuals from Experiment II with 122 teams from Experiment I; PDF p. 36, Appendix A Table 3, labels the individual-AI sample N=139. This supports within-paper comparator reuse, not the added cross-paper shared-sample assertion. tools/build_report.py:210-212 prepends \"same participants as\" whenever all selected counts are null and the overlap note is nonempty, without checking what the note says. Executing only the cell-rendering statements in memory reproduced the report cell exactly. The correction belongs in that rendering logic, preserving the note without asserting confirmed overlap."
+  },
+  {
+    "id": "tables-01-2",
+    "cid": "c450",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:208,216-218; core-table study selection and Sample, AI role, Task cells",
+    "correct_value": "Sample: students; AI role: open_chat; Task: creative_writing.",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:109 and report-generated.md:63 leave all three cells empty. forms/c450.json, studies[0], records participants.population=\"students\", ai_tool.role=\"open_chat\", task.type=\"creative_writing\", assignment.randomized=\"yes\", and design_class=\"other\"; its eligibility reason explains that the setting subtype is unreported. C:/Dropbox/Research/ai-lab/literature/creativity/Liang Zhang An Xu (2026) - Sequential Human-AI Collaboration Impairs Narrative Creativity in University Stu.pdf, PDF p. 4, section 2.1, identifies undergraduate students from Yangzhou University and explicitly states random assignment. PDF pp. 4-5, section 2.2.1, describes the open-ended story-writing task. PDF p. 7, section 2.4, permits participants to choose ChatGPT or DeepSeek, send prompts freely, and adopt or reject generated content. These passages support the recorded classifications under creativity-codebook.md, lines 103-107. tools/build_report.py:208 selects only design codes ending in \"_rct\", leaving no studies for lines 216-218 to display. In-memory execution reproduced the empty cells. Include explicitly randomized studies even when the setting is coded \"other\"; the existing form values should populate these cells."
+  },
+  {
+    "id": "tables-01-3",
+    "cid": "c089",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:210-212; core table, People analyzed, by study; sample_overlap.shares_participants_with rendering",
+    "correct_value": "not printed; possible overlap with c471; participant reuse and the number shared are unconfirmed.",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:110 and report-generated.md:64 add \"same participants as\" before \"Possible overlap with c471\". forms/c089.json, sample_overlap.shares_participants_with, explicitly leaves participant reuse and the shared count unconfirmed and says possible overlap does not establish a reanalysis; studies[0].participants.n_analyzed is null. I checked C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2025) - Who Is the Best Helper for University Students' Mathematical Creativity.pdf, PDF p. 4, Table 1, against C:/Dropbox/Research/ai-lab/literature/creativity/Liu Zuo Feng Lu (2026) - Exploring the impact of ChatGPT on college students' mathematical creativity.pdf, PDF p. 7 (printed p. 45), Table 2. The relevant arms match on age M=19.20, SD=1.36, male/female counts 39/21, major counts, and prior-ChatGPT-experience counts. Their reported creativity results differ in c089 PDF p. 7, Table 3, versus c471 PDF p. 11 (printed p. 49), Table 5. These tables provide a reason to flag possible overlap, but do not establish shared participant identities. tools/build_report.py:210-212 converts any nonempty overlap note into the categorical prefix. In-memory execution reproduced the report cell exactly. The rendering must retain the uncertainty expressed by the form."
+  },
+  {
+    "id": "tables-01-4",
+    "cid": "c503",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:210-212; core table, People analyzed, by study; sample_overlap.shares_participants_with rendering",
+    "correct_value": "not printed; no shared sample with another paper is stated in this manuscript.",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:121 and report-generated.md:75 say \"not printed; same participants as No shared sample with another paper is stated in this manuscript.\" forms/c503.json contains that negative disclosure statement in sample_overlap.shares_participants_with, and studies[0].participants.n_analyzed is null. I read the saved manuscript C:/Dropbox/Research/ai-lab/literature/creativity/Noy and Zhang (2023) - Experimental evidence on the productivity effects of generative artificial intel.pdf, PDF pp. 1-19. It does not identify a sample shared with another paper. PDF p. 3, Method, describes repeated tasks within its own experiment; PDF p. 6 describes follow-up surveys of that experiment's participants. Neither supplies the cross-paper identity implied by the added phrase. tools/build_report.py:210-212 adds \"same participants as\" merely because the negative disclosure note is nonempty. In-memory execution reproduced the cell exactly. Remove that categorical prefix while preserving the source note."
+  },
+  {
+    "id": "tables-01-5",
+    "cid": "c539",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:208-218; core-table study selection and People analyzed, by study, Sample, AI role, Task cells",
+    "correct_value": "People analyzed, by study: 101; Sample: students; AI role: open_chat; Task: idea_generation.",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:124 and report-generated.md:78 display \"?\" for people analyzed and leave the other three cells empty. forms/c539.json, studies[0], records participants.n_analyzed=101, counts_are=\"people\", population=\"students\", ai_tool.role=\"open_chat\", task.type=\"idea_generation\", assignment.randomized=\"yes\", and design_class=\"other\". C:/Dropbox/Research/ai-lab/literature/creativity/Rosenbaum et al (2025) - Scaffolding Creativity.pdf, PDF p. 4, section 4, describes individually randomized undergraduate students using a ChatGPT interface to develop ideas for making libraries more attractive to young adults. PDF p. 5, section 5, explicitly reports a final dataset of 101 conversation logs after participant exclusions, with 69 in the persona condition and 32 in control. I also visually inspected PDF p. 10, Figure 6: its participant-level bars instead label treatment n=70 and control n=31. The conflicting arm allocations do not undermine the explicitly reported total of 101. PDF p. 11 describes user-initiated, fluid switching between the chat personas, supporting open_chat; the task and population match creativity-codebook.md, lines 103-107. tools/build_report.py:208 excludes this study solely because \"other\" does not end in \"_rct\"; lines 209-218 therefore suppress all four existing values. In-memory execution reproduced the report cells. Include explicitly randomized studies even when their setting subtype is unreported."
+  }
+]

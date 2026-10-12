@@ -1,0 +1,68 @@
+{
+ "cid": "c166",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "eligibility.criterion_1_random_assignment_of_ai",
+   "form_value": "",
+   "source_says": "Set to not_met. Previously collected human AUT responses were compared with separately generated GPT-3 responses; no people were assigned to generative-AI assistance.",
+   "quote": "The human sample comprised of previously collected data of 823 responses from 42 students from the University of Amsterdam.",
+   "locator": "PDF p. 2, Methods: Sample and Materials (separate human and GPT-3 tasks)."
+  },
+  {
+   "field": "eligibility.criterion_2_at_least_50_people",
+   "form_value": "",
+   "source_says": "Set to not_met: 42 people were analyzed, fewer than 50. The 144 GPT-3 runs and the response counts are not additional people.",
+   "quote": "In total, after data cleaning, we analyzed 774 responses from 42 humans and 781 responses from 144 GPT-3 runs.",
+   "locator": "PDF p. 3, Results, opening paragraph; creativity-codebook.md, sections 3 and 7."
+  },
+  {
+   "field": "eligibility.criterion_3_outcome_scored_on_output",
+   "form_value": "",
+   "source_says": "Set to met. Originality, utility and surprise were rated on responses; semantic distance and response-set flexibility were also computed on the output.",
+   "quote": "two trained judges rated each response on originality, utility, and surprise using a 5-point scale",
+   "locator": "PDF p. 2, Procedure, rating, semantic-distance and flexibility paragraphs."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "[[], [], [], [], []]",
+   "source_says": "Populate S1-O1 through S1-O4 with [\"regression_coefficient_se\", \"test_statistic\"]: the paper prints coefficients, SEs and z statistics. Populate S1-O5 with [\"test_statistic\"]: it prints an F statistic with degrees of freedom. All five results also have printed p values.",
+   "quote": "humans had higher originality (β=.17, SE = .06, z = 2.91, p = .004)",
+   "locator": "PDF p. 3, Results, both outcome subsections; form-spec.md, statistics_available field note."
+  },
+  {
+   "field": "data_and_code",
+   "form_value": "{\"data_url\": \"\", \"code_url\": \"\"}",
+   "source_says": "Both data_url and code_url should contain http://osf.io/vmk3c/. The paper explicitly identifies this shared repository; the linked repository itself was not inspected in this check.",
+   "quote": "All data, code, Dutch to English translations, data cleaning steps, rating protocols, and categorization protocols are available on the Open Science Foundation website for this project: http://osf.io/vmk3c/.",
+   "locator": "PDF p. 3, final Procedure paragraph and Results opening paragraph; p. 2, Materials, optimization-study repository link."
+  },
+  {
+   "field": "source.supplement.holds",
+   "form_value": "Data, code, Dutch-to-English translations, data cleaning steps, rating protocols, categorization protocols, and the Monte Carlo prompt/parameter optimization studies. The main text gives regression coefficients with SEs but no arm means or SDs except as bar charts (Figures 2 to 6).",
+   "source_says": "Correct the figure description: Figures 2 to 5 are bar charts, whereas Figure 6 is a violin/distribution plot of flexibility scores. The document does not tabulate exact group means or SDs; Figure 6 should not be described as a bar chart.",
+   "quote": "Figure 6. Human versus GPT-3 flexibility scores. Humans have a higher mean flexibility score, but GPT-3’s scores show greater variance.",
+   "locator": "PDF pp. 3-4, Figures 2 to 6; visual inspection of Figure 6 on p. 4."
+  }
+ ],
+ "confirmed": [
+  "Read the complete 165-line markdown conversion and all 5 PDF pages, including references, acknowledgements and author contributions; there is no appended supplement in this PDF (PDF pp. 1-5).",
+  "The stored source is the five-page arXiv paper identified in retrieval.json; no version number is printed in the PDF, and p. 5 refers to the camera ready paper. The arXiv API identifies 2206.08932v1, published 2022-06-10, and states acceptance as an ICCC 2022 Short Paper (https://export.arxiv.org/api/query?id_list=2206.08932, entry id, published and arxiv:comment).",
+  "The title and all five named authors agree with the document header (PDF p. 1).",
+  "design_class and context_class are correctly ai_vs_human, and core is correctly no: previously collected human responses were compared with GPT-3-generated responses. The two preliminary Monte Carlo experiments optimized GPT-3 engines/prompts/parameters and were not randomized AI-assistance studies of people (PDF p. 2, Methods: Sample and Materials).",
+  "The human sample comprised 42 Dutch-fluent University of Amsterdam students and 823 responses before cleaning; 42 humans and 774 responses remained in the analysis. GPT-3 supplied 820 responses from 144 runs before cleaning, with 781 responses from 144 runs analyzed; n_randomized is appropriately null (PDF p. 2, Sample and Materials; p. 3, Results opening paragraph).",
+  "The response total n_units = 1555 is the arithmetic sum 774 + 781, explicitly shown in the form; the PDF prints the two component counts rather than a combined total. These are responses, not people (PDF p. 3, Results opening paragraph).",
+  "The human AUT used book, fork and tin can, with two minutes per object. The paper names davinci-002, temperature sampled from .65 to .80, frequency and presence penalties both 1, and two collection sessions (PDF p. 2, Materials).",
+  "Two trained judges were blinded to response source and used a 5-point scale; after removing invalid/incomplete responses, ICCs were .78 for originality, .70 for utility and .79 for surprise. Semantic distance was 1 minus cosine similarity, using spaCy en_core_web_lg (PDF p. 2, Procedure).",
+  "Originality: humans higher, β=.17, SE = .06, z = 2.91, p = .004; the reported string and one-line finding agree (PDF p. 3, Results, originality/usefulness/surprise subsection; Figure 2).",
+  "Utility: GPT-3 higher, β=-.55, SE = .06, z = -8.52, p<.001; the reported string and one-line finding agree (PDF p. 3, same Results subsection; Figure 5 on p. 4).",
+  "Surprise: humans higher, β=.14, SE = .07, z = 1.96, p = .050; the reported string and one-line finding agree, including the printed p = .050 (PDF p. 3, same Results subsection; Figure 3).",
+  "Semantic distance: humans higher, β= .10, SE = . 02, z = 5.45, p<.001; the reported string and one-line finding agree. These regression models used response-level outcomes while accounting for responses within a person or GPT-3 run and adjusting for AUT object (PDF p. 3, same Results subsection; Figure 4).",
+  "Flexibility was computed only for tin can in the reported comparison: humans higher, F(1, 85) = 5.53, p = .021, with greater variance for GPT-3. The number of response sets is not stated; keeping n_units null is appropriate (PDF p. 3, flexibility Results subsection; Figure 6 on p. 4).",
+  "Flexibility divides the number of represented categories by the number of responses within an individual response set; it is not across-person diversity. All five question fields are appropriately none for this AI-versus-human comparison (PDF p. 2, Procedure; creativity-codebook.md, section 6; form-spec.md, question field note).",
+  "The form correctly flags the source inconsistency: the reliability paragraph says approximately 10% of 1656 responses, whereas the stated pre-cleaning counts are 823 human and 820 GPT-3 responses, summing to 1643. No explanation appears in the document (PDF p. 2, Sample, Materials and Procedure).",
+  "This is an original output-comparison study, not a synthesis; null synthesis counts and an empty pooled-estimate list are appropriate (PDF pp. 2-3, Methods and Results)."
+ ],
+ "summary": "The design, counts, and all five reported results match the source; no people were randomized to AI assistance. Six corrections address blank eligibility fields, missing statistic-availability labels and data/code links, and the description of Figure 6."
+}

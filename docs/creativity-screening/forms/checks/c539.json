@@ -1,0 +1,92 @@
+{
+ "cid": "c539",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "eligibility.core; eligibility.reason",
+   "form_value": "{\"core\": \"unclear\", \"reason\": \"The text explicitly assigns people randomly to different generative-AI configurations for an ideation task (p. 4, Section 4). It reports 101 retained participant conversation logs, comprising 69 persona-condition and 32 control-condition participants (p. 5, Section 5), exceeding the 50-person threshold. Idea counts and semantic distances are computed on ideas extracted from their transcripts (pp. 9–10, Section 5.3). Under the requested short-screen rule, core remains unclear and the paper proceeds to the two-screener pipeline despite all three criteria being met. Design_class is other only because the RCT setting subtype is not established in the document. The stated total exclusions and the listed exclusion-category counts do not reconcile; the explicitly printed assignment and retained-sample counts are preserved without correction (p. 5, Section 5).\"}",
+   "source_says": "Under the supplied codebook, core should be yes: people were randomly assigned to different generative-AI configurations, the retained sample exceeds 50 people, and creativity/diversity was computed on their ideas. The paper belongs in the two-screener pipeline. An unspecified RCT setting and pending second screening do not negate these eligibility criteria; remove the reason for leaving core unclear.",
+   "quote": "Random assignment allocated 73 participants to the treatment group and 32 to the control group.",
+   "locator": "PDF p. 4, Section 4 (Methodology); p. 5, Section 5 (retained sample); pp. 9-10, Section 5.3 (output measures); creativity-codebook.md Sections 3 and 5; form-spec.md eligibility.core field note"
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Populate the exclusion field. The paper says four of 105 participants were excluded, but lists minimal interaction (n=1), inadequate session duration (n=2), session timeout violations (n=1), and content authenticity issues (n=1), which total five. Preserve this source inconsistency rather than resolving it by assumption. It separately excludes an additional three participants per group from survey analysis for incomplete responses; those survey exclusions do not define the conversation-log sample.",
+   "quote": "Out of 105 participants, four were excluded due to insufficient system engagement: minimal interaction (n=1), inadequate session duration (n=2), session timeout violations (n=1), and content authenticity issues (n=1).",
+   "locator": "PDF pp. 5-6, Section 5 (Results), opening paragraph; form-spec.md Counts in prose field note"
+  },
+  {
+   "field": "studies[0].arms[*].n_analyzed; open_questions",
+   "form_value": "{\"arms\": [{\"name\": \"Persona-guided LLM interface\", \"n_analyzed\": 69}, {\"name\": \"Baseline ChatGPT interface\", \"n_analyzed\": 32}], \"open_questions\": []}",
+   "source_says": "The results prose reports 69 persona-condition and 32 control-condition conversation logs, but Figure 6 labels every originality comparison n=70 for treatment and n=31 for control. The total of 101 is consistent; the arm allocation is not. Retain 69/32 only as explicitly labeled prose log counts, record 70/31 as the figure labels, and add this unresolved discrepancy to open_questions. Reconciled outcome-specific arm counts are null; do not silently treat either allocation as established for every output analysis.",
+   "quote": "n=70",
+   "locator": "PDF p. 5, Section 5 (Results), final-dataset sentence; p. 10, Figure 6, treatment and control labels on all three comparisons (figure inspected directly; labels are absent from extracted text)"
+  },
+  {
+   "field": "studies[0].outcomes[0].primary",
+   "form_value": "not_stated",
+   "source_says": "Set paper_primary for the same-condition component of S1-O1. Figure 6 explicitly labels the same-condition originality comparison primary; the other two distances remain complementary variants. This is not evidence of preregistration.",
+   "quote": "Originality vs same condition (primary)",
+   "locator": "PDF p. 10, Figure 6, first x-axis label (figure inspected directly)"
+  },
+  {
+   "field": "studies[0].outcomes[*].measure_detail; studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"measure_detail\": {\"S1-O1\": \"\", \"S1-O2\": \"\", \"S1-O3\": \"\"}, \"S1-O1.diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "Populate the documented methods. S1-O1 uses cosine distances between participant portfolios represented by mean-pooled centroids of normalized OpenAI text-embedding-3-large idea embeddings: same-condition peers, all participants, and nearest cross-condition neighbor. Figure 6 labels all three tests Welch; error bars are drawn but their type and numerical bounds are not stated. S1-O2 counts ideas extracted from user transcripts with GPT-4.1. S1-O3 uses mean pairwise distance among ideas within each participant. Put complementary variants in measure_detail and the metric, embedding model, comparison sets, and Welch testing in S1-O1.diversity_detail.",
+   "quote": "Three complementary originality measures were computed: (1) mean cosine distance to same-condition peers, (2) mean distance to all participants, and (3) nearest cross-condition neighbor distance.",
+   "locator": "PDF pp. 9-10, Section 5.3 (Computational Creativity Assessment); p. 10, Figure 6; form-spec.md Rules 7 and diversity_detail field note"
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced",
+   "form_value": "{\"S1-O1\": \"\", \"S1-O2\": \"\", \"S1-O3\": \"\"}",
+   "source_says": "Set yes for all three outcomes. The scored ideas came from the creative task performed through the assigned LLM interface; there is no unassisted post-AI output phase.",
+   "quote": "In the control condition, both buttons routed inputs to the same baseline ChatGPT model, yielding unmodified responses regardless of persona selection.",
+   "locator": "PDF p. 4, Section 4 (Methodology), task and AI conditions; p. 9, Section 5.3, extraction from user transcripts"
+  },
+  {
+   "field": "studies[0].outcomes[*].timing",
+   "form_value": "{\"S1-O1\": \"\", \"S1-O2\": \"\", \"S1-O3\": \"\"}",
+   "source_says": "Set immediate for all three outcomes. The task lasted 20 minutes in a single session; the scores were computed from that session's conversation transcripts, with no delayed task reported.",
+   "quote": "The experimental design focused on a single creative problem prompt and one LLM family during one session,",
+   "locator": "PDF p. 4, Section 4 (task duration); pp. 9-10, Section 5.3 (transcript-based outcomes); p. 12, Section 6.1 (Limitations)"
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].treatment_arm; studies[0].outcomes[*].contrasts[0].control_arm; studies[0].outcomes[*].contrasts[0].comparison_type",
+   "form_value": "{\"S1-O1\": {\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\"}, \"S1-O2\": {\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\"}, \"S1-O3\": {\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\"}}",
+   "source_says": "For each outcome, set treatment_arm to Persona-guided LLM interface, control_arm to Baseline ChatGPT interface, and comparison_type to ai_design. Both randomized arms used generative AI; Taylor and Alex were available within the treatment arm and were not separately randomized arms.",
+   "quote": "In the control condition, both buttons routed inputs to the same baseline ChatGPT model, yielding unmodified responses regardless of persona selection.",
+   "locator": "PDF p. 4, Section 4 (Methodology), control and treatment descriptions; p. 11, Section 6 (user-initiated switching); creativity-codebook.md Section 5"
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].direction",
+   "form_value": "{\"S1-O1\": \"\", \"S1-O2\": \"\", \"S1-O3\": \"\"}",
+   "source_says": "Set treatment_higher for S1-O1, whose three distance measures are significantly higher with personas. Set no_clear_difference for S1-O2 and S1-O3: the paper reports no significant fluency difference and no within-participant diversity difference, respectively.",
+   "quote": "Treatment participants demonstrated significantly higher originality across all measures (Figure 6).",
+   "locator": "PDF p. 9, Section 5.3, fluency paragraph; p. 10, Section 5.3, between-participant originality and within-participant diversity paragraphs"
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "{\"S1-O1\": [], \"S1-O2\": [], \"S1-O3\": []}",
+   "source_says": "These arrays omit reported statistics. S1-O1 and S1-O3 support p_value_only: means and p-values are printed, without numerical t statistics, standard errors, or confidence intervals. S1-O2 supplies arm means and SDs but no exact test or p-value; a complete arm_means_sds_ns record needs an explicit qualification about unresolved analysis-arm Ns. Figure 6 additionally prints Welch p = 2.2e-06, p = 0.0215, and p = 0.00249 for S1-O1; its error bars have no stated type or numerical bounds. Preserve the existing prose values and do not calculate missing statistics.",
+   "quote": "Idea fluency showed no significant between-condition differences, though control participants generated slightly more ideas on average (Treatment M=8.55, SD=3.85; Control M=9.23, SD=3.37).",
+   "locator": "PDF p. 9, Section 5.3 (fluency); p. 10, Section 5.3 and Figure 6 (distance outcomes and plotted Welch p-values); p. 5, Section 5 (prose arm counts)"
+  }
+ ],
+ "confirmed": [
+  "Source version, title and author list match the PDF: arXiv:2510.26490v1 [cs.HC], 30 Oct 2025 (p. 1). The complete markdown and all 16 PDF pages were read; references occupy pp. 14-16, with no appendix or supplementary-material reference found.",
+  "One original randomized study assigned 105 undergraduate students, 73 to the persona-guided interface and 32 to baseline ChatGPT (p. 4, Section 4); this is not a synthesis, AI-versus-human-output study, or observational context study.",
+  "Randomization is explicit, but the document does not establish the location/supervision or an online-panel/coursework setting; design_class other with the form's RCT-setting explanation is defensible, and context_class none is appropriate (pp. 4-5, Section 4; p. 12, Section 6.1).",
+  "The task was generating ideas to make libraries more attractive to young adults, with 20 minutes per participant (p. 4, Section 4). Taylor used temperature 0.8 and Alex 0.3; both personas were available in treatment (p. 4), with user-initiated switching (p. 11, Section 6).",
+  "The results text explicitly reports 101 retained conversation logs, 69 persona-condition and 32 control-condition logs; those are distinct from the additional survey exclusions (pp. 5-6, Section 5). Figure 6 instead labels 70 treatment and 31 control participants (p. 10); the total still exceeds the 50-person threshold.",
+  "The output analyses use participant-level idea counts and participant-level distance summaries, rather than counting ideas, ratings, or pairs as people (pp. 9-10, Section 5.3; p. 10, Figure 6).",
+  "The participant interaction model is called baseline ChatGPT without a specific version; GPT-4.1 is explicitly named for subsequent idea extraction, and text-embedding-3-large for semantic representations (p. 4, Section 4; p. 9, Section 5.3).",
+  "S1-O1's reported prose statistics are exact: same-condition M=0.34 versus 0.28, Welch's t, p=2.20 × 10−6; all-participant M=0.33 versus 0.31, p=.02; nearest cross-condition neighbor M=0.20 versus 0.17, p<.01 (p. 10, Section 5.3). Figure 6 gives Welch p = 2.2e-06, 0.0215, and 0.00249, respectively, consistent with the prose rounding and inequality.",
+  "S1-O2's reported values are exact: Treatment M=8.55, SD=3.85; Control M=9.23, SD=3.37. The paper states no significant difference and does not give an exact p-value or test statistic for fluency (p. 9, Section 5.3).",
+  "S1-O3's reported values are exact: mean pairwise distance Treatment M=0.59, Control M=0.59, p=.90 (p. 10, Section 5.3).",
+  "Coding between-participant distances as diversity/across_people and within-participant distances as flexibility/with_ai follows the comparison sets actually described (pp. 9-10, Section 5.3; creativity-codebook.md Sections 1 and 6). The survey creativity ratings are self-reports (pp. 5-6, Table 1 and Section 5).",
+  "Every number in the one_line_finding matches the results prose: total retained sample 101 (p. 5, Section 5) and all stated outcome means and p-values (pp. 9-10, Section 5.3). Its absence of an arm breakdown does not resolve the Figure 6 count discrepancy."
+ ],
+ "summary": "This randomized comparison of AI configurations assigned 105 students and retained 101, qualifying for the two-screener pipeline. Reported statistics and version match the PDF, but eligibility and missing coding fields need correction, including Figure 6's primary-outcome label and its conflicting arm counts (70/31 versus 69/32 in the text)."
+}

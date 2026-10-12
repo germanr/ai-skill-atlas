@@ -1,0 +1,74 @@
+[
+  {
+    "id": "tables-02-1",
+    "cid": "c566",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:219-220; Recommended for the core dataset, c566, Statistics",
+    "correct_value": "in the PDF",
+    "evidence": "The assembled report, line 129, says supplement not on file, and line 65 expressly defines this column as the location of statistics. Independently read the c566 PDF identified in retrieval.json: PDF p. 9, Table 1 and section 4.1, prints all three group Ns (40 each), means (20.90, 18.65, 16.13), SDs (7.64, 7.41, 6.85), F = 43.28, and pairwise p < 0.001. PDF p. 5 identifies Supplementary Table S1 as the Double Diamond-Based Design Operation Sheet. forms/c566.json source.supplement.holds and studies[0].outcomes[0].contrasts[*].locator correctly distinguish these locations. The builder chooses the statistics label solely from supplement.exists and supplement.in_this_pdf, ignoring what the supplement holds."
+  },
+  {
+    "id": "tables-02-2",
+    "cid": "c127",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:219-220; Recommended for the core dataset, c127, Statistics",
+    "correct_value": "in the PDF",
+    "evidence": "The assembled report, line 135, says supplement not on file. Independently read the c127 PDF identified in retrieval.json: PDF p. 4, section 3.1, identifies the supplementary material as the full study protocol. PDF pp. 8-10 contain Tables 1-4 with posterior estimates, SDs and intervals for design fixation, fluency, variety and originality, alongside Figures 6-9. For example, Table 1 on p. 8 prints the GenAI estimate .32, posterior SD .13 and interval [.11, .54]. forms/c127.json source.supplement.holds and the outcome locators correctly put these statistics in the PDF. The builder substitutes external-supplement availability for the location of those statistics."
+  },
+  {
+    "id": "tables-02-3",
+    "cid": "c141",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:219-220; Recommended for the core dataset, c141, Statistics",
+    "correct_value": "in the PDF",
+    "evidence": "The assembled report, line 142, says supplement not on file. Independently read the c141 PDF identified in retrieval.json: PDF p. 6, Table 2, prints the Study 2 creativity means 4.78 and 5.20, SDs .66 and .53, t(130) = 4.03, p < .001 and d = .70. PDF p. 13 lists supplemental Tables S1-S8 as scales, priming statements, manipulation-check items and scoring rubrics, plus task instructions; the list identifies no outcome-statistics tables. forms/c141.json source.supplement.holds and studies[1].outcomes[0].contrasts[0].locator correctly identify the materials and the main-PDF statistics. The builder checks only the existence of an external supplement."
+  },
+  {
+    "id": "tables-02-4",
+    "cid": "c673",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:208-214; Recommended for the core dataset, c673, People analyzed, by study",
+    "correct_value": "155 (AUT), 164 (PIT); overlapping task samples in one experiment; unique total not reported",
+    "evidence": "The assembled report, line 143, prefixes the form text denying reported cross-paper reuse with same participants as. forms/c673.json sample_overlap.shares_participants_with names no shared-sample paper; studies[0].participants.n_analyzed is null because the unique union across tasks is unknown. Independently read the c673 PDF identified in retrieval.json: PDF p. 8, section 2.1, explicitly reports 155 participants with valid AUT data and 164 with valid PIT data. PDF p. 9 explains that invalid data were removed only for the affected task while valid data for the other task were retained. These task counts must not be added. Builder lines 210-212 treat any nonempty overlap description as an affirmative cross-paper reuse statement when all study counts are null."
+  },
+  {
+    "id": "tables-02-5",
+    "cid": "c147",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:219-220; Recommended for the core dataset, c147, Statistics",
+    "correct_value": "in the PDF",
+    "evidence": "The assembled report, line 148, says supplement not on file. Independently read the saved c147 preprint PDF identified in retrieval.json: PDF p. 12 references Supplementary Figure 2A for perspective-taking classifications, and p. 15 references Supplementary Figure 2B for prompt-strategy classifications. The same p. 15 prints usefulness means 4.09, 3.24 and 3.34, their SDs, and mixed-model coefficients/SEs; p. 16 prints originality and high-quality-idea-fluency means, SDs and coefficients/SEs. Thus the creativity statistics are in the saved PDF. forms/c147.json source.supplement.holds and final.open_items[4] correctly distinguish the coding schemes from outcome statistics; the builder ignores that distinction."
+  },
+  {
+    "id": "tables-02-6",
+    "cid": "c176",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:108-109 and 244-250; Candidates that need clarification, c176, What is unsettled",
+    "correct_value": "Criterion 2 is unclear: 75 students (25 per arm) are sample/allocation counts; final analyzed headcounts and exclusions are not reported. Authors must confirm that at least 50 people were analyzed (pp. 1, 6, 10-13).",
+    "evidence": "The assembled report, line 1003, displays only the beginning of the statement that criterion 1 is met. In forms/c176.json eligibility.reason, the sentence identifying criterion 2 as unclear starts at character offset 345, after the builder truncates the reason to 240 characters. final.criteria.at_least_50_people is unclear, and final.open_items[0] requires author confirmation of final analyzed headcounts and exclusions. Independently read the c176 PDF identified in retrieval.json: PDF pp. 1 and 6 report the 75-student sample and 25 per group, while Tables 4-7 on pp. 10-13 print results without final analyzed headcounts. Table 5 p. 11 prints error df = 72, not an explicit analyzed-person count. The form records the unsettled criterion correctly; the table truncation removes it."
+  },
+  {
+    "id": "tables-02-7",
+    "cid": "c002",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "forms/c002.json: final.open_items[5].affects_eligibility",
+    "correct_value": "false",
+    "evidence": "The assembled report, lines 1004 and 1561, presents the supplied-ideas question as unresolved and classifies c002 as clarify. In forms/c002.json, final.core is yes and every final criterion is met. final.open_items[5] explicitly resolves the question in favor of eligibility and has settled_by = nothing_needed, but its affects_eligibility flag is true. creativity-codebook.md section 6, line 105, explicitly defines ideas_supplied to include AI-generated ideas or examples; section 3 accepts randomized within-person order. Independently read the c002 PDF identified in retrieval.json: PDF p. 5, Figure 2 and sections 3.4.2-3.4.3, reports randomized trial sequences and manipulated exposure to AI-generated examples; PDF p. 7, Tables 1-2, documents output-based measures and 844 unique participants. The contradictory flag is the only true eligibility flag. Running the existing classify function in memory reproduces clarify; changing only this flag to false returns core. Regenerating the report after that form correction should move c002 to the core recommendation and show core in reclassification."
+  },
+  {
+    "id": "tables-02-8",
+    "cid": "c205",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:249-250; Candidates that need clarification, c205, People analyzed",
+    "correct_value": "234, 205, 157; Sample 4: 1,941 hashed-IP user identifiers (distinct people not verified)",
+    "evidence": "The assembled report, line 1005, displays 234, 205, 157, 1941 under People analyzed without qualifying the fourth value. Independently read the c205 PDF identified in retrieval.json: PDF p. 41, Final Analytic Sample, reports 1,941 users in the filtered product-scored sample; p. 42, User-Level Aggregation, explains that identifiers are hashed IPs and can merge multiple users or split one user across IPs. PDF p. 43, Table S6, lists analytic Ns 234, 205, 157 and 1,941, but does not remove that identity limitation. forms/c205.json studies[3].participants.who explicitly says the fourth count is not a verified number of distinct individuals, and forms/checks/c205.json also distinguishes these proxies from the first three participant samples. The table builder renders only n_analyzed and drops this necessary qualification."
+  }
+]

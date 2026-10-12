@@ -1,0 +1,1062 @@
+{
+  "cid": "c016",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Moon et al (2026) - The Creative Link Between Words and Ideas.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Moon et al (2026) - The Creative Link Between Words and Ideas.pdf",
+    "version": "PsyArXiv preprint (DOI 10.31234/osf.io/jsz58; the search record points to _v6). The document prints 'This paper has not been peer-reviewed.' (PDF p. 1) and prints no version number or date; PDF metadata creation date 2026-02-04. 26 pages of main text plus 63 pages of supplementary materials.",
+    "title_on_document": "The Creative Link Between Words and Ideas is Weakening in the AI Era",
+    "authors_on_document": ["Kibum Moon", "Kostadin Kushlev", "Andrew Bank", "Benjamin Lira", "Indre Viskontas", "James C. Kaufman", "Dan R. Johnson", "Angela L. Duckworth", "Adam E. Green"],
+    "pages": 89
+  },
+  "paper_design_summary": "Four preregistered natural experiments compare personal-statement admissions essays submitted to four U.S. universities before (2018-2022 cycles) and after (2024-2025 cycles) the release of ChatGPT, scoring each essay on word-level diversity (DSI), within-essay sentence-level diversity, document-level distinctness from the nearest other essay in the cohort, and a creativity rating from a GPT-4.1-mini model fine-tuned on expert ratings. Supporting analyses compare 1,500 human essays with 1,500 GPT-5-mini essays, relate 22 experts' creativity ratings of 370 human essays to the three metrics, and test LLM raters with 0 to 128 reference essays. In a within-subjects study, 203 students at one university uploaded their original admissions essay and wrote two prompts; the researchers ran the prompts through GPT-4.1 to produce an AI-revised and an AI-generated essay, and the three essays per student were compared on the same three metrics. No one was randomly assigned to AI.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Natural experiment 1: elite private university, pre- vs post-ChatGPT essays",
+      "design_class": "observational",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned. Essays are classified by admissions cycle: pre-ChatGPT (2019-2022 cycles) vs post-ChatGPT (2024-2025 cycles); the 2023 transition cycle is excluded.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We leveraged the public release of ChatGPT on November 30, 2022, as a temporal cutoff to define two distinct periods.",
+        "locator": "PDF p. 32 (supp. p. 6), Natural Experiments, Methods",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 50 (supp. p. 24), Table S8 (word, sentence, document hypotheses marked Pre); PDF p. 26, Data, code, and materials availability (https://osf.io/yd94z/registrations)"
+      },
+      "arms": [
+        { "name": "Post-ChatGPT", "description": "Essays from the 2024-2025 cycles (23,760 essays in the balanced analytic sample). Generative AI was available; individual use is not observed.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Pre-ChatGPT", "description": "Essays from the 2019-2022 cycles (47,520 essays in the balanced analytic sample).", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "The paper counts essays (applications), not people: N = 71,280 essays (11,880 per cycle) after restricting to the middle 95 percent of word counts, removing pilot essays (2,100 from this university), and randomly sampling an equal number of essays per cycle. The 2023 cycle (n = 11,880) was processed but excluded. Full unbalanced sample in Table S6: 30,530 post and 56,012 pre essays (word level).",
+        "population": "students",
+        "who": "Applicants to an elite private university on the East Coast who submitted a personal-statement essay",
+        "country": "United States",
+        "quote": "N = 71,280 (11,880 applications per admissions cycle): 47,520 essays from 2019–2022 (pre-ChatGPT) and 23,760 from 2024–2025 (post-ChatGPT).",
+        "locator": "PDF p. 36 (supp. p. 10), Table S3a; PDF p. 33 (supp. p. 7), Data Cleaning and Sample Selection"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT (public release used as the cutoff); use by applicants is not observed",
+        "role": "other",
+        "how_used": "Unobserved. Post-period applicants could have used ChatGPT or other LLMs in writing; the paper notes that AI use is prohibited by the Common Application and many colleges."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "College admissions personal statement in response to the prompt: 'Please submit a brief essay, either personal or creative, which you feel best describes you.'",
+        "duration": "Not stated (naturalistic application essays; mean length about 622 words)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Word-level diversity (Divergent Semantic Integration, DSI)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Mean semantic distance between all word pairs within one essay, using bert-large-uncased layers 6-7 embeddings; standardized within institution using pooled data across cycles excluding 2023. A within-essay lexical diversity measure, not a comparison across people. Robustness: full unbalanced sample (Table S6), event-time models (Table S10a), COVID-period models (Table S11a), models with controls (Table S12a).",
+          "unit": "output",
+          "n_units": 71280,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post 0.16 (0.98) vs pre -0.08 (1.00), standardized z (SD); n = 23,760 post, 47,520 pre essays; Welch t = 30.43, df = 48291.34; Cohen's d = 0.24 [0.23, 0.26]; p < .001. Full sample (Table S6): d = 0.20 [0.18, 0.21].",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 8, Fig. 1; PDF p. 46 (supp. p. 20), Table S6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Sentence-level diversity (mean pairwise distance between sentence embeddings within an essay)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Mean pairwise cosine distance between sentence embeddings (all-MiniLM-L6-v2) within one essay; standardized as for O1. Measures variation of ideas within a single essay, not across people. Robustness variants as for O1.",
+          "unit": "output",
+          "n_units": 71280,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.06 (1.03) vs pre 0.03 (0.99); n = 23,760 post, 47,520 pre essays; Welch t = -10.77, df = 45835.79; Cohen's d = -0.09 [-0.10, -0.07]; p < .001. Full sample (Table S6): d = -0.09 [-0.10, -0.07].",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 8, Fig. 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Document-level distinctness (minimum pairwise distance to the nearest other essay in the cohort)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "For each essay, the smallest cosine distance between its document embedding (OpenAI text-embedding-3-large) and those of all other essays in the same admissions cycle; standardized as for O1. Higher = more distinct from other applicants' essays. Robustness variants as for O1.",
+          "unit": "output",
+          "n_units": 71280,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.10 (0.97) vs pre 0.05 (1.01); n = 23,760 post, 47,520 pre essays; Welch t = -19.05, df = 49240.59; Cohen's d = -0.15 [-0.17, -0.13]; p < .001. Full sample (Table S6): d = -0.16 [-0.18, -0.15].",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 8, Fig. 1"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Minimum pairwise cosine distance (document-level distinctness); higher = more diverse, so no sign reversal",
+            "embedding_model": "OpenAI text-embedding-3-large",
+            "computed_over": "Each essay against all other essays in the same admissions cycle at the same university (nearest neighbor); cycles balanced to 11,880 essays each by random sampling",
+            "uncertainty": "Welch's t-test on essay-level standardized scores (essays treated as independent)",
+            "notes": "Defined in Table S1 (PDF p. 31, supp. p. 5) and PDF pp. 29-30 (supp. pp. 3-4)."
+          }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Creativity rating by expert-tuned GPT-4.1-mini (total effect of post-ChatGPT period)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "GPT-4.1-mini fine-tuned on 22 experts' percentile creativity ratings of 370 pre-ChatGPT essays (r = .82 with expert ratings on 111 held-out essays). Total effect from a parallel mediation model with word, sentence and document metrics as mediators; standardized path coefficients. Exploratory at this university per Table S8 (EP = Exp).",
+          "unit": "output",
+          "n_units": 71268,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["standardized_effect", "confidence_interval"],
+              "reported": "Total effect β = 0.20 [0.18, 0.22]; indirect effect 0.12 [0.11, 0.13]; direct effect 0.08 [0.07, 0.09]; indirect via word 0.13 [0.13, 0.14]; N = 71,268; p < .001; 5,000 bootstrap resamples.",
+              "locator": "PDF p. 85 (supp. p. 59), Table S15; PDF p. 15, Fig. 3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Natural experiment 2: regional private university, pre- vs post-ChatGPT essays",
+      "design_class": "observational",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned. Pre-ChatGPT essays (2020-2022 cycles) vs post-ChatGPT essays (2024 cycle); 2023 excluded.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We leveraged the public release of ChatGPT on November 30, 2022, as a temporal cutoff to define two distinct periods.",
+        "locator": "PDF p. 32 (supp. p. 6), Natural Experiments, Methods",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 50 (supp. p. 24), Table S8"
+      },
+      "arms": [
+        { "name": "Post-ChatGPT", "description": "Essays from the 2024 cycle (16,595 essays).", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Pre-ChatGPT", "description": "Essays from the 2020-2022 cycles (49,785 essays).", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "Paper counts essays: N = 66,380 (16,595 per cycle) after the word-count restriction, removal of 1,500 pilot essays, and balancing across cycles. 2023 cycle (n = 16,595) excluded. Data for 2025 not available.",
+        "population": "students",
+        "who": "Applicants to a regional private university on the West Coast; Common App prompts (seven prompts or a topic of choice)",
+        "country": "United States",
+        "quote": "N = 66,380 (16,595 applications per admissions cycle): 49,785 essays from 2020– 2022 (pre-ChatGPT) and 16,595 from 2024 (post-ChatGPT).",
+        "locator": "PDF p. 37 (supp. p. 11), Table S3b"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT (release used as cutoff); use not observed",
+        "role": "other",
+        "how_used": "Unobserved."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Common Application personal statement",
+        "duration": "Not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Word-level diversity (DSI)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O1. Robustness: Tables S6, S10b, S11b, S12b.",
+          "unit": "output",
+          "n_units": 66380,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post 0.12 (1.01) vs pre -0.04 (0.99); n = 16,595 post, 49,785 pre; Welch t = 17.03, df = 28077.32; Cohen's d = 0.15 [0.14, 0.17]; p < .001.",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 8, Fig. 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Sentence-level diversity (within-essay)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O2.",
+          "unit": "output",
+          "n_units": 66380,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.14 (1.06) vs pre 0.05 (0.97); Welch t = -19.62, df = 26524.23; Cohen's d = -0.18 [-0.20, -0.16]; p < .001.",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "Document-level distinctness (nearest-neighbor distance across essays)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O3.",
+          "unit": "output",
+          "n_units": 66380,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.06 (0.98) vs pre 0.02 (1.01); Welch t = -8.47, df = 29110.51; Cohen's d = -0.08 [-0.09, -0.06]; p < .001. Full sample (Table S6): d = -0.10 [-0.12, -0.08].",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 46, Table S6"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Minimum pairwise cosine distance to the nearest other essay; higher = more diverse",
+            "embedding_model": "OpenAI text-embedding-3-large",
+            "computed_over": "Each essay against all other essays in the same admissions cycle at this university; cycles balanced to 16,595 essays",
+            "uncertainty": "Welch's t-test on essay-level standardized scores",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S2-O4",
+          "name": "Creativity rating by expert-tuned GPT-4.1-mini (total effect)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "As S1-O4. Preregistered at this university per Table S8 (RP = Pre).",
+          "unit": "output",
+          "n_units": 66354,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["standardized_effect", "confidence_interval"],
+              "reported": "Total effect β = 0.24 [0.22, 0.26]; indirect 0.06 [0.05, 0.07]; direct 0.18 [0.17, 0.20]; indirect via word 0.08 [0.07, 0.09]; N = 66,354; p < .001.",
+              "locator": "PDF p. 85 (supp. p. 59), Table S15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S3",
+      "label": "Natural experiment 3: flagship public university, pre- vs post-ChatGPT essays",
+      "design_class": "observational",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned. Pre-ChatGPT essays (2020-2022 cycles) vs post-ChatGPT essays (2024-2025 cycles); 2023 excluded.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We leveraged the public release of ChatGPT on November 30, 2022, as a temporal cutoff to define two distinct periods.",
+        "locator": "PDF p. 32 (supp. p. 6)",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 50 (supp. p. 24), Table S8"
+      },
+      "arms": [
+        { "name": "Post-ChatGPT", "description": "Essays from the 2024-2025 cycles (61,860 essays).", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Pre-ChatGPT", "description": "Essays from the 2020-2022 cycles (92,790 essays).", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "Paper counts essays: N = 154,650 (30,930 per cycle) after restricting to the middle 95 percent of word and sentence counts, removing 1,800 pilot essays, and balancing across cycles. 2023 cycle (n = 30,930) excluded.",
+        "population": "students",
+        "who": "Applicants to a flagship public university in the Northeast; Common App prompts (prompt choice unavailable)",
+        "country": "United States",
+        "quote": "N = 154,650 (30,930 applications per admissions cycle): 92,790 essays from 2020– 2022 (pre-ChatGPT) and 61,860 from 2024–2025 (post-ChatGPT).",
+        "locator": "PDF p. 38 (supp. p. 12), Table S3c"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT (release used as cutoff); use not observed",
+        "role": "other",
+        "how_used": "Unobserved."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Common Application personal statement",
+        "duration": "Not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S3-O1",
+          "name": "Word-level diversity (DSI)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O1. Robustness: Tables S6, S10c, S11c, S12c.",
+          "unit": "output",
+          "n_units": 154650,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post 0.09 (1.00) vs pre -0.06 (1.00); n = 61,860 post, 92,790 pre; Welch t = 28.01, df = 131995.1; Cohen's d = 0.15 [0.14, 0.16]; p < .001.",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O2",
+          "name": "Sentence-level diversity (within-essay)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O2.",
+          "unit": "output",
+          "n_units": 154650,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.09 (1.03) vs pre 0.06 (0.97); Welch t = -28.93, df = 127161.8; Cohen's d = -0.15 [-0.16, -0.14]; p < .001.",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S3-O3",
+          "name": "Document-level distinctness (nearest-neighbor distance across essays)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O3.",
+          "unit": "output",
+          "n_units": 154650,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.06 (0.99) vs pre 0.04 (1.01); Welch t = -17.93, df = 134156.1; Cohen's d = -0.09 [-0.10, -0.08]; p < .001. Full sample (Table S6): d = -0.18 [-0.18, -0.17].",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 46, Table S6"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Minimum pairwise cosine distance to the nearest other essay; higher = more diverse",
+            "embedding_model": "OpenAI text-embedding-3-large",
+            "computed_over": "Each essay against all other essays in the same admissions cycle at this university; cycles balanced to 30,930 essays",
+            "uncertainty": "Welch's t-test on essay-level standardized scores",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S3-O4",
+          "name": "Creativity rating by expert-tuned GPT-4.1-mini (total effect)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "As S1-O4. Preregistered at this university per Table S8 (FP = Pre). 456 essays excluded for missing values.",
+          "unit": "output",
+          "n_units": 154194,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["standardized_effect", "confidence_interval"],
+              "reported": "Total effect β = 0.19 [0.18, 0.20]; indirect 0.06 [0.05, 0.07]; direct 0.13 [0.13, 0.14]; indirect via word 0.08 [0.07, 0.09]; N = 154,194; p < .001.",
+              "locator": "PDF p. 85 (supp. p. 59), Table S15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S4",
+      "label": "Natural experiment 4: selective liberal-arts college, pre- vs post-ChatGPT essays",
+      "design_class": "observational",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned. Pre-ChatGPT essays (2018-2021 cycles) vs post-ChatGPT essays (2024-2025 cycles); no 2022-2023 data.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We leveraged the public release of ChatGPT on November 30, 2022, as a temporal cutoff to define two distinct periods.",
+        "locator": "PDF p. 32 (supp. p. 6)",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 50 (supp. p. 24), Table S8"
+      },
+      "arms": [
+        { "name": "Post-ChatGPT", "description": "Essays from the 2024-2025 cycles (7,026 essays).", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Pre-ChatGPT", "description": "Essays from the 2018-2021 cycles (14,052 essays).", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "Paper counts essays: N = 21,078 (3,513 per cycle) after restricting to the middle 95 percent of word and sentence counts, removing 1,800 pilot essays, and balancing across cycles. No data for 2022 and 2023.",
+        "population": "students",
+        "who": "Applicants to a selective liberal-arts college on the East Coast; Common App prompts",
+        "country": "United States",
+        "quote": "N = 21,078 (3,513 applications per admissions cycle): 14,052 essays from 2018– 2021 (pre-ChatGPT) and 7,026 from 2024–2025 (post-ChatGPT).",
+        "locator": "PDF p. 39 (supp. p. 13), Table S3d"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT (release used as cutoff); use not observed",
+        "role": "other",
+        "how_used": "Unobserved."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Common Application personal statement",
+        "duration": "Not stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S4-O1",
+          "name": "Word-level diversity (DSI)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O1. Robustness: Tables S6, S11d, S12d (no event-time analysis, no 2023 data).",
+          "unit": "output",
+          "n_units": 21078,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post 0.26 (1.02) vs pre -0.13 (0.97); n = 7,026 post, 14,052 pre; Welch t = 26.54, df = 13446.98; Cohen's d = 0.39 [0.36, 0.42]; p < .001.",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S4-O2",
+          "name": "Sentence-level diversity (within-essay)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O2.",
+          "unit": "output",
+          "n_units": 21078,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.04 (1.05) vs pre 0.02 (0.97); Welch t = -4.22, df = 13163.98; Cohen's d = -0.06 [-0.09, -0.03]; p < .001. Full sample (Table S6): d = -0.02 [-0.04, 0.00], t = -1.67.",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 46, Table S6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S4-O3",
+          "name": "Document-level distinctness (nearest-neighbor distance across essays)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O3.",
+          "unit": "output",
+          "n_units": 21078,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.04 (0.96) vs pre 0.02 (1.02); Welch t = -4.58, df = 14854.48; Cohen's d = -0.07 [-0.10, -0.04]; p < .001. Full sample (Table S6): d = -0.19 [-0.21, -0.17].",
+              "locator": "PDF p. 52 (supp. p. 26), Table S9; PDF p. 46, Table S6"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Minimum pairwise cosine distance to the nearest other essay; higher = more diverse",
+            "embedding_model": "OpenAI text-embedding-3-large",
+            "computed_over": "Each essay against all other essays in the same admissions cycle at this college; cycles balanced to 3,513 essays",
+            "uncertainty": "Welch's t-test on essay-level standardized scores",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S4-O4",
+          "name": "Creativity rating by expert-tuned GPT-4.1-mini (total effect)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "As S1-O4. Preregistered at this college per Table S8 (SL = Pre).",
+          "unit": "output",
+          "n_units": 21069,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["standardized_effect", "confidence_interval"],
+              "reported": "Total effect β = 0.30 [0.27, 0.32]; indirect 0.20 [0.18, 0.22]; direct 0.09 [0.07, 0.12]; indirect via word 0.21 [0.20, 0.23]; N = 21,069; p < .001.",
+              "locator": "PDF p. 85 (supp. p. 59), Table S15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S5",
+      "label": "Pilot study: elite private university, 1,800 essays pre vs post ChatGPT",
+      "design_class": "observational",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned. 300 essays randomly sampled per cycle; pre (2019-2022, n = 1,200) vs post (2024-2025, n = 600); 300 essays from 2023 excluded.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "our pilot analysis included 1,800 essays: 1,200 essays from the 2019–2022 admissions cycles (pre-ChatGPT) and 600 from the 2024–2025 cycles (post-ChatGPT)",
+        "locator": "PDF p. 48 (supp. p. 22), Pilot Study",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Post-ChatGPT", "description": "600 essays from 2024-2025 cycles", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Pre-ChatGPT", "description": "1,200 essays from 2019-2022 cycles", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "Paper counts essays: 2,100 sampled, 1,800 analyzed (2023 essays excluded). These essays were removed from the confirmatory elite-private sample (S1).",
+        "population": "students",
+        "who": "Applicants to the elite private university",
+        "country": "United States",
+        "quote": "We utilized a subset of 2,100 college admissions essays randomly drawn from archival submissions to an elite private university on the East Coast.",
+        "locator": "PDF p. 48 (supp. p. 22)"
+      },
+      "ai_tool": { "name_model": "ChatGPT (release used as cutoff); use not observed", "role": "other", "how_used": "Unobserved." },
+      "task": { "type": "creative_writing", "description": "College admissions personal statement (same prompt as S1)", "duration": "Not stated" },
+      "outcomes": [
+        {
+          "outcome_id": "S5-O1",
+          "name": "Word-level diversity (DSI)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O1.",
+          "unit": "output",
+          "n_units": 1800,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post 0.17 (1.00) vs pre -0.09 (1.00); n = 600 post, 1,200 pre; t(1199.468) = 5.19, p < .001; Cohen's d = 0.26 [0.16, 0.36].",
+              "locator": "PDF p. 49 (supp. p. 23), Table S7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S5-O2",
+          "name": "Sentence-level diversity (within-essay)",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O2.",
+          "unit": "output",
+          "n_units": 1800,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.10 (1.07) vs pre 0.03 (0.97); t(1103.865) = -2.51, p = 0.012; Cohen's d = -0.13 [-0.23, -0.03].",
+              "locator": "PDF p. 49 (supp. p. 23), Table S7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S5-O3",
+          "name": "Document-level distinctness",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "As S1-O3.",
+          "unit": "output",
+          "n_units": 1800,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Post-ChatGPT",
+              "control_arm": "Pre-ChatGPT",
+              "comparison_type": "before_after",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Post -0.17 (0.96) vs pre 0.07 (1.02); t(1259.365) = -4.93, p < .001; Cohen's d = -0.24 [-0.35, -0.14].",
+              "locator": "PDF p. 49 (supp. p. 23), Table S7"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Minimum pairwise cosine distance to the nearest other essay; higher = more diverse",
+            "embedding_model": "OpenAI text-embedding-3-large (per Table S1; the pilot section does not restate it)",
+            "computed_over": "Each essay against the other essays in its cohort (300 per cycle); the pilot section does not restate the cohort definition",
+            "uncertainty": "Welch's t-test on essay-level scores",
+            "notes": ""
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S6",
+      "label": "Controlled Experiment 1: matched human vs GPT-5-mini essays (decoupling of semantic levels)",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "No people assigned. 1,500 pre-2023 human essays (100 per prompt per institution, regional private and selective liberal-arts) each matched with a GPT-5-mini essay written to the same prompt and word count.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "For each selected human essay, we generated a synthetic counterpart using GPT-5 Mini (gpt-5-mini-2025-08-07).",
+        "locator": "PDF p. 75 (supp. p. 49)",
+        "preregistered": "no",
+        "prereg_locator": "PDF p. 50 (supp. p. 24), Table S8 (Ctrl. Experiment 1 marked Exp = exploratory)"
+      },
+      "arms": [
+        { "name": "GPT-generated essays", "description": "1,500 GPT-5-mini essays", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Human essays", "description": "1,500 pre-ChatGPT applicant essays", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "Counts are essays (1,500 human, 1,500 GPT).",
+        "population": "students",
+        "who": "Archival applicant essays; AI essays from GPT-5-mini",
+        "country": "United States",
+        "quote": "We conducted an experiment comparing human-written ( n = 1,500) and GPT-generated essays ( n = 1,500) matched on essay prompt choice",
+        "locator": "PDF p. 11, Investigating Mechanisms"
+      },
+      "ai_tool": { "name_model": "GPT-5 Mini (gpt-5-mini-2025-08-07)", "role": "other", "how_used": "Model wrote essays on its own from the admissions prompt and target word count." },
+      "task": { "type": "creative_writing", "description": "College admissions personal statement", "duration": "" },
+      "outcomes": []
+    },
+    {
+      "study_id": "S7",
+      "label": "Assessment analysis: 22 experts rate creativity of 370 pre-ChatGPT essays; fine-tuned GPT-4.1-mini rater",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "No AI condition. Measurement study relating expert creativity ratings to the three semantic metrics and training an automated rater.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We recruited a panel of 22 experts specializing in creativity research to evaluate the creativity of 440 college admissions essays",
+        "locator": "PDF p. 80 (supp. p. 54)",
+        "preregistered": "no",
+        "prereg_locator": "PDF p. 50, Table S8 (Assessment Analysis marked Exp)"
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 22,
+        "counts_are": "people",
+        "exclusions": "22 raters (11 faculty, 4 postdocs, 7 PhD students); 70 of 440 essays dropped for rater disagreement (SD >= 1.0), leaving 370 essays. Raters, not writers.",
+        "population": "mixed",
+        "who": "Creativity researchers acting as raters",
+        "country": "not_stated",
+        "quote": "The expert panel comprised university faculty actively conducting creativity research ( n = 11), postdoctoral scholars ( n = 4), and Ph.D. students ( n = 7).",
+        "locator": "PDF pp. 80-81 (supp. pp. 54-55)"
+      },
+      "ai_tool": { "name_model": "GPT-4.1-mini fine-tuned (gpt-4.1-mini-2025-04-14); base GPT-5-mini", "role": "other", "how_used": "Automated creativity rater, not an aid to writers." },
+      "task": { "type": "creative_writing", "description": "Rating creativity of admissions essays on a 5-point scale", "duration": "" },
+      "outcomes": []
+    },
+    {
+      "study_id": "S8",
+      "label": "Controlled Experiment 2: LLM raters with 0 to 128 reference essays (joint evaluation)",
+      "design_class": "model_only",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Number of reference essays in the LLM rating prompt (0 to 128, powers of 2); no human participants.",
+        "unit": "other",
+        "structure": "within",
+        "quote": "We modified the LLM prompt to include a “ reference cohort ” of previously written essays, increasing the number of examples exponentially from 0 to 128",
+        "locator": "PDF p. 82 (supp. p. 56)",
+        "preregistered": "no",
+        "prereg_locator": "PDF p. 50, Table S8 (Exp)"
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "111 held-out test essays rated by models.",
+        "population": "mixed",
+        "who": "No human participants",
+        "country": "",
+        "quote": "",
+        "locator": "PDF p. 84 (supp. p. 58), Fig. S4"
+      },
+      "ai_tool": { "name_model": "Expert-tuned GPT-4.1-mini; base GPT-5-mini", "role": "other", "how_used": "Models rate essay creativity." },
+      "task": { "type": "creative_writing", "description": "Model rating of essay creativity", "duration": "" },
+      "outcomes": []
+    },
+    {
+      "study_id": "S9",
+      "label": "Controlled Experiment 3: within-subjects comparison of each student's original essay, AI-revised essay, and AI-generated essay",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Not randomized. Every participant contributes three essays: the original admissions essay they had submitted (human-written), an essay GPT-4.1 produced from the participant's revision prompt plus original essay, and an essay GPT-4.1 produced from the participant's generation prompt. Participants wrote the generation prompt and then the revision prompt; researchers ran the prompts after data collection, so participants never saw or edited AI output.",
+        "unit": "other",
+        "structure": "within",
+        "quote": "Each participant then created two ChatGPT prompts: one for revising their original essays with AI and another for generating a completely new essay using AI.",
+        "locator": "PDF p. 16, Causal Evidence; PDF pp. 86-88 (supp. pp. 60-62)",
+        "preregistered": "no",
+        "prereg_locator": "PDF p. 50 (supp. p. 24), Table S8 (Ctrl. Experiment 3 hypotheses marked Exp = exploratory); preregistrations cover the natural experiments (PDF p. 26)"
+      },
+      "arms": [
+        { "name": "AI-revised essay", "description": "GPT-4.1 revision of the participant's original essay following the participant's revision prompt (>= 150 words)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 203 },
+        { "name": "AI-generated essay", "description": "GPT-4.1 essay generated from the participant's generation prompt (>= 150 words of personal details)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 203 },
+        { "name": "Original essay", "description": "Admissions essay the participant originally submitted (human-written; reference group)", "ai": "none", "n_randomized": null, "n_analyzed": 203 }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 203,
+        "counts_are": "people",
+        "exclusions": "224 recruited; 5 incomplete or invalid responses and 16 attention-check failures removed; 203 analyzed. No randomization, so no randomized count.",
+        "population": "students",
+        "who": "Undergraduates at the elite private university of S1 (46 seniors, 54 juniors, 72 sophomores, 31 freshmen); mean age 20.00; 157 female; 178 had used LLMs; paid 1 SONA credit for 30 minutes; online",
+        "country": "United States",
+        "quote": "We recruited 224 participants from the elite private university ... resulting in a final sample of 203 participants.",
+        "locator": "PDF p. 86 (supp. p. 60), Controlled Experiment 3, Data; PDF p. 16"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI GPT-4.1 (gpt-4.1-2025-04-14) via API",
+        "role": "other",
+        "how_used": "Researchers fed each participant's prompts to GPT-4.1 after data collection. Revised condition: original essay plus revision prompt (AI rewrites the participant's draft). Generated condition: generation prompt only (AI writes a new essay). Participants did not interact with the AI or edit its output."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "College admissions essay ('Please submit a brief essay, either personal or creative, which you feel best describes you'), about 650 words; participants wrote two prompts of at least 1,000 characters",
+        "duration": "30 minutes of participation (1 SONA credit)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S9-O1",
+          "name": "Word-level diversity (DSI)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "DSI within each essay (bert-large-uncased layers 6-7), standardized (z). Mixed-effects model with participant random intercepts; Holm-corrected pairwise comparisons. Coded question 'none' because the scored AI essays were produced by the model from participants' prompts with no person receiving AI help; if reclassified as human-AI work it would be with_ai.",
+          "unit": "output",
+          "n_units": 609,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-revised essay",
+              "control_arm": "Original essay",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "figure_only"],
+              "reported": "diff = 0.79, pHolm < .001, 95% CI [0.64, 0.94] (Table S16: β = 0.79, 95% CI 0.64, 0.94); estimated marginal means (Fig. 4): original -0.48, AI-revised 0.31.",
+              "locator": "PDF p. 16; PDF p. 89 (supp. p. 63), Table S16; PDF p. 17, Fig. 4"
+            },
+            {
+              "treatment_arm": "AI-generated essay",
+              "control_arm": "Original essay",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "figure_only"],
+              "reported": "diff = 0.65, pHolm < .001, 95% CI [0.50, 0.79]; Fig. 4 marginal mean AI-generated 0.17.",
+              "locator": "PDF p. 16; PDF p. 89, Table S16; PDF p. 17, Fig. 4"
+            },
+            {
+              "treatment_arm": "AI-revised essay",
+              "control_arm": "AI-generated essay",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Not significant (ns in Fig. 4); no estimate printed.",
+              "locator": "PDF p. 17, text and Fig. 4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S9-O2",
+          "name": "Sentence-level diversity (within-essay)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Mean pairwise cosine distance among sentence embeddings (all-MiniLM-L6-v2) within each essay, standardized. Same model as O1.",
+          "unit": "output",
+          "n_units": 609,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-revised essay",
+              "control_arm": "Original essay",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "figure_only"],
+              "reported": "diff = -0.47, pHolm < .001, 95% CI [-0.62, -0.31]; Fig. 4 marginal means: original 0.32, AI-revised -0.14.",
+              "locator": "PDF p. 16; PDF p. 89, Table S16; PDF p. 17, Fig. 4"
+            },
+            {
+              "treatment_arm": "AI-generated essay",
+              "control_arm": "Original essay",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "figure_only"],
+              "reported": "diff = -0.50, pHolm < .001, 95% CI [-0.66, -0.35]; Fig. 4 marginal mean AI-generated -0.18.",
+              "locator": "PDF p. 16; PDF p. 89, Table S16"
+            },
+            {
+              "treatment_arm": "AI-revised essay",
+              "control_arm": "AI-generated essay",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Not significant (ns in Fig. 4); no estimate printed.",
+              "locator": "PDF p. 17"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S9-O3",
+          "name": "Document-level distinctness (nearest-neighbor distance across essays)",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Minimum cosine distance between each essay's text-embedding-3-large embedding and the other essays in its cohort, standardized. Same mixed model as O1.",
+          "unit": "output",
+          "n_units": 609,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI-revised essay",
+              "control_arm": "Original essay",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "figure_only"],
+              "reported": "diff = -0.98, pHolm < .001, 95% CI [-1.10, -0.85]; Fig. 4 marginal means: original 0.83, AI-revised -0.14.",
+              "locator": "PDF p. 16; PDF p. 89, Table S16; PDF p. 17, Fig. 4"
+            },
+            {
+              "treatment_arm": "AI-generated essay",
+              "control_arm": "Original essay",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "figure_only"],
+              "reported": "diff = -1.52, pHolm < .001, 95% CI [-1.64, -1.40]; Fig. 4 marginal mean AI-generated -0.69.",
+              "locator": "PDF pp. 16-17; PDF p. 89, Table S16"
+            },
+            {
+              "treatment_arm": "AI-revised essay",
+              "control_arm": "AI-generated essay",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["confidence_interval"],
+              "reported": "diff = 0.55, pHolm < .001, 95% CI [0.39, 0.70]",
+              "locator": "PDF p. 17"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Minimum pairwise cosine distance (document-level distinctness); higher = more diverse",
+            "embedding_model": "OpenAI text-embedding-3-large (per Table S1)",
+            "computed_over": "Each essay against the other essays in its cohort; the paper does not state whether the cohort is the 203 essays of the same condition or all 609 essays",
+            "uncertainty": "Linear mixed-effects model with participant random intercepts on essay-level scores; Holm-corrected post-hoc pairwise comparisons",
+            "notes": "Scores are on the essay level; random intercepts account for three essays per participant."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "No company authors or funders; funding from Templeton World Charity Foundation and the National Science Foundation; authors declare no competing interests. OpenAI models are used as tools.", "locator": "PDF p. 26, Funding and Competing interests" },
+  "data_and_code": { "data_url": "https://doi.org/10.17605/OSF.IO/YD94Z (processed data; raw essay text not shared)", "code_url": "https://doi.org/10.17605/OSF.IO/YD94Z" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "observational",
+    "reason": "No study randomly assigns people to AI. The four natural experiments and the pilot compare essays before and after ChatGPT's release (observational; AI use unobserved). Controlled Experiment 3 has 203 people but no randomization: each student's original essay is compared with GPT-4.1 essays that the researchers produced from the student's prompts, and no participant used or saw AI output (coded ai_vs_human). Controlled Experiment 1 compares human and GPT-5-mini essays; Controlled Experiment 2 is model-only. Outcomes are computed on the essays (embedding metrics, fine-tuned LLM creativity score)."
+  },
+  "one_line_finding": "Across four universities, post-ChatGPT admissions essays showed higher word-level diversity (Cohen's d 0.15 to 0.39) but lower within-essay sentence-level diversity (d -0.18 to -0.06) and lower document-level distinctness from other essays (d -0.15 to -0.07) (PDF p. 52, Table S9), and GPT-4.1 essays built from 203 students' prompts were less distinct than their originals (AI-generated -1.52 SD, AI-revised -0.98 SD; PDF p. 89, Table S16).",
+  "open_questions": [
+    "Design class of Controlled Experiment 3: coded ai_vs_human because researchers ran participants' prompts through GPT-4.1 and no participant saw or edited AI output; it could be argued as quasi_people (non-random within-person comparison of a person's own essay with AI versions directed by that person's prompts), in which case the word and sentence outcomes would be with_ai and the document outcome across_people.",
+    "Natural experiments count essays (applications), not people; each essay presumably comes from one applicant, but the paper does not report a count of people, so people counts are left null.",
+    "Whether the post-ChatGPT period counts as 'AI available' for coding ai_available_when_produced: AI was available but use is unobserved and prohibited by application platforms; coded 'mixed'."
+  ],
+  "notes": "Page map: PDF pp. 1-26 are the main text (printed pages 1-26); PDF pp. 27-89 are the supplement (printed supp. pages 1-63; PDF page = supp. page + 26). Inconsistencies noticed: (1) main text says CE3 participants' original essays were submitted 'all prior to 2022' (PDF p. 16), but the supplement says 72 sophomores applied during the transitional period and 31 freshmen applied after ChatGPT (PDF p. 86); (2) ChatGPT release given as November 30, 2022 (PDF p. 32) and November 22, 2022 in footnote 1 (PDF p. 32); (3) Table S6 caption says all Welch tests p < .001, but the selective liberal-arts sentence-level full-sample row shows t = -1.67, d = -0.02 [-0.04, 0.00] (PDF p. 46). The abstract's 372,793 essays equals the four balanced analytic samples (313,388) plus the three excluded 2023 cycles (59,405). Further robustness outputs not listed as separate outcomes: event-time models (Tables S10a-c), COVID-period models (S11a-d), models with controls (S12a-d), subgroup interactions (S13a-e, Fig. 2), word-to-document association changes (S14b-c). Controlled Experiment 1 reports only correlations among the metrics within human (n = 1,500) and GPT (n = 1,500) essays (e.g., word-document r = .117 human vs -.283 GPT; PDF p. 77, Table S14a), not differences in levels, so no outcome is listed."
+}

@@ -1,0 +1,69 @@
+{
+ "cid": "c169",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[*].assignment.randomized, what_was_assigned, unit, structure; studies[*].arms",
+   "form_value": "{\"assignment\": {\"randomized\": \"yes | no | not_stated\", \"what_was_assigned\": \"\", \"unit\": \"individual | team | class | session | within_person_order | other\", \"structure\": \"between | within | crossover | mixed\"}, \"arms\": [{\"name\": \"\", \"description\": \"\", \"ai\": \"none | generative_ai | other_aid\", \"n_randomized\": null, \"n_analyzed\": null}]}",
+   "source_says": "All eight entries retain template choices and an empty arm despite an identifiable comparison. Code randomized as no for assignment to AI assistance, describe separate human and model output groups, and explain that any randomization concerns stimuli or task/rating order. The comparison is between sources, with no human assignment unit (other). Describe the human group as ai=none and each model group as ai=generative_ai; model runs are not randomized or analyzed people. Retain null people counts where no explicit analyzed count is given.",
+   "quote": "After human data collection, we used a Python script to call the OpenAI API, gathering responses from GPT-3.5-turbo, GPT-4o, and GPT-4 for the AUT.",
+   "locator": "PDF p. 7, section 2.1.3; corresponding Human procedure and AI procedure sections on pp. 9, 11, 13, 16, 18-19, 21, 23-24; form-spec.md, JSON structure."
+  },
+  {
+   "field": "studies[*].assignment.preregistered; studies[*].assignment.prereg_locator",
+   "form_value": "{\"preregistered\": \"yes | no | not_stated\", \"prereg_locator\": \"\"}",
+   "source_says": "The Experiment 1 Participants section explicitly reports OSF preregistration. Code S1 preregistered=yes with p. 6, section 2.1.1 as its locator, rather than leaving all choices in the field. The statement supplies no registration URL or identifier, and the other experiments have no separate preregistration statements; use not_stated for their individual registration status rather than a template string.",
+   "quote": "This study was approved by the university’s Institutional Ethics Review Board and was preregistered on the Open Science Framework (OSF).",
+   "locator": "PDF p. 6, section 2.1.1; methods for Experiments 2-8, pp. 8-24."
+  },
+  {
+   "field": "eligibility.criterion_1_random_assignment_of_ai; eligibility.criterion_2_at_least_50_people; eligibility.criterion_3_outcome_scored_on_output",
+   "form_value": "{\"criterion_1_random_assignment_of_ai\": \"met | not_met | unclear\", \"criterion_2_at_least_50_people\": \"met | not_met | unclear\", \"criterion_3_outcome_scored_on_output\": \"met | not_met | unclear\"}",
+   "source_says": "Replace the unresolved choices with criterion_1=not_met and criterion_3=met: people did not receive AI assistance, and novelty and homogeneity were scored on generated output. For criterion_2, use unclear on the form specification's strict analyzed-people basis: the stated recruitment/data-collection totals exceed 50, but separate analyzed Ns are not reported and Experiment 4 reports withdrawals without task-specific human analysis Ns. Keep core=no and context_class=ai_vs_human.",
+   "quote": "Every story's score was the average rating of the three raters. Homogeneity was measured using cosine similarity, which quantified how similar each story was to others in the group.",
+   "locator": "PDF pp. 6-8, sections 2.1.1-2.1.4; p. 12, section 2.4.1; p. 13, sections 2.4.2-2.4.3; other sample descriptions on pp. 8, 10, 15, 17, 20, 22; form-spec.md, eligibility.core field note."
+  },
+  {
+   "field": "studies[*].outcomes[*].ai_available_when_produced; studies[*].outcomes[*].timing; studies[*].outcomes[*].primary",
+   "form_value": "{\"ai_available_when_produced\": \"yes | no | mixed\", \"timing\": \"immediate | delayed\", \"primary\": \"preregistered_primary | paper_primary | secondary | not_stated\"}",
+   "source_says": "All five retained outcomes still contain template alternatives. Human output was produced without AI assistance, so code ai_available_when_produced=no for the human work and retain the explanation that the comparison output was independently model-generated. These are outcomes from the task session (timing=immediate), with no delayed follow-up. No primary-outcome designation is stated in the available document; use primary=not_stated, without inferring a preregistered primary outcome from the general OSF statement.",
+   "quote": "After human data collection, we used a Python script to call the OpenAI API, gathering responses from GPT-3.5-turbo, GPT-4o, and GPT-4 for the AUT.",
+   "locator": "PDF pp. 6-8, sections 2.1.1-2.1.4; pp. 12-14, sections 2.4.1-2.4.4; form-spec.md, JSON structure and question field note."
+  },
+  {
+   "field": "studies[S1].outcomes[S1-O1].contrasts[0].statistics_available; studies[S4].outcomes[S4-O1 through S4-O4].contrasts[0].statistics_available",
+   "form_value": "[] for each of the five retained contrasts",
+   "source_says": "Every retained contrast reports t statistics and 95% confidence intervals. Populate statistics_available with confidence_interval and test_statistic. The numerical reported strings themselves match the PDF, including its unusual positive AUT t statistics alongside negative intervals; do not silently change those signs.",
+   "quote": "GPT-3.5-turbo (t= 5.32, 95% CI = [-0.54, -0.19], p < 0.001)",
+   "locator": "PDF p. 8, section 2.1.4; pp. 13-14, section 2.4.4; form-spec.md, statistics_available field note."
+  },
+  {
+   "field": "source.supplement.holds",
+   "form_value": "Supplementary Information B: all human instructions and AI prompts (p. 7-8). Table S1: descriptive statistics for all Experiment 1 metrics (p. 8). Tables S1 and S2: Experiment 6 selection strategies and fitness ratings (p. 19). Arm means and SDs appear only in the supplement or in figures.",
+   "source_says": "The references to human instructions/AI prompts, descriptive statistics, selection strategies, and fitness ratings are supported. The additional assertion that arm means and SDs appear in the supplement or figures is more specific than the available source establishes: the supplement is absent, and the text does not explicitly identify arm SDs there. State that Table S1 is cited for descriptive statistics and that exact arm means/SDs in the unavailable supplement have not been verified.",
+   "quote": "Descriptive statistics for all metrics are shown in Table S1.",
+   "locator": "PDF pp. 7-8, sections 2.1.3-2.1.4; p. 19, section 3.2.4; document ends with references on p. 34 and has no embedded attachments."
+  }
+ ],
+ "confirmed": [
+  "Read the entire 81,549-character markdown conversion, including all references, and checked the relevant PDF pages; the PDF has 34 pages with matching printed numbers and contains no appendix or embedded supplement (PDF pp. 1-34).",
+  "The local PDF is byte-for-byte identical to arXiv 2503.23327v1 read in memory; the arXiv submission history lists only v1, submitted 30 March 2025. Title and all eight authors match the title page (PDF p. 1; https://arxiv.org/abs/2503.23327, Submission history; https://arxiv.org/pdf/2503.23327v1).",
+  "All eight experiments compare independently produced human and AI responses. Stimulus/order randomization does not assign people to AI assistance; has_randomized_people_study=false, design_class=ai_vs_human, context_class=ai_vs_human, and core=no are supported (PDF pp. 6-24, all experiment methods).",
+  "Experiment 1 reports 100 human recruits and 100 runs per model, explicitly 300 model instances in total. The form's 400 units combines 100 human summaries with 300 model summaries and must not be read as 400 people; scores are averaged per participant/instance across two objects (PDF pp. 6-7, sections 2.1.1-2.1.2).",
+  "Experiment 2 reports 61 human recruits and 61 runs per model; Experiment 3 reports 60 human recruits and 60 model instances per task. All recorded ages and female percentages match the PDF (PDF pp. 8, 10, sections 2.2.1, 2.3.1).",
+  "Experiment 4 reports data from 63 people, two withdrawals because of the advertising task, and 61 stories per model per task. It gives no explicit task-specific human analysis count; the form appropriately leaves that count null and qualifies the one-line finding as about 61 to 63 humans (PDF p. 12, section 2.4.1).",
+  "Experiment 5 reports data from 61 humans; Experiment 6 reports 61 recruits; Experiments 7 and 8 each report data from 64 humans. The corresponding model-run counts and all recorded demographic figures match (PDF pp. 15, 17, 20, 22, participant sections).",
+  "The 91-person AUT database and 40-person CPS database supply existing ideas for evaluation; they are not randomized AI-assistance samples. No randomized study with fewer than 50 analyzed people is reported (PDF p. 21, section 3.3.2; experiment methods, pp. 6-24).",
+  "All three AUT novelty t statistics, 95% confidence intervals, and p-values in S1-O1 match exactly: AI output is rated more novel than human output. The PDF itself pairs positive t statistics with negative intervals (PDF p. 8, section 2.1.4 and Figure 1A).",
+  "All t statistics, 95% confidence intervals, and p-values in S4-O1 and S4-O2 match: human short stories are more novel and less homogeneous than each model's stories (PDF p. 13, section 2.4.4; p. 14, Figure 4A,C).",
+  "All t statistics, 95% confidence intervals, and p-values in S4-O3 and S4-O4 match: human advertising stories are more novel and less homogeneous. The GPT-4o novelty contrast has p=0.002; all advertising homogeneity contrasts have p<0.001 (PDF pp. 13-14, section 2.4.4; Figure 4D,F).",
+  "The one-line finding's AUT statistics, story-novelty interval endpoints, and homogeneity t-statistic endpoints reproduce the PDF; its directions refer to autonomous AI-versus-human output, not effects of assistance (PDF p. 8 and pp. 13-14, results sections).",
+  "Homogeneity compares each story with other stories in its source group using cosine similarity; the text representation/embedding model and dependence correction are not specified. Coding lower diversity for higher AI homogeneity is consistent with the codebook (PDF p. 13, section 2.4.2).",
+  "Task counts, time limits, scale lengths, and rater counts recorded in the form match the relevant methods. The task called the five-sentence story permits four to six sentences (PDF pp. 6-7, 9-13, 15-16, 18-21, 23).",
+  "Experiment 7 explicitly describes 24 ideas and Experiment 8 four selections from 12 ideas each, as recorded. The source also inconsistently calls its 48 Experiment 8 candidates identical to Experiment 7 materials; this does not establish a corrected Experiment 7 count (PDF pp. 20-21, section 3.3.2; p. 23, section 3.4.2).",
+  "No sample overlap is explicitly reported between Experiments 7 and 8 despite matching demographics; do not add their counts as confirmed unique people (PDF pp. 20, 22, sections 3.3.1, 3.4.1).",
+  "This is an original experimental paper, not a synthesis; there are no pooled estimates or standardizers to extract. The authors declare no competing interests (PDF pp. 5-6, section 1.2; p. 30, Declaration of competing interests)."
+ ],
+ "summary": "The AI-versus-human classification and all reported numerical findings are supported, and no randomized human AI-assistance study is reported. Six corrections address unfinished coding fields and an unsupported claim about arm standard deviations in the unavailable supplement."
+}

@@ -1,0 +1,933 @@
+{
+ "cid": "c249",
+ "screener": "A",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Chen Liu Hu Li (2026) - AI agents reshape consensus formation in human groups.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Chen Liu Hu Li (2026) - AI agents reshape consensus formation in human groups.pdf",
+  "version": "arXiv:2609.02122v1 [cs.CL], 2 Sep 2026, as printed on PDF p. 1; preprint with Supplementary Information included.",
+  "title_on_document": "AI agents reshape consensus formation in human groups",
+  "authors_on_document": [
+   "Lin Chen",
+   "Ziyi Liu",
+   "Xia Hu",
+   "Yong Li"
+  ],
+  "pages": 29,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Supplementary Information, PDF pp. 16-29; explicitly referenced on p. 11, Additional information.",
+   "holds": "Recruitment, human condition counts and random assignment (p. 16); contribution equations and agent/annotation prompts (pp. 17-20); influence-network methods (pp. 20-21); Supplementary Figures 1-8 (pp. 22-28); Supplementary Table 1 (p. 29) gives HC3 regression SEs for self-reported adoption willingness. That regression is not an output-creativity/diversity effect and its SEs do not supply precision for the consensus outcome."
+  }
+ },
+ "paper_design_summary": "University-recruited humans were randomly assigned to conditions in three studies of a repeated tangram-description game, varying AI partner proportion, agent behavioral prompts, or model size. Humans and agents wrote descriptions, saw a randomly paired partner's text and similarity payoff, and repeated the task; the paper scores semantic convergence, content properties, and agent contribution to the resulting conventions. The main convergence score pools human and AI output, and the neutral condition appears shared across the studies (pp. 7, 16).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Study A: agent proportion and consensus",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Humans were randomly assigned to agent-proportion conditions. Random rematching of partners within a condition is a separate procedure and is not the evidence for treatment randomization.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "Participants were randomly assigned to one of eight experimental conditions spanning three studies.",
+    "locator": "p. 16, Supplementary Experimental Procedure, Participants",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "0% agents (all-human partners)",
+     "description": "All-human collaboration; no AI players. The comparator supplies human partners, so AI comparisons are coded ai_vs_active (p. 16, Participants and Game Procedure).",
+     "ai": "other_aid",
+     "n_randomized": 24,
+     "n_analyzed": null
+    },
+    {
+     "name": "12.5% agents (neutral 32B)",
+     "description": "12.5% AI player proportion; 21 humans assigned (p. 16, Participants).",
+     "ai": "generative_ai",
+     "n_randomized": 21,
+     "n_analyzed": null
+    },
+    {
+     "name": "33.3% agents (neutral 32B)",
+     "description": "33.3% AI player proportion; 16 humans assigned. This standard/neutral condition also appears to supply the comparator for Studies B and C (pp. 4, 16).",
+     "ai": "generative_ai",
+     "n_randomized": 16,
+     "n_analyzed": null
+    },
+    {
+     "name": "50% agents (neutral 32B)",
+     "description": "50% AI player proportion; 12 humans assigned (p. 16, Participants).",
+     "ai": "generative_ai",
+     "n_randomized": 12,
+     "n_analyzed": null
+    },
+    {
+     "name": "75% agents (neutral 32B)",
+     "description": "75% AI player proportion; 6 humans assigned (p. 16, Participants); p. 5 also describes six humans in H3.",
+     "ai": "generative_ai",
+     "n_randomized": 6,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "Before enrollment, participants had to pass English-expression, expression-diversity, and task-comprehension screening. Numbers failing screening, post-assignment exclusions, and separate analyzed human counts are not stated. Arm n values are printed in the random-assignment paragraph and are recorded only as assigned counts (p. 16, Participants).",
+    "population": "students",
+    "who": "Human participants recruited from universities in China via university social-media advertisements. The closest population code is students; student enrollment itself is not explicitly stated. The total of 127 is recruited across the entire paper, not an analyzed count for this study (p. 16).",
+    "country": "China",
+    "quote": "Study A examined the effect of agent proportion, with conditions at 0% (n = 24), 12.5% (n = 21), 33.3% (n = 16), 50% (n = 12), and 75% (n = 6) agent ratios.",
+    "locator": "p. 16, Supplementary Experimental Procedure, Participants; p. 16, Game Procedure"
+   },
+   "ai_tool": {
+    "name_model": "Qwen2.5-VL-32B-Instruct (p. 4); all-MiniLM-L6-v2 for similarity feedback (p. 16).",
+    "role": "other",
+    "how_used": "Qwen agents participate as game partners and generate their own descriptions; humans receive these descriptions after both players submit and can use interaction history in later rounds. Humans are told that partners may be AI, without being told their identities or proportions; external LLM assistance is prohibited. The neutral system prompt asks agents to maximize similarity-based payoff. AI exposure remains part of the repeated task when final outputs are produced; this is not an after-AI assessment (pp. 4, 16, 18; p. 22, Supplementary Figure 1)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Collaborative referential description game: repeatedly write one English sentence describing the same ambiguous tangram, then receive the randomly paired partner's sentence and an embedding-similarity payoff. Partners are rematched each round; no vocabulary or correct answer is imposed. This is convention formation, included as writing compared across people for similarity rather than as a rated-novelty task (p. 16, Stimuli and Game Procedure; p. 18, Neutral System Prompt).",
+    "duration": "40 rounds; recommended response time 60 seconds per round. Total session duration is not stated (p. 16, Game Procedure)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Final consensus strength (inverse diversity)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Each description is embedded; each player receives a mean cosine similarity to every other player in the same round. This score is centered on that player's across-round mean and recentered on the run grand mean, then averaged to final-round consensus C(T). The player-level score is the constituent observation; the published endpoint is a group mean. Both human and AI players enter the calculation, so this is not a human-only diversity estimate. The PDF does not specify the sampling unit used for the reported z tests. See p. 7, Methods M1, equations (1)-(2); p. 16, Game Procedure. Higher similarity means lower diversity: contrast directions below are reversed relative to the printed similarity differences; the printed statistics retain their original signs.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "12.5% agents (neutral 32B)",
+       "control_arm": "0% agents (all-human partners)",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Pure-human mean consensus strength = 0.695; 12.5% agents increases consensus by 8.0% on average; z = 3.282, p = 0.001. Exact treatment mean and numerical CI endpoints are not printed in the text.",
+       "locator": "p. 2, Results, Varying agent proportion; p. 12, Figure 1b"
+      },
+      {
+       "treatment_arm": "33.3% agents (neutral 32B)",
+       "control_arm": "0% agents (all-human partners)",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Pure-human mean = 0.695; 33.3% agents: consensus drops by 23.1%; z = -12.326, p < 0.001. The same standard-model condition is reported as 0.534 in the model-capability comparison.",
+       "locator": "p. 2, Results, Varying agent proportion; p. 4, model-capability paragraph; p. 12, Figure 1b"
+      },
+      {
+       "treatment_arm": "50% agents (neutral 32B)",
+       "control_arm": "0% agents (all-human partners)",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Pure-human mean = 0.695; 50% agents: consensus drops by 14.5%; z = -6.156, p < 0.001.",
+       "locator": "p. 2, Results, Varying agent proportion; p. 12, Figure 1b"
+      },
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "0% agents (all-human partners)",
+       "comparison_type": "ai_vs_active",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "75% agents: consensus strength = 0.725; pure-human mean = 0.695. No numerical test or confidence interval for this specific comparison is printed. Direction records the reported levels, not a claim of significance.",
+       "locator": "p. 2, Results, Varying agent proportion; p. 12, Figure 1b"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Final-round consensus C(T): mean, within-player-centered cosine similarity; higher values indicate less diversity.",
+      "embedding_model": "all-MiniLM-L6-v2 (mean pooling, L2 normalization; p. 7, M1).",
+      "computed_over": "Every player's final-round description against all other descriptions in the same experimental session, including human-human, human-agent, and agent-agent comparisons; the session has 24 human/AI player positions (pp. 7, 16).",
+      "uncertainty": "Main text reports z statistics and p values; Figure 1 caption specifies 95% confidence intervals. The construction of those intervals, the z-test denominator, and any adjustment for dependent similarities or shared sessions are not stated (pp. 2, 7, 12).",
+      "notes": "No human-only final diversity endpoint or participant-clustered standard error is supplied. AI agents are not counted as human participants. No standardized effect or standard error has been derived."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Concreteness",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Automated lookup of word concreteness ratings; mean across matched tokens using a lexicon rated on a 1-5 scale, with bigram matching before unigrams. This measures tangibility/abstractness, not novelty (p. 8, M3). Human-led means the 12.5% condition and agent-led means the 75% condition; scores describe the mixed group's output, without a human-only estimate (p. 3). Lower scores are not themselves a validated decrease in creativity. Output sample sizes and the CI construction are not given.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "confidence_interval",
+        "test_statistic"
+       ],
+       "reported": "Human-led 2.986 (95% CI [2.954, 3.017]) vs agent-led 2.724 (95% CI [2.704, 2.745]); Mann-Whitney U = 12914, p < 0.001.",
+       "locator": "p. 3, Results, Agent participation transforms the semantic content of consensus; p. 13, Figure 2c"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Propositional idea density",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "spaCy part-of-speech approximation of CPIDR: propositions per ten words. It counts verbs excluding auxiliaries, adjectives, adverbs, prepositions, and conjunctions; a density measure, not a participant's number of ideas (p. 8, M3). Human-led means the 12.5% condition and agent-led means the 75% condition; scores describe the mixed group's output, without a human-only estimate (p. 3). Lower scores are not themselves a validated decrease in creativity. Output sample sizes and the CI construction are not given.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "confidence_interval",
+        "test_statistic"
+       ],
+       "reported": "Human-led 5.419 (95% CI [5.240, 5.599]) vs agent-led 5.321 (95% CI [5.230, 5.412]); U = 8448, p = 0.020.",
+       "locator": "p. 3, Results, Agent participation transforms the semantic content of consensus; p. 13, Figure 2c"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Analogical ratio",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Qwen2.5-72B-Instruct judge, temperature = 0, rates real-world entity/creature/scene analogies on a continuous 0-1 scale. Unique expressions in the final 5 rounds are annotated once and identical instances share scores. DeepSeek-V3 and Kimi-K2-Instruct-0905 are robustness judges, not separate outcomes (pp. 8, 19-20, 27). Human-led means the 12.5% condition and agent-led means the 75% condition; scores describe the mixed group's output, without a human-only estimate (p. 3). Lower scores are not themselves a validated decrease in creativity. Output sample sizes and the CI construction are not given.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "confidence_interval",
+        "test_statistic"
+       ],
+       "reported": "Human-led 0.802 (95% CI [0.790, 0.814]) vs agent-led 0.050 (95% CI [0.021, 0.078]); U = 14389, p < 0.001.",
+       "locator": "p. 3, Results, Agent participation transforms the semantic content of consensus; p. 13, Figure 2c"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Holistic ratio",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Qwen2.5-72B-Instruct judge, temperature = 0, rates whole-object versus component-part descriptions on a continuous 0-1 scale. Unique expressions in the final 5 rounds are annotated once and identical instances share scores. Alternative-judge results are robustness variants (pp. 8, 19-20, 27). Human-led means the 12.5% condition and agent-led means the 75% condition; scores describe the mixed group's output, without a human-only estimate (p. 3). Lower scores are not themselves a validated decrease in creativity. Output sample sizes and the CI construction are not given.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "confidence_interval",
+        "test_statistic"
+       ],
+       "reported": "Human-led 0.685 (95% CI [0.670, 0.701]) vs agent-led 0.353 (95% CI [0.339, 0.367]); U = 14182, p < 0.001.",
+       "locator": "p. 3, Results, Agent participation transforms the semantic content of consensus; p. 13, Figure 2c"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Event framing ratio",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Qwen2.5-72B-Instruct judge, temperature = 0, rates dynamic action/posture rather than static geometric enumeration on a continuous 0-1 scale. Unique expressions in the final 5 rounds are annotated once and identical instances share scores. Alternative-judge results are robustness variants (pp. 8, 19-20, 27). Human-led means the 12.5% condition and agent-led means the 75% condition; scores describe the mixed group's output, without a human-only estimate (p. 3). Lower scores are not themselves a validated decrease in creativity. Output sample sizes and the CI construction are not given.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "confidence_interval",
+        "test_statistic"
+       ],
+       "reported": "Human-led 0.385 (95% CI [0.365, 0.404]) vs agent-led 0.000 (95% CI [0.000, 0.000]); U = 14340, p < 0.001.",
+       "locator": "p. 3, Results, Agent participation transforms the semantic content of consensus; p. 13, Figure 2c"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O7",
+     "name": "Lexical-level agent contribution",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Population-normalized agent attribution of the stable vocabulary, not a creativity or diversity rating. Words must appear in every one of the final 5 rounds; early human/agent usage is normalized by population share, and attribution scores are weighted by final-round word frequency. Default early-diffusion window is 3 rounds; windows of 1-3 rounds are robustness variants of this same outcome (p. 7, M2; p. 17, equations S1-S3; p. 25, Supplementary Figures 4-5). Higher values mean more AI lexical influence, with no automatic interpretation as greater creativity.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure labels: 12.5% = 0.248; 33.3% = 0.607. Main text: 33.3% of agents contribute 60.7% of final words. No uncertainty reported.",
+       "locator": "p. 3, Results; p. 13, Figure 2a, printed bar labels"
+      },
+      {
+       "treatment_arm": "50% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure labels: 50% = 0.695; 12.5% = 0.248. No uncertainty reported.",
+       "locator": "p. 13, Figure 2a, printed bar labels"
+      },
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure labels: 75% = 0.782; 12.5% = 0.248. No uncertainty reported.",
+       "locator": "p. 13, Figure 2a, printed bar labels"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O8",
+     "name": "Conceptual-level agent contribution",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Population-normalized agent attribution of stable semantic clusters, not the number of distinct ideas. spaCy scene graphs and soft SPICE similarities are clustered using HDBSCAN with Optuna-selected parameters. Clusters represented in every one of the final 5 rounds are weighted by their frequency; early-diffusion attribution parallels lexical attribution. Windows of 1-3 rounds are robustness variants (p. 8, M2; pp. 17-18, Supplementary Agent Contribution; p. 25, Supplementary Figures 4-5). Higher values mean more AI conceptual influence, not necessarily greater creativity.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure labels: 33.3% = 0.359; 12.5% = 0.000. No uncertainty reported.",
+       "locator": "p. 13, Figure 2a, printed bar labels"
+      },
+      {
+       "treatment_arm": "50% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure labels: 50% = 0.866; 12.5% = 0.000. No uncertainty reported.",
+       "locator": "p. 13, Figure 2a, printed bar labels"
+      },
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure labels: 75% = 1.000; 12.5% = 0.000. Main text reports 100% conceptual contribution at 75%. No uncertainty reported.",
+       "locator": "p. 3, Results; p. 13, Figure 2a, printed bar labels"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O9",
+     "name": "Conceptual-lexical ratio (CLR)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Conceptual-lexical ratio CLR = (Ccon + epsilon)/(Clex + epsilon), epsilon = 0.01, comparing conceptual and lexical agent attribution (p. 8, M2, equation 4). An ownership/influence measure rather than rated creativity: higher values indicate relatively greater conceptual influence by agents. Early-diffusion windows of 1-3 rounds are robustness variants (pp. 25-26, Supplementary Figures 4-6).",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure labels: 33.3% = 0.60; 12.5% = 0.04. The standard 33.3% condition is printed more precisely as 0.599 in the later manipulation comparisons. No uncertainty reported.",
+       "locator": "p. 13, Figure 2b, printed bar labels; p. 4, trait-manipulation paragraph"
+      },
+      {
+       "treatment_arm": "50% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "CLR = 1.24 at 50%; Figure 2b labels 0.04 at 12.5%. No uncertainty reported.",
+       "locator": "p. 3, Results; p. 13, Figure 2b"
+      },
+      {
+       "treatment_arm": "75% agents (neutral 32B)",
+       "control_arm": "12.5% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "CLR = 1.27 at 75%; Figure 2b labels 0.04 at 12.5%. No uncertainty reported.",
+       "locator": "p. 3, Results; p. 13, Figure 2b"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Study B: agent adoption and persistence prompts",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Humans were randomized across the paper's conditions; here the AI partners' system prompt is neutral, high adoption, or high persistence, with agent proportion fixed. The neutral comparator appears to reuse Study A's standard condition.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "Participants were randomly assigned to one of eight experimental conditions spanning three studies.",
+    "locator": "p. 16, Supplementary Experimental Procedure, Participants",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "33.3% agents (neutral 32B)",
+     "description": "Standard neutral comparator from Study A appears to be reused; no separately recruited neutral group for Study B is reported (pp. 4, 16). This is not an additional set of assigned humans.",
+     "ai": "generative_ai",
+     "n_randomized": 16,
+     "n_analyzed": null
+    },
+    {
+     "name": "33.3% agents (high adoption, 32B)",
+     "description": "High-adoption clause added to the agent system prompt; 16 humans assigned (pp. 9, 16, 18).",
+     "ai": "generative_ai",
+     "n_randomized": 16,
+     "n_analyzed": null
+    },
+    {
+     "name": "33.3% agents (high persistence, 32B)",
+     "description": "High-persistence clause added to the agent system prompt; 16 humans assigned (pp. 9, 16, 19).",
+     "ai": "generative_ai",
+     "n_randomized": 16,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "Before enrollment, participants had to pass English-expression, expression-diversity, and task-comprehension screening. Numbers failing screening, post-assignment exclusions, and separate analyzed human counts are not stated. Arm n values are printed in the random-assignment paragraph and are recorded only as assigned counts (p. 16, Participants).",
+    "population": "students",
+    "who": "University-recruited humans in China, from the same recruitment procedure as Study A. Only the high-adoption and high-persistence samples are listed as additional Study B conditions; the neutral comparator appears shared (p. 16).",
+    "country": "China",
+    "quote": "Study B examined agent trait manipulations at a fixed 33.3% agent proportion, with high-adoption (n = 16) and high-persistence (n = 16) conditions.",
+    "locator": "p. 16, Supplementary Experimental Procedure, Participants; p. 16, Game Procedure"
+   },
+   "ai_tool": {
+    "name_model": "Qwen2.5-VL-32B-Instruct; neutral, high-adoption, and high-persistence system prompts (pp. 4, 9, 18-19).",
+    "role": "other",
+    "how_used": "Qwen agents participate as game partners and generate their own descriptions; humans receive these descriptions after both players submit and can use interaction history in later rounds. Humans are told that partners may be AI, without being told their identities or proportions; external LLM assistance is prohibited. The neutral system prompt asks agents to maximize similarity-based payoff. AI exposure remains part of the repeated task when final outputs are produced; this is not an after-AI assessment (pp. 4, 16, 18; p. 22, Supplementary Figure 1). The manipulation adds a clause encouraging imitation of partner language or maintenance of the agent's own wording (pp. 9, 18-19)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Collaborative referential description game: repeatedly write one English sentence describing the same ambiguous tangram, then receive the randomly paired partner's sentence and an embedding-similarity payoff. Partners are rematched each round; no vocabulary or correct answer is imposed. This is convention formation, included as writing compared across people for similarity rather than as a rated-novelty task (p. 16, Stimuli and Game Procedure; p. 18, Neutral System Prompt).",
+    "duration": "40 rounds; recommended response time 60 seconds per round. Total session duration is not stated (p. 16, Game Procedure)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Final consensus strength (inverse diversity)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Each description is embedded; each player receives a mean cosine similarity to every other player in the same round. This score is centered on that player's across-round mean and recentered on the run grand mean, then averaged to final-round consensus C(T). The player-level score is the constituent observation; the published endpoint is a group mean. Both human and AI players enter the calculation, so this is not a human-only diversity estimate. The PDF does not specify the sampling unit used for the reported z tests. See p. 7, Methods M1, equations (1)-(2); p. 16, Game Procedure. Higher similarity means lower diversity: contrast directions below are reversed relative to the printed similarity differences; the printed statistics retain their original signs.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (high adoption, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "High adoption does not significantly alter consensus strength: z = 1.107, p = 0.2684. Arm distributions are plotted; exact high-adoption mean and interval are not printed.",
+       "locator": "p. 4, Results, trait-manipulation paragraph; p. 14, Figure 3d"
+      },
+      {
+       "treatment_arm": "33.3% agents (high persistence, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "High persistence reduces consensus by 9.6% relative to neutral: z = -3.289, p = 0.001. Exact high-persistence mean and interval are not printed.",
+       "locator": "p. 4, Results, trait-manipulation paragraph; p. 14, Figure 3d"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Final-round consensus C(T): mean, within-player-centered cosine similarity; higher values indicate less diversity.",
+      "embedding_model": "all-MiniLM-L6-v2 (mean pooling, L2 normalization; p. 7, M1).",
+      "computed_over": "Every player's final-round description against all other descriptions in the same experimental session, including human-human, human-agent, and agent-agent comparisons; the session has 24 human/AI player positions (pp. 7, 16).",
+      "uncertainty": "Main text reports z statistics and p values; Figure 1 caption specifies 95% confidence intervals. The construction of those intervals, the z-test denominator, and any adjustment for dependent similarities or shared sessions are not stated (pp. 2, 7, 12).",
+      "notes": "No human-only final diversity endpoint or participant-clustered standard error is supplied. AI agents are not counted as human participants. No standardized effect or standard error has been derived."
+     }
+    },
+    {
+     "outcome_id": "S2-O2",
+     "name": "Conceptual-lexical ratio (CLR)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Conceptual-lexical ratio CLR = (Ccon + epsilon)/(Clex + epsilon), epsilon = 0.01, comparing conceptual and lexical agent attribution (p. 8, M2, equation 4). An ownership/influence measure rather than rated creativity: higher values indicate relatively greater conceptual influence by agents. Early-diffusion windows of 1-3 rounds are robustness variants (pp. 25-26, Supplementary Figures 4-6).",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (high adoption, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "CLR decreases by 42.8%, from neutral 0.599 to high adoption 0.342. No uncertainty reported.",
+       "locator": "p. 4, Results, trait-manipulation paragraph; p. 14, Figure 3e"
+      },
+      {
+       "treatment_arm": "33.3% agents (high persistence, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "CLR increases by 117.8%, from neutral 0.599 to high persistence 1.304. No uncertainty reported.",
+       "locator": "p. 4, Results, trait-manipulation paragraph; p. 14, Figure 3e"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O3",
+     "name": "Lexical-level agent contribution",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Population-normalized agent attribution of the stable vocabulary, not a creativity or diversity rating. Words must appear in every one of the final 5 rounds; early human/agent usage is normalized by population share, and attribution scores are weighted by final-round word frequency. Default early-diffusion window is 3 rounds; windows of 1-3 rounds are robustness variants of this same outcome (p. 7, M2; p. 17, equations S1-S3; p. 25, Supplementary Figures 4-5). Higher values mean more AI lexical influence, with no automatic interpretation as greater creativity.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (high adoption, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Printed default-window labels (window = 3): high adoption 0.43; neutral 0.61. No uncertainty reported; values are rounded figure labels.",
+       "locator": "p. 25, Supplementary Figure 5a, red window-3 bars"
+      },
+      {
+       "treatment_arm": "33.3% agents (high persistence, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Printed default-window labels (window = 3): high persistence 0.58; neutral 0.61. No uncertainty reported; values are rounded figure labels.",
+       "locator": "p. 25, Supplementary Figure 5a, red window-3 bars"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O4",
+     "name": "Conceptual-level agent contribution",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Population-normalized agent attribution of stable semantic clusters, not the number of distinct ideas. spaCy scene graphs and soft SPICE similarities are clustered using HDBSCAN with Optuna-selected parameters. Clusters represented in every one of the final 5 rounds are weighted by their frequency; early-diffusion attribution parallels lexical attribution. Windows of 1-3 rounds are robustness variants (p. 8, M2; pp. 17-18, Supplementary Agent Contribution; p. 25, Supplementary Figures 4-5). Higher values mean more AI conceptual influence, not necessarily greater creativity.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (high adoption, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Printed default-window labels (window = 3): high adoption 0.14; neutral 0.36. No uncertainty reported; values are rounded figure labels.",
+       "locator": "p. 25, Supplementary Figure 5b, red window-3 bars"
+      },
+      {
+       "treatment_arm": "33.3% agents (high persistence, 32B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Printed default-window labels (window = 3): high persistence 0.76; neutral 0.36. No uncertainty reported; values are rounded figure labels.",
+       "locator": "p. 25, Supplementary Figure 5b, red window-3 bars"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S3",
+   "label": "Study C: agent model capability",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Humans were randomized across the paper's conditions. This comparison replaces the standard 32B agent model with the smaller 7B model at fixed agent proportion; the standard comparator appears reused.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "Participants were randomly assigned to one of eight experimental conditions spanning three studies.",
+    "locator": "p. 16, Supplementary Experimental Procedure, Participants",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "33.3% agents (neutral 32B)",
+     "description": "Standard 32B neutral comparator appears to be the Study A condition; no additional standard-model sample is listed for Study C (pp. 4, 16).",
+     "ai": "generative_ai",
+     "n_randomized": 16,
+     "n_analyzed": null
+    },
+    {
+     "name": "33.3% agents (neutral 7B)",
+     "description": "Smaller Qwen model at the same 33.3% agent proportion; 16 humans assigned (pp. 4, 16).",
+     "ai": "generative_ai",
+     "n_randomized": 16,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "Before enrollment, participants had to pass English-expression, expression-diversity, and task-comprehension screening. Numbers failing screening, post-assignment exclusions, and separate analyzed human counts are not stated. Arm n values are printed in the random-assignment paragraph and are recorded only as assigned counts (p. 16, Participants).",
+    "population": "students",
+    "who": "University-recruited humans in China; the smaller-model sample is the only additional condition listed for Study C. The standard-model comparator appears shared with Study A (p. 16).",
+    "country": "China",
+    "quote": "Study C examined agent capability at a fixed 33.3% proportion using a smaller base model (n = 16).",
+    "locator": "p. 16, Supplementary Experimental Procedure, Participants; p. 16, Game Procedure"
+   },
+   "ai_tool": {
+    "name_model": "Qwen2.5-VL-7B-Instruct versus Qwen2.5-VL-32B-Instruct (p. 4; p. 14, Figure 3f-g).",
+    "role": "other",
+    "how_used": "Qwen agents participate as game partners and generate their own descriptions; humans receive these descriptions after both players submit and can use interaction history in later rounds. Humans are told that partners may be AI, without being told their identities or proportions; external LLM assistance is prohibited. The neutral system prompt asks agents to maximize similarity-based payoff. AI exposure remains part of the repeated task when final outputs are produced; this is not an after-AI assessment (pp. 4, 16, 18; p. 22, Supplementary Figure 1). The agent model changes to Qwen2.5-VL-7B-Instruct in the treatment condition (p. 4)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Collaborative referential description game: repeatedly write one English sentence describing the same ambiguous tangram, then receive the randomly paired partner's sentence and an embedding-similarity payoff. Partners are rematched each round; no vocabulary or correct answer is imposed. This is convention formation, included as writing compared across people for similarity rather than as a rated-novelty task (p. 16, Stimuli and Game Procedure; p. 18, Neutral System Prompt).",
+    "duration": "40 rounds; recommended response time 60 seconds per round. Total session duration is not stated (p. 16, Game Procedure)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Final consensus strength (inverse diversity)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Each description is embedded; each player receives a mean cosine similarity to every other player in the same round. This score is centered on that player's across-round mean and recentered on the run grand mean, then averaged to final-round consensus C(T). The player-level score is the constituent observation; the published endpoint is a group mean. Both human and AI players enter the calculation, so this is not a human-only diversity estimate. The PDF does not specify the sampling unit used for the reported z tests. See p. 7, Methods M1, equations (1)-(2); p. 16, Game Procedure. Higher similarity means lower diversity: contrast directions below are reversed relative to the printed similarity differences; the printed statistics retain their original signs.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (neutral 7B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "test_statistic",
+        "figure_only"
+       ],
+       "reported": "Consensus rises from standard-model 0.534 to smaller-model 0.725; z = 14.143, p < 0.001.",
+       "locator": "p. 4, Results, model-capability paragraph; p. 14, Figure 3f"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Final-round consensus C(T): mean, within-player-centered cosine similarity; higher values indicate less diversity.",
+      "embedding_model": "all-MiniLM-L6-v2 (mean pooling, L2 normalization; p. 7, M1).",
+      "computed_over": "Every player's final-round description against all other descriptions in the same experimental session, including human-human, human-agent, and agent-agent comparisons; the session has 24 human/AI player positions (pp. 7, 16).",
+      "uncertainty": "Main text reports z statistics and p values; Figure 1 caption specifies 95% confidence intervals. The construction of those intervals, the z-test denominator, and any adjustment for dependent similarities or shared sessions are not stated (pp. 2, 7, 12).",
+      "notes": "No human-only final diversity endpoint or participant-clustered standard error is supplied. AI agents are not counted as human participants. No standardized effect or standard error has been derived."
+     }
+    },
+    {
+     "outcome_id": "S3-O2",
+     "name": "Conceptual-lexical ratio (CLR)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Conceptual-lexical ratio CLR = (Ccon + epsilon)/(Clex + epsilon), epsilon = 0.01, comparing conceptual and lexical agent attribution (p. 8, M2, equation 4). An ownership/influence measure rather than rated creativity: higher values indicate relatively greater conceptual influence by agents. Early-diffusion windows of 1-3 rounds are robustness variants (pp. 25-26, Supplementary Figures 4-6).",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "33.3% agents (neutral 7B)",
+       "control_arm": "33.3% agents (neutral 32B)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "CLR decreases by 22.9%, from standard-model 0.599 to smaller-model 0.462. No uncertainty reported.",
+       "locator": "pp. 4-5, Results, model-capability paragraph; p. 14, Figure 3g"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "No reuse of participants from another paper is stated. Within this paper, the neutral 33.3% / standard-32B comparator in Studies B and C appears to reuse Study A's corresponding group: only additional high-adoption, high-persistence, and smaller-model conditions are listed. These comparator participants must not be treated as independent new samples.",
+  "quote": "Participants were randomly assigned to one of eight experimental conditions spanning three studies.",
+  "locator": "p. 16, Participants (eight assigned conditions across Studies A-C); p. 4, trait and model comparisons"
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "No commercial sponsor, vendor participation in study conduct, or corporate author affiliation is disclosed. Listed affiliations are Northeastern University, Tsinghua University/BNRist, and Shanghai Artificial Intelligence Laboratory; authors declare no competing interests. Qwen models and the SiliconFlow annotation API are tools used in the research, not evidence of company involvement.",
+  "locator": "p. 1, author affiliations; p. 11, Competing Interests; p. 19, annotation-model API"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": "https://github.com/tsinghua-fib-lab/human-ai-consensus"
+ },
+ "eligibility": {
+  "core": "unclear",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "People, not only model outputs, were randomly assigned to AI-partner conditions (p. 16, Participants), and writing is compared across participants using embedding similarity (p. 7, M1), so this is not an ai_vs_human-only study. Study A reports assigned human arm counts 24, 21, 16, 12, and 6, but no distinct study-level analyzed count or attrition statement; the threshold is therefore not confirmed from an explicitly reported analyzed human sample. The overall 127 is recruited across all three studies and cannot be used as one study's analyzed N (p. 16). A further extraction limitation is that consensus pools AI and human descriptions and does not separately identify human-only diversity (p. 7)."
+ },
+ "one_line_finding": "Relative to pure-human consensus strength 0.695, similarity increased by 8.0% at 12.5% agents, decreased by 23.1% at 33.3% and 14.5% at 50%, and reached 0.725 at 75% agents (p. 2, Results; p. 12, Figure 1b).",
+ "open_questions": [
+  "Confirm the analyzed human count in each study/arm and whether all assigned people completed every scored round; only assignment-context counts are printed (p. 16). No aggregate count has been inferred.",
+  "Confirm that the neutral 33.3% / standard-32B condition is shared by Studies A-C; the assignment description lists only one such condition (pp. 4, 16).",
+  "Obtain human-only final-round similarity estimates, the analysis sample for each output measure, the z-test/CI construction, and whether inference accounts for shared pairs and experimental sessions (pp. 7, 12, 14).",
+  "Confirm the setting: online_rct is based on the web-based platform and online recruitment; a physical laboratory or online commercial panel is not stated (p. 16).",
+  "Determine at adjudication whether AI agents acting as recurrent social partners, with diversity computed jointly over human and AI text, should enter the core assistance question or be retained only as adjacent evidence."
+ ],
+ "notes": "Screened 2026-10-09 against the complete markdown, including the appendix, and verified the recorded numerical claims against extracted PDF text and printed figure labels. No effect sizes, SEs, unprinted means, aggregate participant counts, or CI endpoints were calculated. Study-level n_randomized and n_analyzed remain null because separate totals are not printed; assigned people are recorded at arm level. No separate post-exclusion analyzed N is reported. In line with the 15-outcome cap, retained the main condition-comparison outcomes and the Study B lexical/conceptual components; omitted lower-priority movement toward the opposite group's centroid (pp. 2, 7, Figure 1c), baseline agent-versus-human alignment and adoption/persistence dynamics (pp. 4, 9, Figure 3a-c), peer-centroid proximity gap by perceived identity (p. 5, Figure 4d), reverse-PageRank influence (pp. 20-21, Supplementary Figure 8), and Study C lexical/conceptual contribution components (p. 26, Supplementary Figure 6). Questionnaire agreement, perceived leadership, identity judgments, and adoption willingness are self-reports, not scored creative outputs, and are not extracted as outcomes. Content and attribution endpoints are coded other rather than relabeled creativity, novelty, or fluency. AI availability refers to access to AI-partner descriptions/history during the continuing game; the final round is not after_ai. Main-result directions for similarity are reversed to the diversity convention, while printed statistics are preserved; attribution and content-score directions describe their named measures without assuming that higher implies greater creativity. The main text refers to Figure 2d for idea density, but the displayed content panels are Figure 2c on p. 13. The data-availability statement names the paper/supplement without a separate data URL; the code URL is given on p. 9. Preregistration is not stated."
+}

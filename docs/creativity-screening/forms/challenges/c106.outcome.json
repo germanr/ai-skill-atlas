@@ -1,0 +1,41 @@
+{
+  "cid": "c106",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O1",
+      "field": "contrasts[0].direction",
+      "form_value": "treatment_higher",
+      "source_says": "The only test of C_after vs C_before on idea count is not significant at 0.05: Student t(58) = −1.897, p = 0.063, which the paper calls 'a marginal effect' (Section 4.1) and 'marginally significant' (Table 3). The SEM direct path (1.563, SE 0.905, z = 1.727, p = 0.084) is neither bold nor marked with a dagger in Table 2, although the table gives a dagger to p = 0.087. Figure 6 shows only significant paths and omits it. Its bootstrap CI [0.120, 3.210] excludes zero, but the paper does not treat the path as significant. Final forms code a key test with p between 0.05 and 0.10 as no_clear_difference even when the point estimate favors one arm: c007 S1-O1 (p = 0.06), c010 S2-O2 (P = 0.075), c082 S2-O1 (p = 0.064), c094 S1-O2 (p = .093), c101 S1-O1 (p = .076), c121 S1-O1 (p = 0.073). Neither the codebook nor the form-spec states a threshold. Both screeners coded treatment_higher, so the reconciler never examined this field. Fix: no_clear_difference, with the arm means kept in reported.",
+      "quote": "The result of the t-test showed that the timing of LLM usage had a marginal effect on the number of supporting ideas participants generated in the study (t(58) = −1.897, p = 0.063, d = −0.490)",
+      "locator": "p. 7, Section 4.1, first paragraph; p. 11, Table 2 (Quantity of Ideas, LLM Usage Timing row) and Table 3 (RQ1); p. 10, Figure 6 and caption; final forms c007, c010, c082, c094, c101, c121"
+    },
+    {
+      "where": "S1-O1",
+      "field": "measure_detail",
+      "form_value": "Who judged distinctness is not stated.",
+      "source_says": "The paper says the authors did the count ('we counted each distinct idea'). What it leaves out is how many coders judged distinctness, whether they were blind to condition, and the rule for dropping 'redundant or repetitive' ideas. Minor wording fix. No code changes.",
+      "quote": "To calculate the total quantity of supporting ideas, we counted each distinct idea provided by the participant, regardless of whether it was generated independently or with the assistance of the LLM.",
+      "locator": "p. 5, Section 3.5.2"
+    }
+  ],
+  "confirmed": [
+    "Criterion 3: all three outcomes are computed on the ideas participants submitted. S1-O1 counts distinct ideas, S1-O2 is the TF-IDF cosine similarity to the LLM ideas each participant received, and S1-O3 is 1 minus the mean pairwise ada-002 cosine similarity within one participant's ideas (p. 5, Sections 3.5.2 to 3.5.4; p. 6, Table 1).",
+    "The Likert measures (creative self-efficacy, ownership, autonomy, self-credit, credit to LLM) are self-reports and are rightly kept out of outcomes and listed in notes (pp. 5-6, Sections 3.5.5 to 3.5.8; pp. 7-9, Section 4.2, Figures 4 and 5).",
+    "AI availability 'mixed' fits all three outcomes, and the form-spec allows it. In C_before the AI panel 'remained visible throughout the main task'. In C_after the 'Display AI' button stayed disabled until three ideas were saved, Figure 2 says AI displays automatically after 10 minutes, and the count keeps ideas 'generated independently' (p. 4, Section 3.4.1 and Figures 1 and 2; p. 3, Section 3.3; p. 5, Section 3.5.2).",
+    "Question with_ai follows the codebook rule for all three outcomes: no scored idea was written after AI was removed, and no construct is diversity (p. 3, Section 3.3; p. 4, Figure 1; codebook section 1).",
+    "Constructs hold. Fluency fits the idea count. Flexibility fits S1-O3, which is computed 'Given one's idea set', because the codebook says variety among one person's own ideas is flexibility. Other fits S1-O2, which compares each person's ideas only with the LLM ideas that person received ('the participant's reliance on the LLM'), never with other people's ideas. The novelty reading is flagged in open_questions (p. 5, Sections 3.5.2 to 3.5.4; p. 11, Table 3).",
+    "Measures hold: category_count for the count, lexical_overlap for TF-IDF cosine ('since the TF-IDF directly captured term overlap'), and embedding_similarity for ada-002. The ada-002 version of S1-O2 is a robustness variant kept in its measure_detail, as form-spec rule 7 asks (p. 5, Sections 3.5.2 to 3.5.4 and footnote 8; p. 15, Figure 7).",
+    "Unit participant holds for all three outcomes. Table 1 outputs a 'Similarity score for each P_i', and the printed tests reproduce with 30 people per arm: Student t(58) = −1.897, p = 0.063, d = −0.490 for quantity (a Welch test would have 43.9 df, so the 'Student' label is right); Welch df 48.37 for similarity; and for diversity d = 0.345 equals t × sqrt(2/30) (p. 6, Table 1; p. 7, Section 4 and Section 4.1).",
+    "Every number in reported matches the PDF: S1-O1 C_before 3.867 (SD 2.285) vs C_after 5.567 (SD 4.345), t(58) = −1.897, p = 0.063, d = −0.490; S1-O2 0.899 (SD 0.404) vs 0.648 (SD 0.250), t(48.36) = 4.778, p = 0.006, d = 0.747; S1-O3 t(36.472) = 1.337, p = 0.189, d = 0.345, with no arm means printed. Figure 3 panels read 'p-value: 0.063' ns, 'p-value: 0.006' **, and 'p-value: 0.189' ns (p. 7, Section 4.1; p. 8, Figure 3).",
+    "Table 2 and Figure 6 match the form: Quantity of Ideas on LLM Usage Timing 1.563, 0.905, 1.727, 0.084, CI 0.120 to 3.210, with creative self-efficacy, autonomy, and ownership as co-predictors; Similarity with Ideas from LLM on LLM Usage Timing −0.244, 0.091, −2.678, 0.007**, CI −0.397 to −0.064, drawn in Figure 6 as −0.244 (0.091) **. The SEM uses 1000 bootstrap samples, and footnote 11 drops diversity from it (p. 11, Table 2; p. 10, Figure 6; p. 9, Section 4.3.2 and footnote 11).",
+    "The form's open question on the printed similarity t holds on recomputation: the printed means and SDs with 30 per arm give Welch t = 2.894 on 48.37 df, p = 0.0057, d = 0.747, while t = 4.778 on 48.36 df would give p = 0.00002 and d = 1.234 (p. 7, Section 4.1).",
+    "S1-O2 measure_detail holds: each idea's score is the magnitude of its vector of similarities to the LLM ideas, averaged per participant, so the score is not bounded at 1. Figure 3(b) runs to 2.0 and Figure 7(b) to 12. Figure 7(b) prints only '*' and no statistics (p. 5, Section 3.5.3; p. 8, Figure 3(b); p. 15, Figure 7).",
+    "S1-O2 treatment_lower (p = 0.006) is coded on raw similarity, and the record states that orientation, as c002 S1-O6 does for similarity to AI examples. S1-O3 no_clear_difference (p = 0.189) holds (p. 7, Section 4.1; p. 5, Section 3.5.3).",
+    "Timing immediate and primary not_stated hold: all ideas came from one session of about 30 minutes, and RQ1 lists the three outcomes after 'e.g.' without naming a primary one (p. 3, Section 3.3; p. 1, RQ1).",
+    "No outcome that bears on the three questions is missing. The paper reports no across-people similarity, no output written after AI is removed, and no rated creativity. Task completion time is a process measure, and Table 4 shows one participant as an example (p. 5, Section 3.5.1; p. 16, Table 4; pp. 5-6, Section 3.5)."
+  ],
+  "summary": "All three c106 outcomes (idea count, TF-IDF similarity to the LLM's ideas, within-person embedding diversity) are computed on the submitted ideas, and their question, AI availability, constructs, measures, participant unit, and printed numbers all check out against the PDF, so criterion 3 holds. The coding is still refuted on two details of S1-O1: its direction should be no_clear_difference because its only test is marginal (p = 0.063), which is how final forms code such results, and its measure_detail says the paper does not state who judged distinctness when the paper says the authors counted."
+}

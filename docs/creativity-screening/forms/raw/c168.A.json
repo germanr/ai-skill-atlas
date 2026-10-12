@@ -1,0 +1,349 @@
+{
+  "cid": "c168",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu Weber Muller (2025) - One Does Not Simply Meme Alone.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu Weber Muller (2025) - One Does Not Simply Meme Alone.pdf",
+    "version": "arXiv:2501.11433v2 [cs.HC], 23 Jan 2025; author's version of the IUI '25 paper (30th International Conference on Intelligent User Interfaces, March 24-27, 2025, Cagliari), DOI 10.1145/3708359.3712094. Received 10 October 2024, accepted 12 December 2024 (p. 11).",
+    "title_on_document": "One Does Not Simply Meme Alone: Evaluating Co-Creativity Between LLMs and Humans in the Generation of Humor",
+    "authors_on_document": ["Zhikun Wu", "Thomas Weber", "Florian Müller"],
+    "pages": 11,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "\"supplementary material\" referred to on pp. 5-6 (Section 3.3); no URL given",
+      "holds": "The full prompts (system prompt for the chat assistant) and the full list of AI-generated captions. The text does not say it holds any statistics; arm-level means, SDs, and arm sizes appear nowhere in the main text."
+    }
+  },
+  "paper_design_summary": "Online Prolific participants (124 recruited, 26 excluded for not completing) wrote meme captions for three image-topic combinations in a between-subject study, either alone (human-only baseline) or with a GPT-4o chat assistant during the 4-5 minute ideation step; favorite selection and image captioning were done without AI. A separate GPT-4o condition generated captions with no human input. A second Prolific sample (98 of 100 completed) rated 150 sampled memes from each of the three conditions on funny, creative, and shareable; the number of ideas per participant was also compared between the two human arms.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Meme creation: human-only vs human-AI collaboration (with crowd ratings of the resulting memes)",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "not_stated",
+        "what_was_assigned": "Condition: human-only baseline vs human-AI collaboration (access to a GPT-4o chat interface during ideation). Only the permutation of image and topic is stated as random; how participants were allocated to conditions is not stated.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "we conducted a between-subject user study with three experimental groups.",
+        "locator": "p. 4, Section 3 (Methodology); randomization mentioned only for image/topic permutation, p. 4, Section 3.2, and 'randomization of tasks', p. 6, Section 3.4",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Human only (baseline)", "description": "Participants generated caption ideas, selected three favorites, and captioned the meme template without AI or other assistance.", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "Human-AI collaboration", "description": "Same task, but during ideation a chat interface let participants prompt GPT-4o (system prompt limited it to at most three ideas per response; current image sent before each prompt). Ideas in LLM responses were auto-extracted into the idea list. Favorite selection and image creation had no AI.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 98,
+        "counts_are": "people",
+        "exclusions": "124 recruited on Prolific; 26 excluded for not completing the task. The 98 is not printed as a number; it is the 63 male + 35 female participants reported. Arm sizes are not reported in the main text; the abstract says 'three groups of 50 participants each' (one of the three groups is the AI-only condition, which has no participants). Separately, due to technical problems only 415 of the baseline favorite ideas (vs all 441 collaborative) were usable, and memes were further curated (one image template dropped), leaving 335 baseline and 307 collaborative images, of which 150 per arm were sampled for rating.",
+        "population": "online_panel",
+        "who": "Prolific workers with good English skills who had used an LLM interface at least once; 63 male, 35 female; mean age 28.8 (sd 8.7); from 30 countries.",
+        "country": "30 different countries (not listed)",
+        "quote": "we recruited 124 participants using the online platform Prolific. 26 participants were excluded due to not completing the task.",
+        "locator": "p. 6, Section 3.6; abstract p. 1; usable ideas and curation p. 4-5, Section 3.2 and Figure 5"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI GPT-4o via API",
+        "role": "open_chat",
+        "how_used": "Free prompting of a chat interface during the ideation step only, constrained by a system prompt to help create meme ideas and give at most three ideas per response; ideas in responses were automatically added to the participant's idea list. No AI during favorite selection or image captioning (p. 4, Section 3.1; p. 5, Section 3.3; p. 8, Section 5.1)."
+      },
+      "task": {
+        "type": "humor",
+        "description": "Write captions for meme templates (six popular meme images, one later excluded) on one of three topics (work, food, sports): ideate as many captions as possible, pick the top three, then place them on the template. Three image-topic combinations per participant.",
+        "duration": "Ideation at least 4 and at most 5 minutes per image; whole session scheduled for no more than 40 minutes; paid about 15 USD."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Number of ideas generated during ideation",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of caption ideas in the idea list; tested both as the absolute count and as the average number of ideas per participant. In the AI arm, ideas in LLM responses were auto-extracted into the list, so counts include AI-supplied ideas. Overall mean 6.1 ideas (sd 3.2), not split by arm in the text.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI collaboration",
+              "control_arm": "Human only (baseline)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "figure_only"],
+              "reported": "Mann-Whitney-U: absolute count W = 12652, p < 0.001; average number of ideas (1519.5, p < 0.001). Shapiro-Wilk W = 0.811, p < 0.001 and W = 0.820, p < 0.001. Figure 6 boxplot, *** p < 0.001. No arm means or SDs printed.",
+              "locator": "p. 6, Section 4.1.1 and Figure 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Crowd rating: creative",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Second Prolific sample (100 recruited, 98 completed rating at least 50 images); each rater saw a random sample of 50 of the 450 memes and rated each on creativity; rating scale not stated (Figure 8 axis runs 0 to about 60). ANOVA plus Bonferroni-adjusted pairwise t-tests. Also re-analyzed by topic (Table 1).",
+          "unit": "rating",
+          "n_units": 300,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI collaboration",
+              "control_arm": "Human only (baseline)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "No significant pairwise difference between Human-AI and Human only (no star in Figure 8). Omnibus over three conditions (incl. AI only): ANOVA df 2, F = 5.793, p = 0.003 **. Work topic: KW chi2 = 11.22, p = 0.004; sports F = 2.095, p = 0.127; food F = 0.608, p = 0.546. No arm means or SDs printed.",
+              "locator": "p. 7, Section 4.2 and Figure 8; p. 8, Table 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Crowd rating: funny",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Humor rating of each meme by the same 98 crowd raters; scale not stated. ANOVA plus Bonferroni-adjusted pairwise t-tests.",
+          "unit": "rating",
+          "n_units": 300,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI collaboration",
+              "control_arm": "Human only (baseline)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "No significant pairwise difference between Human-AI and Human only (no star in Figure 8). Omnibus over three conditions: ANOVA df 2, F = 6.971, p = 0.001 **. Work F = 7.1, p = 0.001; sports F = 2.036, p = 0.134; food KW chi2 = 3.455, p = 0.177.",
+              "locator": "p. 7, Section 4.2 and Figure 8; p. 8, Table 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Crowd rating: shareable",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Rated likelihood of sharing the meme, same 98 crowd raters; scale not stated. Kruskal-Wallis plus Bonferroni-adjusted pairwise Mann-Whitney-U tests.",
+          "unit": "rating",
+          "n_units": 300,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Human-AI collaboration",
+              "control_arm": "Human only (baseline)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "No significant pairwise difference between Human-AI and Human only (no star in Figure 8). Omnibus over three conditions: Kruskal-Wallis df 2, chi2 = 11.761, p = 0.003 **. Work chi2 = 8.470, p = 0.014; sports F = 1.712, p = 0.184; food chi2 = 4.701, p = 0.095.",
+              "locator": "p. 7, Section 4.2 and Figure 8; p. 8, Table 1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "AI-only memes vs human-made memes (crowd ratings)",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "No assignment of people to AI. GPT-4o generated captions for each image-topic combination with no human input; these memes were rated alongside the human-only and human-AI memes. Raters saw a random sample of 50 memes each.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "In the third group, ideas were generated fully autonomously by the LLM.",
+        "locator": "p. 4, Section 3.1; p. 5, Section 3.2 and Figure 5; p. 6, Section 3.3",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "AI only", "description": "GPT-4o prompted to 'generate 20 meme captions for this <image> about the topic of <topic>' for each of 15 image-topic combinations; 150 memes used in the rating (Figure 5 shows 300 generated, randomly sampled to 150).", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Human only (baseline)", "description": "150 sampled memes from the baseline arm of S1.", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "Human-AI collaboration", "description": "150 sampled memes from the collaborative arm of S1.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "The compared units are memes (150 per condition). The human memes come from the S1 participants; the number of distinct creators behind the sampled memes is not stated. Raters: 100 recruited, 98 completed.",
+        "population": "online_panel",
+        "who": "Raters: Prolific workers with good English skills (LLM experience not required); equally split male/female; mean age 32.6 (sd 11.1); from 29 countries. Paid about 10 USD.",
+        "country": "29 different countries (raters)",
+        "quote": "98 of these completed the task, rating at least 50 images.",
+        "locator": "p. 6, Section 3.6"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI GPT-4o via API",
+        "role": "other",
+        "how_used": "Autonomous caption generation for the AI-only condition, given the image and a short description."
+      },
+      "task": {
+        "type": "humor",
+        "description": "Meme captions for five meme templates by three topics (work, food, sports), rated for humor, creativity, and shareability.",
+        "duration": "Rating survey estimated at 10-15 minutes (10-15 seconds per rating)."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Crowd rating: creative (AI only vs human-made)",
+          "construct": "overall_creativity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same crowd ratings as S1-O2; ANOVA plus Bonferroni-adjusted pairwise t-tests.",
+          "unit": "rating",
+          "n_units": 450,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI only",
+              "control_arm": "Human only (baseline)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 8 pairwise Human only vs AI only: * (p < 0.05, Bonferroni adjusted). Omnibus ANOVA df 2, F = 5.793, p = 0.003.",
+              "locator": "p. 7, Figure 8 and Section 4.2; p. 8, Table 1"
+            },
+            {
+              "treatment_arm": "AI only",
+              "control_arm": "Human-AI collaboration",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 8 pairwise Human-AI vs AI only: ** (p < 0.01, Bonferroni adjusted).",
+              "locator": "p. 7, Figure 8"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "Crowd rating: funny (AI only vs human-made)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same crowd ratings as S1-O3; ANOVA plus Bonferroni-adjusted pairwise t-tests.",
+          "unit": "rating",
+          "n_units": 450,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI only",
+              "control_arm": "Human only (baseline)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 8 pairwise Human only vs AI only: ** (p < 0.01, Bonferroni adjusted). Omnibus ANOVA df 2, F = 6.971, p = 0.001.",
+              "locator": "p. 7, Figure 8; p. 8, Table 1"
+            },
+            {
+              "treatment_arm": "AI only",
+              "control_arm": "Human-AI collaboration",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 8 pairwise Human-AI vs AI only: * (p < 0.05, Bonferroni adjusted).",
+              "locator": "p. 7, Figure 8"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O3",
+          "name": "Crowd rating: shareable (AI only vs human-made)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same crowd ratings as S1-O4; Kruskal-Wallis plus Bonferroni-adjusted pairwise Mann-Whitney-U tests.",
+          "unit": "rating",
+          "n_units": 450,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI only",
+              "control_arm": "Human only (baseline)",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 8 pairwise Human only vs AI only: * (p < 0.05, Bonferroni adjusted). Omnibus Kruskal-Wallis df 2, chi2 = 11.761, p = 0.003.",
+              "locator": "p. 7, Figure 8; p. 8, Table 1"
+            },
+            {
+              "treatment_arm": "AI only",
+              "control_arm": "Human-AI collaboration",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "Not significant: 'The only exception to this was \"shareability\" where the comparison between the cooperative and pure AI creation was not significant.'",
+              "locator": "p. 7, Section 4.2 and Figure 8"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Authors are at KTH, LMU Munich, and TU Darmstadt; funded by HumanE-AI-Net (Grant Agreement ID 952026). GPT-4o used via the OpenAI API; no company role stated.", "locator": "p. 1 (affiliations); p. 10 (Acknowledgments); p. 6, Section 3.4" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "unclear",
+    "criterion_1_random_assignment_of_ai": "unclear",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "ai_vs_human",
+    "reason": "S1 compares people who worked with and without a GPT-4o chat assistant in a 'between-subject user study with three experimental groups' (p. 4), but the paper never states how participants were allocated to conditions; only the image-topic permutation is described as random (p. 4). Criterion 2: 98 participants analyzed across the two human arms (124 recruited minus 26 non-completers, p. 6); arm sizes are not reported, and the abstract's 'groups of 50' would give about 49 per human arm, so the 50 threshold is met only across arms. Criterion 3: crowd ratings of the memes (creative, funny, shareable) and idea counts are scored on output. Core status depends on confirming random assignment with the authors. S2 (AI-only memes vs human memes) is ai_vs_human context."
+  },
+  "one_line_finding": "Participants with a GPT-4o chat assistant produced more caption ideas (Mann-Whitney W = 12652, p < 0.001; p. 6, Figure 6), but crowd ratings of their memes on funny, creative, and shareable did not differ from human-only memes, while AI-only memes were rated higher than both (Figure 8, p. 7; Table 1, p. 8).",
+  "open_questions": [
+    "How were participants allocated to the human-only and human-AI conditions? Randomization is not stated.",
+    "Arm sizes for the two human arms are not reported; the abstract says 'three groups of 50 participants each' but only 98 human participants are analyzed (63 male + 35 female, p. 6).",
+    "The unit of the Mann-Whitney test on the absolute idea count (W = 12652) is not stated; a U statistic that large exceeds what two arms of about 49 people could produce, so it may be at the participant-by-image level. The per-participant average test reports 1519.5.",
+    "The rating scale and the unit of the ANOVA (individual ratings vs meme-level means) are not stated; denominator degrees of freedom are not reported.",
+    "How many distinct S1 participants contributed to the 150 sampled memes per arm is not stated; baseline lost favorites to technical problems (415 of the baseline favorites usable vs all 441 collaborative)."
+  ],
+  "notes": "Arm-level means, SDs, and arm sizes are not printed anywhere; pairwise significance appears only as stars in Figure 8 (p. 7) and Table 1 gives only omnibus three-condition tests (overall and by topic). The ratings outcomes are coded with AI availability 'mixed' because AI was available during ideation of the captions but not during favorite selection and image captioning (p. 8, Section 5.1-5.2: 'the memes selected by our participants - which always happened without LLM support'). Construct for 'funny' and 'shareable' coded 'other' (humor and shareability ratings). Self-report outcomes not scored on output were omitted: NASA-TLX (overall t = -0.955, p = 0.342; Effort subscale lower with LLM, W = 755, p = 0.027), perceived number of ideas (W = 1308.5, p = 0.043), and perceived ownership (lower with LLM, W = 562, p < 0.001), all p. 6-7. Figure 1 top-4 memes by dimension is descriptive only. The 882 favorites expected equal 98 x 3 images x 3 favorites, consistent with 98 analyzed creators. Section 4.2 text in the markdown is scrambled; checked against PDF p. 7."
+}

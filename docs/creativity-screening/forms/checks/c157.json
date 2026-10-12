@@ -1,0 +1,64 @@
+{
+ "cid": "c157",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].assignment.randomized; studies[0].assignment.preregistered; eligibility.criterion_1_random_assignment_of_ai; eligibility.criterion_2_at_least_50_people; eligibility.criterion_3_outcome_scored_on_output",
+   "form_value": "All five fields are empty strings.",
+   "source_says": "Fill randomized as no for assignment of people to AI assistance, and preregistered as not_stated. The eligibility criteria are respectively not_met, met, and met: separate human and model creators, 59 retained human writers, and creativity scored on their stories. Keep core=no and context_class=ai_vs_human.",
+   "quote": "Both humans and models were given the same instructions in English using the following prompt:",
+   "locator": "PDF p. 3, Methods, Story Generation Data Collection; p. 5, Story Evaluation by Judges; preregistration is not stated anywhere in the document."
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced",
+   "form_value": "yes for every recorded outcome",
+   "source_says": "The scored corpus combines AI-generated stories with unassisted human-written stories. Use mixed for this combined corpus; its human-output component was produced without AI assistance. Retain question=none and comparison_type=ai_vs_human, because there is no human-with-AI condition.",
+   "quote": "Both humans and models were given the same instructions in English using the following prompt:",
+   "locator": "PDF p. 3, Methods, Story Generation Data Collection and the separate human/model generation procedures."
+  },
+  {
+   "field": "studies[0].outcomes[4] (S1-O5); studies[0].outcomes (separate LLM-rated creativity outcome)",
+   "form_value": "S1-O5 has measure=human_raters and n_units=273, but its reported string also contains the LLM-judge results: Table 2, Non-expert Judges, creativity: Human 2.45 (±0.77) vs AI 3.65 (±0.78). Text: \"non-experts rate AI stories with 1.19 more points (t = 12.76, p < .001)\". LLM judges: Human 2.41 (±0.70) vs AI 4.26 (±0.64); \"LLM judges rate AI stories with 1.85 more points (t = 28.75, p < .001)\".",
+   "source_says": "Keep the non-expert outcome at 273 stories, using the median of five ratings per story from the independent sample of 96 judges. Move the LLM creativity results to a separate automated_score outcome with n_units=431 and the mean of three LLM judges. The existing LLM means, SDs and test statistic are accurate; they describe the full corpus, not the non-expert subset.",
+   "quote": "We also prompt three LLMs, i.e. Claude, Gemini and GPT-4, to rate each of the 431 stories on the same five variables.",
+   "locator": "PDF p. 5, Human Non-expert Judges and LLM Judges; p. 7, Who’s more creative according to our judges?; p. 8, Table 2."
+  },
+  {
+   "field": "studies[0].outcomes; notes",
+   "form_value": "Only S1-O1 through S1-O5 are listed; notes is empty. Originality, surprise and effectiveness ratings are absent, and thematic diversity and complexity outcomes are not recorded.",
+   "source_says": "Table 2 reports originality, surprise and effectiveness separately for expert, non-expert and LLM judges, in addition to creativity. The paper also scores lexical n-gram diversity, theme counts, and lexical/syntactic complexity; lexical diversity is only mentioned inside the embedding-based S1-O1 entry. Make the different measures distinguishable, record the main outcomes up to the form’s 15-outcome limit, and identify all omitted measures in notes. The quote gives the missing Table 2 rows in the printed column order: expert Human/AI, non-expert Human/AI, LLM Human/AI.",
+   "quote": "originality 3.96 (±0.79) 2.70 (±0.73) 2.48 (±0.76) 3.47 (±0.75) 2.33 (±0.73) 4.22 (±0.72) surprise 3.20 (±0.89) 1.68 (±0.61) 2.21 (±0.81) 2.96 (±0.78) 2.01 (±0.79) 3.74 (±0.77) effectiveness 3.87 (±0.71) 2.17 (±0.70) 2.70 (±0.73) 3.33 (±0.76) 2.86 (±0.58) 4.14 (±0.52)",
+   "locator": "PDF p. 8, Table 2 and Figure 8; p. 3, Figure 2a; pp. 4-6, Diversity and Complexity methods/results; pp. 18-19, Figures 9-10. Form-spec.md, rule 7."
+  },
+  {
+   "field": "studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "Populate metric as inverse homogenization (mean pairwise semantic distance), embedding_model as gte-large, and computed_over as each story against all other stories written on the same item set, using 1 − cosine similarity. The definition does not explicitly restrict the reference set to the same creator group. The uncertainty method behind the reported automated-metric p-value is not stated; do not infer a bootstrap, permutation, or independent-pair test.",
+   "quote": "It is defined as the average pairwise distance of a story to all other stories written on the same item set",
+   "locator": "PDF p. 4, Story Evaluation by Automated Metrics, Diversity; p. 5, Results, Diversity; p. 3, Figure 2b. Form-spec.md, diversity_detail field note."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "[] in every recorded contrast",
+   "source_says": "The arrays should identify the statistics already reported: p_value_only and figure_only for S1-O1 through S1-O3, and test_statistic for the judged creativity comparisons. Expert and separately coded LLM outcomes also have arm_means_sds_ns at the output level: Table 2 supplies means/SDs and Table 10 supplies 208 human and 223 AI stories. Non-expert creator-specific story counts within the 273-story subset are not stated and must not be inferred from the full corpus.",
+   "quote": "We see that humans consistently display a higher lexical and semantic diversity (p < 0.0001).",
+   "locator": "PDF pp. 3-4, Figures 2-4; pp. 5-6, automated-metric results; p. 7, judged-creativity tests; p. 8, Table 2; p. 23, Table 10."
+  }
+ ],
+ "confirmed": [
+  "The local full text is arXiv:2411.02316v5 [cs.CL], dated 10 May 2025, with 23 PDF pages; the title and authors match the form (PDF p. 1 and document page count). The whole markdown, including references and appendices, was read.",
+  "The study compares independently generated human and model stories; it contains no random assignment of people to generative-AI assistance. design_class=ai_vs_human, context_class=ai_vs_human and core=no are correct (PDF pp. 1 and 3, Figure 1 and Story Generation Data Collection).",
+  "The paper reports 60 recruited writers and 59 remaining after instruction-related exclusions, not a randomized sample. These writers exceed the 50-person threshold; the independent judges are not additional writers (PDF p. 3, Story Generation Data Collection; p. 5, judge samples).",
+  "The UK Prolific writer sample, 43% female and mean age 38.8, is stated. The paper reports 60 different models, prompted zero-shot with temperature=0.7 and top_p=0.95; the named model examples occur in the model list (PDF p. 3; pp. 14-15, Tables 6-7).",
+  "Four three-word item sets and a maximum-five-sentence instruction are stated. The reported 480 collected stories become 431 after removing stories shorter than 3 or longer than 7 sentences; Table 10 prints totals of 208 human and 223 AI stories (PDF p. 3; p. 23, Table 10).",
+  "Two expert judges score all 431 valid stories and their scores are averaged; 96 non-expert judges supply five ratings per story for 273 stories, aggregated by the paper’s stated median rule; three LLM judges rate all 431 stories (PDF p. 5, Story Evaluation by Judges).",
+  "S1-O1’s p < 0.0001 for higher human lexical/semantic diversity, S1-O2’s novelty thresholds p < 0.01, p < 0.1, p < 0.05 and p < 0.05, and S1-O3’s p < 0.001 for surprise match the PDF exactly (PDF p. 5, Diversity; p. 6, Novelty and Surprise; Figures 2-4).",
+  "Expert creativity: Human 3.58 (±0.78), AI 2.33 (±0.55); the prose gives 1.25 points, t = −19.34, p < .001. All match S1-O4 and the one-line finding (PDF p. 7; p. 8, Table 2).",
+  "Non-expert creativity: Human 2.45 (±0.77), AI 3.65 (±0.78); the prose explicitly gives 1.19 points, t = 12.76, p < .001. Retain the printed 1.19 rather than replacing it with a difference calculated from rounded means (PDF p. 7; p. 8, Table 2).",
+  "LLM creativity: Human 2.41 (±0.70), AI 4.26 (±0.64); the prose gives 1.85 points, t = 28.75, p < .001. These numerical values and the direction in the one-line finding are correct (PDF p. 7; p. 8, Table 2).",
+  "The supplementary tables and figures are included on PDF pp. 13-23. Study materials are linked at https://github.com/mismayil/creative-story-gen (PDF p. 9, Ethics and footnote 2); appendix automated-metric figures do not print numerical standard errors or test statistics.",
+  "This is an original empirical comparison, not a synthesis; there are no pooled study estimates or standardizers to record. Table 3 predicts judge ratings from story metrics and does not estimate an effect of human AI assistance (PDF pp. 3-8, Methods and Results)."
+ ],
+ "summary": "The paper is correctly classified as AI-versus-human context evidence, with 59 retained writers and no randomized human AI-assistance study. The reported numbers match the PDF, but separate LLM rating outcomes, omitted measures, and incomplete or misleading coding fields need correction."
+}

@@ -1,0 +1,388 @@
+{
+ "cid": "c710",
+ "extractor": "A",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Baumler et al (2026) - Can You Make It Sound Like You.pdf",
+  "version": "arXiv:2604.24444v1 [cs.CL], 27 Apr 2026, as printed in the version stamp on PDF p. 1.",
+  "supplement_used": "Appendices A-D in the same PDF (PDF pp. 13-29), including recruitment and permutation methods, embedding robustness results, linguistic acceptability, task counts, and the study interface."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Main online writing and post-editing experiment",
+   "design_class": "online_rct",
+   "assignment_unit": "within_person_order",
+   "clusters_per_arm": {},
+   "cluster_se_treatment": null,
+   "n_randomized": null,
+   "n_analyzed": 81,
+   "counts_source": {
+    "locator": "PDF p. 13, Appendix A.1",
+    "quote": "Following\nour preregistered exclusion criteria, we discarded\nresponses where participants never edited any of\nthe LLM-generated drafts or did not complete the\nentire study, leaving 81 participants."
+   },
+   "arms": [
+    {
+     "name": "Post-edited LLM drafts",
+     "description": "Participants plan fictional details, receive an LLM-generated full draft, and edit it to express their personal style. Four randomly selected tasks per analyzed writer (PDF pp. 4-5, section 4; PDF p. 24, Table 9).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 81
+    },
+    {
+     "name": "Unassisted human writing",
+     "description": "The same participants plan details and write directly from those plans without seeing LLM-generated text. Two randomly selected tasks per analyzed writer (PDF pp. 4-5, section 4; PDF p. 24, Table 9).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 81
+    }
+   ],
+   "population": "online_panel",
+   "country": "",
+   "task_type": "creative_writing",
+   "task": "Writers choose personal writing scenarios, such as letters, speeches, vows, or tributes, plan fictional content, and either post-edit an AI draft or write unaided to convey their own style (PDF pp. 4-5 and 24).",
+   "ai_role": "other",
+   "ai_tool": {
+    "name": "GPT-o4-mini",
+    "year": 2025,
+    "locator": "PDF p. 5, section 5.1: \"LLM drafts were generated using GPT-o4-mini (OpenAI, 2025).\""
+   },
+   "preregistration": {
+    "exists": "yes",
+    "where": "https://aspredicted.org/ck6xk4.pdf (PDF p. 1, footnote 2; PDF p. 3, section 3). The linked file was not separately accessed.",
+    "primary_outcome": "The paper names H1 (personal stylistic authenticity) and H2 (stylistic homogeneity/distinctness) as its main preregistered hypotheses. H2a compares stylistic homogeneity of post-edited and unassisted writing (PDF p. 3, section 3)."
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_style_similarity_luar_postedited_vs_unassisted",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Between-participant stylistic similarity (H2a; LUAR-MUD)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Cosine similarity between LUAR-MUD style embeddings of texts written by different participants, computed separately within the post-edited and unassisted conditions. Higher similarity means greater stylistic homogeneity and less diversity (PDF pp. 5-7, sections 5.2 and 6.2, Figure 6; PDF p. 16, Appendix B.2).",
+   "unit": "pair",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Post-edited LLM drafts",
+   "control_arm": "Unassisted human writing",
+   "within_person": "paired",
+   "n_treatment": 81,
+   "n_control": 81,
+   "n_total": 81,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": 95,
+    "ci_of": "paper_effect",
+    "regression": null,
+    "test": null,
+    "p_value": 0.0002,
+    "paper_effect": {
+     "type": "g",
+     "value": 1.42,
+     "se": null,
+     "ci_lower": 1.33,
+     "ci_upper": 1.51,
+     "standardizer": null
+    }
+   },
+   "se_basis": "unclear",
+   "preregistered_primary": "yes",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 24, Table 9 caption",
+     "quote": "Each of the 81 partic-\nipants chose six tasks to complete. Four were randomly\nselected as treatment and two as control."
+    },
+    {
+     "fields": [
+      "p_value",
+      "paper_effect.value",
+      "paper_effect.ci_lower",
+      "paper_effect.ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 6, section 6.2, H2a",
+     "quote": "We see that post-edited writing is indeed more\nstylistically homogeneous than unassisted writing\n(H2a, p = .0002, g = 1.42, 95% CI: [1.33, 1.51])"
+    }
+   ],
+   "notes": "The same analyzed writers completed both randomized blocks; n_total counts each writer once. within_person is paired because these results combine both blocks; the paper prints no first-round-only contrast. This coding describes the design and does not assert that the reported test or bootstrap accounted for pairing. The paper describes two-tailed permutation tests in Appendix A.2 (PDF pp. 13-14) and bootstrap confidence intervals in section 6 (PDF p. 5), but does not specify the resampling unit or establish participant-level uncertainty for this contrast; se_basis is therefore unclear. No numerical permutation statistic is printed, so test is null. The denominator used for the reported Hedges’ g is not stated. All effect signs and intervals are retained as printed. Positive printed g denotes greater similarity, hence lower diversity, in post-edited writing. Raw arm levels, their SDs/SEs, the raw mean difference, raw-scale uncertainty, and the number of text pairs are not printed. Figure 6 (PDF p. 7) shows distributions without numerical arm means; no values were read off the figure. The interval recorded in paper_effect is for g, not a raw cosine-similarity difference. H2a is part of the paper’s main preregistered H2 hypothesis (PDF p. 3); the linked preregistration was not separately read. LUAR-MUD is the main analysis model."
+  },
+  {
+   "slug": "s1_style_similarity_cisr_postedited_vs_unassisted",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Between-participant stylistic similarity (H2a; CISR robustness)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Cosine similarity between CISR style embeddings of texts written by different participants, repeating the H2a comparison of post-edited and unassisted writing with an alternative embedding model (PDF p. 16, Appendix B.2 and Table 3). The comparison uses the between-writer text-pair measure defined in section 6.2 and Figure 6 (PDF pp. 6-7); higher values mean more similar writing.",
+   "unit": "pair",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Post-edited LLM drafts",
+   "control_arm": "Unassisted human writing",
+   "within_person": "paired",
+   "n_treatment": 81,
+   "n_control": 81,
+   "n_total": 81,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": 95,
+    "ci_of": "paper_effect",
+    "regression": null,
+    "test": null,
+    "p_value": 0.0002,
+    "paper_effect": {
+     "type": "g",
+     "value": 1.03,
+     "se": null,
+     "ci_lower": 0.91,
+     "ci_upper": 1.14,
+     "standardizer": null
+    }
+   },
+   "se_basis": "unclear",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 24, Table 9 caption",
+     "quote": "Each of the 81 partic-\nipants chose six tasks to complete. Four were randomly\nselected as treatment and two as control."
+    },
+    {
+     "fields": [
+      "p_value",
+      "paper_effect.value",
+      "paper_effect.ci_lower",
+      "paper_effect.ci_upper"
+     ],
+     "locator": "PDF p. 16, Table 3, H2a, CISR subrow",
+     "quote": "H2a\n0.0002\n∗\n1.42\n[ 1.33,\n1.51]\nLUAR-MUD\n0.0002\n∗\n1.03\n[ 0.91,\n1.14]\nCISR"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 5, section 6, statistical methods",
+     "quote": "with corresponding effect sizes reported as Hedges’\ng (Hedges, 1981) with 95% confidence intervals\ncalculated from 1000 bootstrap samples."
+    }
+   ],
+   "notes": "The same analyzed writers completed both randomized blocks; n_total counts each writer once. within_person is paired because these results combine both blocks; the paper prints no first-round-only contrast. This coding describes the design and does not assert that the reported test or bootstrap accounted for pairing. The paper describes two-tailed permutation tests in Appendix A.2 (PDF pp. 13-14) and bootstrap confidence intervals in section 6 (PDF p. 5), but does not specify the resampling unit or establish participant-level uncertainty for this contrast; se_basis is therefore unclear. No numerical permutation statistic is printed, so test is null. The denominator used for the reported Hedges’ g is not stated. All effect signs and intervals are retained as printed. This is a robustness estimate on the same participants and contrast as the LUAR-MUD record, not an additional sample or AI configuration. The source quote includes both H2a subrows to retain their shared row label; the extracted values are the CISR cells. Raw arm levels, SDs/SEs, raw differences and their uncertainty, and pair counts are not printed. No values were inferred from a plot or from the standardized effect. Although H2a was preregistered, the paper does not identify this alternative-model specification as a preregistered primary measure."
+  },
+  {
+   "slug": "s1_cola_acceptability_postedited_vs_unassisted",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O7",
+   "outcome": "Linguistic acceptability of final writing (CoLA score)",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "automated_score",
+   "measure_detail": "Model-judged linguistic acceptability using the Morris et al. model fine-tuned on expert human judgments from the Corpus of Linguistic Acceptability (CoLA). Applied to all control, generated, and post-edited texts; the extracted contrast compares post-edited with unassisted writing (PDF p. 21, Appendix B.7.1). Figure 12 (PDF p. 20) labels higher scores as more acceptable. This is a narrow measure of language quality of personal creative writing, not an expert creativity rating.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "Post-edited LLM drafts",
+   "control_arm": "Unassisted human writing",
+   "within_person": "paired",
+   "n_treatment": 81,
+   "n_control": 81,
+   "n_total": 81,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": 95,
+    "ci_of": "paper_effect",
+    "regression": null,
+    "test": null,
+    "p_value": "<0.0001",
+    "paper_effect": {
+     "type": "g",
+     "value": -1.29,
+     "se": null,
+     "ci_lower": -1.57,
+     "ci_upper": -1.05,
+     "standardizer": null
+    }
+   },
+   "se_basis": "unclear",
+   "preregistered_primary": "no",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 24, Table 9 caption",
+     "quote": "Each of the 81 partic-\nipants chose six tasks to complete. Four were randomly\nselected as treatment and two as control."
+    },
+    {
+     "fields": [
+      "p_value",
+      "paper_effect.value",
+      "paper_effect.ci_lower",
+      "paper_effect.ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 21, Appendix B.7.1, post-edited versus fully human-authored control text",
+     "quote": "and that post-\nedited text is more linguistically acceptable than\nfully human-authored control text (p < .0001, g =\n−1.29, 95% CI: [−1.57, −1.05])"
+    }
+   ],
+   "notes": "The same analyzed writers completed both randomized blocks; n_total counts each writer once. within_person is paired because these results combine both blocks; the paper prints no first-round-only contrast. This coding describes the design and does not assert that the reported test or bootstrap accounted for pairing. The paper describes two-tailed permutation tests in Appendix A.2 (PDF pp. 13-14) and bootstrap confidence intervals in section 6 (PDF p. 5), but does not specify the resampling unit or establish participant-level uncertainty for this contrast; se_basis is therefore unclear. No numerical permutation statistic is printed, so test is null. The denominator used for the reported Hedges’ g is not stated. All effect signs and intervals are retained as printed. Exploratory analysis. higher_is uses the favorable direction for the usefulness/quality construct: higher CoLA scores mean more linguistically acceptable writing, not necessarily greater originality. The prose explicitly says post-edited text is more acceptable than unassisted control text, but the printed g and its interval are negative. The paper does not state the subtraction order. The printed effect has not been reversed or relabeled as treatment minus control; its orientation must be resolved before calculating a signed AI-assistance effect. Raw arm means and SDs/SEs are not printed; Figure 12 provides distributions without numerical arm means. The number of scored outputs is not printed for this analysis and has not been computed from task counts."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "S2: Formative survey selecting writing scenarios",
+   "reason": "Only scenario presentation order was randomized. Respondents selected personally meaningful tasks; no AI assistance was assigned and no creative output was produced or scored (PDF pp. 22-23, Appendix C)."
+  },
+  {
+   "what": "S1-O1: H2b stylistic homogeneity, post-edited text versus original LLM-generated drafts (LUAR-MUD and CISR)",
+   "reason": "The comparator is unedited model-generated output, not another randomized human assistance condition. This is a before/after editing benchmark (PDF p. 6, section 6.2; PDF p. 16, Table 3)."
+  },
+  {
+   "what": "S1-O2: H2c similarity to other participants’ post-edited text versus own unassisted text (LUAR-MUD and CISR)",
+   "reason": "The same post-edited output is scored against different reference sources. This is not a contrast between randomized AI and comparison arms (PDF p. 6, section 6.2 and Figure 5 right; PDF p. 16, Table 3)."
+  },
+  {
+   "what": "S1-O3: H1a similarity to own unassisted writing before versus after post-editing (LUAR-MUD and CISR)",
+   "reason": "Compares human-edited drafts with their unedited model-generated versions while keeping the human reference fixed. There is no randomized human comparator arm for this before/after benchmark (PDF pp. 5-6, section 6.1 and Figure 3 right; PDF p. 16, Table 3)."
+  },
+  {
+   "what": "S1-O4: H1a′ similarity of post-edited text to own versus other writers’ unassisted text (LUAR-MUD and CISR)",
+   "reason": "An output-based comparison across writers, but it changes the reference author for the same assisted output, not the assigned assistance condition. It therefore does not estimate the randomized AI-versus-unassisted contrast (PDF p. 6, section 6.1 and Figure 5 left; PDF p. 16, Table 3)."
+  },
+  {
+   "what": "S1-O5: H1b similarity to LLM style and Pangram AI-likelihood before versus after post-editing",
+   "reason": "LUAR-MUD, CISR, and Pangram compare post-edited outputs with original unedited AI drafts. The comparator has no human writing or editing, and AI-likeness itself is not creativity or between-person diversity (PDF p. 5, section 6.1; PDF p. 16, Table 3)."
+  },
+  {
+   "what": "S1-O6: H1c post-edited text’s similarity to own unassisted style versus LLM style (LUAR-MUD and CISR)",
+   "reason": "The reported analysis compares the same post-edited texts against human and LLM reference sources. It does not compare assisted and unassisted outputs on one fixed outcome (PDF p. 6, section 6.1 and Figure 4 right; PDF p. 16, Table 3)."
+  },
+  {
+   "what": "S1-O7: CoLA acceptability, post-edited versus original LLM-generated text",
+   "reason": "Before/after comparison with unedited model output rather than a second randomized human condition. The post-edited-versus-unassisted CoLA contrast is extracted separately (PDF pp. 20-21, Appendix B.7.1 and Figure 12)."
+  },
+  {
+   "what": "Perceived stylistic authenticity/self-similarity and H3 agreement with embedding scores",
+   "reason": "Participant self-ratings and correlations of those ratings with automated scores, rather than an eligible independent output assessment or randomized outcome contrast (PDF p. 7, section 6.3 and Figures 7-8; PDF p. 8, section 6.5)."
+  },
+  {
+   "what": "Perceived usability/willingness to use the text and H4 association with perceived authenticity",
+   "reason": "Self-reported intentions and correlations of self-reports, not a scored creative output outcome (PDF p. 8, section 6.5; PDF pp. 16-17, Appendix B.3 and Figure 9)."
+  },
+  {
+   "what": "Future writing-method preferences, desire to post-edit, and pre/post willingness to use AI",
+   "reason": "Attitudes and stated future-use intentions rather than output creativity or diversity (PDF p. 8, section 6.5)."
+  },
+  {
+   "what": "Perceived mental demand, time consumption, and effort in writing versus post-editing",
+   "reason": "Self-reported task difficulty measured with modified NASA TLX questions, not an outcome scored on the written output (PDF p. 4, section 4; PDF p. 8, section 6.5)."
+  },
+  {
+   "what": "Rankings of originality, privacy, overall quality, style, ownership, efficiency, and reliability as reasons for future writing preferences",
+   "reason": "Self-reported reasons compared between groups defined by their own preferences. These are neither output creativity ratings nor randomized assistance contrasts (PDF pp. 19-20, Appendix B.6, Table 7 and Figure 11)."
+  },
+  {
+   "what": "H5 demographic subgroup comparisons of initial stylistic similarity, subgroup model agreement, and identity-expression preferences",
+   "reason": "Subgroup/non-random demographic comparisons and self-reports. They do not supply full-sample randomized assistance effects (PDF pp. 17-18, Appendix B.4 and Figure 10)."
+  },
+  {
+   "what": "Personal-style importance and mixed-model moderation of H1a, H1b, and H1c",
+   "reason": "Exploratory moderation by task-level self-reported style importance. The models concern pre/post editing or reference-source comparisons, not the eligible randomized arm contrast; the displayed main coefficients are conditional on the moderator (PDF pp. 18-19, Appendix B.5 and Tables 4-6)."
+  },
+  {
+   "what": "CoLA-change-adjusted model of change in stylistic similarity, including reference-author and interaction coefficients",
+   "reason": "Associations and reference-source contrasts adjusted for post-treatment changes in linguistic acceptability. No randomized assistance effect is identified by these coefficients (PDF p. 21, Appendix B.7.1 and Table 8)."
+  },
+  {
+   "what": "Consistency of original LLM style across same-participant versus different-participant content plans",
+   "reason": "Analysis of unedited model-generated outputs to assess personalization; it is not a human assistance-arm contrast (PDF p. 14, Appendix B.1)."
+  },
+  {
+   "what": "Style-embedding model authorship-identification benchmark performance",
+   "reason": "Model validation on unassisted writing, not an effect of randomized AI assistance on human output (PDF pp. 14 and 16, Appendix B.2 and Table 2)."
+  },
+  {
+   "what": "Illustrative document-level style changes, Pangram changes, word error rates, and qualitative edit/typo examples",
+   "reason": "Selected examples and qualitative descriptions rather than full-sample randomized arm contrasts (PDF pp. 7-8, section 6.4; PDF p. 15, Table 1; PDF pp. 20-21, Appendix B.7.1)."
+  },
+  {
+   "what": "Contractions, LLM-associated words, em dashes, and corpus word-volume descriptions",
+   "reason": "The printed comparisons concern original AI drafts, edits to those drafts, or original AI output versus human control. No full-sample post-edited-versus-unassisted outcome contrast is reported for these features (PDF pp. 21-22, Appendix B.7.2)."
+  },
+  {
+   "what": "Edit-span number, length, diffuseness, and total changed characters in relation to self-similarity change",
+   "reason": "Descriptive editing-process measures and within-treatment correlations, not randomized assistance contrasts on final output creativity or diversity (PDF p. 22, Appendix B.7.3 and Figure 13)."
+  }
+ ],
+ "open_items": [
+  "The paper reports recruitment and the retained sample, but not an explicit assignment-stage participant count, block-sequence counts, allocation algorithm, or the timing and breakdown of exclusions (PDF pp. 4, 13, and 24).",
+  "No first-round-only results or counts are printed. All extracted contrasts use both randomized blocks from the same writers; potential carryover cannot be separated from these printed results.",
+  "Neither diversity measure has printed arm means, SDs/SEs, a raw cosine-similarity difference or raw-scale interval, or an exact number of analyzed text pairs. Only standardized effects and their intervals can be transcribed (PDF pp. 6-7 and 16).",
+  "The CoLA analysis lacks printed arm means, SDs/SEs, and the number of analyzed outputs; the paper does not specify whether any within-writer aggregation preceded its test (PDF pp. 20-21).",
+  "The exact resampling units and handling of repeated outputs and pairs sharing writers are not established. Participant-valid uncertainty must not be assumed for any of the extracted contrasts (PDF p. 5, section 6; PDF pp. 13-14, Appendix A.2).",
+  "The paper does not specify the denominator or observation level used to standardize Hedges’ g. No SD, standard error, or raw-scale contrast has been derived from the printed effects or intervals.",
+  "The CoLA effect and confidence interval are negative as printed, while the prose says post-edited writing is more acceptable than unassisted writing. The subtraction order must be checked in labeled analysis inputs or code before assigning the effect a treatment-minus-control sign (PDF p. 21, Appendix B.7.1).",
+  "Participant country is not reported. The preregistration itself was not read, and preregistered primary status of the CISR robustness specification cannot be confirmed from the paper.",
+  "The citation record identifies a later proceedings publication. These estimates use the supplied local preprint; numerical equivalence to the later publication was not checked."
+ ],
+ "notes": "Extracted on 2026-10-11. The full markdown conversion was read in consecutive chunks, including references and all appendices. Every cited PDF page was checked by text extraction with pymupdf; Table 3 was also checked with table extraction. All locators use one-based PDF page numbers. Only eligible randomized human assistance contrasts are included. The study randomizes the order of writing blocks and allocates tasks between conditions (PDF p. 4, section 4; PDF p. 24, Table 9). Writers are English-fluent Prolific participants; responses were excluded if the person never edited any AI draft or did not finish the study (PDF p. 13, Appendix A.1). The two arm counts refer to the same people. Original LLM drafts are a benchmark stage, not an independently randomized human arm. AI role is other because the model supplies full initial prose from the writer’s own content plan and the human performs the subsequent editing (PDF pp. 4-5). The formative survey and main experiment used disjoint samples, and no reuse of another paper’s participants is stated (PDF p. 23, Appendix C). No result was computed, read off an unlabeled plot, or obtained from posted data. The saved preprint is the source of record for this extraction."
+}

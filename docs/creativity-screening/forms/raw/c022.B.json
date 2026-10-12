@@ -1,0 +1,352 @@
+{
+  "cid": "c022",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Si Yang Hashimoto (2025) - Can LLMs Generate Novel Research Ideas.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Si Yang Hashimoto (2025) - Can LLMs Generate Novel Research Ideas.pdf",
+    "version": "arXiv v1 of 2024-09-06 (margin stamp 'arXiv:2409.04109v1 [cs.CL] 6 Sep 2024', p. 1). The search record lists year 2025; the file on hand is the 2024 v1 preprint, and later versions were not checked.",
+    "title_on_document": "Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers",
+    "authors_on_document": ["Chenglei Si", "Diyi Yang", "Tatsunori Hashimoto"],
+    "pages": 94,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendices A to Y inside the same PDF (pp. 26-94). The paper also points to https://github.com/NoviScl/AI-Researcher for the agent code and all human review scores (p. 1, footnote 1).",
+      "holds": "Table 17 (p. 47) with linear mixed-effects coefficients and standard errors for all five metrics; Figure 5 (p. 48) score breakdown by topic; Tables 12-16 (pp. 42-45) on idea overlap, participant positions, and institutions; Appendix J (p. 42) on the one excluded human idea; Appendix E (pp. 32-35) review form and scale anchors."
+    }
+  },
+  "paper_design_summary": "49 NLP researchers each wrote one research idea on one of seven prompting topics without AI tools, and an LLM agent (claude-3-5-sonnet-20240620) generated 49 topic-matched ideas, presented either as the agent's own top-ranked ideas or as ideas reranked by the first author. All ideas were converted to one template and style by an LLM, and 79 NLP researchers gave blind 1-10 ratings of novelty, excitement, feasibility, expected effectiveness, and overall score (298 reviews). No person received AI assistance: the contrast is AI-generated ideas versus human-written ideas.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Human study: expert-written versus AI-agent research ideas, blind expert review",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing about AI use was assigned to people. The three conditions are sources of ideas (human experts, AI agent, AI agent plus human rerank). The only randomization is of reviewers to ideas within their preferred topics. For each topic a human picked, the agent generated a matched AI idea.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We then randomly assign them to ideas within their selected topics and all ideas are anonymized.",
+        "locator": "p. 8, Section 4.4 (Review Assignment); conditions defined pp. 4-5, Section 2; topic matching p. 4, Section 2",
+        "preregistered": "not_stated",
+        "prereg_locator": "p. 18, Section 10 and footnote 12 (https://osf.io/z6qa4): the preregistration covers a planned follow-up comparing AI ideas with EMNLP 2024 accepted papers, not this human study."
+      },
+      "arms": [
+        { "name": "Human Ideas", "description": "Idea proposals written by recruited expert NLP researchers, one idea each, within 10 days, under an honor code not to use AI tools; style-normalized by an LLM before review.", "ai": "none", "n_randomized": null, "n_analyzed": 49 },
+        { "name": "AI Ideas", "description": "Top-ranked project proposals from the LLM ideation agent (retrieval, 4000 seed ideas per topic, deduplication, Swiss-tournament LLM ranker); 49 ideas topic-matched to the human ideas.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "AI Ideas + Human Rerank", "description": "Proposals from the same LLM agent, with the top ideas selected manually by the first author instead of the LLM ranker; 49 ideas.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 49,
+        "counts_are": "people",
+        "exclusions": "Appendix J (p. 42) says 50 ideas were collected and one was filtered out as essentially a paraphrase of an existing paper's abstract, leaving 49 human ideas. Section 4.1 (p. 7) reports N = 49 idea writers recruited. The AI arms contain no people (49 AI ideas each).",
+        "population": "mixed",
+        "who": "Idea writers: 49 NLP researchers (36 PhD students, 9 Master's, 1 undergraduate, 1 postdoc, 1 research scientist, 1 ML engineer; Table 13, p. 43) from 26 institutions (Table 15, p. 44), screened for at least one paper at a major AI venue. Raters: 79 NLP researchers (63 PhD, 7 postdoc, 5 Master's, 3 research scientists, 1 ML engineer; Table 14, p. 43); 24 of them also wrote ideas, for 104 unique participants.",
+        "country": "United States (footnote 6, p. 7: 'We have to recruit participants located in the US due to logistical reasons.'). Table 15 nonetheless lists some non-US institutions.",
+        "quote": "In the end, we recruited N = 49 experts for writing ideas, and N = 79 experts for reviewing ideas.",
+        "locator": "p. 7, Section 4.1; Tables 13-15, pp. 43-44; Appendix J, p. 42"
+      },
+      "ai_tool": {
+        "name_model": "LLM ideation agent with claude-3-5-sonnet-20240620 as backbone (p. 5, Section 3.1); Claude-3.5-Sonnet pairwise ranker (p. 6, Section 3.3)",
+        "role": "other",
+        "how_used": "The AI generates ideas autonomously: it retrieves papers through the Semantic Scholar API, generates 4000 seed ideas per topic, deduplicates them by embedding similarity, expands them into full proposals, and ranks them with a Swiss-system pairwise LLM tournament. No human participant used AI while writing ideas."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Write one research idea (project proposal) on one of seven prompting-based NLP topics (Bias, Coding, Safety, Multilingual, Factuality, Math, Uncertainty), following a fixed template with title, problem statement, motivation, proposed method, step-by-step experiment plan, test case examples, and fallback plan.",
+        "duration": "Human writers had 10 days per idea and reported spending 5.5 hours on average (Table 3, p. 8). Reviewers had one week and spent 31.7 minutes per review on average (Table 6, p. 9)."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Novelty score (1-10)",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Blind review by 79 NLP researchers on a 1-10 scale with anchors (Appendix E, p. 32). Four analyses of the same ratings: Test 1 each review as a datapoint (Table 7), Test 2 idea-level averages (Table 8), Test 3 within-reviewer mean differences (Table 9), and a linear mixed-effects model with topic random intercepts and slopes and reviewer and idea variance components (Table 17). Topic breakdown in Figure 5 (p. 48).",
+          "unit": "rating",
+          "n_units": 298,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI Ideas",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 4.84 (SD 1.79, SE 0.16, n = 119 reviews) vs AI 5.64 (SD 1.76, SE 0.17, n = 109), p = 0.00** (Welch, Bonferroni). Test 2: Human 4.86 (SD 1.26, SE 0.18, n = 49 ideas) vs AI 5.62 (SD 1.39, SE 0.20, n = 49), p = 0.03*. Test 3: mean diff 0.94, N = 70 reviewers, p = 0.00**. Mixed model: coef 0.756, SE 0.331, p = 0.023.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17; p. 2, Figure 2"
+            },
+            {
+              "treatment_arm": "AI Ideas + Human Rerank",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 4.84 (SD 1.79, SE 0.16, n = 119) vs AI + Rerank 5.81 (SD 1.66, SE 0.16, n = 109), p = 0.00***. Test 2: Human 4.86 (SD 1.26) vs 5.78 (SD 1.07, SE 0.15, n = 49), p = 0.00**. Test 3: mean diff 0.86, N = 65, p = 0.00**. Mixed model: coef 0.902, SE 0.305, p = 0.003.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Excitement score (1-10)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "How exciting and impactful the idea would be if executed (Appendix E, p. 34). Same four analyses as S1-O1.",
+          "unit": "rating",
+          "n_units": 298,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI Ideas",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 4.55 (SD 1.89, SE 0.17, n = 119) vs AI 5.19 (SD 1.73, SE 0.17, n = 109), p = 0.04*. Test 2: Human 4.56 (SD 1.16, SE 0.17, n = 49) vs AI 5.18 (SD 1.33, SE 0.19, n = 49), p = 0.08. Test 3: mean diff 0.73, N = 70, p = 0.01*. Mixed model: coef 0.626, SE 0.303, p = 0.039.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            },
+            {
+              "treatment_arm": "AI Ideas + Human Rerank",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 4.55 vs AI + Rerank 5.46 (SD 1.82, SE 0.17, n = 109), p = 0.00**. Test 2: Human 4.56 vs 5.45 (SD 1.36, SE 0.19, n = 49), p = 0.00**. Test 3: mean diff 0.87, N = 65, p = 0.00**. Mixed model: coef 0.879, SE 0.298, p = 0.003.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Feasibility score (1-10)",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "How feasible the idea is for a typical CS PhD student to execute in 1-2 months (Appendix E, p. 33). Same four analyses as S1-O1.",
+          "unit": "rating",
+          "n_units": 298,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI Ideas",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 6.61 (SD 1.99, SE 0.18, n = 119) vs AI 6.34 (SD 1.88, SE 0.18, n = 109), p = 1.00. Test 2: Human 6.53 (SD 1.50, SE 0.21, n = 49) vs AI 6.30 (SD 1.27, SE 0.18, n = 49), p = 1.00. Test 3: mean diff -0.29, N = 70, p = 0.36. Mixed model: coef -0.300, SE 0.294, p = 0.307.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            },
+            {
+              "treatment_arm": "AI Ideas + Human Rerank",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 6.61 vs AI + Rerank 6.44 (SD 1.63, SE 0.16, n = 109), p = 1.00. Test 2: Human 6.53 vs 6.41 (SD 1.06, SE 0.15, n = 49), p = 1.00. Test 3: mean diff -0.08, N = 65, p = 0.74. Mixed model: coef -0.183, SE 0.314, p = 0.561.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Expected effectiveness score (1-10)",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "How likely the idea is to work well, e.g. beat existing baselines (Appendix E, p. 33). Same four analyses as S1-O1.",
+          "unit": "rating",
+          "n_units": 298,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI Ideas",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 5.13 (SD 1.76, SE 0.16, n = 119) vs AI 5.47 (SD 1.58, SE 0.15, n = 109), p = 0.67. Test 2: Human 5.10 (SD 1.14, SE 0.16, n = 49) vs AI 5.48 (SD 1.23, SE 0.18, n = 49), p = 0.58. Test 3: mean diff 0.42, N = 70, p = 0.16. Mixed model: coef 0.310, SE 0.140, p = 0.027* (significant only in the mixed model).",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            },
+            {
+              "treatment_arm": "AI Ideas + Human Rerank",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 5.13 vs AI + Rerank 5.55 (SD 1.52, SE 0.15, n = 109), p = 0.29. Test 2: Human 5.10 vs 5.57 (SD 0.99, SE 0.14, n = 49), p = 0.17. Test 3: mean diff 0.39, N = 65, p = 0.16. Mixed model: coef 0.383, SE 0.242, p = 0.114.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Overall score (1-10)",
+          "construct": "overall_creativity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Overall score on a conference-acceptance scale (1 = critically flawed ... 10 = top 5% of published ideas, seminal paper; Appendix E, p. 34). It is an overall merit rating, not a creativity rating as such; coded overall_creativity as the closest code. Same four analyses as S1-O1.",
+          "unit": "rating",
+          "n_units": 298,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "AI Ideas",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 4.68 (SD 1.90, SE 0.17, n = 119) vs AI 4.85 (SD 1.70, SE 0.16, n = 109), p = 1.00. Test 2: Human 4.69 (SD 1.16, SE 0.17, n = 49) vs AI 4.83 (SD 1.34, SE 0.19, n = 49), p = 1.00. Test 3: mean diff 0.24, N = 70, p = 0.36. Mixed model: coef 0.137, SE 0.294, p = 0.640.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            },
+            {
+              "treatment_arm": "AI Ideas + Human Rerank",
+              "control_arm": "Human Ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "mean_difference_se", "regression_coefficient_se"],
+              "reported": "Test 1: Human 4.68 vs AI + Rerank 5.34 (SD 1.79, SE 0.17, n = 109), p = 0.04*. Test 2: Human 4.69 vs 5.32 (SD 1.24, SE 0.18, n = 49), p = 0.06. Test 3: mean diff 0.66, N = 65, p = 0.01*. Mixed model: coef 0.610, SE 0.320, p = 0.056. Significant in Tests 1 and 3 only.",
+              "locator": "p. 10, Table 7; p. 11, Table 8; p. 12, Table 9; p. 47, Table 17"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Model-only analysis: duplication of the agent's seed ideas (Section 7.1)",
+      "design_class": "model_only",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "No people. The LLM agent generated 4000 seed ideas per topic and the authors measured how many were non-duplicates as generation scaled.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "out of the 4000 generated seed ideas, there are only 200 non-duplicate unique ideas.",
+        "locator": "pp. 13-14, Section 7.1, Figure 4",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "AI seed ideas", "description": "Seed ideas generated by the Claude-3.5-Sonnet agent, 4000 per topic.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "",
+        "population": "mixed",
+        "who": "No human participants.",
+        "country": "",
+        "quote": "",
+        "locator": ""
+      },
+      "ai_tool": {
+        "name_model": "claude-3-5-sonnet-20240620 agent; similarity by all-MiniLM-L6-v2",
+        "role": "other",
+        "how_used": "Autonomous seed-idea generation with prior idea titles appended to the prompt to discourage repetition."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Generate seed research ideas on the seven prompting topics.",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Share of non-duplicate seed ideas as generation scales",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "An idea counts as a duplicate if its cosine similarity with any previously generated idea on the same topic exceeds 0.8. Figure 4 plots the percentage of non-duplicates per new batch and the accumulated non-duplicates, averaged across topics. This is within-model redundancy, not diversity across people.",
+          "unit": "output",
+          "n_units": 4000,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Later batches of generated seed ideas",
+              "control_arm": "Earlier batches of generated seed ideas",
+              "comparison_type": "other",
+              "direction": "treatment_lower",
+              "statistics_available": ["figure_only"],
+              "reported": "Percentage of non-duplicates in new batches keeps decreasing and accumulated non-duplicates plateau; out of the 4000 generated seed ideas, there are only 200 non-duplicate unique ideas. Section 3.2 says deduplication leaves about 5% non-duplicated ideas.",
+              "locator": "pp. 13-14, Section 7.1, Figure 4; p. 6, Section 3.2"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine similarity, duplicate threshold 0.8; share and count of non-duplicates",
+            "embedding_model": "all-MiniLM-L6-v2 (Sentence-Transformers)",
+            "computed_over": "Each idea against all previously generated ideas on the same topic",
+            "uncertainty": "None reported (figure only)",
+            "notes": "Model-only; not an across-people diversity measure. 4000 seed ideas per topic; the paper does not say whether the 200 count is per topic or averaged across topics beyond 'All data points are averaged across all topics' in the Figure 4 caption."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "Funding acknowledgment lists gifts from Open Philanthropy, Tianqiao and Chrissy Chen Institute, Meta, IBM, and Amazon, plus ONR and NSF grants. Authors are at Stanford University. The agent uses Anthropic's Claude-3.5-Sonnet; no AI-company author.",
+    "locator": "p. 21, Acknowledgement; p. 1, author block"
+  },
+  "data_and_code": {
+    "data_url": "https://github.com/NoviScl/AI-Researcher (paper says all human review scores are released here)",
+    "code_url": "https://github.com/NoviScl/AI-Researcher"
+  },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "ai_vs_human",
+    "reason": "No person received AI assistance: AI-agent ideas are compared with ideas written by experts who were told not to use AI tools, and only reviewers were randomly assigned to ideas. The human-output arm has 49 idea writers (50 collected, one excluded), so it is also just below 50 people; 79 reviewers rated the ideas (104 unique participants). Outcomes are expert ratings of the ideas, so criterion 3 holds."
+  },
+  "one_line_finding": "Expert reviewers rated AI-agent research ideas more novel than expert-written ideas (Test 1 means 5.64 for AI and 5.81 for AI plus human rerank vs 4.84 for humans, p < 0.01; Table 7, p. 10), with no significant difference in feasibility (6.34 and 6.44 vs 6.61).",
+  "open_questions": [
+    "The search record dates the paper 2025, but the file is arXiv v1 of 6 Sep 2024; a later version may report different counts and should be checked before extraction.",
+    "Per-condition review counts (119 + 109 + 109 = 337, Table 7) exceed the 298 unique reviews stated on pp. 7 and 9; the paper does not reconcile them. Overlap of ideas between the two AI conditions may explain it, but the paper does not say so.",
+    "The overlap count between AI Ideas and AI Ideas + Human Rerank is 17 of 49 in the text (pp. 7, 42) but the Total row of Table 12 (p. 42) shows 18 overlap and 31 new.",
+    "Section 4.1 says 49 idea writers were recruited, while Appendix J says 50 ideas were collected and one was excluded; the number of writers before exclusion is unclear.",
+    "Whether the Overall score (conference-acceptance merit) should be coded overall_creativity or usefulness/other."
+  ],
+  "notes": "Outcomes not coded as separate records: Figure 5 topic breakdown (robustness variant, p. 48); idea length in words (Table 3, p. 8: Human 901.7, AI 1186.3, AI + Rerank 1174.0; measured after style normalization); LLM-as-judge agreement with human reviewers (Table 11, p. 14), which scores evaluators, not ideas; execution-agent success rates (Table 18, p. 93); metric correlations (Table 10, p. 13). Post-study survey: 37 of 49 writers came up with the idea on the spot, and writers placed their idea at about the top 43% of their past ideas (p. 12, Section 6.1). Style normalization: an LLM converted all ideas to one writing style; a small human study found 50% accuracy in telling AI from human ideas after normalization (p. 4). Structured-reply n_people_analyzed uses the 49 idea writers whose output was scored; 79 reviewers and 104 unique participants are recorded above."
+}

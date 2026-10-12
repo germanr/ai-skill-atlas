@@ -1,0 +1,60 @@
+{
+ "cid": "c663",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "paper_design_summary",
+   "form_value": "Two intact class sections were assigned",
+   "source_says": "The paper specifies two groups, each with 59 students, but does not specify the number of intact class sections. Replace \"Two intact class sections\" with \"Intact class sections\"; the number of sections cannot be confirmed.",
+   "quote": "intact class sections were assigned to either the Control Group (n = 59) or the Experimental Group (n = 59)",
+   "locator": "p. 3, Methodology, participant recruitment and group assignment paragraph"
+  },
+  {
+   "field": "studies",
+   "form_value": "Only S1: 12-week quasi-experiment (heritage design course); computational ablation omitted.",
+   "source_says": "Add a separate model_only study for the computational ablation comparing a LoRA network trained on uncorrected archaeological images with one trained on images calibrated by RestoreFormer++. The evaluation used 500 generated outputs from each model, not people; participant counts should remain null. The restored model had an FID score reduced by approximately 16.4, 95% CI [-18.20, -14.60], and a CLIP semantic alignment score increased by 0.07, 95% CI [0.064, 0.076]. This model-only study does not constitute randomized AI assistance to people and does not enter the core dataset.",
+   "quote": "Evaluating a random sample of 500 generative outputs from each, the ablation revealed a substantial performance divergence.",
+   "locator": "p. 4, Dataset provenance, curation, and annotation protocol, computational ablation paragraph"
+  },
+  {
+   "field": "source.supplement.holds",
+   "form_value": "The statistical analysis code (R script) used for all inferential statistics (p. 10, Data availability). The paper names no supplementary tables; all reported statistics are in Tables 1 to 3 of the main text.",
+   "source_says": "Remove the claim that all reported statistics are in Tables 1 to 3. Computational ablation estimates and intervals appear in prose on p. 4, expert-rating ICCs on p. 5, and simple-main-effect mean differences, standard errors, and confidence intervals on p. 6. The paper identifies an external statistical R script, but that file was not read here. Also distinguish the external supplementary file from Appendix A, which is included on p. 10 of this PDF and describes the reproducible inference workflow.",
+   "quote": "Mean Difference = 1.16, SE = 0.13, p < 0.001, 95% CI [0.90, 1.42]",
+   "locator": "p. 6, Analysis, Aesthetic Appreciation simple-main-effect paragraph; pp. 4-5; p. 10, Data availability and Appendix A; p. 12, Additional information"
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "Populate the code URL with https://doi.org/10.5281/zenodo.20688143, which the article explicitly names as the repository for code, model weights, and the generative inference pipeline. This verifies the reported repository address, not its current accessibility or contents. No public participant-data URL is stated; the raw image dataset is explicitly unavailable for public distribution.",
+   "quote": "the finalized LoRA model weights and the custom generative inference architecture (VSD_ControlNet_LoRA_Pipeline.py) are fully open-sourced and accessible within the Zenodo repository (DOI: https://doi.org/10.5281/zenodo.20688143).",
+   "locator": "p. 3, Methodology, software and repository paragraph; p. 10, Data availability"
+  },
+  {
+   "field": "notes",
+   "form_value": "",
+   "source_says": "Flag an internal discrepancy between Table 3 and Figure 2. Figure 2 annotates Design Innovation with 68.9/9.5 for Control and 88.2/7.1 for Experimental, whereas Table 3 gives means (SDs) of 68.9 (9.6) and 87.9 (6.6). Figure 2 also annotates Cultural Authenticity with 72.4/8.1 and 86.7/6.3, versus Table 3 values 72.4 (8.2) and 86.7 (6.4); its Technical Feasibility Control annotation is 76.5/7.8, versus 76.5 (7.9) in Table 3. Retain the form's correctly transcribed Table 3 statistics and one-line finding, but document these conflicting figure annotations for the later audit.",
+   "quote": "88.2\n7.1",
+   "locator": "p. 8, Figure 2, numeric annotations beside the violins (quote from Experimental Group, Design Innovation); p. 8, Table 3"
+  }
+ ],
+ "confirmed": [
+  "Read the entire 420-line markdown conversion, including Appendix A, references, and declarations, and checked the relevant PDF pages directly; the PDF contains 12 pages (pp. 1-12).",
+  "The source is the published Scientific Reports (2026) 16:29360 article by Tingting Yu and Yixin Li, DOI 10.1038/s41598-026-71408-2; the document title matches the form (p. 1). Received 9 March 2026 and accepted 9 September 2026 (p. 10); published online 19 September 2026, verified from the embedded date image (p. 11). The open-access license is on p. 12.",
+  "The people study is explicitly quasi-experimental and assigns intact class sections to two groups without stating random allocation. The form's quasi_people design, observational context, and core = no are supported; no randomized people study is reported anywhere in this source (p. 3, Methodology; pp. 1-12, including Appendix A).",
+  "The final sample is 118 people, with 59 in each group, not a count of artifacts or ratings; the sample exceeds the 50-person threshold. The paper reports 68 females, 50 males, mean age 20.4 and SD 1.1. People randomized and the number excluded are not reported, so the null randomized counts are appropriate (p. 3, Methodology).",
+  "The stated exclusions are prior systematic diffusion-model training or incomplete attendance records; the source gives no number removed. Table 2 reports degrees of freedom (1, 116), as noted in the form (p. 3, Methodology; p. 6, Table 2).",
+  "Participants were second-year undergraduate design students; the intervention lasted 12 weeks between September and December 2025. The control curriculum used manual sketching, Adobe Illustrator, Rhino, and physical prototyping, while the experimental group used the customized generative pipeline (p. 3, Methodology; Chinese institutional affiliations on p. 1).",
+  "The pipeline used Stable Diffusion v1.5, Kohya_ss LoRA fine-tuning, and ControlNet; the heritage datasets contained 1,500 Xiang Embroidery images and 2,000 Changsha Kiln images, with Qwen-VL tagging. Students used the pipeline from ideation through final rendering (pp. 3-4, Methodology and Dataset provenance).",
+  "Each student submitted a final design portfolio containing their heritage artifact. Three blinded independent experts scored Cultural Authenticity, Design Innovation, and Technical Feasibility on a 1-to-100 rubric; ICCs were 0.89, 0.93, and 0.84, respectively. These are output-scored outcomes, not self-reports (p. 5, artifact evaluation paragraph).",
+  "S1-O1 Design Innovation: Control mean (SD) 68.9 (9.6), Experimental 87.9 (6.6), t = 12.57, p < 0.001. Every value in the reported string matches its cited table (p. 8, Table 3).",
+  "S1-O2 Cultural Authenticity: Control mean (SD) 72.4 (8.2), Experimental 86.7 (6.4), t = 10.61, p < 0.001. Every value in the reported string matches its cited table (p. 8, Table 3).",
+  "S1-O3 Technical Feasibility: Control mean (SD) 76.5 (7.9), Experimental 81.4 (8.0), t = 3.34, p = 0.001. Every value in the reported string matches its cited table (p. 8, Table 3).",
+  "The one-line finding correctly reports the 12-week, 118-person quasi-experiment and the higher Experimental Group scores, with all of its numerical outcome claims matching Table 3 (p. 3, Methodology; p. 8, Table 3).",
+  "Aesthetic Appreciation, Aesthetic Implementation, and Cultural Identity were assessed with 7-point agreement scales at Week 1 and Week 12; they are distinct from the expert-scored artifact outcomes and do not establish output-scored creativity (p. 4, psychometric assessment paragraph; p. 6, Tables 1-2).",
+  "An external supplementary R script is named, and the paper links supplementary material through its DOI; Appendix A is included in the main PDF and describes the inference workflow rather than another people experiment (p. 10, Data availability and Appendix A; p. 12, Additional information).",
+  "This is primary empirical research rather than a synthesis, so the synthesis counts and pooled estimates appropriately remain empty. Figure 2 displays expert-score distributions, not a scored across-person diversity outcome; no after-AI-removal outcome is reported (pp. 3-8, Methodology and Analysis; p. 8, Figure 2)."
+ ],
+ "summary": "The nonrandomized classification, 118-person final sample, and all Table 3 statistics in the reported strings and one-line finding are confirmed. Corrections concern an unsupported count of class sections, the omitted model-only ablation, an overbroad supplement description, the missing code URL, and unflagged discrepancies between Table 3 and Figure 2."
+}

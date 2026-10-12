@@ -1,0 +1,12 @@
+[
+  {
+    "id": "classes-04-1",
+    "cid": "c002",
+    "section": "Candidates that need clarification",
+    "location": "Row [c002], reason beginning \"open item affects eligibility: Whether exposure to pre-generated ChatGPT example ideas\"; report-data.json status_by_cid.c002",
+    "claim": "c002 needs clarification because exposure to pre-generated ChatGPT ideas may not count as generative-AI assistance.",
+    "problem": "The supported status is recommended for the core dataset (core). The current codebook explicitly includes supplied AI-generated ideas or examples and within-person designs with randomized condition order. The sole eligibility-flagged item is already resolved by that rule: its own text says criterion 1 stays met and its settled_by value is nothing_needed. Its affects_eligibility=true flag incorrectly moves an otherwise eligible paper to clarification.",
+    "evidence": "creativity-codebook.md section 3 allows randomized within-person condition order; section 6 defines ideas_supplied as \"the study hands participants AI-generated ideas or examples\". forms/c002.json: eligibility.core=yes; final.core=yes; all three final.criteria values are met; studies[0].assignment.randomized=yes and unit=within_person_order; studies[0].participants.n_analyzed=844. final.open_items[5] explicitly says the ideas_supplied role covers this intervention and \"criterion 1 stays met\", with settled_by=nothing_needed, yet affects_eligibility=true; every other open item has affects_eligibility=false. Independently checked C:/Dropbox/Research/ai-lab/literature/creativity/Ashkinaze et al (2025) - How AI Ideas Affect Creativity Diversity Evolution.pdf: PDF p. 2, Figure 1, contrasts supplied AI examples with human-only examples; p. 5, Figure 2 and section 3.4.2, randomizes participants to a sequence of five condition/item trials; p. 7, Table 2, reports 844 unique participants; p. 7, Table 1, defines creativity and diversity scores on submitted ideas; pp. 7-8, sections 5.2-5.4, compare those scores across the assigned conditions. tools/build_report.py lines 99-104 classifies any final.open_items entry with affects_eligibility=true as clarify, without accounting for the resolved substance of this item.",
+    "severity": "blocker"
+  }
+]

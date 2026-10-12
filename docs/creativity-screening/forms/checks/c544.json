@@ -1,0 +1,80 @@
+{
+ "cid": "c544",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "studies[0].participants.who",
+   "form_value": "Undergraduate and graduate students familiar with LLM code tools and experienced in Python (Table 1: 12 PhD, 7 MS, 1 BC; ages 21 to 37).",
+   "source_says": "Table 1 lists 11 PhD, 8 MS, and 1 BC participants, not 12 PhD and 7 MS. These are checker tallies of the individual table rows: PhD = P3, P9, P10, P14, P15, P16, P17, P18, P19, P21, P23; MS = P4, P5, P6, P7, P11, P12, P13, P22; BC = P20. The stated age range of 21 to 37 is correct.",
+   "quote": "21 Female 30 5 PhD Always 22 Male 24 4 MS Sometimes 23 Male 26 10 PhD Always",
+   "locator": "PDF p. 7, Table 1, all participant rows (quote reproduces the final three rows)."
+  },
+  {
+   "field": "studies[0].outcomes (missing implementation fidelity)",
+   "form_value": "Only semantic similarity, unique-idea counts, and correctness are listed; implementation fidelity appears only in paper_design_summary.",
+   "source_says": "Add the expert-rated implementation-fidelity outcome, a usefulness measure scored on 80 outputs. Table 5 gives Pseudocode / Natural Language, Incomplete Implementation, Near-Complete Code, Executable Code: Unassisted 7 / 7 / 7 / 19 versus LLM-assisted 0 / 4 / 1 / 35, with chi-square = 17.06, p < 0.001. These are solution counts, not participant counts. Table 3 separately prints 6 versus 0 non-executable files; retain that source discrepancy rather than replacing Table 5 values.",
+   "quote": "Fidelity captures how completely a participant’s idea was translated into working code, independent of whether the underlying approach is correct.",
+   "locator": "PDF p. 10, Sec. 5.3.1 (two expert raters and 80 solutions); p. 13, Table 5 and Sec. 7.1; p. 12, Table 3, final row."
+  },
+  {
+   "field": "studies[0].outcomes (missing code-artifact measures)",
+   "form_value": "No artifact-length, maintainability, or other automated code-characteristic outcomes are listed.",
+   "source_says": "The paper scores additional output characteristics using Radon and AST. Record the omitted elaboration/quality measures and describe structural metrics as other, without equating their direction with greater creativity. Table 3 prints Unassisted mean / LLM-assisted mean; t; p as follows: Number of Function Calls 9.676 / 15.472; -2.214; 0.03022. Number of External Libraries Used 0.088 / 0.167; -0.980; 0.33075. Lines of Code 50.559 / 71.667; -2.200; 0.03183. Logical Complexity 8.118 / 13.750; -1.967; 0.05331. Code Maintainability 84.924 / 76.987; 3.344; 0.00135. Use of Comprehensions (List/Dict/Set) 0.206 / 0.611; -1.675; 0.10004. Recursive Functions Used 0.941 / 1.389; -1.104; 0.27456. Average Function Length (Lines per Function) 8.691 / 11.171; -1.219; 0.22722. Use these exact table values rather than rounded prose; per-metric SDs and analysis sample sizes are not printed.",
+   "quote": "Using Python frameworks Radon and AST, we extracted eight metrics across syntactic, structural, and stylistic dimensions:",
+   "locator": "PDF pp. 9-10, Sec. 5.3; pp. 11-12, Sec. 6, Code Characteristics; p. 12, Table 3."
+  },
+  {
+   "field": "studies[0].outcomes (described originality ratings not documented)",
+   "form_value": "No novelty-rating outcome or note about the described originality assessment is recorded.",
+   "source_says": "Sec. 5.3.2 explicitly describes researcher ratings of each solution approach's originality relative to other solutions to the same task and says those ratings were compared across conditions. Document this described novelty assessment with numerical results left null and statistics_available = [\"none\"]. The PDF does not provide a separate rating scale or numerical originality-rating results, and does not clearly explain whether these ratings are the same operationalization as the unique-idea counts; do not invent a separate numerical effect.",
+   "quote": "Through negotiated agreement, they extracted the main idea of each solution, then rated how original each approach was within each task relative to others who completed the same task. These originality ratings were compared across conditions.",
+   "locator": "PDF p. 10, Sec. 5.3.2, Idea Novelty Assessment; pp. 16-17, Sec. 7.2.4 (reported unique-idea counts)."
+  },
+  {
+   "field": "studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "Populate the required diversity fields: metric = pairwise cosine similarity (higher similarity means lower diversity); embedding_model = Voyage Code 3, 1024 dimensions; computed_over = all pairs of Correct or Partially Correct solutions within each condition, separately for Algorithmic and System Design tasks. Uncertainty is a Mann-Whitney U test over pairwise similarity distributions plus a permutation test with 10,000 iterations. The permutation resampling unit and any adjustment for repeated participants or dependent pairs are not specified. UMAP and ECDF plots are visualizations of this same embedding outcome.",
+   "quote": "we generated a 1024-dimensional embedding vector and computed pairwise cosine similarity between all solution pairs within each condition, separately for Algorithmic tasks and System Design tasks.",
+   "locator": "PDF p. 10, Sec. 5.3.2; pp. 13-15, Secs. 7.2.1-7.2.3 and Figs. 4-5."
+  },
+  {
+   "field": "studies[0].outcomes[1].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "Populate the required diversity fields: metric = researcher-coded number of distinct ideas/strategies; embedding_model = not applicable; computed_over = solutions pooled within each condition, with task-type and individual-task breakdowns in Table 6; uncertainty = chi-square tests of independence, described as nonsignificant without numerical chi-square statistics or p-values. The narrative reports 18 unique ideas per condition, while Table 6 reports task-type counts of 9 versus 6 (Algorithmic) and 11 versus 13 (System Design), in Unassisted versus LLM-assisted order. The aggregation/deduplication rule connecting these counts is not explained.",
+   "quote": "Both conditions were associated with 18 unique ideas (with no significant difference when compared using the chi-square test of independence).",
+   "locator": "PDF p. 16, Table 6 and Sec. 7.2.4; p. 17, continuation of Sec. 7.2.4."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "S1-O1 = []; S1-O2 = []; S1-O3 = [].",
+   "source_says": "The availability fields should reflect the printed results: S1-O1 = [\"arm_means_sds_ns\", \"test_statistic\"] (the Ns are pair counts, not people); S1-O2 = [\"none\"] (raw unique-idea counts and a verbal nonsignificance statement, without a numerical test statistic or p-value); S1-O3 = [\"test_statistic\"] (chi-square = 13.14, p < 0.01).",
+   "quote": "A chi-square test confirmed a significant association between condition and correctness (𝜒2 = 13.14, 𝑝< 0.01).",
+   "locator": "PDF p. 10, Sec. 5.3.2 (pair counts); pp. 13-14, Sec. 7.2.1; p. 16, Sec. 7.2.4; p. 12, Table 4."
+  },
+  {
+   "field": "one_line_finding (locator for the overall unique-idea count)",
+   "form_value": "with the same total of 18 unique ideas in each condition (p. 16, Table 6).",
+   "source_says": "The 18-per-condition overall count appears in the prose of Sec. 7.2.4, not in Table 6. Change this locator to p. 16, Sec. 7.2.4. All other numbers in the one-line finding match the cited PDF passages.",
+   "quote": "Both conditions were associated with 18 unique ideas (with no significant difference when compared using the chi-square test of independence).",
+   "locator": "PDF p. 16, first paragraph of Sec. 7.2.4 immediately below Table 6."
+  }
+ ],
+ "confirmed": [
+  "Source.version is correct: arXiv:2605.13776v1 [cs.HC], 13 May 2026, 32 pages, with the stated title/authors and Manuscript submitted to ACM footer (PDF p. 1; PDF page count). The entire markdown, through the final reference on p. 32, was read; there are no appended study materials in this file.",
+  "One within-person lab study qualifies as a randomized people study: each participant completed different tasks with and without GitHub Copilot; Fig. 2 explicitly states that condition and task-type order was randomized, and Sec. 4.1 describes counterbalancing and in-person sessions (PDF pp. 5-6, Sec. 4.1 and Fig. 2). Retain design_class = lab_rct, context_class = none, and criterion 1 = met.",
+  "There were 23 recruited students and 20 analyzed people after excluding P8 for discontinuation and P1/P2 for corrupted recordings; the same 20 people contributed to both conditions, and no explicit assignment-stage sample count is supplied (PDF p. 6, Sec. 4.2; p. 7, Table 1). Retain n_randomized = null and n_analyzed = 20; fewer than 50 people were analyzed.",
+  "The analyzed dataset comprises 80 programming-task outputs, with 40 task instances per condition, not 80 people or 40 independent people per arm (PDF p. 10, Secs. 5.3.1 and 6; p. 28, Sec. 11, Sample Size). The isolated p. 6 statement of 40 Algorithmic and 40 System Design tasks in each condition conflicts with these explicit totals and should not be used to inflate the sample.",
+  "Each person completed four Python tasks, one Algorithmic and one System Design task per condition, drawn from task sets A1-A4 and B1-B4 (PDF p. 6, Sec. 4.3). The task baseline was 15 minutes with extensions allowed (p. 7, Sec. 4.4), and mean total time per participant was 63.49 minutes (p. 11, Sec. 6).",
+  "GitHub Copilot was provided through its VS Code extension; unassisted sessions excluded external resources, and assisted sessions excluded resources other than Copilot (PDF pp. 5-6, Sec. 4.1). Prompting, chat-code adoption, and editing with autocompletion are documented (p. 9, Table 2); no underlying generative-model version is stated.",
+  "Output-based diversity and expert-rated correctness support criterion 3 = met; the 20-person analyzed sample supports criterion 2 = not_met and core = no under the codebook threshold (PDF pp. 6-7, Sec. 4.2 and Table 1; p. 10, Secs. 5.3.1-5.3.2). This is neither AI-only output comparison nor a synthesis.",
+  "S1-O1 retained counts are transcribed exactly: Algorithmic 16 Unassisted / 19 LLM-assisted solutions, yielding 120 / 171 pairs; System Design 11 / 14 solutions, yielding 55 / 91 pairs (PDF p. 10, Sec. 5.3.2). These are output and pair counts. The source leaves an unresolved inconsistency: its Unassisted retained counts total 27 (checker sum of 16 + 11), whereas Sec. 7.1 explicitly reports 29 correct-or-partially-correct Unassisted solutions (p. 13; see also p. 12, Table 4); no additional exclusion explanation is given.",
+  "S1-O1 Algorithmic statistics match exactly: LLM-assisted mean = 0.532, SD = 0.228; Unassisted mean = 0.492, SD = 0.239; U = 7880.0, p = 0.0008; permutation difference = -0.040, p = 0.161 (PDF p. 13, Sec. 7.2.1). Higher similarity means lower diversity; the permutation result is not significant.",
+  "S1-O1 System Design statistics match exactly: LLM-assisted mean = 0.505, SD = 0.237; Unassisted mean = 0.413, SD = 0.185; U = 1916.0, p = 0.018; permutation difference = -0.093, p = 0.016 (PDF pp. 13-14, Sec. 7.2.1).",
+  "S1-O2 reported counts match the source: 18 unique ideas per condition in the narrative; Algorithmic Unassisted 9 versus LLM-assisted 6, and System Design 11 versus 13 in Table 6; chi-square comparisons are described as nonsignificant without printed test statistics or p-values (PDF p. 16, Sec. 7.2.4 and Table 6).",
+  "S1-O3 is correctly recorded as 80 output units assessed by two expert raters: Correct / Partially Correct / Incorrect counts are Unassisted 18 / 11 / 11 and LLM-assisted 32 / 1 / 7; chi-square = 13.14, p < 0.01 (PDF p. 10, Sec. 5.3.1; p. 12, Table 4 and Sec. 7.1).",
+  "The one-line finding accurately reproduces 20 analyzed people, 32 versus 18 fully correct outputs out of 40 per condition, both task-type similarity results, and the narrative total of 18 unique ideas per condition; only its locator for that last total needs correction (PDF pp. 6-7, Sec. 4.2 and Table 1; p. 12, Table 4; pp. 13-14, Sec. 7.2.1; p. 16, Sec. 7.2.4).",
+  "The supplementary behavioral codebook is mentioned and contains 51 final codes; it is not appended to the 32-page PDF, and no access URL is given (PDF p. 8, Sec. 5.2; pp. 28-32 end with references). No synthesis study count, pooled effect, interval, or standardizer applies to this original experiment (pp. 5-10, Secs. 4-6)."
+ ],
+ "summary": "The paper contains a randomized within-person lab study with 20 analyzed students, so it belongs in the randomized-study pipeline but remains below the 50-person threshold. The reported results and source version are supported; corrections concern the education tally, omitted outcomes, missing methods/statistic metadata, and one finding locator."
+}

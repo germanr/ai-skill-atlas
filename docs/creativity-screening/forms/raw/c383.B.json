@@ -1,0 +1,391 @@
+{
+ "cid": "c383",
+ "screener": "B",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Jahani et al (2026) - Prompt Adaptation as a Dynamic Complement in Generative AI Systems.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Jahani et al (2026) - Prompt Adaptation as a Dynamic Complement in Generative AI Systems.pdf",
+  "version": "arXiv:2407.14333v7 [cs.HC], stamped 7 Jan 2026; manuscript dated January 8, 2026 (p. 1).",
+  "title_on_document": "Prompt Adaptation as a Dynamic Complement in Generative AI Systems",
+  "authors_on_document": [
+   "Eaman Jahani",
+   "Benjamin S. Manning",
+   "Joe Zhang",
+   "Hong-Yi TuYe",
+   "Mohammed Alsobay",
+   "Christos Nicolaides",
+   "Siddharth Suri",
+   "David Holtz"
+  ],
+  "pages": 84,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A–I are included on PDF pp. 27–84. The preregistration documents are described as online; their URLs are replaced by 'URL removed to maintain anonymity' (pp. 41, 43, and 66).",
+   "holds": "Appendix B includes arm counts in Tables A.1–A.3 and task details; C gives sample exclusions; D gives scoring definitions; E–F specify normalization, regressions, and participant-clustered precision; H reports alternative-metric and Z-score estimates and intervals; I reports the additional image-replication preregistered analyses and deviations. These statistical appendices are present in this PDF, not an unavailable separate supplement."
+  }
+ },
+ "paper_design_summary": "In two preregistered online experiments, US Prolific participants were randomly assigned to DALL-E 2, DALL-E 3 with reduced prompt rewriting, or DALL-E 3 with default rewriting, and repeatedly prompted their assigned model (pp. 8–10, 34, 40, and 43). The first experiment scored fidelity to a fixed reference image; the second scored original logos against client briefs using LLM pairwise judgments converted to Bradley–Terry strengths (pp. 10–12 and 49–50). Post-hoc replay reused those participants' prompts to separate model and prompting effects; the logo experiment supplies the creative-task evidence (pp. 11–13).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Experiment 1: fixed-target image replication",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "People were independently assigned to a task target and one of three AI model configurations, using complete randomization over 45 target-by-model cells; participants were blind to assignment (pp. 9 and 34, sections 3.1 and B.1). The model comparison is between people; repeated prompting attempts do not constitute a randomized crossover.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "For both experiments, we randomly assigned participants to 1 of 3 generative models:",
+    "locator": "p. 38, Appendix B.2; pp. 9 and 34, sections 3.1 and B.1",
+    "preregistered": "yes",
+    "prereg_locator": "p. 41, Appendix B.4.4; p. 66, Appendix I (OSF mentioned, URL removed); pp. 83–84, Appendix I.2 (deviations)."
+   },
+   "arms": [
+    {
+     "name": "DALL-E 2",
+     "description": "Earlier-generation text-to-image model; participant prompts passed directly without intermediate rewriting (p. 9, section 3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 655
+    },
+    {
+     "name": "DALL-E 3 (Verbatim)",
+     "description": "DALL-E 3 with a hidden prefix instructing GPT-4 not to rewrite the participant's prompt; suppression was incomplete (pp. 9 and 38, sections 3.1 and B.2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 629
+    },
+    {
+     "name": "DALL-E 3 (Revised)",
+     "description": "DALL-E 3 with its default hidden GPT-4 prompt rewriting enabled (pp. 9 and 38, sections 3.1 and B.2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 609
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 1893,
+    "counts_are": "people",
+    "exclusions": "The raw dataset contains 2,059 people; this is not explicitly a count at randomization. Removing blank/invalid/logging-error records leaves 2,029 people; excluding those with fewer than 10 successful prompts leaves 1,914. Analyses retain only the first 10 prompts. Excluding consecutive repetition of the same prompt at least five times leaves 1,899 people (15 excluded, p. 10, footnote 5); excluding missing post-task surveys leaves 1,893. Post-hoc exclusions for incomplete image regeneration/replay or duplicate attempt numbers remove 370 prompts, leaving 18,560 prompts without further reducing the stated people count (pp. 45–46, Appendix C.4).",
+    "population": "online_panel",
+    "who": "US Prolific participants fluent in English; repeat participation and mobile/tablet access were prevented. Data collection: December 12–19, 2023 (p. 40, Appendix B.4.3).",
+    "country": "United States",
+    "quote": "Our final sample thus included 1,893 participants and 18,560 prompts.",
+    "locator": "p. 46, Appendix C.4 (final sample); p. 35, Table A.1 (analyzed arm counts); p. 40, Appendix B.4.3 (population); p. 10, footnote 5 (repetition exclusions)."
+   },
+   "ai_tool": {
+    "name_model": "OpenAI DALL-E 2; DALL-E 3 (Verbatim); DALL-E 3 (Revised), with GPT-4 used for system-side prompt rewriting (pp. 9 and 38, sections 3.1 and B.2).",
+    "role": "image_generation",
+    "how_used": "Participants wrote and iteratively revised their own text prompts in a custom online interface, viewing generated images after each attempt. Every arm provided generative AI throughout the task. Each prompt was processed without conversational memory. The Verbatim prefix reduced but did not eliminate hidden prompt rewriting; Appendix B.2 reports that GPT still modified 59% of prompts in that condition (pp. 9 and 38–40)."
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Iteratively prompt the assigned image model to reproduce a single randomly assigned reference image as closely as possible. Targets comprise 15 images spanning business/marketing, graphic design, and architectural photography. This is a bounded fidelity task, not an open-ended originality task (pp. 10–11, sections 3.2–3.3; pp. 39–40, Appendix B.4).",
+    "duration": "Up to 25 minutes, with at least 10 attempts required; analyses restrict to the first 10 attempts (pp. 9 and 39, sections 3.1 and B.4.1; pp. 45–46, Appendix C.4)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Expected image-replication fidelity to the assigned target",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "The paper-primary score is expected CLIP embedding cosine similarity to the assigned reference image, averaging 10 generated images per participant prompt (pp. 10–11, section 3.2.1). Higher similarity means better replication quality, not less diversity. Main-text analyses use post-hoc replay/regeneration of the original prompts to address model drift (pp. 13 and 45); this is not a later unassisted human test. The analysis unit is a participant-prompt's average output score. n_units is the full retained all-arm prompt count, not the number of generated images or the number of observations in each pairwise contrast (p. 46, Appendix C.4). Overall ATE regressions include attempt and target-image fixed effects, with standard errors clustered by participant (p. 55, Appendix F.1.1). DreamSim, inverted as 1 minus its original distance, is an alternative fidelity metric; Z-score and percentile rescalings, and first/average/best-attempt summaries are variants of the same outcome (pp. 49, 53–54, 63–64, 66, and 75–80). Reported Z-score effects use within-target/attempt scaling across arms rather than a participant-level control SD (pp. 53–54). Quantile coefficients refer to the distribution of fidelity, not semantic diversity (pp. 16–17 and 57–58). This fixed-target measure is retained for completeness, with question = none because it does not establish creativity or cross-person content diversity.",
+     "unit": "output",
+     "n_units": 18560,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "DALL-E 3 (Verbatim)",
+       "control_arm": "DALL-E 2",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "confidence_interval",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "Overall ATE: cosine similarity difference = 0.0164, 95% CI [0.0104, 0.0224], p < 10^−5; approximately 0.19 SD (p. 14). CLIP Z-score robustness: z = 0.19, 95% CI [0.100, 0.271] (p. 64). DreamSim robustness: ΔDreamSim = 0.0306, p < 10^−7; z = 0.238, 95% CI [0.152, 0.324] (p. 63). Table 1's quantile model reports Total = 0.022 (SE 0.003), p < 10^−5, and Total × Outcome Quantile (Percentile) = −0.00012 (SE 0.00005), p = 0.015; the un-interacted coefficient is the estimate at the 0th percentile, not the ATE (p. 17).",
+       "locator": "p. 14, section 4.1.1 and Figure 1; p. 17, Table 1; p. 63, Appendix H.1.1; p. 64, Appendix H.2.1."
+      },
+      {
+       "treatment_arm": "DALL-E 3 (Revised)",
+       "control_arm": "DALL-E 2",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only"
+       ],
+       "reported": "Main-text cosine similarity difference: Δ = 0.0069; p = 0.042 (p. 17). Appendix I's alternative first- and average-performance comparisons report no statistically significant difference, while best-attempt performance favors Revised (pp. 75–76); numerical arm summaries are not provided there.",
+       "locator": "p. 17, section 4.1.4; pp. 75–76, Appendix I.1, H5."
+      },
+      {
+       "treatment_arm": "DALL-E 3 (Revised)",
+       "control_arm": "DALL-E 3 (Verbatim)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "confidence_interval"
+       ],
+       "reported": "Automated prompt revision reduced the benefit of DALL-E 3 by 58% (95% CI [40%, 76%]); this is the paper's reported relative reduction in the model-upgrade benefit, not a raw arm-mean difference.",
+       "locator": "p. 17, section 4.1.4."
+      },
+      {
+       "treatment_arm": "Replay: DALL-E 2 participants' prompts evaluated on DALL-E 3 (Verbatim)",
+       "control_arm": "Replay: the same DALL-E 2 participants' prompts evaluated on DALL-E 2",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "Post-hoc model effect, holding prompts fixed: Δ cosine similarity = 0.0084, p < 10^−8, approximately 51% of the total effect (p. 15). DreamSim: Δ = 0.0166, p < 10^−7, 54.4% of the ATE (p. 63). CLIP Z-score: z = 0.0791, p = 8.35 × 10^−6, 43% of the treatment effect (p. 64). Table 1's quantile model: Model = 0.011 (SE 0.002), p < 10^−5; Model × Outcome Quantile = −0.00006 (SE 0.00003), p = 0.021 (p. 17). These are reused-prompt comparisons, not additional participant arms.",
+       "locator": "p. 15, section 4.1.2; p. 16, Figure 2; p. 17, Table 1; pp. 56–58, Appendix F.1.3–F.1.4; p. 63, Appendix H.1.3; p. 64, Appendix H.2.3."
+      },
+      {
+       "treatment_arm": "Replay: DALL-E 3 (Verbatim) participants' prompts evaluated on DALL-E 3 (Verbatim)",
+       "control_arm": "Replay: DALL-E 2 participants' prompts evaluated on DALL-E 3 (Verbatim)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "Post-hoc prompting effect, holding the evaluation model fixed: Δ cosine similarity = 0.0079, p = 0.024, approximately 48% of the total improvement (p. 15). DreamSim: Δ = 0.01390, p = 0.014, 45.4% of the ATE (p. 63). CLIP Z-score: z = 0.1046, p = 0.016, 56% of the treatment effect (p. 64). Table 1's quantile model: Prompting = 0.011 (SE 0.003), p < 10^−5; Prompting × Outcome Quantile = −0.00006 (SE 0.00005), p = 0.244 (p. 17). Quantile-model intercepts are not average prompting effects.",
+       "locator": "p. 15, section 4.1.2 and footnote 10; p. 17, Table 1; pp. 56–58, Appendix F.1.3–F.1.4; p. 63, Appendix H.1.3; p. 64, Appendix H.2.3."
+      },
+      {
+       "treatment_arm": "Replay: DALL-E 3 (Verbatim) participants' prompts evaluated on DALL-E 2",
+       "control_arm": "Replay: DALL-E 2 participants' prompts evaluated on DALL-E 2",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "p_value_only",
+        "standardized_effect"
+       ],
+       "reported": "Reverse replay: Δ cosine similarity = 0.0020; p = 0.56 (p. 15). CLIP Z-score robustness: z = −0.033; p = 0.45 (p. 64).",
+       "locator": "p. 15, section 4.1.2; p. 64, Appendix H.2.3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Experiment 2: open-ended logo generation",
+   "design_class": "online_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "People were independently assigned to a task target and one of three AI model configurations, using complete randomization over 45 target-by-model cells; participants were blind to assignment (pp. 9 and 34, sections 3.1 and B.1). The model comparison is between people; repeated prompting attempts do not constitute a randomized crossover.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "For both experiments, we randomly assigned participants to 1 of 3 generative models:",
+    "locator": "p. 38, Appendix B.2; pp. 9 and 34, sections 3.1 and B.1",
+    "preregistered": "yes",
+    "prereg_locator": "p. 43, Appendix B.5.4; p. 66, Appendix I states that logo-generation preregistered hypotheses were limited to the main-text analyses; preregistration URL removed."
+   },
+   "arms": [
+    {
+     "name": "DALL-E 2",
+     "description": "Earlier-generation text-to-image model; participant prompts passed directly without intermediate rewriting (p. 9, section 3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 628
+    },
+    {
+     "name": "DALL-E 3 (Verbatim)",
+     "description": "DALL-E 3 with a hidden prefix instructing GPT-4 not to rewrite the participant's prompt; suppression was incomplete (pp. 9 and 38, sections 3.1 and B.2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 617
+    },
+    {
+     "name": "DALL-E 3 (Revised)",
+     "description": "DALL-E 3 with its default hidden GPT-4 prompt rewriting enabled (pp. 9 and 38, sections 3.1 and B.2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 612
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 1857,
+    "counts_are": "people",
+    "exclusions": "The raw dataset contains 2,067 people; this is not explicitly a count at randomization. Removing blank/invalid/logging-error records leaves 2,011; excluding those with fewer than 10 successful prompts leaves 1,924. Analyses retain only the first 10 prompts. Excluding consecutive repetition of the same prompt at least five times leaves 1,892 (32 excluded, p. 10, footnote 5). A post-hoc exclusion for inconsistencies between the experienced treatment/task label and database leaves 1,864; excluding missing post-task surveys leaves 1,857. Post-hoc replay failures and duplicate attempt numbers remove 145 prompts, leaving 18,425 prompts and the same stated people count (pp. 46–47, Appendix C.5). Table A.3's 'pre-filtering' N = 1924 is an intermediate sample, not a clearly documented assignment count (pp. 37 and 46–47).",
+    "population": "online_panel",
+    "who": "US Prolific participants fluent in English; repeat participation and mobile/tablet access were prevented. Data collection: June 30–July 1, 2025 (p. 43, Appendix B.5.3).",
+    "country": "United States",
+    "quote": "Our final sample thus included 1,857 participants and 18,425 prompts.",
+    "locator": "p. 47, Appendix C.5 (final sample); p. 36, Table A.2 (analyzed arm counts); p. 43, Appendix B.5.3 (population); p. 10, footnote 5 (repetition exclusions)."
+   },
+   "ai_tool": {
+    "name_model": "OpenAI DALL-E 2; DALL-E 3 (Verbatim); DALL-E 3 (Revised), with GPT-4 used for system-side prompt rewriting (pp. 9 and 38, sections 3.1 and B.2).",
+    "role": "image_generation",
+    "how_used": "Participants wrote and iteratively revised their own text prompts in a custom online interface, viewing generated images after each attempt. Every arm provided generative AI throughout the task. Each prompt was processed without conversational memory. The Verbatim prefix reduced but did not eliminate hidden prompt rewriting; Appendix B.2 reports that GPT still modified 59% of prompts in that condition (pp. 9 and 38–40)."
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Create the best original logo for a hypothetical organization using a randomly assigned client brief. Each of 15 briefs gives an organization, background, required visual elements, and context of use; there is no target image and the task allows open-ended creative possibilities (p. 11, section 3.3; pp. 41–43, Appendix B.5).",
+    "duration": "Up to 25 minutes, with at least 10 attempts required; analyses restrict to the first 10 attempts (p. 41, Appendix B.5.1; pp. 46–47, Appendix C.5)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Logo design quality / fulfillment of the client's brief (Bradley–Terry strength)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-4.1-nano, temperature 0, judges which of two logos better fulfills the client's requirements; image order is randomized. A sampled 20% of within-brief pairings of original and replayed images supplies win–loss matrices, from which maximum-likelihood Bradley–Terry β strengths are estimated per image (pp. 11–12 and 49–50). The instruction assesses fit/quality, not an explicit novelty or overall-creativity rating. Although pairwise judgments generate the score, treatment-effect regressions use the resulting output-level scores with attempt and logo-task fixed effects and participant-clustered standard errors (pp. 58–59, Appendix F.2). n_units is the retained all-arm original prompt/output count, not the much larger number of scoring comparisons or an exact replay-expanded regression N (p. 47, Appendix C.5). No prompt-level repeated-generation averaging is used for logos (p. 12). Within-logo/attempt Z-score normalization and attempt trajectories are robustness variants of this outcome; the Z-score standardizer is across arms within task/attempt, not the participant-level control SD (pp. 53–54 and 64–65). Table 2 estimates distributional heterogeneity of quality, not cross-person content similarity. Human validation is mentioned but supplies no treatment-effect estimate (p. 12, footnote 9).",
+     "unit": "output",
+     "n_units": 18425,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "DALL-E 3 (Verbatim)",
+       "control_arm": "DALL-E 2",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "confidence_interval",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "Overall ATE = 0.8075 in Bradley–Terry β, 95% CI [0.7120, 0.9030], p < 10^−10; approximately 0.57 SD (p. 18). Z-score robustness: z = 0.569, 95% CI [0.502, 0.636], p < 10^−10 (p. 64). Table 2's quantile model reports Total = 1.135 (SE 0.050), p < 10^−5; Total × Outcome Quantile (Percentile) = −0.0065 (SE 0.0008), p < 10^−5. The un-interacted coefficient is the estimate at the 0th percentile, not the ATE (p. 21).",
+       "locator": "p. 18, section 4.2.1 and Figure 3; p. 21, Table 2; p. 58, Appendix F.2.1; p. 64, Appendix H.3.1."
+      },
+      {
+       "treatment_arm": "DALL-E 3 (Revised)",
+       "control_arm": "DALL-E 2",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "confidence_interval"
+       ],
+       "reported": "Overall ATE = 0.8337 in BT β, p < 10^−10 (p. 20); Appendix F.2.1 prints the rounded estimate 0.834, 95% CI [0.7358, 0.9316], p < 10^−10 (p. 58).",
+       "locator": "p. 20, section 4.2.4; p. 58, Appendix F.2.1."
+      },
+      {
+       "treatment_arm": "DALL-E 3 (Revised)",
+       "control_arm": "DALL-E 3 (Verbatim)",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "confidence_interval"
+       ],
+       "reported": "The paper reports a 3.2% increase in BT β on average with automatic rewriting (95% CI [−5.6%, 12.1%]). The interval includes zero; no raw difference or separate p-value is printed for this comparison.",
+       "locator": "p. 20, section 4.2.4."
+      },
+      {
+       "treatment_arm": "Replay: DALL-E 2 participants' prompts evaluated on DALL-E 3 (Verbatim)",
+       "control_arm": "DALL-E 2 participants' prompts evaluated on DALL-E 2",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "Post-hoc model effect, holding prompts fixed: Δ BT β = 0.748, p < 10^−10, approximately 92.7% of the total effect (p. 19). Z-score robustness: z = 0.522, p < 10^−15, approximately 91.8% of the total treatment effect (p. 65). Table 2's quantile model: Model = 1.012 (SE 0.035), p < 10^−5; Model × Outcome Quantile = −0.0053 (SE 0.0005), p < 10^−5 (p. 21). These are reused-prompt comparisons, not additional participant arms.",
+       "locator": "p. 19, section 4.2.2; p. 20, Figure 4; p. 21, Table 2; p. 59, Appendix F.2.3–F.2.4; p. 65, Appendix H.3.3."
+      },
+      {
+       "treatment_arm": "DALL-E 3 (Verbatim) participants' prompts evaluated on DALL-E 3 (Verbatim)",
+       "control_arm": "Replay: DALL-E 2 participants' prompts evaluated on DALL-E 3 (Verbatim)",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "p_value_only",
+        "standardized_effect",
+        "regression_coefficient_se"
+       ],
+       "reported": "Post-hoc prompting effect, holding the evaluation model fixed: Δ BT β = 0.0577, p = 0.101, 7.2% of the total effect (p. 19). Z-score robustness: z = 0.046, p = 0.167, approximately 8.1% of the total treatment effect (p. 65). Table 2's quantile model: Prompting = 0.122 (SE 0.050), p = 0.014; Prompting × Outcome Quantile = −0.0013 (SE 0.0008), p = 0.117 (p. 21). The significant quantile-model intercept is not the average prompting effect.",
+       "locator": "p. 19, section 4.2.2; p. 21, Table 2; p. 59, Appendix F.2.3–F.2.4; p. 65, Appendix H.3.3."
+      },
+      {
+       "treatment_arm": "Replay: DALL-E 3 (Verbatim) participants' prompts evaluated on DALL-E 2",
+       "control_arm": "DALL-E 2 participants' prompts evaluated on DALL-E 2",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "p_value_only",
+        "standardized_effect"
+       ],
+       "reported": "Reverse replay: Δβ = −0.0125, p = 0.62 (p. 19). Z-score robustness: z = −0.0028, p = 0.934 (p. 65).",
+       "locator": "p. 19, section 4.2.2; p. 65, Appendix H.3.3."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "not_stated",
+  "quote": "",
+  "locator": "pp. 8–10, sections 3–3.1, describe the two experiments conducted for this paper; pp. 13 and 45 describe within-paper reuse of their prompts for replay. No other paper is identified as supplying these participants."
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Microsoft funded the research. Siddharth Suri is a Microsoft employee; Mohammed Alsobay was a paid Microsoft intern and is a Microsoft employee. David Holtz was a paid Microsoft intern and visiting researcher and is a visiting researcher at OpenAI.",
+  "locator": "p. 1, Author declarations and funding acknowledgments."
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "yes",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "S2 meets all three criteria: individuals were randomly assigned to different generative-AI configurations (pp. 9 and 34, sections 3.1 and B.1); 1,857 people were analyzed across the arms (p. 47, Appendix C.5; p. 36, Table A.2); and their original logos were judged for how well they fulfilled open-ended client briefs, an output-quality/usefulness outcome on a creative design task (pp. 11–12, section 3.3; pp. 49–50, Appendix D.2). All arms use AI, so the comparisons are ai_design. S1's fixed-reference fidelity task is retained for completeness but does not independently establish creative-task eligibility."
+ },
+ "one_line_finding": "In the logo experiment, DALL-E 3 (Verbatim) increased judged output quality versus DALL-E 2 by 0.8075 Bradley–Terry β (95% CI [0.7120, 0.9030], p < 10^−10; p. 18, section 4.2.1).",
+ "open_questions": [
+  "Counts at assignment are not clearly given: pp. 40 and 43 report recruited samples and pp. 45–47 report raw and analyzed datasets; n_randomized is therefore null for both studies and all arms.",
+  "Preregistration URLs are redacted (pp. 41, 43, and 66), preventing independent confirmation of a preregistered primary-outcome hierarchy. Data and replication code are promised upon publication, with no URLs supplied (p. 8, footnote 4).",
+  "The main logo score uses gpt-4.1-nano judgments. Human validation assessed approximately 19,000 image pairs but found low agreement; no human-rated treatment-effect estimate or human-evaluator count is supplied (p. 12, footnote 9).",
+  "S1 replay accounting is not fully consistent: Appendix C.4 reports 370 post-hoc prompt exclusions (p. 46), whereas Appendix E.3 reports 371 affected prompts (p. 54). The final sample is consistently stated as 1,893 people and 18,560 prompts (pp. 10 and 46)."
+ ],
+ "notes": "Screened independently as B on 2026-10-09. The complete markdown was read in contiguous chunks through the end, including all appendices; recorded statistics and eligibility facts were checked against the PDF. PDF page numbers coincide with printed page numbers. Outcome inventory: Figures 1–2 and Table 1 report image fidelity and its replay/quantile variants; Figures 3–4 and Table 2 report logo quality and its replay/quantile variants. Figures 1C and 3C additionally report prompt word count and similarity to the same person's preceding prompt; Tables A.1–A.3 report covariate balance, and Tables A.4–A.5 give example prompts/images. Appendix D additionally defines prompt character count, within-person embedding dispersion around the person's own centroid, successive token sort ratio, containment of the preceding prompt, part-of-speech composition, and strategic shifts. These prompt-input/process measures are not scored creativity of the final image and are not cross-person output diversity; they are not separate outcomes here (pp. 14, 18, 35–37, 50–52, 56, 59, and 61–62). Appendix H's DreamSim and normalization variants are folded into the two outcome records. Appendix I's first/average/best fidelity, improvement across attempts, performance-variance comparisons, and associations with demographics or prompting strategies reuse the image-fidelity measures; they are not new creative constructs or independent studies (pp. 66–84). The GPT-4V prompt benchmark in Appendix I.H8 is a target-difficulty calibration within the image-replication analysis, not another randomized human experiment (pp. 81–82). No across_people diversity outcome or after_ai unassisted test is reported: within-person prompt similarity, distributional compression of quality, and later replay of the same prompts do not establish either question. All people had AI during the task. Replay contrasts are labeled other and explicitly identified to avoid mistaking replayed prompts for extra randomized people/arms. Raw effects, reported Z-score effects, intervals, and table coefficients are transcribed; no effect sizes or standard errors have been calculated. Reported table intercepts and interactions are retained within the same output-quality outcome rather than counted as diversity. S2 is the eligibility-supporting study; S1 is retained with question none because its fixed-image fidelity task falls outside the open-ended creative-task definition. Arm counts are analyzed counts, with all-arm output counts distinguished from people and pairwise judging counts. The study's statement that the Verbatim manipulation is an intent-to-treat intervention concerns imperfect suppression of prompt rewriting; post-assignment sample exclusions mean this form does not label the overall analysis intention-to-treat (pp. 38 and 45–47). The data/code URL fields are empty because p. 8, footnote 4 promises release upon publication without supplying links."
+}

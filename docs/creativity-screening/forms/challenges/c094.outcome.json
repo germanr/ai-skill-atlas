@@ -1,0 +1,115 @@
+{
+  "cid": "c094",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S2-O3",
+      "field": "unit",
+      "form_value": "rating",
+      "source_says": "The paper names no analysis unit for purchase intent, and Figure 8 rules out single ratings. The figure's 95 percent CI half-widths, read from the PDF's vector paths, run from 0.089 to 0.123 on the 1-7 scale. With the SDs printed on p. 13 (0.49 to 0.62), those widths imply about 97 to 154 observations per arm and about 640 to 650 in total, which is one mean per idea. The 320 raters each rated 20 ideas (6,400 ratings, about 1,067 per arm), and rating-level statistics would give half-widths near 0.03. The printed statistics are idea-level means, so the unit is output. S2-O1 is rightly coded rating, because its mixed models have one row per rating.",
+      "quote": "Mean purchase intent ratings with 95% confidence intervals across five conditions (scale: 1–7).",
+      "locator": "p. 27, Figure 8 (caption and error bars); p. 13, Section 6.3; p. 11, Sections 6.1-6.2"
+    },
+    {
+      "where": "S1-O1",
+      "field": "unit (and n_units)",
+      "form_value": "participant (n_units null)",
+      "source_says": "The paper builds one quality score for each idea, and the linear model has one row per idea (one scored idea per person, t(481)). The form-spec rule for unit says that one row per idea is output, even when ideas are nested in people. The form codes the same structure as output with n_units 486 for S1-O2. No statistic changes, because each person has one scored idea.",
+      "quote": "For each idea, we averaged the originality and usefulness ratings across all raters to obtain a single idea quality score.",
+      "locator": "p. 7, Section 4.4; p. 22, Appendix D (judge only the first idea); form-spec.md, Field notes, unit"
+    },
+    {
+      "where": "S1-O4",
+      "field": "contrasts[0].reported (correlation sentence)",
+      "form_value": "Across coded ideas, elaboration depth correlated with idea diversity (r = 0.28, p = .032) but not with quality or ownership (both p > .15).",
+      "source_says": "The numbers match the text, but the paper does not say how many coded ideas entered the correlation. 'Across coded ideas' implies all 80. At n = 80, r = 0.28 gives a two-sided p of .012. The printed p = .032 fits about 59 observations, so the test may have used fewer than the 80 coded ideas. The gloss has no support in the text.",
+      "quote": "we correlated elaboration depth with our dependent variables. Results showed that deeper elaboration was associated with greater idea diversity (r = 0.28, p = .032), but not with quality or ownership (both p > .15).",
+      "locator": "p. 10, Section 5.4; p. 9, Section 5.4 (80 ideas in total)"
+    },
+    {
+      "where": "S1-O4",
+      "field": "contrasts[0].statistics_available",
+      "form_value": "none",
+      "source_says": "Statistics are printed. Figure 7 plots each AI arm's mean elaboration depth (coding levels 1-5 rescaled to 1-7) for question-mode, suggestion-mode, model-led, and vanilla. Section 5.4 prints level percentages for three arms. The form-spec tag figure_only fits. The tag none says that nothing usable is printed.",
+      "quote": "The radar chart displays mean scores across seven dimensions for each interaction mode (distinguished by color).",
+      "locator": "p. 11, Figure 7 and caption; p. 9, Section 5.4; form-spec.md, Field notes, statistics_available"
+    },
+    {
+      "where": "S2-O3",
+      "field": "contrasts[].statistics_available (all five contrasts)",
+      "form_value": "arm_means_sds_ns, figure_only",
+      "source_says": "Study 2 prints no arm Ns anywhere, only the total of 640. The form's own 'reported' text says 'arm Ns not printed'. The tag arm_means_sds_ns claims Ns that the PDF does not give. Means and SDs are in the text, and CIs are only in Figure 8. The form-spec list has no tag for means and SDs without Ns, so the record needs a note on the tag or a new code.",
+      "quote": "Our final sample in the validation study consisted of N = 640 participants across six conditions.",
+      "locator": "p. 11, Section 6.1; p. 13, Section 6.3; p. 27, Figure 8"
+    }
+  ],
+  "confirmed": [
+    {
+      "statement": "Criterion 3 holds. In S1-O1, four domain experts from the innovation department of an automotive manufacturer rated every submitted idea for originality and usefulness on 7-point scales (CAT). The two ratings were averaged across raters, ICC(3,k) = .60. The score is not self-reported, and measure expert_raters fits.",
+      "locator": "p. 7, Section 4.4; p. 22, Appendix D"
+    },
+    {
+      "statement": "S1-O2 is a computed measure on the submitted ideas: the cosine distance of each idea's text-embedding-3-large embedding to the leave-one-out centroid of the other ideas in its condition. It compares different people's ideas, so construct diversity fits. Higher values mean more diverse, which matches the signs in Tables 3 and 15.",
+      "locator": "p. 7, Section 4.4; p. 8, footnote 2; p. 12, Tables 2-3; p. 25, Table 15"
+    },
+    {
+      "statement": "AI was available when the scored final idea was written in all four Study 1 AI arms. Participants wrote an initial idea without AI, worked with GPT-4.1, and then refined and submitted. The suggestion-mode refinement box sits below the AI suggestions. The control had no LLM. So ai_available_when_produced yes fits S1-O1, S1-O2, and S1-O4.",
+      "locator": "p. 5, Section 4.1; pp. 6-7, Section 4.2; p. 6, Figure 2"
+    },
+    {
+      "statement": "S1-O3 compares initial ideas written without AI with refined ideas written with AI. Both are measured against the centroid of the condition's initial ideas, so mixed fits. The measure compares each idea with other people's initial ideas, so diversity (not flexibility) is right. The before-after rows are not randomized, as the form notes.",
+      "locator": "p. 8, Section 5.3 and footnote 2; p. 10, Figure 6; p. 24, Table 12 notes"
+    },
+    {
+      "statement": "Question codes follow the codebook rule. Quality, elaboration depth, and purchase intent are with_ai. The three diversity outcomes are across_people. No outcome is produced after AI is removed, so no after_ai record is missing.",
+      "locator": "codebook section 1; form-spec.md, Field notes, question; pp. 5-13"
+    },
+    {
+      "statement": "Units of S1-O2, S1-O3, S1-O4, S2-O1, and S2-O2 match the paper's analyses. S1-O2 and S2-O2 regress one score per idea, t(481) and t(634). S1-O3 has two ideas per person with participant random intercepts. S1-O4 codes 80 ideas. S2-O1 uses mixed models with random intercepts for raters and ideas.",
+      "locator": "p. 7, Section 4.5; p. 9, Section 5.4; p. 11, Section 6.2; p. 24, Table 12; p. 26, Table 17 note"
+    },
+    {
+      "statement": "S1-O4 is rater-coded text that participants wrote. Two trained raters coded 20 conversations per condition (80 ideas), weighted kappa = 0.628. The level depends on whether the participant or the AI supplied each added element, so construct other (not elaboration) fits, and human_raters is the nearest measure code.",
+      "locator": "p. 9, Section 5.4; p. 23, Table 9 and note"
+    },
+    {
+      "statement": "S2-O1 and S2-O3 are scored on the ideas by 320 Prolific raters with active student status, each rating 20 ideas. They use the Study 1 quality measures plus one intention-to-buy item. These are rater judgments of the output, not participant self-reports, and measure human_raters fits.",
+      "locator": "p. 11, Section 6.1"
+    },
+    {
+      "statement": "Every number in S1-O1 and S1-O2 matches the PDF: Table 2 means, SDs, and Ns, Table 3 t, p, and d, Table 14 Dunn z, r, p, and p_adj, Table 15 logit and Dunn values, and the p. 8 text. The text-table gaps the form records are real (H2b p .983 vs .984, H3a d 0.29 vs 0.27).",
+      "locator": "p. 8, Sections 5.1.1-5.1.2; p. 12, Tables 2-3; p. 25, Tables 14-15"
+    },
+    {
+      "statement": "Every number in S1-O3 matches Tables 12 and 13 and the text. This includes the suggestion-mode t of -2.67 in the text vs -2.78 in Table 13, and the interaction terms -0.157 (SE 0.013) and -0.093 (SE 0.013).",
+      "locator": "p. 9, Section 5.3; p. 24, Tables 12-13"
+    },
+    {
+      "statement": "Every number in S2-O1 and S2-O2 matches Table 4, Table 17 (estimates, SEs, z, p), and Table 18 (logit t, p, d, and Dunn z, p, p_adj, r).",
+      "locator": "p. 12, Table 4; p. 13, Section 6.3; p. 26, Tables 17-18"
+    },
+    {
+      "statement": "S1-O4 and S2-O3 numbers match the text. Elaboration: 90 percent (model-led), 25 and 55 percent (suggestion-mode), 60 and 40 percent (question-mode), r = 0.28, p = .032. Purchase intent: 2.51 (0.58), 2.50 (0.56), 2.20 (0.53), 2.24 (0.49), 2.30 (0.55), 2.34 (0.62). The Figure 8 points, read from the vector paths, are 2.510, 2.200, 2.500, 2.243, 2.303, and 2.338.",
+      "locator": "p. 9, Section 5.4; p. 10, Section 5.4; p. 13, Section 6.3; p. 27, Figure 8"
+    },
+    {
+      "statement": "The purchase-intent arm conflict that the form flags is real. Figure 9's 'Model-Led' bar and point match the one-shot values in its caption (workload 44.04, attribution 39.98). Figure 8 plots 2.50 under 'Model-Led', but the p. 13 text gives 2.50 to the iterative arm.",
+      "locator": "p. 13, Section 6.3; p. 14, Section 7.1; p. 27, Figure 8; p. 28, Figure 9"
+    },
+    {
+      "statement": "Primary status is supported. Quality, diversity, and ownership are the three focus measures with preregistered hypotheses. The paper calls the within-subject change, elaboration depth, and purchase intent exploratory.",
+      "locator": "p. 7, Section 4.4; p. 8, Section 5.3; p. 9, Section 5.4; p. 11, Section 6.2; p. 13, Section 6.3"
+    },
+    {
+      "statement": "No eligible outcome is missing. The other measures (ownership, cognitive workload, creative self-efficacy, the UTAUT scales, and Study 2's self-vs-AI attribution) are participant self-reports. The PDF prints no separate originality or usefulness scores and no Study 2 diversity means. The PDF was read in full, appendices included.",
+      "locator": "pp. 1-28; p. 7, Section 4.4; p. 11, Section 6.1; p. 28, Figure 9"
+    },
+    {
+      "statement": "Locators match the PDF pages: Tables 2-4 on p. 12, Section 5.4 on pp. 9-10, Figure 7 on p. 11, Section 6.3 on p. 13, the Section 7.1 purchase-intent sentence on p. 14, Table 9 on p. 23, Tables 12-13 on p. 24, Tables 14-15 on p. 25, Tables 17-18 on p. 26, Figure 8 on p. 27, and Figure 9 on p. 28.",
+      "locator": "PDF pages 5-16 and 22-28"
+    }
+  ],
+  "summary": "Criterion 3 holds, because Study 1's expert-rated quality and embedding diversity are scored on the ideas that participants submitted with GPT-4.1 available, and every printed number, question code, and construct in the outcome entries matches the PDF. The coding is still refuted on details: S2-O3 purchase intent is coded unit rating although Figure 8's error bars imply one mean per idea, S1-O1 is coded participant against the form-spec rule that one row per idea is output, and three smaller items need fixes (an unsupported 'across coded ideas' gloss and two statistics_available tags)."
+}

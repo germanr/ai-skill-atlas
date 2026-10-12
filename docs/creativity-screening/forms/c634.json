@@ -1,0 +1,439 @@
+{
+ "cid": "c634",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wen et al (2026) - Exploration vs Fixation.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wen et al (2026) - Exploration vs Fixation.pdf",
+  "version": "arXiv:2512.18388v2 [cs.HC], 6 Apr 2026 (preprint), as stamped on p. 1 of the PDF on file",
+  "title_on_document": "Exploration vs. Fixation: Scaffolding Divergent and Convergent Thinking for Human-AI Co-Creation with Generative Models",
+  "authors_on_document": [
+   "Chao Wen",
+   "Tung Phung",
+   "Pronita Mehrotra",
+   "Sumit Gulwani",
+   "Roger E. Beaty",
+   "Tomohiro Nagashima",
+   "Adish Singla"
+  ],
+  "pages": 35,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A-D, pp. 21-35 of this PDF; Appendix C.3, pp. 27-28; Table 4, p. 29; Table 5, p. 31; ablation prompts in Figs. 13-14, pp. 32-33.",
+   "holds": "Technical implementation and validation (Appendices A-B); study environment, task instructions, interview protocol, participant demographics and counterbalancing (Appendix C.1); learning-response coding scheme (Appendix C.2); image pool, rater setup, rating rubrics and aggregation (Appendix C.3); system and ablation prompts (Appendix D). Appendix C.3 reports 123 downloaded posters from 24 participants: 63 with ChatGPT and 60 with HAICo (p. 27)."
+  }
+ },
+ "paper_design_summary": "In a randomized within-subjects laboratory study, 24 local-university participants created poster images with HAICo and ChatGPT in counterbalanced task/system sequences (pp. 8-9, Section 5; p. 31, Table 5). Outputs were assessed for rated novelty and usefulness, downloaded-image fluency, within-participant CLIP image-set variety, and counts of distinct conceptual image clusters (p. 10, Section 5.3; pp. 11-12, Figs. 5c and 7). A separate model-only ablation reused the 24 initial HAICo prompts to compare associative and non-associative GPT-5 idea generation after the user study (p. 10, Section 5.3; p. 12, Fig. 7 right).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Within-subjects lab study: HAICo vs ChatGPT (poster image creation)",
+   "design_class": "lab_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Counterbalancing sequence (task pair, task order, and system order HAICo-first or ChatGPT-first); every participant used both systems",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "This design resulted in 12 counterbalancing sequences (3 task pairs × 2 task orders × 2 system orders). Accordingly, we recruited 24 participants, with two participants randomly assigned to each sequence",
+    "locator": "p. 9, Section 5 (continuing from p. 8); p. 31, Table 5",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "HAICo",
+     "description": "Co-creation system with switchable Divergent mode (idea cards from associative-thinking prompting) and Convergent mode (structured refinement options); GPT-5 text and OpenAI image models",
+     "ai": "generative_ai",
+     "n_randomized": 24,
+     "n_analyzed": 24
+    },
+    {
+     "name": "ChatGPT",
+     "description": "Standard ChatGPT chat interface for image generation, same image model version",
+     "ai": "generative_ai",
+     "n_randomized": 24,
+     "n_analyzed": 24
+    }
+   ],
+   "participants": {
+    "n_randomized": 24,
+    "n_analyzed": 24,
+    "counts_are": "people",
+    "exclusions": "None for novelty, usefulness, and fluency. For the diversity measure, three participants who downloaded only one image for both systems were excluded, yielding N = 21 (p. 10).",
+    "population": null,
+    "who": "Members of the local technology-focused university recruited via mailing lists and word of mouth, aged 24 to 34, 21 of 24 from computer science or IT; the paper does not state their student or staff status",
+    "country": "not stated (participants received a 20 euro voucher; most authors are at German institutions)",
+    "quote": "We recruited 24 participants (10 female, 13 male, 1 non-binary) from the local university via mailing lists and word of mouth (aged 24–34 years, M = 28.2, SD = 2.8).",
+    "locator": "p. 9, Section 5.1; p. 29, Table 4 (Field of Study/Profession; student or staff status not identified)"
+   },
+   "ai_tool": {
+    "name_model": "HAICo (GPT-5 text; gpt-image-1, later gpt-image-1.5) vs ChatGPT (same image models)",
+    "role": "image_generation",
+    "how_used": "Participants generated and refined poster images with each system; HAICo also supplied AI-generated idea cards in its Divergent mode"
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Create poster images promoting a behavior: Spend less time on phones, Spend more time outdoors, or Take care of your mind",
+    "duration": "About 20 minutes of co-creation per session within a 40-minute session; study about 1 hour 50 minutes"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Novelty of downloaded posters",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Five raters (not authors; four had been study participants), blind to system, 5-point Likert; averaged across raters, then images per participant-system pair, then participants; ICC(2,5) = 0.61",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "HAICo",
+       "control_arm": "ChatGPT",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "p_value_only"
+       ],
+       "reported": "HAICo M = 3.22 vs ChatGPT M = 2.41; W = 0.0, p < 0.001 (Wilcoxon signed-rank)",
+       "locator": "p. 11, Fig. 5c caption"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Diversity of each participant's downloaded image set",
+     "construct": "flexibility",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Average pairwise cosine distance between CLIP ViT-bigG-14 embeddings of one participant's downloaded images per system; variety within one person's outputs, not across people; N = 21 after excluding three participants with one image",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "HAICo",
+       "control_arm": "ChatGPT",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "p_value_only"
+       ],
+       "reported": "HAICo M = 0.48 vs ChatGPT M = 0.36; W = 26.0, p = 0.001 (Wilcoxon signed-rank; N = 21)",
+       "locator": "p. 11, Fig. 5c caption; p. 10, Section 5.3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Usefulness of downloaded posters",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "Same five blind raters, 5-point Likert on how effectively the poster promotes the behavior; ICC(2,5) = 0.60 (p. 10, Section 5.3; pp. 27-28, Appendix C.3).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "HAICo",
+       "control_arm": "ChatGPT",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Usefulness was not significantly different across systems (numerical arm means, SDs, a test statistic, and an exact p-value are not printed).",
+       "locator": "p. 11, Fig. 5c and caption"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Fluency of downloaded posters",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Number of images downloaded per participant for each system; participants selected images they considered ready to print as posters (p. 10, Section 5.3, Downloaded Images; p. 27, Appendix C.3).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "HAICo",
+       "control_arm": "ChatGPT",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Fluency was not significantly different across systems. Numerical arm means, SDs, a test statistic, and an exact p-value are not printed.",
+       "locator": "p. 11, Fig. 5c and caption; p. 10, Section 5.3, Downloaded Images"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Image clusters (distinct conceptual ideas explored)",
+     "construct": "flexibility",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of distinct conceptual ideas represented by each participant's image clusters, derived from screen recordings. Each cluster comprises an initial image and its refinement variations; it counts conceptual variety within a participant rather than across people (p. 10, Section 5.3, Behavioral Metrics from Screen Recordings).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "HAICo",
+       "control_arm": "ChatGPT",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "p_value_only"
+       ],
+       "reported": "HAICo M = 2.88 vs ChatGPT M = 2.04; W = 33.0, p = 0.021 (Wilcoxon signed-rank). SDs are not printed.",
+       "locator": "p. 12, Fig. 7 left and caption; p. 10, Section 5.3, Behavioral Metrics from Screen Recordings; p. 9, Section 5.3 (test)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Post-study model-only ablation: associative versus non-associative idea prompting",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No human assignment: the same initial HAICo prompts from S1 were evaluated under both GPT-5 prompting conditions after the user study; generation order is not stated.",
+    "unit": "other",
+    "structure": "within",
+    "quote": "After the study, using the 24 initial prompts participants entered into HAICo, we queried GPT-5 under both conditions three times each (9 ideas per run, matching HAICo’s configuration)",
+    "locator": "p. 10, Section 5.3, Ablation: Associative-Thinking Prompting on Idea Diversity",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Associative-thinking prompting",
+     "description": "GPT-5 is instructed to generate ideas by drawing remote connections across domains; the Divergent-mode prompt is reproduced in Fig. 13 (p. 32).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Non-associative-thinking prompting",
+     "description": "GPT-5 is instructed to generate creative and diverse ideas without the associative-thinking strategy; the comparison prompt is reproduced in Fig. 14 (p. 33).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No additional human sample; exclusions of input prompts are not stated.",
+    "population": null,
+    "who": "The 24 initial prompts entered into HAICo by S1 participants were reused as model inputs. These are matched prompt cases, not newly assigned or analyzed people.",
+    "country": "not applicable (model-only ablation)",
+    "quote": "After the study, using the 24 initial prompts participants entered into HAICo, we queried GPT-5 under both conditions three times each (9 ideas per run, matching HAICo’s configuration)",
+    "locator": "p. 10, Section 5.3, Ablation: Associative-Thinking Prompting on Idea Diversity"
+   },
+   "ai_tool": {
+    "name_model": "GPT-5",
+    "role": "other",
+    "how_used": "Researchers queried GPT-5 under both prompting conditions three times per initial prompt, generating 9 ideas per run; no people used the ablation outputs in a creative task (p. 10, Section 5.3)."
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Generate idea sets from the 24 initial HAICo prompts, comparing remote associative thinking with ordinary creative/diverse brainstorming; 9 ideas per run (p. 10, Section 5.3; pp. 32-33, Figs. 13-14).",
+    "duration": "not stated"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Within-set diversity of model-generated ideas",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Average pairwise cosine distance between CLIP ViT-bigG-14 encodings within each run of 9 model-generated ideas, averaged across three runs for each initial prompt and condition. n_units counts the 24 matched input-prompt cases, each evaluated under both conditions. This is model-only within-set variety, not diversity across different people (p. 10, Section 5.3). Figure error bars are bootstrapped 95% confidence intervals (p. 10, Section 6); numerical interval bounds are not printed.",
+     "unit": "set",
+     "n_units": 24,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Associative-thinking prompting",
+       "control_arm": "Non-associative-thinking prompting",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic",
+        "p_value_only",
+        "figure_only"
+       ],
+       "reported": "Associative-thinking prompting produced greater idea diversity than non-associative-thinking prompting; W = 24.0, p < 0.001 (Wilcoxon signed-rank). Numerical arm means and SDs are not printed.",
+       "locator": "p. 12, Fig. 7 right and caption; p. 10, Section 5.3 (ablation methods) and Section 6 (figure uncertainty); p. 9, Section 5.3 (test)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Company involvement through authorship: Pronita Mehrotra is affiliated with MindAntix, USA, and Sumit Gulwani with Microsoft, USA. Company funding is not stated in the document.",
+  "locator": "p. 1, author affiliations"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "S1 randomized participants to counterbalanced within-person task/system sequences and scored the resulting creative outputs (p. 9, Section 5; p. 31, Table 5; p. 10, Section 5.3). The same 24 people used both AI configurations, with 21 analyzed for image-set variety, below the 50-person threshold (pp. 9-10, Sections 5.1 and 5.3; p. 27, Appendix C.3). S2 is a model-only ablation reusing 24 initial prompts, not an additional human sample (p. 10, Section 5.3). The paper remains screening-report evidence: a small randomized experiment and a model-only study, with no eligible context class."
+ },
+ "one_line_finding": "With 24 participants in a within-subjects lab study, posters made with HAICo were rated more novel than posters made with ChatGPT (3.22 vs 2.41, W = 0.0, p < 0.001) and each participant's image set was more varied (CLIP distance 0.48 vs 0.36, p = 0.001, N = 21), with no significant difference in usefulness or fluency (p. 11, Fig. 5c).",
+ "open_questions": [],
+ "notes": "The complete markdown, including Appendices A-D, was read; recorded figures and correction evidence were checked against PDF pages. S2 measures variety within model-generated idea sets and is coded other/none because the codebook reserves diversity/across_people for comparisons across people. Appendix B technical checks concern latency, syntactic validity and execution fidelity rather than creativity outcomes; self-reported creativity support, usability and learning are also outside the output-scored outcomes.",
+ "fix": {
+  "applied": [
+   {
+    "field": "source.supplement",
+    "old": "{\"exists\": \"not_stated\", \"in_this_pdf\": false, \"where\": \"\", \"holds\": \"\"}",
+    "new": "{\"exists\": \"yes\", \"in_this_pdf\": true, \"where\": \"Appendices A-D, pp. 21-35 of this PDF; Appendix C.3, pp. 27-28; Table 4, p. 29; Table 5, p. 31; ablation prompts in Figs. 13-14, pp. 32-33.\", \"holds\": \"Technical implementation and validation (Appendices A-B); study environment, task instructions, interview protocol, participant demographics and counterbalancing (Appendix C.1); learning-response coding scheme (Appendix C.2); image pool, rater setup, rating rubrics and aggregation (Appendix C.3); system and ablation prompts (Appendix D). Appendix C.3 reports 123 downloaded posters from 24 participants: 63 with ChatGPT and 60 with HAICo (p. 27).\"}",
+    "quote": "This section provides supplementary details on the study procedure, participant materials, interview protocol, and annotation process used in our evaluation.",
+    "locator": "pp. 21-35, Appendices A-D; p. 26, Appendix C introduction; p. 27, Appendix C.3; pp. 29 and 31, Tables 4 and 5"
+   },
+   {
+    "field": "studies[0].participants.population",
+    "old": "students",
+    "new": "null; the supported local-university recruitment description is retained in who, and Table 4 is added to the locator.",
+    "quote": "We recruited 24 participants (10 female, 13 male, 1 non-binary) from the local university via mailing lists and word of mouth",
+    "locator": "p. 9, Section 5.1; p. 29, Table 4"
+   },
+   {
+    "field": "company_involvement",
+    "old": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+    "new": "{\"any\": true, \"description\": \"Company involvement through authorship: Pronita Mehrotra is affiliated with MindAntix, USA, and Sumit Gulwani with Microsoft, USA. Company funding is not stated in the document.\", \"locator\": \"p. 1, author affiliations\"}",
+    "quote": "PRONITA MEHROTRA, MindAntix, USA SUMIT GULWANI, Microsoft, USA",
+    "locator": "p. 1, author affiliations"
+   },
+   {
+    "field": "studies[0].outcomes (missing fluency entry)",
+    "old": "Only novelty, image-set diversity/flexibility, and usefulness have outcome entries; fluency appears within the usefulness entry and the one-line finding.",
+    "new": "Added S1-O4: downloaded images per participant, construct fluency, question with_ai, category_count, participant unit, scored_on_output true; no significant HAICo-ChatGPT difference, figure_only. Unreported means, SDs, test statistic and exact p-value are not supplied. Fluency text was removed from S1-O3 so usefulness is recorded separately.",
+    "quote": "We operationalized Fluency as the number of images downloaded per participant",
+    "locator": "p. 10, Section 5.3, Downloaded Images; p. 11, Fig. 5c and caption"
+   },
+   {
+    "field": "studies[0].outcomes (missing image-cluster entry)",
+    "old": "No outcome entry for Image Clusters.",
+    "new": "Added S1-O5: distinct conceptual image clusters, construct flexibility, question with_ai, category_count, participant unit; HAICo M = 2.88 vs ChatGPT M = 2.04; W = 33.0, p = 0.021 (Wilcoxon signed-rank).",
+    "quote": "participants had significantly more image clusters with HAICo than with ChatGPT (𝑀= 2.88 vs. 2.04; 𝑊= 33.0, 𝑝= 0.021).",
+    "locator": "p. 10, Section 5.3, Behavioral Metrics from Screen Recordings; p. 12, Fig. 7 left and caption"
+   },
+   {
+    "field": "studies (missing model-only ablation)",
+    "old": "Only S1, the within-subjects laboratory study, is recorded.",
+    "new": "Added S2, model_only, with S2-O1 question none: GPT-5 generated 9 ideas per run, three runs per condition for 24 reused initial prompts; within-run CLIP ViT-bigG-14 cosine distances were averaged across runs. Associative prompting was higher, W = 24.0, p < 0.001; arm means and SDs are not printed. Human counts are null; n_units = 24 matched prompt cases. The summary and eligibility now distinguish this ablation from the human study; core remains no and context_class remains none.",
+    "quote": "After the study, using the 24 initial prompts participants entered into HAICo, we queried GPT-5 under both conditions three times each (9 ideas per run, matching HAICo’s configuration)",
+    "locator": "p. 10, Section 5.3, Ablation: Associative-Thinking Prompting on Idea Diversity; p. 12, Fig. 7 right and caption; pp. 32-33, Appendix D, Figs. 13-14"
+   }
+  ],
+  "rejected": []
+ }
+}

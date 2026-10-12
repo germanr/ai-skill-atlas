@@ -1,0 +1,82 @@
+[
+  {
+    "id": "tables-02-1",
+    "cid": "c566",
+    "section": "Recommended for the core dataset",
+    "location": "Song and Xu (2026), Statistics cell, report line 129",
+    "claim": "supplement not on file",
+    "problem": "The Statistics cell substitutes supplement availability for the location of the statistics. The recorded design-achievement statistics are in the main PDF. The external supplement is identified as a design operation sheet, not as the location of missing outcome statistics.",
+    "evidence": "forms/c566.json: source.supplement.holds identifies Supplementary Table S1 as the Double Diamond-Based Design Operation Sheet and says no outcome statistics are identified as available only there. studies[0].outcomes[0].contrasts[*].locator points to p. 9, Table 1 and section 4.1. Independently checked the source PDF: p. 5 describes the operation sheet; p. 9 prints the group Ns, means, SDs, F and pairwise p values.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-02-2",
+    "cid": "c127",
+    "section": "Recommended for the core dataset",
+    "location": "Wadinambiarachchi et al. (2024), Statistics cell, report line 135",
+    "claim": "supplement not on file",
+    "problem": "The statistics-location label is misleading: the form places the outcome model estimates in the PDF and identifies the missing supplement as the study protocol. It does not identify statistics available only in that supplement.",
+    "evidence": "forms/c127.json: source.supplement.holds states that the supplement holds the full study protocol and that all model estimates for the four outcomes, Tables 1-4 on pp. 8-10 and Figures 6-9, are in the PDF. Independently checked PDF p. 4, which identifies the supplementary protocol, and p. 8, which prints Table 1 posterior estimates, SDs and intervals.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-02-3",
+    "cid": "c141",
+    "section": "Recommended for the core dataset",
+    "location": "Yuan, Liu, and Yang (2026), Statistics cell, report line 142",
+    "claim": "supplement not on file",
+    "problem": "The Statistics cell points readers to an unavailable supplement although the form explicitly says all reported statistics are in the main text. The listed supplemental contents are scales, priming materials, rubrics and instructions.",
+    "evidence": "forms/c141.json: source.supplement.holds says \"Materials only\" and \"The listing names no statistical tables or standard errors, so all reported statistics are in the main text.\" The displayed with_ai contrast is located at p. 6, Table 2. Independently checked PDF p. 13: the Supplementary Materials list contains Tables S1-S8 of instruments/rubrics and experimental task instructions.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-02-4",
+    "cid": "c673",
+    "section": "Recommended for the core dataset",
+    "location": "ZHANG et al. (2026), People analyzed, by study cell, report line 143",
+    "claim": "not printed; same participants as No reuse of another paper's participants is stated. AUT and PIT are t…",
+    "problem": "The inserted phrase \"same participants as\" turns an explicit statement that cross-paper reuse is not reported into a malformed affirmative reuse claim. The form identifies no other paper sharing the sample. The unknown quantity is the unique analyzed total across two overlapping tasks, whose separate analyzed counts are known.",
+    "evidence": "forms/c673.json: sample_overlap.shares_participants_with = \"No reuse of another paper's participants is stated. AUT and PIT are two tasks in this same experiment, not independent samples or separate studies.\" studies[0].participants.n_analyzed is null; participants.exclusions and eligibility.reason give 155 analyzed people for AUT and 164 for PIT and say their unique union is not reported (PDF pp. 8-9, section 2.1).",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-02-5",
+    "cid": "c147",
+    "section": "Recommended for the core dataset",
+    "location": "Zhou et al. (2026), Group-AI Collaboration, Statistics cell, report line 148",
+    "claim": "supplement not on file",
+    "problem": "The statistics-location cell incorrectly presents a missing supplement as the source of the statistics. The form places the creativity means, SDs, coefficients and SEs in the main text; the supplementary references concern coding schemes and may refer to an included figure.",
+    "evidence": "forms/c147.json: source.supplement.holds says \"No creativity statistic is said to sit in a supplement\" and locates arm means, SDs and mixed-model coefficients/SEs on pp. 15-16 and mediation total effects in Figure 5, p. 21. final.open_items[4] says the Figure 2A/2B references concern coding schemes, not missing outcome statistics. Independently checked PDF pp. 12 and 15 for the scheme references and pp. 15-16 for the printed creativity statistics.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-02-6",
+    "cid": "c176",
+    "section": "Candidates that need clarification",
+    "location": "Abu Asba and Al-Rababah (2026), What is unsettled cell, report line 1003",
+    "claim": "Criterion 1 is met: the paper explicitly reports random assignment of three intact classes to generative-AI creative problem-solving training, classroom training without AI, or no training (p. 1, Methods; pp. 5-7, limitations, sample and t…",
+    "problem": "Truncation removes the actual reason eligibility is unsettled. The entire visible cell describes criterion 1 as met; it never reaches the unresolved analyzed-person threshold or the clarification required. This changes the cell from an explanation of the pending criterion to an account of a settled criterion.",
+    "evidence": "forms/c176.json: eligibility.reason continues \"Criterion 2 and core eligibility remain unclear: the 75 students and 25 per arm are sample/allocation counts\" and says authors must confirm at least 50 people were analyzed. final.criteria.at_least_50_people = \"unclear\"; final.open_items[0] requires final analyzed headcounts and exclusions from the authors and has affects_eligibility = true.",
+    "severity": "serious"
+  },
+  {
+    "id": "tables-02-7",
+    "cid": "c002",
+    "section": "Candidates that need clarification; Reclassification of the current collection",
+    "location": "Ashkinaze et al. (2025): What is unsettled at report line 1004; New status and Basis at line 1561",
+    "claim": "Clarification reason: open item affects eligibility: Whether exposure to pre-generated ChatGPT example ideas, with no interaction with the model, counts as generative-AI assistance (criterion 1). The codebook's ideas_supplied role ('the study hands par… Reclassification status: clarify.",
+    "problem": "The report treats the supplied-AI-ideas question as unresolved and assigns clarify status, while truncating the sentence that explicitly resolves it. The final form says the paper is core-eligible and that this codebook issue requires nothing further. The item has a contradictory affects_eligibility flag, but its resolution does not support presenting it as an outstanding eligibility problem.",
+    "evidence": "forms/c002.json: final.core = \"yes\" and all final.criteria are \"met\". final.open_items[5].settled_by = \"nothing_needed\"; its full text ends \"The codebook's ideas_supplied role ('the study hands participants AI-generated ideas or examples') covers it, so criterion 1 stays met.\" The same item has affects_eligibility = true, which tools/build_report.py lines 101-103 treats as sufficient for clarify regardless of the resolution. creativity-codebook.md section 6 explicitly includes supplied AI-generated ideas/examples.",
+    "severity": "blocker"
+  },
+  {
+    "id": "tables-02-8",
+    "cid": "c205",
+    "section": "Candidates that need clarification",
+    "location": "Beaty and DiStefano (2026), People analyzed cell, fourth entry, report line 1005",
+    "claim": "People analyzed: 234, 205, 157, 1941",
+    "problem": "The unqualified fourth entry labels 1,941 as an analyzed human headcount. It counts hashed-IP user identifiers, an explicitly imperfect proxy that can merge multiple people or split one person. The report drops the qualification that distinguishes this corpus count from the first three participant samples.",
+    "evidence": "forms/c205.json: studies[3].participants.who says the 1,941 unique users are inferred from hashed IPs and that the field preserves a reported user-level count, \"not a verified count of distinct individuals.\" Independently checked the source PDF p. 41, Final Analytic Sample (1,941 unique users), and p. 42, User-Level Aggregation: \"multiple users may share an IP; one user may use multiple IPs\". forms/checks/c205.json also confirms that the first three sample counts are people and Sample 4 counts user proxies.",
+    "severity": "serious"
+  }
+]

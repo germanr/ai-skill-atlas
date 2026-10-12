@@ -1,0 +1,11 @@
+[
+  {
+    "id": "classes-08-1",
+    "cid": "c062",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "eligibility.context_class; one_line_finding",
+    "correct_value": "eligibility.context_class = \"ai_vs_human\"; one_line_finding = \"Abstract-only screening (OpenAlex): human-only writing reportedly outperformed LLM-only writing on originality. Retain this comparison as AI-versus-human context; full text was not obtained.\"",
+    "evidence": "The assembled report, C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1453, places c062 under Excluded after screening; report-data.json status_by_cid.c062 is excluded. Independently read forms/c062.json:30-32 (Human-only, Human?LLM and LLM-only arms), :97-105 (the recorded originality result compares both human conditions with LLM-only), and :150-156 (core=no, context_class=none, while the reason explicitly identifies an AI-versus-human comparison). creativity-codebook.md section 3, lines 30-42, applies the random-assignment and sample-size requirements to core studies and separately retains AI-versus-human output comparisons as context; section 4, lines 48-54, codes design per estimate, allowing this contrast to be retained separately from the assistance contrast. tools/build_report.py:124-126 correctly follows eligibility.context_class: an in-memory check returned excluded for the existing form and context_ai_vs_human after changing only that field. The correction therefore belongs in the form. The replacement one_line_finding keeps the abstract-only qualification visible in the context table. forms/c062.json:4-10 identifies an OpenAlex abstract as the material screened and has empty PDF/markdown paths; retrieval.json c062 is not_obtained with no PDF path. No PDF page is available. Python requests to OpenAlex and the publisher were blocked by socket permissions. This confirms the classification inconsistency against the cited form and codebook, not an independent verification of the paper or its participant count."
+  }
+]

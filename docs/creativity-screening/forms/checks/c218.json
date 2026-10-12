@@ -1,0 +1,57 @@
+{
+ "cid": "c218",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_analyzed; studies[0].arms[0].n_analyzed; studies[0].arms[1].n_analyzed",
+   "form_value": "{\"participants.n_analyzed\": 60, \"arms[0].n_analyzed\": 30, \"arms[1].n_analyzed\": 30}",
+   "source_says": "The paper reports a study sample of 60 students divided evenly between groups, but never identifies the final number of people whose outputs entered the results, either overall or by arm. Set these analyzed-count fields to null and retain 60 as the reported study sample in prose; the form already acknowledges that no separate analysis count or participant flow is supplied. An even division does not confirm arm-specific analyzed denominators.",
+   "quote": "Sixty club members were divided evenly, with each group receiving identical horror fiction prompts to craft their stories.",
+   "locator": "PDF p. 1, Abstract; pp. 5-6, section 3.1 Participants; p. 9, section 4 Results (group means without analysis denominators)."
+  },
+  {
+   "field": "eligibility.criterion_2_at_least_50_people; eligibility.reason",
+   "form_value": "{\"criterion_2_at_least_50_people\": \"met\", \"reason\": \"Allocation is described only as division into two groups, with no statement of random assignment or a specific non-random mechanism (p. 6, section 3.2; p. 1, Abstract). Thus design_class is other, rather than a confirmed RCT or confirmed non-random comparison. The reported study sample is 60 students (p. 1, Abstract; pp. 5-6, section 3.1), and originality and other horror-writing qualities are scored on their stories with a 1-to-5 rubric (pp. 7-9, section 4). With at least 50 reported participants and output-scored outcomes but unstated allocation, core remains unclear and the paper goes to the two-screener pipeline. There is no separate post-exclusion analysis count.\"}",
+   "source_says": "Change criterion 2 to unclear and explain that the reported study sample exceeds the threshold but the final analyzed participant count is not stated. Neither fewer than 50 analyzed people nor at least 50 analyzed people can be verified from this document; core eligibility remains unclear because random assignment is also unreported.",
+   "quote": "The study involved 60 students from Souk Ahras University, comprising third-year bachelor (L3) students, as well as Master One and Master Two level students.",
+   "locator": "PDF p. 5, section 3.1 Participants; p. 9, section 4 Results; form-spec.md, eligibility.core field note (threshold counts people analyzed)."
+  },
+  {
+   "field": "studies[0].outcomes (missing Character Depth outcome)",
+   "form_value": "[\"Originality (Fear of the Unknown)\", \"Atmosphere (Descriptive Language & Setting)\", \"Tension Build-up (Pacing & Suspense)\"]",
+   "source_says": "Add Character Depth (Relatable Characters & Fears), which is scored on the stories using the same 1-to-5 rubric. The printed ranges are Claude AI 3.55 to 4.10 and human participants 2.45 to 3.95; these are score ranges, not confidence intervals. Code it as usefulness, with_ai, output, with measure and n_units null because the evaluator and analysis denominator are unreported. Although the prose says Claude scores higher, Figures 2 and 6 show higher AI scores for Stories 1 and 2 and a lower AI score for Story 3, so the direction across stories is mixed. No SD, SE, or inferential comparison is reported.",
+   "quote": "Claude AI also scores higher in character depth, with scores ranging from 3.55 to 4.10, while human participants scored between 2.45 and 3.95.",
+   "locator": "PDF pp. 7-8, section 4 Results (rubric); p. 10, Figure 2; p. 12, section 4.1 Character Depth and Figure 6."
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing",
+   "form_value": "[{\"outcome_id\": \"S1-O1\", \"ai_available_when_produced\": \"\", \"timing\": \"\"}, {\"outcome_id\": \"S1-O2\", \"ai_available_when_produced\": \"\", \"timing\": \"\"}, {\"outcome_id\": \"S1-O3\", \"ai_available_when_produced\": \"\", \"timing\": \"\"}]",
+   "source_says": "For the recorded outcomes and the missing character-depth outcome, set ai_available_when_produced to yes and timing to immediate. G1 used Claude during the writing sessions and integrated its suggestions into the drafts collected at the end of each session; these are outcomes produced during assistance, with no reported later unassisted test.",
+   "quote": "Participants (G1) using Claude AI integrated its suggestions into their writing process, while those writing independently (G2) relied solely on their own skills and imagination.",
+   "locator": "PDF pp. 6-7, section 3.3 Materials; pp. 7-12, sections 4 and 4.1 (scores on those stories)."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].treatment_arm; control_arm; comparison_type; direction",
+   "form_value": "[{\"outcome_id\": \"S1-O1\", \"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\"}, {\"outcome_id\": \"S1-O2\", \"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\"}, {\"outcome_id\": \"S1-O3\", \"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\"}]",
+   "source_says": "Populate the supported contrast fields: treatment_arm = G1: Claude AI-assisted writing; control_arm = G2: Unassisted writing; comparison_type = ai_vs_bau. Direction is treatment_lower for originality and atmosphere and treatment_higher for tension build-up, as stated in the reported strings and shown in the figures. These are descriptive comparisons; randomization and statistical significance are not established.",
+   "quote": "Claude AI surpasses the Human participants, with scores between 3.95 and 4.30, compared to human scores of 2.45 to 2.60.",
+   "locator": "PDF p. 6, section 3.2 Intervention (arms); p. 10, section 4.1 Originality; p. 11, Atmosphere and Figures 3-4; p. 12, Tension Build-up and Figure 5."
+  }
+ ],
+ "confirmed": [
+  "Read all 262 lines of the local markdown conversion, all 14 PDF pages, and Figures 1-6; the PDF ends with references on pp. 13-14 and contains no appendix or stated supplement.",
+  "The source is the published journal article by Moufida Boumous in Rupkatha Journal, volume 16, number 3 (2024), first published 27 October 2024; the title, author, publication date, and 14-page length recorded in the form match the document (PDF p. 1; page count and headers).",
+  "The study is described as a controlled between-subjects experiment, but allocation is only described as division into groups; no randomization mechanism is reported. has_randomized_people_study is false because no such study is confirmed, not because nonrandom assignment is demonstrated; assignment.randomized = not_stated, design_class = other, context_class = none, and core = unclear remain appropriate (PDF p. 5, section 3; p. 6, section 3.2).",
+  "The reported study sample is 60 students, including third-year bachelor, Master One, and Master Two students in the Bookish Minds club; the abstract says they were divided evenly. These are people, and the paper gives no randomized count or exclusion flow (PDF p. 1, Abstract; pp. 5-6, section 3.1).",
+  "Output counts are ambiguous: the introduction describes sixty student-written stories, the procedure describes a distinct story in each of three sessions, and the originality discussion refers to 30 G2 stories. None of these establishes a final participant analysis denominator or a consistent total output count; leaving n_units null is justified (PDF p. 2, Introduction; p. 6, section 3.3; p. 10, Originality).",
+  "G1 participants used Claude to generate ideas, structure narratives, and refine their stories; G2 wrote without AI. The methods describe three ordinary club sessions of 50 minutes each, common story prompts, and handwritten drafts incorporating AI suggestions in G1; a Claude model version is not specified (PDF pp. 6-7, sections 3.2-3.3).",
+  "The rubric scores originality, atmosphere, tension build-up, and character depth from 1 to 5; rater identity and the scoring procedure beyond the rubric are not specified, so measure = null is appropriately cautious (PDF pp. 7-9, section 4 and Figure 1).",
+  "Originality reported string verified: G1 1.95 to 2.30 and G2 4.35 to 4.75, described as mean scores across the stories (PDF p. 9, section 4; p. 10, section 4.1 Originality; p. 11, Figure 3).",
+  "Atmosphere reported string verified: Claude AI 2.40 to 2.60 and human participants 3.65 to 4.00 (PDF p. 11, section 4.1 Atmosphere and Figure 4).",
+  "Tension build-up reported string verified: Claude AI 3.95 to 4.30 and human participants 2.45 to 2.60 (PDF p. 12, section 4.1 Tension Build-up and Figure 5).",
+  "The one-line finding correctly reproduces the originality and tension ranges and their descriptive directions, with group allocation unstated. The ranges are not confidence intervals; no SD, SE, inferential test, or p-value is provided for these comparisons (PDF p. 6, section 3.2; pp. 9-12, results text and Figures 2-6).",
+  "This is one original empirical study, not a synthesis, so pooled estimates, standardized effects, and synthesis study counts are inapplicable (PDF pp. 5-12, sections 3-4.1). The paper declares no conflicts of interest and no funding (PDF p. 1)."
+ ],
+ "summary": "Random assignment and final analyzed counts are not reported, so no randomized-people study is confirmed and the reported 60-student sample does not establish the analyzed denominator. The source version and all recorded score ranges match the PDF, but the form omits character depth and leaves supported contrast and timing fields blank."
+}

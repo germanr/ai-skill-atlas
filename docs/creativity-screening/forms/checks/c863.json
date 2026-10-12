@@ -1,0 +1,31 @@
+{
+  "cid": "c863",
+  "agrees": false,
+  "has_randomized_people_study": true,
+  "corrections": [
+    {
+      "field": "data_and_code.code_url",
+      "form_value": "",
+      "source_says": "The paper gives a code link twice: https://github.com/mario-michelessa/varifai. The form records it only in source.supplement.where and leaves code_url empty. Record \"https://github.com/mario-michelessa/varifai\". The paper gives no data link, so data_url stays empty.",
+      "quote": "Our code is available at: https://github.com/mario-michelessa/varifai",
+      "locator": "p. 7, Section 5.4 Implementation Details; also p. 2, footnote 1 (\"Code available at https://github.com/mario-michelessa/varifai\")"
+    }
+  ],
+  "confirmed": [
+    "source.version is exact. The PDF margin reads \"arXiv:2506.19644v1 [cs.HC] 24 Jun 2025\" and the file has 19 pages (p. 1; PyMuPDF page count). The PDF itself does not name DIS 2025 or the DOI. The arXiv record does (comment \"DIS2025\", DOI 10.1145/3715336.3735847) and lists only v1. Crossref places the DOI in the DIS 2025 proceedings, pp. 1867-1885 (arXiv API and Crossref, 6 October 2026).",
+    "The title and the four authors (Michelessa, Ng, Hurter, Lim) match p. 1 and the Crossref record.",
+    "The two earlier studies have no comparison group and no scored output: an elicitation study with 8 people, E1 to E8 (p. 3, Section 3.1.1), and a formative study with the same 8 people (p. 2, Introduction; p. 7, Section 6.1). The form calls each an 8-person study, which is correct. They share one set of 8 people.",
+    "Summative study randomization: the Technique comparison \"was done within-subjects with counterbalancing to mitigate learning effects\" (p. 9, Section 7.1.1). The assignment quote is verbatim (p. 10, Section 7.1.2, step 3a). The scenario was randomly assigned and treated as a between-subjects random variable (p. 10, Section 7.1.1 Scenarios (RV) and Section 7.1.2, step 3). Codebook criterion 1 accepts a within-person design with randomized order, so criterion 1 is met. design_class lab_rct fits a supervised Zoom session with screen sharing (p. 10, Section 7.2).",
+    "Arms: Prompt-only is \"an ablated version of Varif.ai with only the prompt text entry and no Attributes tab\" (p. 9, Section 7.1.1 and Fig. 7). Both arms use generative AI. The tool runs SD-XL Lightning and LLaMA-2 (p. 7, Section 5.4) and labels images with CLIP (p. 7, Section 5.2). comparison_type ai_design with Varif.ai as treatment follows codebook Section 5.",
+    "Counts: 20 participants recruited, ages 21 to 33 (Median = 23), 12 female, backgrounds social sciences 6, medicine 3, arts 2, business 3, STEM 6, and nine with no prior text-to-image experience (p. 10, Section 7.2). The participants quote is verbatim (32 words). All counts are people.",
+    "n_analyzed: the paper reports no exclusions and prints no separate analysis count, so 20 analyzed per arm rests on the recruited count and the within-person design, as the exclusions note says. Fig. 11 (p. 12) shows P1 to P20 once each: 6 Doctors, 7 Birds, 7 Cars. With 20 people, fewer than 50, criterion 2 is not met and core no is correct.",
+    "Outcome definition: span(z) is the 95th percentile of the distances of CLIP image embeddings from their mean, computed with CLIP-ViT-bigG-14-laion2B-39B-b160k (footnote 7) over each participant collection augmented to 50 images (p. 10, Computed Image Diversity (DV)). The analysis uses linear mixed-effects models with post-hoc contrasts (p. 10, Section 7.2). The score is computed within one person, so construct flexibility, question with_ai, and empty diversity_detail follow codebook Section 6.",
+    "Reported numbers match the print: Varif.ai span mean M = 0.65 vs Prompt-only M = 0.45 (p < .0001) and vs Original M = 0.35 (p < .0001) (p. 11, Section 7.2.1). The Fig. 8 caption says the error bars are 90 percent confidence intervals (p. 10). Fig. 8a plots the three points near 0.35, 0.45, and 0.65. The one-line finding repeats these numbers correctly.",
+    "Task and session: the scenarios match Table 3 (p. 9). The Main Session lasted 40 min and the Zoom experiment one hour, with $15.30 compensation (p. 10, Sections 7.1.2 and 7.2). Varif.ai alone was used for the attribute-specific and attribute-label-specific degrees (p. 10, Section 7.1.2, steps 3b and 3c).",
+    "Supplement and preregistration: the text mentions no preregistration and no supplementary material. Appendix A (LLM prompts) and Appendix B (Figs. 14 to 17, image examples and Prompt-only prompt iterations, no statistics) are inside the PDF (pp. 17 to 19).",
+    "company_involvement any false is correct: affiliations are NUS, A*STAR I2R, Universite de Toulouse, ENAC, and IPAL, and the funder is the National Research Foundation, Singapore (p. 1; p. 15, Acknowledgments). GPT-4o appears only as an automated baseline.",
+    "The single outcome is complete under form rule 7. Task time and iteration count measure engagement, not the output (p. 10). The RQ2 comparisons of specification degrees use Varif.ai only, presented in a fixed order (p. 9, Section 7.1.1). The GPT-4o and Promptist baselines (pp. 11 to 13, Section 7.2.3, Figs. 11 and 12) assign no people.",
+    "population general_public is a coding choice that the text neither confirms nor contradicts: participants came from \"a local university mailing list and mutual connections\", and the paper does not say whether they were students (p. 10, Section 7.2). The paper does not state a country, so the empty field is correct."
+  ],
+  "summary": "The form matches arXiv v1: in the summative study, 20 people used Varif.ai and a Prompt-only version in randomized, counterbalanced order, and the CLIP diversity span of the image set of each person was higher with Varif.ai (M = 0.65 vs 0.45, p < .0001; p. 11, Section 7.2.1), so the paper has a randomized people study, below the 50-person threshold. The one fix is data_and_code.code_url, which is empty although the paper gives https://github.com/mario-michelessa/varifai (p. 7, Section 5.4)."
+}

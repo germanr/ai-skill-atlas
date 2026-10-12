@@ -1,0 +1,73 @@
+{
+ "cid": "c195",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "source.supplement",
+   "form_value": "{\"exists\": \"no\", \"in_this_pdf\": false, \"where\": \"\", \"holds\": \"\"}",
+   "source_says": "Set exists to yes and in_this_pdf to true. Supplementary table 1 is included on PDF p. 6 and gives the pairwise Jaccard similarity matrix for essays labeled Control1–Control9 and GPT1–GPT9; these individual pairwise values are absent from the main Results summary.",
+   "quote": "Supplementary table 1. Pairwise comparison of essay similarity.",
+   "locator": "PDF p. 6, Supplementary table 1; PDF p. 4, Results reference to the table."
+  },
+  {
+   "field": "eligibility.context_class",
+   "form_value": "none",
+   "source_says": "Set context_class to observational for the documented quasi_people design. The authors describe allocation balanced on study module and GPA, without stating random assignment; the current codebook and form-spec already place quasi_people comparisons in observational context. Revise eligibility.reason accordingly instead of making this contingent on a future Review 1 decision or treating it as a confirmed small randomized experiment; retain assignment.randomized = not_stated, criterion_1 = unclear, and n_randomized = null.",
+   "quote": "we divided them into two groups according to the study module (Crime Scene Investigation, Forensic Chemistry and Molecular Biology, and Forensics and National Security) and the weighted grade point average (GPA) to ensure the similar composition of the groups.",
+   "locator": "PDF p. 2, Materials and methods; creativity-codebook.md sections 3–4; form-spec.md, design_class field note."
+  },
+  {
+   "field": "eligibility.criterion_3_outcome_scored_on_output",
+   "form_value": "unclear",
+   "source_says": "Set to met. Jaccard similarity is computed on the essays produced by different participants and therefore meets the output-diversity criterion. The absence of an arm-level similarity contrast limits effect extraction but does not make this criterion unclear; update eligibility.reason. Core eligibility remains no because the sample is below 50 and random assignment is not established.",
+   "quote": "The text similarity in the overall sample was low (Supplementary table 1), with a median value of the Jaccard similarity index of 0.002 (0 – 0.054).",
+   "locator": "PDF p. 3, Materials and methods; PDF p. 4, Results; PDF p. 6, Supplementary table 1; creativity-codebook.md sections 1 and 3."
+  },
+  {
+   "field": "studies[0].outcomes[1].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "Complete the required diversity fields: metric = Jaccard similarity index, calculated using R Textreuse; embedding_model = not applicable to this lexical measure; computed_over = pairs of essays across the whole sample, including within-group and between-group pairs; uncertainty = no arm-level standard error, interval, or comparison test reported. Preserve the overall median 0.002 (0 – 0.054) in notes. The number of pairs is not explicitly reported as a count, so n_units should remain null.",
+   "quote": "and conducted the pairwise comparison for document similarity using R studio (ver. 1.2.5033) and package Textreuse 24 using the Jaccard similarity index.",
+   "locator": "PDF p. 3, Materials and methods; PDF p. 4, Results; PDF p. 6, Supplementary table 1; form-spec.md, diversity_detail field note."
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts",
+   "form_value": "[{\"treatment_arm\": \"Experimental (GPT)\", \"control_arm\": \"Control\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"no_clear_difference\", \"statistics_available\": [], \"reported\": \"No arm-level summary or test. 'The text similarity in the overall sample was low (Supplementary table 1), with a median value of the Jaccard similarity index of 0.002 (0 – 0.054).' Supplementary table 1 prints every pairwise value, labeled Control1-9 and GPT1-9. Discussion: no 'remarkable similarities ... regardless of whether they were using ChatGPT'.\", \"locator\": \"p. 4, Results; p. 6, Supplementary table 1; p. 7, Discussion\"}]",
+   "source_says": "The numerical reported string is correct, but it summarizes the pooled sample rather than an Experimental-versus-Control contrast. No arm-level similarity estimate or test supports the coded direction no_clear_difference. Leave contrasts empty and retain the pooled summary and the authors' descriptive discussion in diversity_detail.notes; do not interpret low overall similarity as evidence of no between-group difference.",
+   "quote": "The text similarity in the overall sample was low (Supplementary table 1), with a median value of the Jaccard similarity index of 0.002 (0 – 0.054).",
+   "locator": "PDF p. 4, Results; PDF p. 6, Supplementary table 1; PDF p. 7, Discussion."
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0].statistics_available",
+   "form_value": "[]",
+   "source_says": "Include p_value_only because the regression group P value is explicitly reported. The paper also prints arm means with ± quantities, but the preprint does not explicitly label those quantities as SD or SE, so do not infer their type when selecting any additional statistics tag.",
+   "quote": "However, none of the predictors had a significant effect on the outcome: group (P = 0.184), writing duration (P = 0.669), module (P = 0.388), and GPA (P = 0.532).",
+   "locator": "PDF p. 4, Results, final paragraph; form-spec.md, statistics_available field note."
+  },
+  {
+   "field": "studies[0].assignment.quote",
+   "form_value": "Before the experiment, we divided them into two groups according to the study module (Crime Scene Investigation, Forensic Chemistry and Molecular Biology, and Forensics and National Security) and the weighted grade point average (GPA) to ensure the similar composition of the groups.",
+   "source_says": "The existing quotation is verbatim but contains 42 words, exceeding the form's 40-word limit. Remove its opening phrase \"Before the experiment,\" to use the 39-word verbatim excerpt quoted here; the assignment description remains unchanged.",
+   "quote": "we divided them into two groups according to the study module (Crime Scene Investigation, Forensic Chemistry and Molecular Biology, and Forensics and National Security) and the weighted grade point average (GPA) to ensure the similar composition of the groups.",
+   "locator": "PDF p. 2, Materials and methods; form-spec.md rule 4."
+  }
+ ],
+ "confirmed": [
+  "Read the entire local markdown conversion, including Supplementary table 1 and references, and independently extracted all 11 PDF pages. The document is the preprint titled Better by You, better than Me? ChatGPT-3 as writing assistance in students’ essays., by Željana Bašić, Ana Banovac, Ivana Kružić, and Ivan Jerković; it is not the journal version of record (PDF p. 1; complete PDF pp. 1–11).",
+  "The source.version qualification is supported: the local PDF has no printed arXiv version marker, so v1 versus v2 is not established from it. The arXiv submission history independently confirms v1 on 2023-02-09 and v2 on 2023-10-31, each listed as 344 KB (https://arxiv.org/abs/2302.04536, submission history).",
+  "Crossref independently confirms the journal title ChatGPT-3.5 as writing assistance in students’ essays, Humanities and Social Sciences Communications volume 10, article 750, publication date 2023-10-28, and abstract arm sizes n = 9 and n = 9 (https://api.crossref.org/works/10.1057/s41599-023-02269-7). Only journal metadata and abstract were read; the publisher PDF URL returned a Client Challenge, so no journal full-text claim is made.",
+  "There is one original people study, not a synthesis or an AI-only comparison. The authors balanced the two groups on study module and GPA but do not state random assignment anywhere in the full preprint; quasi_people, randomized = not_stated, criterion_1 = unclear, and randomized counts = null are appropriately cautious (PDF pp. 2–3, Materials and methods; full PDF pp. 1–11).",
+  "The sample comprises 18 volunteer students out of 50 course enrollees, with 9 in each arm; 50 is the course enrollment, not the analyzed sample size. No participant exclusions are reported, and the table includes Control1–Control9 and GPT1–GPT9; n_analyzed = 18 and criterion_2 = not_met are supported, while no randomized participant count is provided (PDF p. 1, Abstract; pp. 2–3, Materials and methods; p. 6, Supplementary table 1).",
+  "Participants were second-year master’s students in forensic sciences at the University of Split, Croatia. Control GPA was 3.92 ± 0.46 and experimental GPA was 3.92 ± 0.57; the experimental group used what the preprint calls ChatGTP assistance, version 2.1.0 (PDF pp. 2–3, Materials and methods).",
+  "The task was an 800–1000-word Croatian essay on advantages and disadvantages of biometric identification in forensic sciences, using Vancouver citations, with four hours allowed. The experimental group was introduced to ChatGPT and the control group was supervised to prevent its use (PDF p. 3, Materials and methods).",
+  "Two teachers graded mechanics, style, content, and format, resolving disagreements by consensus; grades were converted as A=4, B=3, C=2, D=1 and averaged across the four elements. This supports the essay-quality outcome, without establishing a direct creativity rating (PDF p. 3, Materials and methods).",
+  "S1-O1.reported and the one-line essay-score values match: control 2.39 ± 0.71 versus GPT 2.00 ± 0.73; regression group P = 0.184. The regression included group, writing duration, module, and GPA; no statistically significant group association was reported (PDF p. 1, Abstract; p. 4, Results; Figure 1 caption on p. 5).",
+  "The recorded writing durations match: GPT 172.22 ± 31.59 minutes and control 179.11 ± 31.93 minutes (PDF p. 4, Results).",
+  "S1-O3.reported matches exactly: text unauthenticity 11.87% ±13.45 in the GPT-assisted group and 9.96% ± 9.81% in the control group. No inferential between-arm test of this outcome is reported; treatment_higher describes the printed means only (PDF p. 4, Results).",
+  "S1-O2.reported and the one-line Jaccard values match the pooled Results summary: median 0.002 (0 – 0.054). Supplementary table 1 lists pairwise values, including a displayed maximum of 0.0537 at Control1–Control4, consistent with the rounded upper endpoint in the prose; it provides no arm-level similarity summary or test (PDF p. 4, Results; p. 6, Supplementary table 1, independently recovered with find_tables).",
+  "The discussion describes no remarkable pairwise essay similarities regardless of ChatGPT use, but does not provide an arm-level contrast. The one-line finding correctly states that no arm-level similarity contrast was reported (PDF p. 7, Discussion; p. 4, Results).",
+  "The synthesis fields are correctly left empty: this is one empirical study and reports no meta-analytic study count, pooled estimate, or standardizer (PDF pp. 2–4, Materials and methods and Results)."
+ ],
+ "summary": "The preprint reports 18 students (9 per group), does not state random assignment, and its numerical results match the form. Seven corrections concern observational context, the output-diversity criterion, the included supplement, and the diversity, statistics, and quotation fields."
+}

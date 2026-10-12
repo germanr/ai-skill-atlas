@@ -1,0 +1,258 @@
+{
+  "cid": "c001",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Anderson Shah Kreminski (2024) - Homogenization Effects of LLMs on Human Creative Ideation.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Anderson Shah Kreminski (2024) - Homogenization Effects of LLMs on Human Creative Ideation.pdf",
+    "version": "Published conference paper: Creativity and Cognition (C&C '24), June 23-26, 2024, Chicago, ACM, pp. 413-425, DOI 10.1145/3635636.3656204 (version of record as printed on p. 1)",
+    "title_on_document": "Homogenization Effects of Large Language Models on Human Creative Ideation",
+    "authors_on_document": ["Barrett R. Anderson", "Jash Hemant Shah", "Max Kreminski"],
+    "pages": 13
+  },
+  "paper_design_summary": "A within-subjects user study in which each participant did four divergent-thinking prompts (two Product Improvement, two Improbable Consequences, 8 minutes each), two with ChatGPT 3.5 and two with the Oblique Strategies card deck (a non-AI creativity support tool); the order of tools and prompts was randomized per participant and balanced. Of 36 participants, 33 were analyzed. The ideas (1271 in total) were scored for group-level and individual-level semantic divergence with sentence embeddings, idea count (fluency), hand-coded categories (flexibility), stoplisted word count (elaboration), and unique ideas (originality); self-reported responsibility and the Creativity Support Index were also collected.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Within-subjects user study: ChatGPT vs Oblique Strategies deck on four TTCT-style ideation prompts",
+      "design_class": "lab_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Order of the two creativity support tools (ChatGPT, Oblique Strategies deck) and of the ideation prompts, per participant; every participant used both tools",
+        "unit": "within_person_order",
+        "structure": "within",
+        "quote": "The order of CSTs and prompts was randomized per participant and balanced across the entire experiment.",
+        "locator": "PDF p. 4 (printed p. 416), Section 3.3 Procedure",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "ChatGPT", "description": "Participant answers two ideation prompts (one Product Improvement, one Improbable Consequences) while free to use ChatGPT 3.5", "ai": "generative_ai", "n_randomized": 36, "n_analyzed": 33 },
+        { "name": "Oblique Strategies (OS) deck", "description": "Participant answers the other two ideation prompts while using a web app version of the Oblique Strategies card deck (non-AI prompts such as 'Turn it upside down')", "ai": "other_aid", "n_randomized": 36, "n_analyzed": 33 }
+      ],
+      "participants": {
+        "n_randomized": 36,
+        "n_analyzed": 33,
+        "counts_are": "people",
+        "exclusions": "3 of 36 recruited participants excluded from all analyses for failure to follow directions (e.g., not using ChatGPT when prompted). Within-subjects design, so each arm count is the same 33 people. Note: the CSI test is reported with t(35) and the interview and process percentages use 36 as the denominator.",
+        "population": "mixed",
+        "who": "Adults aged 22-44 recruited from academic mailing lists, forums, and social media: 12 students, 10 creative professionals, 11 other professionals",
+        "country": "not_stated",
+        "quote": "Of the 36 participants originally recruited, three were excluded from all analyses for failure to follow direction (e.g., not using ChatGPT when prompted to do so).",
+        "locator": "PDF p. 3 (printed p. 415), Section 3.1.1; PDF p. 4 (printed p. 416), Section 3.1.2 'Our sample included 33 participants'"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT 3.5 (versions released May 3, 2023, n=6, and August 3, 2023, n=30)",
+        "role": "open_chat",
+        "how_used": "Participants used ChatGPT freely while listing ideas; most pasted the prompt into ChatGPT and iterated; 41.67% copied output directly (selectively), 16.67% only paraphrased or drew inspiration, 38.89% combined both (PDF pp. 7, printed p. 419, Sections 4.5.2-4.5.3)"
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Subset of the Torrance Tests of Creative Thinking: Product Improvement (stuffed toy animal, jigsaw puzzle) and Improbable Consequences (great fog, weak gravity); generate as many ideas as possible that no one else would think of",
+        "duration": "8 minutes per prompt, two prompts per tool (four prompts total), within a one-hour remote-moderated session"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Group-level divergence (homogenization): divergence of each idea from the average embedding of all participant ideas for that task",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity of each idea a participant generated to the average embedding of all participant ideas for the task, reported as 'Divergence (From Others)'; sentence embeddings from all-MiniLM-L6-v2 (SentenceTransformers), validated against human idea categories in Appendix A (58.92% average agreement, Table 2)",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Oblique Strategies (OS) deck",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "ChatGPT M = .24, SD = .07 vs OS M = .28, SD = .08, t(32) = 2.154, p = 0.038, d = .47, 95% CI [.00,.07]. ChatGPT ideas were less divergent from the group (more homogeneous).",
+              "locator": "PDF p. 5 (printed p. 417), Section 4.1.2 and Figure 2"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Divergence from the group: based on cosine similarity of each idea's embedding to the mean embedding of all participants' ideas for the same task; higher = more distinct from the group",
+            "embedding_model": "all-MiniLM-L6-v2 (SentenceTransformers)",
+            "computed_over": "Each idea against the centroid of all participant ideas for that task, then summarized per participant; the paper does not state whether the centroid pools both tool conditions or excludes the idea itself",
+            "uncertainty": "Paired t-test over 33 participants (t(32)); figure error bars are 95% CIs with Cousineau-Morey correction for within-subjects data",
+            "notes": "Sign: the paper reports divergence, so lower = more homogeneous; ChatGPT lower divergence means less diversity across people."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Individual-level divergence: divergence of each idea from the average embedding of the same participant's other ideas for that prompt",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same embedding approach as S1-O1 but against the participant's own average embedding ('Divergence (From Self)'); measures variety within one person's ideas, so coded flexibility rather than diversity",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Oblique Strategies (OS) deck",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "ChatGPT M = .65, SD = .07 vs OS M = .66, SD = .08, t(32) = .944, p = 0.352, d = .12, 95% CI [-.04,.01]",
+              "locator": "PDF p. 5 (printed p. 417), Section 4.1.3 and Figure 3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "",
+            "embedding_model": "",
+            "computed_over": "",
+            "uncertainty": "",
+            "notes": ""
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Fluency: number of ideas",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Simple idea count per participant",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Oblique Strategies (OS) deck",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "ChatGPT M = 8.39, SD = 3.39 vs OS M = 7.32, SD = 3.22, t(32) = 2.10, p = 0.044, d = .32, 95% CI [.03,2.11]",
+              "locator": "PDF pp. 5-6 (printed pp. 417-418), Section 4.3.1 and Figure 5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Flexibility: number of idea categories hit",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Grounded-theory coding produced 181 categories from 1271 responses; each participant's ideas tagged with all relevant categories; coders blind to tool condition",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Oblique Strategies (OS) deck",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "ChatGPT M = 8.58, SD = 2.90 vs OS M = 6.77, SD = 3.69, t(32) = 3.50, p = 0.001, d = .54, 95% CI [.75,2.86]",
+              "locator": "PDF p. 6 (printed p. 418), Section 4.3.2 and Figure 6"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Elaboration: stoplisted word count",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Count of words used to express each idea excluding a stoplist of common filler words (Dumas et al. 2021); a computed text-mining measure, no listed measure code fits exactly",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Oblique Strategies (OS) deck",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "ChatGPT M = 8.25, SD = 4.61 vs OS M = 6.46, SD = 2.55, t(32) = 2.32, p = 0.237, d = .48, 95% CI [.22,3.37] (p as printed; it conflicts with the t-statistic and the CI)",
+              "locator": "PDF p. 6 (printed p. 418), Section 4.3.3 and Figure 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Originality: number of unique ideas (ideas no other participant generated)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of ideas no other participant also generated. Robustness variants: (a) idea categories produced by less than 5% of participants; (b) weighted flexibility score weighting each category by its sample frequency. The paper says neither changed the finding.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "ChatGPT",
+              "control_arm": "Oblique Strategies (OS) deck",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "confidence_interval"],
+              "reported": "Unique ideas: ChatGPT M = .74, SD = .69 vs OS M = .97, SD = 1.00, t(32) = 1.65, p = 0.108, d = .26, 95% CI [-.05,.50]. 5% threshold: ChatGPT M = .87, SD = .88 vs OS M = .90, SD = 1.07, t(32) = .134, p = 0.894, d = .02, 95% CI [-.34,.39]. Weighted flexibility score: ChatGPT M = 6.34, SD = 3.31 vs OS M = 5.50, SD = 3.01, t(32) = 1.424, p = 0.164, d = .26, 95% CI [-.35,2.02]",
+              "locator": "PDF p. 6 (printed p. 418), Section 4.3.4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Funded by Hackworth Grant GR102981 from the Markkula Center for Applied Ethics; no company involvement stated", "locator": "PDF p. 9 (printed p. 421), Acknowledgments" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Within-person design with randomized order of ChatGPT vs a non-AI tool (Oblique Strategies deck), and outcomes are scored on the ideas, but only 36 people were recruited and 33 analyzed (PDF pp. 3-4, Sections 3.1.1-3.1.2), below the 50-person threshold. The codebook names this paper as one the 50-person rule excludes (open question in Section 13). It is a randomized experiment, so it is not context evidence; it goes to the screening report as a small RCT."
+  },
+  "one_line_finding": "With ChatGPT rather than the Oblique Strategies deck, 33 participants' ideas were less divergent from the group (M = .24 vs .28, t(32) = 2.154, p = 0.038, d = .47), with no difference in individual-level divergence and more ideas, categories, and words per idea (PDF pp. 5-6, Sections 4.1-4.3).",
+  "open_questions": [
+    "Individual-level divergence: the text prints M = .65 (ChatGPT) and .66 (OS), but the y-axis of Figure 3 (PDF p. 5) places both group means near 0.33-0.35. The printed numbers may be on a different scale or in error.",
+    "Elaboration: p = 0.237 as printed is inconsistent with t(32) = 2.32 and the 95% CI [.22,3.37], which excludes zero (PDF p. 6, Section 4.3.3).",
+    "The analyzed sample is 33, but the CSI test reports t(35) and the interview and process percentages use 36 as the denominator (PDF p. 7, Sections 4.4-4.5); the ChatGPT version counts (n=6 and n=30) also sum to 36.",
+    "Whether the group-level centroid pools ideas from both tool conditions is not stated.",
+    "Design class: sessions were remote-moderated over videoconferencing and the authors call it a lab context (Section 6); coded lab_rct as a supervised session."
+  ],
+  "notes": "Self-reported outcomes not listed as outcomes: sense of responsibility (ChatGPT M = 48.17% vs OS 63.63%, t(32) = 3.21, p = 0.003, d = .67; Section 4.2) and Creativity Support Index (78.03% vs 73.98%, t(35) = 1.028, p = 0.312; Section 4.4.2). Section 4.5.4 reports non-randomized comparisons and correlations within the ChatGPT condition (prompting strategy, prompts entered), not listed as contrasts. Ideas were not rated for quality by humans (Section 4.3)."
+}

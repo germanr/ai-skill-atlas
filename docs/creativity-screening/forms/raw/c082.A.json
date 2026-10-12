@@ -1,0 +1,370 @@
+{
+  "cid": "c082",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Kumar Vincentius Jordan Anderson (2025) - Human Creativity in the Age of LLMs.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Kumar Vincentius Jordan Anderson (2025) - Human Creativity in the Age of LLMs.pdf",
+    "version": "arXiv 2410.03703v2 of 2025-02-15 (side stamp on p. 1), typeset in the CHI '25 ACM format with the ACM copyright block and DOI 10.1145/3706598.3714198; this is the arXiv copy of the CHI '25 paper, not the ACM Digital Library file",
+    "title_on_document": "Human Creativity in the Age of LLMs: Randomized Experiments on Divergent and Convergent Thinking",
+    "authors_on_document": ["Harsh Kumar", "Jonathan Vincentius", "Ewan Jordan", "Ashton Anderson"],
+    "pages": 18,
+    "supplement": {
+      "exists": "no",
+      "in_this_pdf": true,
+      "where": "Appendices A and B are inside this PDF (pp. 16-18). The two preregistrations are at https://aspredicted.org/dkvp-n785.pdf (Experiment 1, p. 4 footnote 1) and https://aspredicted.org/4q75-bskd.pdf (Experiment 2, p. 9 footnote 2).",
+      "holds": "Appendices hold only the GPT-4o settings, the system prompts (Figures 11 and 12), and sample LLM responses (Tables 1 and 2). No supplementary statistics are referenced. Arm sizes, arm means, SDs, and standard errors are not printed anywhere in this PDF; most results are Kruskal-Wallis/Dunn p-values and figures with SE error bars."
+    }
+  },
+  "paper_design_summary": "Two preregistered online experiments on Prolific (US/UK). In each, participants were randomly assigned to no AI, a standard GPT-4o arm that gives ideas or answers, or a coach-like GPT-4o arm that gives strategies or associated words, for three exposure rounds; after a one-minute Snake distractor game all participants did the task again without AI. Experiment 1 (n = 460 recruited) used the Alternate Uses Test, scored for originality (fine-tuned GPT-3 scorer), fluency, and SBERT idea diversity at the individual and group level; Experiment 2 (n = 640 recruited) used the Remote Associates Test, scored for accuracy.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Experiment 1 (divergent thinking, Alternate Uses Test)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Type of GPT-4o response shown during three exposure rounds of the AUT: none, a List of Ideas (7 sampled GPT-4o alternate uses), or a List of Strategies (7 SCAMPER-based prompts, no answers). The test round was unassisted for everyone.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "During the exposure phase, participants are introduced to three objects, one after the other. Every participant was randomly assigned to receive one of three types of LLM responses",
+        "locator": "p. 4, Section 3.1.1; Figure 2 (\"Randomize Condition\", \"33.3% each\")",
+        "preregistered": "yes",
+        "prereg_locator": "p. 4, footnote 1 (https://aspredicted.org/dkvp-n785.pdf); p. 6, Section 3.1.4 \"Following our pre-registration\""
+      },
+      "arms": [
+        { "name": "None (No LLM Response)", "description": "Control group. No LLM support provided.", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "List of Ideas (LLM Ideas)", "description": "GPT-4o generated alternate uses for the object; seven randomly sampled uses were shown and participants could freely use them.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "List of Strategies (LLM Strategies)", "description": "GPT-4o with a SCAMPER system prompt (Figure 11) generated seven strategies; it guided participants but did not share explicit answers.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 460,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "Not stated. The paper gives 460 recruited (Figure 2 shows n = 460 entering randomization, 33.3% per condition) and 9,457 ideas analyzed; it gives no per-arm counts and no count of participants analyzed.",
+        "population": "online_panel",
+        "who": "Prolific participants based in the US or UK and fluent in English; paid $1.57 for about 12 minutes",
+        "country": "US and UK",
+        "quote": "We recruited 460 participants from Prolific.",
+        "locator": "p. 6, Section 3.1.5; p. 4, Figure 2 (n = 460); p. 6, Section 3.2 (9,457 ideas)"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4o (used August 2024, temperature 0, top-p 0.95)",
+        "role": "ideas_supplied",
+        "how_used": "Static output, not a chat. Five seconds after each object appeared, the assigned GPT-4o response appeared character by character beside the idea entry box. List of Ideas = 7 GPT-4o uses (ideas_supplied); List of Strategies = 7 SCAMPER prompts with no examples (coach). Settings in Appendix A.1, p. 16."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Alternate Uses Test: list creative uses for an everyday object (items sampled from tire, pants, shoe, table, bottle). Three exposure rounds with the assigned AI response, a one-minute Snake distractor game, then one test round on a new object with no AI for anyone.",
+        "duration": "Two minutes per object; about 12 minutes for the whole experiment"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Originality, test round (unassisted)",
+          "construct": "novelty",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Originality of each AUT idea on a 1-5 scale from a fine-tuned GPT-3 classifier (Organisciak et al. 2023), r = 0.81 with human judgments overall and r > 0.88 for the five chosen objects. Kruskal-Wallis H test across the three conditions, Dunn's test with Bonferroni correction. The paper does not say whether the test runs on ideas or on participant means; Figure 4a plots average originality of ideas.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "After a one-minute Snake distractor game in the same session",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["test_statistic", "p_value_only", "figure_only"], "reported": "Kruskal-Wallis H(2) = 9.14, p = 0.010; Dunn (Bonferroni) List of Strategies vs No LLM p = 0.009 (Strategies significantly worse)", "locator": "p. 7, Section 3.2.1 (Test phase paragraph); Figure 4a" },
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["test_statistic", "p_value_only", "figure_only"], "reported": "Kruskal-Wallis H(2) = 9.14, p = 0.010; Dunn List of Ideas vs No LLM Response p = 1.000", "locator": "p. 7, Section 3.2.1; Figure 4a" },
+            { "treatment_arm": "List of Strategies", "control_arm": "List of Ideas", "comparison_type": "ai_design", "direction": "no_clear_difference", "statistics_available": ["p_value_only", "figure_only"], "reported": "Dunn List of Ideas vs List of Strategies p = 0.126", "locator": "p. 7, Section 3.2.1; Figure 4a" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Originality, exposure rounds (AI available)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Same fine-tuned GPT-3 originality scorer (1-5) applied to ideas from the three exposure rounds; Kruskal-Wallis H test. The paper also notes that the GPT-4o ideas shown had mean originality 3.25 (+/-0.1), about 0.5 above the ideas produced in the List of Ideas arm.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["test_statistic", "figure_only"], "reported": "Kruskal-Wallis H(2) = 3.78, p = 0.151 (omnibus only, no pairwise tests printed); text: List of Ideas \"performed slightly worse than other conditions\"", "locator": "p. 6, Section 3.2.1; p. 7, Figure 4a" },
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["test_statistic", "figure_only"], "reported": "Kruskal-Wallis H(2) = 3.78, p = 0.151 (omnibus only)", "locator": "p. 6, Section 3.2.1; p. 7, Figure 4a" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Fluency, test round (unassisted)",
+          "construct": "fluency",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Number of ideas the participant generated in a given round; Kruskal-Wallis H test.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "After a one-minute Snake distractor game in the same session",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["test_statistic", "figure_only"], "reported": "Kruskal-Wallis H(2) = 1.14, p = 0.566 (omnibus)", "locator": "p. 7, Section 3.2.2; Figure 4b" },
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["test_statistic", "figure_only"], "reported": "Kruskal-Wallis H(2) = 1.14, p = 0.566 (omnibus)", "locator": "p. 7, Section 3.2.2; Figure 4b" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Fluency, exposure rounds (AI available)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Number of ideas per participant per round; Kruskal-Wallis H test with Dunn post-hoc.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["test_statistic", "p_value_only", "figure_only"], "reported": "Kruskal-Wallis H(2) = 8.57, p = 0.014; Dunn List of Strategies vs no LLM exposure p = 0.011 (significantly fewer ideas)", "locator": "p. 7, Section 3.2.2; Figure 4b" },
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["figure_only"], "reported": "No pairwise p-value printed for this contrast; Figure 4b shows List of Ideas slightly below None in the exposure phase", "locator": "p. 7, Figure 4b" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Individual-level diversity of idea set, test round (unassisted)",
+          "construct": "flexibility",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Median pairwise SBERT cosine distance among one participant's ideas for one object (variety within a person's own idea set, hence flexibility, not across-people diversity). Higher = more different. Kruskal-Wallis H test with Dunn post-hoc.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "After a one-minute Snake distractor game in the same session",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["test_statistic", "p_value_only", "figure_only"], "reported": "Kruskal-Wallis H(2) = 7.71, p = 0.021; Dunn List of Strategies vs No LLM Response p = 0.017 (Strategies more similar ideas)", "locator": "p. 8, Section 3.2.4; p. 7, Figure 5a" },
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["p_value_only", "figure_only"], "reported": "Dunn No LLM Response vs List of Ideas p = 0.747", "locator": "p. 8, Section 3.2.4; Figure 5a" },
+            { "treatment_arm": "List of Strategies", "control_arm": "List of Ideas", "comparison_type": "ai_design", "direction": "no_clear_difference", "statistics_available": ["p_value_only", "figure_only"], "reported": "Dunn List of Strategies vs List of Ideas p = 0.348", "locator": "p. 8, Section 3.2.4; Figure 5a" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Individual-level diversity of idea set, exposure rounds (AI available)",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Median pairwise SBERT cosine distance among one participant's ideas within a round. Kruskal-Wallis H test with Dunn post-hoc.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["test_statistic", "p_value_only", "figure_only"], "reported": "Kruskal-Wallis H(2) = 9.95, p = 0.007; Dunn List of Strategies vs No LLM Response p = 0.041", "locator": "p. 8, Section 3.2.4; p. 7, Figure 5a" },
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["p_value_only", "figure_only"], "reported": "Dunn List of Ideas vs No LLM Response p = 1.000", "locator": "p. 8, Section 3.2.4; Figure 5a" },
+            { "treatment_arm": "List of Strategies", "control_arm": "List of Ideas", "comparison_type": "ai_design", "direction": "treatment_lower", "statistics_available": ["p_value_only", "figure_only"], "reported": "Dunn List of Strategies vs List of Ideas p = 0.009", "locator": "p. 8, Section 3.2.4; Figure 5a" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Creative flexibility (dissimilarity of test-round ideas to the participant's own exposure-round ideas)",
+          "construct": "other",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "For each test-round idea, the maximum cosine similarity between its embedding and all of the participant's exposure-round ideas; plotted so that a higher value means more dissimilarity (Figure 4c, \"participant creative flexibility\"). This is the paper's label; it compares a person's test ideas to that same person's earlier ideas, so it does not match the codebook's flexibility (category count). Kruskal-Wallis with Dunn post-hoc.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "After a one-minute Snake distractor game in the same session",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["test_statistic", "p_value_only", "figure_only"], "reported": "Kruskal-Wallis H(2) = 6.31, p = 0.043; pairwise Dunn (Bonferroni) not significant; List of Strategies vs No LLM Response p = 0.052 (test ideas more similar to exposure ideas)", "locator": "p. 8, Section 3.2.3; p. 7, Figure 4c" },
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["figure_only"], "reported": "No pairwise p-value printed for this contrast; Figure 4c shows List of Ideas and None at about the same level", "locator": "p. 7, Figure 4c" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "Group-level diversity of ideas, test round (unassisted)",
+          "construct": "diversity",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Ideas sampled across participants within condition, item, and phase; median pairwise SBERT cosine distance among 7 sampled ideas, over 150 Monte Carlo runs. Higher = more diverse, so no sign reversal is needed.",
+          "unit": "set",
+          "n_units": 150,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "After a one-minute Snake distractor game in the same session",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["figure_only"], "reported": "No test statistic printed for the test phase. Text: participants exposed to LLM-generated strategies \"continued to generate more similar ideas in the test phase, even without LLM assistance\". Figure 5b, error bars +/- one SE of mean.", "locator": "p. 8, Section 3.2.4 (group-level paragraphs); p. 7, Figure 5b" },
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["figure_only"], "reported": "No test statistic printed. Figure 5b shows List of Ideas below None in the test phase; Section 5.1.3 says the List of Ideas condition \"did not lead to the same lasting homogenization\".", "locator": "p. 7, Figure 5b; p. 13, Section 5.1.3" }
+          ],
+          "diversity_detail": {
+            "metric": "Median pairwise cosine distance between SBERT embeddings of sampled ideas",
+            "embedding_model": "SBERT (Reimers and Gurevych 2019); specific checkpoint not stated",
+            "computed_over": "All pairs among 7 ideas randomly sampled across participants in the same condition, item, and phase; 150 Monte Carlo runs. The paper says \"This sampling process reflects the number of participants in each condition\" without further detail.",
+            "uncertainty": "Error bars are +/- one standard error of the mean (Figure 5b), apparently across Monte Carlo runs; the paper says the Kruskal-Wallis/Dunn procedure was applied to group-level diversity but prints no statistic for the test phase.",
+            "notes": "Sampling across Monte Carlo runs means the SE reflects resampling, not the number of participants."
+          }
+        },
+        {
+          "outcome_id": "S1-O9",
+          "name": "Group-level diversity of ideas, exposure rounds (AI available)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Same Monte Carlo group-level SBERT measure on exposure-round ideas.",
+          "unit": "set",
+          "n_units": 150,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "List of Ideas", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["p_value_only", "figure_only"], "reported": "\"the average median cosine distance between ideas was similar across all conditions (p > 0.05)\"", "locator": "p. 8, Section 3.2.4; p. 7, Figure 5b" },
+            { "treatment_arm": "List of Strategies", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["p_value_only", "figure_only"], "reported": "\"similar across all conditions (p > 0.05)\"", "locator": "p. 8, Section 3.2.4; p. 7, Figure 5b" }
+          ],
+          "diversity_detail": {
+            "metric": "Median pairwise cosine distance between SBERT embeddings of sampled ideas",
+            "embedding_model": "SBERT (Reimers and Gurevych 2019); specific checkpoint not stated",
+            "computed_over": "All pairs among 7 ideas randomly sampled across participants in the same condition, item, and phase; 150 Monte Carlo runs",
+            "uncertainty": "Only \"p > 0.05\" printed; test not named for this comparison beyond the general Kruskal-Wallis procedure; Figure 5b error bars +/- one SE of mean",
+            "notes": ""
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Experiment 2 (convergent thinking, Remote Associates Test)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Type of GPT-4o response during three exposure RAT problems: none, LLM Answer (the GPT-4o solution), or LLM Guidance (five associated words per cue word, no solution). Two test rounds were unassisted for everyone.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "During the exposure phase, participants were required to solve three RAT problems consecutively. They were randomly assigned to one of three conditions, each providing different types of LLM assistance",
+        "locator": "p. 9, Section 4.1.1; Figure 7 (\"Randomize Condition\", \"33.3% each\")",
+        "preregistered": "yes",
+        "prereg_locator": "p. 9, footnote 2 (https://aspredicted.org/4q75-bskd.pdf); p. 11, Section 4.1.4 \"Following our pre-registration\""
+      },
+      "arms": [
+        { "name": "None (No LLM Response / No LLM Assistance)", "description": "Control group, no AI response.", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "LLM Answer", "description": "The answer generated by GPT-4o for the given set of words.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "LLM Guidance", "description": "GPT-4o with a coach system prompt (Figure 12) listing five associated words for each cue word and nudging the participant, without giving the solution.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 640,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "Not stated. 640 recruited (Figure 7 shows n = 640 entering randomization), \"of whom 99% passed the attention check\"; the paper does not say whether attention-check failures were dropped and gives no analyzed count or per-arm counts. The ANCOVA denominator df is 1256.",
+        "population": "online_panel",
+        "who": "Prolific participants based in the US or UK and fluent in English; paid $1.30 for about 10 minutes",
+        "country": "US and UK",
+        "quote": "We recruited 640 participants from Prolific (of whom 99% passed the attention check).",
+        "locator": "p. 11, Section 4.1.5; p. 9, Figure 7 (n = 640)"
+      },
+      "ai_tool": {
+        "name_model": "GPT-4o (used August 2024, temperature 0, top-p 0.95)",
+        "role": "ideas_supplied",
+        "how_used": "Static output shown 5 seconds after each problem, character by character; participants told they could freely use it. LLM Answer gives the solution (ideas_supplied); LLM Guidance gives associated words and encouragement but no solution (coach). Settings in Appendix B.1, p. 16."
+      },
+      "task": {
+        "type": "other",
+        "description": "Remote Associates Test (Bowden and Jung-Beeman items, easy and medium): find a fourth word that forms compounds with three cue words. Three exposure problems with the assigned AI response, one-minute Snake distractor, then two unassisted test problems.",
+        "duration": "One minute per problem; about 10 minutes overall"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "RAT accuracy, test rounds (unassisted)",
+          "construct": "convergent",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Accuracy against the single correct RAT answer (answer key, no raters; no code in the vocabulary fits exactly). ANCOVA of test-round accuracy across conditions with verbal-fluency word count as covariate, Tukey HSD post-hoc. The paper does not state the unit; the denominator df of 1256 exceeds the 640 people, which suggests one row per test response (two per participant).",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "no",
+          "timing": "immediate",
+          "delay": "After a one-minute Snake distractor game in the same session",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            { "treatment_arm": "LLM Guidance", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["test_statistic", "mean_difference_se", "confidence_interval", "figure_only"], "reported": "ANCOVA condition F(2, 1256) = 5.134, p = 0.006 (verbal fluency F(1, 1256) = 16.715, p < 0.001); Tukey LLM Guidance vs no LLM p = 0.005, mean difference -10.6 [95% CI: -18.6, -2.7]", "locator": "p. 11, Section 4.2.1; Figure 9" },
+            { "treatment_arm": "LLM Answer", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "no_clear_difference", "statistics_available": ["p_value_only", "figure_only"], "reported": "Tukey LLM Answer vs No LLM Assistance p = 0.682", "locator": "p. 11, Section 4.2.1; Figure 9" },
+            { "treatment_arm": "LLM Guidance", "control_arm": "LLM Answer", "comparison_type": "ai_design", "direction": "treatment_lower", "statistics_available": ["p_value_only", "figure_only"], "reported": "Tukey LLM Guidance vs LLM Answer p = 0.064 (described as a trend)", "locator": "p. 11, Section 4.2.1; Figure 9" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S2-O2",
+          "name": "RAT accuracy, exposure rounds (AI available)",
+          "construct": "convergent",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Accuracy against the correct RAT answer during the three exposure problems. Only plotted (Figure 9); no test is reported.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            { "treatment_arm": "LLM Answer", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_higher", "statistics_available": ["figure_only"], "reported": "Text: \"participants in the LLM Answer condition did better in the Exposure rounds in comparison to the other conditions\"; Figure 9 only, no statistic", "locator": "p. 11, Section 4.2.1; Figure 9" },
+            { "treatment_arm": "LLM Guidance", "control_arm": "None", "comparison_type": "ai_vs_bau", "direction": "treatment_lower", "statistics_available": ["figure_only"], "reported": "No statistic; Figure 9 shows LLM Guidance below None in the exposure phase", "locator": "p. 11, Figure 9" }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "None stated. Authors are at the University of Toronto; GPT-4o used through its API; AUT scoring API provided by Peter Organisciak's academic group (Acknowledgments, p. 14).", "locator": "p. 1 affiliations; p. 14 Acknowledgments" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Both experiments randomly assign individuals to GPT-4o assistance or no AI on a creativity task (p. 4 Section 3.1.1; p. 9 Section 4.1.1). Experiment 1 recruited 460 and Experiment 2 recruited 640 Prolific participants (pp. 6, 11); analyzed counts are not printed, but they are far above 50. Outcomes are scored on the output: AUT originality (fine-tuned GPT-3 scorer), fluency, SBERT diversity, and RAT accuracy. The paper's primary outcomes are after_ai (unassisted test round); exposure-round outcomes give with_ai; group-level diversity gives across_people (exposure) and after_ai (test). Experiment 1 is the stronger fit; Experiment 2's RAT outcome is convergent, which the codebook lists as an open question for Review 1."
+  },
+  "one_line_finding": "After AI was removed, AUT originality was lower for the List of Strategies arm than for no AI (Kruskal-Wallis H(2) = 9.14, p = 0.010; Dunn p = 0.009) and not different for List of Ideas (p = 1.000) (p. 7), and RAT test accuracy was lower for LLM Guidance than no AI by 10.6 points [95% CI -18.6, -2.7] (p. 11), while LLM Answer did not differ (p = 0.682).",
+  "open_questions": [
+    "Neither experiment prints the number of participants analyzed or per-arm counts; Experiment 2 does not say whether the 1% who failed the attention check were dropped.",
+    "Experiment 1's Kruskal-Wallis tests may treat ideas, not participants, as the unit (9,457 ideas analyzed); the paper does not say. Experiment 2's ANCOVA df (2, 1256) suggests one row per test response with two responses per person and no clustering by participant.",
+    "No arm means, SDs, or standard errors are printed for Experiment 1; values exist only in Figures 4 and 5 (error bars +/- one SE). Extraction will need digitizing or the authors' data.",
+    "Group-level diversity for the test phase has no printed test statistic; its uncertainty comes from 150 Monte Carlo resamples, not from participants.",
+    "Choice of primary contrast: the codebook rule picks the arm closest to free chatbot use (List of Ideas / LLM Answer), whereas the paper's headline significant effects are for the coach arms (List of Strategies / LLM Guidance)."
+  ],
+  "notes": "Version on file is arXiv v2 (15 Feb 2025) in CHI '25 camera-ready format; the CHI '25 version of record is DOI 10.1145/3706598.3714198. AI was not open chat: participants saw a fixed GPT-4o response. Coach arms (List of Strategies, LLM Guidance) are ai_vs_bau against no AI; Strategies vs Ideas and Guidance vs Answer are coded ai_design with the coach arm as treatment. Individual-level idea diversity is coded flexibility (within-person variety); only the group-level Monte Carlo measure is coded diversity. The paper's 'creative flexibility' is coded other. Self-reported creativity change, AI attitudes, perceived difficulty, and perceived helpfulness (Figures 6 and 10) are self-reports and not listed as outcomes. The markdown places Section 3 heading after 3.1.1 and drops the 'Figure ??' reference; the PDF was used for all numbers."
+}

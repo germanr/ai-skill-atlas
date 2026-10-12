@@ -1,0 +1,65 @@
+{
+ "cid": "c634",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "source.supplement",
+   "form_value": "{\"exists\": \"not_stated\", \"in_this_pdf\": false, \"where\": \"\", \"holds\": \"\"}",
+   "source_says": "Supplementary appendices are included in this PDF: set exists to yes and in_this_pdf to true. Appendices A-D cover technical implementation, technical validation, study materials and rating procedures, and system/ablation prompts. Appendix C also supplies the image counts, participant demographics and counterbalancing table.",
+   "quote": "This section provides supplementary details on the study procedure, participant materials, interview protocol, and annotation process used in our evaluation.",
+   "locator": "pp. 21-35, Appendices A-D; p. 26, Appendix C introduction; p. 27, Appendix C.3; pp. 29 and 31, Tables 4 and 5"
+  },
+  {
+   "field": "studies[0].participants.population",
+   "form_value": "students",
+   "source_says": "Student status is not established. The paper reports recruitment from the local university, and the demographic table labels its domain column Field of Study/Profession without identifying student or staff status. Leave population unconfirmed (null), retaining the supported local-university description in who.",
+   "quote": "We recruited 24 participants (10 female, 13 male, 1 non-binary) from the local university via mailing lists and word of mouth",
+   "locator": "p. 9, Section 5.1; p. 29, Table 4"
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any to true and describe the disclosed company affiliations: coauthor Pronita Mehrotra is affiliated with MindAntix and coauthor Sumit Gulwani with Microsoft. These affiliations establish company involvement through authorship; the paper does not establish company funding.",
+   "quote": "PRONITA MEHROTRA, MindAntix, USA SUMIT GULWANI, Microsoft, USA",
+   "locator": "p. 1, author affiliations"
+  },
+  {
+   "field": "studies[0].outcomes (missing fluency entry)",
+   "form_value": "Only novelty, image-set diversity/flexibility, and usefulness have outcome entries; fluency appears within the usefulness entry and the one-line finding.",
+   "source_says": "Add a separate fluency outcome as required by form-spec rule 7: the number of downloaded images per participant, with construct fluency, question with_ai, participant unit and scored_on_output true. Figure 5c reports no significant difference between HAICo and ChatGPT. Numerical means, a test statistic and an exact p-value are not printed for fluency and should remain null.",
+   "quote": "We operationalized Fluency as the number of images downloaded per participant",
+   "locator": "p. 10, Section 5.3, Downloaded Images; p. 11, Fig. 5c and caption"
+  },
+  {
+   "field": "studies[0].outcomes (missing image-cluster entry)",
+   "form_value": "No outcome entry for Image Clusters.",
+   "source_says": "Add the count of distinct conceptual ideas represented by image clusters, each comprising an initial image and its refinement variations. This is an output-based flexibility/category-count outcome at the participant level, answering with_ai. The reported comparison is HAICo M = 2.88 versus ChatGPT M = 2.04; W = 33.0, p = 0.021 (Wilcoxon signed-rank).",
+   "quote": "participants had significantly more image clusters with HAICo than with ChatGPT (𝑀= 2.88 vs. 2.04; 𝑊= 33.0, 𝑝= 0.021).",
+   "locator": "p. 10, Section 5.3, Behavioral Metrics from Screen Recordings; p. 12, Fig. 7 left and caption"
+  },
+  {
+   "field": "studies (missing model-only ablation)",
+   "form_value": "Only S1, the within-subjects laboratory study, is recorded.",
+   "source_says": "Add the separate post-study model-only ablation of associative versus non-associative prompting. GPT-5 was queried using the 24 initial HAICo prompts, three times per condition with 9 ideas per run; CLIP ViT-bigG-14 pairwise cosine distances were averaged across runs. Associative prompting produced greater idea diversity (W = 24.0, p < 0.001). These are 24 prompt-level input cases, not an additional randomized human sample; classify this study model_only, question none, and leave human-participant counts null. Numerical arm means and SDs are not printed.",
+   "quote": "After the study, using the 24 initial prompts participants entered into HAICo, we queried GPT-5 under both conditions three times each (9 ideas per run, matching HAICo’s configuration)",
+   "locator": "p. 10, Section 5.3, Ablation: Associative-Thinking Prompting on Idea Diversity; p. 12, Fig. 7 right and caption; pp. 32-33, Appendix D, Figs. 13-14"
+  }
+ ],
+ "confirmed": [
+  "The document is the 35-page preprint arXiv:2512.18388v2 [cs.HC], stamped 6 Apr 2026; the recorded title and author list match (p. 1; PDF page count). The entire markdown conversion, including Appendices A-D, was read.",
+  "Randomized people study confirmed: two participants were randomly assigned to each of 12 sequences varying task pairing, task order and HAICo/ChatGPT order; all 24 people used both systems. Both arm counts refer to the same people (pp. 8-9, Section 5; p. 31, Table 5).",
+  "lab_rct and context_class none are appropriate: this is a supervised laboratory comparison of AI configurations with creativity scored on participant-produced posters (p. 26, Appendix C.1, Study Environment; p. 10, Section 5.3).",
+  "The 24 participants contributed to the main poster evaluation; diversity excluded three people who downloaded only one image for both systems, leaving N = 21. Both analysis counts are below the codebook threshold of 50 people, so core no is correct (p. 27, Appendix C.3; p. 10, Section 5.3).",
+  "The output corpus contained 123 posters: 63 ChatGPT and 60 HAICo; these are image counts, separate from the 24 people (p. 27, Appendix C.3).",
+  "Demographics match the form: 10 female, 13 male and 1 non-binary; ages 24-34, M = 28.2, SD = 2.8; 21 of 24 were from computer science/information technology. Recruitment was from a local technology-focused university, and compensation was a EUR 20 voucher plus a reusable bag; the study country is not explicitly named (p. 9, Section 5.1).",
+  "The task used two creation sessions within the study: 20 minutes of co-creation in each 40-minute session, with an overall duration of about 1 hour 50 minutes. The three poster topics in the form match the instructions (pp. 8-9, Sections 5-5.2 and Fig. 4; p. 30, Fig. 12).",
+  "Both systems used GPT-5 for text and matched final-image models: gpt-image-1, then gpt-image-1.5. Each image-model version was used by 12 participants; Appendix A.2 also identifies gpt-image-1-mini for HAICo thumbnails (p. 8, Section 5 and footnote 1; p. 23, Appendix A.2).",
+  "Novelty and usefulness used five non-author raters on 5-point scales; four raters had participated in the study. They were blind to generating system and participant identity; scores were averaged over raters, images within participant-system pairs, then participants. ICC(2,5) = 0.61 for novelty and 0.60 for usefulness (p. 10, Section 5.3; pp. 27-28, Appendix C.3).",
+  "S1-O1.reported is exact: HAICo novelty M = 3.22 versus ChatGPT M = 2.41; W = 0.0, p < 0.001. Statistical comparisons used Wilcoxon signed-rank tests (p. 11, Fig. 5c caption; p. 9, Section 5.3).",
+  "S1-O2.reported is exact: HAICo image-set diversity M = 0.48 versus ChatGPT M = 0.36; W = 26.0, p = 0.001, with N = 21. It is average pairwise cosine distance between CLIP ViT-bigG-14 image embeddings within each person and system, so flexibility/with_ai is appropriate rather than across_people (p. 10, Section 5.3; p. 11, Fig. 5c caption).",
+  "S1-O3.reported and the one-line finding correctly state that fluency and usefulness did not differ significantly; Fig. 5c provides plotted results without numerical means or test statistics for these two outcomes. The numbers in the one-line finding match the PDF (p. 11, Fig. 5c and caption; p. 10 for diversity N = 21).",
+  "This is not a synthesis, so the default null synthesis counts and empty pooled estimates are appropriate (pp. 8-12, Sections 5-6.2)."
+ ],
+ "summary": "The paper contains a randomized within-person laboratory comparison of HAICo and ChatGPT with 24 people (21 for image-set diversity), requiring two-screener review but falling below the 50-person core threshold. The source version and main reported results are correct; six corrections address omitted outcomes and a model-only ablation, included appendices, company affiliations, and unsupported student status."
+}

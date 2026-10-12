@@ -1,0 +1,47 @@
+[
+  {
+    "id": "prose-1",
+    "cid": "c044",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/assemble_report.py:140,160-162 (retrieval summary and introduction); tools/build_report.py:268-269 and finding() (retrieval heading and c044 row)",
+    "correct_value": "Heading/status label: \"Experiments needing retrieval follow-up\". Aggregate description: \"224 papers triaged as experiments are listed for retrieval follow-up. They include c044, whose publisher article text is saved; its PDF and figure graphics are not on file.\" c044 available-text description: \"Publisher article text obtained; PDF and figure graphics not on file; screening form not yet completed.\"",
+    "evidence": "The assembled report, C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, line 33 says all 224 have no full text on file; line 1056 repeats that no full text could be obtained; line 1102 labels c044 \"Abstract only\". report-data.json contains 224 no_fulltext entries, including c044. retrieval.json.c044 records fulltext_text_available=true, last_retry_status=fulltext_text_only, pdf_downloaded=false, and a publisher HTML text export. I opened C:/Dropbox/Research/ai-lab/literature/creativity/Cui et al (2026) - Can Gen AI Improve Creativity in Students with Low Academic Performance - publisher HTML text.md: it contains 76,240 characters, Methods beginning at line 74, Results at line 134, Discussion at line 231, appendices A-C at lines 281, 295, and 314, and References at line 339. Its SHA-256 is f5f34ea27b5f19a234af0ea15822769a83e216c99c9e2c8a323314d83505a9eb, matching retrieval.json. Its opening identifies the missing PDF and figure graphics. forms/c044.json does not exist. build_report.py:87-88 uses retrieval.status != ok to assign no_fulltext without considering the saved text; the disputed aggregate prose is generated in assemble_report.py, not report-prose.md. The correction describes the existing queue without claiming every entry lacks article text."
+  },
+  {
+    "id": "prose-2",
+    "cid": "c614",
+    "verdict": "confirmed",
+    "fix_target": "prose",
+    "field": "report-prose.md:44, Decisions for Review 1, item 2, sentence beginning \"The screening found\"",
+    "correct_value": "The screening found {{n_small}} randomized experiments below the 50-participant threshold, including c614, which randomized 48 people but does not separately report how many people contributed to the idea-score analyses.",
+    "evidence": "The assembled report line 52 says \"27 randomized experiments with 9 to 48 people analyzed\". In forms/c614.json, studies[1] (S2) has participants.n_randomized=48 and participants.n_analyzed=null; both arms also have n_analyzed=null. forms/checks/c614.json corrections[0] instructs this distinction. I opened C:/Dropbox/Research/ai-lab/literature/creativity/Wang et al (2025) - Enhancing designer creativity through humanAI co-ideation.pdf with PyMuPDF: PDF p. 8, Participants and Design study, reports 48 recruited participants divided randomly among six groups, and Table 2 allocates eight to each group. PDF pp. 9-10 describe idea-rating analyses and idea totals without a separate analyzed-person denominator; pp. 13-14 identify Figures 11-12 as post-task survey responses. Thus the allocation count does not establish 48 people analyzed for the scored outcomes. build_report.py:119 substitutes n_randomized when n_analyzed is null; report-data.json.small_n.c614 is consequently \"48\", and assemble_report.py:89,105-106 uses that mixed count range in the prose template. The form already preserves the distinction. Recounting the randomized studies in the 27 small-status papers gives 47 as the largest non-null n_analyzed form value, from c134. That ancillary value was verified only in forms/c134.json: its PDF is not on file, and the attempted Python request to the author-hosted PDF was blocked with WinError 10013. The exact correction therefore makes no claim about the analyzed-sample range."
+  },
+  {
+    "id": "prose-3",
+    "cid": "c148",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "forms/c148.json.one_line_finding",
+    "correct_value": "Among 74 music students analyzed in a study reporting class-level random assignment, the ChatGPT-4 group had higher adjusted expert-rated creativity than the traditional-instruction group (4.71 vs 4.35; F(1, 69) = 7.216, p = .009, η² = .096; p. 12, Tables 5-6) and a steeper reported creativity growth slope (0.315 vs 0.210; p. 9, Table 3).",
+    "evidence": "The assembled report line 959 and forms/c148.json.one_line_finding both contain \"?? = .096\". I opened C:/Dropbox/Research/ai-lab/literature/creativity/Zhou et al (2026) - Long-term impact of ChatGPT-4 on music students' creative and analytical skills.pdf with PyMuPDF: PDF p. 12, Table 5, labels the final column η²; the Group / Creativity row gives df1=1, df2=69, F=7.216, p=.009, and η²=.096. PDF p. 9 repeats η²=.096 in the results text. The form's studies[0].outcomes[0].contrasts[0].reported already has the correct symbol. build_report.py:173,230 passes one_line_finding through to the report, so the corrupted form field is the fix location. Only \"??\" is replaced by \"η²\"."
+  },
+  {
+    "id": "prose-4",
+    "cid": null,
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:368, computation of report-data.json.papers_with_diversity",
+    "correct_value": "48",
+    "evidence": "The assembled report line 1588 reports 47 papers and 103 outcomes. Independently reading the forms for report-data.json.status_by_cid values core or clarify, then selecting outcomes with construct=diversity and question in with_ai/across_people/after_ai, gives 103 outcomes across 48 distinct CIDs. The report table itself contains 103 outcome rows. forms/c051.json S1-O4 and forms/c052.json S1-O3 each qualify. Their citation files identify different works and DOIs: Navigating the Jagged Technological Frontier (10.1287/orsc.2025.21838) and The Cybernetic Teammate (10.1287/orsc.2025.20702); I also opened PDF p. 1 of both files named by retrieval.json and verified the distinct titles. Reproducing short_cite from the builder gives 47 distinct labels; the only collision in these rows is Dell'Acqua et al. (2026), shared by c051 and c052. build_report.py:307 stores that label as row[0], and line 368 counts unique row[0] values. Count qualifying CIDs instead. n_diversity_outcomes remains 103; assemble_report.py:179 will then render 48 papers."
+  },
+  {
+    "id": "prose-5",
+    "cid": null,
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:369, computation of report-data.json.papers_with_after_ai",
+    "correct_value": "22",
+    "evidence": "The assembled report line 1706 reports 21 papers and 81 outcomes. Independently reading the forms for report-data.json.status_by_cid values core or clarify, then selecting outcomes with question=after_ai, gives 81 outcomes across 22 distinct CIDs. The report table itself contains 81 outcome rows. forms/c072.json contains six qualifying outcomes, S1-O1 through S1-O6, and forms/c387.json contains qualifying outcome S1-O1. Their citation files identify different works and DOIs: Can large language models teach creativity? (10.1016/j.chbah.2026.100288) and Emergent Learner Agency in Implicit Human-AI Collaboration (10.1002/jcal.70310); I also opened PDF p. 1 of both files named by retrieval.json and verified the distinct titles and first authors, Zheyu Jin and Yueqiao Jin. Reproducing short_cite from the builder gives 21 distinct labels; the only collision in these rows is Jin et al. (2026), shared by c072 and c387. build_report.py:311 stores that label as row[0], and line 369 counts unique row[0] values. Count qualifying CIDs instead. n_after_ai_outcomes remains 81; assemble_report.py:183 will then render 22 papers."
+  }
+]

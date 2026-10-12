@@ -1,0 +1,42 @@
+{
+ "cid": "c134",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "studies[0].outcomes[0].contrasts[0].statistics_available; studies[0].outcomes[0].contrasts[0].reported",
+   "form_value": "[\"test_statistic\", \"mean_difference_se\", \"confidence_interval\"]; Omnibus F(2,43) = 4.23, p = 0.02. Tukey HSD: No-AI vs Co-led MD = -1.38, p = 0.02*, 95% CI: [-2.54, -0.21]; No-AI vs AI-led MD = -1.48, p = 0.01, 95% CI: [-2.67, -0.29]. No SE printed; mean_difference_se marks the MD with CI.",
+   "source_says": "Section 5.1.1 prints the omnibus F test, pairwise mean differences, p values, and confidence intervals, but no standard errors. Remove mean_difference_se from statistics_available and remove the sentence saying that this code marks a mean difference with a confidence interval; retain test_statistic and confidence_interval. The numerical values themselves are correct.",
+   "quote": "Co-led condition (MD = -1.38, p = 0.02*, 95% CI: [-2.54, -0.21]) and the AI-led condition (MD = -1.48, p = 0.01, 95% CI: [-2.67, -0.29]).",
+   "locator": "PDF p. 8, Section 5.1.1; form-spec.md, statistics_available field notes"
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "53 individuals were recruited; video recordings of 47 were successfully captured and analyzed. The paper does not say how many of the 53 were randomized or why the other 6 recordings were lost. Two post-study surveys were excluded for a saving error (survey tests use F(2,41)).",
+   "source_says": "The paper reports 53 recruited and 47 successfully captured/analyzed recordings, without explaining the remaining recruits; it does not establish that their recordings were lost. Two surveys were excluded because of a saving error. Survey degrees of freedom are not uniformly F(2,41): Section 5.3.1 prints F(2,41), whereas Section 5.3.2 prints F(2,43) = 5.58, p = 0.0071 for self-rated solution competitiveness. Preserve this reporting inconsistency rather than implying a single survey analysis count; the original number randomized remains unspecified.",
+   "quote": "However, Co-led participants self-rated their iterated solutions as less competitive than existing solutions compared with No-AI and AI-led participants (F(2,43) = 5.58, p = 0.0071).",
+   "locator": "PDF p. 7, Sections 4.1-4.2; p. 8, Section 4.3.3; p. 10, Section 5.3.1; p. 11, Section 5.3.2"
+  },
+  {
+   "field": "studies[0].outcomes",
+   "form_value": "[{\"outcome_id\": \"S1-O1\", \"name\": \"Topic categories per idea in the iterated problem statement\"}, {\"outcome_id\": \"S1-O2\", \"name\": \"Topics covered in the iterated (final) solution\"}, {\"outcome_id\": \"S1-O3\", \"name\": \"Idea units in the initial and final solutions\"}]",
+   "source_says": "Record the scored outcomes separately by task stage under form-spec Rule 7. Idea-unit counts in the iterated problem statement (no significant difference, p = 0.11) and topic counts in the initial solution (no significant difference, p = 0.18) currently appear only inside other outcomes. Add their own fluency and flexibility entries, respectively. Also separate initial-solution and final-solution idea-unit counts, which currently share S1-O3: these are distinct products measured before and after Competitive Analysis, rather than robustness variants. The reported means, SDs, and p values can be retained as printed; leave unreported statistics null.",
+   "quote": "All participants authored an iterated problem statement and an initial solution (after the Five Whys exercise), and an iterated solution (after the Competitive Analysis exercise).",
+   "locator": "PDF p. 7, Section 4.3.1; p. 8, Section 5.1; p. 9, Section 5.1.2; form-spec.md, Rule 7"
+  }
+ ],
+ "confirmed": [
+  "Read all 15 PDF pages, including the complete reference list; there is no appended appendix. The author-hosted ACM CHI '25 article, title, authors, CC BY 4.0 license, and 15-page length support source.version (PDF pp. 1-2, references pp. 13-15; https://tonexu.github.io/assets/pdf/productive_reflective.pdf, read in memory).",
+  "lab_rct is correct: participants attended in-person, one-on-one sessions and were explicitly randomly assigned to No-AI, Co-led, or AI-led. These conditions varied GPT-4 assistance within FigJam Five Whys and Competitive Analysis templates (PDF p. 7, Section 4.2; pp. 5-6, Sections 3.2-3.3).",
+  "The analyzed count is 47 people, with No-AI 16, Co-led 16, and AI-led 15; 53 is the recruitment count. The original assignment total and original arm counts are not separately reported, so leaving n_randomized null avoids equating recruitment with randomization (PDF p. 7, Sections 4.1-4.2).",
+  "Participants were college students aged 18 to 32 at a Western public university, received course credit, and were not professional designers. Five Whys was designed for no more than 30 minutes and Competitive Analysis took another 30 minutes (PDF p. 7, Sections 4.1-4.2).",
+  "Four researchers coded idea units and topic categories in participant-produced problem statements and solutions; ANCOVA controlled for initial-problem-statement version. These measure fluency and within-person flexibility, rather than similarity across people (PDF p. 7, Section 4.3.1; p. 8, Section 5.1).",
+  "The study meets random-assignment and scored-output criteria but has fewer than 50 analyzed people. core = no and context_class = none are correct under the codebook; it is a small randomized experiment rather than observational, ai_vs_human, or synthesis evidence (PDF p. 7, Sections 4.1-4.3.1; creativity-codebook.md, Sections 3-4).",
+  "Iterated-problem topic categories: F(2,43) = 4.23, p = 0.02; No-AI versus Co-led MD = -1.38, p = 0.02*, 95% CI [-2.54, -0.21]; No-AI versus AI-led MD = -1.48, p = 0.01, 95% CI [-2.67, -0.29]. All match the reported string, including the printed asterisk (PDF p. 8, Section 5.1.1).",
+  "Initial-solution topic counts did not differ significantly (p = 0.18). AI-led final solutions covered more topics than No-AI and Co-led; the printed omnibus statistic is F(2,43) = 5.33, p = 0.009, with no pairwise numeric statistics or arm means for this outcome (PDF p. 9, Section 5.1.2).",
+  "Initial-solution idea units: No-AI M = 3.05, SD = 1.54; Co-led M = 3.11, SD = 1.37; AI-led M = 3.68, SD = 1.97. Final-solution idea units: No-AI M = 3.7, SD = 1.52; Co-led M = 3.74, SD = 1.28; AI-led M = 5.11, SD = 2.66. These values exactly match S1-O3; no numerical inferential test is printed for these solution counts (PDF p. 8, Section 5.1).",
+  "The one_line_finding accurately reproduces the final-solution topic test and the No-AI versus AI-led iterated-problem mean difference and interval (PDF pp. 8-9, Sections 5.1.1-5.1.2).",
+  "There is one experiment and no meta-analysis, pooled estimate, or standardization to extract. No preregistration, supplement, or public data/code URL is stated in the document; acknowledgments list UCSD departmental support and NSF funding (whole PDF, especially p. 7, Section 4.3, and p. 13, Acknowledgments)."
+ ],
+ "summary": "The full text confirms a randomized lab study with 47 people analyzed, so it belongs in the two-screener pipeline but falls below the 50-person core threshold. The main numerical findings match the PDF; corrections concern the standard-error availability flag, exclusion wording, and separate entries for outcomes at different task stages."
+}

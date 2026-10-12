@@ -1,0 +1,95 @@
+{
+ "cid": "c742",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "source.version",
+   "form_value": "arXiv 2312.11949v2 dated 7 Mar 2024 (CHI '24 camera-ready text, DOI 10.1145/3613904.3642794 printed on p. 1); numbers checked against PDF pages 9-13",
+   "source_says": "The document explicitly identifies arXiv:2312.11949v2, 7 Mar 2024, and includes the CHI 2024 proceedings citation and DOI. Record that version; the additional claim that it is the camera-ready text is not stated or independently established by this PDF.",
+   "quote": "arXiv:2312.11949v2 [cs.HC] 7 Mar 2024",
+   "locator": "PDF p. 1, arXiv version stamp and publication/copyright block"
+  },
+  {
+   "field": "studies[0].design_class; eligibility.reason",
+   "form_value": "lab_rct; Sixteen people analyzed across both conditions of a within-subjects design (p. 9, Section 5.1), well under 50. Both arms use generative AI (CreativeConnect vs. a baseline with ChatGPT and the same diffusion model), so the contrast is ai_design. Tool and topic order was counterbalanced; the paper does not say the order was random (p. 10). Expert-rated creativity and sketch counts are scored on the output. Listed in the screening report as a small randomized-style experiment.",
+   "source_says": "The people study is a counterbalanced within-person comparison; random allocation of people or condition order is not reported. Use design_class=other with that description until randomization is documented, retain assignment.randomized=not_stated and criterion_1_random_assignment_of_ai=unclear, and remove the phrase small randomized-style experiment. Random sampling of sketches for expert evaluation is not random assignment of people. has_randomized_people_study=false means no such study is verified from this source, not proof that unreported randomization was absent.",
+   "quote": "The order of topics and tools was counterbalanced for each participant.",
+   "locator": "PDF p. 10, Section 5.2 and Figure 4; Section 5.3 distinguishes random sketch selection"
+  },
+  {
+   "field": "studies (omitted formative study)",
+   "form_value": "Only S1, Within-subjects user study (CreativeConnect vs. baseline), is listed.",
+   "source_says": "Add the separate formative study as design_class=other: six people performed reference searching and idea sketching and were interviewed; the authors qualitatively coded their recombination practices. No generative-AI-assistance comparison or scored creativity/diversity treatment outcome is reported for this study. These six people must not be added to the main comparison sample.",
+   "quote": "Six participants (6 female; age M=25.3 and SD=3.32) were recruited through an online recruitment posting.",
+   "locator": "PDF p. 4, Sections 3.1 and 3.2; form-spec.md, Rule 6"
+  },
+  {
+   "field": "studies (omitted technical evaluation)",
+   "form_value": "Only S1, Within-subjects user study (CreativeConnect vs. baseline), is listed.",
+   "source_says": "Add the technical pipeline evaluation separately as model_only, identifying its keyword-extraction, recommendation, and recombination-generation components. The annotation dataset contains 100 images labeled by 20 people, five images each; the recommendation and description-generation evaluations each use 100 keyword sets, and the latter generates three descriptions per set. The 20 annotators and these image/text/set counts are not people assigned to AI assistance and must not augment the main study sample.",
+   "quote": "We asked 20 people with expertise in design or HCI to annotate five images each.",
+   "locator": "PDF pp. 8-9, Sections 4.3.1-4.3.3; form-spec.md, Rule 6"
+  },
+  {
+   "field": "studies[0].participants.exclusions",
+   "form_value": "",
+   "source_says": "Record the outcome-specific exclusion: P15 was omitted only from the analysis relating actions to individual sketching turns (Figure 6), because ideas were developed before all sketches were drawn together. This is not an exclusion from the main creativity, sketch-set, or sketch-count outcomes; retain n_analyzed=16 for those outcomes. The paper does not report a randomized count or general participant attrition.",
+   "quote": "excluded the usage data of P15 from the analysis of the relationship between action types and each sketching turn (Figure 6).",
+   "locator": "PDF p. 11, Section 6.1.1; p. 25, Figure 12 caption"
+  },
+  {
+   "field": "studies[0].outcomes[0].n_units; studies[0].outcomes[0:2].measure_detail",
+   "form_value": "S1-O1 n_units=null; S1-O1 and S1-O2 measure_detail=\"\".",
+   "source_says": "Set S1-O1 n_units=96, counting sampled sketches rather than people or individual ratings. Complete both expert-measure descriptions: two art experts used a 7-point scale, rated independently, and their scores were averaged after re-evaluation of large disagreements. Creativity is scored per sketch; diversity concerns the sketches within each participant/topic set and remains flexibility under this codebook. The paper does not explicitly print a total number of sketch sets, so do not invent that count.",
+   "quote": "a total of 96 sketches (3 sketches x 16 participants x 2 conditions) were evaluated.",
+   "locator": "PDF p. 10, Section 5.3, expert-evaluation paragraphs"
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing",
+   "form_value": "All three outcomes have ai_available_when_produced=\"\" and timing=\"\".",
+   "source_says": "Set ai_available_when_produced=yes and timing=immediate for all three recorded outcomes: their sketches were produced during the tool-assisted ideation sessions. Later expert scoring does not make output production a delayed or after_ai outcome.",
+   "quote": "They were then given the topic and the reference images and started ideation using the tool for 30 minutes.",
+   "locator": "PDF p. 10, Sections 5.2-5.3; pp. 11-12, Section 6.2"
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].direction; studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "All three contrasts have direction=\"\" and statistics_available=[].",
+   "source_says": "Complete the structured result fields: S1-O1 and S1-O2 have no_clear_difference; S1-O3 has treatment_higher. All three report t statistics, so statistics_available must include test_statistic. Creativity and sketch count also have explicit sample counts alongside arm means and SDs and support arm_means_sds_ns. The existing reported strings already reproduce the printed numbers correctly.",
+   "quote": "the expert evaluation does not show a significant difference between the two conditions.",
+   "locator": "PDF pp. 11-12, Sections 6.2.1-6.2.2; p. 13, Table 2"
+  },
+  {
+   "field": "studies[0].assignment.preregistered; studies[0].outcomes[*].primary",
+   "form_value": "preregistered=\"\" and primary=\"\" for all three outcomes.",
+   "source_says": "Use not_stated for these fields. The full document and appendices do not identify a preregistration or designate a primary outcome; the research questions alone do not establish either. Empty strings are not among the permitted values in the form specification.",
+   "quote": "RQ2. Can CreativeConnect help users generate better quality and quantity of design ideas?",
+   "locator": "PDF p. 9, Section 5 research questions; pp. 10-11, Sections 5.3 and 6; full-document/appendix review; form-spec.md permitted values"
+  },
+  {
+   "field": "studies[0].outcomes (omitted semantic similarity within participant input sets)",
+   "form_value": "Only expert creativity, expert sketch-set diversity, and sketch counts are listed.",
+   "source_says": "Also record the computed similarity of participant-supplied keyword/phrase sets as a within-person process/flexibility outcome, not across_people homogenization. There were 347 input sets (202 baseline, 145 CreativeConnect); 14 single-input sets (11 baseline, 3 CreativeConnect) were excluded, leaving n_units=333 sets (191 baseline, 142 CreativeConnect), not 333 people. Minimum similarity: CreativeConnect M=0.222, SD=0.094 versus baseline M=0.263, SD=0.166, p=0.008, t=2.66. Mean similarity: CreativeConnect M=0.330, SD=0.075 versus baseline M=0.356, SD=0.148, p=0.051, t=1.95. Describe mean and minimum as variants of this measure, computed from all phrase pairs within each input set and tested with two-sample t-tests.",
+   "quote": "For the remaining 333 input sets (191 from baseline, 142 from CreativeConnect), we computed the semantic similarity between all pairs of phrases within each input set and calculated the mean and minimum similarity.",
+   "locator": "PDF p. 11, Section 6.1.2; p. 12, Table 1"
+  }
+ ],
+ "confirmed": [
+  "The source is the 25-page arXiv:2312.11949v2 PDF dated 7 Mar 2024, bearing the recorded title, five authors, and DOI 10.1145/3613904.3642794 (PDF p. 1; PDF page count). The entire markdown, including Appendices A and B, was read.",
+  "The main comparison includes 16 people using both tools, not two independent groups of 16. No randomized-person count is reported; n_randomized=null is appropriate (PDF pp. 9-10, Sections 5-5.3).",
+  "The main participants are 11 design students (5 graduate, 6 at least third-year undergraduate) and 5 graduates; recruitment demographics are 10 females, 6 males, age M=24.81, SD=3.78 (PDF p. 9, Section 5.1).",
+  "Each participant completed both book-cover ideation tasks with 10 reference images per topic and 30 minutes per tool in a 2-hour session; tool and topic orders were counterbalanced (PDF pp. 9-10, Section 5.2 and Figure 4).",
+  "Both conditions provide generative AI. The baseline includes GPT-3.5-based ChatGPT and the same layout diffusion model, so ai_design is appropriate (PDF p. 9, Section 5; p. 17, Section 8; p. 24, Figure 11).",
+  "CreativeConnect uses BLIP-2, GPT-4, Segment Anything, GPT-3.5-turbo, layout diffusion, and sketch style transfer as described in the form (PDF pp. 6-8, Section 4.2; reference 55 identifies GLIGEN).",
+  "The expert evaluation sampled 96 sketches, three per participant per condition, and averaged two experts’ 7-point ratings; these are output observations, not 96 participants (PDF p. 10, Section 5.3).",
+  "S1-O1 reported values match exactly: CreativeConnect M=4.854, SD=1.418; baseline M=4.344, SD=1.708; p=0.114, t=1.59; two-sample t-test, not significant (PDF pp. 11-12, Section 6.2.1; p. 12, Figure 7(a)).",
+  "S1-O2 reported values match exactly: baseline M=4.625, SD=1.607; CreativeConnect M=4.75, SD=1.418; p=0.833, t=0.23; no significant difference. This assesses variety within a participant’s sketch set, appropriately coded flexibility/with_ai (PDF p. 10, Section 5.3; p. 12, Section 6.2.1).",
+  "S1-O3 reported values match exactly: CreativeConnect mean 5.56, std 1.63; baseline mean 5.06, std 1.73; p=0.041, t=2.24. The text calls this a two-sample pairwise t-test (PDF p. 12, Section 6.2.2; p. 13, Table 2, checked with PDF text and table extraction).",
+  "Every number in one_line_finding matches the cited main-text passages and Table 2; no correction to the one-line numerical results is needed (PDF pp. 9, 11-13).",
+  "Core exclusion remains correct: the main study has 16 analyzed people, fewer than 50, and does score creative output. Random assignment remains unclear; neither ai_vs_human nor synthesis context is supported, and unspecified allocation does not establish observational assignment, so context_class=none is retained pending clarification (PDF pp. 9-10, Sections 5-5.3; creativity-codebook.md, Sections 3-4).",
+  "The PDF includes prompts and technical examples in Appendix A, the baseline interface and interview questions in Appendix B, and the full usage-log figure for all 16 participants (PDF pp. 20-25, Appendices A-B; p. 24, Section B.3; p. 25, Figure 12).",
+  "This is not a synthesis and reports no pooled meta-analytic estimate; null synthesis counts and an empty pooled array are appropriate (PDF pp. 4-17, original formative, technical, and user studies).",
+  "The author block lists John Joon Young Chung at Midjourney but expressly says the work was done before joining Midjourney; acknowledgments identify Korean government funding, not company funding (PDF p. 1, author footnote; p. 17, Acknowledgments)."
+ ],
+ "summary": "All reported statistics match the PDF, but randomized tool order is not documented, so lab_rct is unsupported. The 16-person study remains below the core threshold; corrections also cover omitted studies and an outcome, the 96-sketch count, exclusions, and incomplete metadata."
+}

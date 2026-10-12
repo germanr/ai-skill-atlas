@@ -1,0 +1,71 @@
+{
+  "cid": "c075",
+  "lens": "assignment",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O2",
+      "field": "studies[S1].design_class (field_rct) and studies[S1].assignment.randomized (yes), as inherited by the S1-O2 contrast A (round 1) vs B (round 1)",
+      "form_value": "The H1 contrast A vs B (ai_vs_bau, d = 2.08) sits in study S1, which is coded field_rct with randomized = yes. Only the prose in measure_detail says that this contrast is not shown to be randomized.",
+      "source_says": "Not supported. The paper never says how students entered round-1 groups A (83) and B (81). Its three randomization statements (PDF pp. 2, 5, 8) cover only the round-2 split inside each group. Figure 1 has no allocation label, and the balance check compares only A1 vs A2 and B1 vs B2, never A vs B. The codebook codes design per estimate (section 4) and puts comparisons of people with and without AI under non-random assignment in observational context (section 3). The form spec offers quasi_people for this case. The structured fields should mark this estimate as not randomized (for example, a separate quasi_people study entry for the round-1 comparison), so that it cannot enter a randomized pool. The form's prose already flags the gap, so the fix is structural.",
+      "quote": "전환 조건 간 비교가 1차 성과 차이에 의해 편향되지 않았는지 확인하기 위해, 1차 집단 내부에서 다음 비교를 수행한다.",
+      "locator": "PDF p. 6 (journal p. 45), Section 3.3.1 and Table 1; H1 result PDF p. 6, Section 4.2; randomization statements PDF p. 2 (journal p. 41) Section 1, PDF p. 5 (journal p. 44) Section 3.1 step (3), PDF p. 8 (journal p. 47) Section 5.1; Figure 1, PDF p. 4 (journal p. 43); creativity-codebook.md sections 3 and 4; form-spec.md, design_class note"
+    },
+    {
+      "where": "S1-O3",
+      "field": "studies[S1].design_class (field_rct) and studies[S1].assignment.randomized (yes), as inherited by the S1-O3 contrast A2 vs B2",
+      "form_value": "The after_ai contrast A2 (discontinue AI) vs B2 (maintain no AI), ai_vs_bau, sits in study S1, which is coded field_rct with randomized = yes. Only the prose in measure_detail says that this contrast is not shown to be randomized.",
+      "source_says": "Not supported. A2 and B2 are random sub-arms of two different round-1 groups. The random draw happened inside A and inside B, so a comparison of A2 with B2 crosses the A/B split, which the paper never calls random. The paper reports no test of A2 vs B2 and no balance check between A and B. Like S1-O2, this estimate needs a non-randomized design code in the structured fields.",
+      "quote": "2차에서는 1차 집단(A/B) 내부에서 무작위로 전환 조건을 분기하여 A는 AI 유지(A1) 또는 AI 중단(A2), B는 AI 도입(B1) 또는 미사용 유지(B2)로 배정한다.",
+      "locator": "PDF p. 5 (journal p. 44), Section 3.1, step (3); Table 4, PDF p. 7 (journal p. 46); Figure 1, PDF p. 4 (journal p. 43)"
+    }
+  ],
+  "confirmed": [
+    {
+      "statement": "The paper states random assignment of the round-2 AI condition three times and nowhere else. A whitespace-insensitive search of the PDF text layer for 무작위, 임의, random, 배정, 할당, and 분기 finds only these three passages. Each one says the draw was made inside the round-1 group: A into A1 (keep AI) or A2 (stop AI), and B into B1 (adopt AI) or B2 (stay without AI).",
+      "locator": "PDF p. 2 (journal p. 41), Section 1, right column; PDF p. 5 (journal p. 44), Section 3.1, step (3); PDF p. 8 (journal p. 47), Section 5.1"
+    },
+    {
+      "statement": "The form's assignment block is accurate. randomized = yes covers the round-2 split, and what_was_assigned says the paper never describes how students entered A or B. Figure 1 shows A ('AI access allowed', n = 83) and B ('No AI access', n = 81), with arrows to A1-A2 and B1-B2 and no allocation label. The assignment quote matches the PDF word for word.",
+      "locator": "PDF p. 4 (journal p. 43), Figure 1, checked on a 5x render; PDF p. 5 (journal p. 44), Section 3.1, step (3)"
+    },
+    {
+      "statement": "unit = individual is supported. Section 5.1 says the participants (164 in total) were randomly branched, and Section 3.1 calls the round-2 condition a between-subject (개인 간) factor. The paper does not describe the randomization procedure, and no passage mentions allocation by class.",
+      "locator": "PDF p. 8 (journal p. 47), Section 5.1; PDF p. 4 (journal p. 43), Section 3.1"
+    },
+    {
+      "statement": "structure = mixed matches the paper's own words: a mixed-design experiment (혼합설계, mixed design) with time (round 1, round 2) as a within-subject factor and the round-2 condition as a between-subject factor.",
+      "locator": "PDF p. 4 (journal p. 43), Section 3.1, first paragraph"
+    },
+    {
+      "statement": "What was assigned is access to generative AI for the participant's own work. In round 2, each student upgraded his or her own round-1 ideas (revise, supplement, elaborate, or add perspectives), with or without AI. Two raters blind to condition scored every output, so the conditions do not differ only in whose output is evaluated.",
+      "locator": "PDF p. 5 (journal p. 44), Section 3.1, step (3) and the task paragraphs; PDF p. 6 (journal p. 45), Section 3.2.4"
+    },
+    {
+      "statement": "The tool is generative AI. In AI conditions, students were directed to ChatGPT (Free plan, the default version at the time) and could also use other generative AI tools. The paper describes these tools as LLM-based. ai_tool.name_model, role = open_chat, and how_used match the text, including that usage time, prompts, and purpose were not measured.",
+      "locator": "PDF p. 5 (journal p. 44), Section 3.1, step (1); PDF p. 3 (journal p. 42), Section 2.4; PDF p. 9 (journal p. 48), Section 5.2, first limitation"
+    },
+    {
+      "statement": "The comparison arms of the two randomized contrasts match the form. B2 had no AI in either round (Figure 1, 'Maintain No AI'), so B1 vs B2 is AI vs no AI. A1 and A2 both had AI in round 1, and only A1 kept it for the round-2 upgrade (Figure 1, 'Discontinue AI' for A2), so A1 vs A2 differs only in AI access during round 2. This supports ai_vs_bau for both gain contrasts. A2's arm-level ai = generative_ai reflects its round-1 use, and its description says it had no AI in round 2.",
+      "locator": "PDF p. 4 (journal p. 43), Figure 1 and Section 2.5; PDF pp. 4-5 (journal pp. 43-44), Section 3.1, steps (1) and (3)"
+    },
+    {
+      "statement": "Check (e): time is a within-person factor with a fixed order (round 1, a break of about 30 minutes, round 2), and the AI order is never counterbalanced (B1 always goes from no AI to AI). The coded AI contrasts do not depend on that order. Each compares the round-1-to-round-2 gain between two arms randomized inside the same round-1 group (planned contrasts of the time x group_2 mixed model). The form does not code the within-arm paired t-tests as AI effects.",
+      "locator": "PDF p. 5 (journal p. 44), Section 3.1, steps (1)-(3); PDF p. 6 (journal p. 45), Section 3.3.4; PDF p. 7 (journal p. 46), Table 3 and Section 4.4.2"
+    },
+    {
+      "statement": "The arm counts are right and are counts analyzed: A 83, B 81, A1 43, A2 40, B1 41, B2 40, 164 in total. Only students who wrote both outputs were analyzed, and the paper gives no count at assignment, so n_randomized = null is right. Each randomized split has more than 50 people (B 81, A 83).",
+      "locator": "PDF p. 4 (journal p. 43), Figure 1; PDF p. 5 (journal p. 44), Section 3.1; PDF p. 6 (journal p. 45), Section 4.1; PDF p. 7 (journal p. 46), Tables 3 and 4"
+    },
+    {
+      "statement": "The round-2 splits are balanced on round-1 scores, as random assignment predicts: A1 vs A2 Welch t = 0.53, p = .598, d = 0.12; B1 vs B2 t = 0.38, p = .704, d = 0.08.",
+      "locator": "PDF p. 6 (journal p. 45), Table 1"
+    },
+    {
+      "statement": "preregistered = not_stated is right. The PDF text and the markdown have no mention of preregistration, OSF, IRB, or ethics approval. The paper reports written consent only.",
+      "locator": "Text search of PDF pp. 1-10 and the markdown; consent at PDF p. 5 (journal p. 44), Section 3.1, last paragraph"
+    }
+  ],
+  "summary": "The paper states three times that the round-2 AI condition was assigned at random inside each round-1 group, so students in B were randomly given ChatGPT (B1, 41) or kept without AI (B2, 40) to upgrade their own ideas, and A was split the same way (A1 43, A2 40); criterion 1 holds. The coding fails on one point of structure: the A vs B contrast (S1-O2) and the A2 vs B2 contrast (S1-O3) sit in a study coded field_rct and randomized, although the paper never says how students entered A or B, so those two estimates need a non-randomized design code."
+}

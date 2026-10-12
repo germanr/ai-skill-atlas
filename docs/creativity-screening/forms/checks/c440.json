@@ -1,0 +1,64 @@
+{
+ "cid": "c440",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_analyzed; studies[0].arms[0,1,3].n_analyzed; eligibility.criterion_2_at_least_50_people",
+   "form_value": "Total n_analyzed = 503; Human Social n_analyzed = 210; Human Asocial n_analyzed = 179; Human-AI Hybrid n_analyzed = 114; criterion_2_at_least_50_people = met.",
+   "source_says": "The total 503 is explicitly a successfully recruited count. The condition descriptions report N = 210, N = 179, and N = 114, but do not identify separate counts at randomization or after exclusions. Retain these numbers as reported recruitment/condition sample sizes in prose; under the source-only count rule, stage-specific n_analyzed values should be null, as n_randomized already is. Criterion 2 should be unclear for the unconfirmed analyzed count, while explaining that all reported human condition sample sizes exceed 50; there is no evidence establishing a fewer-than-50 analyzed experiment.",
+   "quote": "503 participants were recruited successfully from Prolific",
+   "locator": "PDF p. 3, Experimental conditions and Participants and AI queries, Human participants; form-spec.md, Rules 1 and 5 and Field notes on counts and eligibility.core."
+  },
+  {
+   "field": "studies[0].outcomes (missing human-only lexical-diversity outcome)",
+   "form_value": "Only collective performance, collective lexical diversity, and human-only performance are listed; human-only lexical diversity is omitted.",
+   "source_says": "Add the comparison of lexical diversity of human-produced guesses in Human-AI Hybrid versus Human Social: the human Hybrid subgroup contributed a significantly higher proportion of unique words, p < .001. Figure 4B also shows *** for this comparison. This is distinct from the lower diversity of the combined human-plus-AI pool in S1-O2. Code the human-output result as diversity/across_people, lexical_overlap, treatment_higher, with an active human-hint comparator. Numerical arm means, SDs, and a numerical confidence interval are not printed and should remain null.",
+   "quote": "As shown in Fig. 4B, humans in the Hybrid condition contributed a significantly higher proportion of unique words (lexical diversity) compared to the Human Social condition (𝑝< .001).",
+   "locator": "PDF p. 5, Interaction with people changes AI behavior, second paragraph; Figure 4B, Human panel, and its caption."
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts[0].reported",
+   "form_value": "Human-AI Hybrid M = 0.58, reported as lower than the human conditions, including Human Social. The Human Social mean and a separate p value for this contrast are not numerically printed in the results text. The measure averages the proportion of unique words within games; hybrid games pool guesses from human and AI players.",
+   "source_says": "The mean M = 0.58 and the statement about the results text are correct, but the figure supplies an omitted significance annotation: Figure 3C labels Human-AI Hybrid versus Human Social with ***. Add that marker and the caption-defined 0.001 significance level, with the caption stating that shown significant comparisons survive Bonferroni correction. An exact p value and the Human Social mean are not printed; do not estimate them from the plot.",
+   "quote": "Asterisks *, **, and *** denote significance levels of 0.05, 0.01, and 0.001, respectively.",
+   "locator": "PDF p. 4, Diversity analysis; p. 5, Figure 3C, Human Social-to-Human-AI Hybrid bracket, and Figure 3 caption."
+  },
+  {
+   "field": "studies[0].outcomes[1].diversity_detail; studies[0].outcomes[1].measure_detail",
+   "form_value": "All diversity_detail strings and measure_detail are empty.",
+   "source_says": "Record the lexical metric as the proportion of unique guessed words within each game, averaged across games; embedding_model is not applicable to this lexical measure. For Hybrid games the pool includes both human and AI guesses. Also mention the cross-game, per-round diversity variant in Figure 3D. The caption identifies Bonferroni correction for significant comparisons, but does not explicitly identify the diversity test or the uncertainty calculation for panels C and D; keep those methods not_stated. Do not transfer the participant standard-error description explicitly attached to performance panels A and B to diversity.",
+   "quote": "To measure diversity, we used lexical diversity, defined as the average proportion of unique guessed words within each game (Fig. 3C).",
+   "locator": "PDF p. 4, Diversity analysis; p. 5, Figure 3C-D and caption; form-spec.md, Rule 7 and Field notes on diversity_detail."
+  },
+  {
+   "field": "studies[0].outcomes[0:3].contrasts[0].treatment_arm, control_arm, comparison_type, direction, statistics_available",
+   "form_value": "All three contrast objects leave the arm names, comparison_type, direction, and statistics_available blank.",
+   "source_says": "The reported strings already specify the contrasts. For S1-O1 and S1-O2, set treatment_arm to Human-AI Hybrid and control_arm to Human Social. For S1-O3 specify human-produced rounds in Human-AI Hybrid versus Human Social. These comparisons use ai_vs_active because the comparator receives human-produced best-guess hints. Their respective directions are treatment_higher, treatment_lower, and no_clear_difference. Statistics available include figure_only and p_value_only for all three, with standardized_effect additionally available for S1-O3. These comparison labels do not establish randomized assignment.",
+   "quote": "In each round, participants received the best guess from the previous round in the game (Fig. 1C).",
+   "locator": "PDF p. 3, Method and Experimental conditions; p. 4, Performance analysis and Diversity analysis; p. 5, Figures 3A/C and 4A and Interaction with people changes AI behavior; creativity-codebook.md, section 5."
+  },
+  {
+   "field": "studies[0].participants.country",
+   "form_value": "",
+   "source_says": "United States. The source explicitly states the country, and the form already acknowledges it in participants.who.",
+   "quote": "Participants were based in the US and identified English as their native language.",
+   "locator": "PDF p. 3, Participants and AI queries, Human participants."
+  }
+ ],
+ "confirmed": [
+  "The source is arXiv:2602.10001v3 [cs.SI], dated 14 Jul 2026, with eight PDF pages. The title and seven authors match the form. The entire markdown and PDF were read; the document ends with references and contains no appendix or stated supplement (PDF p. 1, title/byline/version banner; pp. 7-8, Acknowledgments and References).",
+  "The main experiment includes humans receiving indirect AI-generated hints, so it is not solely an AI-versus-human-output study. However, the explicit randomization assigns hybrid-game rounds to human or Gemini players; allocation of people across Human Social, Human Asocial, and Human-AI Hybrid is unstated. Thus S1 design_class = other, assignment.randomized = not_stated, criterion 1/core = unclear, and context_class = none are defensible. The false checker flag means no documented randomized-people study was confirmed, not that nonrandom assignment was established (PDF p. 3, Experimental conditions).",
+  "The PDF reports 503 successfully recruited people and condition sample sizes of 210 Human Social, 179 Human Asocial, and 114 Human-AI Hybrid. These are people, not games, guesses, API calls, or ratings; separate assignment and post-exclusion counts are not reported (PDF p. 3, Experimental conditions and Human participants).",
+  "Each game has 10 rounds with 10 guesses per round, and similarity feedback uses Word2Vec cosine similarity scaled by 201.69. Human Social players contribute one round per game in up to 10 games; Human Asocial players complete one entire game; Hybrid humans contribute one round per game and are described as participating in 10 games (PDF p. 3, Method and Experimental conditions).",
+  "The assistance is indirect best-guess information from other players, including Gemini agents in hybrid games; humans are not told that guesses may have come from AI. Gemini 2.5 Flash is identified as the June 17, 2025 release, at temperature 0.7 (PDF p. 3, Experimental conditions and AI queries).",
+  "S1-O1 correctly reports Human-AI Hybrid performance M = 87.76. The results text gives p < .001 against the other conditions, whereas the Human Social-versus-Hybrid bracket in Figure 3A has ** and the caption defines the 0.01 significance level. No numerical Human Social mean is printed (PDF pp. 3-4, Performance analysis; p. 5, Figure 3A/caption and Controlling for effect of model type and synergy).",
+  "S1-O2 correctly reports collective Hybrid lexical diversity M = 0.58, below the human conditions; the measure combines human and AI guesses in hybrid games. It is an average of within-game proportions of unique words, distinct from the human-only comparison in Figure 4B (PDF p. 4, Diversity analysis; p. 5, Figures 3C and 4B).",
+  "S1-O3 and the one-line finding correctly report no significant human-performance difference between Hybrid and Human Social: p = 0.392, d = 0.032. The one-line Hybrid mean M = 87.76 is also printed. Numerical human-subgroup means are not supplied (PDF p. 5, Interaction with people changes AI behavior, Figure 4A, and Controlling for effect of model type and synergy).",
+  "The outcomes are computed on produced guesses: round-maximum target similarity and lexical word uniqueness. The convergent-task designation and the caveat that collective Hybrid outcomes include AI outputs are supported; these are not self-reported creativity measures (PDF pp. 3-4, Performance analysis and Diversity analysis; p. 6, Discussion limitations).",
+  "S2 is a model-only control using Gemini 2.5 Flash, GPT 5.1, and a 50%/50% mixture, reusing the original human-hybrid comparison. GPT 5.1 uses temperature 0.7 and medium reasoning effort; the new control conditions add no human sample (PDF p. 3, AI queries; pp. 5-6, Controlling for effect of model type and synergy).",
+  "S3 and S4 are explicitly AI-only controls. Communication variants are Complete History, Short Advice, and Long Advice; temperature variants are 0.3, 0.5, 0.9, and 1.1 relative to the main 0.7 setting. None establishes randomized human assistance (PDF p. 3, AI queries; p. 6, Controlling for prompts and social information).",
+  "This is an original experimental paper, not a review or meta-analysis; leaving synthesis counts and pooled-estimate fields at their defaults is appropriate (PDF pp. 3-6, Method, Results, and control experiments)."
+ ],
+ "summary": "The form's version and headline numbers match the v3 PDF, but it omits the human-specific diversity result and leaves comparison details incomplete. Random assignment of people is unreported, and the 503 recruited participants should not be presented as a confirmed analyzed count."
+}

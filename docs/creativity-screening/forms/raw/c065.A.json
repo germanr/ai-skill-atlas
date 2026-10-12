@@ -1,0 +1,183 @@
+{
+  "cid": "c065",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Hemmatian et al (2026) - Two-Player Alternate Uses Test.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Hemmatian et al (2026) - Two-Player Alternate Uses Test.pdf",
+    "version": "Author manuscript retrieved from arXiv 2607.07522 (retrieval record); the document carries no date, arXiv stamp, or ACM header. It refers to the C&C 2026 theme (p. 1). Search record lists it as Creativity & Cognition 2026 proceedings, DOI 10.1145/3803784.3816851. PDF metadata creation date 2026-05-21.",
+    "title_on_document": "Two-Player Alternate Uses Test: A Controlled Testbed for Interactive Human–AI and Human–Human Co-Creation",
+    "authors_on_document": ["Babak Hemmatian", "Anita Keshmirian", "Yijun Lin", "Shravan Ramamoorthy", "Mostafa Jahadakbar", "Elena Khuri-Reid", "Jingyu Wang", "Sina Hadjarab", "Sigrid Veum", "Pranav Gupta", "Deepak Somaya", "Lav Varshney"],
+    "pages": 8,
+    "supplement": {
+      "exists": "no",
+      "in_this_pdf": false,
+      "where": "No supplementary material or online appendix is referenced. The paper links source code (https://github.com/BabakHemmatian/AI-creativity) and a live demo (https://co-creativity.onrender.com/) on p. 2, and says platform, code, and dataset are released (abstract, p. 1).",
+      "holds": "Nothing referenced. Utility ratings were collected but 'utility results are available on request' (p. 4, Section 3.4). Full-sample arm means by partner condition are not printed anywhere in the PDF."
+    }
+  },
+  "paper_design_summary": "In an in-person pilot, 62 UIUC students each completed three 4-minute two-player Alternate Uses Test chat sessions in randomized order: with another human (HUM), with a GPT-4 partner (GPT), and a non-interactive condition (CON) in which they read one of three pre-rated seed sets (GPT-4 ideas, highly creative human ideas, or uncreative human ideas), assigned between participants. After each chat participants curated the best uses in a survey tab, and 226 Prolific workers rated the 1,923 ideas for originality on a 1-5 scale. A linear mixed model compares originality across partner types.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "In-person pilot of the two-player AUT platform (HUM vs GPT vs CON, within-subject)",
+      "design_class": "lab_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Order of the three partner conditions (HUM, GPT, CON) within person; target objects (book, fork, tin can) counterbalanced across sessions; the CON seed set (gpt_con, high_con, low_con) assigned between participants (the paper does not say this sub-assignment was random and calls it uneven).",
+        "unit": "within_person_order",
+        "structure": "mixed",
+        "quote": "Each participant completed three co-creation sessions within-subject in randomized order: human–human (HUM), human–GPT-4 (GPT), and non-interactive (CON for “constant”).",
+        "locator": "p. 3, Section 3.2; also p. 3, Figure 1 caption ('three randomized 4-minute co-creation sessions')",
+        "preregistered": "not_stated",
+        "prereg_locator": "No preregistration of the pilot is mentioned; the conclusion calls the platform 'pre-registerable' (p. 7, Section 7)."
+      },
+      "arms": [
+        { "name": "GPT", "description": "4-minute shared chat with a GPT-4 partner under strict turn-taking; participants know the partner is AI", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "HUM", "description": "4-minute shared chat with another participant (human–human dyad) in the same interface", "ai": "other_aid", "n_randomized": null, "n_analyzed": null },
+        { "name": "CON (gpt_con)", "description": "Non-interactive: participant reads 16 GPT-4-only ideas, then curates", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "CON (high_con)", "description": "Non-interactive: participant reads 16 highly creative human ideas from Stevenson et al. (2022), then curates", "ai": "other_aid", "n_randomized": null, "n_analyzed": null },
+        { "name": "CON (low_con)", "description": "Non-interactive: participant reads 16 uncreative human ideas from Stevenson et al. (2022), then curates", "ai": "other_aid", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 62,
+        "n_analyzed": 62,
+        "counts_are": "people",
+        "exclusions": "No exclusions reported. Every participant does all three partner conditions, so all 62 appear in each within-person arm by design. Figure 3 (p. 6) prints subject-level n by BAS Drive group: CON 32 + 30, GPT 32 + 29, HUM 32 + 30, which implies one participant missing from the GPT subject-level means; the paper does not explain. The outsourcing correlation in HUM uses n = 20 (p. 5). CON sub-arms: Figure 1 prints n = 21 for each of gpt_con, high_con, low_con and its text alternative says '~21 participants each', while Section 4.3 says the sub-arms were 'unevenly assigned' (p. 6); 3 x 21 = 63 does not match N = 62.",
+        "population": "students",
+        "who": "University of Illinois Urbana-Champaign students, in-person sessions for course credit; 19 male, 42 female, 1 non-binary; English-speaking (p. 7, Limitations)",
+        "country": "United States (University of Illinois Urbana-Champaign; country not named in the text)",
+        "quote": "Sixty-two University of Illinois Urbana-Champaign students signed up for in-person sessions in exchange for course credit (19 male, 42 female, 1 non-binary).",
+        "locator": "p. 3, Section 3.2; N = 62 also in abstract (p. 1) and Figure 1 caption (p. 3)"
+      },
+      "ai_tool": {
+        "name_model": "gpt-4 via OpenAI chat-completions API, temperature 0.7, max_tokens 3000",
+        "role": "open_chat",
+        "how_used": "GPT-4 acts as a live chat partner generating alternate uses with the participant in a shared chat, with server-enforced strict turn-taking. Its prompt adds guardrails: one idea per turn, no preambles, single-sentence responses; a token-overlap filter rejects responses overlapping more than 50 percent with any prior message (p. 3, AI configuration). Participants are told the partner is AI. In the gpt_con CON sub-arm, participants instead read 16 pre-generated GPT-4 ideas (ideas supplied, no interaction)."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Two-player Alternate Uses Test: generate unusual uses for a target object (book, fork, tin can; counterbalanced) in a shared chat, then curate the 'best' creative uses inspired by the chat in a separate survey tab (Figure 1 says 'Curate best 5'). Half of the participants also did a 2-minute solo AUT before the sessions and half after; no solo-AUT results are reported.",
+        "duration": "4-minute chat per session, three sessions; solo AUT 2 minutes"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Crowd-rated originality of ideas from the interactive sessions (GPT vs HUM)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Originality ('how unlikely others would be to generate the idea') on a 5-point Likert scale by 226 Prolific workers (Figure 1 says 225), median 6 ratings per idea, range 5-12 (p. 4, Section 3.4). Analysis: LMM with fixed effects of partner type, non-interactive assignment, and their interaction, random intercepts for subject, item-within-subject, and rater (p. 4, Section 4). Robustness: TOST equivalence test and Bayesian re-estimation with Normal(0,1) prior. 'Top-quality rate' and 'failure rate' variants are mentioned only for the BAS Drive interaction (p. 5). The scored ideas were curated in a survey tab right after the chat; the data flow box says the 1,928 ideas were 'generated in chat + curated' (Figure 1, p. 3), so it is not clear whether rated ideas include the partner's (AI's or other human's) own ideas. Utility was also rated but not reported.",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "GPT",
+              "control_arm": "HUM",
+              "comparison_type": "ai_vs_active",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "confidence_interval", "p_value_only"],
+              "reported": "β_{GPT−HUM} = −0.11, SE = 0.13, 95% CI [−0.37, +0.16], p = .42; TOST bounded maximum credible effect at |β| ≤ 0.33; Bayesian BF01 = 10.95, posterior median +0.06, 95% credible interval [−0.06, +0.20]. Subgroup subject-level means (Figure 3, Welch t-tests): low BAS Drive GPT 3.20 (n = 32) vs HUM 3.10 (n = 32), p = 0.32; high BAS Drive GPT 3.48 (n = 29) vs HUM 3.29 (n = 30), p = 0.08.",
+              "locator": "p. 4, Section 4.1; p. 6, Figure 3"
+            },
+            {
+              "treatment_arm": "GPT",
+              "control_arm": "CON (pooled over gpt_con, high_con, low_con seed sets)",
+              "comparison_type": "other",
+              "direction": "mixed",
+              "statistics_available": ["figure_only", "p_value_only", "standardized_effect", "confidence_interval"],
+              "reported": "No full-sample GPT vs CON estimate printed. Interaction β_{BAS-Drive × GPT-vs-CON} = +0.20, 95% CI [+0.05, +0.38], p = .034, BF10 = 3.37; same direction on top-quality rate (p = .033) and failure rate (p = .030). Figure 3 subject-level means: low BAS Drive CON 3.44 (n = 32) vs GPT 3.20 (n = 32), p = 0.06; high BAS Drive CON 3.24 (n = 30) vs GPT 3.48 (n = 29), Δ = +0.25, p = .046, d = +0.53 (Welch t-test on subject-level means; bars mean ± 95% CI). Grand mean = 3.29.",
+              "locator": "p. 5, Section 4.2; p. 6, Figure 3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Originality in later HUM and GPT sessions by the CON seed set seen first",
+          "construct": "novelty",
+          "question": "after_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Crowd-rated originality (1-5) of ideas from the HUM and GPT sessions, restricted to participants whose first session was CON; compares the seed set seen in that first session (gpt_con = GPT-4 ideas, high_con, low_con). Seed exposure is for a different target object. Exploratory; the authors note CON sub-arms were unevenly assigned. The number of participants in this subsample is not given.",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "Later sessions in the same visit",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "CON (gpt_con) seen first: 16 GPT-4 ideas",
+              "control_arm": "CON (high_con) seen first: 16 highly creative human ideas",
+              "comparison_type": "ai_vs_active",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "regression_coefficient_se", "p_value_only"],
+              "reported": "Seed-set effect F(2, 1963) = 4.68, p = .009; β_{high vs gpt} = +0.32, p = .016 (higher subsequent originality after high_con than after gpt_con). No SE printed.",
+              "locator": "p. 6, Section 4.3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Originality of ideas curated in the CON session by seed set (manipulation check)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Crowdsourced originality of CON-session ideas, which participants curated after reading a pre-rated seed set. The paper uses it as a manipulation check of the seed-set quality gradient, so it largely reflects the seed ideas rather than participant production.",
+          "unit": "rating",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "CON (gpt_con)",
+              "control_arm": "CON (high_con) and CON (low_con)",
+              "comparison_type": "ai_vs_active",
+              "direction": "mixed",
+              "statistics_available": ["regression_coefficient_se", "p_value_only"],
+              "reported": "low_con < gpt_con < high_con; β_{low−gpt} = −0.48, β_{high−gpt} = +0.23, both p < .001. No SE printed.",
+              "locator": "p. 3, Section 3.2 (Non-interactive baselines); p. 4, Section 4.1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "Seed ideas for high_con and low_con come from Stevenson et al. (2022) (p. 3), but these are ideas, not shared participants." },
+  "company_involvement": { "any": false, "description": "No company funding or staff involvement stated. One author lists the affiliation 'Alinea' (p. 1); its type is not stated. OpenAI's API supplies the GPT-4 partner.", "locator": "p. 1, author list; p. 3, AI configuration" },
+  "data_and_code": { "data_url": "https://github.com/BabakHemmatian/AI-creativity (the paper says the dataset is released; no separate data URL is printed)", "code_url": "https://github.com/BabakHemmatian/AI-creativity" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Within-person design with randomized order of a GPT-4 chat partner, a human partner, and a non-interactive condition (p. 3, Section 3.2), so GPT vs HUM is a randomized ai_vs_active contrast. 62 students participated and the dataset covers all 62 (p. 2, contributions; p. 3), above the 50 threshold but not by much; Figure 3 shows 61 participants with GPT subject-level means. Outcome is crowd-rated originality of the ideas curated right after each chat (p. 4). Caveats: the paper calls the pilot exploratory; the rated ideas may include partner-generated ideas from the chat; the main estimate is from a rating-level mixed model."
+  },
+  "one_line_finding": "Among 62 students, originality of ideas from a 4-minute AUT chat with a GPT-4 partner was statistically equivalent to that with a human partner (β_{GPT−HUM} = −0.11, SE = 0.13, 95% CI [−0.37, +0.16], p = .42; BF01 = 10.95), p. 4, Section 4.1.",
+  "open_questions": [
+    "Were the rated ideas only the participant's curated list, or also the partner's chat contributions (Figure 1: '1,928 ideas, generated in chat + curated')? If AI-written ideas are included, the GPT arm's score partly measures GPT-4 output.",
+    "Counts conflict: 1,928 ideas (pp. 2-3) vs 1,923 distinct rated ideas (pp. 4, 7); 226 raters (p. 4) vs 225 (Figure 1); CON sub-arms n = 21 each (Figure 1) vs N = 62 and 'unevenly assigned' (p. 6).",
+    "Was the CON seed-set sub-assignment random? The paper says only 'assigned between participants'.",
+    "S1-O2 mixes later HUM sessions (no AI) and GPT sessions (AI available); coding it as after_ai is a judgment call.",
+    "HUM sessions pair two participants, so HUM outcomes are not independent across the dyad; the paper does not say how dyads were formed."
+  ],
+  "notes": "No full-sample arm means or SDs by partner condition are printed; only the GPT−HUM LMM coefficient and subgroup subject-level means in Figure 3 (read from the figure labels at high zoom). Solo AUT done before or after the sessions (a possible after-AI outcome) is collected but no results are reported. Other reported analyses are trait correlates (random-forest importance of RMET and BAS, Figure 2; RMET vs within-subject range of originality r = +0.27, p = .037; self-reported outsourcing vs originality in HUM r = −0.504, p = .024, n = 20), which are moderators rather than AI contrasts and are not listed as outcomes. No diversity outcome."
+}

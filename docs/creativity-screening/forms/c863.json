@@ -1,0 +1,168 @@
+{
+ "cid": "c863",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Michelessa Ng Hurter Lim (2025) - Varifai to Vary and Verify User-Driven Diversity in Scalable Image Generation.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Michelessa Ng Hurter Lim (2025) - Varifai to Vary and Verify User-Driven Diversity in Scalable Image Generation.pdf",
+  "version": "arXiv 2506.19644v1 of 24 Jun 2025 (19 pages; preprint of the DIS 2025 paper, DOI 10.1145/3715336.3735847); version of record not read",
+  "title_on_document": "Varif.ai to Vary and Verify User-Driven Diversity in Scalable Image Generation",
+  "authors_on_document": [
+   "Mario Michelessa",
+   "Jamie Ng",
+   "Christophe Hurter",
+   "Brian Y. Lim"
+  ],
+  "pages": 19,
+  "supplement": {
+   "exists": "no",
+   "in_this_pdf": false,
+   "where": "Appendices A (LLM prompt instructions) and B (additional participant results) are inside this PDF; code at https://github.com/mario-michelessa/varifai",
+   "holds": "Appendix B: example image collections and Prompt-only prompt iterations; no extra statistics"
+  }
+ },
+ "paper_design_summary": "A system paper on Varif.ai, a text-to-image tool (SD-XL Lightning plus LLaMA-2) that lets users verify and vary attribute distributions in a generated image set. After an 8-person elicitation study and an 8-person formative study (qualitative, no comparison group), a summative lab study over Zoom had 20 participants generate diverse image sets with Varif.ai and with a Prompt-only version of the same tool, within subjects in counterbalanced random order, with the scenario (Doctors, Birds, Cars) randomly assigned between subjects. The main scored outcome is the CLIP-embedding diversity span of each participant's own image collection.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Summative user study (Varif.ai vs Prompt-only image generation)",
+   "design_class": "lab_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Order of the two techniques (Prompt-only then Varif.ai, or the reverse) for the open-ended task; scenario (Doctors, Birds, Cars) assigned between subjects",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "Generate images iteratively for the Open-ended degree of specification using Prompt-only, then Varif.ai (or in reversed depending on random assignment).",
+    "locator": "p. 10, Section 7.1.2 Procedure; also p. 9, Section 7.1.1 (\"within-subjects with counterbalancing\")",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Varif.ai",
+     "description": "Full tool: prompt entry plus Attributes tab with LLM-suggested labels and editable histograms that set label proportions in probabilistic prompts",
+     "ai": "generative_ai",
+     "n_randomized": 20,
+     "n_analyzed": 20
+    },
+    {
+     "name": "Prompt-only",
+     "description": "Ablated version of Varif.ai with only the prompt text entry and no Attributes tab",
+     "ai": "generative_ai",
+     "n_randomized": 20,
+     "n_analyzed": 20
+    }
+   ],
+   "participants": {
+    "n_randomized": 20,
+    "n_analyzed": 20,
+    "counts_are": "people",
+    "exclusions": "None reported. The paper gives one count (20 recruited); Fig. 11 (p. 12) shows 20 distinct participant IDs (6 Doctors, 7 Birds, 7 Cars). Each participant used both techniques, so each arm has the same 20 people.",
+    "population": "general_public",
+    "who": "Adults aged 21 to 33 (median 23), 12 female, recruited through a local university mailing list and mutual connections; backgrounds in social sciences, medicine, arts, business, and STEM; nine had no prior text-to-image experience",
+    "country": "",
+    "quote": "We recruited 20 participants through a local university mailing list and mutual connections. Participants ranged in age from 21 to 33 (Median = 23), were 12 female, and had diverse educational backgrounds",
+    "locator": "p. 10, Section 7.2 Analysis and Results"
+   },
+   "ai_tool": {
+    "name_model": "Varif.ai built on SD-XL Lightning (text-to-image) and LLaMA-2 (label suggestions), CLIP for image labeling",
+    "role": "image_generation",
+    "how_used": "Participants iteratively generated image sets from prompts; in the Varif.ai arm they also added attributes and adjusted label distributions"
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Generate a diverse set of reference images for an assigned scenario (kid book illustrator portraying doctors, teacher showing bird variety, car poster references), first with an open-ended diversity goal; Varif.ai alone was then used for attribute-specific and attribute-label-specific goals",
+    "duration": "Main session 40 min within a one-hour Zoom session"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Computed image diversity (span) of the participant's image collection, open-ended goal",
+     "construct": "flexibility",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Diversity span (95th percentile of distances of CLIP ViT-bigG-14 image embeddings from their mean) over each participant's collection, augmented to 50 images with the original attribute specification. Variety within one person's own image set, not across people; coded flexibility under the codebook rule. Linear mixed-effects models with post-hoc contrasts.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Varif.ai",
+       "control_arm": "Prompt-only",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "p_value_only",
+        "figure_only"
+       ],
+       "reported": "Varif.ai span mean M = 0.65 vs Prompt-only M = 0.45; p < .0001 (also vs Original, no user interaction, M = 0.35; p < .0001). Fig. 8a shows 90% confidence intervals.",
+       "locator": "p. 11, Section 7.2.1 (RQ1a); p. 10, Fig. 8a"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": "https://github.com/mario-michelessa/varifai"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "Randomized within-person experiment (counterbalanced order, random assignment stated) comparing two generative-AI configurations, with an embedding-based diversity score on each participant's own image set. Only 20 people took part (p. 10), well below 50, so it goes to the screening report as a small randomized experiment. The other two studies (8 people each) are qualitative with no comparison group. The diversity outcome is within one person's set, not across people."
+ },
+ "one_line_finding": "In a within-person experiment with 20 participants, image sets made with Varif.ai had a higher CLIP diversity span than those made with the Prompt-only version (M = 0.65 vs 0.45, p < .0001; p. 11, Section 7.2.1 and Fig. 8a).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "data_and_code.code_url",
+    "old": "",
+    "new": "https://github.com/mario-michelessa/varifai",
+    "quote": "Code available at https://github.com/mario-michelessa/varifai",
+    "locator": "p. 2, footnote 1; also p. 7, Section 5.4 (Implementation Details)"
+   }
+  ],
+  "rejected": []
+ }
+}

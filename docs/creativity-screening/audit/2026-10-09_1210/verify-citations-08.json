@@ -1,0 +1,11 @@
+[
+  {
+    "id": "citations-08-1",
+    "cid": "c498",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:153 DOI fallback and :165-169 Paper-cell link; c498 in Context: observational",
+    "correct_value": "https://socialinnovationsjournal.com/index.php/sij/article/view/10002",
+    "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1393 and report-generated.md:1341: both label c498 as Social Innovations Journal but link to https://doi.org/10.35542/osf.io/yuagx_v1. Independently retrieved https://api.crossref.org/works/10.35542/osf.io/yuagx_v1: type=posted-content, subtype=preprint, publisher=Center for Open Science, posted=2025-04-20, resource.primary.URL=https://osf.io/yuagx_v1. Independently retrieved https://socialinnovationsjournal.com/index.php/sij/article/view/10002: citation metadata and the displayed citation identify the Nasiar, Shah, Baker, and Pankiewicz article in Social Innovations Journal, published 2025-04-23; citation_abstract_html_url is the journal URL given in correct_value. forms/citations/c498.json correctly records latest_version.doi=null and latest_version.url as that journal URL, with the preprint DOI under other_versions. tools/build_report.py:153 uses lv.get(\"doi\") or c.get(\"doi\"), restoring the preprint DOI from candidates.json despite the checked null; :166 then prefers that DOI over the correct journal URL. Reproducing these expressions in memory yields the erroneous report link. Preserve the explicit null in the checked citation (for example, use lv.get(\"doi\", c.get(\"doi\"))) so the renderer selects the journal URL."
+  }
+]

@@ -1,0 +1,291 @@
+{
+  "cid": "c635",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wiles and Horton (2025) - Generative AI and Labor Market Matching Efficiency.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wiles and Horton (2025) - Generative AI and Labor Market Matching Efficiency.pdf",
+    "version": "Authors' working paper draft dated September 4, 2026 ('Most recent draft here.' on p. 1), retitled from the 2025 SSRN version 'Generative AI and Labor Market Matching Efficiency'",
+    "title_on_document": "More, but Worse: The Marketplace Effects of AI-Generated Job Posts",
+    "authors_on_document": ["Emma Wiles", "John J. Horton"],
+    "pages": 72,
+    "supplement": {
+      "exists": "no",
+      "in_this_pdf": false,
+      "where": "No separate supplement is mentioned. Appendices A (pp. 47-65) and B (pp. 66-72) are inside this PDF.",
+      "holds": "Nothing outside this PDF. The regression for the embedding-similarity outcome (Table 12, p. 47) and the editing comparison (Table 15, p. 50) are in Appendix A of this PDF. Footnote 27 (p. 47) points to example job posts in Appendix A.8, but A.8 (pp. 55-63) holds only tables and no example posts."
+    }
+  },
+  "paper_design_summary": "On a large online labor market, newly registered employers who clicked 'Post a job' between June 7 and July 20, 2023 were randomly assigned either to the status quo posting flow (90,276) or to a flow that offered an AI-written first draft of the job post from a one- or two-sentence prompt (90,048); 75 percent of treated employers opted in. The paper estimates intent-to-treat effects on posting, writing time, post length, the semantic genericness of the posted text (mean cosine similarity of each post's ada-002 embedding to the other posts), applications, and hires. Appendix B reports a separate randomized experiment on 101,601 returning employers, and Section 8 a later randomized roll-out to 95 percent of new employers.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Main field experiment: AI-written first drafts for new employers (June 7 to July 20, 2023)",
+      "design_class": "field_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "An offer of an AI-written first draft of the job post (treatment) versus the status quo job-posting flow (control). Treated employers chose between 'I'll do it without AI' and 'Get started using AI'; estimates are intent-to-treat.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "From June 07, 2023, through July 20, 2023, new employers on the platform were randomly allocated to either the status quo control experience or the treated experience.",
+        "locator": "p. 9, Section 3",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Treatment (AI draft offered)", "description": "Offered an AI-generated job post, skill list and category from a one- or two-sentence prompt; the draft appeared in an editable box with optional AI rewrite buttons. 75 percent opted in (p. 12, Section 4.1; Table 21 opt-in rate 0.752).", "ai": "generative_ai", "n_randomized": 90048, "n_analyzed": 90048 },
+        { "name": "Control (status quo)", "description": "Standard job-posting flow with no AI drafting.", "ai": "none", "n_randomized": 90276, "n_analyzed": 90276 }
+      ],
+      "participants": {
+        "n_randomized": 180324,
+        "n_analyzed": 180324,
+        "counts_are": "other",
+        "exclusions": "Counts are employer accounts (newly registered would-be employers), randomized at their first click on 'Post a job'; the paper does not say whether an account is one person or a firm. Unconditional (ITT) outcomes use all 180,324 accounts (Table 3). Every outcome scored on the job-post text is conditional on posting, which treatment itself raised from 0.297 to 0.352: 58,495 accounts posted (control 26,781, treatment 31,714; Tables 21 and 23). The embedding-similarity regression has 32,513 observations (Table 12) and the predicted-active-use version 32,282 (Table 2); the paper does not explain why these are smaller than 58,495. Minutes writing is measured for 38,203 posts only (timed-out sessions are missing).",
+        "population": "general_public",
+        "who": "First-time would-be employers (clients) registering on a large, unnamed online labor market for remote freelance work; job categories range from software development and design to admin support and writing.",
+        "country": "Multinational; control arm 31.34 percent United States, 35.4 percent North America, 18.25 percent Europe, 26.82 percent Asia, 6.52 percent Africa, 1.43 percent South America (Table 20, p. 55).",
+        "quote": "The realized number in each was 90,048 treated and 90,276 control. These counts are consistent with random allocation",
+        "locator": "p. 9, Section 3; p. 55, Table 20 and Figure 12"
+      },
+      "ai_tool": {
+        "name_model": "Not named: 'a popular generative AI service' (p. 10; footnote 12 is empty in this draft). OpenAI text-embedding-ada-002 is used only for measurement; GPT-4o only to score prompt quality (p. 48).",
+        "role": "other",
+        "how_used": "The employer typed a one- or two-sentence description; the AI returned a full draft job post plus proposed skills and category, shown in an editable box with the instruction 'take time to review your job post and make it your own'. Optional AI buttons: 'Make it casual', 'Make it formal', 'Shorten it', 'Add more details', 'Rewrite it' (each used in about 1 to 3.3 percent of posts). 66 percent of drafts were posted without edits (p. 4)."
+      },
+      "task": {
+        "type": "other",
+        "description": "Writing the description of the employer's first job post (vacancy advertisement) on the platform; real work, not a lab task.",
+        "duration": "Control mean 8.1 minutes writing (8.142), treatment 4.5 minutes (4.549), among posts written in one sitting (Table 1 and Table 21)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Genericness: mean cosine similarity of a job post's embedding to the embeddings of the other job posts",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "For each posted job description, OpenAI text-embedding-ada-002 embedding; cosine similarity with each other job post; the post's score is the mean of those similarities ('as a proxy for how generic a job post is'). Higher = more generic, less diverse. Robustness variants: rank of the post's mean similarity in descending order (Table 12 col 2); 2D PCA plots by arm and opt-in status (Figures 13-14, pp. 65-67); histogram by arm (Figure 2, p. 14). Footnote 6 says genericness was measured 'in a variety of ways using NLP approaches', but only these are shown.",
+          "unit": "output",
+          "n_units": 32513,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Treatment (AI draft offered)",
+              "control_arm": "Control (status quo)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se", "figure_only"],
+              "reported": "Direction refers to diversity: treated posts were MORE similar (less diverse). Mean cosine similarity: GenAI Treatment Assigned 0.014*** (0.0002); Constant 0.753*** (0.0002); Observations 32,513; R2 0.112. Rank: -6,565.200*** (98.146); Constant 19,883.000*** (72.941). Text: 'only 0.014 on a base of 0.75'; range of mean similarities 0.65 to 0.81; effect 'covers 10% of the distance between the minimum and maximum'.",
+              "locator": "p. 47, Appendix A.1, Table 12; p. 14, Figure 2 and Section 4.4"
+            },
+            {
+              "treatment_arm": "Treatment (AI draft offered), low predicted active use",
+              "control_arm": "Control (status quo), low predicted active use",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Diversity lower in treatment (similarity higher). Genericness, Treatment effect: low pred. active use 0.015*** (0.0003); Low pred. active-use control mean 0.750; Observations 32,282; R2 0.176. Subgroups split at median predicted editing propensity from pre-draft characteristics.",
+              "locator": "p. 18, Table 2, col (1)"
+            },
+            {
+              "treatment_arm": "Treatment (AI draft offered), high predicted active use",
+              "control_arm": "Control (status quo), high predicted active use",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Diversity lower in treatment (similarity higher). Genericness, Trt effect: high pred. active use 0.012*** (0.000); Additional effect: high pred. active use -0.004*** (0.0004); High predicted active use 0.005*** (0.0003); Observations 32,282.",
+              "locator": "p. 18, Table 2, col (1)"
+            },
+            {
+              "treatment_arm": "Treated opt-ins who edited the AI draft",
+              "control_arm": "Treated opt-ins who posted the AI draft unedited",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Non-randomized comparison within the treatment arm; direction refers to diversity (edited posts less similar). Avg. Cosine Similarity: Edited AI draft -0.005*** (0.0003); Constant 0.773*** (0.0001); Observations 13,107; R2 0.034.",
+              "locator": "p. 50, Appendix Table 15, col (1); p. 17, Section 4.5.2"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean pairwise cosine similarity of each job post to the other job posts (higher = more generic); also its descending rank",
+            "embedding_model": "OpenAI text-embedding-ada-002",
+            "computed_over": "Each posted job post against every other job post. Table 12 notes say 'each other job post in the experiment' (pooled across arms), while Section 4.4 (p. 14) says 'all other job posts in that cell'; the document is inconsistent on whether the comparison set is the own arm or the whole experiment.",
+            "uncertainty": "OLS of the post-level mean-similarity score on the treatment indicator; the type of standard error is not stated. Post-level scores are not independent, since each depends on all other posts.",
+            "notes": "Sample is conditional on posting, a post-treatment outcome raised by treatment (Table 3 col 1: +0.056 on 0.297), so the contrast mixes composition and AI-writing effects (paper's caveat on p. 25). ITT: 75 percent of treated employers opted in. N of 32,513 is below the 58,495 posted jobs, with no stated reason. Arm-specific means, SDs and Ns for the similarity score are not printed."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Length of job post (number of words)",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Word count of the posted job description (computed, not rated). The paper also reports the spread across posts as a homogenization result: SD 82 in treatment vs 111 in control ('more similar to each other in terms of length', Section 4.3), median 84 vs 53 words (quantile regression, Table 14 col 3), CDF in Figure 11. Application-level variant with jobseeker fixed effects: Log Job Post Length 0.234*** (0.010), 941,049 applications (Table 6, p. 32).",
+          "unit": "output",
+          "n_units": 58495,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Treatment (AI draft offered)",
+              "control_arm": "Control (status quo)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "regression_coefficient_se"],
+              "reported": "Num Words: GenAI Treatment Assigned 1.888** (0.801); Constant 94.089*** (0.589); Observations 58,495. Table 21: control mean 94.089 (sd 111.365, n 26,781, median 53.0); treatment 95.977 (sd 81.804, n 31,714, median 84.0). Quantile regression (medians): 31.000*** (0.563), constant 53.000*** (0.488).",
+              "locator": "p. 13, Table 1 col (3) and Section 4.3; p. 56, Table 21; p. 49, Table 14; p. 51, Figure 11"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Appendix B experiment: AI-generated job description offered to returning employers (April 20 to June 6, 2023)",
+      "design_class": "field_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "An offer, at the job-description step, to generate the description with a generative AI service ('Generate job post') versus the standard flow.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "From April 20, 2023, through June 6, 2023, returning employers on the platform who posted a job were randomly allocated into treatment and control groups.",
+        "locator": "p. 66, Appendix B",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Treatment (AI description offered)", "description": "After entering title, skills, duration and budget, offered 'Generate job post'; 53 percent opted in, and 78 percent of opt-ins edited the draft (Table 35).", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Control (status quo)", "description": "Standard description page.", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 101601,
+        "n_analyzed": 101601,
+        "counts_are": "other",
+        "exclusions": "Employer accounts; 101,601 employers posted 164,382 openings. Arm sizes are not printed. Table 37 uses 43,899 treated accounts to compare opt-ins with opt-outs.",
+        "population": "general_public",
+        "who": "Returning employers who had posted at least one job on the platform before.",
+        "country": "Multinational; 59 percent from English-speaking countries, 42 percent US-based in control (Table 34)",
+        "quote": "The experimental sample includes 101,601 employers who posted 164,382 openings between them.",
+        "locator": "p. 66, Appendix B; p. 69, Figure 16"
+      },
+      "ai_tool": {
+        "name_model": "Not named: 'a popular generative AI service' (p. 69)",
+        "role": "other",
+        "how_used": "The information already entered (title, skills, duration, budget) is sent to the AI service, which returns a draft job description for review and editing."
+      },
+      "task": {
+        "type": "other",
+        "description": "Writing the description of a job post on the platform.",
+        "duration": ""
+      },
+      "outcomes": []
+    },
+    {
+      "study_id": "S3",
+      "label": "Randomized roll-out to 95 percent of new employers (October 10, 2023 to February 18, 2024)",
+      "design_class": "field_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Access to the same AI-drafting feature as S1 for 95 percent of newly registered employers, with a random 5 percent held out.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "the platform expanded access to the AI drafting feature to 95% of newly registered employers, leaving a randomized 5% holdout without access in perpetuity.",
+        "locator": "p. 38, Section 8",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Treatment (AI draft offered)", "description": "Same feature as S1; 95 percent of new entrants.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Control (5 percent holdout)", "description": "Status quo posting flow.", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 525119,
+        "counts_are": "other",
+        "exclusions": "Employer accounts. Figure 15 uses N = 525,119 new employers in the post-roll-out period; arm sizes not printed. Table 11 pools pre- and post-roll-out entrants (1,033,681 accounts; 281,214 posts) and so overlaps S1.",
+        "population": "general_public",
+        "who": "Newly registered would-be employers on the same platform.",
+        "country": "Not stated by region for this period",
+        "quote": "The sample is of all new employers who started to post a job between October 10th, 2023 and February 18, 2024, with N = 525,119, where 95% were in the treatment group and 5% in the control group.",
+        "locator": "p. 68, Figure 15 notes; p. 41, Table 11"
+      },
+      "ai_tool": {
+        "name_model": "Not named (same feature as S1)",
+        "role": "other",
+        "how_used": "Same as S1."
+      },
+      "task": {
+        "type": "other",
+        "description": "Writing the description of the employer's first job post.",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S3-O1",
+          "name": "Number of words in job post (post-roll-out)",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Word count of the posted job description, conditional on posting; percentage difference between arms with 95 percent delta-method CI, for all employers and non-Anglophone employers.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Treatment (AI draft offered)",
+              "control_arm": "Control (5 percent holdout)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 15 panel c) Number of words in job post: positive percentage difference with a 95 percent CI above zero for 'All' and 'Non-Anglo'; no number printed.",
+              "locator": "p. 68, Figure 15(c)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "The experiments were run on, and by, an unnamed online labor market platform ('another experiment run by the platform', p. 66), which built the AI feature and supplied the click-level data. The document gives no author affiliation with the platform and no conflict-of-interest statement. The generative AI service is unnamed; OpenAI's embedding model is used for measurement.",
+    "locator": "p. 8, Section 2; p. 66, Appendix B; p. 10, footnote 12"
+  },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "S1 randomly assigned 180,324 new employer accounts to an offer of a generative-AI first draft of their job post versus the status quo (p. 9), and scores the diversity of the posted text across employers with an embedding-similarity measure (Table 12, p. 47). Job-post writing is functional writing; it qualifies under the codebook's rule that writing tasks compared across writers for similarity answer across_people. Caveats: counts are employer accounts, not stated to be individual persons (far above 50 either way); the diversity outcome is conditional on posting, which treatment raised, so it is not a clean ITT contrast; take-up was 75 percent; the similarity outcome is secondary to the paper's economic outcomes."
+  },
+  "one_line_finding": "Offering new employers AI-written first drafts made their posted job descriptions more semantically alike: mean cosine similarity to other posts rose by 0.014 (SE 0.0002) on a control base of 0.753 across 32,513 posts (p. 47, Table 12), while posting rose from 29.7 to 35.3 percent and hires did not rise (Table 3, p. 27).",
+  "open_questions": [
+    "Is the similarity of each post computed against all posts in the experiment (Table 12 notes) or only against posts in its own arm (Section 4.4 text)? The two passages disagree.",
+    "Why does the similarity regression have 32,513 observations when 58,495 employers posted (Tables 1 and 12)?",
+    "Are employer accounts individual persons? The paper does not say.",
+    "Footnote 27 promises example posts at the minimum, mean and maximum similarity in Appendix A.8; the appendix does not contain them.",
+    "Should a job-post writing task count as a creative task for the core dataset, or only as across_people writing evidence?"
+  ],
+  "notes": "Version on file is the September 4, 2026 authors' draft (72 pp.), newer than the 2025 SSRN record. Outcomes not listed because they are not scored on the creative output or do not bear on the three questions: posting, minutes writing, timed out, applications, offers, hires, wage bids, search and screening, application overlap across posts (Table 18), prompt-quality and AI-draft-quality scores (Table 13, GPT-4o, within treatment only), skill count (Figure 15d). The length-dispersion finding (SD 82 vs 111) is recorded inside S1-O2 rather than as a separate diversity outcome because the paper gives only the two SDs and no test."
+}

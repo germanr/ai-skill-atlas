@@ -1,0 +1,72 @@
+{
+ "cid": "c404",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "eligibility.context_class; eligibility.reason",
+   "form_value": "context_class = \"none\"; reason = Ten students took part, five per group (p. 4), far below 50 people. The paper says only that participants 'were divided into two groups' and never says the division was random (pp. 3-4); it describes itself as qualitative research-creation. Experts rated the creations, so criterion 3 is met. Belongs in the screening report's list of small experiments, not the dataset.",
+   "source_says": "Use observational context for this quasi_people comparison, retaining assignment.randomized = not_stated and criterion_1 = unclear. The paper compares people using and not using Midjourney without reporting the allocation method. Under the codebook and form-spec mapping of quasi_people to observational, the small sample does not justify context_class = none or routing this solely as an excluded small randomized experiment.",
+   "quote": "The workshop participants were divided into two groups:",
+   "locator": "PDF pp. 3-4, III.B Design Workshops and III.C Participants and Interviews; creativity-codebook.md section 3; form-spec.md, design_class field note"
+  },
+  {
+   "field": "studies[0].participants.n_analyzed; studies[0].arms[*].n_analyzed",
+   "form_value": "participants.n_analyzed = 10; Group B n_analyzed = 5; Group A n_analyzed = 5",
+   "source_says": "The explicitly reported count is ten selected research participants, five per group. The paper does not separately report the number of people contributing to each Table III analysis or an analysis flow; no exclusions are reported. Retain the selected/workshop sample counts in the description, but use null for unconfirmed analysis counts rather than equating selection with a verified analyzed N. The reported participant pool is nevertheless below the 50-person threshold, and n_randomized correctly remains null.",
+   "quote": "a total of ten people (five for each group) were selected as research participants, using purposive snowball sampling methods.",
+   "locator": "PDF p. 4, III.C Participants and Interviews; p. 14, Table III (no analysis N)"
+  },
+  {
+   "field": "studies[0].outcomes[*].ai_available_when_produced",
+   "form_value": "yes | no | mixed (all three outcomes)",
+   "source_says": "These are unfilled template alternatives. For the AI-assisted arm in the mood-map and style-map outcomes, code yes. For the sketch outcome, previously generated AI images are confirmed as assistance, but whether the platform itself remained available during sketching is not stated; use null for that unresolved availability and explain the distinction in measure_detail or open_questions. Pencil-and-paper production alone does not establish an after_ai test with AI assistance removed.",
+   "quote": "After synthesizing the responses, the findings indicated that previously generated AI images assisted the conceptual aspect of ideation using sketches.",
+   "locator": "PDF pp. 3-4, III.B; p. 7, IV.B.2 S2 and S3; p. 8, continuation of IV.B.2 and IV.C"
+  },
+  {
+   "field": "studies[0].outcomes[*].timing",
+   "form_value": "immediate | delayed (all three outcomes)",
+   "source_says": "Use immediate for the scored workshop outputs. The outcomes are the creations produced in the workshop sessions; no delayed follow-up outcome is reported. Do not leave both template options as the value.",
+   "quote": "The design workshops comprised three sessions of 40 minutes each, totaling 120 minutes.",
+   "locator": "PDF p. 3, III.B Design Workshops; p. 8, IV.C Evaluation of Co-Creation; p. 14, Table III"
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].direction",
+   "form_value": "treatment_higher | treatment_lower | no_clear_difference | mixed (all three originality contrasts)",
+   "source_says": "Use treatment_higher for each of the three recorded originality contrasts: Group B has the higher printed average in each session. This records a descriptive direction, not statistical significance; no inferential test is reported.",
+   "quote": "Throughout the sessions, Group B showed higher average scores for most creativity aspects than Group A, and the standard deviation was relatively low.",
+   "locator": "PDF p. 8, IV.C Evaluation of Co-Creation; p. 14, Table III, OR columns for Sessions 1, 2 and 3"
+  },
+  {
+   "field": "studies[0].outcomes[*].unit; studies[0].outcomes[*].measure_detail",
+   "form_value": "unit = output; measure_detail = empty string (all three outcomes)",
+   "source_says": "Creations are the objects evaluated, but the statistical unit underlying the reported averages and SDs is not specified. The paper does not explain whether expert scores were averaged within each creation or pooled as individual ratings, or whether people contributed multiple creations. The analysis unit cannot be confirmed as output; use null and document the aggregation uncertainty in measure_detail. Retain n_units = null and do not treat these as confirmed participant-level SDs.",
+   "quote": "The evaluation was conducted using a 7-point Likert scale by three experts with doctoral degrees and more than three years of teaching experience in the field of fashion design.",
+   "locator": "PDF p. 4, III.D Data Analysis and Evaluation Criteria; p. 8, IV.C; p. 14, Table III"
+  },
+  {
+   "field": "studies[0].outcomes; notes",
+   "form_value": "Only originality is entered as an outcome for each session; Session 2 and 3 newness values appear only inside originality reported strings; notes is empty.",
+   "source_says": "The output-outcome list is incomplete under form-spec rule 7. Table III also reports diversity of source use, appropriateness of expression, harmony and detail of expression for Session 1, and newness, solvency, sophistication, usefulness and attractiveness for Sessions 2 and 3. Enter distinct relevant outcomes, including separate newness outcomes, up to the form limit and identify omissions in notes. Diversity of source use concerns an individual creation and is not a measure of homogenization across participants. Completeness is named in the methods but has no separate Table III column; do not invent its statistics.",
+   "quote": "Meanwhile, the results of Sessions 2 and 3 were based on newness, solvency, sophistication, originality, usefulness, attractiveness, and completeness.",
+   "locator": "PDF p. 4, III.D Data Analysis and Evaluation Criteria; p. 14, Table III and abbreviations; form-spec.md rule 7"
+  }
+ ],
+ "confirmed": [
+  "Source version, title and author are correct: the 14-page PDF identifies itself as the accepted, not fully edited author version in IEEE Access, DOI 10.1109/ACCESS.2024.3382194, by Se Jin Kim (p. 1 and repeated page headers). The entire markdown was read, including references and the end tables on pp. 13-14; no separate appendix or supplement is identified.",
+  "One original workshop study is described, combining artifact evaluation and interviews. Participants were divided into Group A without image-generative AI and Group B with Midjourney; the allocation method and randomization are not stated anywhere in the document. Retaining a provisional quasi_people design with assignment.randomized = not_stated is appropriate; has_randomized_people_study = false means not documented, not proof that assignment could not have been random (pp. 3-4, III.A-C).",
+  "The reported research sample consists of ten people, five per group, selected by purposive snowball sampling. These are students, not ideas, texts or expert ratings; the sample is below 50, n_randomized is unreported, and Table III gives no separate analyzed N (p. 4, III.C; p. 14, Table III).",
+  "The population description is supported: fashion students with three to four years of university study, seven women and three men; six aged 22-23, two aged 24 and two aged 26. The paper does not explicitly state the participants' country, so the author's South Korean affiliation should not be used to fill it (p. 4, III.C; p. 1, affiliation).",
+  "The workshop comprised three 40-minute sessions totaling 120 minutes, on the theme fun, producing a mood map, fashion style map and sketch; Group B received an additional 20-minute platform explanation (pp. 3-4, III.B).",
+  "Output-scoring eligibility is met: three fashion-design experts with doctoral degrees and more than three years of teaching experience evaluated creations on a 7-point Likert scale, using CAT criteria for mood maps and CPAM criteria for style maps and drawings (p. 4, III.D).",
+  "S1-O1 reported values match exactly: Session 1 OR, A avr 4.6 and sd 1.1; B avr 4.9 and sd 0.9; A-B avr -0.3 and sd 0.2 (p. 14, Table III).",
+  "S1-O2 reported values match exactly: Session 2 OR, A avr 4.1 and sd 1.4; B avr 5.1 and sd 0.8; A-B avr -1.0 and sd 0.6. Session 2 NE, A avr 4.0 and sd 1.4; B avr 4.9 and sd 0.9; A-B avr -0.9 (p. 14, Table III).",
+  "S1-O3 reported values match exactly: Session 3 OR, A avr 3.9 and sd 1.5; B avr 5.4 and sd 1.0; A-B avr -1.5 and sd 0.5. Session 3 NE, A avr 3.7 and sd 1.4; B avr 5.1 and sd 1.2; A-B avr -1.4. The quoted sentence about originality and newness also matches the prose (p. 14, Table III; p. 8, IV.C).",
+  "The one-line finding is numerically correct and descriptive: Group B has higher originality averages in all sessions, with Session 3 originality 5.4 versus 3.9 and newness 5.1 versus 3.7. Table III prints group averages, SDs and A-B rows, but no sample sizes, test statistics, p values or intervals; the A-B sd entries are not reported standard errors (p. 14, Table III; rating scale and participant pool on p. 4).",
+  "Sketching used pencil and paper in both groups, while previously generated AI images assisted Group B's ideation. The manuscript does not establish a later unassisted test following explicit removal of AI assistance (p. 7, IV.B.2 S3; p. 8, continuation of IV.B.2 and IV.C).",
+  "This is not a synthesis; no pooled estimates or meta-analytic study counts require extraction. Empty synthesis defaults are appropriate (pp. 3-4, III; pp. 8-9, V).",
+  "The paper states that the research had no commercial or financial support and declares no potential conflict of interest; no data or code repository is supplied (p. 1, funding statement; p. 9, Acknowledgment)."
+ ],
+ "summary": "The accepted manuscript describes ten students split between Midjourney and no-AI groups, with no reported random assignment, so no randomized people study is confirmed. All recorded Table III numbers and the one-line finding match, but context classification, unconfirmed analysis counts and units, unfinished outcome fields, and omitted outcomes need correction."
+}

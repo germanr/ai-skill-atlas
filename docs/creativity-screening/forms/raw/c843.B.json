@@ -1,0 +1,444 @@
+{
+ "cid": "c843",
+ "screener": "B",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2026) - Who Owns Creativity and Who Does the Work.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2026) - Who Owns Creativity and Who Does the Work.pdf",
+  "version": "arXiv:2601.12152v1 [cs.HC], 17 Jan 2026, as printed on p. 1. The PDF uses an unfilled ACM conference template and placeholder DOI; these are not evidence of an actual 2017 conference publication.",
+  "title_on_document": "Who Owns Creativity and Who Does the Work? Trade-offs in LLM-Supported Research Ideation",
+  "authors_on_document": [
+   "Houjiang Liu",
+   "Yujin Choi",
+   "Sanjana Gautam",
+   "Gabriel Jaffe",
+   "Soo Young Rieh",
+   "Matthew Lease"
+  ],
+  "pages": 32,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A-F are included on PDF pp. 23-32. No separate external supplement is identified in this document.",
+   "holds": "Appendix A gives workflow and prompts; B gives the two system-validation datasets and Tables 6-7; C gives task/interview protocols; D gives a representative use case; E gives participant demographics (Table 8); F gives additional behavioral post-hoc tests and creativity-support/effort correlations. Tables 9-10 on p. 32 report mean differences, p-values, and Lower/Upper interval bounds for Prompt_full_proposal and Select_improvements; Figure 8 shows dimension-level correlations. These concern process/self-report measures. No additional proposal-fluency standard error or objective proposal-quality comparison for the main randomized sample is reported in the appendix."
+  }
+ },
+ "paper_design_summary": "The formal study randomly assigned researchers to Low, Medium, or Intensive control of an agentic AI system while they developed research proposals in a supervised Zoom session; 51 people remained in the quantitative analyses after exclusions (pp. 11-13, Sections 5.1-5.3). Outcomes included logged proposal counts and process actions plus self-reported creativity support, effort, and ownership; the main study did not independently rate proposal novelty or quality or measure diversity across participants (pp. 12-16, Sections 5.3 and 6). Two smaller pilot datasets compared the quality of initial AI-generated drafts with versus without RAG and across AI systems using human and/or model judgments (pp. 27-28, Appendix B, Tables 6-7).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Formal user study: randomized comparison of three levels of control over ResearchGuru",
+   "design_class": "lab_rct",
+   "assignment": {
+    "randomized": "yes",
+    "what_was_assigned": "Individual researchers were assigned between subjects to Low, Medium, or Intensive control over the same agentic ideation system. All arms received generative AI. The supervised, screen-shared Zoom task is coded lab_rct under the codebook definition of a supervised session; recruitment was through academic networks rather than an online panel (pp. 11-12, Sections 5.1-5.2).",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "During the user study, participants were randomly assigned to Low, Medium, or Intensive control levels while using the system to develop research ideas across all proposal stages.",
+    "locator": "p. 11, Section 5.1, Study Procedure",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Low control",
+     "description": "Users provide keywords and generate, select, and customize seed ideas. Agents automate literature selection, proposal writing, critique, and revision; users cannot steer Writer and Evaluator at the section or content level (pp. 7-8, Table 3 and Section 3.3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 17
+    },
+    {
+     "name": "Medium control",
+     "description": "Users can search/select literature, prompt section-level changes, customize evaluation criteria, and select predefined improvements. They cannot directly edit proposal text, highlight text for revision, or provide feedback on evaluator critiques (p. 8, Table 3 and Section 3.3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 17
+    },
+    {
+     "name": "Intensive control",
+     "description": "Users additionally have direct text editing, inline prompting, feedback on agent critiques, and customization of suggested improvements, retaining fine-grained control over proposal development (p. 8, Table 3 and Section 3.3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 17
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 51,
+    "counts_are": "people",
+    "exclusions": "The Isolation Forest algorithm flagged three post-task survey responses as extreme: two unusually low and one unusually high. Quantitative analyses retained 51 people, 17 per control level (p. 13, Section 5.3.1). The paper reports 54 recruited and a target allocation of 18 per arm (p. 12, Section 5.2), but does not separately give actual counts at randomization; n_randomized is therefore null. This is an analysis after exclusions, not an intention-to-treat analysis.",
+    "population": "mixed",
+    "who": "Active researchers recruited through universities and academic networks by snowball sampling; screened for recent publications and prior research use of LLMs. The recruited sample included 40 PhD students, 7 postdoctoral fellows, and 7 professors or research scientists. Those are recruited-sample counts, not post-exclusion subgroup counts (p. 12, Section 5.2).",
+    "country": "United States (47 of 54 recruited); the participant table also lists Jamaica, France, Korea, Canada, Germany, and India. Country counts after exclusions are not stated (p. 12, Section 5.2; p. 31, Table 8).",
+    "quote": "This resulted in 51 valid data points, with 17 for each control level.",
+    "locator": "p. 12, Section 5.2 (recruitment); p. 13, Section 5.3.1 (exclusions and analyzed counts); p. 31, Table 8"
+   },
+   "ai_tool": {
+    "name_model": "ResearchGuru: GPT-4.1 for Ideator and Writer; Claude Sonnet 3.7 for Evaluator",
+    "role": "other",
+    "how_used": "Agentic notebook interface generates seed ideas, retrieves literature, drafts proposals, and critiques/revises them. Users can steer different stages according to assigned control level. This combines idea supply, generation, and refinement; the system explicitly excludes a chat feature. Models and roles are stated on p. 10, Section 3.3.2; interface and controls on pp. 7-9, Table 3 and Section 3.3.1."
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Develop new research proposals in the participant's own area of expertise, including literature synthesis, research goals/questions, and a study plan. Save satisfactory drafts and choose the best. AI remained available throughout production (pp. 8, 11-12, Sections 3.3.1 and 5.1; p. 29, Appendix C.2).",
+    "duration": "Approximately 35-40 minutes for proposal generation within an approximately 90-minute session (pp. 11-12, Section 5.1; p. 21, Section 8.5). The scripted task instruction instead says 30 minutes (p. 29, Appendix C.2); both are preserved rather than reconciled by inference."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Unique research proposals produced per hour",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Participant-level count of unique research proposals in interaction logs, normalized per hour according to the Table 4 caption. Section 6.1 describes this as the number of unique proposals participants created. Coded as output quantity (fluency), not novelty, quality, or diversity across people. Table 4 reports means and SDs; the test is a one-way ANOVA across all three arms. Pairwise tests for this outcome are not reported. The system could generate and revise proposals throughout the task. The operational rule for distinguishing unique proposals from revisions is not specified (pp. 12-14, Sections 5.3.1 and 6.1, Table 4).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Intensive control",
+       "control_arm": "Low control",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "Unique_research_proposals per hour: Intensive 1.58 (SD 0.77) versus Low 2.19 (SD 1.11); 17 analyzed participants in each arm. The printed three-arm omnibus test is F(2, 48) = 1.52, p = 0.22; no pairwise test is printed.",
+       "locator": "p. 14, Table 4, # Unique_research_proposals; p. 13, Sections 5.3.1 and 6.1 (analysis counts and interpretation)"
+      },
+      {
+       "treatment_arm": "Medium control",
+       "control_arm": "Low control",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "Unique_research_proposals per hour: Medium 1.88 (SD 1.20) versus Low 2.19 (SD 1.11); 17 analyzed participants in each arm. The printed three-arm omnibus test is F(2, 48) = 1.52, p = 0.22; no pairwise test is printed.",
+       "locator": "p. 14, Table 4, # Unique_research_proposals; p. 13, Sections 5.3.1 and 6.1 (analysis counts and interpretation)"
+      },
+      {
+       "treatment_arm": "Intensive control",
+       "control_arm": "Medium control",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "Unique_research_proposals per hour: Intensive 1.58 (SD 0.77) versus Medium 1.88 (SD 1.20); 17 analyzed participants in each arm. The printed three-arm omnibus test is F(2, 48) = 1.52, p = 0.22; no pairwise test is printed.",
+       "locator": "p. 14, Table 4, # Unique_research_proposals; p. 13, Sections 5.3.1 and 6.1 (analysis counts and interpretation)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Pilot backend evaluation: RAG versus non-RAG proposal generation",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "The same seed ideas were expanded with and without RAG. Human researchers supplied keywords and evaluated generated drafts; no assignment of people to an assistance condition or randomization of presentation order is reported. This is an AI-system output comparison with human and LLM judges, not ai_vs_human.",
+    "unit": "other",
+    "structure": "within",
+    "quote": "Each seed idea was expanded by the Writer, with and without RAG, producing two proposal drafts.",
+    "locator": "p. 27, Appendix B.1; p. 11, Section 4.1",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "GPT-4o-mini with RAG",
+     "description": "Initial proposal generated with retrieval-augmented generation; paired with the non-RAG draft for the same seed idea (p. 27, Appendix B.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "GPT-4o-mini without RAG",
+     "description": "Initial proposal generated without RAG for the same seed idea. Citations were removed before comparison (p. 27, Appendix B.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 2,
+    "counts_are": "people",
+    "exclusions": "Not stated. The two people supplied topics and acted as expert judges; no per-arm human allocation is reported.",
+    "population": "students",
+    "who": "Two PhD students: one member of the research team with creativity expertise and one external researcher specializing in conversational agents. Each supplied field-specific keywords; the system generated five seed ideas from each researcher, yielding ten ideas. The ten ideas are not participants (p. 27, Appendix B.1).",
+    "country": "",
+    "quote": "Two PhD students participated: one from our research team with expertise in creativity and one external researcher specializing in conversational agents (CAs).",
+    "locator": "p. 27, Appendix B.1"
+   },
+   "ai_tool": {
+    "name_model": "GPT-4o-mini for generation; Claude 3.7, DeepSeek-V3, and Gemini 2.0 as judges",
+    "role": "other",
+    "how_used": "Generate seed ideas and paired first-draft proposals with and without RAG; models and humans compare the resulting proposals. No participant-authored comparison drafts are included (p. 27, Appendix B.1)."
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Generate proposals from field-specific keywords in creativity and conversational-agent research, then compare the quality of paired RAG and non-RAG drafts (pp. 27-28, Appendix B.1 and Table 6).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Human expert preference for proposal generation quality",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "Researchers compared the initial RAG and non-RAG drafts for the same seed idea after in-text citations were removed. They chose a better proposal or were undecided. Section 4.1 describes novelty, feasibility, and impact as joint evaluation criteria; Appendix B.1 also discusses factuality and narrative cohesion. Only a single overall preference is reported, not separate scores on those criteria. These are judgments of AI-generated drafts in a backend system test, not effects of randomly assigning people to AI assistance. Ten matched seed-idea comparisons are shown (pp. 11, 27-28).",
+     "unit": "pair",
+     "n_units": 10,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "GPT-4o-mini with RAG",
+       "control_arm": "GPT-4o-mini without RAG",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Human researchers preferred RAG in four cases, non-RAG in two, and were undecided in four. Table 6 identifies RAG preferences for ideas 2, 4, 7, and 8; non-RAG preferences for ideas 1 and 3; and undecided judgments for ideas 5, 6, 9, and 10. Direction describes the preference counts only; no inferential test or uncertainty is reported.",
+       "locator": "p. 27, Appendix B.1; p. 28, Table 6; p. 11, Section 4.1 (evaluation criteria)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S2-O2",
+     "name": "LLM-judge preference for proposal generation quality",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "Claude 3.7, DeepSeek-V3, and Gemini 2.0 judged the same matched RAG/non-RAG drafts, selecting the better proposal or undecided. Judge variants are kept in one outcome. These are evaluations of AI-generated outputs, not human creative performance. Ten seed-idea comparisons are reported; they are not ten participants, and multiple model judgments are not independent people (pp. 27-28, Appendix B.1 and Table 6).",
+     "unit": "pair",
+     "n_units": 10,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "GPT-4o-mini with RAG",
+       "control_arm": "GPT-4o-mini without RAG",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Appendix B.1 says LLM judges favored RAG in eight cases and disagreed in two. Table 6 shows all judges preferring RAG for ideas 1, 2, 4, 5, 6, 7, 9, and 10; all preferring non-RAG for idea 8; and a split for idea 3 (Claude 3.7 and Gemini 2.0 prefer non-RAG; DeepSeek-V3 prefers RAG). No inferential test or uncertainty is reported.",
+       "locator": "p. 27, Appendix B.1; p. 28, Table 6; p. 11, Section 4.1 (evaluation criteria)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S3",
+   "label": "Pilot system benchmark: expert rankings of proposals from four AI systems",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Each researcher generated initial proposals for their respective idea using the authors' system and comparator AI tools, then ranked drafts. Random allocation of people, randomized tool order, and randomized presentation order are not stated. This evaluates unrevised AI-system outputs rather than comparing AI-generated with human-generated proposals.",
+    "unit": "other",
+    "structure": "within",
+    "quote": "Participants then ranked all drafts from best to worse based on three criteria: Novelty, Feasibility, and Impact (the same three default criteria used for the Evaluator).",
+    "locator": "p. 27, Appendix B.2; p. 28, Table 7",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "ResearchGuru (GPT-4.1)",
+     "description": "Authors' agentic ideation system powered by GPT-4.1; initial drafts only (p. 27, Appendix B.2).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Deep Research",
+     "description": "Off-the-shelf Deep Research; underlying model identifier not stated (pp. 11 and 27-28, Section 4.1 and Table 7).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "ChatGPT (GPT-4.1 + Search)",
+     "description": "Initial draft using standard ChatGPT with GPT-4.1 and Search, as labeled in Table 7 (p. 28).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Gemini (2.0 Flash + Search)",
+     "description": "Initial draft using Gemini 2.0 Flash with Search, as labeled in Table 7 (p. 28).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 3,
+    "counts_are": "people",
+    "exclusions": "Not stated. The same researchers provided research ideas and ranked the resulting model drafts; there were no separate groups of people assigned to each system.",
+    "population": "mixed",
+    "who": "Two PhD students in Chemistry and Child Development and a postdoctoral fellow in Physics. Three ideas, labeled 11-13, were evaluated (p. 27, Appendix B.2; p. 28, Table 7).",
+    "country": "",
+    "quote": "We conducted pilot testing with three additional researchers: two PhD students (Chemistry and Child Development) and a postdoctoral fellow in Physics.",
+    "locator": "p. 27, Appendix B.2"
+   },
+   "ai_tool": {
+    "name_model": "ResearchGuru (GPT-4.1), Deep Research, ChatGPT (GPT-4.1 + Search), Gemini (2.0 Flash + Search)",
+    "role": "other",
+    "how_used": "Generate initial proposals for the same research idea. Experts rank the drafts without further revision. Table 7 identifies comparator versions as those available in early June 2025 (pp. 27-28, Appendix B.2 and Table 7)."
+   },
+   "task": {
+    "type": "idea_generation",
+    "description": "Generate and rank research proposals on PFAS water remediation, phonon transport in cryogenic materials, and storytelling for children's empathy and emotional intelligence (p. 28, Table 7).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S3-O1",
+     "name": "Expert ranking of proposal quality across four AI systems",
+     "construct": "usefulness",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "Each expert ranked the initial drafts for their research idea from best to worst using novelty, feasibility, and impact jointly. There are no separate numerical novelty, feasibility, or impact scores. The observation is a matched set of drafts for one research idea; Table 7 contains three such sets. Lower printed rank means better proposal quality, so direction is coded for quality rather than the raw rank. There was no further human revision of the drafts used in this comparison (p. 27, Appendix B.2; p. 28, Table 7).",
+     "unit": "set",
+     "n_units": 3,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "ResearchGuru (GPT-4.1)",
+       "control_arm": "Deep Research",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "For ideas 11, 12, and 13 respectively, ResearchGuru ranks 3, 2, 2; Deep Research ranks 1, 1, 1. Lower rank indicates better quality. No inferential test or uncertainty is reported.",
+       "locator": "p. 28, Table 7; p. 27, Appendix B.2"
+      },
+      {
+       "treatment_arm": "ResearchGuru (GPT-4.1)",
+       "control_arm": "ChatGPT (GPT-4.1 + Search)",
+       "comparison_type": "ai_design",
+       "direction": "mixed",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "For ideas 11, 12, and 13 respectively, ResearchGuru ranks 3, 2, 2; ChatGPT ranks 2, 3, 3. Lower rank indicates better quality. No inferential test or uncertainty is reported.",
+       "locator": "p. 28, Table 7; p. 27, Appendix B.2"
+      },
+      {
+       "treatment_arm": "ResearchGuru (GPT-4.1)",
+       "control_arm": "Gemini (2.0 Flash + Search)",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "For ideas 11, 12, and 13 respectively, ResearchGuru ranks 3, 2, 2; Gemini ranks 4, 4, 4. Lower rank indicates better quality. No inferential test or uncertainty is reported.",
+       "locator": "p. 28, Table 7; p. 27, Appendix B.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "No reuse of another paper's participants is stated. This document describes original recruitment; overlap between its formative pilots and formal sample is not specified.",
+  "quote": "",
+  "locator": "pp. 11-13, Sections 4.2 and 5; p. 27, Appendix B"
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Amazon and Google provided additional computational resources, alongside the Texas Advanced Computing Center. Author affiliations on the title page are academic; the acknowledgments identify resource support, not a company-designed experiment.",
+  "locator": "p. 21, Section 10, Acknowledgments; p. 1, author affiliations"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "yes",
+  "criterion_1_random_assignment_of_ai": "met",
+  "criterion_2_at_least_50_people": "met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "S1 randomly assigned individuals to three generative-AI configurations (p. 11, Section 5.1) and analyzed 51 people, 17 per condition, after exclusions (p. 13, Section 5.3.1), just above the 50-person threshold. The # Unique_research_proposals outcome counts produced proposals per hour and is coded as the codebook's fluency construct (pp. 13-14, Section 6.1 and Table 4). Eligibility is therefore limited to an ai_design contrast on output quantity, not the self-reported CSI, NASA-TLX, or ownership measures. No unassisted comparison, post-AI creative task, or across-person diversity outcome is reported. The pilot quality comparisons have only two or three human topic providers/evaluators, no reported random assignment of people, and compare AI outputs with other AI outputs (pp. 27-28); they do not independently establish core eligibility."
+ },
+ "one_line_finding": "Among 51 analyzed researchers, unique proposals per hour did not differ significantly across Intensive, Medium, and Low control: means 1.58, 1.88, and 2.19, respectively; F(2, 48) = 1.52, p = 0.22 (p. 14, Table 4; analyzed counts on p. 13, Section 5.3.1).",
+ "open_questions": [
+  "Table 4 calls all logged metrics functions used per hour, while Section 6.1 specifically interprets Unique_research_proposals as produced proposals. Confirm the unique-proposal counting rule if extracting participant data. S1-O1 is coded as output fluency from the row label and the authors' interpretation, with no claim about rated creativity quality (pp. 12-14).",
+  "Generate_seed_ideas may count function invocations rather than individual ideas returned. Section 6.1 describes it as a number of seed ideas, but the Table 4 caption and Section 5.3.1 describe logged actions. It is inventoried in notes rather than assumed to be another output-fluency measure (pp. 12-14).",
+  "The recruited count and target allocation are reported, but actual counts at random assignment are not separately labeled; n_randomized is left null rather than converting the target to an observed allocation count (p. 12, Section 5.2).",
+  "The task duration is approximately 35-40 minutes in the main methods and limitations, but 30 minutes in the scripted Appendix C.2 instructions (pp. 11-12, 21, 29).",
+  "The paper does not clarify participant overlap across formative system development, the two pilot evaluations, and the formal study; do not add their sample sizes together (pp. 4, 11-13, 27)."
+ ],
+ "notes": "Screened the complete markdown conversion and checked extraction facts/statistics against PDF pages; all page locators use the PDF page number, which matches the printed numbering. The saved file is the arXiv v1 identified on p. 1; a later version was not supplied or assumed. Main-study analyzed counts refer to quantitative analyses; a separate exact post-exclusion interview-analysis count is not given.\n\nOutcome inventory from tables, figures, and appendices: Tables 1-3 and Figures 1-4 describe prior tools, assigned controls, the interface, and the workflow, rather than study outcomes. Table 4 reports Unique_research_proposals, Generate_seed_ideas, Prompt_full_proposal, Revise_full_proposal, Select_improvements, Query_searches, Select_papers, Prompt_proposal_section, In-line_text_prompting, Save_edits, Provide_feedback, Request_more_critiques, and Customize_improvements. Only the count of unique proposals is clearly an output quantity. Generate_seed_ideas is ambiguous: Intensive 6.76 (SD 6.47), Medium 5.02 (SD 3.65), Low 6.31 (SD 4.31), F(2, 48) = 0.53, p = 0.59 (p. 14, Table 4); these are printed logged hourly metrics, not assumed numbers of distinct returned ideas. The other Table 4 measures count workflow actions, not creativity or diversity of outputs.\n\nTable 5 and Figure 5 report weighted and unweighted CSI plus overall task load; Figure 5 also breaks CSI down into Collaboration, Enjoyment, Exploration, Expressiveness, Immersion, and Results Worth Effort, and effort into Difficult_Completion, Frustrated_Completion, Low_Performance, Mental_Demand, Physical_Demand, and Temporal_Demand. Figure 6 correlates overall CSI with effort, Figure 7 reports perceived human/AI contribution percentages and ownership classifications, and Figure 8/Appendix F.2 correlate individual creativity-support dimensions with effort dimensions. These are self-reports or associations among self-reports, not scores on produced ideas. As a check on the central self-report finding, Table 5 reports CSI_weighted means/SDs Low 59.65/18.47, Medium 53.13/17.39, Intensive 63.20/21.77, with Kruskal-Wallis chi-square 2.08, df 2, p = 0.353; CSI_unweighted means/SDs Low 66.79/11.90, Medium 63.64/11.87, Intensive 71.51/15.17, with chi-square 3.735, df 2, p = 0.155 (p. 14). These are not coded as overall_creativity output ratings. Post-task survey timing does not make them after_ai outcomes.\n\nAppendix B/Table 6 reports separate human and LLM overall preferences for RAG versus non-RAG drafts; Table 7 reports overall expert ranks of drafts from four AI systems. The named novelty, feasibility, and impact criteria do not have separate numerical outcomes. The human and LLM judgments in Table 6 are recorded separately, while the three LLM judges remain variants within one outcome. The two backend pilot datasets are coded other because people provide topics and judgments but the comparisons concern unrevised model-generated drafts; they are not AI-versus-human output studies. Numbers of people in those entries denote the participating topic providers/expert evaluators, not independently assigned intervention participants. Appendix C contains instructions; Appendix D illustrates one member of S1 rather than a new independent study; Table 8 contains demographics. Appendix F/Tables 9-10 add post-hoc comparisons only for prompting full proposals and selecting improvements, already inventoried as process metrics. No outcome was omitted because of the outcome-count cap.\n\nThe formative within-subject usability testing in Section 4.2 is described as protocol development, with fatigue and learning effects motivating the final between-subject study; it does not provide a separate identifiable outcome dataset or exact pilot sample count and is not added as an independent study. Three entries represent the formal experiment and the two explicitly reported backend evaluation datasets. No dataset or study-code URL is provided; links to software libraries are not treated as this study's code. Appendix D (p. 29) states that IRB restrictions prevented public sharing of full document snapshots or detailed participant edits. No effect sizes, standard errors, means of ranks, or derived proposal totals were computed."
+}

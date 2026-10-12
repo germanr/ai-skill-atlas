@@ -1,0 +1,346 @@
+{
+ "cid": "c382",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Isley Gaebler Goel (2026) - AI-written admissions essays are widespread but penalized.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Isley Gaebler Goel (2026) - AI-written admissions essays are widespread but penalized.pdf",
+  "version": "arXiv v1 of 18 Sep 2026 (arXiv:2609.22549v1 [cs.CY]), full PDF on file, all 36 pages read; numbers checked against the PDF pages",
+  "title_on_document": "AI-written admissions essays are widespread but penalized",
+  "authors_on_document": [
+   "Calvin Isley",
+   "Johann D. Gaebler",
+   "Sharad Goel"
+  ],
+  "pages": 36,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A to E, pp. 15-36 of the same PDF",
+   "holds": "Appendix A: dataset and pipeline details, plus detector validation and selection in A.2.2-A.2.3 (pp. 19-20; applicant-level Table A1, p. 30, and essay-level Table A2, p. 31, give detection/false-positive rates and standard errors); Appendix B: admissions-officer rating exercise (pp. 20-21); Appendix C: essay-quality calibration and adjusted trends (p. 21; Table A3, p. 32, gives dimension weights and confidence intervals; Fig. A4, p. 27, includes the Voice panel); Appendix D: DML details and residual-variation checks (pp. 22-23; Table A4, p. 33); Appendix E: robustness checks (p. 23; Tables A5-A7, pp. 34-36, report coefficients and standard errors for alternative detectors/thresholds, omission of the changed-prompt essay, and binary treatment)."
+  }
+ },
+ "paper_design_summary": "The authors analyze 7,462 applications (2020-2025) to a U.S. public policy master's program. They flag AI-written essays with GPTZero, compare LLM-scored, human-calibrated essay quality before and after the release of ChatGPT, and estimate the admission penalty for AI-flagged essays with double machine learning. In a separate exercise, five admissions officers rated 100 matched essays (50 AI-flagged, 50 human) for AI likelihood and quality; no one was assigned to use AI.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Admissions records 2020-2025 (before/after ChatGPT; AI-flagged vs non-flagged applicants)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No generative-AI assistance was assigned; the study observes submitted applications across cohorts and detected AI-use levels.",
+    "unit": "other",
+    "structure": null,
+    "quote": "Because we cannot observe true AI authorship in the application data, our empirical approach depends on the accuracy of AI detection tools, as we use their detection to serve as a proxy for true AI usage.",
+    "locator": "p. 18, Appendix A.2; pp. 2-3, Sections 2-3",
+    "preregistered": "not_stated",
+    "prereg_locator": "No preregistration stated in the full text or Appendices A-E; p. 20, Appendix B reports IRB approval only."
+   },
+   "arms": [
+    {
+     "name": "No assigned AI-assistance arm",
+     "description": "No intervention arms were assigned; observed comparisons are described under outcomes.",
+     "ai": null,
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "Admission outcomes for the 2025 cycle are not analyzed because the program changed its admissions process after seeing preliminary results (p. 6, fn. 4; p. 18, A.1.4). The paper does not print the number of applicants in the 2023-2024 admission models.",
+    "population": "mixed",
+    "who": "Corpus of 7,462 applications (five essays each) to a competitive U.S. public policy master's program, six cycles 2020-2025, domestic and international applicants. The paper counts applications, not distinct people.",
+    "country": "United States (program); domestic and international applicants",
+    "quote": "we assemble a novel dataset of 7,462 applications to a competitive U.S. public policy master's program submitted across six admissions cycles between 2020 and 2025",
+    "locator": "p. 2, Section 2"
+   },
+   "ai_tool": {
+    "name_model": "Not observed. Applicants' own generative-AI use, timed by the ChatGPT release (Nov 30, 2022) and detected with GPTZero 3.9 (main) and Pangram 3.1 (robustness)",
+    "role": "other",
+    "how_used": "Applicants' unobserved, prohibited use of AI assistants. An essay counts as AI-written if GPTZero labels it 'AI' with high confidence (primarily AI-generated)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Graduate admissions essays (five essays of 250-500 words on motivation, background, public service), scored for quality, not creativity",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Overall essay quality (human-calibrated composite of seven LLM-scored dimensions), by application year",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "gpt-5-mini grades seven rubric dimensions (grammar, style, clarity, prompt responsiveness, voice and originality, public service, leadership) on 5-point scales; weights come from a regression of admissions officers' ratings on the dimensions (Table A3); averaged to the applicant level; in 2020 SD units. Also split into mechanical and substantive quality. Fig. A4 repeats the trends with applicant controls.",
+     "unit": "participant",
+     "n_units": 7462,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Post-ChatGPT cycles 2023-2025",
+       "control_arm": "Pre-ChatGPT cycles 2020-2022",
+       "comparison_type": "before_after",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only, no numbers printed. Text: 'Figure 3 shows a sharp improvement in the overall quality of essays (blue line) after the introduction of ChatGPT, particularly for international applicants'; gains mostly mechanical, 'more modest' on substantive dimensions.",
+       "locator": "pp. 5-6, Section 3.2, Fig. 3; p. 21, Appendix C.2; p. 27, Fig. A4"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Voice and originality dimension of essay quality, by application year, adjusted for applicant covariates",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "One of seven gpt-5-mini rubric dimensions, described as 'voice and originality' (p. 18) and labeled 'Voice' in Fig. A4. Year coefficients relative to 2020 from OLS with applicant controls, in 2020 within-group SD units, SEs clustered at the applicant level. The paper does not say whether rows are essays or applicants.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Post-ChatGPT cycles 2023-2025",
+       "control_arm": "2020 baseline (pre-ChatGPT)",
+       "comparison_type": "before_after",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only, no numbers printed; the text does not discuss voice separately. In the Fig. A4 Voice panel, international applicants are near zero in 2023, above zero in 2024, and highest in 2025; domestic applicants are below zero in 2023-2024 and above zero in 2025. These are qualitative readings of the plotted points relative to the 2020 baseline, not numerical estimates.",
+       "locator": "p. 27, Fig. A4 ('Voice' panel); p. 18, A.1.2 (definition)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Admission (binary) per AI-flagged essay, 2023-2024 cycles",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "Admission decision regressed on the count of an applicant's GPTZero-flagged essays. Unadjusted OLS (linear probability), DML partially linear model with about 400 applicant covariates, and DML that also controls for the 14 essay-quality measures. Robustness: Pangram (Table A5), looser thresholds and exclusion of the changed-prompt essay (Table A6), binary any-AI treatment (Table A7).",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "Each additional essay flagged as AI-written",
+       "control_arm": "Applicants with fewer or no AI-flagged essays (non-random, covariate-adjusted)",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "AI Count: OLS -0.077*** (0.007); DML -0.015** (0.006); DML + essay quality -0.026*** (0.006). AI Count (2023): -0.081*** (0.013), -0.015 (0.012), -0.021 (0.013). AI Count (2024): -0.076*** (0.008), -0.013* (0.006), -0.021** (0.007). Text: AI users submitted 2.32 AI-written essays on average, 'an aggregate 3.48 p.p. decrease'; 'about 6.0 p.p.' with essay-quality controls.",
+       "locator": "p. 7, Table 1 and text"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Admissions-officer rating exercise (AI detection and essay quality)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No generative-AI assistance was assigned; existing matched essays were presented to officers in random order for ratings.",
+    "unit": "other",
+    "structure": null,
+    "quote": "Each officer was tasked to review all 100 essays sequentially, in a random order, with the option to pause and resume their reviews at any time.",
+    "locator": "p. 20, Appendix B",
+    "preregistered": "not_stated",
+    "prereg_locator": "No preregistration stated in the full text or Appendices A-E; p. 20, Appendix B reports IRB approval only."
+   },
+   "arms": [
+    {
+     "name": "No assigned AI-assistance arm",
+     "description": "No intervention arms were assigned; observed comparisons are described under outcomes.",
+     "ai": null,
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 5,
+    "counts_are": "people",
+    "exclusions": "Rater 1 rated 60 of the 100 essays; the other four rated all 100 (460 ratings). For the quality-weight model, 22 ratings of 'very likely AI' were dropped (p. 21).",
+    "population": "professionals",
+    "who": "Five admissions staff members at the partner program. They rated 100 essays from 2023-2024 (50 GPTZero-flagged AI, 50 human), matched 1:1 on applicant characteristics, shown in random order.",
+    "country": "United States",
+    "quote": "we recruited five staff members who were going to review applications in the upcoming admissions cycle (2025–2026 cycle). We selected 100 essays (50 human, 50 AI) submitted in either 2023 or 2024",
+    "locator": "p. 20, Appendix B"
+   },
+   "ai_tool": {
+    "name_model": "None used by the raters; essays labeled AI by GPTZero",
+    "role": "other",
+    "how_used": "Raters judged essays that applicants had written with or without AI. The raters had no AI assistance."
+   },
+   "task": {
+    "type": "other",
+    "description": "Rate each admissions essay on a six-point AI-likelihood scale and a six-point quality scale relative to a typical essay",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S2-O1",
+     "name": "Admissions officers' quality rating of AI-flagged vs human essays, and its relation to perceived AI likelihood",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "Six-point quality rating ('Much weaker' to 'Much stronger'), regressed on AI likelihood, LLM-based quality and GPTZero AI-written indicator, with reviewer fixed effects; SEs clustered by applicant. Detection: AUC 0.70 (95% CI [0.65, 0.75]) (p. 8).",
+     "unit": "rating",
+     "n_units": 460,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "Essays flagged AI-written by GPTZero",
+       "control_arm": "Matched human-written essays",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Human Quality Rating. AI-Written: 0.019 (0.101) col. 2; -0.033 (0.102) col. 3. AI Likelihood: -0.131* (0.059) col. 1; -0.119* (0.047) col. 2; -0.109* (0.047) col. 3. LLM-Based Quality: 1.029*** (0.090) col. 2; 0.995*** (0.093) col. 3.",
+       "locator": "p. 10, Table 2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "GPTZero provided in-kind support through free API access. Its commercial detector supplies the AI-authorship labels used in the main analyses; the paper also cites GPTZero's own technical report [22] when discussing detector error rates.",
+  "locator": "p. 1, Acknowledgments; p. 3, Section 3.1; p. 12, reference [22]"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "No people were randomly assigned to generative-AI assistance: S1 observes admissions submissions across time and detected AI use (pp. 2-3, Sections 2-3; p. 18, A.2), while S2 randomizes only the presentation order of existing essays (p. 20, Appendix B), so criterion 1 is not met and core remains no. The 7,462 observations are applications, with no distinct-person analysis count reported, so criterion 2 remains unclear (p. 2, Section 2; p. 15, A.1). Criterion 3 is met by the LLM-scored 'voice and originality' dimension of the submitted essays (p. 18, A.1.2; p. 27, Fig. A4, Voice panel), an output-level originality measure under the codebook's novelty definition. This supports observational context, although voice and originality are combined and no separate originality rubric or numerical year coefficients are printed. The five-officer perception exercise does not independently qualify for the core or context evidence under codebook Section 3 (p. 20, Appendix B)."
+ },
+ "one_line_finding": "In a corpus of 7,462 applications (2020-2025) to a U.S. public policy master's program (p. 2, Section 2), 56.1% of 2025 applicants submitted at least one GPTZero-flagged AI essay (p. 30, Table A1), LLM-scored essay quality rose after ChatGPT (figure only, pp. 5-6, Fig. 3), and in the 2023-2024 cycles each additional AI-flagged essay was associated with a 1.5 percentage-point lower admission probability after adjustment for applicant covariates (DML -0.015, SE 0.006; p. 7, Table 1; p. 22, Appendix D).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].outcomes[1].contrasts[0].reported",
+    "old": "Figure only, no numbers printed; the text does not discuss the voice dimension separately. In the 'Voice' panel of Fig. A4, the 2023-2024 points sit near zero for both groups and the 2025 points are above zero, highest for international applicants.",
+    "new": "Figure only, no numbers printed; the text does not discuss voice separately. In the Fig. A4 Voice panel, international applicants are near zero in 2023, above zero in 2024, and highest in 2025; domestic applicants are below zero in 2023-2024 and above zero in 2025. These are qualitative readings of the plotted points relative to the 2020 baseline, not numerical estimates.",
+    "quote": "Points show OLS estimates of round coefficients relative to applicants in 2020, normalized to 2020 SD units.",
+    "locator": "p. 27, Fig. A4, 'Voice' panel (visually checked) and caption"
+   },
+   {
+    "field": "company_involvement",
+    "old": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+    "new": "{\"any\": true, \"description\": \"GPTZero provided in-kind support through free API access. Its commercial detector supplies the AI-authorship labels used in the main analyses; the paper also cites GPTZero's own technical report [22] when discussing detector error rates.\", \"locator\": \"p. 1, Acknowledgments; p. 3, Section 3.1; p. 12, reference [22]\"}",
+    "quote": "We thank the admissions staff at our partner institution for data access and guidance, GPTZero for providing free API access, and Alex Adam for helpful conversations.",
+    "locator": "p. 1, Acknowledgments; p. 3, Section 3.1; p. 12, reference [22]"
+   },
+   {
+    "field": "one_line_finding",
+    "old": "In 7,462 applications to a public policy master's program, 56.1% of 2025 applicants submitted at least one GPTZero-flagged AI essay (p. 30, Table A1). LLM-scored essay quality rose after ChatGPT (figure only, p. 6, Fig. 3). Each AI-flagged essay lowered admission by 1.5 p.p. (DML -0.015, SE 0.006; p. 7, Table 1).",
+    "new": "In a corpus of 7,462 applications (2020-2025) to a U.S. public policy master's program (p. 2, Section 2), 56.1% of 2025 applicants submitted at least one GPTZero-flagged AI essay (p. 30, Table A1), LLM-scored essay quality rose after ChatGPT (figure only, pp. 5-6, Fig. 3), and in the 2023-2024 cycles each additional AI-flagged essay was associated with a 1.5 percentage-point lower admission probability after adjustment for applicant covariates (DML -0.015, SE 0.006; p. 7, Table 1; p. 22, Appendix D).",
+    "quote": "Finally, our estimate of the apparent penalty associated with AI use may be affected by unmeasured confounding.",
+    "locator": "p. 10, Section 4; p. 2, Section 2; p. 6, Fig. 3 and footnote 4; p. 7, Table 1 and text; p. 22, Appendix D; p. 30, Table A1, column (1)"
+   },
+   {
+    "field": "source.supplement.holds",
+    "old": "Dataset and pipeline details (A), admissions-officer experiment details (B), essay-quality weights Table A3 and per-dimension quality trends Fig. A4 including the 'Voice' panel (C), DML details (D), detector and threshold robustness Tables A1, A2, A4-A7 (E)",
+    "new": "Appendix A: dataset and pipeline details, plus detector validation and selection in A.2.2-A.2.3 (pp. 19-20; applicant-level Table A1, p. 30, and essay-level Table A2, p. 31, give detection/false-positive rates and standard errors); Appendix B: admissions-officer rating exercise (pp. 20-21); Appendix C: essay-quality calibration and adjusted trends (p. 21; Table A3, p. 32, gives dimension weights and confidence intervals; Fig. A4, p. 27, includes the Voice panel); Appendix D: DML details and residual-variation checks (pp. 22-23; Table A4, p. 33); Appendix E: robustness checks (p. 23; Tables A5-A7, pp. 34-36, report coefficients and standard errors for alternative detectors/thresholds, omission of the changed-prompt essay, and binary treatment).",
+    "quote": "Tables A1 and A2 report the AI detection rates by year of material submission across a variety of classification thresholds, at the applicant and essay level, respectively.",
+    "locator": "p. 19, A.2.2; p. 20, A.2.3; p. 21, Appendix C; p. 23, Appendix D (Residual variation checks) and Appendix E; pp. 30-36, Tables A1-A7"
+   },
+   {
+    "field": "studies[0-1].assignment; studies[0-1].arms; studies[0].outcomes[0-2].ai_available_when_produced and .timing; studies[1].outcomes[0].ai_available_when_produced and .timing",
+    "old": "{\"studies[0].assignment\": {\"randomized\": \"no\", \"what_was_assigned\": \"\", \"unit\": \"individual | team | class | session | within_person_order | other\", \"structure\": \"between | within | crossover | mixed\", \"quote\": \"\", \"locator\": \"\", \"preregistered\": \"yes | no | not_stated\", \"prereg_locator\": \"\"}, \"studies[0].arms\": [{\"name\": \"\", \"description\": \"\", \"ai\": \"none | generative_ai | other_aid\", \"n_randomized\": null, \"n_analyzed\": null}], \"studies[0].outcomes[0].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[0].timing\": \"immediate | delayed\", \"studies[0].outcomes[1].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[1].timing\": \"immediate | delayed\", \"studies[0].outcomes[2].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[2].timing\": \"immediate | delayed\", \"studies[1].assignment\": {\"randomized\": \"no\", \"what_was_assigned\": \"\", \"unit\": \"individual | team | class | session | within_person_order | other\", \"structure\": \"between | within | crossover | mixed\", \"quote\": \"\", \"locator\": \"\", \"preregistered\": \"yes | no | not_stated\", \"prereg_locator\": \"\"}, \"studies[1].arms\": [{\"name\": \"\", \"description\": \"\", \"ai\": \"none | generative_ai | other_aid\", \"n_randomized\": null, \"n_analyzed\": null}], \"studies[1].outcomes[0].ai_available_when_produced\": \"yes | no | mixed\", \"studies[1].outcomes[0].timing\": \"immediate | delayed\"}",
+    "new": "{\"studies[0].assignment\": {\"randomized\": \"no\", \"what_was_assigned\": \"No generative-AI assistance was assigned; the study observes submitted applications across cohorts and detected AI-use levels.\", \"unit\": \"other\", \"structure\": null, \"quote\": \"Because we cannot observe true AI authorship in the application data, our empirical approach depends on the accuracy of AI detection tools, as we use their detection to serve as a proxy for true AI usage.\", \"locator\": \"p. 18, Appendix A.2; pp. 2-3, Sections 2-3\", \"preregistered\": \"not_stated\", \"prereg_locator\": \"No preregistration stated in the full text or Appendices A-E; p. 20, Appendix B reports IRB approval only.\"}, \"studies[0].arms\": [{\"name\": \"No assigned AI-assistance arm\", \"description\": \"No intervention arms were assigned; observed comparisons are described under outcomes.\", \"ai\": null, \"n_randomized\": null, \"n_analyzed\": null}], \"studies[0].outcomes[0].ai_available_when_produced\": \"mixed\", \"studies[0].outcomes[0].timing\": \"immediate\", \"studies[0].outcomes[1].ai_available_when_produced\": \"mixed\", \"studies[0].outcomes[1].timing\": \"immediate\", \"studies[0].outcomes[2].ai_available_when_produced\": \"yes\", \"studies[0].outcomes[2].timing\": \"immediate\", \"studies[1].assignment\": {\"randomized\": \"no\", \"what_was_assigned\": \"No generative-AI assistance was assigned; existing matched essays were presented to officers in random order for ratings.\", \"unit\": \"other\", \"structure\": null, \"quote\": \"Each officer was tasked to review all 100 essays sequentially, in a random order, with the option to pause and resume their reviews at any time.\", \"locator\": \"p. 20, Appendix B\", \"preregistered\": \"not_stated\", \"prereg_locator\": \"No preregistration stated in the full text or Appendices A-E; p. 20, Appendix B reports IRB approval only.\"}, \"studies[1].arms\": [{\"name\": \"No assigned AI-assistance arm\", \"description\": \"No intervention arms were assigned; observed comparisons are described under outcomes.\", \"ai\": null, \"n_randomized\": null, \"n_analyzed\": null}], \"studies[1].outcomes[0].ai_available_when_produced\": \"yes\", \"studies[1].outcomes[0].timing\": \"immediate\"}",
+    "quote": "Starting in 2023—the first cycle after ChatGPT was released—this attestation was expanded to exclude use of generative AI.",
+    "locator": "p. 3, Section 3; p. 5, Section 3.2 (submitted essays scored); p. 18, Appendix A.2 (unobserved AI authorship); p. 20, Appendix B (IRB approval, essay cohorts and randomized presentation order); p. 22, Appendix D (2023-2024 admission models); full text and appendices (no preregistration stated). Assignment structure and arm AI values are null because no AI-assistance intervention was assigned; immediate refers to assessment of submitted work, with no later unassisted production task."
+   },
+   {
+    "field": "eligibility",
+    "old": "{\"core\": \"no\", \"criterion_1_random_assignment_of_ai\": \"not_met\", \"criterion_2_at_least_50_people\": \"unclear\", \"criterion_3_outcome_scored_on_output\": \"unclear\", \"context_class\": \"observational\", \"reason\": \"No one is assigned to AI. S1 compares real admissions essays before and after ChatGPT and AI-flagged vs non-flagged applicants. Its outcomes are writing quality, AI prevalence and admission. The only originality-related outcome is the LLM-scored 'voice and originality' dimension, shown only in Fig. A4 (p. 27). This makes it borderline observational context; if that dimension does not count, the paper is out (no creativity or diversity outcome). S2 is a perception exercise with five admissions officers rating existing essays, a study type the codebook excludes.\"}",
+    "new": "{\"core\": \"no\", \"criterion_1_random_assignment_of_ai\": \"not_met\", \"criterion_2_at_least_50_people\": \"unclear\", \"criterion_3_outcome_scored_on_output\": \"met\", \"context_class\": \"observational\", \"reason\": \"No people were randomly assigned to generative-AI assistance: S1 observes admissions submissions across time and detected AI use (pp. 2-3, Sections 2-3; p. 18, A.2), while S2 randomizes only the presentation order of existing essays (p. 20, Appendix B), so criterion 1 is not met and core remains no. The 7,462 observations are applications, with no distinct-person analysis count reported, so criterion 2 remains unclear (p. 2, Section 2; p. 15, A.1). Criterion 3 is met by the LLM-scored 'voice and originality' dimension of the submitted essays (p. 18, A.1.2; p. 27, Fig. A4, Voice panel), an output-level originality measure under the codebook's novelty definition. This supports observational context, although voice and originality are combined and no separate originality rubric or numerical year coefficients are printed. The five-officer perception exercise does not independently qualify for the core or context evidence under codebook Section 3 (p. 20, Appendix B).\"}",
+    "quote": "aspects of the essays: their grammatical correctness, stylistic quality, clarity and organization, adherence to the prompt and formal requirements, voice and originality, public service merit, and evidence of leadership potential.",
+    "locator": "p. 18, Appendix A.1.2; p. 27, Fig. A4, Voice panel; p. 2, Section 2; p. 15, Appendix A.1; p. 20, Appendix B; creativity-codebook.md, Sections 3 and 6"
+   }
+  ],
+  "rejected": []
+ }
+}

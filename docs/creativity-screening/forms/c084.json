@@ -1,0 +1,245 @@
+{
+ "cid": "c084",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Lee et al (2026) - The Digital Divide in Generative AI.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Lee et al (2026) - The Digital Divide in Generative AI.pdf",
+  "version": "arXiv:2602.17791v1 [cs.CY], 19 Feb 2026 (as stamped on p. 1), 21 pages, read from the PDF on file. The ACM proceedings version (doi 10.1145/3774398.3811620) was not read.",
+  "title_on_document": "The Digital Divide in Generative AI: Evidence from Large Language Model Use in College Admissions Essays",
+  "authors_on_document": [
+   "Jinsook Lee",
+   "Conrad Borchers",
+   "AJ Alvero",
+   "Thorsten Joachims",
+   "Rene F. Kizilcec"
+  ],
+  "pages": 21,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A to E at the end of this PDF (p. 3, Section 3: 'Details of the dataset, robustness checks, and supplementary analyses are provided in the Appendix.')",
+   "holds": "Case-institution details and essay-prompt counts (Table 5), detector validation (Figures 5 and 6), DiD assumption checks (Tables 7 to 12), full stratified models (Table 13), full mediation results (Table 14). No cross-essay similarity measure appears in the appendices."
+  }
+ },
+ "paper_design_summary": "Observational study of 81,663 Common App essays submitted to one selective, engineering-focused U.S. university in the 2020 to 2024 admission cycles, with 2024 treated as the post-GPT cycle. The authors estimate each essay's share of LLM-generated text with a distribution-based detector, track within-essay lexical diversity and complexity features over time by fee-waiver status (the SES proxy) and admission outcome, and relate estimated LLM use to admission. No one is assigned to AI, and no measure compares the similarity of different applicants' essays; the 'homogenization' claim rests on narrowing gaps between group means of surface features.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Admissions-essay corpus, 2020 to 2024 cycles (one selective U.S. university)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "",
+    "what_was_assigned": "",
+    "unit": "",
+    "structure": "",
+    "quote": "",
+    "locator": "",
+    "preregistered": "",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "Essays shorter than 250 words excluded (p. 13, Appendix A). Counts are applications; the paper does not state a count of distinct people separately.",
+    "population": "students",
+    "who": "First-year applications (Common App essays) to the engineering school of a highly selective U.S. university, 2019-2020 through 2023-2024 cycles; 17,654 applications in the post-GPT (2024) cycle; SES proxied by fee-waiver status.",
+    "country": "United States",
+    "quote": "We analyze a de-identified longitudinal dataset of applications (N = 81,663) to a selective U.S. university spanning five admission cycles",
+    "locator": "p. 3, Section 3.1; post-GPT N = 17,654 at p. 4, Section 3.2.3"
+   },
+   "ai_tool": {
+    "name_model": "Not assigned. LLM use is estimated per essay (alpha-hat, 0 to 1) with a distribution-based detector adapted from Liang et al. (2024), using GPT-4o-generated synthetic essays as the LLM reference corpus.",
+    "role": "other",
+    "how_used": "Applicants' own, unobserved use of LLMs; inferred from the essay text by the detector."
+   },
+   "task": {
+    "type": "other",
+    "description": "College admissions personal essays responding to eight Common App prompts, 250 to 650 words.",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Convergence between SES groups in surface linguistic features over time (gap between group means of avg. word length, TTR, Maas TTR, MTLD, HDD, Yule's K, complexity)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Group means by year and fee-waiver status of within-essay lexical features; 'convergence' is the narrowing of the gap between the higher-SES and lower-SES series. Not a similarity measure across individual essays. Figure 1b repeats this for admitted/waitlisted vs. rejected applicants.",
+     "unit": "output",
+     "n_units": 81663,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "2024 cycle (post-GPT)",
+       "control_arm": "2020 to 2023 cycles (pre-GPT)",
+       "comparison_type": "before_after",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only (yearly group means with 95% CIs); no test of the change in the gap. Caption: 'Essays exhibit substantial post-2023 convergence in surface-level linguistic features, with larger changes among lower SES and rejected applicants.' Direction coded as the between-group gap shrinking. [Text on p. 5 says lower-SES essays in 2020 had 'higher type-token ratios'; Figure 1a plots lower-SES TTR below higher-SES TTR.]",
+       "locator": "p. 6, Figure 1a and 1b; p. 5, Section 4.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Within-essay lexical diversity over time (TTR, Maas TTR, MTLD, HDD, Yule's K)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Within-essay vocabulary variety, plotted as yearly means by group. Higher TTR, MTLD, HDD and lower Maas TTR, Yule's K mean more varied vocabulary within an essay.",
+     "unit": "output",
+     "n_units": 81663,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "2024 cycle (post-GPT)",
+       "control_arm": "2020 to 2023 cycles (pre-GPT)",
+       "comparison_type": "before_after",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Figure only; no numbers printed. In Figure 1a, TTR, MTLD, and HDD rise and Yule's K and Maas TTR fall in 2024 for both SES groups.",
+       "locator": "p. 6, Figure 1a and 1b"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Lexical diversity of LLM users' essays by SES in the 2024 cycle (MTLD, Yule's K, # types, TTR)",
+     "construct": "other",
+     "question": "none",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Applicants with detectable LLM use (alpha-hat > 0) in the 2023-2024 cycle; t-tests of group means. Table 1 also reports token, word, word-length, sentence-length, HDD, Maas TTR, and complexity rows.",
+     "unit": "output",
+     "n_units": 10626,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Lower SES (fee waiver), alpha-hat > 0, 2024",
+       "control_arm": "Higher SES, alpha-hat > 0, 2024",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "MTLD 90.88 (19.79) vs 95.78 (21.39), difference -4.90 (-5.1%)***, t = -11.13; Yule's K 112.00 (18.84) vs 108.42 (18.67), 3.58 (3.3%)***, t = 9.07; # types 306.21 (41.90) vs 319.84 (33.38), -13.64 (-4.3%)***, t = -17.89; TTR 0.51 (0.04) vs 0.52 (0.04), 0.00 (-0.9%)***, t = -5.61; N = 3,249 vs 7,377",
+       "locator": "p. 5, Table 1; p. 6, text below Figure 1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "none",
+  "reason": "Not eligible for core or context under creativity-codebook.md, Sections 1, 3, and 6. This is an observational analysis of admissions applications with detector-estimated LLM use; no people were assigned to AI (PDF p. 3, Sections 3.1-3.2.1; p. 10, Section 6). The corpus count refers to applications, not a separately reported count of distinct people, so criterion 2 is unclear (PDF p. 3, Section 3.1; p. 13, Appendix A). The measured outcomes are within-essay linguistic features and their group means over time, with no creativity, novelty, originality, or diversity/similarity score across different applicants' outputs; criterion 3 is not met (PDF p. 4, Section 3.3; pp. 5-6, Table 1 and Figure 1). The authors interpret convergence of group means as homogenization, but that interpretation does not meet the codebook's diversity definition."
+ },
+ "one_line_finding": "In 81,663 admissions essays at one selective U.S. university, surface linguistic features of higher- and lower-SES applicants converged in the 2024 cycle (figure only, p. 6, Figure 1), estimated LLM use rose more for fee-waiver applicants (mean alpha-hat 0.102 vs 0.080, p. 7, Section 4.2.1), and among detected LLM users lower-SES essays had lower lexical diversity (MTLD 90.88 vs 95.78, p. 5, Table 1).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "eligibility.context_class",
+    "old": "observational",
+    "new": "none",
+    "quote": "we compute lexical diversity measures including type–token ratio (TTR) [51], Maas TTR [38], MTLD [40], HDD [39], Yule’s K [59], average word length, and a complexity measure.",
+    "locator": "PDF p. 4, Section 3.3; p. 5, Table 1 and Section 4.1; p. 6, Figure 1; creativity-codebook.md, Sections 1, 3, and 6"
+   },
+   {
+    "field": "studies[0].outcomes[0].question",
+    "old": "across_people",
+    "new": "none",
+    "quote": "This convergence suggests a homogenization of writing styles across socioeconomic backgrounds, potentially driven by increased access to essay coaching, generative AI tools, or standardized preparation resources.",
+    "locator": "PDF p. 5, Section 4.1; p. 6, Figure 1a-b; creativity-codebook.md, Sections 1 and 6"
+   },
+   {
+    "field": "studies[0].outcomes[1].question",
+    "old": "with_ai",
+    "new": "none",
+    "quote": "we compute lexical diversity measures including type–token ratio (TTR) [51], Maas TTR [38], MTLD [40], HDD [39], Yule’s K [59], average word length, and a complexity measure.",
+    "locator": "PDF p. 4, Section 3.3; p. 6, Figure 1a-b; creativity-codebook.md, Sections 1, 3, and 6"
+   },
+   {
+    "field": "studies[0].outcomes[2].question",
+    "old": "with_ai",
+    "new": "none",
+    "quote": "indicating reduced lexical diversity and greater vocabulary repetition.",
+    "locator": "PDF p. 5, Table 1 and final paragraph of Section 4.1; p. 6, continuation of Section 4.1; creativity-codebook.md, Sections 1, 3, and 6"
+   }
+  ],
+  "rejected": []
+ }
+}

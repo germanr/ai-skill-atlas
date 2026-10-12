@@ -1,0 +1,181 @@
+{
+  "cid": "c021",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Russell et al (2026) - StoryScope Idiosyncrasies in AI Fiction.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Russell et al (2026) - StoryScope Idiosyncrasies in AI Fiction.pdf",
+    "version": "arXiv:2604.03136v4 [cs.CL], 13 Apr 2026 (left margin, p. 1); header reads 'Preprint. Under review.'",
+    "title_on_document": "StoryScope: Investigating idiosyncrasies in AI fiction",
+    "authors_on_document": ["Jenna Russell", "Rishanth Rajendhran", "Chau Minh Pham", "Mohit Iyyer", "John Wieting"],
+    "pages": 30,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendices A to I are in this PDF (pp. 17-30). Code and data: https://github.com/jenna-russell/storyscope (p. 1, footnote 1). Human-written stories are not released (p. 3, footnote 4).",
+      "holds": "Corpus statistics (Tables 4-5), feature taxonomy (Table 6), annotator validation (Table 7), memorization audit (Tables 8-9), length audit (Table 10), per-class F1 (Table 11), per-story rarity analysis with SDs and Cohen's d (Appendix G, Table 12, Figure 5), core and fingerprint feature lists with human and AI means (Tables 13-16), prompts (Figures 6-8)."
+    }
+  },
+  "paper_design_summary": "The authors take 10,272 human-written short stories from the Books3 corpus, reverse-engineer a writing prompt from each, and have five LLMs (Gemini 3 Flash, Kimi K2.5, DeepSeek V3.2, Claude Sonnet 4.6, GPT-5.4) write a story from each prompt, giving 61,608 stories. An LLM (Gemini 3 Flash) codes every story on 304 narrative features, and the authors train classifiers to separate human from AI stories and to attribute each story to its source. They also compare human and AI stories on per-story rarity in narrative feature space and on dispersion around each source's centroid; no person writes with AI help.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "StoryScope parallel corpus: Books3 human stories vs. five-LLM mirrored stories",
+      "design_class": "ai_vs_human",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned to people. Each human story's reverse-engineered prompt was given to five LLMs to produce mirrored AI stories.",
+        "unit": "other",
+        "structure": "within",
+        "quote": "We extract 10,272 human-written stories from Books3 (Presser, 2020). To generate mirrored AI stories, we reverse-engineer writing prompts from each human story by prompting Gemini 2.5 Flash",
+        "locator": "p. 3, Section 2, 'Data' paragraph",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Human", "description": "10,272 human-written short stories extracted from short story anthologies in Books3 (one per prompt)", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "AI (five LLMs)", "description": "Stories written from the reverse-engineered prompts by Gemini 3 Flash (n = 10,261), GPT-5.4 (10,272), Claude Sonnet 4.6 (10,259), DeepSeek V3.2 (10,272), Kimi K2.5 (10,272); 51,336 AI stories in total", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "No human participants. The units are stories: 61,608 in total (10,272 human, 51,336 AI); models refused to generate 24 stories (p. 3, footnote 8). Classifiers train on 52,707 stories (8,788 prompts) and test on 8,301 stories (1,384 prompts) (p. 5). The rarity analysis uses 1,377 human and 6,885 AI test stories (p. 22). The number of distinct human authors behind the Books3 stories is not stated. Two annotators validated the LLM feature coding on 12 stories (p. 19, Table 7); they produced no creative output.",
+        "population": "",
+        "who": "Published human authors of short stories in Books3 anthologies (count of authors not stated), compared with five LLMs",
+        "country": "not_stated",
+        "quote": "Our dataset consists of human-written short stories paired with multiple AI-generated mirrors with similar plots and characters.",
+        "locator": "p. 3, Section 2, 'Data'; p. 17, Tables 4-5"
+      },
+      "ai_tool": {
+        "name_model": "Gemini 3 Flash, Kimi K2.5, DeepSeek V3.2, Claude Sonnet 4.6, GPT-5.4 (story generation); Gemini 2.5 Flash (prompt extraction); GPT-5.1 (templates, comparison, feature discovery); Gemini 3 Flash (feature assignment)",
+        "role": "other",
+        "how_used": "LLMs write complete stories (about 5,000 words) on their own from the reverse-engineered prompts; no human uses the AI."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Short story (fiction) writing from a prompt that preserves the human story's key characters, setting, and thematic direction, with a target word count.",
+        "duration": "not applicable (model generation); mean length 4,753 words across the corpus (p. 3, footnote 8)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Per-story narrative rarity percentile",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Rarity = mean Euclidean distance from a story to its k = 25 nearest neighbors in the pooled train+val narrative feature space; expressed as a percentile against the train+val rarity distribution. The feature vectors come from Gemini 3 Flash coding each story on the narrative features (not a text embedding). The authors call it a proxy for originality. Also reported: share of human vs AI stories in the rarest tails (Table 12) and the prompt-level rate at which the human story is the rarest of the six versions.",
+          "unit": "output",
+          "n_units": 8262,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI (five LLMs pooled)",
+              "control_arm": "Human",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "standardized_effect"],
+              "reported": "Mean rarity percentile human 0.71 vs AI 0.49; AUC = 0.73; Cohen's d = 0.83; sample SDs 0.227 (human) and 0.274 (pooled AI), pooled SD 0.267; n = 1,377 human and 6,885 AI test stories. Top 10% rarest: 24.7% of human vs 7.1% of AI stories; top 1%: 3.0% vs 0.6%. Human story is the rarest of the six versions for 57.8% of prompts (vs 16.7% by chance; mean margin 0.96 raw distance units). Table 12 counts (of 1,377 per source): top 1% Human 42, Claude 5, GPT 5, DeepSeek 11, Kimi 6, Gemini 14; top 5% 180, 33, 34, 58, 64, 45; top 10% 340, 66, 71, 127, 135, 88.",
+              "locator": "p. 9, 'Human narratives are rarer'; p. 22, Appendix G; p. 23, Table 12 and Figure 5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Dispersion of stories in narrative feature space (distance to own-source centroid; 10-nearest-neighbor radius)",
+          "construct": "diversity",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Euclidean distances in the z-scored encoded narrative feature space (LLM-coded features, not a neural text embedding). Human stories: mean distance to the human centroid; AI: average radius across the five AI sources. Also median 10-nearest-neighbor radius. Related separation statistics: mean human-AI centroid distance 6.6 vs mean AI-AI centroid distance 4.3; closest human-AI pair 6.2 vs most distant AI-AI pair 6.0. Figure 2 shows an LDA projection with the five AI models clustered together.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI (each of five LLMs, averaged)",
+              "control_arm": "Human",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_lower",
+              "statistics_available": ["none"],
+              "reported": "Human stories' mean distance to the human centroid is 22% greater than the average AI radius (33.2 vs. 27.4); median 10-nearest-neighbor radius is 1.13x larger (33.1 vs. 29.2). No standard errors or tests reported.",
+              "locator": "p. 9, first paragraph (continuing 'AI convergence separates from human narratives' from p. 8); p. 7, Figure 2"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Mean Euclidean distance of each story to its source's centroid (source radius); median 10-nearest-neighbor radius",
+            "embedding_model": "None; vectors are z-scored encodings of narrative features assigned to each story by Gemini 3 Flash",
+            "computed_over": "Each story against the centroid of its own source (human, or one of the five LLMs); AI value is the average across the five AI sources",
+            "uncertainty": "None reported",
+            "notes": "Diversity here is across stories within a source: human stories come from many different authors, while each AI source is one model. Which split (test or full corpus) and which feature subset (narrative-only or all) the dispersion uses is not stated explicitly; the surrounding text discusses the narrative-only classifier."
+          }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Core narrative feature prevalence, human vs AI (30 core features)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "Per-story narrative features coded by Gemini 3 Flash (1-5 scales, ordinal codes, or category prevalence). Table 15 groups the core features by theme, including a 'Human-elevated: Narrative diversity' group. The paper does not treat these as creativity scores; listed because the paper frames them as markers of narrative diversity and over-determination.",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "AI (average of five LLMs)",
+              "control_arm": "Human",
+              "comparison_type": "ai_vs_human",
+              "direction": "mixed",
+              "statistics_available": ["none"],
+              "reported": "Examples (Human vs AI; Gap = Human - AI): Thematic Explicitness & Moralizing 3.28 vs 3.94 (-0.65); Location Variety Scope 1.34 vs 1.08 (+0.26); Dialogue-to-Narration Proportion 2.95 vs 2.70 (+0.24); Subplot Integration -> thematically parallel 42% vs 21% (+22); Moral Polarity -> ambivalent/mixed 59% vs 38% (+21); Emotional Expression -> explicit labels 29% vs 8% (+21). No standard errors.",
+              "locator": "p. 26, Table 15; p. 7, Section 4.1"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": []
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "Coauthor John Wieting is affiliated with Google DeepMind. The authors thank Google for a Cloud Credit award and Pangram Labs for an OpenRouter credit award.",
+    "locator": "p. 1, author affiliations; p. 10, Acknowledgments"
+  },
+  "data_and_code": {
+    "data_url": "https://github.com/jenna-russell/storyscope (writing prompts and AI-generated narratives; human stories not released)",
+    "code_url": "https://github.com/jenna-russell/storyscope"
+  },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "not_met",
+    "context_class": "ai_vs_human",
+    "reason": "No person receives AI assistance: the paper compares stories written entirely by five LLMs with published human stories from Books3. There are no participants (units are stories), so criteria 1 and 2 fail; the rarity and dispersion measures are scored on AI and human outputs, not on outputs of participants. Context evidence of type ai_vs_human, with novelty (rarity) and across-story dispersion outcomes."
+  },
+  "one_line_finding": "Human-written Books3 stories are rarer in LLM-coded narrative feature space than stories by five LLMs from the same prompts (mean rarity percentile 0.71 vs 0.49, Cohen's d = 0.83, p. 22, Appendix G) and more dispersed around their centroid (33.2 vs 27.4, p. 9).",
+  "open_questions": [
+    "Whether the narrative-feature rarity and centroid-dispersion results belong in the ai_vs_human context set for the creativity section, given that the paper's main aim is AI detection and attribution rather than creativity.",
+    "Whether an embedding_similarity or automated_score measure code better fits distances computed on LLM-coded feature vectors."
+  ],
+  "notes": "Main results (binary detection macro-F1 93.2% narrative-only, 96.0% narrative+style, Table 2, p. 6; 6-way attribution macro-F1 68.4% / 77.3%, Table 3, p. 8; LAMP-edited Gemini stories 93.9%, p. 8) are classification accuracy, not creativity or diversity outcomes, and are not listed as outcomes. Test-set size is given as 8,301 stories (1,384 prompts) on pp. 5 and 20, but Table 12 (p. 23) gives 8,262 test stories (1,377 per source) and Appendix G uses 1,377 human and 6,885 AI; n_units for S1-O1 uses 8,262. Human stories are longer than AI stories on the test split (mean 6,418 vs 4,523 words, p. 21); the rarity analysis is not reported on the length-matched subset. Memorization audit: 169 of 10,139 audited prompts flagged high risk (p. 21)."
+}

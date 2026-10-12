@@ -1,0 +1,247 @@
+{
+ "cid": "c019",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Raghavan (2024) - Competition and Diversity in Generative AI.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Raghavan (2024) - Competition and Diversity in Generative AI.pdf",
+  "version": "arXiv:2412.08610v2 [cs.GT], 16 Oct 2025 (arXiv stamp in the left margin of p. 1)",
+  "title_on_document": "Competition and Diversity in Generative AI",
+  "authors_on_document": [
+   "Manish Raghavan"
+  ],
+  "pages": 97,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendix at the end of this PDF: Section A (pp. 37-81), Section B (pp. 81-83), Section C (pp. 83-97). The document refers to no separate online supplement.",
+   "holds": "Sections A and B hold the proofs for Sections 4 and 5. Section C holds the experiment details: Table 1 (model IDs, sizes, maximum temperatures, p. 84), Table 2 (the 25 instances, p. 85), the U-statistic utility estimator and its standard error of about .0045 (p. 88), the prompt details for Section 6.3 (pp. 88-89), and Figures 9 to 16 (pp. 90-97)."
+  }
+ },
+ "paper_design_summary": "A single-author game-theoretic model in which n producers sample content from a generative AI tool and earn less when others produce the same content type, with proofs that stronger competition yields more diverse equilibrium output, though less diverse than socially optimal (Sections 3 to 5). The paper then simulates the game with six small open-source language models playing Scattergories: each simulated player chooses a sampling temperature (and, in Section 6.2, a model), and a seventh model judges answer validity (Section 6, Appendix C). No human participants take part, and no person's output is scored.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Scattergories simulations with language-model players (Section 6 and Appendix C)",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No people were assigned. Each simulated player is a stream of samples from a language model. The player's strategy is the sampling temperature (Section 6.1) or the pair of model and temperature (Section 6.2), and the author computes equilibrium and socially optimal strategies across n, gamma, and model pairs.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "Our empirical setup is simple: n players each use an LLM to generate a single response to a Scattergories instance given by a (letter, category) pair.",
+    "locator": "p. 17, Section 6",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "Not applicable: no human participants.",
+    "population": "",
+    "who": "No human participants. Six language models (gemma2, llama3.1, llama3.2, mistral, nemotron, phi3.5) act as players, and qwen2.5 validates answers. Inputs are 25 randomly sampled (letter, category) instances, with 2,000 samples per (language model, temperature, instance) and simulated games of up to n = 15 players.",
+    "country": "",
+    "quote": "Our experiments compare six LLMs, each of which is a relatively small open-source language model",
+    "locator": "p. 18, Section 6; pp. 17-18 (25 instances); p. 19 (2,000 samples); p. 18, Figure 3 and p. 22, Figure 6 (n up to 15); p. 84, Table 1; p. 85, Table 2"
+   },
+   "ai_tool": {
+    "name_model": "gemma-2-2b-it, Llama-3.1-8B-Instruct, Llama-3.2-1B-Instruct, Mistral-7B-Instruct-v0.3, Nemotron-Mini-4B-Instruct, Phi-3.5-mini-instruct; Qwen2.5-7B-Instruct as answer validator",
+    "role": "other",
+    "how_used": "The models generate Scattergories answers at temperatures on a grid with steps of 0.05 (nucleus sampling with p = 0.95, at most 6 new tokens). Utilities, equilibria, and market shares are computed from the sampled answers (pp. 19, 88). No human uses the models."
+   },
+   "task": {
+    "type": "other",
+    "description": "Scattergories: given a (letter, category) pair, each simulated player gives one word or short phrase that starts with the letter and fits the category. An answer is worth 1 if valid (judged by qwen2.5) and 0 otherwise, divided by s_gamma(C_k) = C_k^gamma, where C_k is the number of players who gave the same answer (pp. 4, 7). The experiments use finite gamma (gamma = 1.0 in Figures 3 to 6, varied in Figures 10 to 12), not the original rule gamma = infinity under which only unique answers score (p. 17).",
+    "duration": ""
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "Single author at MIT Sloan School of Management and MIT EECS. The acknowledgements thank academics and seminar participants and name no funder or company. Off-the-shelf open models are used (Table 1), five commercial chatbots wrote robustness prompts (Section C.3), and the experiments ran on NVIDIA Tesla V100 GPUs (Section C.2). No company role in the study is stated.",
+  "locator": "p. 1, author footnote; p. 26, Acknowledgements; p. 84, Table 1; p. 88, Sections C.2 and C.3"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "not_met",
+  "context_class": "none",
+  "reason": "Theory paper with model-only Scattergories simulations. The author samples language-model completions to simulate players (p. 19, Section 6; pp. 83-85, Section C.2); no people are randomly assigned to AI and no human participants are analyzed. The 25 game instances and 2,000 samples per model-temperature-instance combination are not people (pp. 17-19, Section 6). A seventh model judges the validity of the generated answers (p. 18, Section 6), so the scored output is not produced by human participants. Appendix C.3 also compares model-generated completions, not human output (pp. 88-89). All three core criteria are not_met. There is no AI-versus-human output comparison, observational human study, or synthesis; under codebook Section 3, the paper belongs only in the screening report."
+ },
+ "one_line_finding": "In the model, stronger competition yields more diverse equilibria that are still less diverse than socially optimal (Theorems 4.3 to 4.5, pp. 12-13), and in Scattergories simulations with six language models, equilibrium temperatures rise with the number of players and stay below socially optimal temperatures (Figure 4, p. 20), while llama3.1, best alone (valid answer 92 percent of the time vs. 68 percent for phi3.5, p. 20), loses the majority of players to phi3.5 as competition grows (Figure 5, p. 21; Figure 6a, p. 22).",
+ "open_questions": [],
+ "notes": "Reconciled from screeners A and B against the arXiv v2 PDF, all 97 pages including the appendix. The proof appendices (Section A, pp. 37-81, and Section B, pp. 81-83) contain no empirical work. Section 6.3 (pp. 22-25) and Section C.3 (pp. 88-89) test Assumption 1 on 10 of the 25 instances with 11 prompt variants and 3 temperatures per model (|Theta_I| = 33). The 11 prompts are the original plus 10 written by five chatbots (Claude 3.7 Sonnet, ChatGPT-4o, DeepSeek-V3, Gemini-Flash-2.5, Grok 3). The paper puts the standard errors of its utility estimates at about .0045 (p. 88, Section C.2). No data or code link is given. The only input URL is the online Scattergories game that supplied the categories (p. 17, footnote 7). The file name says 2024, but the document is arXiv v2 of 16 Oct 2025. The study label follows screener A's scope (Section 6 and Appendix C) because the codebook defines a study as one experiment or dataset. Screener B's label also named the theory sections. Neither raw form filled source.supplement, so this form fills it. Final review: the complete markdown conversion was read, including all appendices, and the recorded numerical details and eligibility evidence were checked against PDF text. No c019 challenge files were present. There are no open questions or unresolved reconciliation differences. The model_only design and all three not_met eligibility decisions are confirmed; no challenge corrections, rejections, or open items are required.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "studies[0].participants.population",
+    "a": "(empty string)",
+    "b": "mixed",
+    "resolved": "(empty string), as in A. No population code applies because no human participants take part. B's value mixed would imply a human sample drawn from several populations.",
+    "quote": "Our experiments compare six LLMs, each of which is a relatively small open-source language model",
+    "locator": "p. 18, Section 6",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[0].task.description (scoring rule)",
+    "a": "Scattergories: give a word or short phrase that starts with a given letter and fits a given category; a player scores only if the answer is valid and, depending on the score function, unique.",
+    "b": "Scattergories: give a word or phrase that starts with a given letter and fits a given category; a player scores only with a valid answer that others did not give (score function s_gamma(x) = x^gamma).",
+    "resolved": "A, made precise. B is wrong: the experiments use finite gamma, so a valid answer shared by C_k players earns 1/C_k^gamma, not zero. Uniqueness is required only under the original rule (gamma = infinity), which the experiments do not use. Final value: Scattergories: given a (letter, category) pair, each simulated player gives one word or short phrase that starts with the letter and fits the category. An answer is worth 1 if valid (judged by qwen2.5) and 0 otherwise, divided by s_gamma(C_k) = C_k^gamma, where C_k is the number of players who gave the same answer (pp. 4, 7). The experiments use finite gamma (gamma = 1.0 in Figures 3 to 6, varied in Figures 10 to 12), not the original rule gamma = infinity under which only unique answers score (p. 17).",
+    "quote": "In all of our experiments, we use score functions of the form sγ(x) = x^γ. Although the original rules of Scattergories call for γ = ∞, we use other values",
+    "locator": "p. 17, Section 6 (score functions in the experiments); p. 7, Section 3 (utility d_k/s(C_k)); p. 4, Section 1 (d_k is 1 if valid, 0 otherwise)",
+    "status": "resolved"
+   },
+   {
+    "field": "one_line_finding",
+    "a": "In a game-theoretic model and in simulations where six small LLMs play Scattergories, equilibrium sampling temperature (output diversity) rises with the number of competing players, stays below the socially optimal temperature, and the model best in isolation (llama3.1, valid answer 92% of the time at n = 1) is overtaken by phi3.5 as competition grows (pp. 19-21, Figures 4 to 6).",
+    "b": "In a game-theoretic model, stronger competition yields more diverse equilibrium output, though less diverse than socially optimal (Theorems 4.3 to 4.5, pp. 12-13); in Scattergories simulations with six language models, equilibrium temperatures rise with the number of players, and llama3.1, best alone (valid answer 92 percent of the time vs. 68 percent for phi3.5), loses market share to phi3.5 as players increase (pp. 20-21, Figures 4 to 6).",
+    "resolved": "Merged. Both are right in substance: Theorems 4.3 to 4.5 are on pp. 12-13, Figure 4 shows equilibrium temperatures rising in n and below optimal ones (p. 20), and 92 vs. 68 percent is on p. 20. Neither page range covers Figure 6, which is on p. 22 (A: pp. 19-21, B: pp. 20-21). The final sentence keeps B's theorem locator and the 68 percent figure, keeps A's point that simulated equilibrium temperatures stay below optimal ones, and cites each figure by page. Final value: In the model, stronger competition yields more diverse equilibria that are still less diverse than socially optimal (Theorems 4.3 to 4.5, pp. 12-13), and in Scattergories simulations with six language models, equilibrium temperatures rise with the number of players and stay below socially optimal temperatures (Figure 4, p. 20), while llama3.1, best alone (valid answer 92 percent of the time vs. 68 percent for phi3.5, p. 20), loses the majority of players to phi3.5 as competition grows (Figure 5, p. 21; Figure 6a, p. 22).",
+    "quote": "Figure 6: Each dot represents a possible pair (m1, m2) of equilibrium market shares for each language model.",
+    "locator": "p. 22, Figure 6; p. 20, Figure 4 and text (92% and 68%); p. 21, Figure 5 and Section 6.2; pp. 12-13, Theorems 4.3 to 4.5",
+    "status": "resolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "studies[0].assignment (how assignment was done); eligibility.criterion_1_random_assignment_of_ai",
+    "value": "randomized = no and arms = []: no people are assigned to AI. Each simulated player's strategy is the sampling temperature (Section 6.1) or model and temperature (Section 6.2). Criterion 1 not_met.",
+    "quote": "We take each player’s strategy space to be the temperature τ at which they operate their LLM.",
+    "locator": "p. 17, Section 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].participants.n_randomized and n_analyzed (number of people analyzed); eligibility.criterion_2_at_least_50_people",
+    "value": "null for both: no human participants. The players are simulated from language-model samples. Criterion 2 not_met.",
+    "quote": "Instead, we take a sampling-based approach: we can simulate games of Scattergories by sampling completions from a LLM (at each temperature τ) for each player.",
+    "locator": "p. 19, Section 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes (outcome scored on the output); eligibility.criterion_3_outcome_scored_on_output",
+    "value": "outcomes = []. The scored quantities (answer validity, per-player utility, equilibrium and optimal temperatures, market shares) are computed on language-model answers judged by qwen2.5, not on output that people produce. Criterion 3 not_met.",
+    "quote": "In addition to these, we use a seventh language model, Qwen2.5-7B-Instruct (qwen2.5), to validate answers.",
+    "locator": "p. 18, Section 6",
+    "confirmed": true
+   },
+   {
+    "field": "AI availability when the scored output was produced",
+    "value": "Not applicable. Every scored answer is generated by a language model, and no person produces output with or without AI. No outcome answers with_ai, across_people, or after_ai.",
+    "quote": "Our empirical setup is simple: n players each use an LLM to generate a single response to a Scattergories instance given by a (letter, category) pair.",
+    "locator": "p. 17, Section 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].design_class",
+    "value": "model_only (theory plus language-model simulation)",
+    "quote": "We validate our results empirically by using language models to play Scattergories, a word game in which players are rewarded for answers that are both correct and unique.",
+    "locator": "p. 1, Abstract",
+    "confirmed": true
+   },
+   {
+    "field": "eligibility.context_class",
+    "value": "none. No human-generated output is compared with AI output, no real-world output is compared across time or adopters, and the paper is not a review.",
+    "quote": "In contrast, all players in our model use generative AI tools.",
+    "locator": "p. 5, Section 2",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].ai_tool.name_model and role",
+    "value": "Six generators (gemma-2-2b-it, Llama-3.1-8B-Instruct, Llama-3.2-1B-Instruct, Mistral-7B-Instruct-v0.3, Nemotron-Mini-4B-Instruct, Phi-3.5-mini-instruct) and Qwen2.5-7B-Instruct as validator. Role other.",
+    "quote": "We qwen2.5 only for answer verification, not for sample generation.",
+    "locator": "p. 84, Table 1 note; p. 18, Section 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].participants.who (simulation inputs)",
+    "value": "25 randomly sampled (letter, category) instances (stated on pp. 17-18, listed in Table 2 on p. 85) and 2,000 samples per (language model, temperature, instance) (p. 19)",
+    "quote": "With enough samples (we choose 2,000 for each (language model, temperature, instance) combination), we can get fairly tight estimates of players’ utility.",
+    "locator": "p. 19, Section 6; pp. 17-18, Section 6 (25 instances); p. 85, Table 2",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].task.type",
+    "value": "other (Scattergories)",
+    "quote": "In Scattergories, players must come up with a word or phrase that begins with a given letter and matches a given category.",
+    "locator": "p. 2, Section 1",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement.any",
+    "value": false,
+    "quote": "MIT Sloan School of Management & Department of Electrical Engineering and Computer Science.",
+    "locator": "p. 1, author footnote; p. 26, Acknowledgements (academics and seminar participants, no funder named)",
+    "confirmed": true
+   },
+   {
+    "field": "source.version",
+    "value": "arXiv:2412.08610v2 [cs.GT], 16 Oct 2025",
+    "quote": "arXiv:2412.08610v2 [cs.GT] 16 Oct 2025",
+    "locator": "p. 1, left margin",
+    "confirmed": true
+   },
+   {
+    "field": "source.pages",
+    "value": 97,
+    "quote": "Figure 16: Prompts used in Section 6.",
+    "locator": "p. 97, the last page (the PDF has 97 pages)",
+    "confirmed": true
+   },
+   {
+    "field": "data_and_code.data_url and code_url",
+    "value": "empty: the document gives no data or code link",
+    "quote": "The categories we use for our games come from a free online Scattergories game.",
+    "locator": "p. 17, Section 6, footnote 7 (the only input URL, https://swellgarfo.com/scattergories/)",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].assignment.preregistered",
+    "value": "not_stated",
+    "quote": "",
+    "locator": "Whole document: a text search for preregistration, pre-analysis plan, or OSF finds only reference [115] on p. 35",
+    "confirmed": true
+   }
+  ],
+  "n_differences": 3,
+  "n_unresolved": 0
+ },
+ "final": {
+  "core": "no",
+  "criteria": {
+   "random_assignment_of_ai": "not_met",
+   "at_least_50_people": "not_met",
+   "outcome_scored_on_output": "not_met"
+  },
+  "challenge_resolution": [],
+  "open_items": [],
+  "n_corrected": 0,
+  "n_rejected": 0,
+  "n_open": 0
+ }
+}

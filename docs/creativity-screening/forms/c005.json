@@ -1,0 +1,540 @@
+{
+ "cid": "c005",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Dolezal Alam Graham Bohacek (2026) - The Impact of AI-Generated Text on the Internet.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Dolezal Alam Graham Bohacek (2026) - The Impact of AI-Generated Text on the Internet.pdf",
+  "version": "Preprint dated 14 April 2026 on its first page (p. 1); no journal, arXiv identifier, or version number shown on the document.",
+  "title_on_document": "The Impact of AI-Generated Text on the Internet",
+  "authors_on_document": [
+   "Jonas Dolezal",
+   "Sawood Alam",
+   "Mark Graham",
+   "Maty Bohacek"
+  ],
+  "pages": 33,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A to D are in this PDF (pp. 16-33). The first page also points to 'Code & Data: https://ai-on-the-internet.github.io' (p. 1); that site was not checked.",
+   "holds": "Appendix C (pp. 28-32) holds Figure 16, the full display of the Hyp. 6 stylistic-similarity result; Appendix D (p. 33) gives the sampling rules; Appendix A tests the four detectors; Appendix B shows the fact-checking interface. No standard errors, tabulated monthly values, or per-month page counts appear anywhere in the PDF."
+  }
+ },
+ "paper_design_summary": "The authors sample newly archived English-language web pages, classify AI involvement with Pangram v3, and correlate the monthly aggregate AI likelihood score with text signals, including semantic and stylistic similarity across pages (pp. 7-10); Section 3.1 reports 33 monthly intervals, but the figures show a conflicting time span. A separate Prolific beliefs survey collected 903 responses from 853 unique participants (p. 8), and ratings from 50 Prolific fact-checkers were analyzed after excluding 11 timed-out submissions for the factual-accuracy hypothesis (p. 10). No person is assigned to AI assistance and no creative task is set.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Internet Archive web-page corpus: monthly AI prevalence vs. text signals (RQ2, RQ3)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Nothing was assigned. Web pages are sampled from the Wayback Machine, AI involvement is detected after the fact with Pangram v3, and each monthly text signal is correlated with the monthly aggregate AI likelihood score across months.",
+    "unit": "other",
+    "structure": "between",
+    "quote": "For each hypothesis, we define a measurable signal, compute it for each monthly sample of websites, and test whether it correlates with the aggregate AI likelihood score across months.",
+    "locator": "p. 9, Section 3.4 Hypothesis Verification",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "AI-detected web pages",
+     "description": "Pages that Pangram v3 classified as AI-generated or AI-assisted. In this form they enter only the descriptive similarity comparison on p. 2 (Hyp. 1); the paper uses the same grouping for sentiment (p. 3). The classification rule and threshold are not given.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Non-AI web pages",
+     "description": "Pages not classified as AI-generated or AI-assisted ('non-AI websites', p. 2).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "A page is excluded if its longest extracted paragraph has fewer than 100 words, and only English text is kept (langdetect) (pp. 7-8, Section 3.1). Appendix D (p. 33): URLs first archived on or after January 1, 2022; a target of 10,000 URLs per month; one URL per host; URLs with more than three path segments or more than two query parameters excluded; the first capture must return HTTP 200 with a text/html MIME type. The number of pages analyzed per month or in total is not stated.",
+    "population": "general_public",
+    "who": "No study participants producing creative output. The units are archived web pages (one URL per host) whose authors are not identified; the sample is designed to approximate a uniform random draw of publicly accessible web pages (p. 7, Section 3.1; p. 33, Appendix D). Separately, ratings from 50 Prolific annotators were analyzed after excluding 11 timed-out submissions for Hyp. 2 only (p. 10); factual accuracy is not a creativity or diversity outcome.",
+    "country": "Not stated; English-language pages only, sampled across top-level domains.",
+    "quote": "We sample websites from the Internet Archive spanning 33 monthly intervals from August 2022 to May 2025.",
+    "locator": "p. 7, Section 3.1 Data Collection; p. 33, Appendix D; p. 10, Hypothesis 2 (annotators)"
+   },
+   "ai_tool": {
+    "name_model": "Not identified; any AI used by page authors. AI involvement is detected after the fact with the Pangram v3 API (fully AI-generated, AI-assisted, and fully human-written fractions).",
+    "role": "other",
+    "how_used": "Unobserved. The paper infers AI involvement from Pangram v3; the aggregate AI likelihood score combines the fully AI-generated and AI-assisted fractions (p. 9, Section 3.3; p. 10, Statistical Testing)."
+   },
+   "task": {
+    "type": "other",
+    "description": "No task was assigned. The scored text is the visible text of newly archived web pages; the longest paragraph of each page (at least 100 words) is selected as the page's text sample (p. 7), and the Hyp. 1 and Hyp. 6 methods refer to each document's extracted visible text (pp. 9-10).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Semantic similarity across pages (Hyp. 1, Semantic Contraction): average pairwise cosine similarity of document embeddings within a monthly sample",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "all-MiniLM-L6-v2 sentence embeddings (384 dimensions, L2-normalized); all pairwise cosine similarities when a monthly sample has n <= 500 documents, otherwise up to 10,000 randomly sampled pairs (p. 9). Higher similarity means lower diversity. The monthly mean is correlated (Pearson) with the monthly aggregate AI likelihood score (pp. 10-11). The analysis count is unresolved: Section 3.1 reports 33 monthly intervals (p. 7), while Figure 2(a) displays 36 monthly points from June 2022 to May 2025 (p. 4; visual count). n_units is null pending resolution.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Months with higher aggregate AI likelihood score",
+       "control_arm": "Months with lower aggregate AI likelihood score",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Pearson correlation between monthly average semantic similarity and the aggregate AI likelihood score: ρ = 0.47, p = 0.004 (H0 rejected). Similarity rises with AI prevalence, so diversity falls (sign reversed for diversity). The monthly values appear only as points in Figure 2(a).",
+       "locator": "p. 2, Section 1, Semantic Contraction Hypothesis (Hyp. 1); p. 4, Figure 2(a) and caption"
+      },
+      {
+       "treatment_arm": "AI-detected web pages",
+       "control_arm": "Non-AI web pages",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Across all evaluated months, mean semantic similarity was 0.0701 for websites predicted to be AI-generated or AI-assisted versus 0.0526 for non-AI websites; the paper reports 33% higher similarity. Group means only; no SD, n, or test. Direction coded for diversity (sign reversed).",
+       "locator": "p. 2, Section 1, Semantic Contraction Hypothesis (Hyp. 1)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Average pairwise cosine similarity of document-level semantic embeddings within each monthly sample",
+      "embedding_model": "all-MiniLM-L6-v2 (sentence-transformers), 384 dimensions",
+      "computed_over": "All pairs of documents within a monthly sample when n <= 500; otherwise up to 10,000 randomly sampled pairs. The AI vs non-AI figures are computed 'across all evaluated months'; how pairs were formed for them is not stated.",
+      "uncertainty": "Pearson correlation across monthly samples with its p-value; no uncertainty reported for the AI vs non-AI comparison",
+      "notes": "Section 3.1 reports 33 monthly intervals from August 2022 to May 2025 (p. 7), while Figure 2(a) displays 36 monthly points from June 2022 to May 2025 (p. 4; visual count). The PDF does not establish which monthly observations entered the reported correlation; n_units is null. The number of documents per monthly sample is not stated."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Stylistic similarity across pages (Hyp. 6, Stylistic Monoculture): average pairwise character 3-gram Jaccard similarity within a monthly sample",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Methods: each document is the set of unique character 3-grams from the first 2,000 characters of its lowercased visible text; pairwise Jaccard similarity; all pairs when a monthly sample has n <= 100 documents, otherwise up to 10,000 random pairs; the monthly mean is the signal (p. 10). Appendix C and the Figure 16 caption also say character 3-gram Jaccard similarity (p. 32). The Results text instead calls the signal \"the average pairwise cosine similarity of document writing style embeddings\" (p. 4). The analysis count is unresolved: Section 3.1 reports 33 monthly intervals (p. 7), while Figure 16(a) displays 36 monthly points from June 2022 to May 2025 (p. 32; visual count). n_units is null pending resolution.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Months with higher aggregate AI likelihood score",
+       "control_arm": "Months with lower aggregate AI likelihood score",
+       "comparison_type": "other",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Pearson correlation between monthly average stylistic similarity and the aggregate AI likelihood score: ρ = 0.24, p = 0.17 (H0 not rejected), in the text (pp. 4 and 32) and the Figure 16 caption. The panel title inside Figure 16(a) prints a different value: (ρ=0.106, p=0.5368).",
+       "locator": "p. 4, Section 1, Stylistic Monoculture Hypothesis (Hyp. 6); p. 32, Appendix C, Figure 16(a) panel title and caption"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Average pairwise Jaccard similarity of character 3-gram sets within each monthly sample",
+      "embedding_model": "",
+      "computed_over": "All pairs of documents within a monthly sample when n <= 100; otherwise up to 10,000 randomly drawn pairs",
+      "uncertainty": "Pearson correlation across monthly samples with its p-value",
+      "notes": "The measure is described two ways (writing-style embeddings on p. 4; character 3-gram Jaccard on pp. 10 and 32), and the correlation is printed two ways (ρ = 0.24, p = 0.17 in the text and caption; ρ=0.106, p=0.5368 in the Figure 16(a) panel title). Section 3.1 reports 33 monthly intervals (p. 7), while Figure 16(a) displays 36 monthly points from June 2022 to May 2025 (p. 32; visual count). n_units is null because the PDF does not settle the analysis count."
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Prolific survey of US adults on beliefs about AI text on the internet (RQ1)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "No AI assistance was assigned. The survey ran as three parts, each covering a subset of the six hypotheses; the paper does not say how participants were allocated to parts. 903 responses came from 853 unique participants, so some people responded more than once.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "The study was administered as an online form in three parts, each corresponding to a subset of the six hypotheses.",
+    "locator": "p. 8, Section 3.2 Participant Study",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "Exclusions and the exact number of unique people analyzed are not stated. Section 3.2 reports Part 1 (Hypotheses 1-3) n = 303, Part 2 (Hypotheses 4 and 6) n = 301, and Part 3 (Hypothesis 5) n = 299; N = 903 responses were collected from 853 unique participants (p. 8). The 853 is a collection count, not a separately confirmed analysis count. The subgroup ns in the figure legends sum to 300 in each part, conflicting with the methods counts (Figures 2-3, pp. 4-5; Figures 13-16, pp. 29-32). For example, Figure 2(c)-(d) prints 87 and 213 by AI usage, and 133, 35, and 132 by AI favorability (p. 4). n_analyzed is null pending resolution.",
+    "population": "online_panel",
+    "who": "US adults recruited through Prolific, stratified to be representative of the US adult population by age, sex, and ethnicity; mean age 45.4 years (SD = 15.73, range 18-84); 99.6 percent resided in the United States.",
+    "country": "United States",
+    "quote": "In total, N = 903 responses were collected from 853 unique participants.",
+    "locator": "p. 8, Section 3.2 Participant Study"
+   },
+   "ai_tool": {
+    "name_model": "",
+    "role": "other",
+    "how_used": "None. Participants rated agreement with hypothesis statements; frequency of AI tool usage and general view of AI's impact on society were collected as covariates."
+   },
+   "task": {
+    "type": "other",
+    "description": "Survey of beliefs: agreement with a hypothesis statement on a 7-point Likert scale, plus AI usage frequency and view of AI's societal impact. No creative output is produced or scored.",
+    "duration": ""
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Pangram, maker of the Pangram v3 detector used for all main analyses, provided a research grant supporting use of its API. The authors state that Pangram had no role in study design, data collection, analysis, interpretation, or the decision to publish, and that they applied for the grant after the robustness analysis and the choice of detector. Two authors (Sawood Alam, Mark Graham) are affiliated with the Internet Archive, which provided the Wayback Machine data.",
+  "locator": "p. 1, author affiliations; p. 11, Acknowledgements and Competing Interests"
+ },
+ "data_and_code": {
+  "data_url": "https://ai-on-the-internet.github.io",
+  "code_url": "https://ai-on-the-internet.github.io"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "S1 is observational context: archived web text is compared across monthly samples and detector-defined groups, and no person is assigned to AI assistance (p. 7, Section 3.1; pp. 9-11, Section 3.4). The sample-size criterion is not met for this output study because its observations are web pages and monthly sets, with no counted sample of people producing the scored output; the URL sampling target is not a participant count (p. 33, Appendix D). The output criterion is met by semantic and stylistic similarity computed on extracted web text (p. 9, Hyp. 1; p. 10, Hyp. 6). The separate S2 survey collected responses from 853 unique participants but assigns no AI and scores beliefs, with no creative output (p. 8, Section 3.2); its respondents cannot supply the corpus study's participant count. The 50 analyzed fact-checkers are raters for factual accuracy, not people producing creativity or diversity outcomes (pp. 9-10, Hyp. 2). No study meets all three criteria, and the unresolved reporting discrepancies do not change eligibility."
+ },
+ "one_line_finding": "In the observational web corpus, AI likelihood correlates with greater semantic similarity (ρ = 0.47, p = 0.004; AI-detected versus non-AI page means 0.0701 versus 0.0526; p. 2 and Figure 2, p. 4), while the stylistic correlation is inconsistently reported (text/caption: ρ = 0.24, p = 0.17; Figure 16(a) title: ρ=0.106, p=0.5368; p. 32), with neither version statistically significant.",
+ "open_questions": [
+  "Hyp. 6 correlation: the text and the Figure 16 caption give ρ = 0.24, p = 0.17, but the Figure 16(a) panel title prints ρ=0.106, p=0.5368 (p. 32). The panel titles of Figures 14(a) and 15(a) also differ from the text (ρ=-0.110, p=0.5249 vs. ρ = -0.12, p = 0.48; ρ=-0.052, p=0.7640 vs. ρ = -0.02, p = 0.89; pp. 30-31). The document does not say which values are correct.",
+  "Hyp. 6 measure: the Results (p. 4) say cosine similarity of writing-style embeddings; the Methods (p. 10) and Appendix C (p. 32) say character 3-gram Jaccard similarity.",
+  "Number of monthly observations: Section 3.1 reports 33 monthly intervals from August 2022 to May 2025 (p. 7), while Figures 2(a) and 16(a) display 36 monthly points from June 2022 to May 2025 (pp. 4, 32; visual count). The PDF does not settle which observations entered the correlations, so both diversity outcomes have n_units = null. The reconciler's calculation from correlation p-values is not used to choose a count.",
+  "The number of web pages per month and in total is not stated; Appendix D gives only a target of 10,000 URLs per month before filtering (p. 33).",
+  "Exact number of survey participants analyzed: Section 3.2 gives 903 collected responses from 853 unique participants and part ns of 303, 301, and 299 (p. 8), while subgroup counts in the survey figures sum to 300 for every part (pp. 4-5, 29-32). The PDF gives no exclusion flow or separate unique-person analysis count; S2 n_analyzed is null. This beliefs survey has no AI assignment or scored creative output."
+ ],
+ "notes": "Outcomes not listed because they bear on none of the three questions: factual error rate (Hyp. 2, ρ = -0.19, p = 0.27; claims extracted by GPT-4o-mini; ratings from 50 Prolific annotators analyzed after excluding 11 timed-out submissions; pp. 2, 9-10), positive-sentiment rate (Hyp. 3, ρ = 0.56, p = 0.0003; AI vs non-AI pages 0.7042 vs. 0.3400; pp. 2-3), outbound link density (Hyp. 4, ρ = -0.12, p = 0.48; p. 3), Gzip compression ratio (Hyp. 5, ρ = -0.02, p = 0.89; p. 3), and AI prevalence over time (roughly 35 percent of new websites AI-generated or AI-assisted by mid-2025; abstract and Figure 1, pp. 1-3). Appendix A tests the detectors on AI-generated and human-written text samples, not on people. The AI vs non-AI page comparison is coded 'other' rather than ai_vs_human because the AI group pools fully AI-generated and AI-assisted (human-written with AI involvement) pages (p. 9). The diversity outcomes compare pages from different hosts (one URL per host, p. 33), so they are coded across_people with AI availability 'mixed'. The survey subgroup ns in the figure legends sum to 300 in every part, against part ns of 303, 301, and 299 (pp. 4-5, 8, 29-32). Finalizer source audit: the complete markdown, including Appendices A-D, was read; recorded numerical claims were checked against PDF text and relevant figure images. No c005 challenge files were present, so challenge_resolution is empty and all three challenge counts are zero. Independent form updates leave the disputed monthly analysis counts and the unconfirmed unique-person survey analysis count null, retain the printed counts in prose with locators, and label the fact-checker count as analyzed after exclusions. The reconciliation object is preserved unchanged as requested; final fields supersede its earlier count selections. All reconciliation.differences entries were resolved; its unconfirmed monthly-count check is covered in final.open_items.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "studies[0].arms (S1)",
+    "a": [],
+    "b": [
+     {
+      "name": "AI-detected web pages",
+      "description": "Pages classified by Pangram v3 as AI-generated or AI-assisted (used only in the descriptive similarity comparison on p. 2).",
+      "ai": "generative_ai",
+      "n_randomized": null,
+      "n_analyzed": null
+     },
+     {
+      "name": "Non-AI web pages",
+      "description": "Pages not classified as AI-generated or AI-assisted.",
+      "ai": "none",
+      "n_randomized": null,
+      "n_analyzed": null
+     }
+    ],
+    "resolved": [
+     {
+      "name": "AI-detected web pages",
+      "description": "Pages that Pangram v3 classified as AI-generated or AI-assisted. In this form they enter only the descriptive similarity comparison on p. 2 (Hyp. 1); the paper uses the same grouping for sentiment (p. 3). The classification rule and threshold are not given.",
+      "ai": "generative_ai",
+      "n_randomized": null,
+      "n_analyzed": null
+     },
+     {
+      "name": "Non-AI web pages",
+      "description": "Pages not classified as AI-generated or AI-assisted ('non-AI websites', p. 2).",
+      "ai": "none",
+      "n_randomized": null,
+      "n_analyzed": null
+     }
+    ],
+    "reason": "B. The paper reports the outcome for these two detector-defined groups, and the S1-O1 contrast names them, so they are listed as the compared groups (not assigned arms). Their sizes are not stated.",
+    "quote": "the average semantic similarity between websites predicted to be AI-generated or AI-assisted was 33% higher than that of non-AI websites (semantic similarity scores of 0.0701 vs. 0.0526, respectively)",
+    "locator": "p. 2, Section 1, Semantic Contraction Hypothesis (Hyp. 1)",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[0].participants.population (S1)",
+    "a": "general_public",
+    "b": "",
+    "resolved": "general_public",
+    "reason": "A. S1 has no participants; the scored pages are publicly accessible web pages by unidentified authors. The form offers no 'not applicable' code and an empty string is not a valid code, so the closest code is kept and 'who' states that there are no participants.",
+    "quote": "The resulting sample is designed to approximate a uniform random draw from the population of publicly accessible web pages archived during the sampling period.",
+    "locator": "p. 7, Section 3.1 Data Collection",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0].statistics_available (S1-O1, monthly correlation)",
+    "a": [
+     "test_statistic",
+     "figure_only"
+    ],
+    "b": [
+     "test_statistic"
+    ],
+    "resolved": [
+     "test_statistic"
+    ],
+    "reason": "B. The correlation and its p-value are printed in the text and the Figure 2 caption, so the result is not figure-only. The monthly values appear only as points in Figure 2(a), and 'reported' says so.",
+    "quote": "The null hypothesis (H0, i.e., the correlation ρ = 0) was rejected (ρ = 0.47, p = 0.004), confirming the hypothesis.",
+    "locator": "p. 2, Section 1 (Hyp. 1); p. 4, Figure 2 caption",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[0].outcomes[1].contrasts[0].statistics_available (S1-O2, monthly correlation)",
+    "a": [
+     "test_statistic",
+     "figure_only"
+    ],
+    "b": [
+     "test_statistic"
+    ],
+    "resolved": [
+     "test_statistic"
+    ],
+    "reason": "B. ρ and p are printed in the text (pp. 4 and 32) and in the Figure 16 caption, so the result is not figure-only.",
+    "quote": "The null hypothesis (H0, i.e., the correlation ρ = 0) was not rejected (ρ = 0.24, p = 0.17).",
+    "locator": "p. 4, Section 1 (Hyp. 6); p. 32, Figure 16 caption",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[1].assignment.randomized (S2)",
+    "a": "no",
+    "b": "not_stated",
+    "resolved": "not_stated",
+    "reason": "B. The paper does not say how participants were allocated to the three survey parts. No AI assistance was assigned in any part, so criterion 1 fails either way.",
+    "quote": "The study was administered as an online form in three parts, each corresponding to a subset of the six hypotheses.",
+    "locator": "p. 8, Section 3.2 Participant Study",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[1].assignment.what_was_assigned (S2)",
+    "a": "Participants completed one of three survey parts, each covering a subset of the six hypotheses; the paper does not say how participants were allocated to parts. No AI assistance was given.",
+    "b": "Survey administered in three parts, each covering a subset of the six hypotheses; no AI assistance assigned. How participants were allocated to parts is not stated.",
+    "resolved": "No AI assistance was assigned. The survey ran as three parts, each covering a subset of the six hypotheses; the paper does not say how participants were allocated to parts. 903 responses came from 853 unique participants, so some people responded more than once.",
+    "reason": "B, with one addition. A's 'completed one of three survey parts' implies one part per person, which the response count does not support.",
+    "quote": "In total, N = 903 responses were collected from 853 unique participants.",
+    "locator": "p. 8, Section 3.2 Participant Study",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[1].arms (S2)",
+    "a": [],
+    "b": [
+     {
+      "name": "Part 1 (Hypotheses 1-3)",
+      "description": "Agreement ratings on Hyp. 1-3",
+      "ai": "none",
+      "n_randomized": null,
+      "n_analyzed": 303
+     },
+     {
+      "name": "Part 2 (Hypotheses 4 and 6)",
+      "description": "Agreement ratings on Hyp. 4 and 6",
+      "ai": "none",
+      "n_randomized": null,
+      "n_analyzed": 301
+     },
+     {
+      "name": "Part 3 (Hypothesis 5)",
+      "description": "Agreement rating on Hyp. 5",
+      "ai": "none",
+      "n_randomized": null,
+      "n_analyzed": 299
+     }
+    ],
+    "resolved": [],
+    "reason": "A. The parts are separate questionnaires on different hypotheses, not conditions that the paper compares. The part ns are kept in participants.exclusions.",
+    "quote": "Part 1 addressed Hypotheses 1–3 (n = 303), Part 2 addressed Hypotheses 4 and 6 (n = 301), and Part 3 addressed Hypothesis 5 (n = 299).",
+    "locator": "p. 8, Section 3.2 Participant Study",
+    "status": "resolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "studies[0].assignment.randomized (S1: how the comparison arises)",
+    "value": "no: nothing is assigned; each monthly signal is correlated with the monthly aggregate AI likelihood score",
+    "quote": "For each hypothesis, we define a measurable signal, compute it for each monthly sample of websites, and test whether it correlates with the aggregate AI likelihood score across months.",
+    "locator": "p. 9, Section 3.4 Hypothesis Verification",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].design_class and eligibility.context_class",
+    "value": "observational / observational: real web text compared across months",
+    "quote": "For all six hypotheses, the independent variable is the aggregate AI likelihood score (combining Pangram v3’s fully AI-generated and AI-assisted fractions) aggregated at the monthly level, and the dependent variable is the corresponding monthly signal.",
+    "locator": "pp. 10-11, Section 3.4, Statistical Testing",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].participants.n_analyzed (S1 people analyzed)",
+    "value": "null: the units are web pages, not people; the number of pages is not stated (Appendix D gives only a target of 10,000 URLs per month)",
+    "quote": "To obtain a representative sample of websites published on the internet, we use the longitudinal URL sampling methodology introduced by Garg et al. (2025) to draw samples from the Wayback Machine at the Internet Archive.",
+    "locator": "p. 7, Section 3.1; p. 33, Appendix D",
+    "confirmed": true
+   },
+   {
+    "field": "studies[1].participants.n_analyzed (S2 people analyzed)",
+    "value": "853 unique participants (903 responses); the paper gives no separate analyzed count",
+    "quote": "In total, N = 903 responses were collected from 853 unique participants.",
+    "locator": "p. 8, Section 3.2 Participant Study",
+    "confirmed": true
+   },
+   {
+    "field": "studies[1].outcomes (S2 scores no output)",
+    "value": "none: S2 records beliefs on a 7-point Likert scale; no AI assistance and no creative output",
+    "quote": "Each part presented participants with a hypothesis statement and asked them to indicate their level of agreement on a 7-point Likert scale",
+    "locator": "p. 8, Section 3.2 Participant Study",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[*].scored_on_output (S1-O1, S1-O2)",
+    "value": "true: both similarity measures are computed on each page's extracted text (embeddings for Hyp. 1; character 3-grams from the first 2,000 characters for Hyp. 6, p. 10)",
+    "quote": "Each document’s extracted visible text is encoded into a 384-dimensional dense vector.",
+    "locator": "p. 9, Hypothesis 1; p. 10, Hypothesis 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced (S1-O1, S1-O2)",
+    "value": "mixed: pages are classified as fully AI-generated, AI-assisted, or fully human-written, and the sample starts before ChatGPT's launch in November 2022 (p. 2)",
+    "quote": "Pangram v3 classifies each input text into three categories: (1) fully AI-generated (fraction_ai), (2) AI-assisted, i.e., human-written with AI involvement (fraction_ai_assisted), and (3) fully human-written (fraction_human)",
+    "locator": "p. 9, Section 3.3; p. 2, Section 1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[*].question (S1-O1, S1-O2)",
+    "value": "across_people: pairwise similarity between pages from different hosts, with AI availability mixed",
+    "quote": "Fourth, instead of logarithmic-scale downsampling, we applied a strict one-URL-per-host cap to prevent over-representation of frequently archived domains.",
+    "locator": "p. 33, Appendix D",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts (S1-O1 reported values)",
+    "value": "ρ = 0.47, p = 0.004; AI-detected vs non-AI pages 0.0701 vs. 0.0526 (33% higher)",
+    "quote": "In (a), the average pairwise cosine similarity of semantic embeddings is plotted against AI Likelihood score, which combines the rate of AI-generated and AI-assisted samples, as detected by Pangram v3 (ρ = 0.47, p = 0.004).",
+    "locator": "p. 4, Figure 2 caption; p. 2, Section 1 (Hyp. 1)",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[1].contrasts[0].reported (S1-O2 values, including the panel title)",
+    "value": "Text and caption ρ = 0.24, p = 0.17; the Figure 16(a) panel title prints ρ=0.106, p=0.5368",
+    "quote": "INTERNET: Style Similarity vs AI Likelihood (Linear Fit) (ρ=0.106, p=0.5368)",
+    "locator": "p. 32, Figure 16(a) panel title (inside the figure image); p. 32, caption; p. 4, Section 1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[1].measure (S1-O2)",
+    "value": "lexical_overlap: character 3-gram Jaccard similarity in the Methods and Appendix C; the Results text on p. 4 calls it writing-style embeddings",
+    "quote": "Pairwise stylistic similarity between documents is computed using the Jaccard index (i.e., the ratio of the intersection to the union of the two 3-gram sets).",
+    "locator": "p. 10, Hypothesis 6; p. 32, Figure 16 caption; compare p. 4",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[*].n_units (S1-O1, S1-O2)",
+    "value": "33 is the only printed count (monthly intervals), but Figures 2(a) and 16(a) each plot 36 monthly points, June 2022 to May 2025. Kept 33 as printed and flagged in open_questions.",
+    "quote": "We sample websites from the Internet Archive spanning 33 monthly intervals from August 2022 to May 2025.",
+    "locator": "p. 7, Section 3.1; p. 4, Figure 2(a); p. 32, Figure 16(a)",
+    "confirmed": false
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[1].comparison_type (S1-O1, AI vs non-AI pages)",
+    "value": "other, not ai_vs_human: the AI group pools fully AI-generated and AI-assisted (human-written with AI involvement) pages (settles screener A's open question)",
+    "quote": "(2) AI-assisted, i.e., human-written with AI involvement (fraction_ai_assisted)",
+    "locator": "p. 9, Section 3.3; p. 2, Section 1",
+    "confirmed": true
+   },
+   {
+    "field": "studies[0].outcomes[*].primary and assignment.preregistered",
+    "value": "not_stated / not_stated: no outcome is named primary and no preregistration is mentioned; 'primary' refers only to the independent variable",
+    "quote": "We define the aggregate AI likelihood score for a given monthly sample as a combined metric incorporating both the fully AI-generated and AI-assisted fractions, which serves as the primary independent variable in our hypothesis tests.",
+    "locator": "p. 9, Section 3.3",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement.any",
+    "value": "true: Pangram research grant; two authors at the Internet Archive, which provided the data",
+    "quote": "The authors thank the Internet Archive for providing the Wayback Machine data and their extraordinary support throughout this project and Pangram for providing a research grant supporting the use of their API.",
+    "locator": "p. 11, Acknowledgements; p. 11, Competing Interests; p. 1, affiliations",
+    "confirmed": true
+   },
+   {
+    "field": "source.supplement (omitted by both forms; filled here)",
+    "value": "Appendices A to D are in this PDF (pp. 16-33); code and data at https://ai-on-the-internet.github.io (not checked)",
+    "quote": "Code & Data: https://ai-on-the-internet.github.io",
+    "locator": "p. 1, footer; pp. 16-33, Appendices A-D",
+    "confirmed": true
+   }
+  ],
+  "n_differences": 7,
+  "n_unresolved": 0
+ },
+ "final": {
+  "core": "no",
+  "criteria": {
+   "random_assignment_of_ai": "not_met",
+   "at_least_50_people": "not_met",
+   "outcome_scored_on_output": "met"
+  },
+  "challenge_resolution": [],
+  "open_items": [
+   {
+    "item": "Conflicting correlation statistics: Hyp. 6 text/caption gives ρ = 0.24, p = 0.17, but Figure 16(a) gives ρ=0.106, p=0.5368 (pp. 4, 32); Figures 14(a) and 15(a) likewise disagree with their text/captions (pp. 3, 30-31). Authors must identify which statistics belong to the reported analyses. This affects the reported results, not assignment, people counts, or whether output was scored.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Hyp. 6 measure: Results says writing-style embedding cosine similarity (p. 4), whereas Methods and Appendix C say character 3-gram Jaccard similarity (pp. 10, 32). The analysis code and data would identify the implemented measure. Either description scores similarity on output, so no eligibility criterion changes.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   },
+   {
+    "item": "Monthly analysis count: Section 3.1 reports 33 intervals beginning August 2022 (p. 7), while Figures 2(a) and 16(a) display 36 points beginning June 2022 (pp. 4, 32; visual count). The monthly data rows and analysis inclusion rules would settle the count; n_units remains null. This also covers the unconfirmed reconciliation.agreed_fields_checked item. Monthly sets are not people, so the discrepancy affects no eligibility criterion.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   },
+   {
+    "item": "Web-page counts per month and in total are not reported; Appendix D gives only a target of 10,000 URLs per month before filtering (p. 33). The retained corpus and filtering records would establish those counts. They are output counts, not participant counts, and do not change eligibility.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   },
+   {
+    "item": "Survey analysis count: 853 unique respondents and 903 responses are collection counts; part ns of 303, 301, and 299 (p. 8) conflict with figure subgroup totals of 300 per part (pp. 4-5, 29-32). The survey data and inclusion records would establish the number of unique people analyzed. This survey has no AI assignment or scored creative output and cannot make the corpus study eligible.",
+    "affects_eligibility": false,
+    "settled_by": "posted_data"
+   }
+  ],
+  "n_corrected": 0,
+  "n_rejected": 0,
+  "n_open": 0
+ }
+}

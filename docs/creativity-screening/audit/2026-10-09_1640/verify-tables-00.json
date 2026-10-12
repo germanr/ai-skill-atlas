@@ -1,0 +1,11 @@
+[
+  {
+    "id": "tables-00-1",
+    "cid": "c710",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py:rct_studies; Recommended for the core dataset, c710 row: People analyzed, by randomized study; Design; Task",
+    "correct_value": "| Baumler et al. (2026) [c710] | 81 | online_rct | online_panel | other | creative_writing | with_ai, across_people | on file |",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:78 and report-generated.md:31 contain the disputed row. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Baumler et al (2026) - Can You Make It Sound Like You.pdf with pymupdf. PDF p. 22, Appendix C, describes a formative survey for choosing writing scenarios and randomizes only their presentation order. PDF p. 23 describes selecting scenarios where personal style matters, reports 102 completers with 88 passing attention checks, and prohibits those respondents from completing the main study. This survey supplies no AI-assisted writing condition or scored creative output. PDF pp. 4-5, section 4 and Figures 1-2, describe the main randomized writing/post-editing blocks; p. 13, Appendix A.1, confirms 81 analyzed Prolific participants after exclusions; p. 24, Table 9, confirms each of the 81 selected six writing tasks, four randomly allocated to treatment and two to control. forms/c710.json correctly records S1 as n_analyzed=81, design_class=online_rct, task.type=creative_writing, and S2 as a separate survey with n_analyzed=88, design_class=other, task.type=other, only an ai=none arm, and outcomes=[]. S2.assignment.randomized=yes is explicitly qualified as scenario-order randomization only. tools/build_report.py:95-98 accepts any assignment.randomized=yes, regardless of what was randomized; executing that isolated function in memory selects both S1 and S2. Lines 254-264 then aggregate their counts, designs, and tasks. The builder must exclude S2 from this randomized AI-assistance table and render the supplied replacement row from S1; the survey values in the form are supported by the PDF."
+  }
+]

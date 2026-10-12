@@ -1,0 +1,451 @@
+{
+ "cid": "c539",
+ "extractor": "A",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rosenbaum et al (2025) - Scaffolding Creativity.pdf",
+  "version": "arXiv:2510.26490v1 [cs.HC], 30 Oct 2025, as printed on PDF p. 1.",
+  "supplement_used": null
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Randomized persona-guided versus standard ChatGPT library-ideation experiment; setting not stated",
+   "design_class": null,
+   "assignment_unit": "individual",
+   "clusters_per_arm": {},
+   "cluster_se_treatment": null,
+   "n_randomized": 105,
+   "n_analyzed": 101,
+   "counts_source": {
+    "locator": "PDF p. 4, section 4, first paragraph (randomization); PDF p. 5, section 5, first paragraph (analyzed conversation dataset)",
+    "quote": "A total of 105 undergraduate students [...] Random assignment allocated 73 participants to the treatment group and 32 to the control group. [...] The final dataset comprised 101 conversation logs"
+   },
+   "arms": [
+    {
+     "name": "Persona-guided ChatGPT (Taylor and Alex)",
+     "description": "Participants could freely switch within the same conversation between Taylor, prompted for divergent thinking with a higher temperature, and Alex, prompted for convergent thinking with a lower temperature. Both personas were available in the same randomized treatment arm (PDF p. 4, section 4; PDF p. 11, section 6).",
+     "ai": "generative_ai",
+     "n_randomized": 73,
+     "n_analyzed": null
+    },
+    {
+     "name": "Standard ChatGPT (identical baseline behind both buttons)",
+     "description": "The same interface and both persona buttons were available, but both buttons routed input to the identical baseline ChatGPT model, producing unmodified responses (PDF p. 4, section 4).",
+     "ai": "generative_ai",
+     "n_randomized": 32,
+     "n_analyzed": null
+    }
+   ],
+   "population": "students",
+   "country": "not_stated",
+   "task_type": "idea_generation",
+   "task": "Undergraduate students generated ideas for making libraries more attractive to young adults in a single timed chat session; ideas were extracted from their user transcripts (PDF p. 4, section 4; PDF p. 9, section 5.3).",
+   "ai_role": "open_chat",
+   "ai_tool": {
+    "name": "ChatGPT (participant-facing model/version not stated)",
+    "year": null,
+    "locator": "PDF p. 4, section 4, condition descriptions; GPT-4.1 and text-embedding-3-large on PDF p. 9, section 5.3, are analysis tools, not identified as the participant-facing chat model."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": "No preregistration statement or registry link was found in the complete paper.",
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_diversity_same_condition_personas_vs_standard",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Between-participant portfolio distance to same-condition peers (paper primary originality measure)",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Ideas were extracted from user transcripts using GPT-4.1. OpenAI text-embedding-3-large provided normalized idea embeddings; each participant portfolio was represented by their mean-pooled centroid. For each participant, mean cosine distance from their portfolio centroid to same-condition peers; the reported arm means average these participant-level scores (PDF pp. 9-10, section 5.3).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Persona-guided ChatGPT (Taylor and Alex)",
+   "control_arm": "Standard ChatGPT (identical baseline behind both buttons)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 0.34,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.28,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": null,
+     "df": null
+    },
+    "p_value": 2.2e-06,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "test",
+      "p_value"
+     ],
+     "locator": "PDF p. 10, section 5.3, paragraph beginning Same-condition originality",
+     "quote": "Same-condition originality showed the largest effect (Treatment M=0.34, Control M=0.28; Welch’s t, p=2.20 × 10−6), indicating that persona-guided teams occupied more distinct semantic positions."
+    }
+   ],
+   "notes": "The paper calls this participant-level originality, but it compares different people’s portfolios and is coded diversity/across_people. Higher cosine distance means greater semantic separation. The measure is computed once per participant from other participants’ portfolios, rather than analyzed as independent idea pairs. Figure 6 labels the comparisons as Welch tests; the paper does not report their test statistics or degrees of freedom. No adjustment for dependence induced by shared reference portfolios is described. Numerical SDs, SEs and confidence-interval endpoints are not printed; the figure’s error-bar definition is not given and no values were read from bar heights or error bars. Analysis-specific participant counts are left null: section 5 gives the overall conversation dataset, and its arm split conflicts with Figure 6. Values available only in Figure 6 are not entered as statistics or counts. Figure 6 explicitly labels the same-condition measure primary; this is a paper designation, not evidence of preregistration. The source quote preserves the printed scientific notation for the p-value."
+  },
+  {
+   "slug": "s1_diversity_all_participants_personas_vs_standard",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Between-participant portfolio distance to all participants",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Ideas were extracted from user transcripts using GPT-4.1. OpenAI text-embedding-3-large provided normalized idea embeddings; each participant portfolio was represented by their mean-pooled centroid. For each participant, mean cosine distance from their portfolio centroid to all participants; whether the all-participant reference set excludes the participant themself is not specified (PDF pp. 9-10, section 5.3).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Persona-guided ChatGPT (Taylor and Alex)",
+   "control_arm": "Standard ChatGPT (identical baseline behind both buttons)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 0.33,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.31,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": null,
+     "df": null
+    },
+    "p_value": 0.02,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "p_value"
+     ],
+     "locator": "PDF p. 10, section 5.3, paragraph beginning Same-condition originality, all-participant result",
+     "quote": "All-participant originality remained significant (Treatment M=0.33, Control M=0.31; p=.02)"
+    }
+   ],
+   "notes": "The paper calls this participant-level originality, but it compares different people’s portfolios and is coded diversity/across_people. Higher cosine distance means greater semantic separation. The measure is computed once per participant from other participants’ portfolios, rather than analyzed as independent idea pairs. Figure 6 labels the comparisons as Welch tests; the paper does not report their test statistics or degrees of freedom. No adjustment for dependence induced by shared reference portfolios is described. Numerical SDs, SEs and confidence-interval endpoints are not printed; the figure’s error-bar definition is not given and no values were read from bar heights or error bars. Analysis-specific participant counts are left null: section 5 gives the overall conversation dataset, and its arm split conflicts with Figure 6. Values available only in Figure 6 are not entered as statistics or counts. This is an alternative reference-set definition of S1-O1. The p-value is transcribed at the precision printed in the prose; additional precision shown only in Figure 6 is not transcribed. The test type is identified by the Welch label in that figure."
+  },
+  {
+   "slug": "s1_diversity_cross_condition_nearest_personas_vs_standard",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Between-participant portfolio distance to nearest cross-condition neighbor",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Ideas were extracted from user transcripts using GPT-4.1. OpenAI text-embedding-3-large provided normalized idea embeddings; each participant portfolio was represented by their mean-pooled centroid. For each participant, cosine distance to the nearest participant portfolio centroid in the opposite condition; arm means summarize participant-level nearest-neighbor distances (PDF pp. 9-10, section 5.3).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Persona-guided ChatGPT (Taylor and Alex)",
+   "control_arm": "Standard ChatGPT (identical baseline behind both buttons)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": 0.2,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.17,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": null,
+     "df": null
+    },
+    "p_value": "<.01",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "p_value"
+     ],
+     "locator": "PDF p. 10, section 5.3, paragraph beginning Same-condition originality, cross-condition nearest-neighbor result",
+     "quote": "nearest neighbor distances confirmed greater between-condition separation (Treatment M=0.20, Control M=0.17; p<.01)."
+    }
+   ],
+   "notes": "The paper calls this participant-level originality, but it compares different people’s portfolios and is coded diversity/across_people. Higher cosine distance means greater semantic separation. The measure is computed once per participant from other participants’ portfolios, rather than analyzed as independent idea pairs. Figure 6 labels the comparisons as Welch tests; the paper does not report their test statistics or degrees of freedom. No adjustment for dependence induced by shared reference portfolios is described. Numerical SDs, SEs and confidence-interval endpoints are not printed; the figure’s error-bar definition is not given and no values were read from bar heights or error bars. Analysis-specific participant counts are left null: section 5 gives the overall conversation dataset, and its arm split conflicts with Figure 6. Values available only in Figure 6 are not entered as statistics or counts. This is an alternative reference-set definition of S1-O1. It measures distance to the opposite condition, not dispersion within the participant’s own condition. The p-value bound is preserved as printed in the prose; the more precise figure-only p-value is not transcribed. The test type is identified by the Welch label in Figure 6."
+  },
+  {
+   "slug": "s1_fluency_personas_vs_standard",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Idea fluency (number of ideas per participant)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Number of ideas extracted from each participant’s user transcript. A two-stage content-analysis pipeline used GPT-4.1 for structured idea extraction, then category induction to organize ideas into thematic groups; the fluency outcome is the idea count, not the category count (PDF p. 9, section 5.3).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Persona-guided ChatGPT (Taylor and Alex)",
+   "control_arm": "Standard ChatGPT (identical baseline behind both buttons)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": 8.55,
+    "treatment_sd": 3.85,
+    "treatment_se": null,
+    "control_mean": 9.23,
+    "control_sd": 3.37,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 9, section 5.3, paragraph beginning Idea fluency",
+     "quote": "Idea fluency showed no significant between-condition differences, though control participants generated slightly more ideas on average (Treatment M=8.55, SD=3.85; Control M=9.23, SD=3.37)."
+    }
+   ],
+   "notes": "The paper states that the between-condition difference was not significant but prints no fluency p-value, test statistic, SE, interval or standardized effect. The SDs describe the participant-level idea counts, which is the basis for se_basis=participant; no contrast SE has been supplied or computed. Fluency-specific participant counts are not printed. All estimate-level counts remain null rather than borrowing either inconsistent arm split from the overall results text or the originality figure. The study-level analyzed total is retained separately. No raw difference or standardized effect is calculated."
+  },
+  {
+   "slug": "s1_within_participant_variation_personas_vs_standard",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Within-participant idea-portfolio variation (mean pairwise semantic distance)",
+   "question": "with_ai",
+   "construct": "flexibility",
+   "measure": "embedding_similarity",
+   "measure_detail": "Mean pairwise semantic distance among ideas within each participant’s own portfolio; the semantic-analysis pipeline uses OpenAI text-embedding-3-large. The two condition means summarize within-participant portfolio variation (PDF pp. 9-10, section 5.3).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Persona-guided ChatGPT (Taylor and Alex)",
+   "control_arm": "Standard ChatGPT (identical baseline behind both buttons)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": 0.59,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 0.59,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": 0.9,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean",
+      "p_value"
+     ],
+     "locator": "PDF p. 10, section 5.3, paragraph beginning Within-participant idea diversity",
+     "quote": "Within-participant idea diversity showed no group differences (mean pairwise distance: Treatment M=0.59, Control M=0.59, p=.90), suggesting that originality gains resulted from between-participant differentiation rather than increased internal portfolio variation."
+    }
+   ],
+   "notes": "The paper calls this within-participant idea diversity; it is coded flexibility because the variation is among one person’s ideas. Higher scores indicate greater internal semantic variation and thus greater flexibility. The comparison is between independently randomized people, not a paired-condition design. The paper prints a p-value but gives no test name specifically for this outcome, test statistic, degrees of freedom, SD, SE or confidence interval. The stated measure is a within-participant portfolio summary, so se_basis is participant. Outcome-specific analyzed counts, including any exclusion of portfolios with too few ideas, are not printed; no overall sample count or conflicting arm split has been assumed for this analysis. The source quote preserves the p-value’s printed precision."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "S1: Alex helped me arrive at a creative solution",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 1; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: Taylor helped me arrive at a creative solution",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 2; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: My creativity increased compared to my usual level after chatting with Alex",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 3; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: My creativity increased compared to my usual level after chatting with Taylor",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 4; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: The solution originated from me (perceived solution ownership)",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 5; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: Compared to regular ChatGPT, the interface helped me reach a creative solution",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 6; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: Perceived proficiency with generative AI tools",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 7; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: Which persona most enhanced your creativity? (forced-choice persona preference)",
+   "reason": "Self-report of experience, perceived contribution, ownership or proficiency, rather than a score on the produced ideas (PDF p. 5, Table 1, item 8; section 5 discusses the survey results). Excludes associated distributions and one-sample preference tests."
+  },
+  {
+   "what": "S1: Taylor-minus-Alex selectivity in self-reported creativity enhancement",
+   "reason": "Difference between subjective persona ratings, not creativity scored on the produced output (PDF p. 6, section 5, within-participant selectivity paragraph)."
+  },
+  {
+   "what": "S1: Taylor-minus-Alex selectivity in self-reported solution helpfulness",
+   "reason": "Difference between subjective persona ratings, not a score on produced ideas (PDF p. 6, section 5, within-participant selectivity paragraph)."
+  },
+  {
+   "what": "S1: Big Five trait correlations with persona evaluations, perceived enhancement, system superiority and solution ownership",
+   "reason": "Trait-based observational associations with self-reports, including treatment-only analyses; not full-sample randomized contrasts on output (PDF pp. 6-7, section 5 and Figure 4)."
+  },
+  {
+   "what": "S1: Conscientiousness correlations with message allocation and convergent interaction-sequence length",
+   "reason": "Observational trait associations with interaction-process measures rather than creative-output outcomes (PDF p. 7, section 5.1)."
+  },
+  {
+   "what": "S1: Ending-persona preferences by conscientiousness and neuroticism quartiles",
+   "reason": "Subgroup/trait analyses of interaction behavior; no randomized full-sample contrast on creative output (PDF pp. 7-8, section 5.1)."
+  },
+  {
+   "what": "S1: Mean question marks per user message for divergent and convergent interactions",
+   "reason": "Question asking is explicitly used as an interaction/engagement indicator, not as a score on produced ideas; its phase- and persona-specific tests are excluded (PDF p. 8, section 5.2 and Figure 5)."
+  },
+  {
+   "what": "S1: Percentage of user turns containing questions for divergent and convergent interactions",
+   "reason": "Interaction/engagement process measure, not a creative-output outcome (PDF p. 8, section 5.2 and Figure 5)."
+  },
+  {
+   "what": "S1: Association between idea count and relative originality",
+   "reason": "Exploratory correlation between output measures, not a randomized treatment-versus-control contrast (PDF p. 10, section 5.3, exploratory analysis)."
+  },
+  {
+   "what": "S1: Association between idea count and within-participant diversity",
+   "reason": "Exploratory correlation between output measures, not a randomized treatment-versus-control contrast (PDF p. 10, section 5.3, exploratory analysis)."
+  },
+  {
+   "what": "S1: Association between convergent-persona preference and solution ownership",
+   "reason": "Treatment-only observational correlation involving a post-treatment preference and self-reported ownership (PDF p. 10, section 5.3)."
+  },
+  {
+   "what": "S1: Association between convergent-persona preference and number of ideas",
+   "reason": "Treatment-only observational association with a post-treatment preference, not a randomized full-sample contrast (PDF p. 10, section 5.3)."
+  },
+  {
+   "what": "S1: Association between convergent-persona preference and participant-level originality",
+   "reason": "Treatment-only observational association with a post-treatment preference, not a randomized full-sample contrast (PDF p. 10, section 5.3)."
+  }
+ ],
+ "open_items": [
+  "The individual randomization is explicit, but the paper does not identify laboratory supervision, online-panel delivery, or ordinary-work/coursework delivery. No permitted design_class subtype can be confirmed; design_class is null rather than inventing the RCT setting (PDF pp. 4-5, section 4; reconciled screening also leaves the subtype unresolved). The participant institution and study country are not identified.",
+  "Confirm the analyzed arm allocation. The results text states 69 persona and 32 control conversation logs, while the arm labels in Figure 6 disagree. Study-level n_analyzed=101 is explicitly printed, but arm-level analyzed counts remain null; figure-only counts are not transcribed into estimate fields (PDF p. 5, section 5; PDF p. 10, Figure 6).",
+  "The output-specific participant counts for fluency and within-participant portfolio variation are not printed, and the originality figure conflicts with the results-text allocation. Estimate-level n_total, n_treatment and n_control remain null until analysis-specific inclusion counts are confirmed (PDF pp. 9-10, section 5.3).",
+  "The paper states four exclusions but lists reason counts of 1, 2, 1 and 1 without stating whether reasons overlap. The separately stated survey exclusions are not applied to the conversation-output dataset (PDF p. 5, section 5, continuing on PDF p. 6).",
+  "The participant-facing ChatGPT model/version and its release year, as well as complete persona prompts, are not stated. GPT-4.1 is named for post hoc idea extraction only, and the embedding model for scoring; neither establishes the chat model used by participants (PDF p. 4, section 4; PDF p. 9, section 5.3).",
+  "For the portfolio-distance measures, the paper does not print arm SDs, SEs, numerical confidence-interval bounds, test statistics or degrees of freedom. Figure 6 does not define its error bars, and no plotted values are estimated (PDF p. 10, section 5.3 and Figure 6). Fluency lacks a printed p-value or numerical inferential statistic (PDF p. 9, section 5.3).",
+  "The reference-set implementation is incomplete: self-exclusion in the all-participant distance and the treatment of dependence from shared comparison portfolios are not specified (PDF pp. 9-10, section 5.3).",
+  "The excluded question-asking analysis prints control counts exceeding the randomized control arm. Its observational unit is not established and those process-analysis counts must not be used for creative-output estimates (PDF p. 8, section 5.2; PDF p. 4, section 4)."
+ ],
+ "notes": "Extraction date: 2026-10-11. The complete markdown conversion was read sequentially, including the full references; the PDF contains no appendix or identified supplement. Every cited substantive PDF page was checked using pymupdf text extraction; Figure 6 was also inspected directly in memory. PDF page numbers match the printed page numbers. This is one individually randomized experiment comparing two generative-AI configurations. Taylor and Alex are available within one treatment arm and are not independently randomized arms. The setting cannot be confirmed, so design_class is deliberately null; this does not imply that random assignment was absent. All eligible outputs were produced with AI available in the same session; no unassisted follow-up was conducted. The three reference-set variants of screening outcome S1-O1 are retained as separate estimate records. No estimate combines arms, derives an effect, converts a p-value, or imputes a count. Figure-only numerical information is not entered. Country and the participant-facing model year are not inferred from author affiliations or the paper date. No shared sample is identified in the reconciled form. Only the designated extraction file was written."
+}

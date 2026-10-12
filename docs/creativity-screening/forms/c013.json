@@ -1,0 +1,737 @@
+{
+ "cid": "c013",
+ "screener": "final",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu Wang Yang (2025) - GenAI and Content Homogenization Digital Marketing.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu Wang Yang (2025) - GenAI and Content Homogenization Digital Marketing.pdf",
+  "version": "Working paper; the title page reads 'History: First draft 26 July 2025' (p. 1). The PDF has no SSRN cover page and no journal details; the search record links it to SSRN DOI 10.2139/ssrn.5367123.",
+  "title_on_document": "Generative AI and Content Homogenization: The Case of Digital Marketing",
+  "authors_on_document": [
+   "Chaoran Liu",
+   "Tong Wang",
+   "S. Alex Yang"
+  ],
+  "pages": 32,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A1 to A4 at the end of this PDF (PDF pp. 27-32; printed A1-A4, then 5 and 6). The paper mentions no online supplement.",
+   "holds": "Figure A1 (event-study pre-trend test), Figures A2-A3 (pre-treatment fit of Generalized SCM and Synthetic DiD), Table A1 (OpenAI-embedding similarity), Table A2 (excluding Easter weeks 14-15), Table A3 (excluding week 17), Table A4 (likes with word-count and posting-frequency covariates), Table A5 (comments). The main-text tables hold the standard errors for the four similarity measures, likes, posting frequency, and word count. Tables A1-A5 report coefficients, bootstrapped standard errors, and business-week observation counts."
+  }
+ },
+ "paper_design_summary": "The paper uses Italy's ChatGPT ban (March 31 to April 28, 2023) as a natural experiment, comparing the Instagram marketing posts of restaurants in Milan (treated) with those of restaurants in Paris, Lyon, Madrid, and Valencia (control) over weeks 8 to 17 of 2023. It estimates Generalized Synthetic Control and Synthetic Difference-in-Differences models on a business-week panel. Outcomes are each business's average text similarity to other businesses' posts in the same city and week (lexical, syntactical, semantic, language style, plus an OpenAI-embedding robustness measure), likes, comments, posting frequency, and post word count; no person is assigned to AI, and ChatGPT use is not observed.",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Italy ChatGPT ban natural experiment (restaurant Instagram posts, Milan vs. Paris, Lyon, Madrid, Valencia)",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "Nothing was assigned by the researchers. The Italian Data Protection Authority blocked ChatGPT for all Italian IP addresses from March 31 to April 28, 2023 (weeks 13 to 17 of 2023). The authors designate Milan as the treated city and Paris, Lyon, Madrid, and Valencia as control cities. The paper says the shock 'randomizes access to ChatGPT at the city level', but there is one treated city and no random draw.",
+    "unit": "other",
+    "structure": "mixed",
+    "quote": "To establish a treatment and control group, we designate Milan as the treatment city and select four other European cities—Paris, Lyon, Madrid, and Valencia—as the control group.",
+    "locator": "p. 6, Section 2.2 (quote and choice of cities); p. 6, Section 2.1 (ban dates); p. 12, Section 2.5.1 (treatment indicator); p. 13, Section 3 (the authors call the shock randomizing, without reporting random assignment)",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "ChatGPT access",
+     "description": "Business-weeks in which ChatGPT was accessible (treatment indicator equal to zero): restaurants in Paris, Lyon, Madrid, and Valencia in all modeled weeks (8 to 17 of 2023) and Milan restaurants in the pre-ban weeks (8 to 12). ChatGPT use is not observed. Businesses analyzed in the 2023 descriptive sample after filtering (p. 7, Table 1, Step 3; p. 8, Table 2): Paris 429, Lyon 432, Madrid 544, Valencia 315; Milan's 486 contribute their pre-ban weeks. The estimators use these business-weeks to build Milan's counterfactual. The number of businesses entering each regression is not stated.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "ChatGPT ban (Milan, weeks 13-17)",
+     "description": "Milan restaurants during the ban, the paper's treated group in the treatment period: ChatGPT blocked for Italian IP addresses from March 31 to April 28, 2023 (weeks 13 to 17; week 13 commences 27 March 2023). Milan has 486 businesses analyzed in the 2023 descriptive sample after filtering (p. 7, Table 1, Step 3; p. 8, Table 2); the number entering each regression is not stated. VPN access cannot be ruled out (p. 14).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "Units are restaurant businesses (Instagram accounts), not people. Collection steps (Table 1): Google Maps restaurant listings (Step 1: Milan 2695, Paris 4401, Lyon 1811, Madrid 3347, Valencia 1770), those with an Instagram link (Step 2: 752, 699, 660, 801, 468), and businesses analyzed in the 2023 descriptive sample after filtering (Step 3: 486, 429, 432, 544, 315; Table 2). Google Maps category labels were used to drop non-restaurants such as cafes and grocery stores. Kept only businesses that posted on Instagram before January 1, 2023; excluded businesses that became inactive on Instagram after April 28, 2023; removed major international food and hotel chains. The data include only posts from businesses that display like counts (footnote 5, p. 7). Language-style similarity uses only posts in each country's official language (p. 10). One negative semantic-similarity score was removed (p. 9). The main similarity analysis using Synthetic DiD uses a balanced sample of restaurants that posted every week (pp. 13, 21); this restriction should not be generalized to the posting-frequency analysis, which includes weeks with zero posts (pp. 20-22). The paper prints no total business count and no business count for any estimation sample; samples are given in business-week observations.",
+    "population": "professionals",
+    "who": "Independent restaurants (small businesses) with public Instagram accounts, identified from Google Maps with Apify; their text marketing posts on Instagram",
+    "country": "Italy (Milan, treated); France (Paris, Lyon) and Spain (Madrid, Valencia), control",
+    "quote": "For each city, we report the number of businesses, along with key statistics for social media activity, including the number of posts per business, the like count, and the word count of posts.",
+    "locator": "p. 7, Section 2.2 (quote, inclusion criteria, and Table 1 counts); p. 8, Table 2 (businesses analyzed in the 2023 descriptive sample); p. 10, Section 2.3 (business-week observations); p. 13, Section 2.5.2 and p. 21, Section 5.1 (balanced main similarity sample); pp. 20-22, Sections 5.1-5.2 (outcome-specific observation rules)"
+   },
+   "ai_tool": {
+    "name_model": "ChatGPT (OpenAI); model version not stated; access only, use not observed",
+    "role": "open_chat",
+    "how_used": "Not observed. ChatGPT was accessible to control-city restaurants throughout and to Milan restaurants before March 31, 2023, and blocked for Italian IP addresses during the ban (p. 6). The paper proxies reliance with cuisine origin and the drop in posting frequency: 'Since we do not observe direct usage data, we turn to two proxies' (p. 14, Section 3.1). Copilot, Gemini, and Meta AI became available in the EU only after November 2023, June 2024, and March 2025 (p. 6); VPN use cannot be ruled out (p. 14)."
+   },
+   "task": {
+    "type": "creative_writing",
+    "description": "Real-world text of restaurants' Instagram marketing posts (captions), scraped with Apify; mean post word count 46.1 to 53.0 by city in 2023 (Table 2).",
+    "duration": "Modeling period weeks 8 to 17 of 2023 (late February to late April); ban weeks 13 to 17 (week 13 commencing 27 March 2023; ban from March 31 to April 28, 2023)."
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Lexical similarity across businesses (bag-of-words cosine)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Bag-of-words count vectors (stop-words and URLs removed); cosine similarity between each post and the posts of every other business in the same city and week, averaged to one score per business-week (pp. 9-10). Higher means more similar, so less diverse. Robustness variants: excluding Easter weeks 14-15, Table A2 (Generalized SCM -0.004*** (0.001), Observations 9,653; Synthetic DID -0.001* (0.000), Observations 5,136; PDF p. 30); excluding week 17, Table A3 (Generalized SCM -0.002*** (0.002), Observations 10,792; Synthetic DID -0.001*** (0.000), Observations 5,346; PDF p. 31). Subgroups: Table 5, cuisine origin (p. 16); Table 6, posting-frequency drop (p. 17).",
+     "unit": "set",
+     "n_units": 12004,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access) on similarity. Direction is coded on diversity (sign reversed): similarity is lower under the ban, so diversity is lower with access. Generalized SCM -0.003*** (0.001), Observations 12,004; Synthetic DID -0.001*** (0.000), Observations 5,780. Text: relative decline of approximately 15% (coefficient divided by the mean of the similarity score, footnote 8). Milan lexical similarity in 2023: mean 0.020, Std 0.02 (Table 3).",
+       "locator": "p. 14, Table 4, col. (1); pp. 13-14, Section 3 text and footnote 8; p. 11, Table 3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Cosine similarity of bag-of-words count vectors, averaged per business-week",
+      "embedding_model": "none: bag-of-words counts",
+      "computed_over": "Each post of a business against all posts of every other business in the same city and week; pairwise scores averaged to one score per business per week in which it posted.",
+      "uncertainty": "Generalized SCM (business and week fixed effects plus interactive fixed effects; inference by non-parametric bootstrap, p. 12) and Synthetic DiD on a balanced business-week panel. Table notes: standard errors clustered at the city level (five cities) and bootstrapped; how the two combine is not explained.",
+      "notes": "Higher similarity means more homogeneous content. The estimate concerns losing ChatGPT access under a government ban; direct usage data are not observed (p. 14, Section 3.1)."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Syntactical similarity across businesses (n-gram up to trigrams, cosine)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "N-gram (up to trigram) count vectors; cosine similarity between each post and the posts of every other business in the same city and week, averaged per business-week (pp. 9-10). Higher means less diverse. Robustness variants: Table A2, excluding Easter (Generalized SCM -0.003*** (0.001), Observations 9,653; Synthetic DID -0.003*** (0.001), Observations 5,136); Table A3, excluding week 17 (Generalized SCM -0.003** (0.001), Observations 10,792; Synthetic DID -0.003** (0.001), Observations 5,346). Subgroups: Tables 5 and 6. Appendix table locators: Table A2, PDF p. 30 (printed A4); Table A3, PDF p. 31 (printed 5).",
+     "unit": "set",
+     "n_units": 12004,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access) on similarity; direction coded on diversity (sign reversed). Generalized SCM -0.003*** (0.001), Observations 12,004; Synthetic DID -0.003*** (0.001), Observations 5,780. Text: relative decline of approximately 12%. Milan syntactical similarity in 2023: mean 0.025, Std 0.01 (Table 3).",
+       "locator": "p. 14, Table 4, col. (2); pp. 13-14, Section 3 text; p. 11, Table 3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Cosine similarity of n-gram (up to trigram) count vectors, averaged per business-week",
+      "embedding_model": "none: n-gram counts",
+      "computed_over": "Each post of a business against all posts of every other business in the same city and week; averaged per business-week.",
+      "uncertainty": "Generalized SCM (non-parametric bootstrap) and Synthetic DiD on the business-week panel; table notes say standard errors are clustered at the city level and bootstrapped.",
+      "notes": "The event study shows pre-ban coefficients away from zero, especially for syntactical similarity (Figure A1, PDF p. 27), which is why the paper uses synthetic-control estimators."
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Semantic similarity across businesses (Sentence-BERT cosine)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Pre-trained Sentence-BERT embeddings; cosine similarity between each post and the posts of every other business in the same city and week, averaged per business-week; one negative pairwise score removed (p. 9). Robustness variants: Table A2, excluding Easter (Generalized SCM -0.007*** (0.001), Observations 9,653; Synthetic DID -0.009*** (0.001), Observations 5,136); Table A3, excluding week 17 (Generalized SCM -0.010*** (0.003), Observations 10,792; Synthetic DID -0.010*** (0.001), Observations 5,346). Subgroups, Generalized SCM: Table 5, local restaurants -0.008* (0.004), Observations 1,792, vs non-local -0.013*** (0.002), Observations 3,596 (p. 16); Table 6, high-drop -0.009*** (0.001), Observations 5,368, vs low-drop -0.006*** (0.002), Observations 6,636 (p. 17). OpenAI-embedding robustness variant (formerly S1-O5, consolidated here under form-spec Rule 7): OpenAI text-embedding-3-small embeddings and cosine similarity, aggregated using the same business-week-city strategy as the main analysis (PDF pp. 28-29, Appendix A2.1). Table A1 (PDF p. 30, printed A4) reports the ban-minus-access coefficients on similarity: Generalized SCM -0.022*** (0.001), Observations 12,004; Synthetic DID -0.011*** (0.001), Observations 5,780. Table A1 says standard errors are clustered at the city level and calculated using bootstrapping. This is an alternative semantic-relatedness measure, not a separate outcome. Table A2 is on PDF p. 30; Table A3 is on PDF p. 31.",
+     "unit": "set",
+     "n_units": 12004,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access) on similarity; direction coded on diversity (sign reversed). Generalized SCM -0.008*** (0.002), Observations 12,004; Synthetic DID -0.009*** (0.001), Observations 5,780. Text: relative decline of approximately 2%. Milan semantic similarity in 2023: mean 0.414, Std 0.07 (Table 3).",
+       "locator": "p. 14, Table 4, col. (3); pp. 13-14, Section 3 text; p. 11, Table 3; p. 16, Table 5; p. 17, Table 6; PDF pp. 28-30, Appendix A2.1 and Table A1 (OpenAI robustness variant in measure_detail)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Cosine similarity of Sentence-BERT embeddings, averaged per business-week",
+      "embedding_model": "Main measure: pre-trained Sentence-BERT (S-BERT), checkpoint not stated. Robustness variant: OpenAI text-embedding-3-small (PDF p. 29, Appendix A2.1).",
+      "computed_over": "Each post of a business against all posts of every other business in the same city and week; averaged per business-week. The OpenAI robustness variant uses every pair of posts and the same aggregation strategy as the primary analysis (PDF p. 29); exclusion of same-business pairs is not restated there.",
+      "uncertainty": "Generalized SCM (non-parametric bootstrap) and Synthetic DiD on the business-week panel; table notes say standard errors are clustered at the city level and bootstrapped.",
+      "notes": "The paper's main semantic-similarity measure, the one the codebook prefers for an across_people primary record. The OpenAI robustness variant is retained in measure_detail rather than as a separate outcome; Appendix A2.1 ends mid-sentence on PDF p. 29, but Table A1 is present on PDF p. 30."
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Language style similarity across businesses (LIWC language style matching)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "lexical_overlap",
+     "measure_detail": "Language style matching (Ireland and Pennebaker 2010) over nine LIWC function-word categories with language-specific dictionaries (categories selected manually, footnote 7, p. 9), computed per post pair and averaged per business-week; only posts in each country's official language (p. 10). A dictionary-based function-word measure; lexical_overlap is the closest measure code. Robustness variants: Table A2, excluding Easter (Generalized SCM -0.009** (0.004), Observations 8,336; Synthetic DID -0.009 (0.006), Observations 3,936); Table A3, excluding week 17 (Generalized SCM -0.010 (0.008), Observations 9,301; Synthetic DID -0.008 (0.008), Observations 4,158), where the paper says the decline 'becomes statistically insignificant'. Subgroups: Tables 5 and 6. Appendix table locators: Table A2, PDF p. 30 (printed A4); Table A3, PDF p. 31 (printed 5).",
+     "unit": "set",
+     "n_units": 10354,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access) on similarity; direction coded on diversity (sign reversed). Generalized SCM -0.013*** (0.004), Observations 10,354; Synthetic DID -0.009 (0.007), Observations 4,420 (not marked significant). Text: relative decline of approximately 3%. Milan language style similarity in 2023: mean 0.396, Std 0.11 (Table 3).",
+       "locator": "p. 14, Table 4, col. (4); pp. 13-14, Section 3 text; p. 11, Table 3; PDF p. 31 (printed 5), Table A3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Language style matching: 1 - |p_i - p_j| / (p_i + p_j + 0.0001) per function-word category, averaged over nine categories (Equations 1-2), then averaged per business-week",
+      "embedding_model": "none: LIWC dictionaries",
+      "computed_over": "Each post of a business against all posts of every other business in the same city and week (official-language posts only); averaged per business-week.",
+      "uncertainty": "Generalized SCM (non-parametric bootstrap) and Synthetic DiD on the business-week panel; table notes say standard errors are clustered at the city level and bootstrapped.",
+      "notes": "Formula on p. 10, Equations (1)-(2)."
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Consumer engagement: average likes per post (business-week)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "log(AverageLikes + 1), where AverageLikes is the average number of likes on a business's Instagram posts in a week (pp. 17-18); like counts are a snapshot taken at the end of 2024 (footnote 9, p. 17); the data include only businesses that display like counts (footnote 5, p. 7). Variant: average like count winsorized at 5% (Table 7, col. 2). With average word count and posting frequency as covariates, Table A4 (Generalized SCM only): 1% Winsorized 4.684 (4.640), 5% Winsorized 9.393*** (3.318), Log Average Like Count 0.039*** (0.009), Observations 11,191 (PDF p. 32). Table 8 (p. 21) reports OLS correlations of log likes with each similarity measure and its square; it has no AI contrast and is not recorded here.",
+     "unit": "set",
+     "n_units": 11191,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "paper_primary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access): likes are higher during the ban, so lower with access. Log Average Like Count (All): Generalized SCM 0.035*** (0.009), Observations 11,191; Synthetic DiD 0.067*** (0.0198), Observations 5,070. Average Like Count (5% Winsorized): Generalized SCM 8.277*** (3.636), Observations 11,191; Synthetic DiD 8.047 (6.915), Observations 5,070. Abstract: 'an approximate 3.5% increase in average like counts'.",
+       "locator": "p. 19, Table 7; p. 18, Section 4; p. 1, abstract; PDF p. 32 (printed 6), Table A4"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O7",
+     "name": "Consumer engagement: average comments per post (business-week, appendix)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "Log average comment count and average comment count winsorized at 5%, per business-week; an alternative engagement metric (Appendix A4, PDF p. 31). The median number of comments is one per post (PDF p. 31).",
+     "unit": "set",
+     "n_units": 12004,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access). Log Average Comment Count (All): Generalized SCM 0.010 (0.018), Observations 12,004; Synthetic DiD 0.027 (0.032), Observations 5,780. Average Comment Count (5% Winsorized): Generalized SCM -0.042 (0.078), Observations 12,004; Synthetic DiD 0.011 (0.127), Observations 5,780. No coefficient is marked significant; the text says 'Although the estimated coefficients are positive, the results are not statistically significant', though one printed coefficient is negative.",
+       "locator": "PDF p. 32 (printed 6), Table A5; PDF p. 31 (printed 5), Appendix A4"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O8",
+     "name": "Average word count per post (business-week)",
+     "construct": "elaboration",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "automated_score",
+     "measure_detail": "AverageWordCount_iw, the average word count of business i's posts in week w; no observation when a business does not post that week (p. 22). A computed count, not a creativity scoring model; no allowed measure code fits exactly, and automated_score is the closest.",
+     "unit": "set",
+     "n_units": 12004,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access): posts are shorter during the ban, so longer with access. Generalized SCM -1.210*** (0.283), Observations 12,004; Synthetic DiD -0.637*** (0.220), Observations 5,780. Text: 'an estimated reduction of approximately one word following the ChatGPT ban'.",
+       "locator": "p. 22, Table 9, col. (2); p. 22, Section 5.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O9",
+     "name": "Posting frequency (posts per business-week)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "behavioral",
+     "measure_detail": "Frequency_iw, the number of posts by business i in week w; weeks with no posts recorded as 0; on average 1.34 posts per week in the modeling sample, maximum 28 (pp. 20-21). A volume measure, not a count of ideas; behavioral is the closest allowed measure code.",
+     "unit": "set",
+     "n_units": 21530,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "secondary",
+     "contrasts": [
+      {
+       "treatment_arm": "ChatGPT access",
+       "control_arm": "ChatGPT ban (Milan, weeks 13-17)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Printed coefficients are the effect of the ban (ban minus access): fewer posts during the ban, so more with access. Generalized SCM -0.061*** (0.024), Observations 21,530; Synthetic DiD -0.056*** (0.019), Observations 21,530.",
+       "locator": "p. 22, Table 9, col. (1); pp. 20-21, Section 5.1"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "None stated. The authors list London Business School affiliations (p. 1), and the document has no funding or acknowledgment statement. Data were scraped from public Google Maps and Instagram pages with Apify (p. 7); OpenAI's text-embedding-3-small serves only as a measurement tool (PDF p. 29).",
+  "locator": "p. 1; p. 7, Section 2.2; PDF p. 29 (printed A3), Appendix A2.1"
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "Criterion 1 is not met: Italy's ChatGPT ban is a natural experiment, and the authors designate Milan and select four control cities rather than randomly assigning people to AI (p. 6, Sections 2.1-2.2; p. 13, Section 3). The paper explicitly describes its data as observational (p. 22, Section 6). Criterion 2 is unclear: the analyzed 2023 descriptive sample contains businesses (Milan 486, Paris 429, Lyon 432, Madrid 544, Valencia 315; p. 7, Table 1, Step 3; p. 8, Table 2), and regressions count business-weeks, not distinct human producers (p. 10, Section 2.3; p. 14, Table 4). No analyzed people count is stated. Criterion 3 is met: the paper computes pairwise text similarity on Instagram posts from different businesses, then aggregates it per business-week (pp. 8-10, Section 2.3). The paper remains observational context and is not core regardless of whether the missing people count could meet the threshold."
+ },
+ "one_line_finding": "During Italy's 2023 ChatGPT ban, Milan restaurants' Instagram posts became less similar to other restaurants' posts relative to synthetic controls from Paris, Lyon, Madrid, and Valencia (Generalized SCM: lexical -0.003, syntactical -0.003, semantic -0.008, language style -0.013, all marked significant at 1 percent; relative declines of about 15, 12, 2, and 3 percent; p. 14, Table 4), while log average likes rose 0.035 (p. 19, Table 7).",
+ "open_questions": [
+  "Comparison coding: this form codes the contrast as ai_vs_bau with ChatGPT access as the treatment arm and the ban as the control arm, so each printed coefficient (ban minus access) has the opposite sign to the access effect. The codebook defines comparison codes for randomized experiments; Review 1 may prefer 'other' for this natural experiment (Screener A's choice).",
+  "Question code: Milan's ban-period posts are unassisted output written after a period of possible ChatGPT access. The similarity outcomes are coded across_people (access vs. no access while writing), not after_ai, because the comparison is with posts written while ChatGPT was available. Both screeners flagged after_ai as an alternative.",
+  "Whether restaurant businesses (Instagram accounts) count toward the 50-participant rule; moot for core because criterion 1 fails.",
+  "Whether likes, comments, posting frequency, and word count belong in the creativity section at all; they are coded with_ai under the codebook rule that a non-diversity outcome produced with AI available is with_ai.",
+  "No allowed measure code fits a word count (coded automated_score) or a count of posts (coded behavioral).",
+  "Table notes say standard errors are both bootstrapped and clustered at the city level with five cities; how clustering enters the bootstrap is not explained."
+ ],
+ "notes": "Two estimators per outcome, both preferred specifications (p. 11): Generalized SCM and Synthetic DiD. The text's relative percentage changes use Generalized SCM estimates (pp. 3, 14). Synthetic DiD requires a balanced panel; the paper's statement that restaurants posted every week refers to its main similarity results (p. 21), while posting frequency includes zero-post weeks (pp. 20-22). Standard DiD was set aside because event-study pre-trends fail, especially for syntactical similarity (PDF p. 27, Appendix A1.1, Figure A1). Not recorded as separate outcomes: Figure 1 (p. 12), model-free weekly similarity in Milan; Table 8 (p. 21), OLS correlations of log likes with similarity and its square; Figures A2-A3, pre-treatment fit. Subgroups (Tables 5-6) and robustness variants (Tables A1-A4) are in measure_detail. To follow form-spec Rule 7, the OpenAI semantic-relatedness variant formerly recorded as S1-O5 is now retained within S1-O3; the other outcome identifiers are unchanged. No effect size has been computed. Causal estimates are regression coefficients with bootstrapped standard errors. The Table 3 descriptives cover 2023 city samples, not human-participant arm means and standard deviations for the causal contrasts. The regression observation is one business-week, aggregating one restaurant's weekly output set; unit='set' is the closest available form code, and does not mean a person or a whole city's pool. n_units records Generalized SCM business-week observations, with the Synthetic DiD count stated separately in reported or measure_detail; the posting-frequency sets may be empty. All people counts remain null. No shared sample, preregistration, data repository, or code repository is stated. Possible document defects are retained as printed: p. 20 cites Table 2 for similarity descriptives that are in Table 3; Appendix A2.1 ends mid-sentence (PDF p. 29); Appendix A4 says the comment coefficients are positive, but Table A5 col. 2 Generalized SCM is -0.042; Table A3 col. 1 prints Generalized SCM -0.002*** with standard error (0.002). PDF pages equal printed pages for pp. 1-26; appendix pages printed A1-A4 are PDF pp. 27-30, followed by printed 5 and 6 (PDF pp. 31-32). Finalization covered the entire markdown, including references and appendices, and checked the recorded numerical values against PDF text. No c013 challenge files were present, so challenge_resolution is empty and its action counts are zero. Spec and clarity changes include grouping the embedding robustness variant, coding the business-week aggregates as sets, distinguishing analyzed business counts from people counts, and removing the unsupported intent-to-treat label. The reconciliation object is unchanged as an audit record and therefore retains the earlier separate S1-O5 and participant-unit coding. Dispositions of all original open_questions appear in final.open_items.",
+ "reconciliation": {
+  "differences": [
+   {
+    "field": "studies[S1].arms (how the two arms are defined)",
+    "a": "Two arms by city group: 'Milan restaurants during the ban' (ai none) and 'Control-city restaurants (Paris, Lyon, Madrid, Valencia)' (ai generative_ai).",
+    "b": "Two arms by access condition: 'ChatGPT access' (control cities in all weeks plus Milan in pre-ban weeks 8-12; generative_ai) and 'ChatGPT ban (Milan, weeks 13-17)' (none).",
+    "resolved": "B's condition-based arms. They match the paper's treatment indicator (one for Milan businesses during the ban, zero otherwise); the descriptions keep A's city-level counts from Table 1. Both arms keep null people counts.",
+    "quote": "The treatment indicator, Diw, equals one for businesses in Milan during the ban period, and θ represents the average treatment effect.",
+    "locator": "p. 12, Section 2.5.1",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[all].contrasts[0].treatment_arm and control_arm",
+    "a": "Treatment = Milan restaurants during the ban; control = control-city restaurants.",
+    "b": "Treatment = ChatGPT access; control = ChatGPT ban (Milan, weeks 13-17).",
+    "resolved": "Treatment = ChatGPT access; control = ChatGPT ban (Milan, weeks 13-17). The paper studies how access to Gen AI affects the outcomes, and the codebook makes the AI condition the treatment arm of an AI-versus-no-AI contrast. Every 'reported' string states that the printed coefficient is the ban's effect (ban minus access).",
+    "quote": "We leverage the country-wide ChatGPT ban in Italy during April 2023 as a natural experiment to examine how access to Gen AI affects content homogenization",
+    "locator": "p. 1, abstract",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[all].contrasts[0].comparison_type",
+    "a": "other",
+    "b": "ai_vs_bau",
+    "resolved": "ai_vs_bau. The comparison is ChatGPT access versus no access, the codebook's 'AI assistance versus no assistance'; the non-random natural-experiment design is carried by design_class = observational. The alternative ('other') is listed in open_questions.",
+    "quote": "This exogenous shock randomizes access to ChatGPT at the city level, enabling us to compare the marketing content in the treatment city with that in the control cities.",
+    "locator": "p. 13, Section 3",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[S1-O1..S1-O5].contrasts[0].direction (sign convention)",
+    "a": "treatment_lower, coded on similarity as printed with the ban as treatment (the ban lowers similarity).",
+    "b": "treatment_lower, coded on diversity with access as treatment (access lowers diversity).",
+    "resolved": "treatment_lower, coded on diversity (codebook sign convention, sign reversed for similarity) with access as treatment: every printed ban coefficient on similarity is negative (Table 4, Table A1), so access raises similarity and lowers diversity. Language style under Synthetic DID (-0.009, 0.007) is negative but not marked significant.",
+    "quote": "The results, reported in Table 4, indicate that the estimated treatment effects are negative across all similarity measures.",
+    "locator": "p. 13, Section 3; p. 14, Table 4; PDF p. 30 (printed A4), Table A1",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[likes].contrasts[0].direction",
+    "a": "treatment_higher (ban arm as treatment: more likes during the ban)",
+    "b": "treatment_lower (access arm as treatment: fewer likes with access)",
+    "resolved": "treatment_lower with access as treatment; printed ban effects on log likes are positive (Generalized SCM 0.035***, Synthetic DiD 0.067***).",
+    "quote": "In Column (1), both methods yield positive and statistically significant effects, suggesting an increase in average likes during the ChatGPT ban period.",
+    "locator": "p. 18, Section 4; p. 19, Table 7",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[word count].contrasts[0].direction",
+    "a": "treatment_lower (ban arm as treatment)",
+    "b": "treatment_higher (access arm as treatment)",
+    "resolved": "treatment_higher with access as treatment; printed ban effects are negative (Generalized SCM -1.210***, Synthetic DiD -0.637***).",
+    "quote": "Our finding indicates a negative effect on post length, with an estimated reduction of approximately one word following the ChatGPT ban.",
+    "locator": "p. 22, Section 5.2 and Table 9, col. (2)",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[posting frequency].contrasts[0].direction",
+    "a": "treatment_lower (ban arm as treatment)",
+    "b": "treatment_higher (access arm as treatment)",
+    "resolved": "treatment_higher with access as treatment; printed ban effects are negative (Generalized SCM -0.061***, Synthetic DiD -0.056***).",
+    "quote": "Column (1) shows a negative effect from the ban on the frequency of posting.",
+    "locator": "p. 21, Section 5.1; p. 22, Table 9, col. (1)",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[all].ai_available_when_produced",
+    "a": "mixed",
+    "b": "yes",
+    "resolved": "yes. The access arm's posts (control cities in all weeks, Milan before March 31) were written with ChatGPT accessible, and the ban arm's posts while it was blocked. This is the codebook's with-AI structure, in which the AI arm has AI while producing the scored output; 'mixed' would describe any two-arm contrast.",
+    "quote": "On March 31, 2023, the Italian Data Protection Authority imposed a blanket ban on ChatGPT, immediately blocking access to its servers for all IP addresses originating from Italy",
+    "locator": "p. 6, Section 2.1",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[S1-O1..S1-O4].primary",
+    "a": "not_stated",
+    "b": "paper_primary",
+    "resolved": "paper_primary. The appendix calls the four-measure analysis the paper's 'main analysis' and 'primary analysis' (PDF pp. 28-29), and p. 21 refers to 'our main results in Section 3'.",
+    "quote": "Our main analysis uses methods that are acknowledged in the past literature to capture the four distinct but related aspects of text.",
+    "locator": "PDF p. 28 (printed A2), Appendix A2.1",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[likes].primary",
+    "a": "secondary",
+    "b": "paper_primary",
+    "resolved": "paper_primary. Likes are the paper's main measure for its second research question (consumer engagement); comments are the alternative metric.",
+    "quote": "To measure consumer engagement, we primarily use the average number of likes received by each business.",
+    "locator": "PDF p. 31 (printed 5), Appendix A4; p. 17, Section 4",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[likes].question",
+    "a": "none",
+    "b": "with_ai",
+    "resolved": "with_ai. The codebook rule: an outcome produced with AI available is across_people when its construct is diversity and with_ai otherwise; 'none' is for outcomes with no AI-assisted producer, such as AI output compared with human output. Likes are a behavioral measure scored on posts written with or without ChatGPT access.",
+    "quote": "To capture consumer engagement, we focus on the average number of likes a business receives per week.",
+    "locator": "p. 17, Section 4",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[posting frequency].question",
+    "a": "none",
+    "b": "with_ai",
+    "resolved": "with_ai, by the same codebook rule (non-diversity outcome, AI available in the access arm).",
+    "quote": "we build the outcome variable Frequencyiw which represents the number of posts by business i in week w.",
+    "locator": "p. 20, Section 5.1",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[word count].measure",
+    "a": "automated_score",
+    "b": "other",
+    "resolved": "automated_score. 'other' is not an allowed measure code in the form spec; a word count computed from the text is closest to an automated score, and measure_detail says it is a plain word count.",
+    "quote": "Next, we evaluate the impact of ChatGPT on post length, measured by word count.",
+    "locator": "p. 21, Section 5.2",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes[posting frequency].measure",
+    "a": "behavioral",
+    "b": "other",
+    "resolved": "behavioral. 'other' is not an allowed measure code; a count of posts from platform activity data is closest to a usage outcome.",
+    "quote": "Weeks with no posts are recorded as a value of 0.",
+    "locator": "p. 21, Section 5.1",
+    "status": "resolved"
+   },
+   {
+    "field": "outcomes list: average comments (Table A5)",
+    "a": "Not listed (A mentions comments only inside the likes outcome's measure_detail).",
+    "b": "Listed as S1-O7 (other, with_ai, behavioral, secondary, no_clear_difference).",
+    "resolved": "Kept as S1-O7 with B's coding; Table A5 numbers checked against PDF p. 32. paper_design_summary now lists comments.",
+    "quote": "We replicate the analysis using the average number of comments as an alternative engagement metric and report the results in Table A5.",
+    "locator": "PDF p. 31 (printed 5), Appendix A4; PDF p. 32 (printed 6), Table A5",
+    "status": "resolved"
+   },
+   {
+    "field": "studies[S1].participants.exclusions",
+    "a": "Lists the balanced Synthetic DiD sample and the one removed negative S-BERT score; omits the Step 1-2 counts and the like-count display restriction.",
+    "b": "Lists the Step 1-2 counts and the restriction to businesses that display like counts; omits the balanced-sample and negative-score restrictions.",
+    "resolved": "Union of both lists; every item checked against pp. 7, 9, 10, 13, and 21. A's computed total of 2,206 businesses is dropped because the paper does not print it.",
+    "quote": "Synthetic DiD relies on a balanced sample, which we construct accordingly. [...] our data includes only posts from businesses that choose to display this information.",
+    "locator": "p. 13, Section 2.5.2; p. 7, footnote 5; p. 7, Section 2.2 and Table 1; p. 9 (negative score); p. 21, Section 5.1",
+    "status": "resolved"
+   },
+   {
+    "field": "one_line_finding",
+    "a": "Similarity estimates only (Generalized SCM -0.003, -0.003, -0.008, -0.013; about 15, 12, 2, 3 percent; Table 4).",
+    "b": "Same similarity estimates with 'all p<0.01', plus log likes +0.035 (Table 7).",
+    "resolved": "Merged sentence with the four Table 4 estimates (all marked *** at the 1 percent level), the relative declines, and the Table 7 log-likes estimate.",
+    "quote": "Based on Generalized SCM estimates, during the ban, the treatment group experienced relative decreases of 15%, 12%, 2%, and 3% in lexical, syntactic, semantic, and language style similarity, respectively, compared to the control group.",
+    "locator": "p. 3, Introduction; p. 14, Table 4; p. 19, Table 7",
+    "status": "resolved"
+   }
+  ],
+  "agreed_fields_checked": [
+   {
+    "field": "studies[S1].design_class",
+    "value": "observational (natural experiment; one treated city vs four control cities)",
+    "quote": "As one of the first attempts to assess the impact of Gen AI on marketing content homogenization using observational data",
+    "locator": "p. 22, Section 6",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].assignment.randomized (how assignment was done)",
+    "value": "no: the authors chose the treated and control cities; the variation is a government ban, not a random draw",
+    "quote": "To establish a treatment and control group, we designate Milan as the treatment city and select four other European cities—Paris, Lyon, Madrid, and Valencia—as the control group.",
+    "locator": "p. 6, Section 2.2",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].assignment.what_was_assigned (source of variation)",
+    "value": "Italy's ChatGPT ban used as a natural experiment",
+    "quote": "To address this, we leverage the temporary ban imposed by the Italian government on ChatGPT in 2023 as a natural experiment to identify the effects of Gen AI on marketing outcomes.",
+    "locator": "p. 3, Introduction",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].participants.n_analyzed (people analyzed)",
+    "value": "null; counts_are other. Units are restaurant businesses; regressions count business-weeks (12,004 Generalized SCM, 5,780 Synthetic DID in Table 4); no people count and no per-regression business count is printed",
+    "quote": "This process yields a panel data structure where each observation corresponds to a business’s similarity metric in a week when it posted.",
+    "locator": "p. 10, Section 2.3; p. 14, Table 4",
+    "confirmed": true
+   },
+   {
+    "field": "studies[S1].participants (business counts)",
+    "value": "Valid businesses (Table 1, Step 3): Milan 486, Paris 429, Lyon 432, Madrid 544, Valencia 315; no total printed",
+    "quote": "The number of businesses retained at each filtering step is summarized in Table 1.",
+    "locator": "p. 7, Section 2.2 and Table 1",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[S1-O1..S1-O5].scored_on_output and eligibility.criterion_3",
+    "value": "true / met: similarity is computed on the text of the businesses' Instagram posts",
+    "quote": "we calculate pairwise text similarities among all Instagram posts generated by different businesses within a given week in a city.",
+    "locator": "p. 8, Section 2.3",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[S1-O1..S1-O5].question and diversity_detail.computed_over",
+    "value": "across_people; each business's posts compared with every other business's posts in the same city and week",
+    "quote": "we compute, for each business, the average pairwise similarity score between its posts and those of every other business during the same week in the same city.",
+    "locator": "p. 10, Section 2.3",
+    "confirmed": true
+   },
+   {
+    "field": "AI availability when the output was produced (fact behind ai_available_when_produced)",
+    "value": "ChatGPT accessible in the control cities throughout and in Milan before March 31, 2023; blocked in Milan during the ban; actual use not observed",
+    "quote": "Since we do not observe direct usage data, we turn to two proxies to explore heterogeneity in ChatGPT usage",
+    "locator": "p. 14, Section 3.1; p. 6, Section 2.1",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[all].timing and task.duration",
+    "value": "immediate; posts written in weeks 8 to 17 of 2023, ban in weeks 13 to 17",
+    "quote": "Our modeling period extends from week 8 to week 17 of 2023, when the ban started on week 13 (week commencing 27 March 2023) and ended on week 17.",
+    "locator": "p. 13, Section 3",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[S1-O1..S1-O4].contrasts (Table 4 numbers)",
+    "value": "Generalized SCM -0.003*** (0.001), -0.003*** (0.001), -0.008*** (0.002), -0.013*** (0.004), Observations 12,004, 12,004, 12,004, 10,354; Synthetic DID -0.001*** (0.000), -0.003*** (0.001), -0.009*** (0.001), -0.009 (0.007), Observations 5,780, 5,780, 5,780, 4,420",
+    "quote": "Specifically, under the Generalized SCM estimator, the ban is associated with a reduction of 0.003 in lexical and syntactical similarity, 0.008 in semantic similarity, and 0.013 in language style similarity.",
+    "locator": "p. 13, Section 3; p. 14, Table 4 (PDF page checked)",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[S1-O5] (Table A1 numbers; primary = secondary)",
+    "value": "Generalized SCM -0.022*** (0.001), Observations 12,004; Synthetic DID -0.011*** (0.001), Observations 5,780; a robustness check",
+    "quote": "As a robustness check, we also construct a fifth similarity metric using OpenAI embedding and find consistent results.",
+    "locator": "p. 14, Section 3; PDF p. 30 (printed A4), Table A1",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[likes, word count, posting frequency].contrasts (Tables 7 and 9 numbers)",
+    "value": "Table 7: log likes Generalized SCM 0.035*** (0.009), Observations 11,191; Synthetic DiD 0.067*** (0.0198), Observations 5,070; 5% winsorized 8.277*** (3.636) and 8.047 (6.915). Table 9: frequency -0.061*** (0.024) and -0.056*** (0.019), Observations 21,530 each; word count -1.210*** (0.283), Observations 12,004, and -0.637*** (0.220), Observations 5,780",
+    "quote": "Finally, using the same estimation strategy, we find that both the frequency of posting and the average word count are significantly lower in the ban period",
+    "locator": "p. 4, Introduction; p. 19, Table 7; p. 22, Table 9 (PDF pages checked)",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[word count].construct, question, n_units",
+    "value": "elaboration; with_ai; 12,004 business-weeks (no observation in weeks without posts)",
+    "quote": "The outcome is the AverageWordCountiw, the average word count of business i during week w, with results reported in Column (2) of Table 9.",
+    "locator": "p. 22, Section 5.2",
+    "confirmed": true
+   },
+   {
+    "field": "outcomes[all].unit and n_units",
+    "value": "participant (one business-week); n_units 12,004 (S1-O1 to S1-O3, S1-O5, S1-O7, S1-O8), 10,354 (S1-O4), 11,191 (S1-O6), 21,530 (S1-O9)",
+    "quote": "The number of observations differs from Column (1) because if a business does not post in a given week, no observation is recorded for that period.",
+    "locator": "p. 22, Section 5.2; p. 14, Table 4; p. 19, Table 7; p. 22, Table 9; PDF p. 32, Table A5",
+    "confirmed": true
+   },
+   {
+    "field": "task.type (real marketing output) and eligibility.context_class",
+    "value": "creative_writing; observational context (real posts compared across places and time)",
+    "quote": "Therefore, we focus on text-based marketing content created by businesses on Instagram.",
+    "locator": "p. 5, Section 2",
+    "confirmed": true
+   },
+   {
+    "field": "eligibility.criterion_2_at_least_50_people",
+    "value": "unclear: hundreds of businesses per city, but businesses are not counted people",
+    "quote": "For each city, we report the number of businesses, along with key statistics for social media activity, including the number of posts per business, the like count, and the word count of posts.",
+    "locator": "p. 7, Section 2.2; p. 8, Table 2",
+    "confirmed": true
+   },
+   {
+    "field": "company_involvement.any",
+    "value": "false: no funding or acknowledgment statement; public data scraped with Apify",
+    "quote": "To capture the restaurants in these cities, we use Apify (https://console.apify.com/) to scrape public information from Google Maps.",
+    "locator": "p. 1 (affiliations); p. 7, Section 2.2",
+    "confirmed": true
+   },
+   {
+    "field": "source.supplement (omitted by both raw forms; added here)",
+    "value": "exists yes; in this PDF (Appendices A1-A4, PDF pp. 27-32); no online supplement mentioned",
+    "quote": "We refer the readers to Appendix A2.2 and A2.3 for details.",
+    "locator": "p. 14, Section 3",
+    "confirmed": true
+   }
+  ],
+  "n_differences": 17,
+  "n_unresolved": 0
+ },
+ "final": {
+  "core": "no",
+  "criteria": {
+   "random_assignment_of_ai": "not_met",
+   "at_least_50_people": "unclear",
+   "outcome_scored_on_output": "met"
+  },
+  "challenge_resolution": [],
+  "open_items": [
+   {
+    "item": "Comparison coding (open_questions[0]): retain ai_vs_bau to describe accessible ChatGPT versus the ban, with observational design recorded separately. This is a descriptive coding choice, not a randomized contrast. Printed coefficients remain ban minus access; the form's direction describes access and reverses similarity to diversity (p. 12, Section 2.5.1; p. 14, Table 4). No additional source is needed; this does not alter any eligibility criterion.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "Question code (open_questions[1]): retain across_people for similarity. The analysis compares marketing output under accessible versus blocked ChatGPT across places and weeks (pp. 6, 12-14); it does not establish a period of individual AI use followed by an unassisted follow-up, and direct usage is unobserved (p. 14, Section 3.1). A carryover effect of prior AI use is not identified. No eligibility criterion depends on this descriptive question code.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "People count (open_questions[2]): restaurant businesses and business-week observations cannot be substituted for people under the codebook. The number of distinct human content producers represented in the analyzed sample is not stated (pp. 7-8, Tables 1-2; p. 10, Section 2.3). Author documentation of that number would settle criterion 2; it cannot overcome the failure of criterion 1. People counts remain null.",
+    "affects_eligibility": true,
+    "settled_by": "authors"
+   },
+   {
+    "item": "Scope of likes, comments, posting frequency, and word count (open_questions[3]): retain these as ancillary with_ai outcomes describing engagement, volume, and elaboration (pp. 17-22, Sections 4-5; PDF pp. 31-32, Appendix A4). They are not evidence of a creativity rating. Criterion 3 is independently met by the output-based similarity measures (pp. 8-10, Section 2.3), so no further source is needed for eligibility.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "Measure codes for counts (open_questions[4]): retain automated_score for computed word count and behavioral for posting frequency as the closest allowed labels, with their exact meanings stated in measure_detail (pp. 20-22, Sections 5.1-5.2). Neither label changes the output-similarity evidence or any eligibility criterion; no additional source is needed.",
+    "affects_eligibility": false,
+    "settled_by": "nothing_needed"
+   },
+   {
+    "item": "Bootstrap and city clustering (open_questions[5]): unresolved. Section 2.5.1 reports non-parametric bootstrapping, while table notes also report city-clustered standard errors (p. 12; p. 14, Table 4; PDF p. 30, Table A1). The PDF and included appendices do not specify how these are combined. The authors' resampling procedure or analysis code would settle the precision question; none of the three eligibility criteria depends on it.",
+    "affects_eligibility": false,
+    "settled_by": "authors"
+   }
+  ],
+  "n_corrected": 0,
+  "n_rejected": 0,
+  "n_open": 0
+ }
+}

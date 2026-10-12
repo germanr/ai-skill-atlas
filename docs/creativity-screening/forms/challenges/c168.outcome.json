@@ -1,0 +1,41 @@
+{
+  "cid": "c168",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S1-O4",
+      "field": "unit (and the evidence listed in contrasts[0].reported)",
+      "form_value": "participant. The reported string puts W = 12652 (absolute count), 1519.5 (average per participant), and the Figure 6 *** under this one unit.",
+      "source_says": "Only the per-participant average test (1519.5) is at the participant level. The absolute-count test (W = 12652, above the 2,401 maximum for 49 vs 49 people) and Figure 6 use one value per participant and image. In the PDF's vector data, Figure 6 plots integers only (human-only median 5, quartiles 4 and 6; human-AI median 6, quartiles 4 and 9; outliers 18, 19, 19, 20, 21), and the text gives 21 as one participant's total for one image. The paper gives no n for either test. At the 49 per arm that the favorite counts imply (441 = 49 x 9), neither printed p < 0.001 reproduces under the normal approximation: W = 1519.5 gives p of about 0.02 at 49 vs 49, and W = 12652 gives p of about 0.01 at 147 vs 147. So 'participant' does not describe the absolute-count test or Figure 6, and the n behind the participant-level test is unknown. Fix: keep 'participant' for the 1519.5 test only. In measure_detail, say that the absolute-count test and Figure 6 use participant-image rows, and that the printed p-values do not reproduce at 49 per arm.",
+      "quote": "During ideation, participants created an average of 6.1 ideas (sd: 3.2) with one participant managing to come with a total of 21 ideas for one of the images.",
+      "locator": "p. 6, Section 4.1.1 and Figure 6 (vector data: 0 ideas at y = 233.74 pt, 20 ideas at y = 108.67 pt); p. 4, Section 3.2 (882 favorites, all 441 human-AI favorites usable)"
+    },
+    {
+      "where": "S1-O1, S1-O2, S1-O3 (same issue in S2-O1, S2-O2, S2-O3)",
+      "field": "unit",
+      "form_value": "output (n_units 300 for S1, 450 for S2). The form's own reconciliation marks this 'unresolved'.",
+      "source_says": "No sentence says whether the ANOVA, Kruskal-Wallis, and pairwise tests use single ratings or one score per meme. The paper also does not say how a meme's ratings were combined or what the rating scale was. The code rests on inference from printed statistics. I recomputed all 12 Shapiro-Wilk p-values in Table 1 with the Royston approximation. Each falls inside the range its rounded W implies at n = 450 overall and n = 150 per topic, and each would be below 1e-6 at single ratings (about 4,900 overall). So 'output' is the best-supported code, but the text does not state it, and form-spec rule 1 asks for what the document states.",
+      "quote": "In the survey, we displayed a random sample of 50 images to each participant. For each image, the participated provided feedback along three dimensions: humor, creativity and shareability.",
+      "locator": "p. 5, Section 3.2; p. 7, Section 4.2; p. 8, Table 1 (Shapiro-Wilk columns)"
+    }
+  ],
+  "confirmed": [
+    "S1-O1 to S1-O3 are scored on the memes by a second Prolific sample (98 of 100 completed, each rating at least 50 images), not by the creators. They are rater scores on the output, not self-reports (p. 5, Section 3.2; p. 6, Section 3.6).",
+    "S1-O4 counts the ideas logged in each participant's idea list, a computed count on the output. The form correctly notes that ideas in the LLM's responses were added to the list automatically in the human-AI arm (p. 4, Section 3.1; p. 6, Section 3.5).",
+    "AI availability: the GPT-4o chat panel was present only in the ideation step, when the captions were written. Favorite selection and image creation had no AI (p. 4, Section 3.1; p. 8, Section 5.1). The researchers re-rendered each favorite caption on its template before rating, so the rated content is the caption (p. 4, Section 3.2). 'yes' and 'with_ai' are correct for S1-O1 to S1-O4.",
+    "The study ran in one session, so no after_ai outcome exists (p. 9, Section 6.1). No outcome compares similarity across people, so no across_people outcome is missing.",
+    "Constructs: the 'creative' rating is overall_creativity, the idea count is fluency, and the 'funny' and 'shareable' ratings are other. c006 also codes a funniness rating as other (p. 7, Section 4.2).",
+    "Figure 8 marks, read from the PDF's vector data (violin centers 138.8/174.1/209.3, 273.3/308.6/343.9, and 407.9/443.1/478.4 pt): Funny H vs AI ** and HAI vs AI *. Creative H vs AI * and HAI vs AI **. Shareable H vs AI * only. No bracket joins the two human arms. Each star sits at its bracket's midpoint. All S1 and S2 directions match (p. 7, Figure 8).",
+    "Section 4.2 supports no_clear_difference for every S1 contrast ('Memes created by humans with the help of the LLM were not rated significantly different than those from the baseline') and for the S2-O3 AI-only vs human-AI contrast (shareability named as the only exception) (p. 7).",
+    "Every Table 1 number in the S1 and S2 reported strings matches the PDF. Kruskal-Wallis underlines sit under 11.761, 11.22, 8.470, 3.455, and 4.701. All 12 omnibus p-values recompute from the printed F or chi-squared with df = 2 (p. 8, Table 1).",
+    "S1-O4 numbers match the text: Shapiro-Wilk W = 0.811 and 0.820, both p < 0.001; Mann-Whitney W = 12652 and 1519.5, both p < 0.001; pooled 6.1 ideas (sd 3.2). The text cites Figure 7 for the idea plot, which is Figure 6 (p. 6, Section 4.1.1).",
+    "S1-O3 measure_detail is right: the text prints the shareability Shapiro-Wilk p as < 0.001, and Table 1 prints 0.001 (p. 7, Section 4.2; p. 8, Table 1).",
+    "The Figure 8 caption does list '**: p < 0.001' after '**: p < 0.01' (p. 7, Figure 8 caption).",
+    "Each condition has 150 rated memes, with the 300 AI-only memes sampled down to 150. So n_units 300 (S1) and 450 (S2) follow (p. 5, Section 3.2 and Figure 5).",
+    "S2 'question: none' follows the form-spec field note on question, whose example is AI output compared with human output. 'mixed' AI availability fits a comparison of GPT-4o output with human output (p. 4, Section 3.1; form-spec, Field notes).",
+    "No outcome is missing. The top-4 memes (Figure 1, Section 5.3) are descriptive and are recorded as a variant. NASA-TLX, effort, perceived idea count, ownership, and self-assessed creativity are self-reports and are rightly left out (p. 6, Section 3.5; p. 7, Sections 4.1.2 and 4.1.3; p. 9, Section 5.3)."
+  ],
+  "summary": "Criterion 3 holds: a separate crowd sample rated the creativity, funniness, and shareability of the participants' memes, and the with_ai question, AI availability, constructs, Figure 8 marks, and every Table 1 number check out against the PDF. The coding is refuted on unit alone: S1-O4's 'participant' fits only the per-participant average test (the absolute-count test and Figure 6 use participant-image rows, and neither printed p < 0.001 reproduces at 49 per arm), and the 'output' unit of the rating outcomes is a sound inference from the Shapiro-Wilk results that the paper never states."
+}

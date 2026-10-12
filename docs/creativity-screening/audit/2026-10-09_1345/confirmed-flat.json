@@ -1,0 +1,211 @@
+[
+ {
+  "id": "prose-1",
+  "cid": null,
+  "section": "How the screening was done",
+  "location": "Line 21, Short-form pipeline: \"went through one screener, an independent checker who found every passage again\"; line 33 reports 186 short forms.",
+  "claim": "The short-form papers went through an independent checker after the initial screener.",
+  "problem": "The recorded review coverage does not support this description for the whole short-form set. Of 186 short forms, only 129 have a corresponding checker file; 57 have neither a checker file nor any job recorded in the supplied Codex job logs. The prose should distinguish those 57 from the documented checked forms.",
+  "evidence": "forms/c*.json: 186 forms have a screener value beginning with \"single\". Matching those cids to forms/checks/<cid>.json yields 129 existing files and 57 missing files. codex-jobs/jobs-*.jsonl contains no job for any of the 57 missing cids. The missing cids are c027, c046, c048, c049, c050, c053, c058, c062, c066, c069, c074, c076, c080, c083, c084, c085, c086, c087, c090, c092, c093, c095, c102, c104, c105, c110, c111, c113, c114, c115, c118, c124, c125, c129, c133, c134, c138, c139, c142, c143, c144, c145, c146, c149, c151, c152, c154, c155, c156, c157, c160, c162, c163, c164, c166, c167, c169. For example, forms/c027.json and forms/c066.json have screener=\"single\", but neither has a corresponding checker record. tools/codex_pipeline.py, light_check_prompt, specifies forms/checks/<cid>.json as the checker output.",
+  "severity": "serious",
+  "verdict": {
+   "id": "prose-1",
+   "cid": null,
+   "verdict": "confirmed",
+   "fix_target": "prose",
+   "field": "report-prose.md:21, first sentence of Short-form pipeline",
+   "correct_value": "Context papers, experiments under 50 people, designs that the abstract called non-random, and experiments whose abstract did not say how people were assigned went through one screener and citation checking. Of the 186 short forms, 129 have a saved independent checker record; the remaining 57 have no saved checker record and no matching job in the supplied Codex job logs. The checker protocol required finding each cited passage independently and using a fixer when the checker disagreed.",
+   "evidence": "The assembled report, creativity-screening-2026-10-04.md:21, describes independent checking as completed for the short-form set; report-prose.md:21 contains that wording. Independently enumerating forms/c<digits>.json gives 186 forms whose screener starts with single. Exactly 129 have a matching forms/checks/<cid>.json; all 129 parse and identify the matching cid. The other 57 have no checker file. Parsing every record in the six codex-jobs/jobs-*.jsonl files finds no reference to any of those 57 cids. For example, c027 and c066 have screener=single and no checker file or job. All 186 short forms have citation-check files. tools/codex_pipeline.py:332-348 defines the independent checker and requires its output at forms/checks/<cid>.json; lines 352-361 define the fixer. The records support documented checking for 129 forms, not the blanket completion claim; absence of records does not establish that undocumented checking was impossible."
+  }
+ },
+ {
+  "id": "prose-2",
+  "cid": null,
+  "section": "Decisions for Review 1",
+  "location": "Item 2, line 52: \"7 of them report only the number randomized\".",
+  "claim": "Seven of the 27 small experiments report a randomized count but no analyzed count.",
+  "problem": "Seven is the number lacking an analyzed count, not the number reporting a randomized count. Only five of those seven have a randomized count recorded for the randomized study. The other two report recruited participants and leave both randomized and analyzed counts null.",
+  "evidence": "report-data.json: n_small_without_analyzed_count=7; the seven small-status cids absent from small_n are c018, c250, c614, c644, c683, c983 and c996. forms/c018.json studies[0].participants has n_randomized=null and n_analyzed=null; its exclusions explicitly say that 38 were recruited and the assignment-stage count is not separately reported. forms/c996.json studies[0].participants also has both counts null; its quote reports 20 recruits and one incomplete participant. The other five randomized studies record n_randomized as 20 (c250/S1), 48 (c614/S2), 27 (c644/S1), 40 (c683/S2), and 12 (c983/S1). The report table likewise shows \"not reported\" without a randomized count for c018 and c996.",
+  "severity": "serious",
+  "verdict": {
+   "id": "prose-2",
+   "cid": null,
+   "verdict": "confirmed",
+   "fix_target": "prose",
+   "field": "report-prose.md:44, phrase '{{n_small_unreported}} of them report only the number randomized'",
+   "correct_value": "{{n_small_unreported}} of them have no analyzed participant count recorded",
+   "evidence": "The assembled report:52 says seven report only the number randomized. report-data.json has 27 small-status papers, 20 entries in small_n, and n_small_without_analyzed_count=7. The seven absent from small_n are c018, c250, c614, c644, c683, c983, and c996; their randomized studies all have participants.n_analyzed=null. Only five have a recorded n_randomized: c250/S1=20, c614/S2=48, c644/S1=27, c683/S2=40, and c983/S1=12. I opened their retrieval.json pdf_path files with PyMuPDF and checked PDF p. 5 Sections 3.1-3.2 (c250), p. 8 Participants/Design study and Table 2 (c614), p. 6 Section 3.4 (c644: randomized teams with 16 and 11 students), p. 9 Section 5.1 (c683: 40 individuals in randomized teams), and p. 10 Sections 5.1-5.2 (c983: 12 students and randomized within-person conditions). forms/c018.json and forms/c996.json have both n_randomized and n_analyzed null. The c018 PDF, pp. 14-15 Appendix A.1, reports 38 recruits, filtering an unspecified number after their first session, and reassignment of sessions; it does not separately resolve the assignment-stage and analyzed-person totals. The c996 PDF, p. 6 Sections 4.1-4.2, reports 20 recruits and one person completing only the no-plugin sprint, without a separate randomized-person total. The report rows at lines 1682 and 1697 accordingly say not reported without a randomized count. tools/build_report.py:189-198 counts missing analyzed counts; tools/assemble_report.py:107 correctly inserts that count. The unsupported interpretation originates in report-prose.md, so the correction renders as seven lacking a recorded analyzed count."
+  }
+ },
+ {
+  "id": "prose-3",
+  "cid": null,
+  "section": "Experiments with full text not obtained",
+  "location": "Line 1436: \"These 225 papers\" and \"docs/creativity-screening/to-download.html lists the same papers\".",
+  "claim": "The linked download list contains the same 225 papers as the report's full-text-not-obtained section.",
+  "problem": "The download list contains a different set: 264 distinct papers, only 224 of which belong to the report's 225-paper set. It omits c493 and adds 40 papers in other report statuses, including the core paper c044. Readers following the download instructions therefore receive a different worklist.",
+  "evidence": "to-download.html contains 264 li entries with 264 distinct cids; its heading counts are 181 experiments, 54 small experiments, and 29 context papers. report-data.json status_by_cid contains 225 no_fulltext cids, matching the 225 report table rows. Comparing the sets yields missing c493 and 40 extra cids: c027, c028, c029, c044, c046, c048, c049, c058, c061, c062, c063, c069, c071, c077, c085, c086, c090, c092, c095, c102, c104, c110, c111, c113, c115, c125, c129, c134, c138, c139, c143, c144, c146, c149, c151, c152, c155, c163, c164, c604. report-data.json status_by_cid.c044=\"core\"; c493 appears in the report at line 1569 but is absent from to-download.html.",
+  "severity": "blocker",
+  "verdict": {
+   "id": "prose-3",
+   "cid": null,
+   "verdict": "confirmed",
+   "fix_target": "builder",
+   "field": "tools/assemble_report.py:163, sentence beginning '`docs/creativity-screening/to-download.html` lists the same papers'",
+   "correct_value": "Use the links in this section's table as the current download list. `docs/creativity-screening/to-download.html` contains a different set: 264 papers, comprising 224 of the 225 listed here and 40 papers in other report statuses; it omits c493.",
+   "evidence": "The assembled report:1436 claims that to-download.html lists the same 225 papers. I parsed the HTML li elements and found 264 entries with 264 distinct cids; its three section headings state 181 experiments, 54 small experiments, and 29 context papers. Independently extracting cids from the report section gives 225 table rows with 225 distinct cids, exactly matching status_by_cid=no_fulltext in report-data.json. The intersection with the HTML list has 224 cids. The only missing cid is c493, present at report:1569. The 40 extra cids are c027, c028, c029, c044, c046, c048, c049, c058, c061, c062, c063, c069, c071, c077, c085, c086, c090, c092, c095, c102, c104, c110, c111, c113, c115, c125, c129, c134, c138, c139, c143, c144, c146, c149, c151, c152, c155, c163, c164, and c604. c044 appears in to-download.html:55 but is core in report-data.json and the recommended-core table at report:85. The inaccurate same-papers sentence is hard-coded in tools/assemble_report.py:163, not in report-prose.md or a screening form; the correction therefore belongs in the assembler."
+  }
+ },
+ {
+  "id": "tables-00-1",
+  "cid": "c044",
+  "section": "Recommended for the core dataset",
+  "location": "Cui and Li (2026) [c044] row, Supplement cell (report line 85)",
+  "claim": "not on file",
+  "problem": "The appendices are on file in the saved publisher article text. The table converts in_this_pdf=false into a missing-material label even though this paper has no local PDF and its appendices are included in the available text. The cell should identify the appendices as available in the saved article text.",
+  "evidence": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c044.json: source.pdf_file is null; source.supplement.exists is yes; source.supplement.where states: \"Appendices A-C are included in the saved publisher article text\" and \"in_this_pdf=false does not mean the appendices are missing from the source text.\" Independently verified in C:/Dropbox/Research/ai-lab/literature/creativity/Cui et al (2026) - Can Gen AI Improve Creativity in Students with Low Academic Performance - publisher HTML text.md: Appendix A and Table A1 at lines 281 and 283, Appendix B and Table B1 at lines 295 and 297, and Appendix C and Table C1 at lines 314 and 316, with their contents present.",
+  "severity": "serious",
+  "verdict": {
+   "id": "tables-00-1",
+   "cid": "c044",
+   "verdict": "confirmed",
+   "fix_target": "builder",
+   "field": "tools/build_report.py:256; Recommended for the core dataset table, c044 Supplement cell",
+   "correct_value": "Appendices A-C available in saved publisher article text",
+   "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:85 labels the c044 Supplement cell \"not on file\"; report-generated.md:38 contains the same row. tools/build_report.py:255-257 assigns \"not on file\" whenever source.supplement.exists is \"yes\" and in_this_pdf is false, without considering the available article text. forms/c044.json correctly records source.pdf_file=null, source.supplement.exists=\"yes\", in_this_pdf=false, and source.supplement.where states that Appendices A-C are included in the saved publisher article text. Independently read C:/Dropbox/Research/ai-lab/literature/creativity/Cui et al (2026) - Can Gen AI Improve Creativity in Students with Low Academic Performance - publisher HTML text.md:281-338: Appendix A and Table A1 at lines 281-294 include intervention activities and teacher scaffolding; Appendix B and Table B1 at lines 295-313 include scoring rules and a worked example; Appendix C and Table C1 at lines 314-338 include the homogeneity-test table and its rows. These are present contents, not merely appendix references. The source is an HTML text export with no page numbers, as its header states; retrieval.json also records pdf_path=null and this md_path. The form is correct; the builder must render the appendices as available in the saved text."
+  }
+ },
+ {
+  "id": "tables-03-1",
+  "cid": "c205",
+  "section": "Candidates that need clarification",
+  "location": "Report line 1393, c205 row, People analyzed, by study cell, fourth study",
+  "claim": "234; 205; 157; 1,941 other (WildChat users pursuing their own creative projects. The paper reports 1,941…)",
+  "problem": "The truncation removes the definition and limitation of the fourth count: 1,941 represents hashed-IP user identifiers, not a verified count of distinct people. The remaining label \"other\" and reference to WildChat users do not explain that multiple people can share an identifier or one person can have several. In a column headed \"People analyzed, by study\", retain the form's qualification, for example \"1,941 hashed-IP user identifiers; distinct-person count unverified\".",
+  "evidence": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c205.json, studies[3].participants: n_analyzed = 1941, counts_are = \"other\". The who field states: \"The paper reports 1,941 unique users in product-creativity analyses, inferred from hashed IPs; it explicitly notes that shared or multiple IPs make this an imperfect proxy for people.\" It also states that this is \"not a verified count of distinct individuals.\" Independently checked the source PDF, Beaty and DiStefano (2026) - Human direction drives creativity with large language models.pdf: p. 41 gives the filtered sample of 1,941 users; p. 42, User-Level Aggregation, explains that identifiers are hashed IPs and that multiple users can share an IP while one user can use multiple IPs.",
+  "severity": "minor",
+  "verdict": {
+   "id": "tables-03-1",
+   "cid": "c205",
+   "verdict": "confirmed",
+   "fix_target": "builder",
+   "field": "tools/build_report.py:108, count_text(part); c205 fourth study in Candidates that need clarification / People analyzed, by study",
+   "correct_value": "1,941 hashed-IP user identifiers (distinct-person count unverified)",
+   "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1389,1393 labels the column People analyzed, by study and renders its fourth entry as 1,941 other (WildChat users pursuing their own creative projects. The paper reports 1,941…). C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/report-generated.md:1344 contains the same entry. Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Beaty and DiStefano (2026) - Human direction drives creativity with large language models.pdf with PyMuPDF: PDF p. 41, Final Analytic Sample, reports 1,941 unique users in the filtered product-scoring sample; PDF p. 42, User-Level Aggregation, identifies users by hashed IP addresses and explicitly says multiple users can share an IP and one user can use multiple IPs. C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c205.json, studies[3].participants, correctly records n_analyzed=1941, counts_are=other, and both the hashed-IP definition and the distinct-person limitation in who. C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/tools/build_report.py:108 truncates who to 80 characters, dropping these qualifications; lines 289-292 render this text under the people-count heading. Evaluating only cell and count_text in memory reproduced the report cell exactly. Preserve the count unit and limitation in the builder output; the form value is already supported."
+  }
+ },
+ {
+  "id": "classes-00-1",
+  "cid": "c174",
+  "section": "Recommended for the core dataset",
+  "location": "Abdulhai et al. (2026) [c174] row, report line 70; corresponding recommended-paper notes at line 162",
+  "claim": "Recommended for the core dataset; report-data.json status_by_cid.c174 = core.",
+  "problem": "The qualifying diversity result compares controls with subgroups defined by actual AI use, not with the randomized AI-access arm. Random assignment to access does not make these use-selected comparisons randomized. The creativity rating is self-reported and cannot supply the missing qualifying outcome. Supported status: context (observational comparisons by actual use, plus AI-versus-human revision evidence in S2). Core inclusion would require an output-based creativity/diversity comparison of the assigned arms.",
+  "evidence": "creativity-codebook.md sections 3-4 require randomized AI assistance with an eligible output outcome and code design per estimate. forms/c174.json studies[S1].assignment.what_was_assigned says the LLM and LLM-Influenced groups were not randomized arms; S1-O1.measure_detail says no combined AI-access-versus-control estimate is printed, and both recorded contrasts select use subgroups. S1-O5.scored_on_output is false; eligibility.context_class is ai_vs_human. Independently checked C:/Dropbox/Research/ai-lab/literature/creativity/Abdulhai et al (2026) - How LLMs Distort Our Written Language.pdf: p. 4 randomizes access; p. 5 defines LLM-Influenced using self-reported generation of less than 40% of the text, checked against transcripts; pp. 8-9, Figure 4b and section 4.2, compare heavy-use and low-use groups separately with controls. PDF p. 24 asks how creative writers felt. PDF pp. 5-6 describe S2 as automated revisions of archived human drafts, not AI assistance assigned to those writers.",
+  "severity": "blocker",
+  "verdict": {
+   "id": "classes-00-1",
+   "cid": "c174",
+   "verdict": "confirmed",
+   "fix_target": "form",
+   "field": "forms/c174.json: final.core; eligibility.core; eligibility.reason; final.open_items[1].item; final.open_items[1].affects_eligibility",
+   "correct_value": "Set final.core and eligibility.core to \"no\". Retain as context evidence. Replace eligibility.reason with: \"S1 randomized access to AI, but its reported diversity comparisons select extensive-use and low-use subgroups after assignment. These are observational comparisons of actual use, not comparisons of the randomized access arms (PDF pp. 4-5, 8-9, Figure 4b and Section 4.2). Self-reported creativity does not qualify (PDF p. 24, Appendix A.6). S2 compares automated revisions of archived drafts with human revisions and supplies AI-versus-human context (PDF pp. 5-6). No reported comparison establishes an eligible randomized creativity/diversity effect.\" Replace final.open_items[1].item with: \"A diversity comparison of the full randomized AI-access arm against the no-AI arm is needed before S1 can contribute core evidence. The currently reported actual-use subgroup comparisons are observational; this is an eligibility issue, not only a missing-precision issue (PDF pp. 4-5, 8-9).\" Set final.open_items[1].affects_eligibility to true.",
+   "evidence": "The assembled report C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md puts c174 in the core table at line 70; lines 167 and 170 acknowledge the selected-use contrast but treat the missing assigned-arm result only as a pooling limitation. I opened C:/Dropbox/Research/ai-lab/literature/creativity/Abdulhai et al (2026) - How LLMs Distort Our Written Language.pdf using PyMuPDF: p. 4 assigns access/no access; p. 5 defines LLM-Influenced by actual use, including self-reported generation of less than 40% of the essay checked against transcripts. Figure 4b on p. 8 and Section 4.2 on pp. 8-9 compare controls separately with extensive-use and LLM-Influenced writers, without a full assigned-access diversity contrast. The creativity question on p. 24 asks how creative the writer felt. Pages 5-6 describe researchers generating revisions of archived human drafts for S2. C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-codebook.md Sections 3-4 require randomized assistance for core evidence, put nonrandom comparisons in observational context, and code design per estimate. forms/c174.json correctly describes the subgroup selection in S1-O1, but eligibility.core and final.core both say yes. tools/build_report.py lines 127-139 faithfully classify that finalized yes as core; the error is in the form verdict."
+  }
+ },
+ {
+  "id": "classes-00-2",
+  "cid": "c249",
+  "section": "Recommended for the core dataset",
+  "location": "Chen et al. (2026) [c249] row, report line 82; recommended-paper note stating that mixed-group output scores satisfy criterion 3",
+  "claim": "Recommended for the core dataset; report-data.json status_by_cid.c249 = core, with the mixed-group consensus measure treated as a qualifying across_people outcome.",
+  "problem": "The qualifying consensus score pools independently generated AI descriptions with human descriptions. It therefore does not establish diversity across human participants' outputs, as required by the codebook. Whether a human-output comparison is available remains explicitly unresolved in the form, but is marked as not affecting eligibility. Supported status: needs clarification of criterion 3 before recommending the paper for the core dataset.",
+  "evidence": "creativity-codebook.md section 3 requires creativity or diversity scored on participants' output, and section 6 specifies that diversity always compares different people. forms/c249.json S1-O1.diversity_detail.notes says the score pools human and AI descriptions and does not isolate diversity across human writers; final.open_items[6] leaves human-only similarity/content estimates to posted data while marking affects_eligibility=false. Independently checked C:/Dropbox/Research/ai-lab/literature/creativity/Chen Liu Hu Li (2026) - AI agents reshape consensus formation in human groups.pdf: p. 7, Methods M1 equations 1-2, computes consensus over all pairs among N=24 players and then averages over every player; p. 16, Game Procedure, explicitly defines these 24 as a mixture of human players and LLM agents who independently submit descriptions. The human-human similarity in Figure 3a is a baseline comparison before convergence (PDF pp. 4 and 14), not the missing human-output treatment contrast. The form identifies the remaining content/attribution scores as other rather than creativity, and its adoption/influence comparisons are human-versus-agent strata within conditions rather than randomized human arms.",
+  "severity": "blocker",
+  "verdict": {
+   "id": "classes-00-2",
+   "cid": "c249",
+   "verdict": "confirmed",
+   "fix_target": "form",
+   "field": "forms/c249.json: final.core; eligibility.core; final.criteria.outcome_scored_on_output; eligibility.criterion_3_outcome_scored_on_output; eligibility.reason; final.open_items[6].item; final.open_items[6].affects_eligibility",
+   "correct_value": "Set final.core and eligibility.core to \"unclear\"; set final.criteria.outcome_scored_on_output and eligibility.criterion_3_outcome_scored_on_output to \"unclear\"; set final.open_items[6].affects_eligibility to true. Replace eligibility.reason with: \"Criterion 3 is not established for the randomized comparison. Final consensus strength pools independently produced human and AI descriptions, so it does not isolate diversity across human participants' outputs (PDF p. 7, Methods M1, equations 1-2; p. 16, Game Procedure). The human-human similarity in Figure 3a is measured before interaction (PDF pp. 4 and 14). A qualifying creativity or human-output diversity comparison across assigned conditions must be established before core inclusion.\" Replace final.open_items[6].item with: \"Availability of a qualifying human-only output comparison affects eligibility. Player-type-tagged descriptions and analysis code are needed to establish a creativity or diversity outcome across human participants under the assigned conditions. The reported mixed human-agent consensus scores do not establish criterion 3 (PDF pp. 7 and 16).\" The resulting report status should be \"clarify\".",
+   "evidence": "The assembled report C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md lists c249 as core at line 82; line 329 labels final consensus across_people, and line 336 says mixed-group scores already satisfy criterion 3. I opened C:/Dropbox/Research/ai-lab/literature/creativity/Chen Liu Hu Li (2026) - AI agents reshape consensus formation in human groups.pdf using PyMuPDF: p. 7, equations 1-2, averages similarities to all other players and then over all N = 24 players. Page 16 explicitly defines the session as a mixture of humans and LLM agents, each independently submitting a description. Thus the endpoint includes agent-agent and human-agent pairs as well as human-human pairs. Pages 4 and 14 identify Figure 3a as initial similarity before interaction/convergence. Pages 4 and 9 describe adoption comparisons by player type and phase, not a human-output contrast across assigned arms; the content measures on pp. 3 and 8 measure linguistic properties and attribution rather than creativity. C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-codebook.md Section 3 requires creativity/diversity on participants' output, and Section 6 defines diversity across different people. forms/c249.json S1-O1.diversity_detail.notes already acknowledges that the pool does not isolate human writers, but final.open_items[6] incorrectly says this cannot affect eligibility. tools/build_report.py lines 127-144 use those form decisions correctly; the correction belongs in the form."
+  }
+ },
+ {
+  "id": "classes-06-1",
+  "cid": "c842",
+  "section": "Randomized experiments under 50 participants",
+  "location": "c842 row (report line 1680), under the statement that these papers randomize people and score the output (line 1668); report-data.json status_by_cid.c842",
+  "claim": "c842 is classified as small, a randomized experiment with a qualifying output outcome and fewer than 50 analyzed people.",
+  "problem": "Supported status: needs clarification (clarify). The 20-person sample and randomized order are established, but eligibility of the outcome remains unresolved. Participants rated AI-generated questions themselves; the other candidate outcome counts questions generated by the system. The form and checker explicitly leave criterion 3 unclear. The small category asserts confirmed output eligibility and therefore overstates what this screening establishes. Clarification must resolve whether the generated-question count qualifies as participant-produced creative output; the self-report creativity survey cannot establish eligibility.",
+  "evidence": "forms/c842.json: eligibility.criterion_3_outcome_scored_on_output = unclear; eligibility.reason explicitly leaves the participant self-ratings and AI-generated question counts unresolved; studies[0].participants.n_analyzed = 20. forms/checks/c842.json, confirmed, endorses criterion_3 unclear because the ratings come from participants and the count is of AI-generated questions. Independently checked C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2024) - How AI Processing Delays Foster Creativity.pdf: p. 6, section 5.1.2, the system generates three questions per turn; p. 9, section 6.2.1, participants rate at least six generated questions of their choice; sections 6.2.3 and 7.1.1 record generated-question counts; p. 22, Table 3, the creativity survey includes how creative participants felt about themselves. creativity-codebook.md section 3 requires creativity/diversity scored on participant-produced output and excludes self-reported creativity. tools/build_report.py:147 permits small when c3 != not_met, thereby accepting unclear.",
+  "severity": "blocker",
+  "verdict": {
+   "id": "classes-06-1",
+   "cid": "c842",
+   "verdict": "confirmed",
+   "fix_target": "builder",
+   "field": "tools/build_report.py: classify(), lines 145-149; derived report-data.json.status_by_cid.c842",
+   "correct_value": "status_by_cid.c842 = \"clarify\". In classify(), insert `if c1 == \"met\" and c2 == \"not_met\" and c3 == \"unclear\": return \"clarify\", cell(el.get(\"reason\"))` before the small branch, and change that branch to require `c3 == \"met\"`. Regenerate the tables and assembled report so c842 appears under \"Candidates that need clarification\". Preserve the form values criterion_3_outcome_scored_on_output=\"unclear\", core=\"no\", and n_analyzed=20.",
+   "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md: line 1668 says all papers in this section randomize people and score the output, and line 1680 includes c842 with 20 people; report-data.json.status_by_cid.c842 is \"small\". The report scope (line 7) and creativity-codebook.md section 3 (line 34) require creativity/diversity scored on participant-produced output and exclude self-reports. Opened the PDF identified by retrieval.json, C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2024) - How AI Processing Delays Foster Creativity.pdf, using PyMuPDF: PDF p. 8, section 6, states 20 HCI researchers; p. 9, section 6.1, states randomized, counterbalanced orders of topics and conditions. PDF p. 6, section 5.1.2, describes user initial ideas and feedback followed by system generation of three research questions per turn. PDF p. 9, section 6.2.1, says participants rate at least six AI-generated questions of their choice; section 6.2.3 counts generated questions in system logs; section 7.1.1 reports the generated-question totals. PDF p. 22, Table 3, mixes a rating of system-generated questions with how creative participants felt about themselves. These passages support retaining uncertainty over whether the measured output meets the participant-produced-output criterion. forms/c842.json has no final override and explicitly records criterion 3 as \"unclear\"; forms/checks/c842.json independently retains that uncertainty. tools/build_report.py:147 uses c3 != \"not_met\", admitting \"unclear\" into \"small\". I executed only the relevant functions in memory: the current classifier returns (\"small\", \"20\"), while the specified correction returns \"clarify\" with the form reason. The confirmed problem is the report overstating established outcome eligibility, not the verified sample size or randomization."
+  }
+ },
+ {
+  "id": "sources-06-1",
+  "cid": "c006",
+  "section": "Notes on each recommended paper",
+  "location": "Doshi and Hauser (2024), Needs supplement bullet, report line 425: \"Standard errors, arm means, and SDs sit only in tables S3, S4, S6, S11 and section S4, none in this PDF\"",
+  "claim": "Arm means appear only in the supplementary material, which is absent from the PDF.",
+  "problem": "The word \"only\" overstates the missing information: the main article prints some arm means. The note should distinguish incomplete arm-level summaries from entirely unavailable means.",
+  "evidence": "C:/Dropbox/Research/ai-lab/literature/creativity/Doshi and Hauser (2024) - Generative AI Enhances Individual Creativity.pdf: PDF/printed p. 3, left column, usefulness paragraph, explicitly gives the Human with one GenAI idea condition mean as 5.21. PDF/printed p. 5, first body paragraph, explicitly gives the Human-only mean for similarity to the generative AI idea as 82.85.",
+  "severity": "minor",
+  "verdict": {
+   "id": "sources-06-1",
+   "cid": "c006",
+   "verdict": "confirmed",
+   "fix_target": "form",
+   "field": "final.open_items[2].item",
+   "correct_value": "The main PDF provides incomplete arm-level summaries, including the Human with one GenAI idea usefulness mean of 5.21 (p. 3) and the Human-only story-to-generative-AI-idea similarity mean of 82.85 (p. 5). The supplement is needed to check the remaining arm means, outcome SDs, and standard errors; the six index components are shown in Fig. 2A (p. 3).",
+   "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, line 425, says arm means sit only in supplementary material. Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Doshi and Hauser (2024) - Generative AI Enhances Individual Creativity.pdf with PyMuPDF: PDF/printed p. 3, left-column usefulness paragraph, explicitly reports the Human with one GenAI idea condition mean as 5.21; PDF/printed p. 5, first paragraph, explicitly reports the Human-only mean as 82.85 for similarity to a generative AI idea. Thus some arm means are available in the main article. The erroneous sentence is in forms/c006.json at final.open_items[2].item; source.supplement.holds already correctly records both means and their pages. tools/build_report.py, lines 281-283, copies the open-item text into report-generated.md (line 378), so the fix belongs in the form."
+  }
+ },
+ {
+  "id": "citations-00-1",
+  "cid": "c246",
+  "section": "Recommended for the core dataset / Notes on each recommended paper",
+  "location": "c041 notes, Version read and Sample overlap bullets; report lines 306 and 308",
+  "claim": "Chen, Huang, Han, Zhang, Lou, and Zhong (2026)",
+  "problem": "Both author-year labels spell out all six authors. The required rule for four or more authors is first family name plus et al.; both should read Chen et al. (2026).",
+  "evidence": "forms/citations/c246.json, latest_version.authors_family = [Chen, Huang, Han, Zhang, Lou, Zhong], latest_version.year = 2026. Independently retrieved https://api.crossref.org/works/10.14742/ajet.11512 confirms the six authors in this order and publication on 2026-09-17. The nonconforming label appears twice in creativity-screening-2026-10-04.md, lines 306 and 308.",
+  "severity": "serious",
+  "verdict": {
+   "id": "citations-00-1",
+   "cid": "c246",
+   "verdict": "confirmed",
+   "fix_target": "builder",
+   "field": "tools/build_report.py:263-269, c041 Version read and Sample overlap note rendering from source.version and sample_overlap.shares_participants_with",
+   "correct_value": "Chen et al. (2026)",
+   "evidence": "Independently read creativity-screening-2026-10-04.md lines 306 and 308: both c041 notes contain \"Chen, Huang, Han, Zhang, Lou, and Zhong (2026)\". The citation rule in audit/2026-10-09_1345/jobs/find-citations-00/brief.md line 7 (also tools/codex_audit.py lines 96-100) requires first family name plus et al. for four or more authors. Opened retrieval.json c246.pdf_path with PyMuPDF: PDF page 1 (printed page 165) lists Yixuan Chen, Changqin Huang, Zhongmei Han, Di Zhang, Yiheng Lou, and Yihua Zhong in that order and gives the journal year as 2026; PDF page 19 (printed page 183) repeats the six-author 2026 citation and DOI 10.14742/ajet.11512. A fresh Python GET of https://api.crossref.org/works/10.14742/ajet.11512 independently confirms the same six authors and published-online date 2026-09-17. forms/citations/c246.json latest_version.authors_family and year are correct. The two full-author strings originate in forms/c041.json source.version and sample_overlap.shares_participants_with; their names and year are source-supported. tools/build_report.py lines 263-269 copies those strings into the notes without the abbreviation used by join_names/short_cite at lines 46-71. The same strings appear in report-generated.md lines 259 and 261 and are absent from report-prose.md. Apply the exact replacement \"Chen et al. (2026)\" to both rendered author-year labels. This is a report-formatting correction, not a bibliographic factual correction."
+  }
+ },
+ {
+  "id": "citations-03-1",
+  "cid": "c012",
+  "section": "Recommended for the core dataset / Notes on each recommended paper",
+  "location": "c012, Version read (report line 1334): \"Zhou, Liu, Huang & Li (2026)\"; Needs journal version (line 1339): \"(Zhou, Liu, Huang & Li, 84, 103087)\".",
+  "claim": "The journal article is labeled \"Zhou, Liu, Huang & Li\" in both notes.",
+  "problem": "Both occurrences violate the required author-label rule: a work with four or more authors must use \"Zhou et al.\" (and \"Zhou et al. (2026)\" when the year is included).",
+  "evidence": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/citations/c012.json, latest_version.authors: [\"Yiyong Zhou\", \"Qinghan Liu\", \"Jihao Huang\", \"Guiquan Li\"]; latest_version.year: 2026. Independently checked https://api.crossref.org/works/10.1016/j.techsoc.2025.103087: author contains those same four authors in that order, and published-print.date-parts is [[2026, 3]].",
+  "severity": "serious",
+  "verdict": {
+   "id": "citations-03-1",
+   "cid": "c012",
+   "verdict": "confirmed",
+   "fix_target": "form",
+   "field": "source.version; final.open_items[0].item",
+   "correct_value": "In source.version, replace 'Zhou, Liu, Huang & Li (2026)' with 'Zhou et al. (2026)'. In final.open_items[0].item, replace '(Zhou, Liu, Huang & Li, 84, 103087)' with '(Zhou et al., 84, 103087)'.",
+   "evidence": "The assembled report C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, lines 1334 and 1339, contains the two flagged strings. tools/codex_audit.py, lines 96-100, explicitly requires 'A et al.' for four or more authors. Independently fetched https://api.crossref.org/works/10.1016/j.techsoc.2025.103087 (HTTP 200): the journal article has Yiyong Zhou, Qinghan Liu, Jihao Huang, and Guiquan Li, in that order; published-print is March 2026, volume 84, article 103087. This agrees with forms/citations/c012.json, latest_version. PDF p. 1 of the retrieved preprint lists Qinghan Liu first, followed by Yiyong Zhou, Jihao Huang, and Guiquan Li; the flagged report strings explicitly identify the later journal article, whose author order is established by Crossref. This is an author-label formatting violation, not an incorrect author list or year. The offending strings originate in forms/c012.json at source.version and final.open_items[0].item; tools/build_report.py, lines 263-265 and 281-283, prints these fields directly. The citation file and the report's main 'Zhou et al. (2026)' label are correct."
+  }
+ }
+]

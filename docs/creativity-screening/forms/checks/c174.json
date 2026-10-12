@@ -1,0 +1,58 @@
+{
+ "cid": "c174",
+ "agrees": false,
+ "has_randomized_people_study": true,
+ "corrections": [
+  {
+   "field": "studies[1].outcomes[0].contrasts[0].reported",
+   "form_value": "gpt-5-mini general revisions versus human revisions of the same source drafts: model revisions show larger semantic shifts aligned in a common direction, whereas human revisions show smaller shifts in diverse directions. Figure 5 presents the comparison without expert feedback; Figure 1 also displays gpt-5-mini editing conditions with feedback. The result is graphical/descriptive; no scalar between-condition diversity effect or uncertainty estimate is reported. No human received AI assistance in this comparison.",
+   "source_says": "The statement that Figure 5 presents revisions without expert feedback needs qualification. Its caption says \"without access to expert feedback\", but the embedded plot title says \"With Feedback\". Record this figure's feedback setting as internally inconsistent rather than unambiguously absent; Figure 1 explicitly shows revisions with feedback. The description of aligned semantic shifts is supported.",
+   "quote": "Semantic Shifts from D1 to D2: General Revision (With Feedback)",
+   "locator": "p. 9, Figure 5: embedded plot title (visually inspected from the PDF in memory) versus caption; p. 1, Figure 1 title and caption."
+  },
+  {
+   "field": "studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "The required diversity-method fields are empty. The metric is graphical semantic clustering in a two-dimensional t-SNE projection; the embedding model is MiniLM-L6-v2. The plot compares essays across the Human, LLM-influenced and heavy-use LLM groups. No aggregate pairwise or centroid diversity statistic, scalar diversity contrast, or uncertainty estimate is reported. The usage groups were formed after random assignment to access.",
+   "quote": "we encode each of the essays from the user study into MiniLM-L6-v2 sentence embeddings, and visualize the results by projecting into two dimensions via T-SNE.",
+   "locator": "p. 8, Figure 4b and Section 4.2; p. 9, Section 4.2; p. 5, Section 3.1; form-spec.md, diversity_detail field note."
+  },
+  {
+   "field": "studies[1].outcomes[0].diversity_detail",
+   "form_value": "{\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}",
+   "source_says": "The required diversity-method fields are empty. The analysis compares the direction and magnitude of D1-to-D2 semantic shifts for the same 86 source essays under human and model revision, using PCA projections. Figure 5 specifies gemini-004 embeddings; Figure 1 specifies MiniLM-L6-v2, with robustness variants in Appendix B. The figures display within-essay semantic-shift summaries, not an estimated between-writer diversity contrast with uncertainty. Preserve the conflicting feedback labels in Figure 5.",
+   "quote": "Each point pair represents an essay before (D1) and after (D2) revision, embedded using gemini-004 sentence embeddings and projected into two dimensions via PCA,",
+   "locator": "p. 7, Section 3.2; p. 9, Figure 5; p. 1, Figure 1; pp. 26-34, Appendix B.2-B.4; form-spec.md, diversity_detail field note."
+  },
+  {
+   "field": "company_involvement.any",
+   "form_value": "false",
+   "source_says": "Set to true and describe the disclosed involvement. Joel Z. Leibo, Max Kleiman-Weiner and Natasha Jaques have Google DeepMind affiliations on the title page, which also carries Google DeepMind copyright. Corporate organizations are additionally named in the acknowledgments; the paper does not establish their specific roles in study design or analysis.",
+   "quote": "© 2026 Google DeepMind. All rights reserved.",
+   "locator": "p. 1, author affiliations and copyright footer; p. 16, Acknowledgments."
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "The paper explicitly provides https://github.com/abdulhaim/llm_writing_distortion as its code URL. This URL is verified as printed in the PDF; repository contents were not consulted.",
+   "quote": "Code: https://github.com/abdulhaim/llm_writing_distortion.",
+   "locator": "p. 1, footer; p. 8, opening paragraph of Section 4."
+  }
+ ],
+ "confirmed": [
+  "Source version and extent match: arXiv:2603.18161v2, 26 Aug 2026; title-page date 2026-03-19; 95 PDF pages, including Appendices A-I. The title and all listed authors match (p. 1; appendix headings, pp. 22-95). The complete local markdown was read, including all appendix examples.",
+  "S1 is an online randomized people study: Prolific participants were assigned to no LLM (45) or embedded gpt-4o-mini access (55), for 100 people overall, while writing an essay on whether money leads to happiness (p. 4, Section 3.1; p. 25, consent procedures). It belongs in the two-screener pipeline.",
+  "The paper explicitly calls the presented main-study sample n = 100. Separate final analyzed counts by randomized arm or outcome are not supplied, so the form correctly leaves those arm counts null and qualifies its overall sample count (p. 5, Section 3.1; p. 26, Figure 12). No complete-case counts were inferred from percentages or test degrees of freedom.",
+  "LLM-influenced status uses self-reported generation of less than 40% of the essay, checked against transcripts; 28 of 55 access participants were classified LLM-influenced, and 12 of 55 did not use the LLM to generate their essay. The rule was specified before analysis, but heavy versus minimal use was not randomly assigned and a heavy-use count is not directly stated (p. 5, Section 3.1).",
+  "Participants were native English speakers residing in the United States. Estimated study completion was 35 minutes, with a maximum of 1 hour; a separate essay-writing duration is not stated (p. 4, Section 3.1; p. 22, Section A.1).",
+  "S1-O1 is diversity assessed on produced essays: heavy-use essays cluster in MiniLM-L6-v2/t-SNE space, control essays are dispersed, and LLM-influenced essays resemble the control distribution. Its reported description is supported and no scalar diversity effect or uncertainty is supplied (p. 8, Figure 4b; pp. 8-9, Section 4.2).",
+  "S1-O2 and the one-line finding reproduce Figure 6 exactly: neutral essays 66.7% in the heavy-use LLM group versus 39.5% in the Human group; reported relative increase 68.9%; t(69) = −2.439, p = 0.017. Section 4.3 separately prints p < 0.036 (p. 10, Figure 6 and Section 4.3). These are actual-use subgroup comparisons.",
+  "Stance is classified on essays by gpt-4o; creativity itself is self-reported, not an independent creativity rating on the output (p. 7, Section 3.2; p. 45, Section D.2; p. 24, Section A.6). The qualifying output outcome is semantic diversity.",
+  "S2 is AI-versus-human context: the source corpus contains writing from 86 university students, written in 2021, and the analysis covers 86 source essays. Researchers generate model revisions of archived drafts; no people receive assigned AI assistance in this comparison (pp. 5-6, Section 3.1; p. 7, Section 3.2). The general finding of larger, commonly aligned model shifts is supported (p. 9, Section 4.2).",
+  "The ArgRewrite models and editing conditions are supported, including the stated Claude-version discrepancy: Figure 25 says Claude-3.5-Haiku whereas Appendix I says Claude Haiku 4.5 (p. 6, Section 3.1; p. 26, Section B.1; p. 34, Figure 25; p. 61, Appendix I introduction).",
+  "S3 is an observational review-corpus analysis, not randomized assistance: 18k reviews from 9k papers, with 9k human-classified and 9k LLM-classified reviews. These are review and paper counts, not distinct people; no reviewer count is supplied. The measured criteria concern the papers reviewed, not creativity of the review texts (p. 6, Section 3.1; p. 13, Figure 11; p. 46, Table 1).",
+  "The separate pilot reports n = 8 people, below 50, and analysis of their usage behavior; pilot-specific randomization, arm counts and scored creativity/diversity results are not separately stated (p. 5, Section 3.1).",
+  "The main experiment should not be classified solely as context evidence; the form separately identifies the ArgRewrite AI-versus-human and peer-review observational components. This paper is not a synthesis and has no pooled study count, pooled estimate, interval or standardizer to extract (pp. 4-7, Section 3; p. 14, Section 5)."
+ ],
+ "summary": "Confirmed a 100-person randomized LLM-access study with essay-diversity outcomes; the reported heavy-use comparisons use post-assignment subgroups. Corrections concern Figure 5's conflicting feedback labels, omitted diversity methods, company involvement, and the code URL."
+}

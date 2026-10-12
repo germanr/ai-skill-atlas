@@ -1,0 +1,359 @@
+{
+  "cid": "c098",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Memmert et al (2025) - Brainstorming with a Generative Language Model.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Memmert et al (2025) - Brainstorming with a Generative Language Model.pdf",
+    "version": "Journal version of record: Bus Inf Syst Eng 68(5):1023-1047 (2026), doi 10.1007/s12599-025-00974-y; received 3 February 2025, accepted 19 September 2025, published online 18 November 2025 (p. 1).",
+    "title_on_document": "Brainstorming with a Generative Language Model: Effect of Exposure to AI Ideas on Brainstorming Performance and Cognitive Load",
+    "authors_on_document": ["Lucas Memmert", "Izabel Cvetkovic", "Navid Tavanapour", "Eva Bittner"],
+    "pages": 25,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "Online Appendices A-E, Springer electronic supplementary material at https://doi.org/10.1007/s12599-025-00974-y (p. 22, Supplementary Information; p. 9 and p. 11 cite the appendices).",
+      "holds": "Appendix A: app interaction and information flow to and from the GLM; Appendix B: full prompt explanation; Appendix C: full post-survey questionnaire; Appendix D: operationalization of all brainstorming performance metrics and variables; Appendix E: qualitative coding scheme. The main text does not say that any test statistics sit only in the supplement; all reported tests are in the main text (pp. 12-14, Figs. 7-9, Table 2)."
+    }
+  },
+  "paper_design_summary": "Students in four university seminars were randomly assigned to brainstorm alone for 10 minutes on 'How can we reduce food waste?' in a custom app, either with the GLM function off (human-only) or with an on-demand 'generate ideas' button that returned three GPT-3.5 ideas per click, which they could copy into their own idea list (human + GLM). Each participant then picked a shortlist of four best ideas. The paper scores fluency, flexibility (categories), and novelty and value of the shortlist (five blind judges; GPT-4 as a robustness rater) at the human level (human-authored ideas only) and at the dyad level (all ideas in the list, including copied GLM ideas), plus self-reported cognitive load (NASA-TLX).",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Between-subjects brainstorming experiment (human-only vs human + GLM)",
+      "design_class": "lab_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Brainstorming app with GLM idea-generation function deactivated (human-only) vs activated (human + GLM, on-demand GPT-3.5 ideas, at least one request required)",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were randomly assigned to one of two conditions. In the human-only baseline, each person brainstormed individually with the app's GLM function deactivated.",
+        "locator": "p. 9 (journal p. 1031), Sect. 3.2; Fig. 4 'Random assignment to condition'",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "human-only", "description": "Brainstormed alone in the app with the GLM panel hidden; unassisted.", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "human + GLM", "description": "Same app with a right-side 'AI ideas' panel; each 'generate ideas' click returned three GPT-3.5 ideas that could be copied into the idea list; at least one request required.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 75,
+        "counts_are": "people",
+        "exclusions": "77 participants brainstormed and completed the survey; 2 excluded (one misunderstood the task; one in human + GLM did not request any GLM ideas), leaving 75. Arm sizes are not stated by arm; the sensitivity analysis uses 'group sizes of 38 and 37' without saying which arm is which (p. 12). For human-level novelty and value, four human + GLM participants who selected none of their own ideas into the shortlist were excluded (p. 12), so those tests use 71 people. Three ideas could not be categorized and were dropped from flexibility (p. 11).",
+        "population": "students",
+        "who": "Participants in in-person university seminars across four courses; all but one in informatics study programs; mean age 23.3 (18-37); 13 female, 62 male.",
+        "country": "not_stated (participants 'attend a Western European University'; authors at University of Hamburg, Germany)",
+        "quote": "Of the remaining 75 participants (age: mean = 23.3, min = 18, max = 37 years; gender: 13 female, 62 male), all but one are in study programs at the informatics department.",
+        "locator": "p. 10 (journal p. 1032), Sect. 3.4"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI GPT-3.5-turbo-0301, temperature 0.9, embedded in a custom brainstorming app via a fixed prompt template",
+        "role": "ideas_supplied",
+        "how_used": "On demand (pull): each click of 'generate ideas' sent the question, the participant's current idea list, and prior GLM ideas to GPT-3.5, which returned three ideas of at most 20 words; participants could copy, edit, or ignore them. No free chat with the model (pp. 9-10, Figs. 5-6)."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Individual brainstorming on 'How can we reduce food waste?' under Osborn's rules, followed by selecting the four best ideas from the long list regardless of origin, then a post-survey.",
+        "duration": "10-minute brainstorming session"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Human-level fluency (number of human-authored ideas)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of ideas originating from the human in the long list; copied GLM ideas excluded (H1-a).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Mann-Whitney U = 475.0, p = 0.015; human-only mdn = 5 vs human + GLM mdn = 4; rank-biserial rB = -0.324; 'corresponds to a Cohen's d = 0.581'",
+              "locator": "p. 12 (journal p. 1034), Sect. 4.1; Fig. 7a p. 13; Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Human-level flexibility (number of categories among human-authored ideas)",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Distinct categories (Specht et al. 2019 food-waste category system) covered by the human's own ideas; coded by a blind-to-condition student assistant (H1-b).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "p_value_only", "figure_only"],
+              "reported": "Mann-Whitney U = 656.0, p = 0.617",
+              "locator": "p. 12 (journal p. 1034), Sect. 4.1; Fig. 7b p. 13; Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Human-level novelty (mean novelty of the human-authored shortlisted ideas)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Five blind-to-condition judges (including three authors not involved in app development) rated shortlisted ideas on a 7-point scale ('how novel, original or surprising the idea is'); per-participant average; ICC(C,k) = 0.864. Robustness: GPT-4 ratings of the shortlist (U = 757.0, p = 0.569) and 'Good-Idea-Count' of long-list ideas above the average GPT novelty rating (mean = 3.396) (U = 663.5, p = 0.672). Four human + GLM participants with no own idea on the shortlist excluded (H1-c). Judges' expertise is not described beyond being authors; coded expert_raters by default.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "p_value_only", "figure_only"],
+              "reported": "Human judges: Mann-Whitney U = 699.5, p = 0.406. GPT-4: U = 757.0, p = 0.569. Good-Idea-Count: U = 663.5, p = 0.672.",
+              "locator": "pp. 12-13 (journal pp. 1034-1035), Sect. 4.1; Fig. 7c p. 13; Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Human-level value (mean value of the human-authored shortlisted ideas)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Same five blind judges, 7-point scale ('how useful the idea is'); per-participant average; ICC(C,k) = 0.736. Robustness: GPT-4 ratings (U = 653.5, p = 0.602) and Good-Idea-Count above the average value rating (mean = 4.747) (U = 619.5, p = 0.369). Same exclusion of four human + GLM participants as for novelty (H1-d).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "p_value_only", "figure_only"],
+              "reported": "Human judges: Mann-Whitney U = 737.5, p = 0.204. GPT-4: U = 653.5, p = 0.602. Good-Idea-Count: U = 619.5, p = 0.369.",
+              "locator": "p. 13 (journal p. 1035), Sect. 4.1; Fig. 7d p. 13; Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Dyad-level fluency (all ideas in the list, human plus copied GLM ideas)",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of all ideas in the participant's long list, including copied GLM ideas; for human-only, dyad = individual (H2-a).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Mann-Whitney U = 963.5, p = 0.006; human-only mdn = 5 vs human + GLM mdn = 7; rank-biserial rB = 0.371",
+              "locator": "p. 13 (journal p. 1035), Sect. 4.2; Fig. 8a p. 13; Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Dyad-level flexibility (categories covered by all ideas in the list)",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Distinct categories (Specht et al. 2019 system) covered by all ideas in the long list, including copied GLM ideas (H2-b).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Mann-Whitney U = 1080.0, p < 0.001; rB = 0.536; human-only mdn = 3 vs human + GLM mdn = 5",
+              "locator": "p. 13 (journal p. 1035), Sect. 4.2; Fig. 8b p. 13; Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Dyad-level novelty (mean novelty of the four shortlisted ideas, any origin)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Five blind judges, 7-point scale, per-participant mean over the four shortlisted ideas regardless of origin (H2-c). Robustness: GPT-4 ratings (U = 932.5, p = 0.015) and Good-Idea-Count (U = 1073.5, p < 0.001; mdn human-only = 2, human + GLM = 4).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Student's t(73) = 2.889, p = 0.005, Cohen's d = 0.667; human-only mean = 2.876 vs human + GLM mean = 3.396. GPT-4: U = 932.5, p = 0.015. Good-Idea-Count: U = 1073.5, p < 0.001 (mdn 2 vs 4).",
+              "locator": "p. 13 (journal p. 1035), Sect. 4.2; Fig. 8c p. 13; GPT-4 and Good-Idea-Count p. 14 (journal p. 1036); Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O8",
+          "name": "Dyad-level value (mean value of the four shortlisted ideas, any origin)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Five blind judges, 7-point scale, per-participant mean over the shortlist regardless of origin (H2-d). Robustness: GPT-4 ratings (U = 986.5, p = 0.003) and Good-Idea-Count (U = 1095.5, p < 0.001; mdn human-only = 2, human + GLM = 6).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "human + GLM",
+              "control_arm": "human-only",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect", "figure_only"],
+              "reported": "Mann-Whitney U = 994.0, p = 0.002, rB = 0.414; human-only mdn = 4.425 vs human + GLM mdn = 4.900. GPT-4: U = 986.5, p = 0.003. Good-Idea-Count: U = 1095.5, p < 0.001 (mdn 2 vs 6).",
+              "locator": "p. 13 (journal p. 1035), Sect. 4.2; Fig. 8d p. 13; GPT-4 and Good-Idea-Count p. 14 (journal p. 1036); Table 2 p. 15"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O9",
+          "name": "Novelty of shortlisted ideas by origin (human-authored vs GLM-generated), human + GLM condition only",
+          "construct": "novelty",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Explorative analysis: idea-level comparison of the 224 human-origin and 59 GLM-origin shortlisted ideas; the paper says GPT-4 ratings gave the same significant differences.",
+          "unit": "output",
+          "n_units": 283,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "GLM-origin ideas",
+              "control_arm": "human-origin ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "Mann-Whitney U = 9654.0, p < 0.001; human mdn = 2.8 vs GLM mdn = 4.0; rB = 0.461",
+              "locator": "p. 14 (journal p. 1036), Sect. 4.4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O10",
+          "name": "Value of shortlisted ideas by origin (human-authored vs GLM-generated), human + GLM condition only",
+          "construct": "usefulness",
+          "question": "none",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Explorative idea-level comparison of 224 human-origin and 59 GLM-origin shortlisted ideas; same result with GPT-4 ratings per the paper.",
+          "unit": "output",
+          "n_units": 283,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "GLM-origin ideas",
+              "control_arm": "human-origin ideas",
+              "comparison_type": "ai_vs_human",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic", "p_value_only", "standardized_effect"],
+              "reported": "Mann-Whitney U = 10,573.0, p < 0.001; human mdn = 4.6 vs GLM mdn = 5.2; rB = 0.600",
+              "locator": "p. 14 (journal p. 1036), Sect. 4.4"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Authors at University of Hamburg; funded by the German Federal Ministry of Education and Research (BMBF), project HyMeKI (01IS20057). OpenAI GPT-3.5 used as a tool only.", "locator": "p. 1 affiliations; p. 22 Acknowledgements" },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Individuals were randomly assigned to brainstorm with or without on-demand GPT-3.5 ideas (p. 9, Sect. 3.2; Fig. 4); 75 people analyzed across both arms (77 completed, 2 excluded; p. 10, Sect. 3.4), above 50 but with arm sizes not given by arm (38 and 37 in the sensitivity analysis, p. 12); outcomes are fluency, flexibility, and judge-rated novelty and value of the ideas produced (pp. 11-13). Human-level novelty and value tests use 71 people after excluding four treated participants."
+  },
+  "one_line_finding": "With on-demand GPT-3.5 ideas, participants wrote fewer ideas themselves (U = 475.0, p = 0.015, mdn 4 vs 5) and their own ideas were no more novel (U = 699.5, p = 0.406) or valuable (U = 737.5, p = 0.204), but the human-plus-GLM idea lists beat solo brainstormers on fluency, flexibility, shortlist novelty (mean 3.396 vs 2.876, t(73) = 2.889, p = 0.005, d = 0.667) and value (U = 994.0, p = 0.002) (pp. 12-13, Figs. 7-8, Table 2).",
+  "open_questions": [
+    "Which outcome should be primary for with_ai: the dyad-level shortlist (the output the participant submitted, which includes copied GLM ideas) or the human-level outcomes (human-authored ideas only)? The paper treats H1 and H2 as co-equal hypothesis sets and names no primary outcome.",
+    "Design class: the experiment was 'integrated into in-person university seminars across four courses' (p. 10), but the task was not course work; coded lab_rct rather than field_rct.",
+    "Arm-level n is not reported; the 38/37 split appears only in the G*Power sensitivity analysis without arm labels (p. 12).",
+    "No means or SDs for most outcomes (only medians, U statistics, rank-biserial r); standardized effects would need the posted supplement or the authors. Only dyad novelty reports arm means and Cohen's d, without SDs."
+  ],
+  "notes": "Outcomes not listed because they are not scored on the output: self-reported cognitive load (NASA-TLX; t(73) = -0.892, p = 0.375; Fig. 9, p. 14), self-reported cognitive stimulation and felt responsibility (pp. 15-16), and qualitative open-ended responses. Exploratory correlations (share of GLM ideas on shortlist with dyad novelty r = 0.458 and value rho = 0.649; requests vs human fluency r = -0.419) are not between-arm contrasts and are omitted. GPT-4 and Good-Idea-Count results are folded into the human-rated novelty and value outcomes as robustness variants. Shortlists: 283 ideas selected, 224 (79.2 percent) human and 59 (20.8 percent) GLM; 373 ideas contributed, 206 GLM requests, 177 suggestions copied (p. 12). The paper notes its sensitivity threshold (d >= 0.671 for Mann-Whitney) and that the human fluency effect (d = 0.581) falls below it (p. 12, p. 21). No preregistration or data/code link is stated."
+}

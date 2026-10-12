@@ -1,0 +1,73 @@
+{
+ "cid": "c657",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].outcomes[0].contrasts[0].reported",
+   "form_value": "Pre-treatment summary: Commits (j=NewFunction) mean 2.51, SD 8.49 (Table A1).",
+   "source_says": "The values 2.51 and 8.49 are correct, but Table A1 is a summary of the main matched Python/R sample, with 29,050 package-quarter observations in this row. It does not identify these statistics as pre-treatment or treated-group-only. Remove the pre-treatment label; these are not participant-level statistics.",
+   "quote": "Commits (j=NewFunctiont)ijt 29,050 2.51 8.49 0 441",
+   "locator": "PDF p. 38 (appendix p. 3), Table A1, NewFunction row, column headings and matched-sample note; compare PDF p. 19, Table 3 observation count."
+  },
+  {
+   "field": "paper_design_summary",
+   "form_value": "quarterly commit counts of 1,187 propensity-matched Python and R packages",
+   "source_says": "Clarify that the sample comprises 1,187 matched pairs: 1,187 Python packages and an equal number of R packages. The participants.who field already describes pairs correctly; the design summary should use the same wording.",
+   "quote": "Note: The final matched sample has 1,187 Python and R packages each.",
+   "locator": "PDF p. 38, Table A1 note; PDF p. 12 (printed p. 11), Section 3.2; PDF p. 5 (printed p. 4), Introduction."
+  },
+  {
+   "field": "studies[*].assignment.randomized; eligibility.criterion_1_random_assignment_of_ai",
+   "form_value": "All three assignment.randomized fields: yes | no | not_stated; criterion_1_random_assignment_of_ai: met | not_met | unclear",
+   "source_says": "These are unresolved template alternatives. Set assignment.randomized to no for all three analyses and criterion_1_random_assignment_of_ai to not_met. Language support was a business decision; the temporal comparison uses historical observations of the same packages. No study randomly assigns people to AI assistance.",
+   "quote": "the assignment of treatment (i.e., language supported by GitHub Copilot) was a business decision",
+   "locator": "PDF p. 15 (printed p. 14), Section 4.1; PDF p. 18 (printed p. 17), Section 4.3; PDF p. 26 (printed p. 25), Section 5.4.1."
+  },
+  {
+   "field": "studies[*].participants.counts_are; eligibility.criterion_2_at_least_50_people",
+   "form_value": "All three participants.counts_are fields: people | teams | other; criterion_2_at_least_50_people: met | not_met | unclear",
+   "source_says": "Set counts_are to other, because the described samples count packages and commits, and the regression observations are package-quarters. Keep n_randomized and n_analyzed null for people. Set criterion_2_at_least_50_people to unclear because no analyzed-person count is reported; neither a sample of at least 50 people nor a small experiment with fewer than 50 people is established.",
+   "quote": "The number of new commits of the package i in the quarter t",
+   "locator": "PDF p. 12 (printed p. 11), Section 3.2 and Table 2; PDF p. 19, Table 3; PDF p. 41, Tables B1-B4; PDF pp. 31-32, Section 6.3."
+  },
+  {
+   "field": "studies[0].outcomes[*].contrasts[0].statistics_available",
+   "form_value": "[] for all five outcomes",
+   "source_says": "Each reported contrast provides regression coefficients and standard errors, so statistics_available should include regression_coefficient_se. TWFE standard errors are clustered by package; synthetic DiD uses jackknife variance estimation. The empty arrays omit available statistics already transcribed in reported.",
+   "quote": "Standard errors clustered around package in parentheses for TWFE models. The variance for SynthDiD is estimated using the jackknife variance procedure.",
+   "locator": "PDF p. 19, Table 3 and note; PDF p. 21, Table 4 Panel A and note; PDF p. 22, Table 5 Panel A and note; PDF p. 38, Tables A2-A3."
+  },
+  {
+   "field": "studies[1].outcomes",
+   "form_value": "[]",
+   "source_says": "The temporal-control analysis reports the same five outcomes extracted for S1. Populate them, or explicitly record this analysis as a robustness variant of those outcomes under form-spec rule 7. TWFE coefficients (standard errors) are: total commits 4.638** (1.624); new functions added 1.069* (0.439); new functions not added 3.606** (1.323); Code Development 1.404** (0.536); Maintenance 2.349** (0.775). Each TWFE regression reports 22,677 package-quarter observations. Balanced TWFE and synthetic DiD estimates are also printed in the cited tables.",
+   "quote": "Panel B of Table 4 replicates this analysis using our temporal controls design.",
+   "locator": "PDF p. 19, Table 3 cols. 4-6; PDF p. 21, Table 4 Panel B; PDF p. 22, Table 5 Panel B; form-spec.md, rules 6-7."
+  },
+  {
+   "field": "studies[2].outcomes",
+   "form_value": "[]; participants.who states: Results only in Appendix B; not extracted here.",
+   "source_says": "The Rust/Haskell replication reports the same five outcomes extracted for S1. Populate the retained S3 study, or explicitly record the replication as a robustness variant under form-spec rule 7. TWFE coefficients (standard errors) are: total commits 5.583*** (1.081); new functions added 1.879*** (0.284); new functions not added 3.704*** (0.841); Code Development 1.755*** (0.306); Maintenance 2.330*** (0.409). Each TWFE regression reports 33,685 package-quarter observations. Balanced TWFE and synthetic DiD estimates are also printed in these tables.",
+   "quote": "Appendix B reports the complete set of results.",
+   "locator": "PDF p. 41 (appendix p. 6), Tables B2-B4; PDF p. 26, Section 5.4.1; form-spec.md, rules 6-7."
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion, including Appendices A-D, and independently checked the numerical claims against PDF text. The local PDF has 53 pages and its title page says Updated: 24th May 2026; the title-page Latest Version link points to arXiv 2409.08379 (PDF p. 1).",
+  "The title and three authors match the form (PDF p. 1). Crossref metadata for DOI 10.2139/ssrn.4684662 has the same title and authors and a 2024 posted date; only its metadata was checked, not the SSRN full text (https://api.crossref.org/works/10.2139/ssrn.4684662).",
+  "The observational design_class entries, observational context_class and core=no are supported. The outcomes concern actual code contributions classified by new functionality or maintenance; there is no randomized people study or measured between-person idea diversity (PDF pp. 10-15, Sections 3-4.1; p. 18, Section 4.3; p. 26, Section 5.4.1; pp. 51-53, Appendices C-D).",
+  "Random selection in the annotation exercise concerns commit messages; the human experts annotate existing commits rather than being assigned AI assistance on a creative task (PDF p. 14, Section 3.3.2; p. 52, Appendix C). No fewer-than-50-person experiment is present.",
+  "The main corpus has 1,187 matched Python/R package pairs and over 620,000 commits; the temporal-control corpus has 273,000 Python commits in the methods; the Rust/Haskell corpus has 1,373 matched pairs and approximately 314,000 commits. The top-2,000 package sampling descriptions and pre-Copilot inactivity exclusion are supported (PDF pp. 11-12, Section 3.2). These are not people counts.",
+  "The form correctly preserves the source discrepancy between October 2019-October 2022 in Section 3.2 and October 2019-December 2022 in the Introduction (PDF pp. 11 and 5). The temporal-control windows are 2016 Q2-2018 Q4 and 2020 Q2-2022 Q4 (PDF p. 18, Section 4.3; p. 19, Table 3 note). The Introduction also says 272 thousand historical commits, whereas Sections 3.2 and 4.3 say 273,000, the value used in the form (PDF pp. 5, 12 and 18).",
+  "Copilot used Codex and was selectively available for Python/Rust rather than R/Haskell; the paper dates its language-support treatment to October 2021 and its model upgrade to June 2022. Individual adoption is not established by availability (PDF p. 4 and footnote; p. 10, Section 3.1; p. 24, Section 5.3.2; pp. 31-32, Section 6.3).",
+  "The contribution definitions are correct: positive net additions of function definitions identify substantive commits; the alternative classifier is GPT-4o and distinguishes Code Development from Maintenance (PDF pp. 12-15, Sections 3.3-3.3.2; pp. 51-53, Appendices C-D).",
+  "S1-O1 and S1-O2 coefficients, standard errors, significance marks and observation counts match Table 4 Panel A: new functions 0.800*** (0.190), 0.626*** (0.188), 0.600*** (0.172); no new functions 6.016*** (0.761), 4.870*** (0.806), 4.226*** (0.787); observations 29,050 / 24,739 / 24,739 (PDF p. 21). The Table A1 numbers 2.51 and 8.49 match, subject to the timing-label correction (PDF p. 38).",
+  "S1-O3 and S1-O4 coefficients, standard errors, significance marks and observation counts match Table 5 Panel A: Code Development 1.472*** (0.257), 1.270*** (0.266), 1.105*** (0.253); Maintenance 2.299*** (0.371), 2.023*** (0.391), 1.873*** (0.376); observations 29,050 / 24,739 / 24,739 (PDF p. 22).",
+  "S1-O5 matches Table 3: 6.816*** (0.892), 5.496*** (0.941), 4.894*** (0.907). Section 5.1 explicitly reports 39.55%, 31.89% and 28.40%, and the treated-group pre-treatment mean of 17.235 commits per quarter (PDF p. 19).",
+  "The triple-difference numbers match exactly: Table A2 main terms 0.919*** (0.206) / 0.626*** (0.188), interactions 4.979*** (0.653) / 4.244*** (0.697); Table A3 main terms 1.474*** (0.258) / 1.270*** (0.266), interactions 0.822** (0.267) / 0.753** (0.280). Both tables report 58,100 / 49,478 observations, not people (PDF p. 38).",
+  "All numerical claims and the substantive-versus-incremental ordering in one_line_finding are supported by Table 3, Table 4 Panel A, Table 5 Panel A and Tables A2-A3 (PDF pp. 19, 21, 22 and 38). These are raw commit-count effects and percentages, not standardized creativity effects.",
+  "The same PDF contains the stated appendix material: Table A1 summary statistics, A2-A3 triple differences and A4-A10 robustness (PDF pp. 38-40); Appendix B includes the replication and combined-language analyses (PDF pp. 41-50); Appendix C gives annotation methods and Appendix D function detection (PDF pp. 51-53). This is an original observational paper, not a synthesis; no meta-analytic pooled estimates need extraction."
+ ],
+ "summary": "No randomized people study was found; the observational classification and reported effect estimates are supported. Corrections address the mislabeled Table A1 statistics, matched-pair wording, unresolved assignment/count/statistics fields, and missing outcomes for the two additional analyses."
+}

@@ -1,0 +1,149 @@
+{
+ "cid": "c392",
+ "analyst": "B",
+ "script": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/analysis/c392/B.py",
+ "data_files": [
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/ad_ratings.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/chat_labels.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/field_docsend.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/field_x.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/hh_benchmark.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/manipulation_markers.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/participants.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/process_metrics.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/randomization_balance.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/submissions.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-qr5ae/personality-pairing-osf-unpacked/personality-pairing-osf/README.md"
+ ],
+ "results": [
+  {
+   "slug": "s1_productivity_unadjusted_human_ai_vs_human_human",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 1258,
+     "computed": 1258,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 976,
+     "computed": 976,
+     "match": true
+    },
+    {
+     "statistic": "n_total",
+     "printed": 2234,
+     "computed": 2234,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 1.925,
+     "computed": 1.9254248221220136,
+     "match": true
+    },
+    {
+     "statistic": "regression.se",
+     "printed": 0.197,
+     "computed": 0.1970872354224823,
+     "match": true
+    },
+    {
+     "statistic": "regression.intercept",
+     "printed": 3.85,
+     "computed": 3.850409836065565,
+     "match": true
+    },
+    {
+     "statistic": "regression.intercept_se",
+     "printed": 0.129,
+     "computed": 0.12927904914315239,
+     "match": true
+    },
+    {
+     "statistic": "paper_effect.value_percent_increase",
+     "printed": 50,
+     "computed": 50.005711186564376,
+     "match": true
+    },
+    {
+     "statistic": "total_counted_ads",
+     "printed": 11024,
+     "computed": 11024,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": "<0.001",
+     "computed": 1.5234564922457975e-22,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 1258,
+    "n_control": 976,
+    "treatment_mean": 5.775834658187599,
+    "treatment_sd": 5.276355249644644,
+    "control_mean": 3.8504098360655736,
+    "control_sd": 4.038806606687315,
+    "difference": 1.9254248221220256,
+    "difference_se": 0.1970872354224823,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Reproduces Table B, PDF p. 47, first Individual column (Demographics No): coefficient 1.925, SE 0.197, intercept 3.850, intercept SE 0.129, N=2234. Arm counts are from Table 1, PDF p. 16; 11,024 ads are reported on p. 16; the 50% increase is reported on p. 22. The paper specifies only robust SEs; HC2 reproduces both printed SEs at three decimals. Use hh_benchmark.csv, one row per retained randomized participant, with no additional exclusions. Outcome is the supplied submission_count. Blank counts (36 Human-AI and 153 Human-Human) are reconstructed as zero counted submissions to implement the paper's full-cohort count analysis. This treatment of blanks reproduces every listed numerical check. Dropping blanks would give only 2,045 participants and fails the paper's sample definition. For the AI arm, all blank-count participants have no submissions in the posted creator map, and every benchmark count equals the number of distinct rated ads for that participant. The benchmark totals are 7,266 Human-AI and 3,758 Human-Human counted ads. The raw submissions.csv contains 7,537 Human-AI ads, including 271 absent from the ratings; substituting those raw counts would not reproduce Table B. Human-human attribution follows the supplied participant counts; no team totals or partner allocation are inferred. Each count is already a single participant-level fluency outcome. SDs use denominator n-1. Difference is the treatment mean minus the control mean; difference_se is from OLS of that participant outcome on an intercept and the Human-AI indicator with HC2 covariance. It is independently checked against sqrt(s_t^2/n_t+s_c^2/n_c). Randomization preceded team formation (PDF p. 14), so the requested individual-level HC2 is used. Shared human-human teamwork may induce dependence; the release does not identify human-human teams. This is a between-person experiment: round=all, with no first-round contrast. The deposit README is titled Personality Pairing Improves Human-AI Collaboration and identifies hh_benchmark.csv as the both-arm benchmark. The linked GitHub API and the OSF API were attempted read-only via urllib with User-Agent atlas-screening/0.1; both failed with socket error WinError 10013. No external code was obtained or executed."
+  }
+ ],
+ "skipped": [
+  {
+   "slug": "s1_diversity_human_ai_vs_human_human",
+   "reason": "The procedure on PDF p. 21 requires the original ad-copy texts and text-embedding-3-small embeddings to construct each arm's centroid and cosine distances (printed N=2034, coefficient -0.094). The release explicitly omits ad copy and contains no embeddings, centroids, or diversity scores. The same text sets and embedding procedure cannot be reconstructed. Skipped under the set-diversity rule; no replacement measure or participant-level SD is computed."
+  },
+  {
+   "slug": "s1_human_text_quality_human_ai_vs_human_human",
+   "reason": "Table 2 (PDF p. 22; repeated in Table G, p. 51) uses 45,803 ratings. The release contains 30,126 human ratings of 7,266 ads from 1,222 Human-AI creators only, with no Human-Human component ratings. hh_benchmark.csv supplies a combined ad_quality_index, not separate text/image/click scores. The linked age and sex covariates for the full sample are also unavailable. The printed analysis sample and adjusted coefficient therefore cannot be reproduced; no participant-level contrast is computed."
+  },
+  {
+   "slug": "s1_human_image_quality_human_ai_vs_human_human",
+   "reason": "Table 2 (PDF p. 22; repeated in Table G, p. 51) uses 45,803 ratings. The release contains 30,126 human ratings of 7,266 ads from 1,222 Human-AI creators only, with no Human-Human component ratings. hh_benchmark.csv supplies a combined ad_quality_index, not separate text/image/click scores. The linked age and sex covariates for the full sample are also unavailable. The printed analysis sample and adjusted coefficient therefore cannot be reproduced; no participant-level contrast is computed."
+  },
+  {
+   "slug": "s1_human_click_likelihood_human_ai_vs_human_human",
+   "reason": "Table 2 (PDF p. 22; repeated in Table G, p. 51) uses 45,803 ratings. The release contains 30,126 human ratings of 7,266 ads from 1,222 Human-AI creators only, with no Human-Human component ratings. hh_benchmark.csv supplies a combined ad_quality_index, not separate text/image/click scores. The linked age and sex covariates for the full sample are also unavailable. The printed analysis sample and adjusted coefficient therefore cannot be reproduced; no participant-level contrast is computed."
+  },
+  {
+   "slug": "s1_productivity_adjusted_human_ai_vs_human_human",
+   "reason": "The adjusted productivity model in Table 2 (PDF p. 22) and Table B (p. 47) requires age, gender, and Big Five covariates (Equation 1, pp. 19-20). hh_benchmark.csv has counts and Big Five scores but no age or sex. participants.csv has only the Human-AI participants, with coarsened age bands. randomization_balance.csv contains full sample age/sex but no participant key; its README explicitly says these covariates cannot be re-linked. Row order is not a join key. Thus the adjusted coefficient 1.954 (SE 0.197, N=2234) cannot be reproduced. The separately reproduced unadjusted result is not substituted for this specification."
+  },
+  {
+   "slug": "s1_team_productivity_human_ai_vs_human_human",
+   "reason": "Table B (PDF p. 47) requires 1,751 team observations and reports coefficient -1.847 (SE 0.315). hh_benchmark.csv has participant counts but no team/session identifiers, and the posted submissions and session-linked files contain only Human-AI participants. There is no Human-Human team membership or submission map with which to reconstruct team totals, the team regression, or corresponding person-level outcomes. The printed 976 Human-Human people and 493 teams do not themselves establish membership. No arithmetic pairing, deduplication by equal counts, or team-to-person conversion is inferred."
+  },
+  {
+   "slug": "s1_ai_rated_text_quality_human_ai_vs_human_human",
+   "reason": "Table H (PDF p. 52) analyzes 11,024 ads evaluated by gpt-4o-mini-2024-07-18. The deposit has no file of those AI evaluations. ad_ratings.csv contains repeated human-rater evaluations of Human-AI ads; it is not the paper's AI-rating outcome. Neither the combined benchmark quality index nor the human field-rating columns can recover the three AI-rated dimensions. The output sample and adjusted coefficient cannot be reproduced; no participant-level contrast is computed."
+  },
+  {
+   "slug": "s1_ai_rated_image_quality_human_ai_vs_human_human",
+   "reason": "Table H (PDF p. 52) analyzes 11,024 ads evaluated by gpt-4o-mini-2024-07-18. The deposit has no file of those AI evaluations. ad_ratings.csv contains repeated human-rater evaluations of Human-AI ads; it is not the paper's AI-rating outcome. Neither the combined benchmark quality index nor the human field-rating columns can recover the three AI-rated dimensions. The output sample and adjusted coefficient cannot be reproduced; no participant-level contrast is computed."
+  },
+  {
+   "slug": "s1_ai_rated_click_likelihood_human_ai_vs_human_human",
+   "reason": "Table H (PDF p. 52) analyzes 11,024 ads evaluated by gpt-4o-mini-2024-07-18. The deposit has no file of those AI evaluations. ad_ratings.csv contains repeated human-rater evaluations of Human-AI ads; it is not the paper's AI-rating outcome. Neither the combined benchmark quality index nor the human field-rating columns can recover the three AI-rated dimensions. The output sample and adjusted coefficient cannot be reproduced; no participant-level contrast is computed."
+  },
+  {
+   "slug": "s1_headline_completion_human_ai_vs_human_human",
+   "reason": "Table E (PDF p. 49) reports participant-level ad-copy completion for 2,234 people. The release omits ad copy, per-element completion indicators, and participant completion rates. submissions.csv supplies only submission_id and participant_id, and only for Human-AI ads; hh_benchmark.csv has no completion variables. The paper also leaves the completion numerator/denominator and coding procedure unspecified. The printed adjusted coefficient cannot be reproduced, so no contrast is computed."
+  },
+  {
+   "slug": "s1_primary_text_completion_human_ai_vs_human_human",
+   "reason": "Table E (PDF p. 49) reports participant-level ad-copy completion for 2,234 people. The release omits ad copy, per-element completion indicators, and participant completion rates. submissions.csv supplies only submission_id and participant_id, and only for Human-AI ads; hh_benchmark.csv has no completion variables. The paper also leaves the completion numerator/denominator and coding procedure unspecified. The printed adjusted coefficient cannot be reproduced, so no contrast is computed."
+  },
+  {
+   "slug": "s1_description_completion_human_ai_vs_human_human",
+   "reason": "Table E (PDF p. 49) reports participant-level ad-copy completion for 2,234 people. The release omits ad copy, per-element completion indicators, and participant completion rates. submissions.csv supplies only submission_id and participant_id, and only for Human-AI ads; hh_benchmark.csv has no completion variables. The paper also leaves the completion numerator/denominator and coding procedure unspecified. The printed adjusted coefficient cannot be reproduced, so no contrast is computed."
+  }
+ ]
+}

@@ -1,0 +1,365 @@
+{
+ "cid": "c843",
+ "extractor": "B",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2026) - Who Owns Creativity and Who Does the Work.pdf",
+  "version": "arXiv:2601.12152v1 [cs.HC], 17 Jan 2026, as printed on PDF p. 1; 32-page preprint. The ACM conference and DOI fields are template placeholders.",
+  "supplement_used": "Appendices A-F in the same PDF, pp. 23-32: agent prompts, system-development evaluations, study protocol, representative use case, demographics, and additional statistical results. No separate supplement file was identified in retrieval.json."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Formal user study: Low, Medium, and Intensive control of research-ideation agents",
+   "design_class": "lab_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": null,
+   "cluster_se_treatment": null,
+   "n_randomized": null,
+   "n_analyzed": 51,
+   "counts_source": {
+    "locator": "PDF p. 13, Section 5.3.1, final paragraph on quantitative exclusions",
+    "quote": "This resulted in 51 valid data points, with 17 for each control level."
+   },
+   "arms": [
+    {
+     "name": "Low",
+     "description": "Researchers provide keywords and generate, select, and customize seed ideas; literature selection, proposal drafting, evaluation, and revisions then proceed automatically, without steering the Writer or Evaluator (PDF p. 8, Table 3 and Section 3.3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 17
+    },
+    {
+     "name": "Medium",
+     "description": "Researchers select literature, prompt section-level changes, customize evaluation criteria, and select suggested improvements; direct edits, inline text prompting, and feedback on critiques are unavailable (PDF p. 8, Table 3 and Section 3.3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 17
+    },
+    {
+     "name": "Intensive",
+     "description": "Researchers have the Medium controls plus direct content editing, inline text prompting, feedback on agent critiques, and customization of proposed improvements (PDF p. 8, Table 3 and Section 3.3.1).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 17
+    }
+   ],
+   "population": "mixed",
+   "country": "United States, Jamaica, France, Korea, Canada, Germany, and India in the recruited sample; retained-sample locations are not separately reported (PDF p. 12, Section 5.2; PDF p. 31, Appendix E, Table 8).",
+   "task_type": "idea_generation",
+   "task": "Researchers used their assigned ResearchGuru configuration to generate research ideas in their own area and develop proposals containing literature synthesis, research goals, and a study plan, saving satisfactory drafts and choosing their best draft (PDF pp. 11-12, Section 5.1; PDF p. 29, Appendix C.2).",
+   "ai_role": "other",
+   "ai_tool": {
+    "name": "ResearchGuru: GPT-4.1 for Ideator and Writer; Claude Sonnet 3.7 for Evaluator",
+    "year": null,
+    "locator": "PDF p. 10, Section 3.3.2, System Deployment: GPT-4.1 was used for the Ideator and Writer, while the Evaluator was deployed using Claude Sonnet 3.7. Model release years are not explicitly stated."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": "",
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_unique_proposals_intensive_vs_low",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Unique research proposals produced per hour (# Unique_research_proposals)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Participant-level count of unique research proposals from interaction logs. Table 4 reports means and SDs per hour, retained without conversion. Section 6.1 describes this as proposals participants created. The rule distinguishing a unique proposal from a revision is not given (PDF pp. 12-14, Sections 5.3.1 and 6.1, Table 4).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Intensive",
+   "control_arm": "Low",
+   "within_person": null,
+   "n_treatment": 17,
+   "n_control": 17,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": 1.58,
+    "treatment_sd": 0.77,
+    "treatment_se": null,
+    "control_mean": 2.19,
+    "control_sd": 1.11,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 14, Table 4, # Unique_research_proposals; columns Intensive, Medium, Low; cells are mean (SD)",
+     "quote": "# Unique_research_proposals 1.58 (0.77) 1.88 (1.20) 2.19 (1.11) 𝐹(2, 48) = 1.52, 𝑝= 0.22"
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Section 5.3.1, final paragraph on quantitative exclusions",
+     "quote": "This resulted in 51 valid data points, with 17 for each control level."
+    }
+   ],
+   "notes": "Full analyzed arms, with the more extensive human-control configuration treated as the intervention. Only arm means, participant-level SDs, and arm counts are available for this pair. The Table 4 test, F(2, 48) = 1.52, p = 0.22, is an omnibus comparison of all three arms, not a pairwise test; it is preserved in the source quote and is not placed in this contrast's test or p_value fields. No pairwise difference, SE, CI, or standardized effect is printed. se_basis=participant refers to the participant-level arm summaries; no pairwise uncertainty has been computed. n_total is null because a total for this two-arm contrast is not explicitly printed; the study-wide count is not substituted. Table 4's hourly normalization and printed precision are preserved in the source quote. The repeated contrasts share participants and are not independent."
+  },
+  {
+   "slug": "s1_unique_proposals_medium_vs_low",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Unique research proposals produced per hour (# Unique_research_proposals)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Participant-level count of unique research proposals from interaction logs. Table 4 reports means and SDs per hour, retained without conversion. Section 6.1 describes this as proposals participants created. The rule distinguishing a unique proposal from a revision is not given (PDF pp. 12-14, Sections 5.3.1 and 6.1, Table 4).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Medium",
+   "control_arm": "Low",
+   "within_person": null,
+   "n_treatment": 17,
+   "n_control": 17,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": 1.88,
+    "treatment_sd": 1.2,
+    "treatment_se": null,
+    "control_mean": 2.19,
+    "control_sd": 1.11,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 14, Table 4, # Unique_research_proposals; columns Intensive, Medium, Low; cells are mean (SD)",
+     "quote": "# Unique_research_proposals 1.58 (0.77) 1.88 (1.20) 2.19 (1.11) 𝐹(2, 48) = 1.52, 𝑝= 0.22"
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Section 5.3.1, final paragraph on quantitative exclusions",
+     "quote": "This resulted in 51 valid data points, with 17 for each control level."
+    }
+   ],
+   "notes": "Full analyzed arms, with the more extensive human-control configuration treated as the intervention. Only arm means, participant-level SDs, and arm counts are available for this pair. The Table 4 test, F(2, 48) = 1.52, p = 0.22, is an omnibus comparison of all three arms, not a pairwise test; it is preserved in the source quote and is not placed in this contrast's test or p_value fields. No pairwise difference, SE, CI, or standardized effect is printed. se_basis=participant refers to the participant-level arm summaries; no pairwise uncertainty has been computed. n_total is null because a total for this two-arm contrast is not explicitly printed; the study-wide count is not substituted. Table 4's hourly normalization and printed precision are preserved in the source quote. The repeated contrasts share participants and are not independent."
+  },
+  {
+   "slug": "s1_unique_proposals_intensive_vs_medium",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Unique research proposals produced per hour (# Unique_research_proposals)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Participant-level count of unique research proposals from interaction logs. Table 4 reports means and SDs per hour, retained without conversion. Section 6.1 describes this as proposals participants created. The rule distinguishing a unique proposal from a revision is not given (PDF pp. 12-14, Sections 5.3.1 and 6.1, Table 4).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "Intensive",
+   "control_arm": "Medium",
+   "within_person": null,
+   "n_treatment": 17,
+   "n_control": 17,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": 1.58,
+    "treatment_sd": 0.77,
+    "treatment_se": null,
+    "control_mean": 1.88,
+    "control_sd": 1.2,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 14, Table 4, # Unique_research_proposals; columns Intensive, Medium, Low; cells are mean (SD)",
+     "quote": "# Unique_research_proposals 1.58 (0.77) 1.88 (1.20) 2.19 (1.11) 𝐹(2, 48) = 1.52, 𝑝= 0.22"
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Section 5.3.1, final paragraph on quantitative exclusions",
+     "quote": "This resulted in 51 valid data points, with 17 for each control level."
+    }
+   ],
+   "notes": "Full analyzed arms, with the more extensive human-control configuration treated as the intervention. Only arm means, participant-level SDs, and arm counts are available for this pair. The Table 4 test, F(2, 48) = 1.52, p = 0.22, is an omnibus comparison of all three arms, not a pairwise test; it is preserved in the source quote and is not placed in this contrast's test or p_value fields. No pairwise difference, SE, CI, or standardized effect is printed. se_basis=participant refers to the participant-level arm summaries; no pairwise uncertainty has been computed. n_total is null because a total for this two-arm contrast is not explicitly printed; the study-wide count is not substituted. Table 4's hourly normalization and printed precision are preserved in the source quote. The repeated contrasts share participants and are not independent."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "S1: Generate_seed_ideas",
+   "reason": "The unit counted is unresolved: Table 4 describes function uses per hour, while Section 6.1 calls these seed ideas. Appendix D shows multiple ideas returned by a single action. It is not established that the row counts individual outputs rather than generation invocations; do not treat it as confirmed output fluency (PDF pp. 12-14, Sections 5.3.1 and 6.1, Table 4; PDF p. 30, Appendix D)."
+  },
+  {
+   "what": "S1: Prompt_full_proposal, including Tukey HSD comparisons",
+   "reason": "Counts uses of the proposal-prompting function, including iterations of drafts, rather than distinct creative outputs or an output score. Unique proposals are extracted separately (PDF pp. 13-14, Section 6.1 and Table 4; PDF p. 30, Appendix F.1; PDF p. 32, Table 9)."
+  },
+  {
+   "what": "S1: Revise_full_proposal",
+   "reason": "Revision-function usage is a process measure, not output fluency, elaboration, or rated creative quality (PDF pp. 12-14, Sections 5.3.1 and 6.1, Table 4)."
+  },
+  {
+   "what": "S1: Select_improvements, including Tukey HSD comparisons",
+   "reason": "Counts selections of suggested improvements, not scored creative outputs (PDF pp. 13-14, Section 6.1 and Table 4; PDF p. 30, Appendix F.1; PDF p. 32, Table 10)."
+  },
+  {
+   "what": "S1: Query_searches",
+   "reason": "Search-function usage is a workflow action count, not a score on produced creative work (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: Select_papers",
+   "reason": "Counts selections of literature, not participant-created ideas or other scored creative outputs (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: Prompt_proposal_section",
+   "reason": "Counts prompts to revise proposal sections, not the amount, detail, or quality of completed creative outputs (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: In-line_text_prompting",
+   "reason": "Process-action count available only in Intensive; neither an output score nor a reported between-arm outcome contrast (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: Save_edits",
+   "reason": "Counts save actions, not a measure scored on final outputs; reported only in Intensive (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: Provide_feedback",
+   "reason": "Counts feedback actions about agent critiques, not an output-creativity assessment; reported only in Intensive (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: Request_more_critiques",
+   "reason": "Counts requests for further agent critiques, not participant-produced creative outputs; reported only in Intensive (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: Customize_improvements",
+   "reason": "Counts customization actions, not a score of output quality or elaboration; reported only in Intensive (PDF pp. 13-14, Section 6.1 and Table 4)."
+  },
+  {
+   "what": "S1: Weighted Creativity Support Index, overall and component scores",
+   "reason": "Post-task self-report of perceived tool support, including collaboration, enjoyment, exploration, expressiveness, immersion, and value/results worth effort. These are not scores of the creativity of produced proposals (PDF p. 12, Section 5.3.1; PDF pp. 14-15, Section 6.2, Table 5 and Figure 5)."
+  },
+  {
+   "what": "S1: Unweighted Creativity Support Index, overall and component scores",
+   "reason": "The same self-reported creativity-support dimensions without preference weighting; not scored-output creativity (PDF p. 12, Section 5.3.1; PDF pp. 14-15, Section 6.2, Table 5 and Figure 5)."
+  },
+  {
+   "what": "S1: NASA-TLX/task load, overall and component scores",
+   "reason": "Self-reported effort, task difficulty, frustration, performance, and mental, physical, and temporal demand; not creative-output performance (PDF p. 12, Section 5.3.1; PDF pp. 14-15, Table 5 and Figure 5)."
+  },
+  {
+   "what": "S1: Perceived human and AI contribution percentages",
+   "reason": "Participants assigned subjective contributions in a post-task survey; these are not measured content shares or scored creativity (PDF pp. 12-13, Section 5.3.1; PDF pp. 15-16, Section 6.3 and Figure 7)."
+  },
+  {
+   "what": "S1: Perceived ownership categories (Human Work, AI Work, Co-created Work)",
+   "reason": "Self-reported attribution of responsibility/credit, not a scored creative-output outcome (PDF pp. 12-13, Section 5.3.1; PDF pp. 15-16, Section 6.3 and Figure 7)."
+  },
+  {
+   "what": "S1: Correlations of creativity support and effort with control level, and correlations within control conditions",
+   "reason": "Associations among self-reported measures and condition order, including component analyses, do not estimate eligible full-sample arm contrasts on scored outputs (PDF pp. 14-16, Section 6.2, Figures 5-6; PDF pp. 30 and 32, Appendix F.2 and Figure 8)."
+  },
+  {
+   "what": "S1: Qualitative interview themes and the representative use case",
+   "reason": "Interview accounts of novelty, feasibility, engagement, effort, ownership, and proposal quality are qualitative perceptions. The representative case describes one participant, not a full-sample contrast. No output-score statistics are reported for these accounts (PDF pp. 17-19, Section 7; PDF pp. 29-30, Appendix D)."
+  },
+  {
+   "what": "S2: RAG versus non-RAG development evaluation, including human preference (S2-O1) and LLM-judge preference (S2-O2)",
+   "reason": "Benchmark of initial model-generated proposal drafts using topic providers and evaluators. It does not randomize people to AI-assisted creative work and is below the participant-size threshold. Human and LLM preferences are not eligible human-assistance effects (PDF p. 11, Section 4.1; PDF pp. 27-28, Appendix B.1 and Table 6)."
+  },
+  {
+   "what": "S3: Expert rankings of drafts from ResearchGuru, Deep Research, ChatGPT, and Gemini (S3-O1)",
+   "reason": "Development benchmark of initial model-generated drafts without further revision. Random allocation of human creators or randomized condition order is not reported, and the evaluator sample is below the participant-size threshold (PDF p. 11, Section 4.1; PDF pp. 27-28, Appendix B.2 and Table 7)."
+  },
+  {
+   "what": "S4: Protocol-development pilot user testing",
+   "reason": "Within-person usability and protocol-development work reports no scored creative-output contrast. Condition-order randomization and the analyzed participant count are not stated; design collaborators are not substituted for a participant count (PDF p. 4, Section 3.1; PDF p. 11, Section 4.2)."
+  }
+ ],
+ "open_items": [
+  "S1: Actual assignment-stage total and arm counts are not explicitly reported. Section 5.2 gives recruitment/target counts, whereas Section 5.3.1 provides analyzed counts. n_randomized remains null (PDF pp. 11-13).",
+  "S1: The rule distinguishing a unique research proposal from a revision is not specified. The hourly normalization is retained as stated, with no conversion to an absolute proposal count (PDF pp. 12-14, Sections 5.3.1 and 6.1, Table 4).",
+  "S1: Generate_seed_ideas could count invocations rather than individual returned ideas; this row is excluded pending clarification of the logging unit (PDF pp. 12-14, Table 4; PDF p. 30, Appendix D).",
+  "S1: No pairwise fluency difference, standard error, confidence interval, p-value, or standardized effect is printed. The only test is the three-arm omnibus ANOVA. Appendix F provides pairwise results for process actions only (PDF p. 14, Table 4; PDF pp. 30 and 32, Appendix F.1, Tables 9-10).",
+  "S1: The paper prints analyzed counts per arm and for the whole study, but does not explicitly print two-arm totals; each estimate n_total is null rather than computed (PDF p. 13, Section 5.3.1).",
+  "S1: Implemented task duration is inconsistent: the main procedure and limitations say 35-40 minutes, while Appendix C.2 says 30 minutes. The normalized outcome is transcribed unchanged (PDF pp. 11-12, Section 5.1; PDF p. 21, Section 8.5; PDF p. 29, Appendix C.2).",
+  "S1: The models are named, but their release years are not explicitly supplied; ai_tool.year remains null. The study period is a usage date and is not substituted for a release year (PDF p. 10, Section 3.3.2; PDF p. 12, Section 5.2).",
+  "Overlap between development pilots and the formal user-study sample is not explicitly documented. No overlap with another paper is stated; pilot participants are not added to the formal sample (PDF p. 4, Section 3.1; PDF p. 11, Section 4.2; PDF p. 12, Section 5.2; PDF p. 27, Appendix B)."
+ ],
+ "notes": "Extractor B, 2026-10-11. Read the extraction specification and codebook, the reconciled form and citation record, and the complete markdown conversion including references and Appendices A-F. Inspected the PDF tables, figures, and appendices and checked every extracted numeric value against PDF text with PyMuPDF. PDF page indices plus one match the printed page numbers. No effect sizes, differences, standard errors, intervals, or participant totals were calculated.\n\nEligible-statistic inventory: PDF p. 14, Table 4, reports the following row (column order Intensive, Medium, Low): # Unique_research_proposals 1.58 (0.77) 1.88 (1.20) 2.19 (1.11) 𝐹(2, 48) = 1.52, 𝑝= 0.22. These are the only printed fluency means, SDs, and test statistics. PDF p. 13, Section 5.3.1, supplies the analyzed counts: This resulted in 51 valid data points, with 17 for each control level. The omnibus test is retained here and in source quotes only because it is not a pairwise effect. All three possible arm contrasts are retained using the printed arm summaries. No eligible across_people or after_ai result is reported.\n\nS1 is a supervised remote session rather than recruitment through an online panel: PDF p. 12, Section 5.2, states that the study ran via Zoom with screen sharing. Individual random assignment is explicit on PDF p. 11, Section 5.1. Participants were a mix of PhD students, postdoctoral fellows, professors, and research scientists recruited through academic networks. PDF p. 13, Section 5.3.1, reports excluding extreme post-task survey responses with Isolation Forest; the analyzed sample is used rather than recruitment targets.\n\nResearchGuru is coded ai_role=other because it combines idea generation, literature retrieval, proposal drafting, critique, and revision in a structured editor; the paper explicitly says it excluded a chat feature (PDF p. 8, Section 3.3.1). Every formal-study arm includes a human researcher and generative AI. The more extensive control configuration is the treatment in each ai_design contrast. Higher proposal counts mean more ideas, not evidence of greater novelty or quality.\n\nNo preregistration or preregistered primary outcome is identified in the document. Formal-study creativity support, effort, contribution, and ownership results are self-reports. The additional appendix statistics concern process actions and self-report correlations; the proposal-quality benchmarks evaluate initial model drafts and supply no eligible human randomized contrasts."
+}

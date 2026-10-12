@@ -1,0 +1,281 @@
+{
+  "cid": "c109",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rayan et al (2025) - Cueing the Crowd.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rayan et al (2025) - Cueing the Crowd.pdf",
+    "version": "ACM version of record, CI 2025 (ACM Collective Intelligence Conference, San Diego, August 4-6, 2025), journal pages 297-316, published 4 August 2025, DOI 10.1145/3715928.3737486; PDF page 1 is an ACM Digital Library cover page dated 16 December 2025",
+    "title_on_document": "Cueing the Crowd: LLM-Driven Conversational Cues Across Different Meeting Modalities Increase Topical Diversity of Generated Ideas",
+    "authors_on_document": ["Jude Abishek Rayan", "Shaokang Jiang", "Nishant Balaji", "Jinmao Wang", "Ian Gross", "Cole Biehle", "Steven P. Dow"],
+    "pages": 21,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": false,
+      "where": "Appendix A (task instructions, prompts, homogenization analysis, survey questions) is in this PDF (pp. 310-316). Appendix A.1 points to data on OSF: https://osf.io/nmqd5/files/osfstorage?view_only=0b6efc5a1bf3466395292501cd52de2f",
+      "holds": "Data only, per A.1. The paper does not say the OSF folder holds extra statistics. No arm sample sizes, standard errors, or dyad counts per condition appear in the PDF; they would have to come from the OSF data."
+    }
+  },
+  "paper_design_summary": "172 participants were randomly assigned to a 2 x 2 between-subjects lab experiment (cues vs no cues, crossed with in-person vs virtual meeting) and brainstormed in 86 dyads for 20 minutes on alternative uses for recyclable trash from a beach cleanup. In the Cue arms, GPT-4o-mini generated a short conversational cue (five words or fewer) about once a minute from the live transcript. The paper scores each dyad's ideas for topic diversity (BERTopic clusters, Shannon entropy) and number of ideas, and each dyad's conversation transcript for the number of distinct IAB topics; an appendix compares the semantic spread of ideas across all Cue vs all NoCue groups.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "2 x 2 lab experiment: LLM conversational cues x meeting modality, dyad brainstorming",
+      "design_class": "lab_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Discussion condition: Cue-Virtual, Cue-InPerson, NoCue-Virtual, NoCue-InPerson. Cue arms received GPT-4o-mini cues about once a minute; NoCue arms received none. The paper says participants were randomly assigned, but both members of a dyad share a condition, so the condition is in practice held by the dyad. Conditions were balanced for gender and age.",
+        "unit": "team",
+        "structure": "between",
+        "quote": "We recruited 172 participants, randomly assigned to four conditions; Cue-Virtual, Cue-InPerson, NoCue-Virtual, and NoCue-InPerson to participate in a brainstorming discussion with one other participant (in 86 dyads).",
+        "locator": "p. 300 (PDF p. 5), Section 4.1.1 Participants; also p. 300 Section 4 intro and p. 306 Section 8 Conclusion",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Cue-Virtual", "description": "Dyad partners in separate rooms talking through the CueTip video call; LLM cues shown about once a minute with visual notification and audio chime", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Cue-InPerson", "description": "Dyad partners in the same room, each on a laptop with the CueTip interface; LLM cues shown about once a minute with visual notification and audio chime", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "NoCue-Virtual", "description": "Dyad partners in separate rooms using the same interface (call frame, shared notes) with no cues", "ai": "none", "n_randomized": null, "n_analyzed": null },
+        { "name": "NoCue-InPerson", "description": "Dyad partners in the same room using the same interface with no cues", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 172,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "Two discussions were removed because of echoes in the audio recordings and two other sessions were dropped for technical issues (p. 300). Thirteen participants did not give prior design experience and topic knowledge and were excluded from analyses that account for these factors (p. 300). Footnote 12 (p. 302): audio comes from 70 sessions, 4 excluded from conversation analysis for echoes, and 16 recordings not included because the screen recorder captured only the researcher's utterances. Two sessions were excluded from the noticing-rate coding (p. 302). The paper never states the number of people or dyads in each analysis, and the per-arm counts are not given. The REML F tests have denominator df 67.03 (ideas) and 50.76 (conversation).",
+        "population": "students",
+        "who": "Participants aged 18 to 37 (median 21), M=42, F=127, non-binary=3; paid with course credit or $20 for 75 minutes. Limitations say a majority took part for research credit and almost all were in psychology or cognitive science.",
+        "country": "not stated (lab study; all authors at University of California, San Diego)",
+        "quote": "All participants were between 18 to 37 years old (median=21), with no significant age difference between participants. Participants were either compensated with credits as part of a course requirement or $20 for 75 minutes of their time.",
+        "locator": "p. 300 (PDF p. 5), Section 4.1.1; p. 306 (PDF p. 11), Section 7"
+      },
+      "ai_tool": {
+        "name_model": "CueTip system built on OpenAI GPT-4o-mini",
+        "role": "ideas_supplied",
+        "how_used": "The system transcribed the live conversation (Daily.js) and every minute prompted GPT-4o-mini with a conversation summary, the last ten utterances, and previous cues to produce one cue of five words or fewer (e.g., 'What if we created furniture?'), shown in a cue panel with a chime. About 18 +/- 2 cues per dyad. Participants did not query the model. The cues often name a specific direction or idea, so they supply content; a reviewer could argue for 'other' or 'coach'."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Alternative-uses brainstorming in dyads: come up with as many alternative uses as possible for recyclable trash uncovered during a beach cleanup, listing ideas as bullet points in a shared note area (15 minutes generating, last 5 minutes selecting the best idea). Preceded by a familiarity-building task.",
+        "duration": "20 minutes ideation (15 for generating, 5 for selecting); 75-minute session overall"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Topic diversity of generated ideas (BERTopic + Shannon entropy, per dyad)",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Ideas from all groups pooled; BERTopic with HDBSCAN clustering (minimum cluster size 15); Shannon entropy (scipy) over topic assignments gives a topic diversity score. The box plot (Fig. 5a) is per group, so the score describes the spread of topics within one dyad's ideas, which the codebook treats as flexibility (variety within one producing unit), not diversity across people. Coded category_count because topics come from clustering; the score is an entropy, not a count. Analyzed with REML: Access-to-Cue, Modality, and their interaction as fixed effects; prior design experience and recycling knowledge as random effects; Tukey HSD post hoc.",
+          "unit": "team",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Cue (Cue-Virtual and Cue-InPerson pooled)",
+              "control_arm": "No Cue (NoCue-Virtual and NoCue-InPerson pooled)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "figure_only"],
+              "reported": "Cues mu = 2.3, SD = 0.3 vs without cues mu = 2.1, SD = 0.4; REML Access-to-Cue F(1, 67.03) = 6.51, p = 0.013; Tukey HSD p ~ 0.012. Fig. 5a box plot: Cue Max 2.784, Q3 2.525, Med 2.351, Q1 2.095, Min 1.494; Without Cue Max 2.805, Q3 2.322, Med 2.098, Q1 1.839, Min 1.075. Arm ns not reported (statistics_available lists means and SDs only; ns are missing). Modality F(1, 67.17) = 0.79, p = 0.38; no interaction.",
+              "locator": "p. 302 (PDF p. 7), Section 5.1.1; p. 303 (PDF p. 8), Figure 5a"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Topic diversity of the conversation transcript (number of unique IAB Level-1 topics)",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Conversation audio transcribed with AssemblyAI; utterances mapped to the 698 IAB topics by AssemblyAI; count of unique Level-1 topics across all speakers and rounds in the dyad's conversation. The scored object is the brainstorming conversation, not the idea list, so whether it counts as the participants' creative output is open. Same REML model and Tukey HSD as S1-O1.",
+          "unit": "team",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Cue (Cue-Virtual and Cue-InPerson pooled)",
+              "control_arm": "No Cue (NoCue-Virtual and NoCue-InPerson pooled)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "figure_only"],
+              "reported": "Cues mu = 9.6, SD = 2.2 vs without cues mu = 8.0, SD = 2.5; REML Access-to-Cue F(1, 50.76) = 6.25, p = 0.016; Tukey HSD p ~ 0.015. Fig. 5b box plot (number of unique topics): Cue Max 14.00, Q3 11.00, Med 9.00, Q1 7.50, Min 6.00; Without Cue Max 14.00, Q3 9.00, Med 8.00, Q1 6.00, Min 3.00. Arm ns not reported. Modality F(1, 50.79) = 0.25, p = 0.62; no interaction.",
+              "locator": "p. 304 (PDF p. 9), Section 5.1.2; p. 303 (PDF p. 8), Figure 5b; p. 302 footnote 12 on excluded sessions"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Number of ideas per dyad",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Research team removed duplicates from each session's notes, filled in missing ideas from the recording and transcript, and counted bullet points. Same REML model. Dyads produced 19.4 ideas on average across all groups.",
+          "unit": "team",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Cue (Cue-Virtual and Cue-InPerson pooled)",
+              "control_arm": "No Cue (NoCue-Virtual and NoCue-InPerson pooled)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "No arm means, test statistics, or p-values printed. Text: 'None of the factors showed a significant difference based on the REML model.' Overall mean 19.4 ideas per dyad (p. 302).",
+              "locator": "p. 304 (PDF p. 9), Section 5.1.3; p. 302 (PDF p. 7), Section 5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Homogenization of ideas across groups (cosine distance of each idea to its condition's average embedding)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Following Anderson et al. [4], the average embedding of all ideas in each condition (Cue, NoCue) is computed, and the cosine distance of each idea to that average is compared between conditions with a Wilcoxon test. The paper prints no test statistic, p-value, or summary values for ideas; only the violin plot (Fig. 6). Higher distance means more spread. The Fig. 6 caption says a more concentrated distribution means lower semantic variability; the Cue distribution looks somewhat more concentrated, but the medians look similar (about 0.55 to 0.56, read from the figure).",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Cue (Cue-Virtual and Cue-InPerson pooled)",
+              "control_arm": "No Cue (NoCue-Virtual and NoCue-InPerson pooled)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "mixed",
+              "statistics_available": ["figure_only"],
+              "reported": "Figure 6 only: 'Distribution of Cosine Distances: Cue vs No-Cue Ideas'. Caption: 'The more concentrated distribution of cosine distances suggests that ideas are closer semantically to the group average, indicating lower semantic variability.' The Wilcoxon result for ideas is not printed. Section 6.3 reports instead that cues repeated: 182 of 578 divergence cues were repeated verbatim in other groups. Direction coded 'mixed' because the paper does not state which arm is more diverse or whether the difference is significant; the intro (p. 298) speaks of a homogenization effect across groups from repeated cues.",
+              "locator": "p. 306 (PDF p. 11), Section 6.3; p. 311 (PDF p. 16), Appendix A.4.1; p. 312 (PDF p. 17), Figure 6; p. 298 (PDF p. 3), Section 1"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine distance between each idea embedding and the average embedding of all ideas in its condition",
+            "embedding_model": "not stated",
+            "computed_over": "Each idea against the centroid of all ideas in its condition (pooled across all dyads in the condition)",
+            "uncertainty": "Wilcoxon test over idea-level distances named; result not reported",
+            "notes": "Only a figure is available. The paper's narrative of homogenization rests on cue repetition (182 of 578 cues repeated verbatim), not on a reported test of ideas."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Post-study cue analysis: original zero-shot cues vs Wikipedia-entity pipeline cues (no participants)",
+      "design_class": "model_only",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing assigned to people. The authors regenerated cues for the study transcripts with a new Wikipedia 'See Also' entity pipeline and compared them with the cues sent during the study.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "To evaluate this approach, we compared the original set of cues from the study against new cues generated by our revised pipeline [4].",
+        "locator": "p. 306 (PDF p. 11), Section 6.3; p. 311 (PDF p. 16), Appendix A.4.2",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Regular (zero-shot) cues", "description": "Cues generated during the study", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Pipeline cues", "description": "Cues regenerated from the same transcripts with random Wikipedia 'See Also' entities", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "",
+        "population": "mixed",
+        "who": "No participants; model outputs only (cues). Population field has no fitting value.",
+        "country": "",
+        "quote": "",
+        "locator": ""
+      },
+      "ai_tool": {
+        "name_model": "GPT-4o-mini (study cues); pipeline LLM not separately named",
+        "role": "other",
+        "how_used": "Cue generation only; no person used the pipeline cues. The paper says the technique 'still needs to be tested on real groups'."
+      },
+      "task": {
+        "type": "other",
+        "description": "Generation of brainstorming cues for the recyclable-materials task",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S2-O1",
+          "name": "Homogeneity of cues (cosine similarity of each cue to the average cue embedding in its condition)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": false,
+          "measure": "embedding_similarity",
+          "measure_detail": "Scored on AI-generated cues, not on participant output. Wilcoxon test on cosine similarity between each cue and the average embedding of all cues within each condition (regular vs pipeline).",
+          "unit": "output",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Pipeline cues",
+              "control_arm": "Regular zero-shot cues",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "p_value_only", "figure_only"],
+              "reported": "'cues generated without the pipeline (mu=0.46, SD=0.11) were significantly (p < 0.0001) more homogeneous than those generated with the pipeline (mu=0.54, SD=0.23)'; Fig. 10 plots cosine distance (Regular vs Pipeline). Cue counts per condition not given (578 divergence cues were sent in the study). Direction refers to spread: pipeline cues more diverse.",
+              "locator": "p. 306 (PDF p. 11), Section 6.3; p. 314 (PDF p. 19), Figure 10"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine similarity/distance of each cue to the condition's average cue embedding",
+            "embedding_model": "not stated",
+            "computed_over": "Each cue against the centroid of all cues in its condition",
+            "uncertainty": "Wilcoxon test over cue-level scores",
+            "notes": "Model outputs, not human output. The text calls the statistic cosine similarity, but the figure plots cosine distance, and the text's means (0.46 regular, 0.54 pipeline) fit distance better than similarity given the conclusion."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": []
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "All authors at UC San Diego; funded by NSF grant #2009003. The system uses OpenAI's GPT-4o-mini, but no company role is stated.", "locator": "p. 307 (PDF p. 12), Acknowledgments" },
+  "data_and_code": { "data_url": "https://osf.io/nmqd5/files/osfstorage?view_only=0b6efc5a1bf3466395292501cd52de2f", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "S1 randomly assigned 172 participants (86 dyads) to receive or not receive GPT-4o-mini conversational cues while brainstorming alternative uses, and scored the ideas by a computed topic-diversity measure and by idea counts. The people analyzed are not stated: up to four dyads were dropped for echoes or technical problems, 13 participants lacked covariates, and footnote 12 describes further session losses for the conversation analysis. Even so, the analyzed count stays well above 50 people, and the dyad count alone exceeds 50. The analysis unit is the dyad, not the person. S2 is a model-only cue comparison."
+  },
+  "one_line_finding": "Dyads that received LLM cues produced ideas with higher topic diversity (entropy 2.3, SD 0.3 vs 2.1, SD 0.4; F(1, 67.03) = 6.51, p = 0.013) and conversations covering more topics (9.6 vs 8.0 unique topics; p = 0.016), with no significant difference in the number of ideas (pp. 302-304, Fig. 5).",
+  "open_questions": [
+    "Number of people and dyads analyzed per arm and per outcome is not stated anywhere; the dyad counts behind the F tests would need the OSF data.",
+    "Is within-dyad topic entropy (the paper's 'topic diversity') best coded as flexibility, as here, or as diversity? It compares ideas within one dyad, not across dyads.",
+    "Does the conversation transcript count as participants' creative output for criterion 3, or only the idea list?",
+    "S1-O4 (cross-group homogenization of ideas) has only a violin plot; the Wilcoxon result is not reported, and the direction is unclear.",
+    "Role coded ideas_supplied: cues like 'What if we created furniture?' supply directions, but they are short prompts generated from the conversation."
+  ],
+  "notes": "Outcomes not listed as creativity outcomes: noticing rate of cues (InPerson mu = 15.0, SD = 3.1 vs Virtual mu = 14.2, SD = 4.2; Wilcoxon p ~ 0.88; p. 304, Section 5.2), which compares modalities within the Cue arms; Spearman correlations between attended cues and idea topic diversity (p ~ 0.024, rs ~ 0.35) and number of ideas (all p ~ 0.074, rs ~ 0.28; virtual Cue groups p ~ 0.0024, rs ~ 0.63) (p. 304, Sections 5.2.1-5.2.2), which are not randomized contrasts; post-survey Likert and think-aloud responses (self-report, reported only qualitatively, Section 5.3). Modality (in-person vs virtual) is a second randomized factor but not an AI contrast; its main effects on idea and conversation topic diversity were not significant. The paper says it did not use expert raters for novelty, creativity, or feasibility 'due to the large number of ideas' (p. 302). Pilot with 10 users (5 dyads) informed the design (p. 299). No preregistration mentioned."
+}

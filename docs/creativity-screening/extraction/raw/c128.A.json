@@ -1,0 +1,1069 @@
+{
+ "cid": "c128",
+ "extractor": "A",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wan and Kalman (2026) - Diverse AI personas can mitigate the homogenization effect in human-AI collabora.pdf",
+  "version": "Accepted author manuscript. PDF p. 1 states accepted and forthcoming in Computers in Human Behavior: Artificial Humans. No arXiv version number or publication date is printed. The supplied citation record identifies the saved file as arXiv 2504.13868v2, posted 2026-03-16; the publisher typeset version is not on file.",
+  "supplement_used": "Supplementary Materials appended to the same PDF: participant protocol (PDF p. 43), opening and task screens (PDF pp. 44-45), Calculating story diversity and Table S2 (PDF p. 52), and Table S2 continuation and Table S3 (PDF p. 53)."
+ },
+ "studies": [
+  {
+   "study_id": "S2",
+   "label": "Phase 2: human story creation inspired by persona-generated AI plots",
+   "design_class": "online_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": null,
+   "cluster_se_treatment": null,
+   "n_randomized": 100,
+   "n_analyzed": 97,
+   "counts_source": {
+    "locator": "PDF pp. 10-11, Section 3.1; random assignment also stated in PDF p. 43, Story writing by participants",
+    "quote": "we recruited 100 human participants using the online platform Proliﬁc ... we analyzed 97 stories: 32 in the control group, 33 in the 1-plot condition, and 32 in the 5-plot condition."
+   },
+   "arms": [
+    {
+     "name": "0-plot (control, human only)",
+     "description": "Write the story without AI plot assistance; participants reporting external AI use were excluded from this arm (PDF p. 11).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 32
+    },
+    {
+     "name": "1-plot",
+     "description": "Optional access to one pre-generated plot, randomly drawn from the persona plot pool; requesting and using it were optional (PDF pp. 10-11 and 43).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 33
+    },
+    {
+     "name": "5-plot",
+     "description": "Optional access to up to five pre-generated plots, randomly drawn from the persona plot pool; requesting and using them were optional (PDF pp. 10-11 and 43).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 32
+    }
+   ],
+   "population": "online_panel",
+   "country": "United Kingdom",
+   "task_type": "creative_writing",
+   "task": "Write an exactly eight-sentence English story about an adventure on another planet for a teenage and young adult audience (PDF p. 45, task screenshot).",
+   "ai_role": "ideas_supplied",
+   "ai_tool": {
+    "name": "GPT-4o (version 2024-05-13) on Azure OpenAI generated the plot ideas; ChatGPT o1-preview developed the personas.",
+    "year": 2024,
+    "locator": "PDF p. 5, Section 2.1: using GPT-4o (version 2024-05-13, temperature = 0.9, top P = 1); model year taken from the explicitly printed version date."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": null,
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s2_centroid_one_plot_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O1",
+   "outcome": "Story similarity to the condition centroid",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Cosine similarity of each story embedding to the mean embedding of all stories in its assigned condition; OpenAI text-embedding-ada-002, scaled to 100. Higher values mean greater similarity across writers. Definition: PDF pp. 7 and 11; embedding model confirmed in PDF p. 52.",
+   "unit": "output",
+   "n_units": 97,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "1-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 33,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 90.095,
+    "treatment_sd": 1.864,
+    "treatment_se": null,
+    "control_mean": 90.588,
+    "control_sd": 2.383,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": "treatment minus control (printed condition coefficient)",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.493,
+     "se": null,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Linear regression of story-centroid similarity on assigned-condition indicators, with the human-only condition as reference; fit jointly to all arms (PDF pp. 11-12)."
+    },
+    "test": null,
+    "p_value": 0.301,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control",
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 13, Table 3, columns 0-plot (human only), 1-plot, 5-plot",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32 Mean 90.588 90.095 90.233 std 2.383 1.864 1.349"
+    },
+    {
+     "fields": [
+      "regression.coef",
+      "p_value"
+     ],
+     "locator": "PDF p. 12, Section 3.3.1, text preceding Table 2",
+     "quote": "1-plot condition: b = -0.493, p = 0.301"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 12, Table 2, Observations row, Our Findings column (first number)",
+     "quote": "Observations 97 293"
+    }
+   ],
+   "notes": "The regression uses all assigned conditions, and n_units is its full-model story count. The arm counts describe the two named conditions; their total is not printed. Table 2 parenthetical entries are unlabeled, so no SE is inferred. One story per person makes the reported SDs participant-level. The omnibus F test is not a test of this pair."
+  },
+  {
+   "slug": "s2_centroid_five_plots_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O1",
+   "outcome": "Story similarity to the condition centroid",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Cosine similarity of each story embedding to the mean embedding of all stories in its assigned condition; OpenAI text-embedding-ada-002, scaled to 100. Higher values mean greater similarity across writers. Definition: PDF pp. 7 and 11; embedding model confirmed in PDF p. 52.",
+   "unit": "output",
+   "n_units": 97,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "5-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 32,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 90.233,
+    "treatment_sd": 1.349,
+    "treatment_se": null,
+    "control_mean": 90.588,
+    "control_sd": 2.383,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": "treatment minus control (printed condition coefficient)",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.356,
+     "se": null,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Linear regression of story-centroid similarity on assigned-condition indicators, with the human-only condition as reference; fit jointly to all arms (PDF pp. 11-12)."
+    },
+    "test": null,
+    "p_value": 0.459,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control",
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 13, Table 3, columns 0-plot (human only), 1-plot, 5-plot",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32 Mean 90.588 90.095 90.233 std 2.383 1.864 1.349"
+    },
+    {
+     "fields": [
+      "regression.coef",
+      "p_value"
+     ],
+     "locator": "PDF p. 12, Section 3.3.1, text preceding Table 2",
+     "quote": "5-plot condition: b = -0.356, p = 0.459"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 12, Table 2, Observations row, Our Findings column (first number)",
+     "quote": "Observations 97 293"
+    }
+   ],
+   "notes": "The regression uses all assigned conditions, and n_units is its full-model story count. The arm counts describe the two named conditions; their total is not printed. Table 2 parenthetical entries are unlabeled, so no SE is inferred. One story per person makes the reported SDs participant-level. The omnibus F test is not a test of this pair."
+  },
+  {
+   "slug": "s2_centroid_five_plots_vs_one_plot",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O1",
+   "outcome": "Story similarity to the condition centroid",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Cosine similarity of each story embedding to the mean embedding of all stories in its assigned condition; OpenAI text-embedding-ada-002, scaled to 100. Higher values mean greater similarity across writers. Definition: PDF pp. 7 and 11; embedding model confirmed in PDF p. 52.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "5-plot",
+   "control_arm": "1-plot",
+   "within_person": null,
+   "n_treatment": 32,
+   "n_control": 33,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 90.233,
+    "treatment_sd": 1.349,
+    "treatment_se": null,
+    "control_mean": 90.095,
+    "control_sd": 1.864,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control",
+      "treatment_mean",
+      "treatment_sd",
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 13, Table 3, columns 0-plot (human only), 1-plot, 5-plot",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32 Mean 90.588 90.095 90.233 std 2.383 1.864 1.349"
+    }
+   ],
+   "notes": "Descriptive contrast from Table 3 only: no two-arm difference, SE, CI, t test, or p-value is printed. The three-arm omnibus test is not assigned to this contrast. SDs are across stories, one per participant. The larger menu is treated as the tested configuration and the single-idea menu as comparison."
+  },
+  {
+   "slug": "s2_pairwise_mixed_one_plot_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Pairwise story similarity: crossed-story mixed model",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Cosine similarity, scaled to 100, between every pair of different stories within the same assigned condition, using OpenAI text-embedding-ada-002. The frequentist mixed model has random intercepts for both story identities in each pair and uses REML (PDF pp. 11 and 13).",
+   "unit": "pair",
+   "n_units": 1520,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "1-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 33,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 81.74,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 82.62,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "treatment minus control (printed condition coefficient)",
+    "difference_se": null,
+    "ci_lower": -1.971,
+    "ci_upper": -0.175,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -1.073,
+     "se": 0.458,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "REML: similarity ~ condition + (1|story1_id) + (1|story2_id); random intercepts for both stories in each pair (PDF p. 13)."
+    },
+    "test": {
+     "type": "z",
+     "value": -2.341,
+     "df": null
+    },
+    "p_value": 0.019,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "1-plot condition (81.74) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "test.value",
+      "p_value",
+      "ci_lower",
+      "ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 14, Table 4, interval heading and relevant condition row",
+     "quote": "95% Conﬁdence Interval ... 1-plot eﬀect (vs. Control) -1.073 0.458 -2.341 0.019* -1.971 -0.175"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 13, Section 3.3.2, Mixed-Effects Linear Regression",
+     "quote": "The model was estimated using restricted maximum likelihood (REML) on 1,520 pairwise comparisons (496 from the 0-plot condition, 528 from the 1-plot condition, and 496 from the 5-plot condition)."
+    }
+   ],
+   "notes": "Arm means are the observed story-average similarities printed in Table S3; they are descriptive levels, not fitted mixed-model arm means. Table 4 reports the fitted baseline and condition effects but no treatment-arm fitted means, which are not reconstructed. The mixed-model uncertainty uses both story identities, each corresponding to one randomized participant, so se_basis is participant although unit is pair. n_units is the full three-arm model count. Its pairwise differences need not equal differences of the descriptive means. Story-average t tests and Cohen’s d are separate records."
+  },
+  {
+   "slug": "s2_pairwise_mixed_five_plots_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Pairwise story similarity: crossed-story mixed model",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Cosine similarity, scaled to 100, between every pair of different stories within the same assigned condition, using OpenAI text-embedding-ada-002. The frequentist mixed model has random intercepts for both story identities in each pair and uses REML (PDF pp. 11 and 13).",
+   "unit": "pair",
+   "n_units": 1520,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "5-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 32,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 82.00,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 82.62,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "treatment minus control (printed condition coefficient)",
+    "difference_se": null,
+    "ci_lower": -1.394,
+    "ci_upper": 0.418,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -0.488,
+     "se": 0.462,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "REML: similarity ~ condition + (1|story1_id) + (1|story2_id); random intercepts for both stories in each pair (PDF p. 13)."
+    },
+    "test": {
+     "type": "z",
+     "value": -1.056,
+     "df": null
+    },
+    "p_value": 0.291,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "5-plot condition (82.00) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "test.value",
+      "p_value",
+      "ci_lower",
+      "ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 14, Table 4, interval heading and relevant condition row",
+     "quote": "95% Conﬁdence Interval ... 5-plot eﬀect (vs. Control) -0.488 0.462 -1.056 0.291 -1.394 0.418"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 13, Section 3.3.2, Mixed-Effects Linear Regression",
+     "quote": "The model was estimated using restricted maximum likelihood (REML) on 1,520 pairwise comparisons (496 from the 0-plot condition, 528 from the 1-plot condition, and 496 from the 5-plot condition)."
+    }
+   ],
+   "notes": "Arm means are the observed story-average similarities printed in Table S3; they are descriptive levels, not fitted mixed-model arm means. Table 4 reports the fitted baseline and condition effects but no treatment-arm fitted means, which are not reconstructed. The mixed-model uncertainty uses both story identities, each corresponding to one randomized participant, so se_basis is participant although unit is pair. n_units is the full three-arm model count. Its pairwise differences need not equal differences of the descriptive means. Story-average t tests and Cohen’s d are separate records."
+  },
+  {
+   "slug": "s2_story_average_one_plot_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Pairwise story similarity: story-average robustness check",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Each story’s mean cosine similarity to all other stories within its assigned condition, using text-embedding-ada-002 and the paper’s scale of 100. One story-average observation per writer; described as the robustness check in PDF pp. 13-14. Descriptive arm levels and effect sizes are in Table S3 (PDF p. 53).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "1-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 33,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 81.74,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 82.62,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "control minus treatment for the printed t and Cohen’s d; no raw difference is printed",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 1.88,
+     "df": null
+    },
+    "p_value": 0.064,
+    "paper_effect": {
+     "type": "d",
+     "value": 0.467,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "1-plot condition (81.74) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "test.value",
+      "p_value"
+     ],
+     "locator": "PDF p. 14, Section 3.3.2, first sentence; the preceding 0-plot label is at the end of PDF p. 13",
+     "quote": "versus 1-plot (t = 1.88, p = 0.064)"
+    },
+    {
+     "fields": [
+      "paper_effect.value"
+     ],
+     "locator": "PDF p. 53, Table S3, Observed Effect Size",
+     "quote": "0-plot vs 1-plot: Cohen's d = 0.467"
+    }
+   ],
+   "notes": "The printed t and d compare the first-named paper condition minus the second, which is control minus treatment under the extraction arm convention. Their signs are retained exactly and require that orientation when interpreting them. No test degrees of freedom, arm SDs, two-arm total, or standardizer is printed; none is inferred. The source groups these d values under the assigned-condition analysis; the reconciled screening associates them with the story-average contrasts. This is an alternative analysis of the same outcome and sample as the mixed-model records."
+  },
+  {
+   "slug": "s2_story_average_five_plots_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Pairwise story similarity: story-average robustness check",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Each story’s mean cosine similarity to all other stories within its assigned condition, using text-embedding-ada-002 and the paper’s scale of 100. One story-average observation per writer; described as the robustness check in PDF pp. 13-14. Descriptive arm levels and effect sizes are in Table S3 (PDF p. 53).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "5-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 32,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 82.00,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 82.62,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "control minus treatment for the printed t and Cohen’s d; no raw difference is printed",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 1.45,
+     "df": null
+    },
+    "p_value": 0.151,
+    "paper_effect": {
+     "type": "d",
+     "value": 0.363,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "5-plot condition (82.00) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "test.value",
+      "p_value"
+     ],
+     "locator": "PDF p. 14, Section 3.3.2, story-level post-hoc comparisons",
+     "quote": "0-plot versus 5-plot (t = 1.45, p = 0.151)"
+    },
+    {
+     "fields": [
+      "paper_effect.value"
+     ],
+     "locator": "PDF p. 53, Table S3, Observed Effect Size",
+     "quote": "0-plot vs 5-plot: Cohen's d = 0.363"
+    }
+   ],
+   "notes": "The printed t and d compare the first-named paper condition minus the second, which is control minus treatment under the extraction arm convention. Their signs are retained exactly and require that orientation when interpreting them. No test degrees of freedom, arm SDs, two-arm total, or standardizer is printed; none is inferred. The source groups these d values under the assigned-condition analysis; the reconciled screening associates them with the story-average contrasts. This is an alternative analysis of the same outcome and sample as the mixed-model records."
+  },
+  {
+   "slug": "s2_story_average_five_plots_vs_one_plot",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Pairwise story similarity: story-average robustness check",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Each story’s mean cosine similarity to all other stories within its assigned condition, using text-embedding-ada-002 and the paper’s scale of 100. One story-average observation per writer; described as the robustness check in PDF pp. 13-14. Descriptive arm levels and effect sizes are in Table S3 (PDF p. 53).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "5-plot",
+   "control_arm": "1-plot",
+   "within_person": null,
+   "n_treatment": 32,
+   "n_control": 33,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 82.00,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 81.74,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "control minus treatment for the printed t and Cohen’s d; no raw difference is printed",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": -0.73,
+     "df": null
+    },
+    "p_value": 0.470,
+    "paper_effect": {
+     "type": "d",
+     "value": -0.180,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": null
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "1-plot condition (81.74) < control (82.62) = MORE diverse 5-plot condition (82.00) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "test.value",
+      "p_value"
+     ],
+     "locator": "PDF p. 14, Section 3.3.2, story-level post-hoc comparisons",
+     "quote": "1-plot versus 5- plot (t = -0.73, p = 0.470)"
+    },
+    {
+     "fields": [
+      "paper_effect.value"
+     ],
+     "locator": "PDF p. 53, Table S3, Observed Effect Size",
+     "quote": "1-plot vs 5-plot: Cohen's d = -0.180"
+    }
+   ],
+   "notes": "The printed t and d compare the first-named paper condition minus the second, which is control minus treatment under the extraction arm convention. Their signs are retained exactly and require that orientation when interpreting them. No test degrees of freedom, arm SDs, two-arm total, or standardizer is printed; none is inferred. The source groups these d values under the assigned-condition analysis; the reconciled screening associates them with the story-average contrasts. This is an alternative analysis of the same outcome and sample as the mixed-model records."
+  },
+  {
+   "slug": "s2_similarity_bayesian_one_plot_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Within-condition story similarity: Bayesian hierarchical contrast",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Bayesian hierarchical analysis of within-condition story similarity, using the same text embeddings and similarity scale as the pairwise analysis. The paper does not identify its observation unit or random-effects structure (PDF pp. 14-15). Posterior contrast summaries are from the Equivalence Testing block of Table S2; descriptive observed arm levels are from Table S3.",
+   "unit": null,
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "1-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 33,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 81.74,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 82.62,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": -0.882,
+    "difference_is": "treatment minus control (posterior mean difference)",
+    "difference_se": null,
+    "ci_lower": -1.686,
+    "ci_upper": -0.042,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": null,
+    "test": {
+     "type": "other",
+     "value": 0.548,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "1-plot condition (81.74) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "difference",
+      "ci_lower",
+      "ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 52, Table S2, Equivalence Testing, 1-plot vs 0-plot",
+     "quote": "Mean diﬀerence: -0.882 95% HDI: [-1.686, -0.042]"
+    },
+    {
+     "fields": [
+      "test.value"
+     ],
+     "locator": "PDF p. 53, Table S2 continuation, Bayes Factors, 1-plot vs 0-plot",
+     "quote": "BF01 (null vs alternative): 0.548"
+    }
+   ],
+   "notes": "ci_lower/ci_upper contain a posterior highest-density interval (HDI), not a frequentist confidence interval. test.type other and test.value denote BF01, the Bayes factor for the null versus alternative; no p-value is supplied. Table S2’s posterior SDs are not entered as SEs. Arm means are observed descriptive means from Table S3, not posterior fitted arm levels. Arm counts are the reported analyzed condition membership; the model’s fitting unit is unspecified. unit is null and se_basis is not_reported because the uncertainty basis cannot be confirmed, although an HDI is printed. This record is supplementary and reuses the same sample as the frequentist records."
+  },
+  {
+   "slug": "s2_similarity_bayesian_five_plots_vs_control",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Within-condition story similarity: Bayesian hierarchical contrast",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Bayesian hierarchical analysis of within-condition story similarity, using the same text embeddings and similarity scale as the pairwise analysis. The paper does not identify its observation unit or random-effects structure (PDF pp. 14-15). Posterior contrast summaries are from the Equivalence Testing block of Table S2; descriptive observed arm levels are from Table S3.",
+   "unit": null,
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "5-plot",
+   "control_arm": "0-plot (control, human only)",
+   "within_person": null,
+   "n_treatment": 32,
+   "n_control": 32,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 82.00,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 82.62,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": -0.625,
+    "difference_is": "treatment minus control (posterior mean difference)",
+    "difference_se": null,
+    "ci_lower": -1.486,
+    "ci_upper": 0.203,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": null,
+    "test": {
+     "type": "other",
+     "value": 1.724,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "5-plot condition (82.00) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "difference",
+      "ci_lower",
+      "ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 52, Table S2, Equivalence Testing, 5-plot vs 0-plot",
+     "quote": "Mean diﬀerence: -0.625 95% HDI: [-1.486, 0.203]"
+    },
+    {
+     "fields": [
+      "test.value"
+     ],
+     "locator": "PDF p. 53, Table S2 continuation, Bayes Factors, 5-plot vs 0-plot",
+     "quote": "BF01 (null vs alternative): 1.724"
+    }
+   ],
+   "notes": "ci_lower/ci_upper contain a posterior highest-density interval (HDI), not a frequentist confidence interval. test.type other and test.value denote BF01, the Bayes factor for the null versus alternative; no p-value is supplied. Table S2’s posterior SDs are not entered as SEs. Arm means are observed descriptive means from Table S3, not posterior fitted arm levels. Arm counts are the reported analyzed condition membership; the model’s fitting unit is unspecified. unit is null and se_basis is not_reported because the uncertainty basis cannot be confirmed, although an HDI is printed. This record is supplementary and reuses the same sample as the frequentist records."
+  },
+  {
+   "slug": "s2_similarity_bayesian_five_plots_vs_one_plot",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O2",
+   "outcome": "Within-condition story similarity: Bayesian hierarchical contrast",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "Bayesian hierarchical analysis of within-condition story similarity, using the same text embeddings and similarity scale as the pairwise analysis. The paper does not identify its observation unit or random-effects structure (PDF pp. 14-15). Posterior contrast summaries are from the Equivalence Testing block of Table S2; descriptive observed arm levels are from Table S3.",
+   "unit": null,
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "5-plot",
+   "control_arm": "1-plot",
+   "within_person": null,
+   "n_treatment": 32,
+   "n_control": 33,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 82.00,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": 81.74,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": 0.258,
+    "difference_is": "treatment minus control (posterior mean difference)",
+    "difference_se": null,
+    "ci_lower": -0.594,
+    "ci_upper": 1.080,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": null,
+    "test": {
+     "type": "other",
+     "value": 3.968,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 13, Table 3, condition columns and Count row",
+     "quote": "0-plot (human only) 1-plot 5-plot Count 32 33 32"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "control_mean"
+     ],
+     "locator": "PDF p. 53, Table S3, Originally Assigned Conditions",
+     "quote": "1-plot condition (81.74) < control (82.62) = MORE diverse 5-plot condition (82.00) < control (82.62) = MORE diverse"
+    },
+    {
+     "fields": [
+      "difference",
+      "ci_lower",
+      "ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 52, Table S2, Equivalence Testing, 5-plot vs 1-plot",
+     "quote": "Mean diﬀerence: 0.258 95% HDI: [-0.594, 1.080]"
+    },
+    {
+     "fields": [
+      "test.value"
+     ],
+     "locator": "PDF p. 53, Table S2 continuation, Bayes Factors, 5-plot vs 1-plot",
+     "quote": "BF01 (null vs alternative): 3.968"
+    }
+   ],
+   "notes": "ci_lower/ci_upper contain a posterior highest-density interval (HDI), not a frequentist confidence interval. test.type other and test.value denote BF01, the Bayes factor for the null versus alternative; no p-value is supplied. Table S2’s posterior SDs are not entered as SEs. Arm means are observed descriptive means from Table S3, not posterior fitted arm levels. Arm counts are the reported analyzed condition membership; the model’s fitting unit is unspecified. unit is null and se_basis is not_reported because the uncertainty basis cannot be confirmed, although an HDI is printed. This record is supplementary and reuses the same sample as the frequentist records."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "S1: Phase 1 model-only plot generation, intra- and inter-persona similarity, persona distinctiveness, and the generic-prompt simulation",
+   "reason": "No human participant receives randomized AI assistance in this phase. Analyses concern generated plots only (PDF pp. 5-7, Sections 2.1-2.3). Model-only analyses are excluded by extraction rule 5."
+  },
+  {
+   "what": "S2-O3: Total words per story (NLTK); both the Human versus AI-Assisted and the 1-plot versus 5-plot linguistic contrasts",
+   "reason": "Excluded under the reconciled screening form’s nonrandomized classification. Tables 5-6 give no group counts, and their count means and test statistics do not correspond to the analyzed randomized arm membership. The grouping is not explained. No group counts are inferred or substituted. Sources checked: PDF p. 16, Tables 5-6, against PDF p. 11, Section 3.1, and PDF p. 13, Table 3."
+  },
+  {
+   "what": "S2-O4: Unique words per story (NLTK); both the Human versus AI-Assisted and the 1-plot versus 5-plot linguistic contrasts",
+   "reason": "Excluded under the reconciled screening form’s nonrandomized classification. Tables 5-6 give no group counts, and their count means and test statistics do not correspond to the analyzed randomized arm membership. The grouping is not explained. No group counts are inferred or substituted. Sources checked: PDF p. 16, Tables 5-6, against PDF p. 11, Section 3.1, and PDF p. 13, Table 3."
+  },
+  {
+   "what": "S2-O5: Common words percent per story (NLTK stopwords); both the Human versus AI-Assisted and the 1-plot versus 5-plot linguistic contrasts",
+   "reason": "Excluded under the reconciled screening form’s nonrandomized classification. Tables 5-6 give no group counts, and their count means and test statistics do not correspond to the analyzed randomized arm membership. The grouping is not explained. No group counts are inferred or substituted. Sources checked: PDF p. 16, Tables 5-6, against PDF p. 11, Section 3.1, and PDF p. 13, Table 3."
+  },
+  {
+   "what": "S2-O6: Action words (verbs) per story (NLTK); both the Human versus AI-Assisted and the 1-plot versus 5-plot linguistic contrasts",
+   "reason": "Excluded under the reconciled screening form’s nonrandomized classification. Tables 5-6 give no group counts, and their count means and test statistics do not correspond to the analyzed randomized arm membership. The grouping is not explained. No group counts are inferred or substituted. Sources checked: PDF p. 16, Tables 5-6, against PDF p. 11, Section 3.1, and PDF p. 13, Table 3."
+  },
+  {
+   "what": "S2-O7: Descriptive words (adjectives) per story (NLTK); both the Human versus AI-Assisted and the 1-plot versus 5-plot linguistic contrasts",
+   "reason": "Excluded under the reconciled screening form’s nonrandomized classification. Tables 5-6 give no group counts, and their count means and test statistics do not correspond to the analyzed randomized arm membership. The grouping is not explained. No group counts are inferred or substituted. Sources checked: PDF p. 16, Tables 5-6, against PDF p. 11, Section 3.1, and PDF p. 13, Table 3."
+  },
+  {
+   "what": "S2-O8: Named characters (proper nouns) per story (NLTK); both the Human versus AI-Assisted and the 1-plot versus 5-plot linguistic contrasts",
+   "reason": "Excluded under the reconciled screening form’s nonrandomized classification. Tables 5-6 give no group counts, and their count means and test statistics do not correspond to the analyzed randomized arm membership. The grouping is not explained. No group counts are inferred or substituted. Sources checked: PDF p. 16, Tables 5-6, against PDF p. 11, Section 3.1, and PDF p. 13, Table 3."
+  },
+  {
+   "what": "S2-O9: Emotional words per story (NLTK and WordNet); both the Human versus AI-Assisted and the 1-plot versus 5-plot linguistic contrasts",
+   "reason": "Excluded under the reconciled screening form’s nonrandomized classification. Tables 5-6 give no group counts, and their count means and test statistics do not correspond to the analyzed randomized arm membership. The grouping is not explained. No group counts are inferred or substituted. Sources checked: PDF p. 16, Tables 5-6, against PDF p. 11, Section 3.1, and PDF p. 13, Table 3."
+  },
+  {
+   "what": "Doshi and Hauser regression results reprinted alongside this experiment",
+   "reason": "The right-hand column of Table 2 belongs to a different paper and sample; it is not an estimate from this randomized experiment (PDF p. 12)."
+  },
+  {
+   "what": "Three-arm omnibus ANOVA and model F statistics, omnibus effect sizes and power calculations, and the unallocated permutation-test result",
+   "reason": "These are not reported two-arm contrasts. The permutation result is not assigned to a particular comparison. They cannot be placed into the pairwise estimate fields without guessing (PDF pp. 12-15 and 53)."
+  },
+  {
+   "what": "Pre-story ten-word task mentioned on the opening screen",
+   "reason": "The consent screenshot mentions this task, but no scoring method or outcome results are reported anywhere in the document (PDF p. 44, opening-screen image, visually checked after extracting the page text)."
+  }
+ ],
+ "open_items": [
+  "Per-arm randomized counts are not printed. The reported recruitment total and analyzed arm counts are retained without reconstructing assignment counts (PDF pp. 10-11 and 43).",
+  "No two-arm participant total is printed for the extracted contrasts. n_total is null rather than summing arm counts; any n_units reported for a regression describes its full three-arm fit.",
+  "Table 2 prints unlabeled parenthetical quantities and does not identify the standard-error type. They are not assumed to be SEs; regression.se remains null (PDF p. 12).",
+  "Table S3 prints arm means but no SDs for story-average pairwise similarity, and does not state the standardizer for its Cohen’s d values (PDF p. 53).",
+  "The Bayesian model’s observation unit and random-effects specification are not printed. Its posterior SDs are not frequentist SEs; its HDIs must not be treated as frequentist confidence intervals or used to derive SEs (PDF pp. 14-15 and 52).",
+  "The story-level omnibus ANOVA differs between the main text and Table S3. No correction is inferred, and omnibus statistics are not attached to two-arm contrasts (PDF pp. 13 and 53).",
+  "The grouping behind the linguistic results is not explained, and plot-request take-up is not reported. The reconciled screening excludes these contrasts as nonrandomized; no inferred group counts are recorded (PDF pp. 11-12, 15-16 and 43).",
+  "The paper names no primary outcome or preregistration. The primary-selection convention is documented in primary_override.",
+  "The latest publisher version identified in the citation record is not the PDF provided for extraction; whether it resolves the reporting issues is unverified."
+ ],
+ "primary_override": {
+  "S2_across_people_ai_vs_bau": {
+   "slug": "s2_centroid_five_plots_vs_control",
+   "reason": "Use the first-reported all-writer semantic-similarity analysis, the direct centroid replication in Tables 2-3. Among the fixed-idea arms, the larger optional menu offers the greater choice and is closest to the codebook preference for flexible AI access. No pooled AI-arm similarity contrast is reported. The selection does not depend on significance."
+  },
+  "S2_across_people_ai_design": {
+   "slug": "s2_centroid_five_plots_vs_one_plot",
+   "reason": "Use the same centroid measure for consistency. The larger optional menu is treatment and the single-idea configuration is comparison; the paper does not identify either as a default."
+  }
+ },
+ "notes": "Only the eligible human randomized study is included in studies; screening study IDs are preserved, so it is S2. The full markdown, including references and supplementary materials, was read. All cited quantitative PDF pages were checked with pymupdf.get_text(), with table recovery where useful; image-only opening and task screens were also viewed in memory. The sample is newly recruited; the reprinted Doshi and Hauser column is a different sample. All assistance effects concern offered access. Exclusions for reported outside AI use were confined to the control arm. The centroid, crossed-story mixed-model, story-average, and Bayesian records reuse the same participants and are alternative analyses, not independent samples. Printed signs and numerical precision are preserved; no effect, SE, total count, or arm mean was calculated. Each person produced one analyzed story, so story-score SDs and mixed-model story random effects are at the participant level. Bayesian se_basis is not_reported because its basis is unspecified, despite reported posterior intervals."
+}

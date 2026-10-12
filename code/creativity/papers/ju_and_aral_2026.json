@@ -1,0 +1,1316 @@
+{
+ "schema": 1,
+ "paper_key": "ju_and_aral_2026",
+ "cid": "c392",
+ "status": "verified",
+ "status_reason": null,
+ "paper": {
+  "authors_short": "Ju and Aral",
+  "authors_full": "Harang Ju, Sinan Aral",
+  "year": 2026,
+  "title": "Collaborating with AI Agents: Field Experiments on Teamwork, Productivity, and Performance",
+  "venue": "arXiv",
+  "doi": "10.48550/arXiv.2503.18238",
+  "url": "https://arxiv.org/abs/2503.18238v3",
+  "pdf_filename": "Ju and Aral (2026) - Collaborating with AI Agents.pdf",
+  "version_read": "arXiv:2503.18238v3 [cs.CY], 5 Feb 2026; title page dated February 6, 2026 (PDF p. 1). Printed title: Collaborating with AI Agents: A Field Experiment on Teamwork, Productivity, and Performance.",
+  "is_own_paper": false,
+  "one_line_finding": "Among the 2,234 analyzed participants, assignment to a GPT-4o agent teammate rather than a human teammate was associated with 1.954 more ads per person (SE 0.197; intercept 4.601), higher rated text quality (0.327, SE 0.024) and lower rated image quality (-0.133, SE 0.021) on 7-point scales, and less diverse ad copy among the 2,034 people analyzed for diversity (cosine distance to own-condition centroid -0.094, SE 0.006; intercept 0.303) (p. 22, Table 2).",
+  "shared_samples": null
+ },
+ "provenance": {
+  "source_document": "Ju and Aral (2026) - Collaborating with AI Agents.pdf",
+  "source_url": "https://arxiv.org/abs/2503.18238v3",
+  "source_version": "arXiv:2503.18238v3 [cs.CY], 5 Feb 2026; title page dated February 6, 2026 (PDF p. 1). Printed title: Collaborating with AI Agents: A Field Experiment on Teamwork, Productivity, and Performance.; PDF SHA-256 b680f58422e4684e94610ba8fe8c49fc8508223a0e4cc45d590bacef6ccd7877",
+  "extraction_date": "2026-10-11",
+  "review_date": "2026-10-11",
+  "review_basis": "primary_source",
+  "checked_by": "two Codex extractors, a reconciler, a mechanical check, a verifier, and, where flagged, a fixer and a second verifier",
+  "statement": "Extracted and checked by Codex jobs (gpt-6-astra): two independent extractions, a reconciliation against the source PDF, a script that matched every number to its quote and every quote to the cited page, and a verifier; not yet verified by a human research assistant."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Pairit ad-creation experiment (human-AI versus human-human teams), with human and AI evaluations and a subsequent ad campaign on X",
+   "design_class": "online_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": {},
+   "cluster_se_treatment": "Individuals were randomized before matching (PDF p. 14, Section 3.3); teams were formed afterward. Participant regressions report heteroskedasticity-robust SEs without team clustering. Human and AI quality regressions cluster SEs by ad, not creator or team (PDF pp. 22, 47, 49, 51-52). Team productivity uses one observation per team and robust SEs (PDF p. 47, Table B).",
+   "n_randomized": null,
+   "n_analyzed": 2234,
+   "counts_source": {
+    "locator": "PDF p. 15, Section 3.4 (Participants), final analyzed sample",
+    "quote": "exclude them from all analyses, yielding a final sample of 2,234 participants (1,258 human-AI, 976 human-human)."
+   },
+   "arms": [
+    {
+     "name": "Human-AI",
+     "description": "A participant collaborates with an autonomous GPT-4o agent in a shared workspace. The agent chats, edits copy, selects images, and generates images through Dall-E 3; the human submits the ads. Partner identity is disclosed after the task (PDF pp. 11-12, 14-15).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 1258
+    },
+    {
+     "name": "Human-Human",
+     "description": "A participant collaborates with another participant in the same shared workspace. Both have access to Dall-E 3 image generation; submitted ads require both participants to confirm. This is an active human-partner comparison (PDF pp. 11, 14-15).",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": 976
+    }
+   ],
+   "population": "online_panel",
+   "country": "United States",
+   "task_type": "creative_writing",
+   "task": "Create display advertisements for a think tank report by writing a headline, primary text, and description and selecting or generating an image during a timed collaborative session (PDF pp. 11, 14-16).",
+   "ai_role": "other",
+   "ai_tool": {
+    "name": "OpenAI gpt-4o-2024-08-06 agent on Pairit; Dall-E 3 image generation available in both arms",
+    "year": 2024,
+    "locator": "PDF p. 12, Section 3.2, names gpt-4o-2024-08-06; PDF p. 11, Section 3.1, specifies shared Dall-E 3 access. Year refers to the dated GPT-4o model version."
+   },
+   "preregistration": {
+    "exists": "yes",
+    "where": "osf.io/jfzha and osf.io/95dhu (PDF p. 11, footnote 1); field campaigns also described as preregistered at osf.io/95dhu (PDF p. 18, Section 3.9).",
+    "primary_outcome": null
+   },
+   "shared_sample": null,
+   "sample_id": "ju_and_aral_2026__s1"
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_diversity_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Output diversity: cosine distance to own-condition centroid",
+   "question": "across_people",
+   "construct": "diversity",
+   "measure": "embedding_similarity",
+   "measure_detail": "OpenAI text-embedding-3-small embeddings of each submitted headline, primary text, and description. Cosine distance to the mean embedding of submissions in the same arm is averaged within participant. Higher values indicate more diverse or atypical content (PDF p. 21, Section 3.10).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": 2034,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.094,
+     "se": 0.006,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 22, Table 2, Output Diversity column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 1.954∗∗∗ 0.327∗∗∗ -0.133∗∗∗ -0.013 -0.094∗∗∗ (0.197) (0.024) (0.021) (0.021) (0.006)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 22, Table 2, Output Diversity column, significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_total"
+     ],
+     "locator": "PDF p. 21, Section 3.10 (Output diversity), analyzed participant count",
+     "quote": "This analysis is restricted to users who submitted at least one ad with text content (N=2,034 of 2,234 participants)."
+    }
+   ],
+   "notes": "Arm-specific diversity levels and dispersion are not printed; the adjusted regression intercept is not an observed control-arm mean. Arm-specific participant counts in this text-submitting sample are not printed. The unit is the participant average, although each centroid is computed from its whole arm. Robust SEs are not clustered by team; shared human-human submissions and centroid estimation may create dependence that the reported SEs do not address. No arm levels or uncertainty were calculated.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_human_text_quality_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Human-rated text quality",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "human_raters",
+   "measure_detail": "Independent US Prolific raters evaluated ad mockups using a seven-point Likert agreement scale; the regression is at the rating level (PDF pp. 17-19, Sections 3.8 and 3.10). Item: \"The text is present, clear, relevant, and engaging\" (PDF p. 18).",
+   "unit": "rating",
+   "n_units": 45803,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.327,
+     "se": 0.024,
+     "se_type": "clustered_cluster",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "output",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 22, Table 2, Text column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 1.954∗∗∗ 0.327∗∗∗ -0.133∗∗∗ -0.013 -0.094∗∗∗ (0.197) (0.024) (0.021) (0.021) (0.006)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 22, Table 2, Text column, significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 22, Table 2, Text column, Observations row",
+     "quote": "Observations 2234 45803 45803 45803 2034"
+    }
+   ],
+   "notes": "SEs are clustered by ad, not by the randomized participant or producing team. Repeated ratings and multiple ads per creator therefore do not establish participant-level precision. The paper does not print the number of contributing creators in this rating analysis or arm means/SDs. The corresponding demographic-only specification in Table G is a duplicate; its work-process-adjusted alternative is excluded.",
+   "named_primary": "paper",
+   "primary_override": true,
+   "primary_override_reason": "with_ai, ai_vs_active. Text and image quality are parallel primary outcomes. The ad copy is what the participant writes with the partner; images come from Dall-E 3 in both arms, so the text rating reflects the collaboration the arms differ in."
+  },
+  {
+   "slug": "s1_human_image_quality_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Human-rated image quality",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "human_raters",
+   "measure_detail": "Independent US Prolific raters evaluated ad mockups using a seven-point Likert agreement scale; the regression is at the rating level (PDF pp. 17-19, Sections 3.8 and 3.10). Item: \"The image is visually appealing\" (PDF p. 18).",
+   "unit": "rating",
+   "n_units": 45803,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.133,
+     "se": 0.021,
+     "se_type": "clustered_cluster",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "output",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 22, Table 2, Image column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 1.954∗∗∗ 0.327∗∗∗ -0.133∗∗∗ -0.013 -0.094∗∗∗ (0.197) (0.024) (0.021) (0.021) (0.006)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 22, Table 2, Image column, significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 22, Table 2, Image column, Observations row",
+     "quote": "Observations 2234 45803 45803 45803 2034"
+    }
+   ],
+   "notes": "SEs are clustered by ad, not by the randomized participant or producing team. Repeated ratings and multiple ads per creator therefore do not establish participant-level precision. The paper does not print the number of contributing creators in this rating analysis or arm means/SDs. The corresponding demographic-only specification in Table G is a duplicate; its work-process-adjusted alternative is excluded.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_human_click_likelihood_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Human-rated likelihood of clicking",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "human_raters",
+   "measure_detail": "Independent US Prolific raters evaluated ad mockups using a seven-point Likert agreement scale; the regression is at the rating level (PDF pp. 17-19, Sections 3.8 and 3.10). Item: \"I am likely to click on this ad\" (PDF p. 18).",
+   "unit": "rating",
+   "n_units": 45803,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.013,
+     "se": 0.021,
+     "se_type": "clustered_cluster",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "output",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 22, Table 2, Click column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 1.954∗∗∗ 0.327∗∗∗ -0.133∗∗∗ -0.013 -0.094∗∗∗ (0.197) (0.024) (0.021) (0.021) (0.006)"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 22, Table 2, Click column, Observations row",
+     "quote": "Observations 2234 45803 45803 45803 2034"
+    }
+   ],
+   "notes": "SEs are clustered by ad, not by the randomized participant or producing team. Repeated ratings and multiple ads per creator therefore do not establish participant-level precision. The paper does not print the number of contributing creators in this rating analysis or arm means/SDs. The corresponding demographic-only specification in Table G is a duplicate; its work-process-adjusted alternative is excluded. Higher values mean greater predicted likelihood of clicking, not a direct creativity rating.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_productivity_adjusted_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O5",
+   "outcome": "Productivity: ads submitted per participant, demographic controls",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Number of display ads submitted per participant during the collaborative task (PDF p. 22, Table 2 notes; PDF pp. 14-15, task procedure).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": 1258,
+   "n_control": 976,
+   "n_total": 2234,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 1.954,
+     "se": 0.197,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 22, Table 2, Productivity column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 1.954∗∗∗ 0.327∗∗∗ -0.133∗∗∗ -0.013 -0.094∗∗∗ (0.197) (0.024) (0.021) (0.021) (0.006)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 22, Table 2, Productivity column, significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 16, Table 1, Individuals row; columns All, Human-AI, Human-Human",
+     "quote": "Individuals 2234 1258 976"
+    },
+    {
+     "fields": [
+      "n_total"
+     ],
+     "locator": "PDF p. 22, Table 2, Productivity column, Observations row",
+     "quote": "Observations 2234 45803 45803 45803 2034"
+    }
+   ],
+   "notes": "Main productivity specification. Repeated unchanged in Table B, final column (PDF p. 47), and recorded only once. Robust SEs do not account for dependence within human-human teams. The paper does not explain how jointly confirmed ads are credited to individual partners. Neither arm means nor participant SDs are printed. The narrative percentage increase is retained with the unadjusted productivity record. The paper describes that increase before stating that results remain consistent when demographic controls are added; it does not identify an adjusted percentage effect.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_productivity_unadjusted_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O5",
+   "outcome": "Productivity: ads submitted per participant, no demographic controls",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Number of display ads submitted per participant during the collaborative task (PDF p. 22, Table 2 notes; PDF pp. 14-15, task procedure).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": 1258,
+   "n_control": 976,
+   "n_total": 2234,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 1.925,
+     "se": 0.197,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Linear regression with intercept and Human-AI only; no demographic controls (Table B)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": {
+     "type": "other",
+     "value": 50,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "Reported percentage increase in ads per worker, per unit time, relative to Human-Human. The paper gives no calculation formula; this is not an SD-standardized effect."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 47, Table B, first Individual column (Demographics No), Human-AI coefficient and SE rows",
+     "quote": "Human-AI -1.847∗∗∗ 1.925∗∗∗ 1.954∗∗∗ (0.315) (0.197) (0.197)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 47, Table B, first Individual column (Demographics No), significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 16, Table 1, Individuals row; columns All, Human-AI, Human-Human",
+     "quote": "Individuals 2234 1258 976"
+    },
+    {
+     "fields": [
+      "n_total"
+     ],
+     "locator": "PDF p. 47, Table B, first Individual column (Demographics No), Observations row",
+     "quote": "Observations 1751 2234 2234"
+    },
+    {
+     "fields": [
+      "paper_effect.value"
+     ],
+     "locator": "PDF p. 22, Section 4.1, productivity paragraph before Table 2",
+     "quote": "teams submitted 50% more ads per worker, per unit time than their counterparts in human-human teams, with results consistent when demographic controls are added (Table 2)."
+    }
+   ],
+   "notes": "Separate full-sample unadjusted specification. The paper labels its baseline value as an intercept; it is not relabeled as a reported arm mean. Robust SEs do not account for shared human-human teams. No SD or standardized effect is printed. The printed 50% increase is retained as paper_effect type other, in percentage units. Section 4.1 states this increase before noting consistency with added demographic controls, so it is attached to this unadjusted contrast rather than treated as a transformation of the adjusted coefficient. No percentage, arm level, standardizer, or uncertainty was calculated.",
+   "named_primary": "paper",
+   "data_stats": {
+    "round": "all",
+    "n_treatment": 1258,
+    "n_control": 976,
+    "treatment_mean": 5.775834658187599,
+    "treatment_sd": 5.276355249644644,
+    "control_mean": 3.8504098360655736,
+    "control_sd": 4.038806606687315,
+    "difference": 1.9254248221220256,
+    "difference_se": 0.1970872354224823,
+    "se_type": "HC2",
+    "n_clusters": null,
+    "scripts": [
+     "docs/creativity-screening/analysis/c392/A.py",
+     "docs/creativity-screening/analysis/c392/B.py"
+    ],
+    "deposit": "osf-qr5ae",
+    "compare_file": "docs/creativity-screening/analysis/c392/compare.json"
+   }
+  },
+  {
+   "slug": "s1_team_productivity_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O5",
+   "outcome": "Productivity: ads submitted per team",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Total ad submissions per collaborating team; one observation per team (PDF p. 19, Section 3.10; PDF pp. 46-47, Appendix B and Table B).",
+   "unit": "team",
+   "n_units": 1751,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": 1258,
+   "n_control": 976,
+   "n_total": 2234,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -1.847,
+     "se": 0.315,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Linear regression with intercept and Human-AI only; no demographic controls (Table B)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "unclear",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 47, Table B, Team column (Demographics No), Human-AI coefficient and SE rows",
+     "quote": "Human-AI -1.847∗∗∗ 1.925∗∗∗ 1.954∗∗∗ (0.315) (0.197) (0.197)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 47, Table B, Team column (Demographics No), significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control",
+      "n_total"
+     ],
+     "locator": "PDF p. 16, Table 1, Individuals row; columns All, Human-AI, Human-Human",
+     "quote": "Individuals 2234 1258 976"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 47, Table B, Team column (Demographics No), Observations row",
+     "quote": "Observations 1751 2234 2234"
+    }
+   ],
+   "notes": "Heteroskedasticity-robust SEs across teams, rather than an individual-level regression. Assignment was individual, and these teams were formed after assignment. The codebook has no team SE category for this individually randomized design; se_basis is conservatively unclear, not precision from randomized clusters. People counts are the reported full cohort underlying the analyzed teams (PDF pp. 15-16), not team counts. Table 1 reports inconsistent human-human people/team totals. No SD, arm mean, or participant-based SE is inferred.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s1_ai_rated_text_quality_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O6",
+   "outcome": "AI-rated text quality",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "automated_score",
+   "measure_detail": "OpenAI gpt-4o-mini-2024-07-18 evaluates the submitted ad mockup with the same seven-point Likert item used for human ratings (PDF p. 49, Appendix H). Item: \"The text is present, clear, relevant, and engaging\".",
+   "unit": "output",
+   "n_units": 11024,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.128,
+     "se": 0.015,
+     "se_type": "clustered_cluster",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "output",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 52, Table H, first Text column (demographics only), Human-AI coefficient and SE rows",
+     "quote": "Human-AI 0.128∗∗∗ 0.120∗∗∗ -0.011 -0.114∗∗∗ 0.071∗∗∗ 0.040 (0.015) (0.031) (0.015) (0.030) (0.013) (0.027)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 52, Table H, first Text column (demographics only), significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 52, Table H, first Text column (demographics only), Observations row",
+     "quote": "Observations 11024 11024 11024 11024 11024 11024"
+    }
+   ],
+   "notes": "Demographic-only specification. One AI evaluation per ad; SEs are clustered at the ad level (Table H), and multiple ads per creator are not clustered by participant/team. Creator counts for this output sample are not printed. This is automated scoring of human-produced collaborative outputs, not a model-only creation arm. The alternative with work-process covariates is excluded.",
+   "named_primary": null
+  },
+  {
+   "slug": "s1_ai_rated_image_quality_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O7",
+   "outcome": "AI-rated image quality",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "automated_score",
+   "measure_detail": "OpenAI gpt-4o-mini-2024-07-18 evaluates the submitted ad mockup with the same seven-point Likert item used for human ratings (PDF p. 49, Appendix H). Item: \"The image is visually appealing\".",
+   "unit": "output",
+   "n_units": 11024,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": -0.011,
+     "se": 0.015,
+     "se_type": "clustered_cluster",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "output",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 52, Table H, first Image column (demographics only), Human-AI coefficient and SE rows",
+     "quote": "Human-AI 0.128∗∗∗ 0.120∗∗∗ -0.011 -0.114∗∗∗ 0.071∗∗∗ 0.040 (0.015) (0.031) (0.015) (0.030) (0.013) (0.027)"
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 52, Table H, first Image column (demographics only), Observations row",
+     "quote": "Observations 11024 11024 11024 11024 11024 11024"
+    }
+   ],
+   "notes": "Demographic-only specification. One AI evaluation per ad; SEs are clustered at the ad level (Table H), and multiple ads per creator are not clustered by participant/team. Creator counts for this output sample are not printed. This is automated scoring of human-produced collaborative outputs, not a model-only creation arm. The alternative with work-process covariates is excluded.",
+   "named_primary": null
+  },
+  {
+   "slug": "s1_ai_rated_click_likelihood_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O8",
+   "outcome": "AI-rated likelihood of clicking",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "automated_score",
+   "measure_detail": "OpenAI gpt-4o-mini-2024-07-18 evaluates the submitted ad mockup with the same seven-point Likert item used for human ratings (PDF p. 49, Appendix H). Item: \"I am likely to click on this ad\".",
+   "unit": "output",
+   "n_units": 11024,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.071,
+     "se": 0.013,
+     "se_type": "clustered_cluster",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "output",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 52, Table H, first Click column (demographics only), Human-AI coefficient and SE rows",
+     "quote": "Human-AI 0.128∗∗∗ 0.120∗∗∗ -0.011 -0.114∗∗∗ 0.071∗∗∗ 0.040 (0.015) (0.031) (0.015) (0.030) (0.013) (0.027)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 52, Table H, first Click column (demographics only), significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_units"
+     ],
+     "locator": "PDF p. 52, Table H, first Click column (demographics only), Observations row",
+     "quote": "Observations 11024 11024 11024 11024 11024 11024"
+    }
+   ],
+   "notes": "Demographic-only specification. One AI evaluation per ad; SEs are clustered at the ad level (Table H), and multiple ads per creator are not clustered by participant/team. Creator counts for this output sample are not printed. This is automated scoring of human-produced collaborative outputs, not a model-only creation arm. The alternative with work-process covariates is excluded. Higher values mean greater predicted click likelihood; this is coded other.",
+   "named_primary": null
+  },
+  {
+   "slug": "s1_headline_completion_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O9",
+   "outcome": "Ad copy completion: Headline",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Completion rate for the headline element in submitted ads, analyzed at the participant level (PDF pp. 48-49, Appendix E and Table E). The paper does not specify the scoring/coding procedure or rate denominator.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": 1258,
+   "n_control": 976,
+   "n_total": 2234,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.15,
+     "se": 0.014,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 49, Table E, Headline column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 0.150∗∗∗ 0.169∗∗∗ 0.161∗∗∗ (0.014) (0.014) (0.015)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 49, Table E, Headline column, significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 16, Table 1, Individuals row; columns All, Human-AI, Human-Human",
+     "quote": "Individuals 2234 1258 976"
+    },
+    {
+     "fields": [
+      "n_total"
+     ],
+     "locator": "PDF p. 49, Table E, Headline column, Observations row",
+     "quote": "Observations 2234 2234 2234"
+    }
+   ],
+   "notes": "Higher values mean more complete ad copy. The paper presents this as an output-completeness check on productivity. Measure remains null because the coding method is not established; this is not a count of ideas or categories. The reported observation count matches the full participant sample. Robust SEs are not clustered by human-human team. No arm mean or SD is printed.",
+   "named_primary": null
+  },
+  {
+   "slug": "s1_primary_text_completion_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O9",
+   "outcome": "Ad copy completion: Primary text",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Completion rate for the primary text element in submitted ads, analyzed at the participant level (PDF pp. 48-49, Appendix E and Table E). The paper does not specify the scoring/coding procedure or rate denominator.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": 1258,
+   "n_control": 976,
+   "n_total": 2234,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.169,
+     "se": 0.014,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 49, Table E, Primary Text column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 0.150∗∗∗ 0.169∗∗∗ 0.161∗∗∗ (0.014) (0.014) (0.015)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 49, Table E, Primary Text column, significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 16, Table 1, Individuals row; columns All, Human-AI, Human-Human",
+     "quote": "Individuals 2234 1258 976"
+    },
+    {
+     "fields": [
+      "n_total"
+     ],
+     "locator": "PDF p. 49, Table E, Primary Text column, Observations row",
+     "quote": "Observations 2234 2234 2234"
+    }
+   ],
+   "notes": "Higher values mean more complete ad copy. The paper presents this as an output-completeness check on productivity. Measure remains null because the coding method is not established; this is not a count of ideas or categories. The reported observation count matches the full participant sample. Robust SEs are not clustered by human-human team. No arm mean or SD is printed.",
+   "named_primary": null
+  },
+  {
+   "slug": "s1_description_completion_human_ai_vs_human_human",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O9",
+   "outcome": "Ad copy completion: Description",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": null,
+   "measure_detail": "Completion rate for the description element in submitted ads, analyzed at the participant level (PDF pp. 48-49, Appendix E and Table E). The paper does not specify the scoring/coding procedure or rate denominator.",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "Human-AI",
+   "control_arm": "Human-Human",
+   "within_person": null,
+   "n_treatment": 1258,
+   "n_control": 976,
+   "n_total": 2234,
+   "higher_is": "other",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": {
+     "coef": 0.161,
+     "se": 0.015,
+     "se_type": "robust",
+     "outcome_scale": "raw",
+     "model": "Linear regression on Human-AI and demographic controls (age, gender, and Big Five personality traits), Equation 1 (PDF pp. 19-20)."
+    },
+    "test": null,
+    "p_value": "<0.001",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se"
+     ],
+     "locator": "PDF p. 49, Table E, Description column, Human-AI coefficient and SE rows",
+     "quote": "Human-AI 0.150∗∗∗ 0.169∗∗∗ 0.161∗∗∗ (0.014) (0.014) (0.015)"
+    },
+    {
+     "fields": [
+      "p_value"
+     ],
+     "locator": "PDF p. 49, Table E, Description column, significance legend (coefficient has three stars)",
+     "quote": "Notes: ∗p<0.05, ∗∗p<0.01, ∗∗∗p<0.001."
+    },
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 16, Table 1, Individuals row; columns All, Human-AI, Human-Human",
+     "quote": "Individuals 2234 1258 976"
+    },
+    {
+     "fields": [
+      "n_total"
+     ],
+     "locator": "PDF p. 49, Table E, Description column, Observations row",
+     "quote": "Observations 2234 2234 2234"
+    }
+   ],
+   "notes": "Higher values mean more complete ad copy. The paper presents this as an output-completeness check on productivity. Measure remains null because the coding method is not established; this is not a count of ideas or categories. The reported observation count matches the full participant sample. Robust SEs are not clustered by human-human team. No arm mean or SD is printed.",
+   "named_primary": null
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "Previous AI chatbot use",
+   "reason": "Post-task self-report or perception, not scored on a creative output (PDF p. 15, Section 3.3; recognition construction in PDF p. 20, Section 3.10)."
+  },
+  {
+   "what": "Valence of previous AI chatbot experience",
+   "reason": "Post-task self-report or perception, not scored on a creative output (PDF p. 15, Section 3.3; recognition construction in PDF p. 20, Section 3.10)."
+  },
+  {
+   "what": "Belief that the partner was AI and recognition accuracy",
+   "reason": "Post-task self-report or perception, not scored on a creative output (PDF p. 15, Section 3.3; recognition construction in PDF p. 20, Section 3.10)."
+  },
+  {
+   "what": "Change in perceived collaboration quality after partner disclosure",
+   "reason": "Post-task self-report or perception, not scored on a creative output (PDF p. 15, Section 3.3; recognition construction in PDF p. 20, Section 3.10)."
+  },
+  {
+   "what": "Message count",
+   "reason": "Work-process or communication measure, not a score or count of submitted creative outputs (PDF p. 26, Table 4 and notes; Table 5 moderation on PDF p. 29; copy-edit count also in Table C, PDF p. 47)."
+  },
+  {
+   "what": "Task-oriented message fraction",
+   "reason": "Work-process or communication measure, not a score or count of submitted creative outputs (PDF p. 26, Table 4 and notes; Table 5 moderation on PDF p. 29; copy-edit count also in Table C, PDF p. 47)."
+  },
+  {
+   "what": "Interpersonal message fraction",
+   "reason": "Work-process or communication measure, not a score or count of submitted creative outputs (PDF p. 26, Table 4 and notes; Table 5 moderation on PDF p. 29; copy-edit count also in Table C, PDF p. 47)."
+  },
+  {
+   "what": "Direct copy-edit count",
+   "reason": "Work-process or communication measure, not a score or count of submitted creative outputs (PDF p. 26, Table 4 and notes; Table 5 moderation on PDF p. 29; copy-edit count also in Table C, PDF p. 47)."
+  },
+  {
+   "what": "Delegation fraction",
+   "reason": "Work-process or communication measure, not a score or count of submitted creative outputs (PDF p. 26, Table 4 and notes; Table 5 moderation on PDF p. 29; copy-edit count also in Table C, PDF p. 47)."
+  },
+  {
+   "what": "Image-edit count",
+   "reason": "Work-action count rather than a measure of submitted creative outputs; generated images may be intermediate actions. The paper groups these measures under work actions (PDF pp. 46-47, Appendix C and Table C)."
+  },
+  {
+   "what": "AI image-generation count",
+   "reason": "Work-action count rather than a measure of submitted creative outputs; generated images may be intermediate actions. The paper groups these measures under work actions (PDF pp. 46-47, Appendix C and Table C)."
+  },
+  {
+   "what": "Content message fraction",
+   "reason": "Category of collaboration messages, not creativity, diversity, or completeness of the submitted ads (PDF pp. 47-48, Appendix D and Table D)."
+  },
+  {
+   "what": "Process message fraction",
+   "reason": "Category of collaboration messages, not creativity, diversity, or completeness of the submitted ads (PDF pp. 47-48, Appendix D and Table D)."
+  },
+  {
+   "what": "Emotional message fraction",
+   "reason": "Category of collaboration messages, not creativity, diversity, or completeness of the submitted ads (PDF pp. 47-48, Appendix D and Table D)."
+  },
+  {
+   "what": "Social message fraction",
+   "reason": "Category of collaboration messages, not creativity, diversity, or completeness of the submitted ads (PDF pp. 47-48, Appendix D and Table D)."
+  },
+  {
+   "what": "Feedback message fraction",
+   "reason": "Category of collaboration messages, not creativity, diversity, or completeness of the submitted ads (PDF pp. 47-48, Appendix D and Table D)."
+  },
+  {
+   "what": "Demographic and Big Five personality balance checks",
+   "reason": "Baseline covariates and randomization checks, not creative-output outcomes (PDF p. 16, Table 1; PDF p. 46, Table A)."
+  },
+  {
+   "what": "Recognition-by-treatment moderation models",
+   "reason": "Subgroup/moderation analysis using a post-task perception variable; the modeled communication and work-action outcomes are also outside output scoring (PDF pp. 20 and 29, Equation 3 and Table 5)."
+  },
+  {
+   "what": "Productivity in communication/delegation mechanism models",
+   "reason": "Table 6 Panel A reports communication associations and treatment interactions; Panel B analyzes delegation within Human-AI participants only. These are post-treatment mechanism/moderation associations rather than full-sample randomized arm contrasts (PDF pp. 20, 30, and 36)."
+  },
+  {
+   "what": "Human-rated text quality in communication/delegation mechanism models",
+   "reason": "Table 6 Panel A reports communication associations and treatment interactions; Panel B analyzes delegation within Human-AI participants only. These are post-treatment mechanism/moderation associations rather than full-sample randomized arm contrasts (PDF pp. 20, 30, and 36)."
+  },
+  {
+   "what": "Human-rated image quality in communication/delegation mechanism models",
+   "reason": "Table 6 Panel A reports communication associations and treatment interactions; Panel B analyzes delegation within Human-AI participants only. These are post-treatment mechanism/moderation associations rather than full-sample randomized arm contrasts (PDF pp. 20, 30, and 36)."
+  },
+  {
+   "what": "Human-rated click likelihood in communication/delegation mechanism models",
+   "reason": "Table 6 Panel A reports communication associations and treatment interactions; Panel B analyzes delegation within Human-AI participants only. These are post-treatment mechanism/moderation associations rather than full-sample randomized arm contrasts (PDF pp. 20, 30, and 36)."
+  },
+  {
+   "what": "Output diversity in communication/delegation mechanism models",
+   "reason": "Table 6 Panel A reports communication associations and treatment interactions; Panel B analyzes delegation within Human-AI participants only. These are post-treatment mechanism/moderation associations rather than full-sample randomized arm contrasts (PDF pp. 20, 30, and 36)."
+  },
+  {
+   "what": "Human-rated text quality with work-process covariates",
+   "reason": "Table G, column 2, adjusts for post-treatment submissions, image generations, messages, and copy/image edits, including treatment interactions. Excluded under extraction rule 5. The demographic-only contrast is extracted separately (PDF p. 51)."
+  },
+  {
+   "what": "Human-rated image quality with work-process covariates",
+   "reason": "Table G, column 4, adjusts for post-treatment submissions, image generations, messages, and copy/image edits, including treatment interactions. Excluded under extraction rule 5. The demographic-only contrast is extracted separately (PDF p. 51)."
+  },
+  {
+   "what": "Human-rated click likelihood with work-process covariates",
+   "reason": "Table G, column 6, adjusts for post-treatment submissions, image generations, messages, and copy/image edits, including treatment interactions. Excluded under extraction rule 5. The demographic-only contrast is extracted separately (PDF p. 51)."
+  },
+  {
+   "what": "AI-rated text quality with work-process covariates",
+   "reason": "Table H, column 2, adjusts for post-treatment submissions, image generations, messages, and copy/image edits, including treatment interactions. Excluded under extraction rule 5. The demographic-only contrast is extracted separately (PDF p. 52)."
+  },
+  {
+   "what": "AI-rated image quality with work-process covariates",
+   "reason": "Table H, column 4, adjusts for post-treatment submissions, image generations, messages, and copy/image edits, including treatment interactions. Excluded under extraction rule 5. The demographic-only contrast is extracted separately (PDF p. 52)."
+  },
+  {
+   "what": "AI-rated click likelihood with work-process covariates",
+   "reason": "Table H, column 6, adjusts for post-treatment submissions, image generations, messages, and copy/image edits, including treatment interactions. Excluded under extraction rule 5. The demographic-only contrast is extracted separately (PDF p. 52)."
+  },
+  {
+   "what": "S1-O10: Field cost-per-click on X",
+   "reason": "The only Human-AI contrast controls for human-rated text quality, image quality, and click likelihood, all measured on outputs after treatment, as well as campaign spend. Excluded under extraction rule 5 (PDF p. 20, Equation 2; PDF p. 25, Table 3, CPC column)."
+  },
+  {
+   "what": "S1-O11: Field click-through rate on X",
+   "reason": "The only Human-AI contrast controls for post-treatment human-rated text quality, image quality, and click likelihood, as well as campaign spend. Excluded under extraction rule 5 (PDF p. 20, Equation 2; PDF p. 25, Table 3, CTR column)."
+  },
+  {
+   "what": "S1-O12: Field view-through duration, all Human-AI contrasts",
+   "reason": "Table 3 and Table I column 6 control for post-treatment ad-quality ratings. Table I column 4 omits those ratings but still controls for campaign spend during the later field campaign, after assignment and ad creation. Under the explicit rule excluding any effect adjusted for variables measured after treatment, the spend-adjusted contrast is also excluded (PDF pp. 18-20, 24-25, and 53). No unadjusted contrast is printed."
+  },
+  {
+   "what": "S1-O13: Field view-through rate, all Human-AI contrasts",
+   "reason": "Table I column 3 controls for post-treatment ad-quality ratings. Column 1 omits those ratings but still controls for campaign spend during the later field campaign. Under extraction rule 5, this post-treatment spending adjustment also excludes that contrast (PDF pp. 18-20, 24, and 53). No unadjusted contrast is printed."
+  },
+  {
+   "what": "Ad-quality predictors of field CPC, CTR, VTR, and VTD, including Table I quality-only models",
+   "reason": "Associations of rated quality with field performance, not randomized AI-arm contrasts; Table I columns 2 and 5 have no Human-AI regressor (PDF p. 25, Table 3; PDF p. 53, Table I)."
+  }
+ ],
+ "open_items": [
+  "The PDF does not supply unambiguous total or arm-specific counts at randomization, the assignment ratio, or attrition by arm. Its abstract describes the analyzed cohort as randomized; the detailed flow distinguishes entrants, completers, and exclusions without consistent allocation counts (PDF pp. 1, 14-16). n_randomized is null.",
+  "Participant-flow and human-human team totals conflict in the source. Completers, excluded sessions, final analyzed people, reported attrition, and Table 1 team counts do not reconcile. Retain the printed analyzed people rather than repair counts arithmetically (PDF pp. 15-16).",
+  "The text-submitting diversity sample has a printed total but no arm-specific people counts. It also has no observed arm means, participant SDs, or arm-specific uncertainty; the regression intercept is conditional on covariates and is not an observed mean (PDF pp. 21-22).",
+  "No eligible outcome has a printed participant-level SD or usable standardized effect. All arm means are unreported as descriptive means; regression intercepts have not been relabeled or combined with coefficients to obtain levels. No standardized effect or interval was calculated.",
+  "The exact number of creative-task participants contributing to the human-rating and AI-rating regressions is not printed. Rating/output observation counts must not be treated as participant counts, and people who produced no output cannot automatically be included (PDF pp. 17, 22, and 52).",
+  "Rater recruitment, survey entry, and completed-rating totals are not reconciled by the paper. No retained-rater count is derived from them (PDF p. 17, Section 3.8; PDF p. 22, Table 2).",
+  "The paper does not explain attribution of jointly confirmed ads to human-human partners. Participant models report robust rather than team-clustered SEs, and rating models cluster by ad rather than participant/team. Team productivity uses a different aggregation and has inconsistent people/team counts; appropriate precision for synthesis remains unresolved (PDF pp. 15-16, 19, 22, 47, 49, and 51-52).",
+  "Ad-copy completion has no stated numerator, denominator, or scoring/coding procedure. Its measure code is null pending that information (PDF pp. 48-49, Appendix E).",
+  "The preregistrations are named, but the PDF does not identify their preregistered primary outcome. The paper calls productivity, quality, and diversity primary in its results section; that does not establish preregistered-primary status (PDF pp. 11, 18, and 21).",
+  "The excluded field analyses have inconsistent corpus/sample counts and do not define the actual rows behind the view-metric observation count. No field row unit or creative-participant count can be inferred (PDF pp. 16, 18-20, 25, and 53).",
+  "The paper provides analysis data and code only upon request; the GitHub link is rating-survey software, not posted analysis data. No data-derived statistics were used (PDF pp. 17 and 39)."
+ ],
+ "chain": {
+  "mech_problems": 0,
+  "verify_problems": 3,
+  "mech2_problems": 0,
+  "fixes": 3,
+  "kept": 0,
+  "reverify_problems": 0,
+  "n_estimates": 13,
+  "finished_at": "2026-10-11T12:56:15"
+ },
+ "review_corrections": [],
+ "review_resolutions": []
+}

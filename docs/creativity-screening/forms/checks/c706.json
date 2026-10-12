@@ -1,0 +1,62 @@
+{
+ "cid": "c706",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].assignment.randomized; eligibility.criterion_1_random_assignment_of_ai; paper_design_summary; eligibility.reason; one_line_finding",
+   "form_value": "assignment.randomized = no; criterion_1_random_assignment_of_ai = not_met; prose says 'rather than assigning at random', 'not at random', and '(not random)'.",
+   "source_says": "The described allocation balances the groups on DAT scores, but the paper does not explicitly state whether any random component was used. Set assignment.randomized to not_stated and criterion_1_random_assignment_of_ai to unclear; replace assertions of nonrandom assignment with 'DAT-balanced allocation; randomization not reported'. No randomized people study is documented. Core exclusion remains warranted by the sample size, and the reported comparison can remain observational context.",
+   "quote": "We use the test to divide the students in the two groups, maintaining as balanced as possible the distribution of the DAT score (see Figure 6).",
+   "locator": "PDF p. 4, Section 3 (Methods), final paragraph; p. 5, Section 4, DAT-balance discussion; p. 10, Figure 6"
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0].reported",
+   "form_value": "Similarity is higher with LLM, so diversity is lower (sign reversed). Text: 'the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).' No test statistic, p-value, or table is printed. Figure 4 box plot: median pairwise Dolos similarity about 0.36 (with LLM) vs about 0.26 (without LLM), read from the figure. The appendix (Figure 7, p. 10) shows Normalized Compression Distance on raw code and on abstract syntax trees as box plots only, with no numbers in the text.",
+   "source_says": "Remove the approximate medians 0.36 and 0.26. Figure 4 contains an unlabeled box plot with axis ticks, not printed median estimates; exact arm medians are unreported and must remain null. Retain the qualitative finding of greater Dolos similarity with Copilot and classify the numerical evidence as figure_only. The word significantly appears in the narrative, but no test statistic, p-value, confidence interval, or test procedure is reported.",
+   "quote": "the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).",
+   "locator": "PDF p. 5, Section 4 (Results), code-similarity paragraph; p. 6, Figure 4"
+  },
+  {
+   "field": "studies[0].arms[1].description",
+   "form_value": "Coded the controller with course material, lab code, and documentation only; no internet access",
+   "source_says": "The restriction was no internet access except for the permitted course materials, laboratory code, and simulation/language documentation. Replace the unconditional 'no internet access' with this exception.",
+   "quote": "Nevertheless, they are not allowed to access internet except for the aforementioned resources.",
+   "locator": "PDF p. 3, Section 3 (Methods), first paragraph"
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0] (structured contrast fields)",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "Complete treatment_arm='with LLM', control_arm='without LLM', comparison_type='ai_vs_bau', direction='treatment_lower' for the coded diversity construct, and statistics_available=['figure_only']. Higher Dolos similarity means lower diversity; there is no printed numerical effect to reverse. These contrast labels do not establish randomized assignment.",
+   "quote": "the code produced with the assistance of Copilot is significantly more similar that the one produced by the students alone (see Figure 4).",
+   "locator": "PDF p. 3, Section 3, assistance groups; p. 5, Section 4, code-similarity paragraph; p. 6, Figure 4; codebook Sections 5 and 7"
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts[0] (structured contrast fields)",
+   "form_value": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": []}",
+   "source_says": "Complete treatment_arm='with LLM', control_arm='without LLM', comparison_type='ai_vs_bau', direction='mixed', and statistics_available=['figure_only']. The narrative reports better average performance without LLM assistance, higher best performance with Copilot on development arenas, and poorer Copilot robustness under higher noise. Exact arm summaries and inferential tests are not printed.",
+   "quote": "The group coding without the assistance of the LLM obtained averagely better results in all the arenas.",
+   "locator": "PDF p. 3, Section 3, assistance groups; p. 5, Figure 3 and Section 4, performance paragraph"
+  },
+  {
+   "field": "studies[0].outcomes[0].measure_detail; studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"measure_detail\": \"\", \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "Fill the diversity-method fields: Dolos compares pairs of student controllers within each group while ignoring comments, variable names, and text position; no embedding model is used or named. The inferential uncertainty procedure is not reported. Include Figure 7 as alternative NCD measures on raw code including comments/spaces and on abstract syntax trees, calculated over all two-student combinations within each group; all controllers include common evaluation code. Those alternatives are figure-only, with no exact summary estimates or tests. Keep n_units null because the paper does not print a pair count.",
+   "quote": "This considers the similarity of codes ignoring comments, variable names and text position.",
+   "locator": "PDF p. 5, Section 4, code-similarity paragraph; p. 6, Figure 4; p. 10, Figure 7 and caption"
+  }
+ ],
+ "confirmed": [
+  "Read the complete markdown conversion and checked all 12 PDF pages, including the appendix. The title, three authors, CEUR Workshop Proceedings identification, and HAIC 2025 event dated October 25, 2025 match the form; the Vol-4072/paper1 identifier comes from the retrieval source URL (PDF p. 1; retrieval.json c706.source_url).",
+  "The reported cohort consists of 13 male students from the University of Bologna Intelligent Robotic Systems course, with 7 using LLM assistance and 6 without; these are people, not code pairs or simulation runs. No exclusions or separate participant-flow counts are reported, and no randomized headcount is given; the sample is below 50 regardless (PDF p. 3, Section 3; pp. 5-6, results).",
+  "The paper contains one assistance comparison, not an AI-only versus human-only benchmark or a synthesis. The reported DAT-balanced allocation supports retaining the comparison as quasi_people/observational context rather than identifying a documented RCT; core=no and the fewer-than-50 decision remain appropriate (PDF pp. 3-5, Sections 3-4).",
+  "Microsoft Copilot was used through its online interface in its May 2025 version, in required incognito mode; Quick Response and Think Deeper were available, and students in the assistance group had to query it at least three times (PDF p. 4, Section 3; p. 9, reference 26).",
+  "The task was a Lua path-following controller for a simulated Foot-Bot in ARGoS3, during an experiment lasting three hours; the evaluation function was shown to the students (PDF pp. 3-4, Section 3 and Equation 1).",
+  "There were three development arenas and two test arenas. The evaluation used 100 runs per controller per arena, with a limit of 5 minutes of simulation; Figure 3 labels the noise conditions 1x and 5x. These repetitions are not additional people (PDF p. 4, Figure 2; p. 5, Figure 3 and Section 4).",
+  "Dolos similarity is computed on pairs of controllers produced by different students within an assistance group, so it is an output-scored across_people diversity measure with unit=pair. The reported qualitative result is higher similarity with Copilot, but no exact median, effect size, p-value, or confidence interval is printed (PDF p. 5, Section 4; p. 6, Figure 4).",
+  "The performance reported string reproduces the results narrative: the no-LLM group did better on average, Copilot produced the highest performances on development arenas, and Copilot performance dropped under higher noise while the other group was described as overall stable. The same performance direction in the one-line finding is supported; these remain qualitative statements without numerical effect estimates (PDF p. 5, Figure 3 and Section 4).",
+  "The internal appendix contains DAT distributions and NCD alternatives in Figures 6-7, self-reported coding experience and time in Figures 8-9, and qualitative student comments in Table 1. DAT is a pre-task grouping measure and the experience/time reports are not creativity scores on produced output; no separate supplement or additional experiment is cited (PDF pp. 10-12, Appendix; p. 4, DAT procedure).",
+  "This is an original small experiment, not a review or meta-analysis; the empty synthesis estimates and null synthesis counts are appropriate (PDF pp. 3-7, Sections 3-6)."
+ ],
+ "summary": "The full workshop paper reports one DAT-balanced comparison of 13 students (7 with Copilot, 6 without), with randomization unreported; core exclusion and observational context remain appropriate. Corrections remove graph-estimated medians, qualify assignment claims, fix the internet-access description, and complete contrast and diversity-method fields."
+}

@@ -1,0 +1,92 @@
+{
+ "cid": "c142",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].design_class; eligibility.reason",
+   "form_value": "{\"design_class\": \"lab_rct\", \"reason\": \"Within-subjects experiment with 16 participants analyzed (17 recruited, P5 removed; p. 12, Section 5), far below 50. Order and images were counterbalanced, but the paper never says the order was randomized (pp. 8, 10). The embedding-based homogeneity outcome is scored on the output. Goes to the screening report's list of small randomized-style experiments, not the dataset.\"}",
+   "source_says": "The paper reports an in-person, counterbalanced within-person experiment, with no statement that condition order or image allocation was randomized. The lab_rct label and the reason's 'small randomized-style experiments' routing are unsupported. Use design_class='other' with the description 'counterbalanced within-person experiment; randomization not stated'; retain assignment.randomized='not_stated', criterion_1_random_assignment_of_ai='unclear', and n_randomized=null. The checker flag is false because no randomized people study is documented, not because non-random allocation has been proven; context_class='none' remains provisional rather than inferring observational allocation.",
+   "quote": "The order of which application was used first and which images were used was counterbalanced across the entire experiment to mitigate any order effect.",
+   "locator": "PDF p. 8, Section 4; p. 10, Sections 4.2 and 4.2.2; complete text including Appendices A and B checked for assignment details."
+  },
+  {
+   "field": "source.version",
+   "form_value": "arXiv 2507.21811v1 of 29 Jul 2025 (cs.HC), marked 'Manuscript submitted to ACM'; its ACM reference format names ASSETS '25, doi 10.1145/3663547.3746384. Full PDF read (pp. 1-19 page images); the ACM version of record was not read (403).",
+   "source_says": "The arXiv identity and date are correct: 2507.21811v1, 29 Jul 2025, marked 'Manuscript submitted to ACM', with the ASSETS '25 reference and DOI. However, 'Full PDF read (pp. 1-19 page images)' is not full coverage of the saved 26-page document: the main text continues through p. 20, references continue through p. 25, and appendices occupy pp. 25-26. Record this as the saved arXiv v1, with the complete markdown read and relevant PDF pages independently checked, including the appendices; the publisher version was not independently read.",
+   "quote": "arXiv:2507.21811v1 [cs.HC] 29 Jul 2025",
+   "locator": "PDF p. 1, arXiv stamp; p. 2, ACM Reference Format; p. 20, Sections 7-8; pp. 25-26, Appendices A-B."
+  },
+  {
+   "field": "source.supplement",
+   "form_value": "{\"exists\": \"yes\", \"in_this_pdf\": false, \"where\": \"'supplemental material' (p. 12, Section 5) holds all configured VSDs; Appendix A (images and case studies) and Appendix B (post-questionnaire) are cited on pp. 10-11 but do not appear in this PDF\", \"holds\": \"The configured VSDs for both conditions, the study images and case studies, and the questionnaire. No additional statistics are said to sit there.\"}",
+   "source_says": "Appendix A is in this PDF: case studies on p. 25 and all four study images in Figure 8 on p. 26. Appendix B, the post-questionnaire, is also in the PDF on p. 26. Set in_this_pdf=true for these appendices. Separately, p. 12 refers to supplemental material containing all participant-configured VSDs; that collection is not reproduced in this PDF and was not read. Distinguish that external collection from the included appendices.",
+   "quote": "Fig. 8. All four VSD images we used in our user study. B Post-Questionnaire Participants were asked to rate their agreement to the following statements at the conclusion of our user study.",
+   "locator": "PDF p. 12, opening of Section 5; p. 25, Appendix A; p. 26, Figure 8 and Appendix B."
+  },
+  {
+   "field": "paper_design_summary",
+   "form_value": "Seventeen pre-service speech-language pathologists were recruited for an in-person within-subjects study; each configured visual scene displays (VSDs) for an AAC device with a commercial app (Snap Scene) and with a prototype in which GPT-4o suggests hotspots (communication options), with condition order and images counterbalanced. One participant (P5) was dropped, leaving 16 participants and 64 VSDs. The authors scored time, self-reported confidence, number of hotspots, three best-practice quality measures, parts of speech and communication functions, and homogeneity as the cosine distance of each VSD's hotspot embedding to the average across all VSDs.",
+   "source_says": "The final clause should not state cosine distance as an established method. Sections 4.4.2 and 5.3.2 call the calculation cosine similarity to the average embedding across both conditions, whereas Figure 7 labels the axis 'Divergence' and the authors interpret the lower prototype value as greater homogeneity. Preserve that unresolved terminology/direction inconsistency, already acknowledged in S1-O1.reported, in the design summary as well; a conversion to cosine distance is not specified.",
+   "quote": "Then, we compared each set of hotspots to the average embedding using cosine similarity to understand how distinct each set of hotspots was from the group.",
+   "locator": "PDF p. 12, Section 4.4.2; p. 15, Section 5.3.2; p. 16, Figure 7 (axis checked in the embedded image)."
+  },
+  {
+   "field": "studies[0].outcomes[0].n_units; studies[0].outcomes[0].diversity_detail",
+   "form_value": "{\"n_units\": null, \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "The recorded unit='output' refers to VSD hotspot sets: n_units=64, with 32 VSDs per condition from the same 16 analyzed people. Fill diversity_detail with all-MiniLM-L6-v2 sentence embeddings and comparison of each hotspot set against the average across BOTH conditions, not separate condition centroids. The printed test is t(31)=3.4037, p<0.05, with d=0.60 and 95% CI[0.26, 1.02]. The paper does not describe pairing, participant clustering, the standardizer for d, or label the quantities after the plus-minus signs; preserve those uncertainties and the similarity/divergence inconsistency rather than assuming participant-level precision.",
+   "quote": "We then calculated the average embedding for all hotspots across conditions.",
+   "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; p. 15, Section 5.3.2; p. 16, Figure 7."
+  },
+  {
+   "field": "studies[0].outcomes[1].n_units; studies[0].outcomes[1].diversity_detail",
+   "form_value": "{\"n_units\": null, \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+   "source_says": "Document the two condition-level pools for unit='set' (n_units=2): 51/94 unique hotspots for Snap Scene and 56/153 for the prototype, with 84/247 reported for the combined pool. These are hotspot counts and aggregate percentages, not counts of people or participant-level scores. The metric is the reported number of unique hotspots divided by total hotspots in each pool; no embedding model, deduplication procedure, test, or interval is specified for this outcome.",
+   "quote": "In the Snap Scene condition 51 of 94 hotspots were unique (54.26%). In the prototype condition 56 of 153 hotspots were unique (36.60%).",
+   "locator": "PDF p. 8, Section 4 (two conditions); p. 12, opening of Section 5; p. 15, Section 5.3.3."
+  },
+  {
+   "field": "studies[0].outcomes[2]",
+   "form_value": "{\"name\": \"VSD quality: hotspots focused on the people, activities, or social interactions in the scene (quality measure 2)\", \"unit\": \"output\", \"n_units\": null, \"reported\": \"Snap Scene 95.74% of hotspots focused on the people, activities, or social interactions vs prototype 84.97%. Other quality measures: VSDs with 2-4 hotspots 60.50% (Snap Scene) vs 40.63% (prototype); single-word hotspots 78.70% vs 91.50%. No tests reported for these shares.\"}",
+   "source_says": "The percentages are transcribed correctly, but this entry combines three distinct quality outcomes with different denominators. Record separate usefulness/with_ai outcomes for: VSDs with 2-4 hotspots (64 VSDs, 32 per condition; Snap Scene 60.50%, prototype 40.63%); hotspot relevance (247 hotspots, 94 versus 153; 95.74% versus 84.97%); and single-word hotspots (the same hotspot pools; 78.70% versus 91.50%). For the current focal relevance outcome, the output units are hotspots and n_units=247. Preserve 60.50% exactly as printed rather than recalculating it. No inferential tests are reported for these shares.",
+   "quote": "For quality measures 1 and 2, Snap Scene outperformed our prototype, but for quality measure 3 the prototype outperformed Snap Scene.",
+   "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; pp. 13-14, Section 5.1.4; form-spec.md, rule 7 and unit/count field notes."
+  },
+  {
+   "field": "studies[0].outcomes (omitted hotspot-count outcome)",
+   "form_value": "Only S1-O1 homogeneity, S1-O2 unique-hotspot share, and S1-O3 quality are listed.",
+   "source_says": "Add the output-scored number of hotspots per VSD as a fluency/with_ai outcome. The medians are 3 for Snap Scene and 5 for the prototype; the reported Wilcoxon signed-rank statistics are W=5.5, Z=−4.5567, p<0.05, r=0.57. The n=94 and n=153 in this passage count hotspots; the comparison comprises 64 VSDs from 16 analyzed people, not 247 people. These statistics are omitted from the form despite the requirement to list relevant output measures.",
+   "quote": "The median number of hotspots when using Snap Scene and our prototype were 3 and 5, respectively.",
+   "locator": "PDF p. 12, opening of Section 5; p. 13, Section 5.1.3; p. 14, Figure 5; form-spec.md, rule 7."
+  },
+  {
+   "field": "studies[0].outcomes (omitted communication-function quality outcome)",
+   "form_value": "The design summary mentions communication functions, but no outcome entry records this output-quality comparison.",
+   "source_says": "Add the coded communication-function comparison as an output-based usefulness/with_ai measure, particularly the share of hotspots supporting social closeness: Snap Scene 5.3%, prototype 0.7%. Table 3 also reports information transfer 93.6% versus 98.7%, expressing wants and needs 0.0% versus 0.0%, social etiquette 0.0% versus 0.0%, and other 1.1% versus 0.7%. These are descriptive shares of the 94 versus 153 final hotspots, with no test or interval reported; they are not self-report ratings or counts of people.",
+   "quote": "used more hotspots focused on social closeness than in the prototype condition.",
+   "locator": "PDF pp. 11-12, Section 4.4.1; pp. 15-16, Section 5.3.4 and Table 3; p. 18, Section 6.2.1 interprets social closeness as VSD quality; form-spec.md, rule 7."
+  },
+  {
+   "field": "one_line_finding",
+   "form_value": "With 16 pre-service SLPs, VSDs configured with GPT-4o hotspot suggestions were more homogeneous than those made with Snap Scene (divergence 0.39 ± 0.09 vs 0.46 ± 0.07, t(31) = 3.4037, d = 0.60; p. 15, Section 5.3.2) and had fewer unique hotspots (36.60% vs 54.26%; p. 15, Section 5.3.3).",
+   "source_says": "Replace 'had fewer unique hotspots' with 'had a lower proportion of unique hotspots': the prototype had 56 unique hotspots out of 153 (36.60%), while Snap Scene had 51 out of 94 (54.26%). The absolute unique-hotspot count was higher in the prototype condition. The homogeneity numbers match the PDF, but describe them as the authors' reported homogeneity result and retain the similarity/divergence ambiguity rather than presenting cosine distance as confirmed.",
+   "quote": "In the Snap Scene condition 51 of 94 hotspots were unique (54.26%). In the prototype condition 56 of 153 hotspots were unique (36.60%).",
+   "locator": "PDF p. 15, Sections 5.3.2-5.3.3; p. 16, Figure 7."
+  }
+ ],
+ "confirmed": [
+  "The saved source is the 26-page arXiv 2507.21811v1 dated 29 Jul 2025; its title and all eight authors match the form, and the reference block gives ASSETS '25 and DOI 10.1145/3663547.3746384 (PDF pp. 1-2).",
+  "All 781 lines of the saved markdown were read, including references and Appendices A-B; numerical claims recorded here were checked against PDF text, and Figure 7's 'Divergence' axis was checked in its embedded image (PDF pp. 1-2, 7-16, 18, 20, 25-26).",
+  "One within-person human study compares GPT-4o hotspot suggestions with manual Snap Scene configuration; each person configures two VSDs per application, with application order and image allocation counterbalanced (PDF pp. 7-8, Sections 3.2.1 and 4; p. 10, Section 4.2.2).",
+  "The study was run in person in September 2024; no randomization procedure or randomized participant count is reported, so assignment.randomized='not_stated' and n_randomized=null are appropriate (PDF p. 10, Sections 4.2-4.2.2; entire document checked).",
+  "Seventeen US pre-service SLP students were recruited; P5 was excluded because of a control-software application error, leaving 16 analyzed people. The same people appear in both conditions, so they are not 32 independent participants (PDF p. 8, Section 4.1; p. 9, Table 1; p. 12, Section 5; p. 20, Section 8).",
+  "The analyzed outputs total 64 VSDs, 32 per condition, and 247 hotspots, 94 Snap Scene and 153 prototype; none of these output counts increases the participant count to 50 (PDF p. 12, opening of Section 5).",
+  "The core exclusion on sample size is correct: 16 analyzed people is fewer than 50. Output-based diversity and quality satisfy criterion 3; criterion 1 remains unclear. context_class='none' is provisional because the document neither establishes random allocation nor specifies non-random allocation; it is not AI-versus-human-only evidence or a synthesis (PDF pp. 8-12 and 15-16; codebook Sections 3-4).",
+  "S1-O1.reported matches the printed numbers: prototype mean 0.39 ± 0.09, Snap Scene mean 0.46 ± 0.07; t(31)=3.4037, p<0.05, d=0.60, 95% CI[0.26, 1.02]. The text reports higher prototype homogeneity; the form correctly flags the disagreement between 'cosine similarity' and Figure 7's divergence label (PDF p. 12, Section 4.4.2; p. 15, Section 5.3.2; p. 16, Figure 7).",
+  "S1-O2.reported matches exactly: Snap Scene 51/94 unique (54.26%), prototype 56/153 (36.60%), both conditions 84/247 (34.01%); no inferential test is printed for this result (PDF p. 15, Section 5.3.3).",
+  "All S1-O3.reported percentages are printed as recorded: relevance 95.74% versus 84.97%; VSDs with 2-4 hotspots 60.50% versus 40.63%; single-word hotspots 78.70% versus 91.50%, in Snap Scene/prototype order (PDF pp. 13-14, Section 5.1.4).",
+  "The form's observed creation-time medians are correct: 77 seconds for Snap Scene and 63.5 seconds for the prototype; these are measured times, not an assigned time limit (PDF p. 12, Section 5.1.1).",
+  "This paper is not a review or meta-analysis, so the empty synthesis fields and absent pooled estimates are appropriate (PDF p. 8, Section 4; pp. 12-16, Section 5)."
+ ],
+ "summary": "Random assignment is not reported for this counterbalanced study of 16 analyzed participants. The recorded statistics match the PDF, but the RCT label, source coverage, appendix status, outcome documentation, and claim of fewer unique hotspots need correction."
+}

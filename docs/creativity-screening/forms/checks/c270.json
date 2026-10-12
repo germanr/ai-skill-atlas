@@ -1,0 +1,94 @@
+{
+  "cid": "c270",
+  "agrees": false,
+  "has_randomized_people_study": false,
+  "corrections": [
+    {
+      "field": "data_and_code.data_url; data_and_code.code_url",
+      "form_value": "\"\" and \"\"",
+      "source_says": "The paper gives one OSF link for both the data and the code. Both fields should hold https://osf.io/q3hj5/?view_only=3fc5b89d05eb4741957af431b107cf2a. The posted data are petition metadata with petition IDs. The full petition text and user names are not posted, and published academic researchers can request the full text from the authors. The form records the link only in source.supplement.where.",
+      "quote": "We make petition metadata available at the following OSF project link, included here: https://osf.io/q3hj5/?view_only=3fc5b89d05eb4741957af431b107cf2a.",
+      "locator": "p. 14, Data Availability; p. 15, Code Availability"
+    },
+    {
+      "field": "studies[S1].outcomes[S1-O1].diversity_detail",
+      "form_value": "metric, embedding_model, computed_over, uncertainty, and notes all empty",
+      "source_says": "The form spec asks for this block on every diversity outcome, and the paper states each part. metric: mean pairwise cosine similarity of petition embeddings (higher = more homogeneous, so the sign is reversed relative to diversity). embedding_model: OpenAI text-embedding-3-large, 3,072 dimensions. computed_over: all pairs of petitions posted in a given week and country, one value per country-week (304 observations in Table 14, four countries by 76 weeks). uncertainty: static DiD with the R did package (ATT weighted by group size), country and week fixed effects, standard errors clustered by month, and a t-distribution with 17 degrees of freedom (Table 14). The dynamic DiD uses a multiplier bootstrap (1,000 iterations) with simultaneous 95% bands (Figure 2; SI p. 69). notes: the paper says this analysis augmented the preregistered analysis. The SI reports no robustness variant of the homogeneity outcome.",
+      "quote": "We then calculated the cosine similarity between all pairs of petitions posted in a given week and country, and took the mean of these pairwise scores to obtain the mean pairwise similarity for that week and country.",
+      "locator": "p. 5, Platform Homogeneity and Figure 2 caption; p. 13, Difference-in-Differences Design; SI p. 61, Table 14; SI p. 69, Difference-in-Differences"
+    },
+    {
+      "field": "studies[].outcomes[].contrasts[].statistics_available",
+      "form_value": "[] in all five contrasts (S1-O1, S1-O2, S1-O3, S2-O1, S2-O2)",
+      "source_says": "S1-O1, S1-O2, and S1-O3: Tables 14, 9, and 10 print the estimate, standard error, 95% CI, t, and p. Each list should read [\"regression_coefficient_se\", \"confidence_interval\", \"test_statistic\"]. S2-O1 and S2-O2: the paper prints arm means and petition counts but no SDs, and the mean difference with no standard error. It also prints a Welch t with its df, p, Cohen's d, and a 95% CI. Each list should read [\"standardized_effect\", \"confidence_interval\", \"test_statistic\"]. The printed CI belongs to d, not to the mean difference: [0.75, 1.16] centers on d = 0.96 and excludes the 0.70 difference, and [0.65, 1.06] centers on d = 0.86.",
+      "quote": "with a large effect size (μpost−pre = 0.70, t(412.46) = 9.76, p < 0.001, Cohen’s d = 0.96, 95% CI=[0.75, 1.16])",
+      "locator": "SI p. 60, Tables 9 and 10; SI p. 61, Table 14; p. 6, Petition Text Quality; SI p. 67, Petition Writing Quality and Persuasiveness"
+    },
+    {
+      "field": "studies[].outcomes[].primary; ai_available_when_produced; timing",
+      "form_value": "placeholder strings left in all five outcomes ('preregistered_primary | paper_primary | secondary | not_stated', 'yes | no | mixed', 'immediate | delayed')",
+      "source_says": "S1-O2 (1+ comment in 30 days) is the preregistered primary outcome (p. 5). S1-O1 (homogeneity) is not preregistered. The paper says it augmented the preregistered analysis, so it is 'secondary'. S1-O3 (10+ signatures) is the second engagement metric beside the preregistered primary one (p. 8), so it is 'secondary'. S2-O1 and S2-O2: the labeling task was preregistered (SI p. 66), but the paper names no primary outcome, so both are 'not_stated'. ai_available_when_produced is 'yes' for the treatment arm of all five outcomes (petitions written with in-platform AI access). timing is 'immediate'.",
+      "quote": "We augmented our preregistered analysis with a difference-in-differences study of the impact of AI access on platform homogeneity.",
+      "locator": "p. 5, Platform Homogeneity and Outcomes; p. 8, Repeat Petition Writers; SI p. 66, Preregistration"
+    },
+    {
+      "field": "studies[S1-S3].assignment; studies[S1-S3].arms",
+      "form_value": "placeholder strings left in randomized, unit, structure, and preregistered, and one empty placeholder arm row in each study",
+      "source_says": "randomized should be 'no' in all three studies. Access varies by country and week through Change.org's rollout, and no person is assigned. preregistered should be 'yes' for S1 (https://aspredicted.org/xtcd-tvqk.pdf, p. 3). SI p. 66 lists three deviations: the English-detection threshold rose from 25 to 50 percent, petitions under 5 words or 2 sentences are excluded, and inverse propensity weighting is not used. preregistered should also be 'yes' for S2 (https://aspredicted.org/z6g8xe.pdf, SI p. 66, no deviations). S3 is 'not_stated'. SI p. 75 calls it an exploratory descriptive analysis.",
+      "quote": "We separately preregistered our main causal analysis and our supplemental petition labeling task.",
+      "locator": "p. 3, paragraph before Lexical Features; SI p. 66, Preregistration; SI p. 75, Repeat Petition Writers"
+    },
+    {
+      "field": "eligibility.criterion_1_random_assignment_of_ai; criterion_2_at_least_50_people; criterion_3_outcome_scored_on_output; reason",
+      "form_value": "the three criteria hold the placeholder 'met | not_met | unclear'. The reason quotes the SI as saying the rollout 'was not an intentional experiment'.",
+      "source_says": "criterion_1 is 'not_met' because no study randomizes people to AI. criterion_2 is 'met' by count for S3, which analyzes 4,611 users. S1 and S2 count petitions and do not state the number of writers. criterion_3 is 'met': S1-O1 is a diversity measure computed on the petitions that writers produced, and S2 scores quality on outputs with raters. core stays 'no' because criterion 1 fails. The reason drops the authors' hedge. The SI says the delay was not an intentional experiment 'as far as the authors are aware'.",
+      "quote": "The delay was due to internal logistics, and was not an intentional experiment (as far as the authors are aware).",
+      "locator": "SI p. 65, Change.org and the Write with AI Tool; p. 7, Figure 3; form-spec, field note on eligibility.core"
+    },
+    {
+      "field": "studies[S1].outcomes[S1-O2, S1-O3].measure_detail",
+      "form_value": "\"\"",
+      "source_says": "Form rule 7 asks for robustness variants in measure_detail, and the SI reports several. With standard errors clustered by country, 1+ comment is -2.508 (SE 1.822, CI [-8.308, 3.291], t -1.376, p 0.262; Table 15). 10+ signatures is -5.329 (SE 1.973, CI [-11.609, 0.950], t -2.701, p 0.074; Table 16), so the signature decline is not significant at 5 percent under this clustering. The doubly robust estimate with covariates 'shows no directional difference in outcomes' (SI p. 70, Figure 16). Other variants: alternative thresholds and log counts (Figure 11), a 25-week pre-period (Figure 13), all of December (Figure 14), short petitions included (Figure 15), topic subsets (Figures 19, 30, 31), the US left out (Figure 25), and synthetic control (Figures 34-36). The one-line finding's 5.33-point decline is the month-clustered main estimate.",
+      "quote": "As expected, the 95% confidence intervals calculated with country-clustered standard errors remain significant for lexical features, and are insignificant for outcome features.",
+      "locator": "SI p. 61, Tables 15 and 16; SI p. 70, Difference-in-Differences Robustness Checks; SI p. 38, Figures 16 and 17"
+    },
+    {
+      "field": "studies[S2].outcomes[S2-O2].name",
+      "form_value": "Persuasiveness score (mean of Likert items on influencing readers and decision-makers)",
+      "source_says": "The persuasiveness score averages four 1-5 Likert items. Two ask whether the petition gives believable and convincing reasons for its cause. Two ask whether it could change reader behavior and influence decision-makers. The name should cover all four items.",
+      "quote": "The petition provides reasons for its cause that are believable.",
+      "locator": "SI p. 59, Table 4; SI p. 67, Petition Writing Quality and Persuasiveness"
+    },
+    {
+      "field": "studies[S1].outcomes and studies[S3].outcomes (word-count outcomes left out)",
+      "form_value": "S1 lists homogeneity and two engagement outcomes. S3 lists no outcomes, and its task says 'no creativity, quality, or diversity outcome'.",
+      "source_says": "The codebook defines elaboration as 'Detail or length of a single output', so word count is an elaboration outcome on the with_ai question, and form rule 7 asks for every such outcome. S1: the static DiD on weekly median word count is 53.628 (SE 3.105, CI [47.077, 60.178], t 17.273, p 0.000, 304 observations; Table 12). The text gives 53.63 words (95% CI [47.08, 60.18], t(17) = 17.27, p < 0.001), a 49% increase from 110 words (p. 4). S3: in the Pre/Post cohort, second petitions are 39% longer (ratio 1.394, ratio 95% CI [1.340, 1.450], z = 20.353, p < .0001, d = 0.399). The ratios are 1.061 (p = 0.0534) for Pre/Pre and 1.066 (p = 0.0950) for Post/Post (p. 8). S3 also reports the comment outcome that S1-O2 records: Pre/Post 40.50% to 35.71%, OR = 0.754 (95% CI [0.642, 0.884], p = 0.0001; p. 8). MATTR and Flesch-Kincaid grade (construct 'other'; Tables 11, 13, 21) are also left out, and notes does not say why.",
+      "quote": "second petitions are 39% longer than their first petitions (log scale, ratio = 1.394, z = 20.353, p < .0001, Cohen’s d = 0.399, ratio 95% CI = [1.340, 1.450])",
+      "locator": "p. 4, Lexical Features; SI p. 61, Table 12; p. 8, Repeat Petition Writers; codebook section 6, Construct"
+    },
+    {
+      "field": "company_involvement.description; company_involvement.locator",
+      "form_value": "any false, description and locator empty",
+      "source_says": "'any': false is defensible. The authors had no formal data-sharing collaboration with Change.org, no funding, and no competing interests. The description should still record that the authors confirmed the country launch dates with Change.org staff, through personal communications with two employees.",
+      "quote": "We note that we conducted our study without formal data-sharing collaboration from Change.org.",
+      "locator": "p. 2, Results, first paragraph; SI p. 65, Change.org and the Write with AI Tool; p. 15, Acknowledgments and Competing Interests"
+    }
+  ],
+  "confirmed": [
+    "Version: arXiv 2511.13949v5, margin stamp '26 Sep 2026', title page dated September 29, 2026, 78 pages, with the SI Appendix on pp. 21-78 (p. 1; p. 21). The form says this and claims nothing from the Nature Human Behaviour version.",
+    "Title and the four authors (Isabel Corpus, Eric Gilbert, Allison Koenecke, Mor Naaman) match the document (p. 1).",
+    "has_randomized_people_study is false. AI access varies by country and week: full launch in the US, Great Britain, and Canada in October 2023, and in Australia in late December 2023. The April-September 2023 A/B test is excluded because the authors do not know which users had access (p. 3; pp. 12-13; SI p. 65). The labeling task gives raters random sets of petitions and assigns no AI to people (SI p. 67).",
+    "Design classes are right. S1 and S2 compare real petitions across countries and time (observational). S3 compares the same writers' first and second petitions across non-random access cohorts (quasi_people). context_class 'observational' and core 'no' are right.",
+    "S1 counts: 1,517,433 petitions collected and a 361,635-petition main subset (p. 11). The static DiD uses 279,131 petitions, 237,020 pre-AI plus 42,111 post-AI (p. 13; Figure 1 and 2 captions). Tables 9-14 have 304 observations. The number of writers is not stated, so counts_are 'other' with null people counts is right.",
+    "S1-O1 'reported' matches SI Table 14 (0.056, Std. Error 0.003, CIs [0.049, 0.063], t 17.825, p 0.000, 304 observations; p. 61) and the main text (0.056, 95% CI [0.049, 0.063], t(17) = 17.83, p < 0.001, a 23% increase over 0.240, and a dynamic effect of about 0.05 units per period; p. 5). The embeddings come from OpenAI text-embedding-3-large (p. 5).",
+    "S1-O2 'reported' matches SI Table 9 (-2.508, 1.826, [-6.360, 1.343], -1.374, 0.187, 304; p. 60) and p. 6 (-2.51, [-6.36, 1.34], t(17) = -1.37, p = 0.187). The paper calls 1+ comment in 30 days its preregistered primary outcome (p. 5).",
+    "S1-O3 'reported' matches SI Table 10 (-5.329, 1.363, [-8.205, -2.454], -3.911, 0.001, 304; p. 60) and p. 6 (-5.33, [-8.21, -2.45], t(17) = -3.91, p = .001).",
+    "S2 counts: 432 petitions sampled (216 pre-AI, 216 post-AI), 15 removed, and 417 left (203 pre-AI, 214 post-AI). The raters are 14 Cornell Tech graduate students, each rating 80-90 petitions, with three ratings per petition. The classifier flags 9.4% of pre-AI and 53.3% of post-AI sampled petitions (SI p. 67; SI p. 25, Figure 3).",
+    "S2-O1 and S2-O2 'reported' match p. 6 and SI p. 67 exactly (2.73 vs 3.43, 0.70, t(412.46) = 9.76, p < 0.001, d = 0.96, [0.75, 1.16]; 2.46 vs 3.12, 0.66, t(414.56) = 8.75, p < 0.001, d = 0.86, [0.65, 1.06]). Both mean differences equal the difference of the printed means.",
+    "S3: 4,611 users = 1,145 Pre/Pre + 2,669 Pre/Post + 797 Post/Post (p. 7, Figure 3), with 9,222 petitions (p. 14; SI Tables 20-21). The exclusions match SI p. 74: second petition at least 6 months after the first, A/B period excluded, and negative Flesch-Kincaid grades dropped. The Table 21 note says the 72 dropped observations leave only the FKGL model.",
+    "The one-line finding's numbers all match their cited places: 0.056, [0.049, 0.063], 23 percent, and 0.240 (p. 5; SI Table 14, p. 61); 2.73 to 3.43 and d = 0.96 (SI p. 67); -5.33 points and -2.51 with p = 0.187 (p. 6).",
+    "AI tool: Change.org built it on an OpenAI-provided LLM, and it drafts a petition from a short user-entered description (p. 2). Over half of post-access petitions are classified as AI-generated (p. 3), and 67.9% in the week of December 11, 2023 (SI p. 24, Figure 2).",
+    "Supplement fields: the OSF link is on pp. 14-15. Static DiD Tables 9-19 are on SI pp. 60-62 (Table 14 = mean pairwise similarity, p. 61), and mixed-model Tables 20-21 are on SI pp. 63-64."
+  ],
+  "summary": "The form's design and context classes are right: no study randomizes people to AI, because access varies by country and week on Change.org, and every 'reported' string and the one-line finding match the PDF (SI Tables 9, 10, 14; pp. 5-6; SI p. 67). The corrections fill gaps: unfilled placeholders (assignment, primary, eligibility criteria), empty diversity_detail, statistics_available, data_and_code, and measure_detail (the 10+ signature decline has p = 0.074 with country-clustered errors), an incomplete persuasiveness description, word-count outcomes left out of S1 and S3, and an empty company_involvement description."
+}

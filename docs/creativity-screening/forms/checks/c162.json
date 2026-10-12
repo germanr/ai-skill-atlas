@@ -1,0 +1,53 @@
+{
+ "cid": "c162",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "eligibility.criterion_2_at_least_50_people",
+   "form_value": "not_met",
+   "source_says": "Use unclear, rather than not_met, under the rule requiring a count of people analyzed. The original course had 50 students; the authors randomly sampled 200 ideas from their larger idea pool but do not state the number of distinct student authors represented in that sample. Keep participants.n_analyzed null. Neither the idea counts nor the evaluator counts establish the number of analyzed ideators, and the source does not establish a below-50 randomized experiment.",
+   "quote": "In this course, 50 students participated in an innovation challenge to come up with ideas for a physical product marketed to college students for $50 or less",
+   "locator": "PDF p. 10, Section 4, first two paragraphs; form-spec.md, eligibility.core field note"
+  },
+  {
+   "field": "eligibility.criterion_3_outcome_scored_on_output",
+   "form_value": "not_met",
+   "source_says": "Set to met. Purchase intent and novelty were rated on the product ideas, and similarity was computed on their text. These are output-scored outcomes; absence of randomized AI assistance fails criterion 1 and leaves core eligibility no, but does not make criterion 3 fail.",
+   "quote": "We used text mining to assess idea similarity and human raters to evaluate idea novelty.",
+   "locator": "PDF p. 1, abstract; pp. 12-15, Sections 5 and 6.1; pp. 17-18, Section 6.3"
+  },
+  {
+   "field": "studies[0].outcomes[2].n_units",
+   "form_value": "400",
+   "source_says": "With unit=pair, n_units should be null because the source does not explicitly report the number of analyzed pairs. The 400 count is the number of ideas: 200 student, 100 zero-shot, and 100 few-shot. Retain those corpus counts in the description, not as a pair count; the caveat in reported does not fix the structured unit/count mismatch.",
+   "quote": "For each pool, we compute the average pairwise similarity between all ideas.",
+   "locator": "PDF p. 15, Table 1 (N Ideas) and Section 6.1 ANOVA paragraph; p. 12, Section 5, total of 400 ideas"
+  },
+  {
+   "field": "paper_design_summary; studies[0].ai_tool.how_used",
+   "form_value": "No person used AI to produce ideas. / No person used the model (pp. 10-12, Section 4).",
+   "source_says": "Narrow these statements to the absence of study participants assigned to AI-assisted ideation. The researchers explicitly prompted GPT-4, supplied examples, and requested summaries and further ideas. This is a comparison of student-generated and model-generated outputs, not a study in which nobody used the model.",
+   "quote": "No LLM yet acts entirely autonomously. Rather, they are tools used by humans to complete tasks.",
+   "locator": "PDF p. 10, Section 4, second paragraph; pp. 11-12, prompting procedure; p. 26, Section 9"
+  }
+ ],
+ "confirmed": [
+  "Design and context are ai_vs_human, and core eligibility remains no: the student ideas predate widespread LLM availability, while the authors generated separate GPT-4 pools (PDF p. 10, Section 4). Randomization concerned ideas shown to evaluators, not people receiving AI assistance (p. 12, Section 5).",
+  "The paper labels its analyses Studies 1-3 but reuses the same corpus: 200 sampled student ideas from a course with 50 students, 100 GPT-4 zero-shot ideas, and 100 GPT-4 few-shot ideas (PDF pp. 10-12, Section 4; pp. 14-20, Sections 6-7). This is not a synthesis; pooled meta-analytic estimates are not applicable.",
+  "Purchase-intent models have 200 RespondentID levels, 400 IdeaID levels, and 7982 rating observations; novelty models have 201 RespondentID levels, 400 IdeaID levels, and 8023 rating observations (PDF pp. 31 and 34, Appendix B). These evaluator and rating counts are not counts of randomized or analyzed ideators.",
+  "The model was gpt-4-0314 at temperature 0.7; prompts requested ten ideas at a time in 40-80 words, used six highly rated ideas from a separate student set for few-shot prompting, and compressed prior ideas into summaries (PDF pp. 10-12, Section 4).",
+  "S1-O1 reported statistics match: purchase intent 46.4% zero-shot, 49.3% few-shot, 40.4% human; zero-shot beta 0.059, 95% CI [0.031, 0.088], t(246)=4.06, p<0.001; few-shot beta 0.089, 95% CI [0.060, 0.12], t(223)=5.93, p<0.001 (PDF pp. 13-14, Section 5). Rating counts match Appendix B pp. 30-31.",
+  "S1-O2 reported statistics match: novelty 40.6% (SD 0.117) human, 36.7% (SD 0.101) zero-shot, 36.1% (SD 0.111) few-shot; zero-shot beta -0.038, 95% CI [-0.066, -0.01], t(269)=-2.67, p=0.008; few-shot beta -0.049, 95% CI [-0.078, -0.02], t(268)=-3.4, p<0.001 (PDF pp. 17-18, Section 6.3). Rating counts match Appendix B pp. 33-34.",
+  "S1-O3 source statistics match: cosine similarity 0.221 human, 0.415 zero-shot, 0.428 few-shot; human-versus-GPT-4 eta-squared 0.358, adjacent printed 95% CI [-0.197, -0.190], F(1,24649)=13715.82, p<0.001; three-group eta-squared 0.455, F(2,29598)=12340.95, p<0.001 (PDF p. 15, Table 1 and Section 6.1). The negative interval printed beside eta-squared is a source anomaly, not a transcription error; its estimand is not clearly labeled.",
+  "The embedding model is Google Universal Sentence Encoder (PDF p. 14, Section 6.1). Minimum-spanning-tree diversity values 0.53 human, 0.33 zero-shot, and 0.3 few-shot, and robustness thresholds 0.7 and 0.75, match p. 24, Section 8.2.2.",
+  "S1-O4 reported statistics match: overlap fractions 0, 0.05, 0.07; human fraction 95% CI [0.0, 0.0184]; human-minus-zero-shot RD -0.05, 95% CI [-0.093, -0.007], p<0.001; human-minus-few-shot RD -0.07, 95% CI [-0.120, -0.020], p<0.001 (PDF p. 15, Table 1 and Section 6.1). Capture-recapture estimates 966 zero-shot and 680 few-shot ideas, with all sampled human ideas unique, match p. 17, Section 6.2.",
+  "The sequential overlap definition in S1-O4 follows the prose on PDF pp. 14 and 17. Table 1 on p. 15 instead describes a threshold on average similarity to all other ideas; these definitions conflict within the source and cannot be reconciled from this PDF.",
+  "S1-O5 reported statistics match: 35 of the top 40 ideas (87.5%) were GPT-4-generated; student/zero-shot/few-shot shares 5/40, 15/40, 20/40; top-decile quality 0.62/0.64/0.66 and novelty 0.45/0.35/0.33; chi-square 26.39, p<0.001, df=2 (PDF p. 20, Section 7 and Table 3).",
+  "Every number in one_line_finding matches the cited prose or table: purchase intent on PDF p. 13, novelty on p. 17, similarity in Table 1 on p. 15, and the top-decile count in Table 3 and prose on p. 20.",
+  "The form correctly flags the figure discrepancy: Figures 1 and 3 both display means 0.41/0.366/0.361 and SDs 0.117/0.101/0.111, despite Figure 1 being labeled purchase intent (PDF pp. 13 and 18, inspected directly). The form uses the purchase-intent means stated in the p. 13 prose.",
+  "The source is the undated 36-page working-paper PDF on file, with the five named authors and matching title on p. 1. PDF metadata creationDate is 2024-09-07; the November 2024 URL directory is an upload-path clue, not a printed publication date. The complete markdown was read, including references and both appendices, and all recorded result numbers were checked against PDF pages.",
+  "Appendix A, Table A.1, covers quantiles 0.1 through 0.9 (PDF p. 30); Appendix B includes the main and robustness regression tables (pp. 30-36). The funding statement names the Mack Institute at Wharton (p. 1); no company funding or external supplement is identified in the supplied document."
+ ],
+ "summary": "The paper is AI-versus-human context evidence and contains no randomized study of people receiving AI assistance. Reported results match the PDF, but eligibility coding, the pair count, and claims that nobody used the model need correction."
+}

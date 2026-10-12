@@ -1,0 +1,197 @@
+{
+  "cid": "c005",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Dolezal Alam Graham Bohacek (2026) - The Impact of AI-Generated Text on the Internet.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Dolezal Alam Graham Bohacek (2026) - The Impact of AI-Generated Text on the Internet.pdf",
+    "version": "Preprint dated 14 April 2026 on its first page; no journal, arXiv identifier, or version number shown on the document.",
+    "title_on_document": "The Impact of AI-Generated Text on the Internet",
+    "authors_on_document": ["Jonas Dolezal", "Sawood Alam", "Mark Graham", "Maty Bohacek"],
+    "pages": 33
+  },
+  "paper_design_summary": "The authors draw monthly samples of newly archived English-language websites from the Internet Archive (August 2022 to May 2025), classify each page's text with the Pangram v3 AI-text detector, and correlate a monthly aggregate AI-likelihood score with monthly signals, including average pairwise semantic-embedding similarity and character 3-gram stylistic similarity. A separate Prolific survey of US adults records agreement with six hypotheses about AI text on the internet; no person receives AI assistance and no creative task is assigned.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Web-scale corpus analysis of Internet Archive websites (RQ2, RQ3)",
+      "design_class": "observational",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned. Websites were sampled from the Wayback Machine and classified by an AI-text detector; monthly signals are correlated with the monthly aggregate AI-likelihood score.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "For each hypothesis, we define a measurable signal, compute it for each monthly sample of websites, and test whether it correlates with the aggregate AI likelihood score across months.",
+        "locator": "p. 9, Section 3.4 Hypothesis Verification",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "Pages whose longest paragraph has fewer than 100 words are excluded; only English text is retained (p. 7-8, Section 3.1). Appendix D: one URL per host, target of 10,000 URLs per month, first capture must return HTTP 200 text/html (p. 33). The number of websites analyzed per month or in total is not stated.",
+        "population": "general_public",
+        "who": "No participants. The units are websites (archived web pages) first archived from 2022 onward, sampled in 33 monthly intervals from August 2022 to May 2025.",
+        "country": "Not restricted by country; English-language web pages",
+        "quote": "We sample websites from the Internet Archive spanning 33 monthly intervals from August 2022 to May 2025.",
+        "locator": "p. 7, Section 3.1 Data Collection"
+      },
+      "ai_tool": {
+        "name_model": "Not a treatment. AI use is detected after the fact with the Pangram v3 API (fully AI-generated, AI-assisted, human-written fractions).",
+        "role": "other",
+        "how_used": "Website authors may or may not have used generative AI; the paper infers AI involvement from the Pangram v3 detector. The aggregate AI likelihood score combines the fully AI-generated and AI-assisted fractions (p. 9, Section 3.3)."
+      },
+      "task": {
+        "type": "other",
+        "description": "Real web text (visible text of archived websites; the longest paragraph of each page is used as the text sample). No task was assigned.",
+        "duration": ""
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Semantic similarity (Hypothesis 1, Semantic Contraction): average pairwise cosine similarity of document embeddings within a monthly sample",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "all-MiniLM-L6-v2 sentence embeddings (384 dimensions), L2-normalized; all pairwise cosine similarities for monthly samples with n <= 500 documents, otherwise up to 10,000 randomly sampled pairs (p. 9). Monthly signal correlated with the monthly aggregate AI likelihood score by Pearson correlation (p. 10-11).",
+          "unit": "set",
+          "n_units": 33,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Months with higher aggregate AI likelihood score",
+              "control_arm": "Months with lower aggregate AI likelihood score",
+              "comparison_type": "other",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic", "figure_only"],
+              "reported": "Pearson correlation between monthly average semantic similarity and aggregate AI likelihood: rho = 0.47, p = 0.004 (higher similarity = lower diversity; sign reversed relative to diversity).",
+              "locator": "p. 2, Section 1 (Semantic Contraction Hypothesis); p. 4, Figure 2(a)"
+            },
+            {
+              "treatment_arm": "Websites predicted to be AI-generated or AI-assisted",
+              "control_arm": "Non-AI websites",
+              "comparison_type": "other",
+              "direction": "treatment_lower",
+              "statistics_available": ["none"],
+              "reported": "Across all evaluated months, average semantic similarity between websites predicted to be AI-generated or AI-assisted was 33% higher than that of non-AI websites (semantic similarity scores of 0.0701 vs. 0.0526). No standard error or test reported.",
+              "locator": "p. 2, Section 1 (Semantic Contraction Hypothesis)"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Average pairwise cosine similarity of document-level semantic embeddings within each monthly sample",
+            "embedding_model": "all-MiniLM-L6-v2 (sentence-transformers), 384-dimensional",
+            "computed_over": "All pairs of documents within a monthly sample (n <= 500), or up to 10,000 randomly sampled pairs for larger samples",
+            "uncertainty": "Pearson correlation across monthly samples with its p-value; no uncertainty reported for the AI vs non-AI similarity comparison",
+            "notes": "Figure 2(a) x-axis starts at 2022-06 although Section 3.1 says sampling runs from August 2022. The number of documents per monthly sample is not stated."
+          }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Stylistic similarity (Hypothesis 6, Stylistic Monoculture): average pairwise character 3-gram Jaccard similarity within a monthly sample",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "Set of unique character 3-grams from the first 2,000 lowercased characters of each document; pairwise Jaccard similarity; all pairs for samples with n <= 100, otherwise up to 10,000 random pairs (p. 10). Section 1 (p. 4) instead describes the signal as 'the average pairwise cosine similarity of document writing style embeddings'.",
+          "unit": "set",
+          "n_units": 33,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Months with higher aggregate AI likelihood score",
+              "control_arm": "Months with lower aggregate AI likelihood score",
+              "comparison_type": "other",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "figure_only"],
+              "reported": "Pearson correlation: rho = 0.24, p = 0.17 (null not rejected). The panel title inside Figure 16(a) prints rho=0.106, p=0.5368, which differs from the text and caption.",
+              "locator": "p. 4, Section 1 (Stylistic Monoculture Hypothesis); p. 32, Appendix C, Figure 16(a)"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Average pairwise Jaccard similarity of character 3-gram sets within each monthly sample",
+            "embedding_model": "",
+            "computed_over": "All pairs of documents within a monthly sample (n <= 100), or up to 10,000 randomly drawn pairs for larger samples",
+            "uncertainty": "Pearson correlation across monthly samples with its p-value",
+            "notes": "Internal inconsistency in how the measure is described (style embeddings on p. 4 vs character 3-gram Jaccard on p. 10 and p. 32) and in the reported correlation (rho = 0.24, p = 0.17 in text and caption vs rho = 0.106, p = 0.5368 in the Figure 16(a) panel title)."
+          }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Participant survey of US adults on beliefs about AI text on the internet (RQ1)",
+      "design_class": "other",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Participants completed one of three survey parts, each covering a subset of the six hypotheses; the paper does not say how participants were allocated to parts. No AI assistance was given.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "The study was administered as an online form in three parts, each corresponding to a subset of the six hypotheses.",
+        "locator": "p. 8, Section 3.2 Participant Study",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": 853,
+        "counts_are": "people",
+        "exclusions": "Not stated. Part 1 (Hypotheses 1-3) n = 303, Part 2 (Hypotheses 4 and 6) n = 301, Part 3 (Hypothesis 5) n = 299; N = 903 responses from 853 unique participants. The 853 is the count of people whose responses were collected; the paper does not state a separate analyzed count.",
+        "population": "online_panel",
+        "who": "US adults recruited through Prolific, stratified to be representative by age, sex, and ethnicity; mean age 45.4 (SD = 15.73).",
+        "country": "United States",
+        "quote": "In total, N = 903 responses were collected from 853 unique participants.",
+        "locator": "p. 8, Section 3.2 Participant Study"
+      },
+      "ai_tool": {
+        "name_model": "",
+        "role": "other",
+        "how_used": "None. Participants rated agreement with hypothesis statements on a 7-point Likert scale and reported AI-use frequency and views of AI."
+      },
+      "task": {
+        "type": "other",
+        "description": "Survey of beliefs (7-point agreement with statements about AI text on the internet). No creative output is produced or scored.",
+        "duration": ""
+      },
+      "outcomes": []
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "Two authors (Sawood Alam, Mark Graham) are affiliated with the Internet Archive, which supplied the data. Pangram provided a research grant supporting use of its API; the authors state Pangram had no role in design, analysis, or the decision to publish and that they applied for the grant after choosing the detector.",
+    "locator": "p. 1, author affiliations; p. 11, Acknowledgements and Competing Interests"
+  },
+  "data_and_code": { "data_url": "https://ai-on-the-internet.github.io", "code_url": "https://ai-on-the-internet.github.io" },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "observational",
+    "reason": "No person is assigned to AI assistance. S1 is an observational corpus study of real websites that correlates the monthly detected share of AI-generated or AI-assisted text with across-document semantic and stylistic similarity, which fits the observational context class (real output compared across time with a similarity outcome). Criterion 2 is not met for S1 because its units are websites and monthly samples, not people; the S2 survey has 853 people but measures beliefs only, with no AI assistance and no scored output. Criterion 3 is met only in the sense that S1's similarity measures are computed on real text."
+  },
+  "one_line_finding": "Across monthly Internet Archive samples (August 2022 to May 2025), the detected AI-likelihood score correlates positively with average pairwise semantic-embedding similarity (rho = 0.47, p = 0.004; AI vs non-AI websites 0.0701 vs 0.0526) but not significantly with character 3-gram stylistic similarity (rho = 0.24, p = 0.17), pp. 2 and 4.",
+  "open_questions": [
+    "Is the AI-classified vs non-AI website similarity comparison (0.0701 vs 0.0526, p. 2) better coded as ai_vs_human context? The AI group includes AI-assisted (human-written with AI involvement) pages, so I coded it as an observational adopter vs non-adopter comparison.",
+    "Figure 16(a) panel title prints rho=0.106, p=0.5368 while the text and caption give rho = 0.24, p = 0.17 (p. 4, p. 32). Which is correct?",
+    "The Hypothesis 6 measure is described as writing style embeddings on p. 4 but as character 3-gram Jaccard similarity in Methods (p. 10) and Figure 16 (p. 32).",
+    "Sampling window: Methods say 33 monthly intervals from August 2022 to May 2025 (p. 7), while the x-axes of Figures 2(a), 3(a), and 16(a) start at 2022-06. The number of documents per monthly sample is not stated."
+  ],
+  "notes": "Outcomes not listed because they do not bear on creativity or diversity: factual error rate (Hyp. 2, with 50 Prolific fact-checking annotators, p. 10), positive-sentiment rate (Hyp. 3, rho = 0.56, p = 0.0003), outbound link density (Hyp. 4, rho = -0.12, p = 0.48), and Gzip compression ratio (Hyp. 5, rho = -0.02, p = 0.89). The fact-checking annotators (N = 50 after excluding 11 timed-out submissions) are raters within S1, not a separate study. Appendix A is a detector robustness evaluation with AI-generated and human-written text samples, not people. The headline prevalence figure is 'roughly 35%' of new websites AI-generated or AI-assisted by mid-2025 (abstract, p. 1)."
+}

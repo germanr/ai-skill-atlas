@@ -1,0 +1,473 @@
+{
+  "cid": "c106",
+  "screener": "final",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Qin et al (2025) - Timing Matters.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Qin et al (2025) - Timing Matters.pdf",
+    "version": "Authors' preprint in ACM CHI '25 format, retrieved from arXiv 2502.06197 (retrieval.json source_url; retrieval.json has no version_saved note). The arXiv version number is not shown on the document. The page header reads 'CHI '25, April 26-May 1, 2025, Yokohama, Japan', and the ACM reference block still carries the placeholder DOI 10.1145/nnnnnnn.nnnnnnn and ISBN 978-x-xxxx-xxxx-x/YYYY/MM, so this is not the ACM version of record (DOI 10.1145/3706598.3713146 per candidates.json), which was not compared.",
+    "title_on_document": "Timing Matters: How Using LLMs at Different Timings Influences Writers' Perceptions and Ideation Outcomes in AI-Assisted Ideation",
+    "authors_on_document": ["Peinuan Qin", "Chi-Lan Yang", "Jingshu Li", "Jing Wen", "Yi-Chieh Lee"],
+    "pages": 16,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendix A 'Supplementary Materials', pp. 15-16 of this PDF",
+      "holds": "Figure 7 (p. 15): similarity with LLM ideas recomputed with OpenAI text-embedding-ada-002 embeddings instead of TF-IDF, shown as a density plot and a violin plot with a significance star only (no numbers printed). Table 4 (p. 16): one C_before participant's prompt, three submitted ideas, and nine LLM ideas. No additional statistics beyond the main text."
+    }
+  },
+  "paper_design_summary": "Sixty Prolific participants were randomly assigned, 30 per arm, to use a GPT-4 idea-generation tool either from the start of a roughly 20-minute task (C_before) or only after writing at least three ideas on their own for about 10 minutes (C_after). The task was to generate as many supporting ideas as possible for one of two health-related claims (topic counterbalanced). The paper scores the submitted ideas on the number of distinct ideas, TF-IDF similarity to the LLM ideas each participant saw, and within-person semantic diversity, and also reports self-reported creative self-efficacy, autonomy, ownership, and credit.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Online experiment: LLM before vs after independent ideation (supporting ideas for health claims)",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Timing of access to the GPT-4 idea-generation component during the ideation task: available from the start (C_before) or unlocked only after the participant saved at least three independent ideas (C_after). The writing topic (one of two health claims) was counterbalanced.",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "We recruited a diverse group of 60 participants through Prolific. These individuals were randomly assigned into two conditions, with 30 participants per condition.",
+        "locator": "p. 3, Section 3.2 Participants; also p. 3, Section 3.3 Procedure ('the participants were randomly assigned to two conditions'); p. 3, Section 3.1 ('A between-subjects design was used'); p. 4, Figure 1 (N = 60; N = 30 per arm)",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        {
+          "name": "C_after",
+          "description": "Participants first wrote at least three distinct supporting ideas without AI (about 10 minutes; the 'Display AI' button stayed disabled until three ideas were saved, and the on-screen instructions in Figure 2 say AI displays automatically when the 10 minutes end), then could open the GPT-4 component to supplement or expand their ideas (about 10 minutes).",
+          "ai": "generative_ai",
+          "n_randomized": 30,
+          "n_analyzed": 30
+        },
+        {
+          "name": "C_before",
+          "description": "GPT-4 idea-generation component visible and usable from the very beginning of the roughly 20-minute ideation task, with no required independent ideation.",
+          "ai": "generative_ai",
+          "n_randomized": 30,
+          "n_analyzed": 30
+        }
+      ],
+      "participants": {
+        "n_randomized": 60,
+        "n_analyzed": 60,
+        "counts_are": "people",
+        "exclusions": "None reported. The abstract reports 'a controlled experiment with 60 participants' and the Student t-test on idea quantity has t(58), consistent with all 60 analyzed. Per-arm analyzed counts are not printed. The form records 30 per arm because the paper assigns 30 to each condition (p. 3, Section 3.2; p. 4, Figure 1) and analyzes 60 people, which leaves no other split. As a consistency check, the printed means, SDs, t(58) and d for idea quantity, the Welch df of 48.36 for similarity, and the five Mann-Whitney r values (pp. 7-8, Sections 4.2.1, 4.2.3, 4.2.4) all reproduce with 30 per arm.",
+        "population": "online_panel",
+        "who": "Prolific workers aged 21 to 50 (M = 31.167, SD = 8.061); 26 (43.3%) female, 34 (56.7%) male; 67% with at least a bachelor's degree; no domain expertise required; paid 5.85 USD for about 30 minutes",
+        "country": "not_stated (sample described as 'internationally diverse')",
+        "quote": "In a controlled experiment with 60 participants, we found that using LLMs from the beginning reduced the number of original ideas",
+        "locator": "p. 1, Abstract; p. 3, Section 3.2; p. 7, Section 4.1 (t(58))"
+      },
+      "ai_tool": {
+        "name_model": "OpenAI GPT-4 API in a custom web prototype (Vue.js front end, Django back end, hosted on Heroku)",
+        "role": "open_chat",
+        "how_used": "Participants typed a prompt in a prompt box or picked and edited one of three default templates (each asking for four supporting ideas within 50 words), clicked 'Generate Ideas', and read the GPT-4 output in a side panel while writing, editing, and submitting their own ideas in separate input fields. Everyone first had a 5-minute practice task with the prototype (pp. 3-5, Sections 3.3, 3.4, 3.4.1, 3.4.2; Figure 2)."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Generate as many supporting ideas (arguments) as possible to substantiate a given health claim, one of two counterbalanced topics: 'Excessive daytime sleepiness increases the risk of developing certain health conditions' or 'Applying urine to a jellyfish sting not only fails to ease the pain but can even worsen the sting'. Ideas did not need to be factual. Preceded by a 5-minute practice task on the benefits of using social media.",
+        "duration": "Ideation task about 20 minutes (C_after: 10 min alone + 10 min with LLM; C_before: 20 min with LLM); whole session about 30 minutes (p. 3, Section 3.3; p. 4, Figure 1). Mean recorded task completion time 575.033 s (SD 338.897) in C_before and 711.433 s (SD 330.966) in C_after (p. 5, Section 3.5.1)."
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Quantity of supporting ideas",
+          "construct": "fluency",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Count of distinct supporting ideas each participant submitted, whether generated independently or with LLM help; redundant or repetitive ideas not counted (p. 5, Section 3.5.2). The authors did the count ('we counted each distinct idea'). The paper does not say how many coders judged distinctness, whether they were blind to condition, or what rule made an idea redundant or repetitive. In C_after the count mixes ideas written before AI was unlocked and ideas written with AI available. Also the outcome 'Quantity of Ideas' in the SEM (p. 11, Table 2).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "C_after",
+              "control_arm": "C_before",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "regression_coefficient_se", "confidence_interval"],
+              "reported": "Student t-test: t(58) = -1.897, p = 0.063, d = -0.490 (the paper calls the effect marginal). C_before M = 3.867, SD = 2.285; C_after M = 5.567, SD = 4.345; n = 30 per condition at assignment. Signs of t and d run C_before minus C_after (C_before mean is lower and t is negative). SEM (Table 2), Quantity of Ideas on LLM Usage Timing: estimate 1.563, Std. Error 0.905, z-value 1.727, p-value 0.084, 95% CI [0.120, 3.210] (bootstrap, 1000 samples), with creative self-efficacy, autonomy, and ownership as co-predictors. Coded no_clear_difference: p = 0.063 is above 0.05, Figure 3(a) marks it 'ns', Table 3 calls it 'marginally significant', and the SEM row is not bold (the paper bolds significant results, p. 9) and is absent from Figure 6. The point estimate favors C_after.",
+              "locator": "p. 7, Section 4.1; p. 8, Figure 3(a); p. 9, Section 4.3.2; p. 10, Figure 6; p. 11, Tables 2 and 3"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Similarity between participant ideas and LLM-generated ideas",
+          "construct": "other",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "lexical_overlap",
+          "measure_detail": "TF-IDF vectors (after stop-word removal, stemming or lemmatizing, and lowercasing) of each participant idea and each LLM idea that participant received; cosine similarities form a per-participant matrix; each participant idea's score is the magnitude of its vector of cosine similarities with the LLM ideas, and the participant score averages these magnitudes over the participant's ideas (p. 5, Section 3.5.3; p. 6, Table 1). Because the score is a vector magnitude it is not bounded at 1 (Figure 3(b) axis runs to 2.0). Higher = more overlap with the LLM's ideas; the paper reads lower scores as 'more original and independent ideas'. Robustness variant: the same pipeline with OpenAI text-embedding-ada-002 embeddings, reported only as a figure with a significance star (p. 5, footnote 8; p. 15, Figure 7). Compares a participant's ideas with the AI's ideas, not with other people's ideas.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "C_after",
+              "control_arm": "C_before",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["arm_means_sds_ns", "test_statistic", "standardized_effect", "regression_coefficient_se", "confidence_interval"],
+              "reported": "Welch t-test as printed: t(48.36) = 4.778, p = 0.006, d = 0.747. C_before M = 0.899, SD = 0.404; C_after M = 0.648, SD = 0.250; n = 30 per condition at assignment. The printed t does not match the other printed numbers (see open_questions). Signs of t and d run C_before minus C_after. SEM (Table 2), Similarity with Ideas from LLM on LLM Usage Timing: estimate -0.244, Std. Error 0.091, z-value -2.678, p-value 0.007, 95% CI [-0.397, -0.064]; the same path appears in Figure 6 as -0.244 (0.091)**. Embedding robustness variant: significant at p < 0.05 (star only), Figure 7(b), no numbers printed. Lower similarity in the treatment arm is the paper's 'more original' direction.",
+              "locator": "p. 7, Section 4.1; p. 8, Figure 3(b); p. 10, Figure 6; p. 11, Table 2; p. 15, Figure 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Participant's idea diversity (within-person)",
+          "construct": "flexibility",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Each idea in one participant's set embedded with OpenAI text-embedding-ada-002; cosine similarity over all unique pairs of that participant's ideas (upper triangle, diagonal excluded); diversity = 1 - average similarity (p. 5, Section 3.5.4). Variety among one person's own ideas, so coded flexibility, not across-people diversity. Excluded from the SEM because the result was not significant (p. 9, footnote 11).",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "C_after",
+              "control_arm": "C_before",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "standardized_effect", "figure_only"],
+              "reported": "Welch t-test: t(36.472) = 1.337, p = 0.189, d = 0.345. Arm means and SDs not printed; distributions only in Figure 3(c) ('p-value: 0.189', 'ns'). Sign convention of t and d not stated for this test.",
+              "locator": "p. 7, Section 4.1; p. 8, Figure 3(c)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "No author has an AI-company affiliation (all at National University of Singapore or The University of Tokyo). Acknowledgments: the work is 'partially supported by NUS IT's Research Computing group (NUSREC-HPC-00001) and AWS'. The AI tool is OpenAI GPT-4 accessed through the API; OpenAI is not described as involved.",
+    "locator": "p. 13, Acknowledgments; p. 1, author block"
+  },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Individuals were randomly assigned between two generative-AI configurations (GPT-4 from the start vs GPT-4 after at least three independent ideas), an ai_design comparison with no no-AI arm (p. 3, Sections 3.1-3.3). 60 people were randomized, 30 per arm; no exclusions are reported and the quantity test's t(58) implies all 60 were analyzed, 30 per arm (p. 1, Abstract; p. 7, Section 4.1), so criterion 2 is met with 10 people above the threshold. All three outcomes are computed on the submitted ideas: idea count (fluency), TF-IDF similarity to the LLM's ideas (other), and within-person embedding diversity (flexibility). No outcome is rated for creativity by people, and the task (supporting arguments for a given health claim) is treated as idea generation because it asks for as many ideas as possible and has many acceptable answers. The authors say they designed 'the ideation task in a relatively simple way' and expect the timing effect to 'vary across different types of creative tasks' (p. 12, Section 6). In C_after part of each submitted idea set was written before AI was unlocked, so AI availability is mixed and all outcomes answer with_ai."
+  },
+  "one_line_finding": "Among 60 Prolific participants, randomized and analyzed 30 per arm, unlocking GPT-4 only after independent ideation (C_after) rather than from the start (C_before) gave lower TF-IDF similarity to the LLM's ideas (0.648 vs 0.899; p = 0.006, d = 0.747; the printed t = 4.778 is inconsistent) and no clear difference in the number of ideas (5.567 vs 3.867; t(58) = -1.897, p = 0.063, d = -0.490, which the paper calls marginal) or in within-person idea diversity (t(36.472) = 1.337, p = 0.189) (p. 7, Section 4.1; p. 8, Figure 3).",
+  "open_questions": [
+    "Similarity contrast: the printed Welch t(48.36) = 4.778 does not match the other printed numbers. As a consistency check (not recorded as data), the printed means and SDs with n = 30 per arm give Welch t = 2.894 with df = 48.37 and two-sided p = 0.0057, which match the printed df, p = 0.006 and d = 0.747; t = 4.778 at df = 48.36 would give p below 0.0001. The extraction phase should not rely on the printed t (p. 7, Section 4.1).",
+    "Quantity SEM path (Table 2): z = 1.727 with p = 0.084, but the 95% CI [0.120, 3.210] excludes zero. The CIs come from 1000 bootstrap samples (p. 9, Section 4.3.2), so the two disagree on significance at 5 percent. The coefficient is a direct effect conditional on creative self-efficacy, autonomy, and ownership (p. 11, Table 2). The paper does not treat the path as significant: the row is not bold although significant results are bolded (p. 9, Section 4.3.2), and Figure 6 omits it. The form codes the S1-O1 direction from the t-test (p = 0.063) as no_clear_difference.",
+    "The similarity score is a vector magnitude, not a bounded cosine similarity (p. 5, Section 3.5.3; p. 6, Table 1, step 6.1.1; Figure 3(b) axis runs to 2.0). As the text describes it, each idea's vector holds its similarity to every LLM idea the participant received, so the score can rise with the number of LLM ideas generated. The paper does not report LLM ideas per arm, and C_before had the LLM for about 20 minutes against about 10 in C_after (p. 4, Figure 1).",
+    "Construct of the similarity-to-LLM outcome: coded other because it compares a participant's ideas with the AI's own ideas. The paper reads lower similarity as more original (p. 5, Section 3.5.3; p. 11, Table 3), so a reviewer could argue novelty.",
+    "Whether generating supporting arguments for a given health claim counts as a creative or ideation task under the codebook. No outcome is rated for creativity by people; the creativity-relevant outcomes are fluency, within-person diversity, and similarity to the LLM's ideas. This form treats the task as idea_generation.",
+    "ai_available_when_produced is coded mixed: in C_after the scored set includes ideas written before AI was unlocked and ideas added or edited with AI available; in C_before every idea was written with AI available.",
+    "Per-arm analyzed counts are not printed: only 30 per arm at assignment, t(58) for the quantity test, and a Welch df for similarity that reproduces with 30 per arm. The form records 30 analyzed per arm, the only split that fits 30 assigned per condition, no reported exclusions, and 60 analyzed.",
+    "Sign conventions: the coding of 'LLM Usage Timing' in the SEM is not stated, but the paper reads the positive autonomy path as higher autonomy after independent ideation (p. 9, Section 4.3.2), which implies C_after is the higher value. The t and d for quantity and similarity run C_before minus C_after; the diversity test's sign convention is not stated.",
+    "Version: the file is the arXiv preprint in CHI '25 format with a placeholder DOI and ISBN (p. 1). The ACM version of record (DOI 10.1145/3706598.3713146) was not compared. It may correct the printed similarity t (open question 1)."
+  ],
+  "notes": "Reconciled from screener forms A and B. They agreed on design, assignment, arms, counts, AI tool, task, the three outcomes and their codes, and every eligibility criterion; the four differences concern two statistics_available lists, one locator, and the description of the similarity measure. Self-reported outcomes are not listed because they are not scored on the output: creative self-efficacy (Mann-Whitney U = 289.500, p = 0.018; C_before M = 4.627 vs C_after M = 5.300), autonomy (U = 267.500, p = 0.007), ownership (U = 227.000, p = 0.001), self-credit (U = 304.000, p = 0.029), credit to LLM (U = 628.500, p = 0.007), and the pre-post creative self-efficacy change within each arm (Wilcoxon), pp. 7-9, Figures 4-5. Task completion time (p. 5, Section 3.5.1) is a process measure, not listed. The qualitative thematic analysis is not coded. The SEM uses 1000 bootstrap samples (p. 9, Section 4.3.2; Figure 6, p. 10; Table 2, p. 11). Analysis in JASP v0.18.3 (p. 7). Treatment arm set to C_after because the paper proposes delaying LLM use; C_before, with AI available throughout, is the default configuration. The ada-002 similarity variant (Figure 7) is treated as a robustness variant of S1-O2. The final review recoded the S1-O1 direction to no_clear_difference, filled arms[].n_analyzed with 30 each, and corrected the S1-O1 measure_detail on who did the count (final.challenge_resolution).",
+  "reconciliation": {
+    "differences": [
+      {
+        "field": "studies[0].outcomes[S1-O1].contrasts[0].statistics_available",
+        "a": "[arm_means_sds_ns, test_statistic, standardized_effect]",
+        "b": "[arm_means_sds_ns, test_statistic, standardized_effect, regression_coefficient_se, p_value_only]",
+        "resolved": "Neither form. Final: [arm_means_sds_ns, test_statistic, standardized_effect, regression_coefficient_se, confidence_interval]. Table 2 prints, for Quantity of Ideas on LLM Usage Timing, estimate 1.563 with Std. Error 0.905, z-value 1.727, p-value 0.084, and 95% CI [0.120, 3.210], so regression_coefficient_se and confidence_interval apply. A's own 'reported' string cites these numbers but its list omits them. p_value_only (B) does not apply because t(58), d, arm means, and SDs are printed on p. 7.",
+        "quote": "The table also includes the standard errors (SE), z-values, p-values, and 95% confidence intervals for each predictor's estimate",
+        "locator": "p. 11, Table 2 caption and row 'Quantity of Ideas / LLM Usage Timing'; p. 7, Section 4.1",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[0].outcomes[S1-O2].contrasts[0].statistics_available",
+        "a": "[arm_means_sds_ns, test_statistic, standardized_effect, regression_coefficient_se, confidence_interval]",
+        "b": "[arm_means_sds_ns, test_statistic, standardized_effect, regression_coefficient_se, confidence_interval, figure_only]",
+        "resolved": "A. The main TF-IDF contrast has arm means and SDs, t, p, and d in the text (p. 7) and the SEM coefficient with SE and CI in Table 2 (p. 11), so nothing about it is figure-only. Only the embedding robustness variant is figure-only (Figure 7, significance star, no numbers). The final form records that in 'measure_detail' and 'reported'; adding figure_only to the list would suggest that the main estimate must be read off a figure.",
+        "quote": "Please refer to the Appendix A to see the result of using transformer-based methods to calculate similarity scores (see Figure 7).",
+        "locator": "p. 5, footnote 8; p. 15, Figure 7; main statistics at p. 7, Section 4.1 and p. 11, Table 2",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[0].outcomes[S1-O2].contrasts[0].locator",
+        "a": "p. 7, Section 4.1; p. 8, Figure 3(b); p. 11, Table 2; p. 15, Figure 7",
+        "b": "p. 7, Section 4.1; p. 8, Figure 3(b); p. 11, Table 2; p. 10, Figure 6; p. 15, Figure 7",
+        "resolved": "B. Figure 6 on p. 10 prints the SEM path from LLM Usage Timing to Similarity with LLM Ideas as '-0.244 (0.091) **', a second location of the reported coefficient and SE. Final locator: p. 7, Section 4.1; p. 8, Figure 3(b); p. 10, Figure 6; p. 11, Table 2; p. 15, Figure 7.",
+        "quote": "The numbers on the arrows represent the regression coefficients, and the values in parentheses indicate the standard error (SE) associated with each estimate.",
+        "locator": "p. 10, Figure 6 caption; arrow to 'Similarity with LLM Ideas' labeled -0.244 (0.091) **",
+        "status": "resolved"
+      },
+      {
+        "field": "studies[0].outcomes[S1-O2].measure_detail (how the similarity score is built)",
+        "a": "TF-IDF vectors with cosine similarity between each participant idea and each LLM idea that participant received; per-participant score averages over the participant's ideas",
+        "b": "cosine-similarity matrix per participant; per-idea score is the magnitude of the column vector, averaged to a participant score",
+        "resolved": "B. Each participant idea's score is the magnitude of its vector of cosine similarities with the LLM ideas that participant received, and the participant score averages these magnitudes. A's wording reads as an average cosine similarity, which would be bounded at 1; the magnitude is not (Figure 3(b) axis runs to 2.0, with C_before values above 1). The final measure_detail follows B.",
+        "quote": "Each column in the matrix was treated as a vector, with its magnitude representing the degree of overlap between a single writing idea and all other LLM suggestions.",
+        "locator": "p. 5, Section 3.5.3; p. 6, Table 1, step 6.1.1; p. 8, Figure 3(b) axis",
+        "status": "resolved"
+      }
+    ],
+    "agreed_fields_checked": [
+      {
+        "field": "studies[0].assignment.randomized and unit (criterion 1)",
+        "value": "yes; individuals; 30 per condition",
+        "quote": "We recruited a diverse group of 60 participants through Prolific. These individuals were randomly assigned into two conditions, with 30 participants per condition.",
+        "locator": "p. 3, Section 3.2",
+        "confirmed": true
+      },
+      {
+        "field": "studies[0].assignment.structure",
+        "value": "between",
+        "quote": "A between-subjects design was used to explore these questions.",
+        "locator": "p. 3, Section 3.1",
+        "confirmed": true
+      },
+      {
+        "field": "studies[0].assignment.what_was_assigned; comparison_type ai_design (criterion 1 comparison group)",
+        "value": "Timing of GPT-4 access: from the start (C_before) or after independent ideation (C_after); both arms use the same LLM",
+        "quote": "This study examines how different timings of LLM usage - either at the beginning or after independent ideation - affect people's perceptions and ideation outcomes in a writing task.",
+        "locator": "p. 1, Abstract",
+        "confirmed": true
+      },
+      {
+        "field": "studies[0].ai_tool.name_model (generative AI)",
+        "value": "OpenAI GPT-4 API in a custom web prototype",
+        "quote": "Additionally, we adopted OpenAI's GPT-4 API to build the streaming content generation feature, aiming to maintain smooth interaction and high-quality LLM responses.",
+        "locator": "p. 3, Section 3.4",
+        "confirmed": true
+      },
+      {
+        "field": "studies[0].design_class",
+        "value": "online_rct (Prolific, online session)",
+        "quote": "The whole online experiment took about 30 minutes in total, and the procedure can be found in Figure 1.",
+        "locator": "p. 3, Section 3.3",
+        "confirmed": true
+      },
+      {
+        "field": "studies[0].participants.n_analyzed (criterion 2)",
+        "value": "60 people",
+        "quote": "In a controlled experiment with 60 participants, we found that using LLMs from the beginning reduced the number of original ideas and lowered creative self-efficacy and self-credit",
+        "locator": "p. 1, Abstract",
+        "confirmed": true
+      },
+      {
+        "field": "studies[0].participants.n_analyzed (cross-check)",
+        "value": "t(58) on idea quantity implies 60 analyzed; the printed t and d reproduce with 30 per arm",
+        "quote": "The result of the t-test showed that the timing of LLM usage had a marginal effect on the number of supporting ideas participants generated in the study (t(58) = −1.897, p = 0.063, d = −0.490)",
+        "locator": "p. 7, Section 4.1",
+        "confirmed": true
+      },
+      {
+        "field": "studies[0].task.type",
+        "value": "idea_generation",
+        "quote": "We asked participants to ideate as many supporting ideas as they could to substantiate the claim for the given writing topic.",
+        "locator": "p. 3, Section 3.1",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O1 scored_on_output (criterion 3)",
+        "value": "true",
+        "quote": "To calculate the total quantity of supporting ideas, we counted each distinct idea provided by the participant, regardless of whether it was generated independently or with the assistance of the LLM.",
+        "locator": "p. 5, Section 3.5.2",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O2 scored_on_output",
+        "value": "true",
+        "quote": "We measured the similarity between ideas generated by participants and those generated by the LLM to assess the extent of LLM's influence on ideation.",
+        "locator": "p. 5, Section 3.5.3",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O3 scored_on_output; construct flexibility (within one person)",
+        "value": "true; flexibility",
+        "quote": "Building on [23], we assessed diversity using the semantic differences between each idea generated by each individual.",
+        "locator": "p. 5, Section 3.5.4",
+        "confirmed": true
+      },
+      {
+        "field": "ai_available_when_produced (all outcomes)",
+        "value": "mixed",
+        "quote": "For participants in the C_before condition, the AI generation component remained visible throughout the main task. For participants in the C_after condition, the 'Display AI' button was initially disabled.",
+        "locator": "p. 4, Section 3.4.1 (subscripts rendered as C_before, C_after)",
+        "confirmed": true
+      },
+      {
+        "field": "question (all outcomes)",
+        "value": "with_ai; AI is never removed after use, and the only no-AI phase comes before AI access in C_after",
+        "quote": "In C_after, participants first generated at least three distinct and original supporting ideas independently before being allowed to use LLM to supplement or expand their ideas.",
+        "locator": "p. 3, Section 3.3 (subscript rendered as C_after)",
+        "confirmed": true
+      },
+      {
+        "field": "outcomes[].primary",
+        "value": "not_stated; RQ1 names all three outcomes without ranking them",
+        "quote": "RQ1: How does ideating with LLM at different timings (before or after independent ideation) influence ideation outcomes (e.g., quantity of supporting ideas, similarity with LLM ideas, and personal idea diversity)?",
+        "locator": "p. 1, Section 1",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O1 reported (arm means)",
+        "value": "C_before M = 3.867, SD = 2.285; C_after M = 5.567, SD = 4.345",
+        "quote": "Generating ideas with LLM from the start (C_before) led participants to write slightly fewer supporting ideas (M = 3.867; SD = 2.285) compared to the C_after condition (M = 5.567; SD = 4.345).",
+        "locator": "p. 7, Section 4.1",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O1 reported (SEM row)",
+        "value": "1.563, Std. Error 0.905, z 1.727, p 0.084, 95% CI [0.120, 3.210]",
+        "quote": "LLM Usage Timing 1.563 0.905 1.727 0.084 0.120 3.210",
+        "locator": "p. 11, Table 2, block 'Quantity of Ideas'",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O2 reported (test)",
+        "value": "t(48.36) = 4.778, p = 0.006, d = 0.747 as printed (t inconsistent, see open_questions)",
+        "quote": "Next, the Welch t-test revealed that the timing of LLM usage had a significant impact on the similarity between participant-generated and LLM-generated ideas (t(48.36) = 4.778, p = 0.006, d = 0.747).",
+        "locator": "p. 7, Section 4.1",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O2 reported (arm means)",
+        "value": "C_before M = 0.899, SD = 0.404; C_after M = 0.648, SD = 0.250",
+        "quote": "Specifically, participants in the C_before condition had a higher similarity score (M = 0.899; SD = 0.404) than in the C_after condition (M = 0.648; SD = 0.250)",
+        "locator": "p. 7, Section 4.1",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O2 reported (SEM)",
+        "value": "-0.244, SE 0.091, p 0.007, 95% CI [-0.397, -0.064]",
+        "quote": "which was solely influenced by the LLM usage timing itself (β = −0.244, SE = 0.091, p = 0.007, 95% CI = [−0.397, −0.064])",
+        "locator": "p. 10, Section 4.3.2; p. 11, Table 2",
+        "confirmed": true
+      },
+      {
+        "field": "S1-O3 reported",
+        "value": "t(36.472) = 1.337, p = 0.189, d = 0.345; no arm means printed",
+        "quote": "Regarding the participant's idea diversity (see Figure 3(c)), the Welch t-test showed that there was no significant difference between different timings of LLM usage (t(36.472) = 1.337, p = 0.189, d = 0.345).",
+        "locator": "p. 7, Section 4.1",
+        "confirmed": true
+      },
+      {
+        "field": "source.supplement",
+        "value": "yes, in this PDF (Appendix A, pp. 15-16); Figure 7 is figure-only",
+        "quote": "(b) depicts that there is a significant difference caused by LLM usage timing, which is consistent with the results in Figure 3.",
+        "locator": "p. 15, Figure 7 caption",
+        "confirmed": true
+      },
+      {
+        "field": "company_involvement.any",
+        "value": "true (AWS support; no AI-company authors)",
+        "quote": "This research work is partially supported by NUS IT's Research Computing group (NUSREC-HPC-00001) and AWS.",
+        "locator": "p. 13, Acknowledgments",
+        "confirmed": true
+      }
+    ],
+    "n_differences": 4,
+    "n_unresolved": 0
+  },
+  "final": {
+    "core": "yes",
+    "criteria": {
+      "random_assignment_of_ai": "met",
+      "at_least_50_people": "met",
+      "outcome_scored_on_output": "met"
+    },
+    "challenge_resolution": [
+      {
+        "lens": "people",
+        "problem": "studies[S1].arms[].n_analyzed was null for both arms, although the form records 60 analyzed at the study level on evidence that fixes each arm at 30.",
+        "action": "corrected",
+        "what_changed": "arms[C_after].n_analyzed and arms[C_before].n_analyzed changed from null to 30. The paper assigns 30 to each condition, reports no exclusions, and analyzes 60 people (abstract; t(58)), so no other split is possible. Rechecked from the printed numbers: only 30/30 reproduces t(58) = -1.897 (29/31 gives -1.877), the similarity Welch df of 48.36 (29/31 gives 46.13), and all five Mann-Whitney r values (n1 x n2 = 900). participants.exclusions, eligibility.reason, one_line_finding, and open question 7 say the same. participants.n_analyzed stays 60, and criterion 2 is unchanged. The reconciled forms c127 and c096 (second study) fill per-arm analyzed counts on the same kind of evidence.",
+        "quote": "These individuals were randomly assigned into two conditions, with 30 participants per condition.",
+        "locator": "p. 3, Section 3.2; p. 4, Figure 1; p. 7, Section 4.1 (t(58), Welch df); pp. 7-8, Sections 4.2.1, 4.2.3, 4.2.4 (U and r)"
+      },
+      {
+        "lens": "outcome",
+        "problem": "S1-O1 contrasts[0].direction was treatment_higher, but the only test of C_after vs C_before on idea count is marginal (t(58) = -1.897, p = 0.063), and the paper does not treat the SEM direct path (p = 0.084) as significant.",
+        "action": "corrected",
+        "what_changed": "studies[S1].outcomes[S1-O1].contrasts[0].direction changed from treatment_higher to no_clear_difference. The reported string keeps the arm means (3.867 vs 5.567, favoring C_after) and now gives the reason, and the locator adds p. 9, Section 4.3.2, p. 10, Figure 6, and Table 3. one_line_finding and open question 2 follow. The rule matches c010 S2-O2 (final, P = 0.075) and the reconciled forms c007, c082, c094, c101, and c121. The checker called all six final, but only c010 is. A scan of all reconciled and final forms found no other contrast whose only test has p between 0.05 and 0.10 coded with a direction. Eligibility is unchanged.",
+        "quote": "The result of the t-test showed that the timing of LLM usage had a marginal effect on the number of supporting ideas participants generated in the study (t(58) = −1.897, p = 0.063, d = −0.490)",
+        "locator": "p. 7, Section 4.1; p. 8, Figure 3(a) ('p-value: 0.063', ns); p. 9, Section 4.3.2 (significant results in bold); p. 10, Figure 6; p. 11, Table 2 (Quantity of Ideas, LLM Usage Timing row, not bold) and Table 3 (RQ1)"
+      },
+      {
+        "lens": "outcome",
+        "problem": "S1-O1 measure_detail said who judged distinctness is not stated, but the paper says the authors did the count.",
+        "action": "corrected",
+        "what_changed": "S1-O1 measure_detail now says the authors did the count ('we counted each distinct idea') and that the paper does not say how many coders judged distinctness, whether they were blind to condition, or what rule made an idea redundant or repetitive. No code changed.",
+        "quote": "To calculate the total quantity of supporting ideas, we counted each distinct idea provided by the participant, regardless of whether it was generated independently or with the assistance of the LLM.",
+        "locator": "p. 5, Section 3.5.2"
+      }
+    ],
+    "open_items": [
+      {
+        "item": "Similarity t (open question 1): the printed Welch t(48.36) = 4.778 conflicts with the printed means, SDs, df, p = 0.006, and d = 0.747, which all fit t = 2.894 at 30 per arm. Extraction should not use the printed t. The ACM version of record may print a corrected value. If it does not, only the authors can settle it.",
+        "affects_eligibility": false,
+        "settled_by": "journal_version"
+      },
+      {
+        "item": "Quantity SEM path (open question 2): z = 1.727 and p = 0.084 disagree with the bootstrap 95% CI [0.120, 3.210], which excludes zero. The paper treats the path as not significant, the S1-O1 direction comes from the t-test, and the coefficient is a direct effect conditional on three mediators, so no coded value depends on it.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Similarity score scale (open question 3): the score is a vector magnitude, so it can rise with the number of LLM ideas a participant received, and C_before had the LLM for about 20 minutes against about 10 in C_after. The paper does not report LLM ideas per arm, and Table 1, step 6.1.1 calls the score the magnitude of 'the TF-IDF vector'. The document names no posted data.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Construct of S1-O2 (open question 4): coded other because it compares each person's ideas with the AI's own ideas. The paper reads lower similarity as more original, so Review 1 may prefer novelty. Criterion 3 also rests on S1-O1 and S1-O3.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Task scope (open question 5): whether writing supporting ideas for a given health claim is a creative or ideation task (criteria 1 and 3). The task asks for as many ideas as possible, accepts ideas that are not factual, and is scored on idea count, similarity to the LLM's ideas, and within-person diversity. The authors expect the timing effect to 'vary across different types of creative tasks' (p. 12, Section 6). Codebook section 1 covers the task, so both criteria stay met. Review 1 may narrow the scope.",
+        "affects_eligibility": true,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "AI availability (open question 6): coded mixed because the C_after idea sets include ideas written before the AI was unlocked. The paper does not say how many. No scored idea was written after AI was removed, so question with_ai holds either way.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Per-arm analyzed counts (open question 7): not printed. The form now records 30 per arm, the only split that fits 30 assigned per condition, no reported exclusions, and 60 analyzed. Criterion 2 counts the 60 in any case.",
+        "affects_eligibility": false,
+        "settled_by": "nothing_needed"
+      },
+      {
+        "item": "Sign conventions (open question 8): the coding of LLM Usage Timing in the SEM is not stated (the text implies C_after is the higher value), and neither is the sign convention of the diversity test's t and d. A signed diversity effect needs it, but the coded direction does not. The document names no posted data.",
+        "affects_eligibility": false,
+        "settled_by": "authors"
+      },
+      {
+        "item": "Version (open question 9): the file is the arXiv preprint in CHI '25 format with a placeholder DOI and ISBN. The ACM version of record (DOI 10.1145/3706598.3713146) was not compared.",
+        "affects_eligibility": false,
+        "settled_by": "journal_version"
+      }
+    ],
+    "n_corrected": 3,
+    "n_rejected": 0,
+    "n_open": 0
+  }
+}

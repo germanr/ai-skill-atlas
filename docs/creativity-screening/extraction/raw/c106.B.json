@@ -1,0 +1,556 @@
+{
+ "cid": "c106",
+ "extractor": "B",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Qin et al (2025) - Timing Matters.pdf",
+  "version": "Author preprint in ACM CHI ’25 format (2025). PDF p. 1 has the placeholder DOI 10.1145/nnnnnnn.nnnnnnn and placeholder ISBN; no arXiv version is printed in the PDF. The local citation record identifies the saved document as arXiv:2502.06197v1, not the ACM version of record.",
+  "supplement_used": "Appendix A, Supplementary Materials, in the same PDF: PDF pp. 15-16, Figure 7 and Table 4."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Online experiment: LLM before vs after independent ideation (supporting ideas for health claims)",
+   "design_class": "online_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": null,
+   "cluster_se_treatment": null,
+   "n_randomized": 60,
+   "n_analyzed": null,
+   "counts_source": {
+    "locator": "PDF p. 3, Section 3.2 Participants",
+    "quote": "We recruited a diverse group of 60 participants through Prolific1. These individuals were randomly assigned into two conditions, with 30 participants per condition."
+   },
+   "arms": [
+    {
+     "name": "C_after",
+     "description": "Participants first generated at least three distinct supporting ideas independently, then could use GPT-4 to supplement or expand their ideas (PDF p. 3, Section 3.3; PDF p. 4, Section 3.4.1).",
+     "ai": "generative_ai",
+     "n_randomized": 30,
+     "n_analyzed": null
+    },
+    {
+     "name": "C_before",
+     "description": "GPT-4 idea generation was available from the beginning and throughout the main ideation task, with no required independent ideation phase (PDF pp. 3-4, Sections 3.3-3.4.1).",
+     "ai": "generative_ai",
+     "n_randomized": 30,
+     "n_analyzed": null
+    }
+   ],
+   "population": "online_panel",
+   "country": "not_stated",
+   "task_type": "idea_generation",
+   "task": "Generate as many supporting ideas as possible for a counterbalanced health-related claim about daytime sleepiness or jellyfish-sting treatment, without requiring factual accuracy.",
+   "ai_role": "open_chat",
+   "ai_tool": {
+    "name": "OpenAI GPT-4 API in a custom web application",
+    "year": null,
+    "locator": "PDF p. 3, Section 3.4 Prototype for Generating Ideas with LLM; model release year not printed."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": "",
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_idea_quantity_after_vs_before",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Quantity of supporting ideas (unadjusted)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Authors counted distinct supporting ideas in each participant’s submitted set; redundant or repetitive ideas were excluded. Includes ideas generated independently and with LLM assistance. Coder number, blinding, and the redundancy rule are not stated (PDF p. 5, Section 3.5.2).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "C_after",
+   "control_arm": "C_before",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": 5.567,
+    "treatment_sd": 4.345,
+    "treatment_se": null,
+    "control_mean": 3.867,
+    "control_sd": 2.285,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": -1.897,
+     "df": 58
+    },
+    "p_value": 0.063,
+    "paper_effect": {
+     "type": "d",
+     "value": -0.49,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "Not stated; the paper reports d without defining its denominator."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 7, Section 4.1, quantity of supporting ideas",
+     "quote": "Generating ideas with LLM from the start (𝐶𝑏𝑒𝑓𝑜𝑟𝑒) led par- ticipants to write slightly fewer supporting ideas (𝑀= 3.867;𝑆𝐷= 2.285)"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 7, Section 4.1, quantity of supporting ideas",
+     "quote": "compared to the 𝐶𝑎𝑓𝑡𝑒𝑟condition (𝑀= 5.567;𝑆𝐷= 4.345)"
+    },
+    {
+     "fields": [
+      "test",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 7, Section 4.1, Student t-test for idea quantity",
+     "quote": "marginal effect on the number of supporting ideas participants gen- erated in the study (𝑡(58) = −1.897, 𝑝= 0.063,𝑑= −0.490)"
+    }
+   ],
+   "notes": "Main unadjusted Student t-test. The negative t and d are printed in the C_before minus C_after orientation, as established by the arm means; their signs have not been reversed. Treatment and control means follow the requested C_after versus C_before arm ordering. The paper calls this result marginal, and Figure 3(a) marks it ns. C_after combines independent ideation before AI access with later AI-assisted ideation; outcome_with_ai is true for the completed task, although availability during production was mixed. The paper prints assignment counts but no separate analysis-specific participant counts; no counts are inferred from degrees of freedom."
+  },
+  {
+   "slug": "s1_similarity_llm_tfidf_after_vs_before",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Similarity between participant ideas and LLM-generated ideas (TF-IDF; unadjusted)",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "TF-IDF vectors after stop-word removal, stemming or lemmatization, and lowercasing; cosine similarities compare each participant idea with the LLM ideas that participant received. The score averages the magnitudes of the idea-specific similarity vectors over the participant’s ideas. This is a magnitude-based overlap score, not a single bounded cosine similarity, and does not compare different participants (PDF pp. 5-6, Section 3.5.3 and Table 1).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "C_after",
+   "control_arm": "C_before",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": 0.648,
+    "treatment_sd": 0.25,
+    "treatment_se": null,
+    "control_mean": 0.899,
+    "control_sd": 0.404,
+    "control_se": null,
+    "sd_level": "participant",
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 4.778,
+     "df": 48.36
+    },
+    "p_value": 0.006,
+    "paper_effect": {
+     "type": "d",
+     "value": 0.747,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "Not stated; the paper reports d without defining its denominator."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "control_mean",
+      "control_sd"
+     ],
+     "locator": "PDF p. 7, Section 4.1, TF-IDF similarity with LLM ideas",
+     "quote": "Specifically, participants in the 𝐶𝑏𝑒𝑓𝑜𝑟𝑒condition had a higher sim- ilarity score (𝑀= 0.899;𝑆𝐷= 0.404)"
+    },
+    {
+     "fields": [
+      "treatment_mean",
+      "treatment_sd"
+     ],
+     "locator": "PDF p. 7, Section 4.1, TF-IDF similarity with LLM ideas",
+     "quote": "than in the 𝐶𝑎𝑓𝑡𝑒𝑟condition (𝑀= 0.648;𝑆𝐷= 0.250)"
+    },
+    {
+     "fields": [
+      "test",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 7, Section 4.1, Welch t-test for TF-IDF similarity",
+     "quote": "Next, the Welch t-test revealed that the timing of LLM usage had a significant impact on the similarity between participant-generated and LLM-generated ideas (𝑡(48.36) = 4.778, 𝑝= 0.006,𝑑= 0.747)"
+    }
+   ],
+   "notes": "The printed positive t and d are in the C_before minus C_after orientation; their signs are retained although the extracted arm means use C_after as treatment. The printed t is inconsistent with the reported p-value and descriptive statistics. It is retained for transcription and audit only and must not be used to derive an effect or uncertainty without resolving the discrepancy. No corrected t has been calculated or substituted. Construct other follows the screening form: this compares human ideas with the AI’s ideas, not with other people’s ideas. The authors interpret lower similarity as greater originality. C_after combines independent ideation before AI access with later AI-assisted ideation; outcome_with_ai is true for the completed task, although availability during production was mixed. The paper prints assignment counts but no separate analysis-specific participant counts; no counts are inferred from degrees of freedom."
+  },
+  {
+   "slug": "s1_within_person_diversity_after_vs_before",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Participant’s idea diversity (within-person flexibility; unadjusted)",
+   "question": "with_ai",
+   "construct": "flexibility",
+   "measure": "embedding_similarity",
+   "measure_detail": "Each participant’s ideas were embedded with OpenAI text-embedding-ada-002. Within that person’s idea set, cosine similarity was averaged over unique pairs (upper triangle excluding the diagonal), and the diversity score was defined as 1 minus average similarity. This measures within-person flexibility, not diversity across people (PDF p. 5, Section 3.5.4).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "C_after",
+   "control_arm": "C_before",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_diverse",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": {
+     "type": "t",
+     "value": 1.337,
+     "df": 36.472
+    },
+    "p_value": 0.189,
+    "paper_effect": {
+     "type": "d",
+     "value": 0.345,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "Not stated; the paper reports d without defining its denominator."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "test",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 7, Section 4.1, Welch t-test for participant’s idea diversity",
+     "quote": "Regarding the participant’s idea diversity (see Figure 3(c)), the Welch t-test showed that there was no significant difference be- tween different timings of LLM usage (𝑡(36.472) = 1.337, 𝑝= 0.189,𝑑= 0.345)"
+    }
+   ],
+   "notes": "Welch t-test. The paper prints no arm means, SDs, SEs, or confidence intervals for this outcome. Figure 3(c) shows distributions and boxplots only; no values were read from plot positions. The ordering used to sign t and d is not stated for this outcome and cannot be confirmed from printed means; the signs are transcribed, not interpreted as C_after minus C_before. Higher scores mean greater semantic variety among one person’s ideas, hence flexibility. The within_person design field is null because assignment was between people. PDF p. 9, footnote 11 says this outcome was excluded from SEM because its result was not significant. C_after combines independent ideation before AI access with later AI-assisted ideation; outcome_with_ai is true for the completed task, although availability during production was mixed. The paper prints assignment counts but no separate analysis-specific participant counts; no counts are inferred from degrees of freedom."
+  },
+  {
+   "slug": "s1_idea_quantity_after_vs_before_sem",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Quantity of supporting ideas (SEM direct timing path)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Authors counted distinct supporting ideas in each participant’s submitted set; redundant or repetitive ideas were excluded. Includes ideas generated independently and with LLM assistance. Coder number, blinding, and the redundancy rule are not stated (PDF p. 5, Section 3.5.2).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "C_after",
+   "control_arm": "C_before",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": 0.12,
+    "ci_upper": 3.21,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": {
+     "coef": 1.563,
+     "se": 0.905,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "SEM direct path from LLM Usage Timing to Quantity of Ideas. The outcome equation also includes creative self-efficacy, autonomy, and ownership. Confidence intervals use bootstrap resampling; the coefficient SE method and the numeric coding of LLM Usage Timing are not specified. No standardization of the outcome is described."
+    },
+    "test": {
+     "type": "z",
+     "value": 1.727,
+     "df": null
+    },
+    "p_value": 0.084,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression",
+      "test",
+      "p_value",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 11, Table 2, Quantity of Ideas outcome, LLM Usage Timing row",
+     "quote": "LLM Usage Timing 1.563 0.905 1.727 0.084 0.120 3.210"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 9, Section 4.3.2, SEM bootstrap confidence intervals",
+     "quote": "using bootstrap resampling with 1000 sam- ples to estimate the 95% confidence intervals."
+    }
+   ],
+   "notes": "Separate adjusted specification of the same outcome and arm contrast; this is a direct effect conditional on post-treatment mediators, not the unadjusted total effect. The narrative interpretation of the timing paths implies C_after relative to C_before, but the numeric coding is not printed. Coefficients are recorded as regression estimates; the beta notation in the prose does not establish a standardized effect. No adjusted arm means or SDs are printed. There is one outcome value per participant. C_after combines independent ideation before AI access with later AI-assisted ideation; outcome_with_ai is true for the completed task, although availability during production was mixed. The paper prints assignment counts but no separate analysis-specific participant counts; no counts are inferred from degrees of freedom. The printed z and p do not agree on significance with the bootstrap confidence interval, which excludes zero; all are retained as printed. The path is not bold in Table 2 and is omitted from the significant-path diagram in Figure 6."
+  },
+  {
+   "slug": "s1_similarity_llm_tfidf_after_vs_before_sem",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Similarity with LLM-generated ideas (TF-IDF; SEM direct timing path)",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "lexical_overlap",
+   "measure_detail": "TF-IDF vectors after stop-word removal, stemming or lemmatization, and lowercasing; cosine similarities compare each participant idea with the LLM ideas that participant received. The score averages the magnitudes of the idea-specific similarity vectors over the participant’s ideas. This is a magnitude-based overlap score, not a single bounded cosine similarity, and does not compare different participants (PDF pp. 5-6, Section 3.5.3 and Table 1).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "C_after",
+   "control_arm": "C_before",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": -0.397,
+    "ci_upper": -0.064,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -0.244,
+     "se": 0.091,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "SEM direct path from LLM Usage Timing to Similarity with Ideas from LLM. The outcome equation also includes creative self-efficacy, autonomy, and ownership. Confidence intervals use bootstrap resampling; the coefficient SE method and the numeric coding of LLM Usage Timing are not specified. No standardization of the outcome is described."
+    },
+    "test": {
+     "type": "z",
+     "value": -2.678,
+     "df": null
+    },
+    "p_value": 0.007,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression",
+      "test",
+      "p_value",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 11, Table 2, Similarity with Ideas from LLM outcome, LLM Usage Timing row",
+     "quote": "LLM Usage Timing −0.244 0.091 −2.678 0.007** −0.397 −0.064"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 9, Section 4.3.2, SEM bootstrap confidence intervals",
+     "quote": "using bootstrap resampling with 1000 sam- ples to estimate the 95% confidence intervals."
+    }
+   ],
+   "notes": "Separate adjusted specification of the same outcome and arm contrast; this is a direct effect conditional on post-treatment mediators, not the unadjusted total effect. The narrative interpretation of the timing paths implies C_after relative to C_before, but the numeric coding is not printed. Coefficients are recorded as regression estimates; the beta notation in the prose does not establish a standardized effect. No adjusted arm means or SDs are printed. There is one outcome value per participant. C_after combines independent ideation before AI access with later AI-assisted ideation; outcome_with_ai is true for the completed task, although availability during production was mixed. The paper prints assignment counts but no separate analysis-specific participant counts; no counts are inferred from degrees of freedom. The same coefficient and SE also appear in PDF p. 10, Section 4.3.2 and Figure 6; these are duplicate reports, not additional estimates."
+  },
+  {
+   "slug": "s1_similarity_llm_embedding_after_vs_before",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Similarity between participant ideas and LLM-generated ideas (embedding robustness check)",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "embedding_similarity",
+   "measure_detail": "OpenAI text-embedding-ada-002 replaces TF-IDF in the participant-to-LLM similarity calculation, with the other steps unchanged. Individual idea similarity-vector magnitudes are averaged within each participant (PDF p. 5, footnote 8; PDF p. 15, Appendix A, Figure 7).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "C_after",
+   "control_arm": "C_before",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_similar",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 5, Footnote 8, transformer-embedding robustness check",
+     "quote": "8We also tried transformer-based embeddings (using the OpenAI text-embedding-ada- 002 model to embed each idea) for semantic similarity calculation while keeping the other steps the same."
+    },
+    {
+     "fields": [],
+     "locator": "PDF p. 15, Appendix A, Figure 7 caption",
+     "quote": "(b) depicts that there is a significant difference caused by LLM usage timing, which is consistent with the results in Figure 3."
+    }
+   ],
+   "notes": "Figure-only full-sample contrast retained with null numeric statistics. Figure 7 shows density and violin/box plots and a single significance star; the caption describes a significant difference consistent with the TF-IDF analysis and lower scores in C_after. No numeric arm means, SDs, SEs, test statistic, exact p-value, effect size, or confidence interval is printed. Plot positions and the significance star were not converted to numbers. This is similarity to LLM suggestions, not similarity across people. C_after combines independent ideation before AI access with later AI-assisted ideation; outcome_with_ai is true for the completed task, although availability during production was mixed. The paper prints assignment counts but no separate analysis-specific participant counts; no counts are inferred from degrees of freedom."
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "Task completion time",
+   "reason": "Process/engagement measure, not creativity or another score on the produced ideas (PDF p. 5, Section 3.5.1)."
+  },
+  {
+   "what": "Creative self-efficacy, including between-arm results, within-arm pre/post changes, and SEM paths",
+   "reason": "Self-report of creative ability, not creativity scored on output (PDF p. 5, Section 3.5.5; PDF p. 7, Section 4.2.1; Figures 4-5; Table 2)."
+  },
+  {
+   "what": "Perceived autonomy, including the SEM timing path",
+   "reason": "Self-reported control over the ideation process, not a score on participant output (PDF p. 6, Section 3.5.7; PDF p. 7, Section 4.2.3; Figure 5; Table 2)."
+  },
+  {
+   "what": "Sense of ownership, including SEM paths",
+   "reason": "Self-reported authorship/contribution/accountability, not an output-scored creativity outcome (PDF p. 6, Section 3.5.6; PDF pp. 7-8, Section 4.2.3; Figure 5; Table 2)."
+  },
+  {
+   "what": "Self-credit attribution, including SEM paths",
+   "reason": "Self-reported credit, not an output-scored outcome (PDF p. 6, Section 3.5.8; PDF p. 8, Section 4.2.4; Figure 5; Table 2)."
+  },
+  {
+   "what": "Credit attribution to LLM/AI, including SEM paths",
+   "reason": "Self-reported credit to AI, not an output-scored outcome (PDF p. 6, Section 3.5.8; PDF p. 8, Section 4.2.4; Figure 5; Table 2)."
+  },
+  {
+   "what": "Thematic analysis of open-ended perceptions of LLM use and ideation",
+   "reason": "Qualitative self-reports and counts of themes, not scores on produced ideas (PDF p. 6, Section 3.5.9; PDF pp. 7-9, Sections 4.2.2 and 4.2.5)."
+  },
+  {
+   "what": "SEM paths from creative self-efficacy, autonomy, or ownership to output outcomes; mediation claims and model fit",
+   "reason": "These are associations involving nonrandomized post-treatment perceptions or global model diagnostics, not full-sample contrasts between randomized AI arms. The direct LLM Usage Timing paths for the two output outcomes are extracted separately (PDF pp. 9-11, Section 4.3.2, Figure 6 and Table 2)."
+  },
+  {
+   "what": "Appendix A, Table 4 example participant and LLM ideas",
+   "reason": "Illustration of one participant’s interaction and submitted ideas, not a full-sample arm comparison; LLM-only suggestions in the example are not a human-participant arm (PDF p. 16, Table 4)."
+  }
+ ],
+ "open_items": [
+  "Analysis-specific participant counts and separately stated analyzed counts are not printed. The paper reports recruited/randomized counts only (PDF p. 3, Section 3.2). The screening form infers analyzed counts from assignment, lack of stated exclusions, and test statistics; this extraction leaves analyzed counts null under the printed-count rule.",
+  "The TF-IDF similarity Welch t statistic conflicts with the reported p-value and descriptive statistics (PDF p. 7, Section 4.1). Retain it as printed for audit, but resolve the discrepancy before using that statistic for computation; no replacement value is inferred.",
+  "The idea-quantity SEM z/p and bootstrap confidence interval disagree on significance (PDF p. 11, Table 2). All printed entries are retained, and this adjusted direct effect should remain distinct from the unadjusted arm contrast.",
+  "The sign convention of the within-person idea-diversity t and d is not stated and no arm means are printed (PDF p. 7, Section 4.1; Figure 3(c)). A signed C_after-versus-C_before effect cannot be established from numeric arm summaries.",
+  "The numeric coding of LLM Usage Timing in the SEM is not reported. The paper’s narrative suggests the coefficients refer to later versus earlier AI access, but the coding should be confirmed before an automated sign transformation (PDF pp. 9-11, Section 4.3.2 and Table 2).",
+  "Within-person idea diversity lacks numeric arm levels and SDs. The embedding robustness contrast in Appendix A lacks numerical contrast statistics and arm levels; its figure was not digitized.",
+  "The standardizer for the reported d values is not defined, and the SEM coefficient SE method is not described; bootstrap resampling is explicitly stated for confidence intervals only.",
+  "The similarity calculation can depend on the number of LLM suggestions received. Counts of LLM suggestions per arm and the proportion of C_after ideas produced before AI access are not printed (PDF pp. 4-6, Sections 3.4.1 and 3.5.3, Table 1).",
+  "GPT-4 release year/model snapshot, collection dates, participant countries, preregistration, and a designated primary outcome are not stated in the saved paper.",
+  "The saved PDF is an author preprint with a placeholder DOI, whereas the citation record identifies a later ACM version of record. That later version was not supplied in retrieval.json and has not been compared for corrections."
+ ],
+ "notes": "Extracted by B on 2026-10-10. The complete markdown conversion was read in contiguous chunks, including references and Appendix A; all PDF pages were read with PyMuPDF. Tables, figures, and the appendix were inspected before completing the design and count coding. Statistical inventory: Section 4.1 supplies arm means/SDs, t, df, p, and d for idea quantity and TF-IDF similarity, and t, df, p, and d only for within-person diversity; Table 2 supplies timing coefficients, SEs, z, p, and bootstrap confidence limits for quantity and similarity. Figures 3 and 6 and Table 3 repeat these findings; Figure 7 is a separate embedding robustness contrast with no numerical estimate; Table 4 is an example only. The main contrasts and SEM specifications share participants. All eligible outcomes answer with_ai: there is no between-person diversity outcome and no output produced after AI removal. No derived effects, counts, standard errors, or corrections were calculated. All statistical quotations are copied from PDF text with whitespace collapsed, preserving printed numeric precision and signs; source text retains mathematical glyphs and line-end hyphenation. Numeric JSON serialization may omit trailing zeroes, which remain visible in the verbatim source quotations. No sample overlap is identified in the screening form. All locators use one-based PDF page indices; no differing printed page numbers were found."
+}

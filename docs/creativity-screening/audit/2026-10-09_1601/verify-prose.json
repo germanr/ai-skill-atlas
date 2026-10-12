@@ -1,0 +1,11 @@
+[
+  {
+    "id": "prose-1",
+    "cid": null,
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/assemble_report.py:download_sentence(), sentence constructed at lines 126-127",
+    "correct_value": "`docs/creativity-screening/to-download.html` lists the 264 papers on the screening paths that have no full text on file, with every link found: the 227 papers in this table and 37 papers that appear in other sections.",
+    "evidence": "Independently read creativity-screening-2026-10-04.md:1403 and verified the disputed description is present. Parsed to-download.html and report-data.json.status_by_cid: 264 distinct download-list IDs, 227 with status no_fulltext, and 37 others; all 37 have entries in other report sections. The 37 include c029, c049, c134, and c061. Reading source.version directly in each corresponding forms/<cid>.json (line 7) shows that c029 was screened from Europe PMC full-text JATS XML, c049 from the complete preprint PDF read in memory, c134 from the version-of-record PDF read in memory, and c061 from metadata only with no abstract available. Thus the group cannot be described as screened from abstracts. tools/assemble_report.py:121-130 computes the set difference and unconditionally attaches the abstract-screening description at line 127; line 178 inserts it into this report section. The sentence is absent from report-prose.md and report-generated.md. The fix belongs in the assembler; retain the computed counts and remove the unsupported screening-source explanation."
+  }
+]

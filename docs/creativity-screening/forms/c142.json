@@ -1,0 +1,439 @@
+{
+ "cid": "c142",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Zastudil et al (2025) - Helping or Homogenizing.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Zastudil et al (2025) - Helping or Homogenizing.pdf",
+  "version": "Saved arXiv 2507.21811v1 dated 29 Jul 2025 (cs.HC), marked 'Manuscript submitted to ACM'; the ACM Reference Format names ASSETS '25 and DOI 10.1145/3663547.3746384 (pp. 1-2). Complete saved markdown, including references and Appendices A-B, read; relevant pages independently checked in the 26-page PDF, including pp. 25-26, and Figure 7 inspected in memory. The publisher version was not independently read.",
+  "title_on_document": "Helping or Homogenizing? GenAI as a Design Partner to Pre-Service SLPs for Just-in-Time Programming of AAC",
+  "authors_on_document": [
+   "Cynthia Zastudil",
+   "Christine Holyfield",
+   "Christine Kapp",
+   "Kate Hamilton",
+   "Kriti Baru",
+   "Liam Newsam",
+   "June A. Smith",
+   "Stephen MacNeil"
+  ],
+  "pages": 26,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Included in this PDF: Appendix A, with case studies on p. 25 and all four study images in Figure 8 on p. 26; Appendix B, the post-questionnaire, on p. 26. Separately, p. 12, Section 5 refers to external supplemental material containing all participant-configured VSDs; that collection is not reproduced in this PDF and was not read.",
+   "holds": "The included appendices contain study images, hypothetical-user case studies, and questionnaire items. The separately mentioned external collection contains all VSDs configured in both conditions. No additional inferential statistics appear in the included appendices; the contents of the external collection beyond the paper's description are unverified."
+  }
+ },
+ "paper_design_summary": "Seventeen pre-service speech-language pathologists were recruited for an in-person within-person comparison of visual scene display (VSD) configuration with manual Snap Scene and a GPT-4o hotspot-suggestion prototype; application order and image allocation were counterbalanced, with randomization not stated (pp. 7-10, Sections 3.2.1 and 4-4.2.2). P5 was excluded, leaving 16 analyzed people and 64 VSDs, with 32 VSDs per condition (p. 12, Section 5; p. 20, Section 8). The paper assessed creation time, confidence, hotspot counts, three best-practice quality measures, hotspot content and communication functions, and homogeneity using each hotspot set's embedding against the average across both conditions; Sections 4.4.2 and 5.3.2 call this cosine similarity, but Figure 7 labels it 'Divergence' and interprets the lower prototype value as greater homogeneity, without specifying a conversion to cosine distance (pp. 11-16).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Counterbalanced within-person experiment; randomization not stated (VSD configuration, Snap Scene vs genAI prototype)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Order of the two applications (Snap Scene vs genAI prototype) and which images were used with each; every participant used both",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "The order of which application was used first and which images were used was counterbalanced across the entire experiment to mitigate any order effect.",
+    "locator": "p. 10, Section 4.2.2; also p. 8, Section 4 ('The conditions were counterbalanced to address ordering effects')",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Prototype (genAI hotspot suggestions)",
+     "description": "Web app on a tablet; GPT-4o generates a ranked list of hotspots for the uploaded image, which the participant can use, edit, delete, or add to",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 16
+    },
+    {
+     "name": "Snap Scene (control)",
+     "description": "Tobii Dynavox's Snap Scene, a commercial VSD app with no AI suggestions; participant creates hotspots manually",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": 16
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 16,
+    "counts_are": "people",
+    "exclusions": "17 recruited and participated (p. 8, Section 4.1; p. 9, Table 1). P5's data were removed because of an application error with the control software (p. 12, Section 5), leaving 16; 64 VSDs = 16 x 4 (32 per condition). The paper gives no count at assignment and does not say that order was randomized, so n_randomized is null.",
+    "population": "students",
+    "who": "Pre-service speech-language pathologists (undergraduate and graduate students in communication sciences and disorders with some clinical experience) at a large R1 university, recruited by convenience sampling",
+    "country": "United States",
+    "quote": "We recruited seventeen pre-service speech-language pathologists (SLPs) from a large R1 university in the United States.",
+    "locator": "p. 8, Section 4.1; p. 12, Section 5 (P5 removed); abstract p. 2 states N=16"
+   },
+   "ai_tool": {
+    "name_model": "OpenAI GPT-4o via public API (multimodal), inside a ReactJS web prototype",
+    "role": "ideas_supplied",
+    "how_used": "On image upload, GPT-4o returns suggested hotspots (words or phrases) shown in a list; participants use, edit, delete, or add hotspots and draw them on the image (pp. 6-8, Sections 3.2-3.3)"
+   },
+   "task": {
+    "type": "other",
+    "description": "Configure visual scene displays: choose and label hotspots (communication options) on a photo for a hypothetical minimally verbal child described in a case study; two images (play and retelling a past activity) per application",
+    "duration": "not_stated; median time per VSD 77 s (Snap Scene) and 63.5 s (prototype), p. 12"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Homogeneity of VSD hotspot sets (reported cosine similarity; Figure 7 labels divergence)",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Each VSD's set of hotspots was embedded with SentenceTransformers using all-MiniLM-L6-v2 and compared with the average embedding across both conditions. There were 64 VSDs, 32 per condition, from the same 16 analyzed people. AI suggestions were available during prototype configuration; Snap Scene was manual. The text calls the metric cosine similarity, while Figure 7 calls it divergence and the authors interpret lower prototype values as greater homogeneity. The recorded direction follows the authors' interpretation of lower diversity; the transformation is unresolved (p. 12, Section 4.4.2 and Section 5; p. 15, Section 5.3.2; p. 16, Figure 7).",
+     "unit": "output",
+     "n_units": 64,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Prototype (genAI hotspot suggestions)",
+       "control_arm": "Snap Scene (control)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "standardized_effect",
+        "confidence_interval",
+        "test_statistic"
+       ],
+       "reported": "Prototype mean = 0.39 ± 0.09 vs Snap Scene mean = 0.46 ± 0.07; t(31) = 3.4037, p < 0.05, d = 0.60, 95% CI[0.26, 1.02], reported as higher homogeneity for VSDs configured using the prototype. The quantities following ± are not labeled, and the standardizer for d is not specified. Sections 4.4.2 and 5.3.2 call the calculation cosine similarity to the average embedding across both conditions; Figure 7 labels the axis 'Divergence'. No conversion to cosine distance is specified.",
+       "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; p. 15, Section 5.3.2; p. 16, Figure 7."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Reported cosine similarity of each VSD's hotspot-set embedding to the pooled average embedding; Figure 7 instead labels the axis 'Divergence'. The authors interpret lower prototype values as greater homogeneity. No distance transformation is specified.",
+      "embedding_model": "all-MiniLM-L6-v2, using the Python SentenceTransformers library (p. 12, Section 4.4.2).",
+      "computed_over": "Each VSD hotspot set compared with the average embedding across BOTH conditions, rather than separate condition centroids; 64 VSDs, 32 per condition, contributed by the same 16 people (p. 12, Section 4.4.2 and Section 5; p. 20, Section 8).",
+      "uncertainty": "Printed t(31) = 3.4037, p < 0.05; d = 0.60, 95% CI[0.26, 1.02] (p. 15, Section 5.3.2). The paper does not describe pairing, adjustment for repeated outputs from each participant, or the standardizer for d; the quantities following ± are not labeled.",
+      "notes": "The unit is a VSD hotspot set, not an independent person. Similarity/divergence terminology and interpretation remain unresolved; the paper's t-test and interval must not be assumed to reflect participant-level precision."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Share of unique hotspots",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Reported unique-hotspot count divided by the total hotspot count in each condition-level pool. The two pools contain 94 Snap Scene hotspots and 153 prototype hotspots; these are aggregate output counts and percentages, not people or participant-level scores. No procedure for identifying unique hotspots is specified (p. 15, Section 5.3.3).",
+     "unit": "set",
+     "n_units": 2,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Prototype (genAI hotspot suggestions)",
+       "control_arm": "Snap Scene (control)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Snap Scene: 51 of 94 hotspots unique (54.26%); prototype: 56 of 153 hotspots unique (36.60%); both conditions: 84 of 247 unique (34.01%). No test reported.",
+       "locator": "p. 15, Section 5.3.3"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Proportion of unique hotspots: reported unique-hotspot count divided by the total hotspot count in each pool.",
+      "embedding_model": "not_stated; no embedding model is specified for the unique-hotspot count.",
+      "computed_over": "Two condition-level pools: Snap Scene 51/94 unique hotspots (54.26%) and prototype 56/153 (36.60%). The combined pool is additionally reported as 84/247 (34.01%); it is not a third condition (p. 15, Section 5.3.3).",
+      "uncertainty": "Descriptive aggregate counts and percentages only; no test or interval is reported (p. 15, Section 5.3.3).",
+      "notes": "The unit is the condition-level set of hotspots. The procedure for identifying unique hotspots is not specified. These hotspot counts do not count people, and the prototype has a lower unique proportion but a higher absolute unique count."
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "VSD quality: hotspots focused on the people, activities, or social interactions in the scene (quality measure 2)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Quality measure 2: share of final hotspots focused on people, activities, or social interactions in the scene. The output unit is a hotspot; there are 247 final hotspots, 94 from Snap Scene and 153 from the prototype. This is an output-coded descriptive share, not a self-report rating (p. 12, Section 4.4.2 and Section 5; pp. 13-14, Section 5.1.4).",
+     "unit": "output",
+     "n_units": 247,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Prototype (genAI hotspot suggestions)",
+       "control_arm": "Snap Scene (control)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Snap Scene: 95.74% of hotspots focused on the people, activities, or social interactions in the scene; prototype: 84.97%. The hotspot pools contain 94 and 153 hotspots, respectively. No inferential test or interval reported.",
+       "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; pp. 13-14, Section 5.1.4."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "VSD quality: share of VSDs using 2–4 hotspots (quality measure 1)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Quality measure 1: whether each VSD uses 2–4 hotspots, a best-practice recommendation intended to avoid excessive visual stimulation and overlapping hotspots. The unit is a VSD; 64 VSDs were analyzed, 32 per condition. The reported 60.50% is retained exactly, without recalculation or inferred numerators (p. 12, Section 4.4.2 and Section 5; p. 13, Section 5.1.4).",
+     "unit": "output",
+     "n_units": 64,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Prototype (genAI hotspot suggestions)",
+       "control_arm": "Snap Scene (control)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Snap Scene: 60.50% of VSDs used between 2 and 4 hotspots; prototype: 40.63%. There were 32 VSDs per condition. No inferential test or interval reported; 60.50% is recorded exactly as printed.",
+       "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; p. 13, Section 5.1.4."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "VSD quality: share of single-word hotspots (quality measure 3)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Quality measure 3: developmental appropriateness operationalized as the proportion of final hotspots containing a single word. The unit is a hotspot; 247 final hotspots were analyzed, 94 from Snap Scene and 153 from the prototype (p. 12, Section 4.4.2 and Section 5; p. 14, Section 5.1.4).",
+     "unit": "output",
+     "n_units": 247,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Prototype (genAI hotspot suggestions)",
+       "control_arm": "Snap Scene (control)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Snap Scene: single-word hotspots 78.70% of the time; prototype: 91.50%. The hotspot pools contain 94 and 153 hotspots, respectively. No inferential test or interval reported.",
+       "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; p. 14, Section 5.1.4."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Number of hotspots per VSD",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Count of final hotspots in each configured VSD. The comparison includes 64 VSDs, 32 per condition, from the same 16 analyzed people. The n=94 and n=153 printed in Section 5.1.3 are total hotspot counts, not people. The Wilcoxon signed-rank test is reported, but the paper does not describe how pairs were formed or how repeated VSDs from each participant were handled (p. 12, Section 5; p. 13, Section 5.1.3; p. 20, Section 8).",
+     "unit": "output",
+     "n_units": 64,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Prototype (genAI hotspot suggestions)",
+       "control_arm": "Snap Scene (control)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "standardized_effect",
+        "test_statistic"
+       ],
+       "reported": "Median hotspots per VSD: Snap Scene 3; prototype 5. Wilcoxon signed-rank W = 5.5, Z = −4.5567, p < 0.05; r = 0.57. The reported n=94 (Snap Scene) and n=153 (prototype) count hotspots; there are 32 VSDs per condition.",
+       "locator": "PDF p. 12, opening of Section 5; p. 13, Section 5.1.3; p. 14, Figure 5."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O7",
+     "name": "Communication-function quality: share of hotspots supporting social closeness",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Two researchers coded final hotspots using Light's Functions of Communication framework, with an additional Other category; Cohen's kappa was 0.66. The focal quality measure is the share supporting social closeness, which the discussion identifies as an important VSD function; the other category shares describe the communication-function distribution. The unit is a hotspot, with 247 final hotspots, 94 from Snap Scene and 153 from the prototype. These are coded output shares, not self-reports (pp. 11-12, Section 4.4.1; p. 12, Section 5; pp. 15-16, Section 5.3.4 and Table 3; p. 18, Section 6.2.1).",
+     "unit": "output",
+     "n_units": 247,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Prototype (genAI hotspot suggestions)",
+       "control_arm": "Snap Scene (control)",
+       "comparison_type": "ai_vs_bau",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "none"
+       ],
+       "reported": "Table 3, Snap Scene vs prototype: Social Closeness 5.3% vs 0.7%; Information Transfer 93.6% vs 98.7%; Expressing Wants & Needs 0.0% vs 0.0%; Social Etiquette 0.0% vs 0.0%; Other 1.1% vs 0.7%. These descriptive shares use the 94 vs 153 final-hotspot pools. No inferential test or interval reported. Direction refers to the social-closeness share.",
+       "locator": "PDF pp. 11-12, Section 4.4.1; p. 12, opening of Section 5; pp. 15-16, Section 5.3.4 and Table 3; p. 18, Section 6.2.1."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "unclear",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "Counterbalanced within-person experiment; randomization not stated (pp. 8 and 10, Sections 4 and 4.2.2). Seventeen people were recruited and P5 was excluded for a control-software application error, leaving 16 analyzed people, below 50 (p. 8, Section 4.1; p. 12, Section 5; p. 20, Section 8). The same people completed both conditions. Output-based diversity and quality are measured (p. 12, Section 4.4.2; pp. 13-16, Sections 5.1.4 and 5.3.2-5.3.4), meeting criterion 3. Core eligibility is no on sample size. The complete text, including Appendices A-B, does not establish either random or explicitly non-random allocation; context_class remains provisionally none rather than assuming an observational design."
+ },
+ "one_line_finding": "With 16 analyzed pre-service SLPs, the authors report greater homogeneity with GPT-4o hotspot suggestions than with Snap Scene (0.39 ± 0.09 vs 0.46 ± 0.07; t(31) = 3.4037, d = 0.60; p. 15, Section 5.3.2, with unresolved cosine-similarity/divergence terminology in Figure 7 on p. 16) and a lower proportion of unique hotspots (56/153, 36.60%, vs 51/94, 54.26%; p. 15, Section 5.3.3).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].design_class; studies[0].label; eligibility.reason",
+    "old": "{\"design_class\": \"lab_rct\", \"label\": \"Within-subjects user study (VSD configuration, Snap Scene vs genAI prototype)\", \"reason\": \"Within-subjects experiment with 16 participants analyzed (17 recruited, P5 removed; p. 12, Section 5), far below 50. Order and images were counterbalanced, but the paper never says the order was randomized (pp. 8, 10). The embedding-based homogeneity outcome is scored on the output. Goes to the screening report's list of small randomized-style experiments, not the dataset.\"}",
+    "new": "{\"design_class\": \"other\", \"label\": \"Counterbalanced within-person experiment; randomization not stated (VSD configuration, Snap Scene vs genAI prototype)\", \"reason\": \"Counterbalanced within-person experiment; randomization not stated (pp. 8 and 10, Sections 4 and 4.2.2). Seventeen people were recruited and P5 was excluded for a control-software application error, leaving 16 analyzed people, below 50 (p. 8, Section 4.1; p. 12, Section 5; p. 20, Section 8). The same people completed both conditions. Output-based diversity and quality are measured (p. 12, Section 4.4.2; pp. 13-16, Sections 5.1.4 and 5.3.2-5.3.4), meeting criterion 3. Core eligibility is no on sample size. The complete text, including Appendices A-B, does not establish either random or explicitly non-random allocation; context_class remains provisionally none rather than assuming an observational design.\"}",
+    "quote": "The order of which application was used first and which images were used was counterbalanced across the entire experiment to mitigate any order effect.",
+    "locator": "PDF p. 8, Section 4; p. 10, Sections 4.2 and 4.2.2; p. 12, Section 5; p. 20, Section 8; complete markdown including Appendices A-B checked for assignment details."
+   },
+   {
+    "field": "source.version",
+    "old": "arXiv 2507.21811v1 of 29 Jul 2025 (cs.HC), marked 'Manuscript submitted to ACM'; its ACM reference format names ASSETS '25, doi 10.1145/3663547.3746384. Full PDF read (pp. 1-19 page images); the ACM version of record was not read (403).",
+    "new": "Saved arXiv 2507.21811v1 dated 29 Jul 2025 (cs.HC), marked 'Manuscript submitted to ACM'; the ACM Reference Format names ASSETS '25 and DOI 10.1145/3663547.3746384 (pp. 1-2). Complete saved markdown, including references and Appendices A-B, read; relevant pages independently checked in the 26-page PDF, including pp. 25-26, and Figure 7 inspected in memory. The publisher version was not independently read.",
+    "quote": "arXiv:2507.21811v1 [cs.HC] 29 Jul 2025",
+    "locator": "PDF p. 1, arXiv stamp; p. 2, ACM Reference Format; p. 20, Sections 7-8; pp. 25-26, Appendices A-B; PDF page count."
+   },
+   {
+    "field": "source.supplement",
+    "old": "{\"exists\": \"yes\", \"in_this_pdf\": false, \"where\": \"'supplemental material' (p. 12, Section 5) holds all configured VSDs; Appendix A (images and case studies) and Appendix B (post-questionnaire) are cited on pp. 10-11 but do not appear in this PDF\", \"holds\": \"The configured VSDs for both conditions, the study images and case studies, and the questionnaire. No additional statistics are said to sit there.\"}",
+    "new": "{\"exists\": \"yes\", \"in_this_pdf\": true, \"where\": \"Included in this PDF: Appendix A, with case studies on p. 25 and all four study images in Figure 8 on p. 26; Appendix B, the post-questionnaire, on p. 26. Separately, p. 12, Section 5 refers to external supplemental material containing all participant-configured VSDs; that collection is not reproduced in this PDF and was not read.\", \"holds\": \"The included appendices contain study images, hypothetical-user case studies, and questionnaire items. The separately mentioned external collection contains all VSDs configured in both conditions. No additional inferential statistics appear in the included appendices; the contents of the external collection beyond the paper's description are unverified.\"}",
+    "quote": "Fig. 8. All four VSD images we used in our user study. B Post-Questionnaire Participants were asked to rate their agreement to the following statements at the conclusion of our user study.",
+    "locator": "PDF p. 12, opening of Section 5; p. 25, Appendix A; p. 26, Figure 8 and Appendix B."
+   },
+   {
+    "field": "paper_design_summary",
+    "old": "Seventeen pre-service speech-language pathologists were recruited for an in-person within-subjects study; each configured visual scene displays (VSDs) for an AAC device with a commercial app (Snap Scene) and with a prototype in which GPT-4o suggests hotspots (communication options), with condition order and images counterbalanced. One participant (P5) was dropped, leaving 16 participants and 64 VSDs. The authors scored time, self-reported confidence, number of hotspots, three best-practice quality measures, parts of speech and communication functions, and homogeneity as the cosine distance of each VSD's hotspot embedding to the average across all VSDs.",
+    "new": "Seventeen pre-service speech-language pathologists were recruited for an in-person within-person comparison of visual scene display (VSD) configuration with manual Snap Scene and a GPT-4o hotspot-suggestion prototype; application order and image allocation were counterbalanced, with randomization not stated (pp. 7-10, Sections 3.2.1 and 4-4.2.2). P5 was excluded, leaving 16 analyzed people and 64 VSDs, with 32 VSDs per condition (p. 12, Section 5; p. 20, Section 8). The paper assessed creation time, confidence, hotspot counts, three best-practice quality measures, hotspot content and communication functions, and homogeneity using each hotspot set's embedding against the average across both conditions; Sections 4.4.2 and 5.3.2 call this cosine similarity, but Figure 7 labels it 'Divergence' and interprets the lower prototype value as greater homogeneity, without specifying a conversion to cosine distance (pp. 11-16).",
+    "quote": "Then, we compared each set of hotspots to the average embedding using cosine similarity to understand how distinct each set of hotspots was from the group.",
+    "locator": "PDF p. 12, Section 4.4.2; p. 15, Section 5.3.2; p. 16, Figure 7, including visual inspection of its axis; pp. 8-12 and 20 for design and sample counts."
+   },
+   {
+    "field": "studies[0].outcomes[0]",
+    "old": "{\"outcome_id\": \"S1-O1\", \"name\": \"Homogeneity of VSDs: divergence of each VSD's hotspot set from the average embedding\", \"construct\": \"diversity\", \"question\": \"across_people\", \"scored_on_output\": true, \"measure\": \"embedding_similarity\", \"measure_detail\": \"\", \"unit\": \"output\", \"n_units\": null, \"ai_available_when_produced\": \"\", \"timing\": \"\", \"delay\": \"\", \"primary\": \"\", \"contrasts\": [{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": [], \"reported\": \"Prototype x̄ = 0.39 ± 0.09 vs Snap Scene x̄ = 0.46 ± 0.07; t(31) = 3.4037, p < 0.05, d = 0.60, 95% CI[0.26, 1.02], 'with higher homogeneity for VSDs configured using our prototype'. The text calls the values cosine similarity to the average embedding, but Figure 7's axis is 'Divergence' and the stated direction fits a distance; sentence embeddings with all-MiniLM-L6-v2 (p. 12, Section 4.4.2).\", \"locator\": \"p. 15, Section 5.3.2; p. 16, Figure 7\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+    "new": "{\"outcome_id\": \"S1-O1\", \"name\": \"Homogeneity of VSD hotspot sets (reported cosine similarity; Figure 7 labels divergence)\", \"construct\": \"diversity\", \"question\": \"across_people\", \"scored_on_output\": true, \"measure\": \"embedding_similarity\", \"measure_detail\": \"Each VSD's set of hotspots was embedded with SentenceTransformers using all-MiniLM-L6-v2 and compared with the average embedding across both conditions. There were 64 VSDs, 32 per condition, from the same 16 analyzed people. AI suggestions were available during prototype configuration; Snap Scene was manual. The text calls the metric cosine similarity, while Figure 7 calls it divergence and the authors interpret lower prototype values as greater homogeneity. The recorded direction follows the authors' interpretation of lower diversity; the transformation is unresolved (p. 12, Section 4.4.2 and Section 5; p. 15, Section 5.3.2; p. 16, Figure 7).\", \"unit\": \"output\", \"n_units\": 64, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Prototype (genAI hotspot suggestions)\", \"control_arm\": \"Snap Scene (control)\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"treatment_lower\", \"statistics_available\": [\"standardized_effect\", \"confidence_interval\", \"test_statistic\"], \"reported\": \"Prototype mean = 0.39 ± 0.09 vs Snap Scene mean = 0.46 ± 0.07; t(31) = 3.4037, p < 0.05, d = 0.60, 95% CI[0.26, 1.02], reported as higher homogeneity for VSDs configured using the prototype. The quantities following ± are not labeled, and the standardizer for d is not specified. Sections 4.4.2 and 5.3.2 call the calculation cosine similarity to the average embedding across both conditions; Figure 7 labels the axis 'Divergence'. No conversion to cosine distance is specified.\", \"locator\": \"PDF p. 12, Section 4.4.2 and opening of Section 5; p. 15, Section 5.3.2; p. 16, Figure 7.\"}], \"diversity_detail\": {\"metric\": \"Reported cosine similarity of each VSD's hotspot-set embedding to the pooled average embedding; Figure 7 instead labels the axis 'Divergence'. The authors interpret lower prototype values as greater homogeneity. No distance transformation is specified.\", \"embedding_model\": \"all-MiniLM-L6-v2, using the Python SentenceTransformers library (p. 12, Section 4.4.2).\", \"computed_over\": \"Each VSD hotspot set compared with the average embedding across BOTH conditions, rather than separate condition centroids; 64 VSDs, 32 per condition, contributed by the same 16 people (p. 12, Section 4.4.2 and Section 5; p. 20, Section 8).\", \"uncertainty\": \"Printed t(31) = 3.4037, p < 0.05; d = 0.60, 95% CI[0.26, 1.02] (p. 15, Section 5.3.2). The paper does not describe pairing, adjustment for repeated outputs from each participant, or the standardizer for d; the quantities following ± are not labeled.\", \"notes\": \"The unit is a VSD hotspot set, not an independent person. Similarity/divergence terminology and interpretation remain unresolved; the paper's t-test and interval must not be assumed to reflect participant-level precision.\"}}",
+    "quote": "We then calculated the average embedding for all hotspots across conditions.",
+    "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; p. 15, Section 5.3.2; p. 16, Figure 7; p. 20, Section 8."
+   },
+   {
+    "field": "studies[0].outcomes[1]",
+    "old": "{\"outcome_id\": \"S1-O2\", \"name\": \"Share of unique hotspots\", \"construct\": \"diversity\", \"question\": \"across_people\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"\", \"unit\": \"set\", \"n_units\": null, \"ai_available_when_produced\": \"\", \"timing\": \"\", \"delay\": \"\", \"primary\": \"\", \"contrasts\": [{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": [], \"reported\": \"Snap Scene: 51 of 94 hotspots unique (54.26%); prototype: 56 of 153 hotspots unique (36.60%); both conditions: 84 of 247 unique (34.01%). No test reported.\", \"locator\": \"p. 15, Section 5.3.3\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+    "new": "{\"outcome_id\": \"S1-O2\", \"name\": \"Share of unique hotspots\", \"construct\": \"diversity\", \"question\": \"across_people\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Reported unique-hotspot count divided by the total hotspot count in each condition-level pool. The two pools contain 94 Snap Scene hotspots and 153 prototype hotspots; these are aggregate output counts and percentages, not people or participant-level scores. No procedure for identifying unique hotspots is specified (p. 15, Section 5.3.3).\", \"unit\": \"set\", \"n_units\": 2, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Prototype (genAI hotspot suggestions)\", \"control_arm\": \"Snap Scene (control)\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"treatment_lower\", \"statistics_available\": [\"none\"], \"reported\": \"Snap Scene: 51 of 94 hotspots unique (54.26%); prototype: 56 of 153 hotspots unique (36.60%); both conditions: 84 of 247 unique (34.01%). No test reported.\", \"locator\": \"p. 15, Section 5.3.3\"}], \"diversity_detail\": {\"metric\": \"Proportion of unique hotspots: reported unique-hotspot count divided by the total hotspot count in each pool.\", \"embedding_model\": \"not_stated; no embedding model is specified for the unique-hotspot count.\", \"computed_over\": \"Two condition-level pools: Snap Scene 51/94 unique hotspots (54.26%) and prototype 56/153 (36.60%). The combined pool is additionally reported as 84/247 (34.01%); it is not a third condition (p. 15, Section 5.3.3).\", \"uncertainty\": \"Descriptive aggregate counts and percentages only; no test or interval is reported (p. 15, Section 5.3.3).\", \"notes\": \"The unit is the condition-level set of hotspots. The procedure for identifying unique hotspots is not specified. These hotspot counts do not count people, and the prototype has a lower unique proportion but a higher absolute unique count.\"}}",
+    "quote": "In the Snap Scene condition 51 of 94 hotspots were unique (54.26%). In the prototype condition 56 of 153 hotspots were unique (36.60%).",
+    "locator": "PDF p. 8, Section 4; p. 12, opening of Section 5; p. 15, Section 5.3.3."
+   },
+   {
+    "field": "studies[0].outcomes[2]; studies[0].outcomes[3]; studies[0].outcomes[4]",
+    "old": "{\"outcome_id\": \"S1-O3\", \"name\": \"VSD quality: hotspots focused on the people, activities, or social interactions in the scene (quality measure 2)\", \"construct\": \"usefulness\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"\", \"unit\": \"output\", \"n_units\": null, \"ai_available_when_produced\": \"\", \"timing\": \"\", \"delay\": \"\", \"primary\": \"\", \"contrasts\": [{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": [], \"reported\": \"Snap Scene 95.74% of hotspots focused on the people, activities, or social interactions vs prototype 84.97%. Other quality measures: VSDs with 2-4 hotspots 60.50% (Snap Scene) vs 40.63% (prototype); single-word hotspots 78.70% vs 91.50%. No tests reported for these shares.\", \"locator\": \"pp. 13-14, Section 5.1.4\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+    "new": "[{\"outcome_id\": \"S1-O3\", \"name\": \"VSD quality: hotspots focused on the people, activities, or social interactions in the scene (quality measure 2)\", \"construct\": \"usefulness\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Quality measure 2: share of final hotspots focused on people, activities, or social interactions in the scene. The output unit is a hotspot; there are 247 final hotspots, 94 from Snap Scene and 153 from the prototype. This is an output-coded descriptive share, not a self-report rating (p. 12, Section 4.4.2 and Section 5; pp. 13-14, Section 5.1.4).\", \"unit\": \"output\", \"n_units\": 247, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Prototype (genAI hotspot suggestions)\", \"control_arm\": \"Snap Scene (control)\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"treatment_lower\", \"statistics_available\": [\"none\"], \"reported\": \"Snap Scene: 95.74% of hotspots focused on the people, activities, or social interactions in the scene; prototype: 84.97%. The hotspot pools contain 94 and 153 hotspots, respectively. No inferential test or interval reported.\", \"locator\": \"PDF p. 12, Section 4.4.2 and opening of Section 5; pp. 13-14, Section 5.1.4.\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}, {\"outcome_id\": \"S1-O4\", \"name\": \"VSD quality: share of VSDs using 2–4 hotspots (quality measure 1)\", \"construct\": \"usefulness\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Quality measure 1: whether each VSD uses 2–4 hotspots, a best-practice recommendation intended to avoid excessive visual stimulation and overlapping hotspots. The unit is a VSD; 64 VSDs were analyzed, 32 per condition. The reported 60.50% is retained exactly, without recalculation or inferred numerators (p. 12, Section 4.4.2 and Section 5; p. 13, Section 5.1.4).\", \"unit\": \"output\", \"n_units\": 64, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Prototype (genAI hotspot suggestions)\", \"control_arm\": \"Snap Scene (control)\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"treatment_lower\", \"statistics_available\": [\"none\"], \"reported\": \"Snap Scene: 60.50% of VSDs used between 2 and 4 hotspots; prototype: 40.63%. There were 32 VSDs per condition. No inferential test or interval reported; 60.50% is recorded exactly as printed.\", \"locator\": \"PDF p. 12, Section 4.4.2 and opening of Section 5; p. 13, Section 5.1.4.\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}, {\"outcome_id\": \"S1-O5\", \"name\": \"VSD quality: share of single-word hotspots (quality measure 3)\", \"construct\": \"usefulness\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Quality measure 3: developmental appropriateness operationalized as the proportion of final hotspots containing a single word. The unit is a hotspot; 247 final hotspots were analyzed, 94 from Snap Scene and 153 from the prototype (p. 12, Section 4.4.2 and Section 5; p. 14, Section 5.1.4).\", \"unit\": \"output\", \"n_units\": 247, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Prototype (genAI hotspot suggestions)\", \"control_arm\": \"Snap Scene (control)\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"treatment_higher\", \"statistics_available\": [\"none\"], \"reported\": \"Snap Scene: single-word hotspots 78.70% of the time; prototype: 91.50%. The hotspot pools contain 94 and 153 hotspots, respectively. No inferential test or interval reported.\", \"locator\": \"PDF p. 12, Section 4.4.2 and opening of Section 5; p. 14, Section 5.1.4.\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}]",
+    "quote": "For quality measures 1 and 2, Snap Scene outperformed our prototype, but for quality measure 3 the prototype outperformed Snap Scene.",
+    "locator": "PDF p. 12, Section 4.4.2 and opening of Section 5; pp. 13-14, Section 5.1.4; form-spec.md, rule 7 and unit/count notes."
+   },
+   {
+    "field": "studies[0].outcomes[5] (omitted hotspot-count outcome)",
+    "old": "not recorded",
+    "new": "{\"outcome_id\": \"S1-O6\", \"name\": \"Number of hotspots per VSD\", \"construct\": \"fluency\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Count of final hotspots in each configured VSD. The comparison includes 64 VSDs, 32 per condition, from the same 16 analyzed people. The n=94 and n=153 printed in Section 5.1.3 are total hotspot counts, not people. The Wilcoxon signed-rank test is reported, but the paper does not describe how pairs were formed or how repeated VSDs from each participant were handled (p. 12, Section 5; p. 13, Section 5.1.3; p. 20, Section 8).\", \"unit\": \"output\", \"n_units\": 64, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Prototype (genAI hotspot suggestions)\", \"control_arm\": \"Snap Scene (control)\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"treatment_higher\", \"statistics_available\": [\"standardized_effect\", \"test_statistic\"], \"reported\": \"Median hotspots per VSD: Snap Scene 3; prototype 5. Wilcoxon signed-rank W = 5.5, Z = −4.5567, p < 0.05; r = 0.57. The reported n=94 (Snap Scene) and n=153 (prototype) count hotspots; there are 32 VSDs per condition.\", \"locator\": \"PDF p. 12, opening of Section 5; p. 13, Section 5.1.3; p. 14, Figure 5.\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+    "quote": "The median number of hotspots when using Snap Scene and our prototype were 3 and 5, respectively.",
+    "locator": "PDF p. 12, opening of Section 5; p. 13, Section 5.1.3; p. 14, Figure 5; form-spec.md, rule 7."
+   },
+   {
+    "field": "studies[0].outcomes[6] (omitted communication-function quality outcome)",
+    "old": "not recorded",
+    "new": "{\"outcome_id\": \"S1-O7\", \"name\": \"Communication-function quality: share of hotspots supporting social closeness\", \"construct\": \"usefulness\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Two researchers coded final hotspots using Light's Functions of Communication framework, with an additional Other category; Cohen's kappa was 0.66. The focal quality measure is the share supporting social closeness, which the discussion identifies as an important VSD function; the other category shares describe the communication-function distribution. The unit is a hotspot, with 247 final hotspots, 94 from Snap Scene and 153 from the prototype. These are coded output shares, not self-reports (pp. 11-12, Section 4.4.1; p. 12, Section 5; pp. 15-16, Section 5.3.4 and Table 3; p. 18, Section 6.2.1).\", \"unit\": \"output\", \"n_units\": 247, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"Prototype (genAI hotspot suggestions)\", \"control_arm\": \"Snap Scene (control)\", \"comparison_type\": \"ai_vs_bau\", \"direction\": \"treatment_lower\", \"statistics_available\": [\"none\"], \"reported\": \"Table 3, Snap Scene vs prototype: Social Closeness 5.3% vs 0.7%; Information Transfer 93.6% vs 98.7%; Expressing Wants & Needs 0.0% vs 0.0%; Social Etiquette 0.0% vs 0.0%; Other 1.1% vs 0.7%. These descriptive shares use the 94 vs 153 final-hotspot pools. No inferential test or interval reported. Direction refers to the social-closeness share.\", \"locator\": \"PDF pp. 11-12, Section 4.4.1; p. 12, opening of Section 5; pp. 15-16, Section 5.3.4 and Table 3; p. 18, Section 6.2.1.\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+    "quote": "When using Snap Scene, participants used proportionally more hotspots intended to develop social closeness (5.3% of the time).",
+    "locator": "PDF pp. 11-12, Section 4.4.1; p. 12, opening of Section 5; pp. 15-16, Section 5.3.4 and Table 3; p. 18, Section 6.2.1; form-spec.md, rule 7."
+   },
+   {
+    "field": "one_line_finding",
+    "old": "With 16 pre-service SLPs, VSDs configured with GPT-4o hotspot suggestions were more homogeneous than those made with Snap Scene (divergence 0.39 ± 0.09 vs 0.46 ± 0.07, t(31) = 3.4037, d = 0.60; p. 15, Section 5.3.2) and had fewer unique hotspots (36.60% vs 54.26%; p. 15, Section 5.3.3).",
+    "new": "With 16 analyzed pre-service SLPs, the authors report greater homogeneity with GPT-4o hotspot suggestions than with Snap Scene (0.39 ± 0.09 vs 0.46 ± 0.07; t(31) = 3.4037, d = 0.60; p. 15, Section 5.3.2, with unresolved cosine-similarity/divergence terminology in Figure 7 on p. 16) and a lower proportion of unique hotspots (56/153, 36.60%, vs 51/94, 54.26%; p. 15, Section 5.3.3).",
+    "quote": "In the Snap Scene condition 51 of 94 hotspots were unique (54.26%). In the prototype condition 56 of 153 hotspots were unique (36.60%).",
+    "locator": "PDF p. 15, Sections 5.3.2-5.3.3; p. 16, Figure 7; p. 20, Section 8 for the analyzed participant count."
+   }
+  ],
+  "rejected": []
+ }
+}

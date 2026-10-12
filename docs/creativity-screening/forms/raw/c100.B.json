@@ -1,0 +1,377 @@
+{
+  "cid": "c100",
+  "screener": "B",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Najjar et al (2026) - Dialogue patterns in human-AI co-creation.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Najjar et al (2026) - Dialogue patterns in human-AI co-creation.pdf",
+    "version": "Journal version of record: Human-Computer Interaction, DOI 10.1080/07370024.2026.2717534, published online 21 Sep 2026 (received 17 Jan 2026, revised 9 Jul 2026, accepted 3 Aug 2026). PDF includes a Taylor & Francis cover page, so PDF page = printed page + 1.",
+    "title_on_document": "Dialogue patterns in human-AI co-creation: how interaction structure shapes output and process",
+    "authors_on_document": ["Mohammad S. Najjar", "Murtaza Nasir"],
+    "pages": 32,
+    "supplement": {
+      "exists": "no",
+      "in_this_pdf": false,
+      "where": "No online supplement is referenced. Appendices A (system prompts), B (dialogue-act coding scheme), and C (coding validation) are inside this PDF, PDF pp. 30-32.",
+      "holds": "Nothing beyond the main text for creativity outcomes. Per-arm originality and appropriateness means are shown only in Figure 4 (except IC and ALP appropriateness, given in text); Figure 7 prints pairwise Cohen's d for all contrasts; bootstrap CIs and Welch p-values behind Figure 7 are not printed."
+    }
+  },
+  "paper_design_summary": "US MTurk workers were randomly assigned to one of four interfaces built on the same model (Gemini 2.5 Flash-Lite), each structuring AI help differently: human-lead expand (HLE), AI-lead propose (ALP), iterative critique (IC), and free dialogue (FD). Each person wrote a user persona and usage scenario for a gardening seed-trading app. Three blinded raters scored originality and appropriateness (summed into a composite creativity score); the paper also computes descriptive richness (adjective plus adverb share) and between-persona embedding similarity within each condition against a permutation null. There is no no-AI arm.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Online experiment: four human-AI interaction patterns for persona creation",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "One of four AI interaction designs (HLE, ALP, IC, FD); all arms had generative AI",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "Participants were randomly assigned to one condition and completed a user persona creation task with AI assistance structured according to their assigned pattern.",
+        "locator": "PDF p. 9 (printed p. 8), Section 4.1; sequential balancing described same page; Figure 2, PDF p. 10",
+        "preregistered": "yes",
+        "prereg_locator": "PDF p. 9 (printed p. 8), Section 4.2: 'Substantial exclusions were applied based on pre-registered quality criteria'. No registry link or ID is given, and the paper does not say what else was preregistered."
+      },
+      "arms": [
+        { "name": "HLE (human-lead expand)", "description": "Participant drafts; invokes AI via a menu of five expansion options (demographics, scenario ideas, goals, frustrations, personality); AI output appears in a separate panel and must be integrated manually.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 60 },
+        { "name": "ALP (AI-lead propose)", "description": "AI generates five persona concepts; participant picks one and develops it, with AI available in constrained follow-up chat that cannot edit the workspace.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 62 },
+        { "name": "IC (iterative critique)", "description": "Participant drafts independently and clicks 'Get Feedback' for structured AI critique (strengths, areas for improvement, recommendations); AI does not write drafts.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 61 },
+        { "name": "FD (free dialogue)", "description": "Split-pane: unconstrained chat with the AI beside the participant's workspace; AI can see but not edit the workspace.", "ai": "generative_ai", "n_randomized": null, "n_analyzed": 61 }
+      ],
+      "participants": {
+        "n_randomized": 275,
+        "n_analyzed": 244,
+        "counts_are": "people",
+        "exclusions": "31 of 275 assigned participants excluded under pre-registered quality criteria: repeat submissions (same worker ID or IP; first valid kept), fewer than 3 logged interactions or under 3 minutes, and submissions flagged by RAs for bot-like, nonsensical, or inattentive content. Per-arm counts at assignment not given. Analysis is on the 244 retained (not ITT).",
+        "population": "online_panel",
+        "who": "Amazon Mechanical Turk workers, 99%+ HIT approval, at least 1000 prior HITs; mean age 38.1, 54% male (Table 1)",
+        "country": "United States",
+        "quote": "A total of 275 participants were initially assigned to one of four human–AI interaction patterns. After applying the predefined data quality criteria, 31 participants were excluded, resulting in a final sample of 244 participants.",
+        "locator": "PDF p. 9 (printed p. 8), Section 4.2; arm ns in Figure 2 (PDF p. 10) and Table 1 (PDF p. 10, printed p. 9)"
+      },
+      "ai_tool": {
+        "name_model": "Gemini 2.5 Flash-Lite (preview release 09/2025), via OpenRouter as google/gemini-2.5-flash-lite-preview-09-2025, condition-specific system prompts",
+        "role": "other",
+        "how_used": "Role differs by arm: HLE = on-demand menu expansions in a side panel (closest to suggestions); ALP = AI supplies five starting concepts then constrained chat (ideas_supplied); IC = structured critique of the participant's own draft (refinement); FD = free chat beside the workspace (open_chat). In no arm could the AI edit the workspace directly except that participants copied or typed content themselves."
+      },
+      "task": {
+        "type": "creative_writing",
+        "description": "Create a user persona (name, demographics, description) and a usage scenario for a mobile app that helps local gardeners trade seeds and produce. Persona-creation is a design task producing a narrative text artifact; coded creative_writing, could also be read as other.",
+        "duration": "Advertised as 20-40 minutes; mean task duration 10:13 (min:sec), Table 1"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Composite creativity score (originality + appropriateness, 0-20)",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "Sum of originality and appropriateness ratings (each 10-point), each the mean of three independent blinded external judges 'with backgrounds relevant to evaluating narrative artifacts (e.g., creative writing)'. ICC(3,3) = .84, 95% CI [.80, .87]. Convergent check with Qwen3-32B LLM ratings (overall creativity r_s = .71), reported pooled only, not by condition.",
+          "unit": "participant",
+          "n_units": 244,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "ALP (AI-lead propose)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "confidence_interval", "standardized_effect", "test_statistic"],
+              "reported": "Table 1: IC 17.57 (SD 2.31, n = 61) vs ALP 15.92 (SD 4.04, n = 62). Games-Howell: mean difference = 1.64, p = .033, 95% CI [.096, 3.191]. Figure 7 cell 'ALP vs IC', Creativity (composite): d = -0.50* (survives Holm across 6 pairs). Omnibus Brown-Forsythe F(3, 199.14) = 2.88, p = .0437, eta^2 = .035, 95% CI [.000, .081].",
+              "locator": "PDF p. 10 (printed p. 9), Table 1; PDF p. 16 (printed p. 15), Sections 5.1.1-5.1.2; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "standardized_effect"],
+              "reported": "Table 1: IC 17.57 (SD 2.31, n = 61) vs FD 15.99 (SD 4.39, n = 61). Figure 7 cell 'IC vs FD', Creativity (composite): d = +0.45 (not starred; does not survive Holm).",
+              "locator": "PDF p. 10 (printed p. 9), Table 1; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "HLE (human-lead expand)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "standardized_effect"],
+              "reported": "Table 1: HLE 16.62 (SD 2.90, n = 60) vs FD 15.99 (SD 4.39, n = 61). Figure 7 cell 'HLE vs FD', Creativity (composite): d = +0.17 (not starred).",
+              "locator": "PDF p. 10 (printed p. 9), Table 1; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "ALP (AI-lead propose)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["arm_means_sds_ns", "standardized_effect"],
+              "reported": "Table 1: ALP 15.92 (SD 4.04, n = 62) vs FD 15.99 (SD 4.39, n = 61). Figure 7 cell 'ALP vs FD', Creativity (composite): d = -0.02 (not starred).",
+              "locator": "PDF p. 10 (printed p. 9), Table 1; PDF p. 23 (printed p. 22), Figure 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Originality rating (0-10)",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "10-point scale for degree of novelty of the persona description within its scenario; mean of three blinded judges. Qwen3-32B LLM rating as validity check: r_s = .77 with human rating; pooled human M = 8.53, SD = 1.64 vs LLM M = 8.27, SD = 1.58 (not by condition).",
+          "unit": "participant",
+          "n_units": 244,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "ALP (AI-lead propose)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "test_statistic", "figure_only"],
+              "reported": "Figure 7 cell 'ALP vs IC', Originality: d = -0.39 (IC higher; not starred). Omnibus ANOVA F(3, 240) = 2.42, p = .084, eta^2 = .027, 95% CI [.000, .069]. Arm means only in Figure 4.",
+              "locator": "PDF p. 16 (printed p. 15), Section 5.1.1 and Figure 4; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Figure 7 cell 'IC vs FD', Originality: d = +0.44 (not starred).",
+              "locator": "PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "HLE (human-lead expand)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Figure 7 cell 'HLE vs FD', Originality: d = +0.23 (not starred).",
+              "locator": "PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "ALP (AI-lead propose)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Figure 7 cell 'ALP vs FD', Originality: d = +0.04 (not starred).",
+              "locator": "PDF p. 23 (printed p. 22), Figure 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Appropriateness rating (0-10)",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "expert_raters",
+          "measure_detail": "10-point scale for how well the scenario fits the required task context (gardening app); mean of three blinded judges. Qwen3-32B LLM rating as validity check: r_s = .78; pooled human M = 8.00, SD = 2.17 vs LLM M = 7.93, SD = 1.85 (not by condition).",
+          "unit": "participant",
+          "n_units": 244,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "ALP (AI-lead propose)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["arm_means_sds_ns", "confidence_interval", "standardized_effect", "test_statistic"],
+              "reported": "Games-Howell: IC M = 8.65, SD = 1.61 vs ALP M = 7.60, SD = 2.31; mean difference = 1.05, p = .022, 95% CI [.112, 1.985] (arm ns 61 and 62 from Table 1). Figure 7 cell 'ALP vs IC', Appropriateness: d = -0.53* (survives Holm). Omnibus Brown-Forsythe F(3, 213.41) = 2.83, p = .040, eta^2 = .034, 95% CI [.000, .080].",
+              "locator": "PDF p. 16 (printed p. 15), Sections 5.1.1-5.1.2; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Figure 7 cell 'IC vs FD', Appropriateness: d = +0.41 (not starred).",
+              "locator": "PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "HLE (human-lead expand)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Figure 7 cell 'HLE vs FD', Appropriateness: d = +0.10 (not starred).",
+              "locator": "PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "ALP (AI-lead propose)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Figure 7 cell 'ALP vs FD', Appropriateness: d = -0.06 (not starred).",
+              "locator": "PDF p. 23 (printed p. 22), Figure 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Descriptive richness (adjectives plus adverbs as share of tokens)",
+          "construct": "elaboration",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "automated_score",
+          "measure_detail": "DR = (n_adj + n_adv) / n_tokens, excluding punctuation; a computed part-of-speech ratio, not a creativity scoring model. Paper treats it as a proxy for elaboration, not writing quality, and notes it was not validated against human judgments (PDF p. 26).",
+          "unit": "participant",
+          "n_units": 244,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_lower",
+              "statistics_available": ["standardized_effect", "test_statistic", "figure_only"],
+              "reported": "Means: FD 0.149 vs IC 0.128. Dunn's test with Holm: FD > IC, p < .001, r = .43. Figure 7 cell 'IC vs FD', Descriptive richness: d = -0.85*. Omnibus Kruskal-Wallis H(3) = 19.06, p = .0003. SE bars in Figure 5.",
+              "locator": "PDF p. 20 (printed p. 19), Section 5.4; PDF p. 21 (printed p. 20), Figure 5; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "HLE (human-lead expand)",
+              "control_arm": "IC (iterative critique)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["standardized_effect", "test_statistic", "figure_only"],
+              "reported": "Means: HLE 0.141 vs IC 0.128. Dunn's test with Holm: HLE > IC, p = .002, r = .32. Figure 7 cell 'HLE vs IC', Descriptive richness: d = +0.50*.",
+              "locator": "PDF p. 20 (printed p. 19), Section 5.4; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "HLE (human-lead expand)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Means: HLE 0.141 vs FD 0.149. Figure 7 cell 'HLE vs FD', Descriptive richness: d = -0.33 (not starred).",
+              "locator": "PDF p. 20 (printed p. 19), Section 5.4; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "ALP (AI-lead propose)",
+              "control_arm": "FD (free dialogue)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Means: ALP 0.142 vs FD 0.149. Figure 7 cell 'ALP vs FD', Descriptive richness: d = -0.38 (not starred).",
+              "locator": "PDF p. 20 (printed p. 19), Section 5.4; PDF p. 23 (printed p. 22), Figure 7"
+            },
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "ALP (AI-lead propose)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["standardized_effect", "figure_only"],
+              "reported": "Means: IC 0.128 vs ALP 0.142. Figure 7 cell 'ALP vs IC', Descriptive richness: d = +0.43 (ALP higher; not starred).",
+              "locator": "PDF p. 20 (printed p. 19), Section 5.4; PDF p. 23 (printed p. 22), Figure 7"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Between-persona semantic similarity within condition (vs permutation null)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "Cosine similarity for every pair of personas, computed separately for persona content, scenario content, and concatenated persona-plus-scenario text, with two embedding models (6 cells). Each condition's within-condition mean pairwise similarity is compared to a 10,000-shuffle permutation null of condition labels. Robustness: length-controlled version projecting out the length-correlated embedding direction gives the same direction with larger z; uncontrolled values are the primary inference. 244 personas embedded.",
+          "unit": "pair",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "IC (iterative critique)",
+              "control_arm": "Permutation null / between-condition baseline (all 244 personas, labels shuffled)",
+              "comparison_type": "other",
+              "direction": "treatment_lower",
+              "statistics_available": ["test_statistic"],
+              "reported": "Higher similarity = lower diversity (sign reversed). Persona content: nomic-embed z = +2.59, p_holm = .037; jina-embeddings z = +2.79, p_holm = .019. Within-condition cosine similarity: nomic 0.718 vs between-condition baseline 0.695; jina 0.833 vs baseline 0.813. Combined text: nomic borderline p_holm = .056, jina p_holm = .032.",
+              "locator": "PDF p. 21 (printed p. 20), Section 5.5; PDF p. 22 (printed p. 21), Figure 6"
+            },
+            {
+              "treatment_arm": "ALP (AI-lead propose)",
+              "control_arm": "Permutation null / between-condition baseline (all 244 personas, labels shuffled)",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic"],
+              "reported": "Lower similarity = higher diversity. Combined text: nomic-embed z = -2.54, p_holm = .047; jina-embeddings z = -2.62, p_holm = .032. Cosine similarity: nomic 0.736 vs baseline 0.756; jina 0.833 vs baseline 0.850. Scenarios: nomic significant at p_holm = .045, jina directionally consistent at p_holm = .119.",
+              "locator": "PDF p. 21 (printed p. 20), Section 5.5; PDF p. 22 (printed p. 21), Figure 6"
+            },
+            {
+              "treatment_arm": "HLE (human-lead expand)",
+              "control_arm": "Permutation null / between-condition baseline (all 244 personas, labels shuffled)",
+              "comparison_type": "other",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "'HLE and FD do not significantly differ from the permutation null in any cell.' No z or p printed.",
+              "locator": "PDF p. 21 (printed p. 20), Section 5.5; Figure 6, PDF p. 22"
+            },
+            {
+              "treatment_arm": "FD (free dialogue)",
+              "control_arm": "Permutation null / between-condition baseline (all 244 personas, labels shuffled)",
+              "comparison_type": "other",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "'HLE and FD do not significantly differ from the permutation null in any cell.' No z or p printed.",
+              "locator": "PDF p. 21 (printed p. 20), Section 5.5; Figure 6, PDF p. 22"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Within-condition mean pairwise cosine similarity, reported as z against a permutation null (paper also frames it as semantic distance = 1 - cosine similarity, following Anderson et al. 2024)",
+            "embedding_model": "nomic-embed-text-v1.5 and jina-embeddings-v2-base-en (both 8,192-token context; no persona truncated)",
+            "computed_over": "All pairs of personas within a condition, separately for persona content, scenario content, and combined text",
+            "uncertainty": "Permutation test shuffling condition labels 10,000 times; two-sided p with Holm-Bonferroni correction across four conditions",
+            "notes": "No direct condition-versus-condition diversity test or effect size is reported; each arm is compared with chance. Per-cell distributions shown as violins in Figure 6."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": { "any": false, "description": "Authors at Wichita State University; disclosure statement reports no conflict of interest. Commercial model used via OpenRouter, no company role stated.", "locator": "PDF p. 26 (printed p. 25), Disclosure statement" },
+  "data_and_code": { "data_url": "Not public; available from the corresponding author on reasonable request (PDF p. 27, printed p. 26)", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Individuals randomly assigned (PDF p. 9) to four generative-AI configurations, so all contrasts are ai_design; there is no no-AI arm. 244 people analyzed (275 assigned). Outcomes are blinded rater scores of originality, appropriateness, and composite creativity on the written persona, plus embedding diversity."
+  },
+  "one_line_finding": "Among 244 MTurk workers using four AI interaction designs, iterative critique produced higher composite creativity than AI-lead propose (17.57 vs 15.92 of 20, difference 1.64, p = .033; d = 0.50) and higher appropriateness, originality did not differ across conditions (F(3, 240) = 2.42, p = .084), and IC personas were more similar to each other than chance while ALP output was more diverse (PDF pp. 10, 16, 21, 23).",
+  "open_questions": [
+    "No no-AI arm, so the paper speaks only to ai_design contrasts. Which pair is the primary record is not fixed by the paper: the highlighted contrast is IC vs ALP; under codebook rule 3, FD (free chat) is the arm closest to a general chatbot and could serve as the reference.",
+    "Rater type: 'blinded external judges with backgrounds relevant to evaluating narrative artifacts (e.g., creative writing)' coded expert_raters; could be read as human_raters.",
+    "Preregistration is mentioned only for exclusion criteria; no registry or link, and the composite is called 'the primary outcome measure' without saying it was preregistered as primary.",
+    "Task (user persona and scenario) coded creative_writing; it is a design-research artifact and could be coded other.",
+    "Diversity is tested per arm against a pooled permutation null, not between arms, so it does not give a direct treatment-control diversity contrast."
+  ],
+  "notes": "Locators give the PDF page, then the printed journal page (PDF page = printed page + 1 because of the cover sheet). Outcomes not listed because they are self-reports or process measures, not scored on output: mental demand, trust, user control, perceived AI role, collective ownership (Table 2, Section 5.2), task duration, interaction count, artifact count, dialogue-act patterns and entropy (Section 5.3). Within-condition correlations of entropy and critique share with creativity (Section 5.3.2) and DR-creativity correlations are non-randomized and not listed. Baseline DAT (Divergent Association Task) was measured before the task and did not predict creativity (r_s = .026, p = .685; PDF p. 24); it is a covariate, not an outcome. Paper reports ~80% power for Cohen's f = .19 with N = 244 (PDF p. 15). Table 1 creativity means are described as 'the average score out of 20 of the three raters'."
+}

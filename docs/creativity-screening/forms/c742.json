@@ -1,0 +1,415 @@
+{
+ "cid": "c742",
+ "screener": "single_small_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Choi et al (2024) - CreativeConnect.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Choi et al (2024) - CreativeConnect.pdf",
+  "version": "arXiv 2312.11949v2 dated 7 Mar 2024; the PDF includes the CHI '24 proceedings citation and DOI 10.1145/3613904.3642794 (p. 1). Full markdown read, including Appendices A and B; recorded numbers checked against the PDF.",
+  "title_on_document": "CreativeConnect: Supporting Reference Recombination for Graphic Design Ideation with Generative AI",
+  "authors_on_document": [
+   "DaEun Choi",
+   "Sumin Hong",
+   "Jeongeon Park",
+   "John Joon Young Chung",
+   "Juho Kim"
+  ],
+  "pages": 25,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": true,
+   "where": "Appendices A and B at the end of this PDF",
+   "holds": "LLM prompts, baseline interface (Figure 11), interview questions, and full usage logs for all 16 participants (Figure 12); the outcome statistics used here are in the main text"
+  }
+ },
+ "paper_design_summary": "The paper reports a six-person formative observation/interview study of reference recombination (pp. 4-5, Section 3) and a model-only technical evaluation of keyword extraction, recommendation, and description generation (pp. 8-9, Section 4.3). Its main comparison involved 16 design students and graduates, each doing two 30-minute book-cover ideation tasks with CreativeConnect and a generative-AI baseline; tool and topic order was counterbalanced, with randomization not reported (pp. 9-10, Sections 5-5.2). Expert-rated sketch creativity and within-person sketch-set variety, sketch counts, and semantic similarity within participant input sets were assessed, alongside subjective ratings (pp. 10-13, Sections 5.3 and 6.1-6.2).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Within-subjects user study (CreativeConnect vs. baseline)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Order of the two tools (CreativeConnect, baseline) and of the two design topics; every participant used both tools",
+    "unit": "within_person_order",
+    "structure": "within",
+    "quote": "The order of topics and tools was counterbalanced for each participant.",
+    "locator": "p. 10, Section 5.2 (also Figure 4 caption)",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "CreativeConnect",
+     "description": "Tool with generative pipelines for keyword extraction from reference images, keyword recommendation, and generation of recombined descriptions and sketches",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 16
+    },
+    {
+     "name": "Baseline",
+     "description": "Similar interface without CreativeConnect's pipelines; manual keyword notes, image generation from user-specified layouts and prompts with the same layout diffusion model, and GPT-3.5-based ChatGPT",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 16
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 16,
+    "counts_are": "people",
+    "exclusions": "P15 was excluded only from the usage-log analysis linking actions to individual sketching turns (Figure 6), because this participant developed ideas first and drew all sketches together, preventing actions from being matched to each idea. No exclusion from the main creativity, sketch-set variety, or sketch-count outcomes is reported; n_analyzed remains 16. Randomized counts and general participant attrition are not reported (PDF p. 11, Section 6.1.1; p. 25, Figure 12 caption).",
+    "population": "mixed",
+    "who": "Recruited through an online posting; required a degree in design or art and at least three prior design projects. Eleven were design students (5 graduate, 6 third-year undergraduate or above) and five had graduated",
+    "country": "",
+    "quote": "We recruited 16 participants (10 females, 6 males; age M=24.81 and SD=3.78) through an online recruitment posting.",
+    "locator": "p. 9, Section 5.1"
+   },
+   "ai_tool": {
+    "name_model": "CreativeConnect (BLIP-2, Segment Anything, GPT-4, GPT-3.5, GLIGEN layout diffusion, style transfer); baseline: GPT-3.5-based ChatGPT and the same layout diffusion model",
+    "role": "image_generation",
+    "how_used": "Participants picked keywords from reference images; CreativeConnect recommended keywords and generated recombined text descriptions and sketches that participants used as inspiration before drawing their own sketches on paper"
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Draw illustration ideas for the cover of a fictional children's book ('Starry Safari: Exploring Alien Jungles' or 'A Christmas Dinner in the Underwater World') from 10 reference images, sketching each idea with pen on paper",
+    "duration": "30-minute ideation phase per tool within a 2-hour session"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Expert-rated creativity of each sketch",
+     "construct": "overall_creativity",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "Two experts with art degrees independently rated each sketch on a 7-point Likert creativity scale. Three sketches were randomly sampled per participant per condition, for 96 sketches. Scores differing by more than 3 points were re-evaluated after experts saw each other's comments and scores; 9 sketches required re-evaluation, and disagreements were resolved in one round. The two experts' scores were averaged for analysis (PDF p. 10, Section 5.3).",
+     "unit": "output",
+     "n_units": 96,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "CreativeConnect",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "CreativeConnect (M=4.854, SD=1.418) vs baseline (M=4.344, SD=1.708 / p=0.114, t=1.59), two-sample t-test, not significant; 7-point scale, 96 sketches (3 sketches x 16 participants x 2 conditions) rated by two experts",
+       "locator": "p. 11, Section 6.2.1; p. 10, Section 5.3; p. 12, Figure 7(a)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Expert-rated diversity of ideas within a participant's set of sketches",
+     "construct": "flexibility",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "expert_raters",
+     "measure_detail": "The same two art experts independently rated diversity of ideas within each participant/topic sketch set on a 7-point Likert scale, using three sampled sketches per participant per condition. The expert-evaluation protocol re-evaluated score disagreements greater than 3 points and averaged the two experts' final scores. This measures variety within one person's ideas, coded flexibility, not diversity across people. The total number of evaluated sets is not explicitly printed, so n_units remains null (PDF p. 10, Section 5.3).",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "CreativeConnect",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "no_clear_difference",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Baseline: M=4.625, SD=1.607 / CreativeConnect: M=4.75, SD=1.418 / p=0.833, t=0.23, two-sample t-test, no significant difference",
+       "locator": "p. 12, Section 6.2.1 and Figure 7(a)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Number of sketches (design ideas) per 30-minute session",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "CreativeConnect",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "# of sketch per session: CreativeConnect mean 5.56 (std 1.63) vs baseline mean 5.06 (std 1.73), p 0.041 (*); text: two-sample pairwise t-test, t=2.24",
+       "locator": "p. 13, Table 2; p. 12, Section 6.2.2"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Semantic similarity among phrases within each participant-supplied input set",
+     "construct": "flexibility",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": null,
+     "measure_detail": "Computed semantic similarity of phrases that a participant supplied together to the image-generation model. All phrase pairs within each input set were compared; minimum similarity and mean similarity are variants of this single process measure. Of 347 sets (202 baseline, 145 CreativeConnect), 14 single-input sets (11 baseline, 3 CreativeConnect) were excluded, leaving 333 analyzed sets (191 baseline, 142 CreativeConnect). A two-sample t-test compared conditions for each variant, treating sets as observations. These are intermediate participant-supplied inputs, not final sketches or comparisons across people. Lower similarity means greater within-person variety; interpretation is reversed for flexibility, while reported values retain the original similarity scale. Section 6.1.2 does not state the similarity formula or embedding model, so the specific measure category is left null rather than assuming the technical evaluation's implementation (PDF p. 11, Section 6.1.2; p. 12, Table 1).",
+     "unit": "set",
+     "n_units": 333,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "CreativeConnect",
+       "control_arm": "Baseline",
+       "comparison_type": "ai_design",
+       "direction": "treatment_lower",
+       "statistics_available": [
+        "arm_means_sds_ns",
+        "test_statistic"
+       ],
+       "reported": "Minimum similarity: CreativeConnect M=0.222, SD=0.094 vs baseline M=0.263, SD=0.166; p=0.008, t=2.66. Mean similarity: CreativeConnect M=0.330, SD=0.075 vs baseline M=0.356, SD=0.148; p=0.051, t=1.95. Each uses 333 analyzed input sets (142 CreativeConnect, 191 baseline), with a two-sample t-test for each metric. Direction refers to raw similarity: the minimum-similarity difference is significant, while the mean-similarity difference is not significant; lower similarity indicates more within-person variety.",
+       "locator": "PDF p. 11, Section 6.1.2 (counts, exclusions, test statistics); p. 12, Table 1 (means, SDs, p-values)."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  },
+  {
+   "study_id": "S2",
+   "label": "Formative study (reference recombination practices)",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No experimental AI-assistance conditions were assigned. Participants chose a design topic, searched for reference images, sketched ideas, and were interviewed; this was a single-condition formative observation.",
+    "unit": "individual",
+    "structure": null,
+    "quote": "participants were asked to draw an illustration for one of three different design topics they chose:",
+    "locator": "PDF p. 4, Section 3.2; no between/within experimental comparison applies.",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "Reference searching and idea sketching",
+     "description": "Participants selected reference images and sketched using pen and paper or tablet drawing software, followed by an interview. Generative-AI assistance is not described (PDF p. 4, Section 3.2).",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": 6
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 6,
+    "counts_are": "people",
+    "exclusions": "No exclusions reported; the authors stopped after six sessions when qualitative codes were saturated (PDF p. 4, Section 3.2).",
+    "population": "mixed",
+    "who": "Early-stage designers recruited online: two professional UI/UX designers, one freelance brand designer, and three industrial-design students; all had experience in at least three graphic-design projects (PDF p. 4, Section 3.1).",
+    "country": null,
+    "quote": "Six participants (6 female; age M=25.3 and SD=3.32) were recruited through an online recruitment posting.",
+    "locator": "PDF p. 4, Sections 3.1-3.2"
+   },
+   "ai_tool": {
+    "name_model": null,
+    "role": "other",
+    "how_used": "No generative-AI-assistance comparison; observation of reference searching, idea sketching, and discussion of design practices."
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Draw illustrations for a chosen topic: 'Tourism service for kids,' 'Pet grooming service,' or 'Eco-friendly restaurant.' Participants were asked for at least three distinct ideas and explanations of reference use. Two authors independently coded recombination practices and interview responses, then discussed the codes. No scored creativity or diversity treatment outcome was reported (PDF p. 4, Section 3.2).",
+    "duration": "10 minutes searching for reference images and 30 minutes sketching, followed by an interview of unspecified duration (PDF p. 4, Section 3.2)."
+   },
+   "outcomes": []
+  },
+  {
+   "study_id": "S3",
+   "label": "Technical evaluation (keyword extraction, recommendation, and recombination generation)",
+   "design_class": "model_only",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No people were assigned to AI assistance. Annotators labeled images; keyword sets were randomly sampled for model evaluation. This random sampling is not experimental assignment of people.",
+    "unit": "other",
+    "structure": null,
+    "quote": "We evaluated ML-based pipelines, especially for keyword extraction, keyword recommendation, and textual description generation by merging keywords.",
+    "locator": "PDF pp. 8-9, Sections 4.3-4.3.3; human assignment structure does not apply.",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "other",
+    "exclusions": "No corpus exclusions reported in Sections 4.3.1-4.3.3.",
+    "population": null,
+    "who": "The technical dataset contains 100 images labeled by 20 people with design or HCI expertise, five images each. Evaluated units are images, keyword sets, and generated descriptions. These annotators are not people analyzed in an AI-assistance comparison, and do not augment S1 (PDF pp. 8-9, Sections 4.3.1-4.3.3).",
+    "country": null,
+    "quote": "We asked 20 people with expertise in design or HCI to annotate five images each.",
+    "locator": "PDF p. 8, Section 4.3.1"
+   },
+   "ai_tool": {
+    "name_model": "CreativeConnect keyword extraction (BLIP-2 and GPT-4), keyword recommendation (GPT-4), and recombination-description generation (GPT-3.5-turbo)",
+    "role": "other",
+    "how_used": "Models were evaluated for keyword extraction accuracy, recommendation similarity, and within-set variety of generated descriptions. The subsequent image-generation and sketch-conversion stages were not evaluated (PDF pp. 6-9, Sections 4.2-4.3.3)."
+   },
+   "task": {
+    "type": "other",
+    "description": "Keyword extraction used a dataset of 100 annotated images. Keyword recommendation used 100 sampled keyword sets, comparing recommendations with irrelevant and synonym keyword groups. Recombination generation used 100 sampled keyword sets and three generated descriptions per set, comparing description variety with random and paraphrased descriptions. Extraction was assessed by precision/recall and semantic similarity; recommendations by cosine similarity; description variety as 1 minus similarity. These are technical model evaluations, not human creative-output effects (PDF pp. 8-9, Sections 4.3.1-4.3.3).",
+    "duration": null
+   },
+   "outcomes": []
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": []
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "unclear",
+  "criterion_2_at_least_50_people": "not_met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "The main comparison analyzes 16 people, each using both CreativeConnect and the generative-AI baseline, below the 50-person threshold (PDF pp. 9-10, Sections 5-5.3; creativity-codebook.md, Section 3). Tool and topic order was counterbalanced, but random assignment of people or condition order is not reported, so design_class is other and criterion 1 remains unclear (PDF p. 10, Section 5.2). Random selection of sketches for expert evaluation is not random assignment of people. Expert-rated creativity and within-person sketch-set variety, and sketch counts, are scored on participant output (PDF pp. 10-13, Sections 5.3 and 6.2, Table 2). Both arms provide generative AI, making the comparison ai_design (PDF p. 9, Section 5). The formative study and the model-only technical evaluation do not supply an eligible AI-assistance comparison; their participants or annotators and their image/text counts must not augment the main sample (PDF p. 4, Sections 3.1-3.2; pp. 8-9, Section 4.3). Unspecified allocation does not establish non-random assignment, and no AI-versus-human or synthesis context is reported, so context_class remains none."
+ },
+ "one_line_finding": "With 16 designers, expert-rated sketch creativity was 4.854 with CreativeConnect vs 4.344 with a generative-AI baseline (p=0.114, p. 11) and set diversity 4.75 vs 4.625 (p=0.833, p. 12), while participants drew more sketches per session, 5.56 vs 5.06 (p=0.041, Table 2, p. 13).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "source.version",
+    "old": "arXiv 2312.11949v2 dated 7 Mar 2024 (CHI '24 camera-ready text, DOI 10.1145/3613904.3642794 printed on p. 1); numbers checked against PDF pages 9-13",
+    "new": "arXiv 2312.11949v2 dated 7 Mar 2024; the PDF includes the CHI '24 proceedings citation and DOI 10.1145/3613904.3642794 (p. 1). Full markdown read, including Appendices A and B; recorded numbers checked against the PDF.",
+    "quote": "arXiv:2312.11949v2 [cs.HC] 7 Mar 2024",
+    "locator": "PDF p. 1, arXiv version stamp and publication block; camera-ready status is not stated."
+   },
+   {
+    "field": "studies[0].design_class; eligibility.reason",
+    "old": "{\"design_class\": \"lab_rct\", \"eligibility.reason\": \"Sixteen people analyzed across both conditions of a within-subjects design (p. 9, Section 5.1), well under 50. Both arms use generative AI (CreativeConnect vs. a baseline with ChatGPT and the same diffusion model), so the contrast is ai_design. Tool and topic order was counterbalanced; the paper does not say the order was random (p. 10). Expert-rated creativity and sketch counts are scored on the output. Listed in the screening report as a small randomized-style experiment.\"}",
+    "new": "{\"design_class\": \"other\", \"eligibility.reason\": \"The main comparison analyzes 16 people, each using both CreativeConnect and the generative-AI baseline, below the 50-person threshold (PDF pp. 9-10, Sections 5-5.3; creativity-codebook.md, Section 3). Tool and topic order was counterbalanced, but random assignment of people or condition order is not reported, so design_class is other and criterion 1 remains unclear (PDF p. 10, Section 5.2). Random selection of sketches for expert evaluation is not random assignment of people. Expert-rated creativity and within-person sketch-set variety, and sketch counts, are scored on participant output (PDF pp. 10-13, Sections 5.3 and 6.2, Table 2). Both arms provide generative AI, making the comparison ai_design (PDF p. 9, Section 5). The formative study and the model-only technical evaluation do not supply an eligible AI-assistance comparison; their participants or annotators and their image/text counts must not augment the main sample (PDF p. 4, Sections 3.1-3.2; pp. 8-9, Section 4.3). Unspecified allocation does not establish non-random assignment, and no AI-versus-human or synthesis context is reported, so context_class remains none.\"}",
+    "quote": "The order of topics and tools was counterbalanced for each participant.",
+    "locator": "PDF p. 10, Section 5.2 and Figure 4; Section 5.3 concerns random sketch selection. Eligibility also checked against PDF pp. 4, 8-13 and creativity-codebook.md, Sections 3-4."
+   },
+   {
+    "field": "studies (omitted formative study)",
+    "old": "Not recorded; only the main comparison S1 was listed.",
+    "new": "Added S2: a six-person formative observation/interview study, design_class=other, with qualitative coding and no AI-assistance contrast or scored creativity/diversity treatment outcome. Its sample is separate from S1.",
+    "quote": "Six participants (6 female; age M=25.3 and SD=3.32) were recruited through an online recruitment posting.",
+    "locator": "PDF p. 4, Sections 3.1-3.2; form-spec.md, Rule 6."
+   },
+   {
+    "field": "studies (omitted technical evaluation); paper_design_summary",
+    "old": "{\"study\": \"Not recorded; only S1 was listed.\", \"paper_design_summary\": \"Sixteen design students and design graduates in a lab session each did two 30-minute graphic-design ideation tasks (a children's book cover), one with CreativeConnect and one with a baseline tool that also had ChatGPT and the same layout diffusion model but lacked CreativeConnect's keyword extraction, keyword recommendation, and recombination pipelines. The order of tools and topics was counterbalanced. Two art experts rated a sample of 96 sketches for creativity and the diversity of each sketch set, and the paper also compares the number of sketches per session and self-reported measures.\"}",
+    "new": "{\"study\": \"Added S3, model_only: 100 images annotated by 20 people, five images each; recommendation and description-generation evaluations each use 100 keyword sets, with three descriptions generated per set. Human-assistance sample counts remain null and no technical units augment S1.\", \"paper_design_summary\": \"The paper reports a six-person formative observation/interview study of reference recombination (pp. 4-5, Section 3) and a model-only technical evaluation of keyword extraction, recommendation, and description generation (pp. 8-9, Section 4.3). Its main comparison involved 16 design students and graduates, each doing two 30-minute book-cover ideation tasks with CreativeConnect and a generative-AI baseline; tool and topic order was counterbalanced, with randomization not reported (pp. 9-10, Sections 5-5.2). Expert-rated sketch creativity and within-person sketch-set variety, sketch counts, and semantic similarity within participant input sets were assessed, alongside subjective ratings (pp. 10-13, Sections 5.3 and 6.1-6.2).\"}",
+    "quote": "We asked 20 people with expertise in design or HCI to annotate five images each.",
+    "locator": "PDF pp. 8-9, Sections 4.3.1-4.3.3; form-spec.md, Rule 6. Summary also supported by PDF pp. 4-5 and 9-13."
+   },
+   {
+    "field": "studies[0].participants.exclusions",
+    "old": "",
+    "new": "P15 was excluded only from the usage-log analysis linking actions to individual sketching turns (Figure 6), because this participant developed ideas first and drew all sketches together, preventing actions from being matched to each idea. No exclusion from the main creativity, sketch-set variety, or sketch-count outcomes is reported; n_analyzed remains 16. Randomized counts and general participant attrition are not reported (PDF p. 11, Section 6.1.1; p. 25, Figure 12 caption).",
+    "quote": "excluded the usage data of P15 from the analysis of the relationship between action types and each sketching turn (Figure 6).",
+    "locator": "PDF p. 11, Section 6.1.1; p. 25, Figure 12 caption."
+   },
+   {
+    "field": "studies[0].outcomes[0].n_units; studies[0].outcomes[0:2].measure_detail",
+    "old": "{\"S1-O1 n_units\": null, \"S1-O1 measure_detail\": \"\", \"S1-O2 measure_detail\": \"\"}",
+    "new": "{\"S1-O1 n_units\": 96, \"S1-O1 measure_detail\": \"Two experts with art degrees independently rated each sketch on a 7-point Likert creativity scale. Three sketches were randomly sampled per participant per condition, for 96 sketches. Scores differing by more than 3 points were re-evaluated after experts saw each other's comments and scores; 9 sketches required re-evaluation, and disagreements were resolved in one round. The two experts' scores were averaged for analysis (PDF p. 10, Section 5.3).\", \"S1-O2 measure_detail\": \"The same two art experts independently rated diversity of ideas within each participant/topic sketch set on a 7-point Likert scale, using three sampled sketches per participant per condition. The expert-evaluation protocol re-evaluated score disagreements greater than 3 points and averaged the two experts' final scores. This measures variety within one person's ideas, coded flexibility, not diversity across people. The total number of evaluated sets is not explicitly printed, so n_units remains null (PDF p. 10, Section 5.3).\"}",
+    "quote": "a total of 96 sketches (3 sketches x 16 participants x 2 conditions) were evaluated.",
+    "locator": "PDF p. 10, Section 5.3, expert-evaluation paragraphs."
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing",
+    "old": "S1-O1, S1-O2, and S1-O3: ai_available_when_produced=\"\"; timing=\"\".",
+    "new": "S1-O1, S1-O2, and S1-O3: ai_available_when_produced=yes; timing=immediate. Timing refers to sketch production during the assisted sessions, not later expert scoring.",
+    "quote": "They were then given the topic and the reference images and started ideation using the tool for 30 minutes.",
+    "locator": "PDF p. 10, Sections 5.2-5.3; pp. 11-12, Section 6.2."
+   },
+   {
+    "field": "studies[0].outcomes[*].contrasts[0].direction; studies[0].outcomes[*].contrasts[0].statistics_available",
+    "old": "S1-O1, S1-O2, and S1-O3: direction=\"\"; statistics_available=[].",
+    "new": "{\"S1-O1\": {\"direction\": \"no_clear_difference\", \"statistics_available\": [\"arm_means_sds_ns\", \"test_statistic\"]}, \"S1-O2\": {\"direction\": \"no_clear_difference\", \"statistics_available\": [\"test_statistic\"]}, \"S1-O3\": {\"direction\": \"treatment_higher\", \"statistics_available\": [\"arm_means_sds_ns\", \"test_statistic\"]}}",
+    "quote": "the expert evaluation does not show a significant difference between the two conditions.",
+    "locator": "PDF pp. 11-12, Sections 6.2.1-6.2.2; p. 13, Table 2. Sample counts: pp. 9-10, Sections 5-5.3. Existing reported numeric strings retained after PDF verification."
+   },
+   {
+    "field": "studies[0].assignment.preregistered; studies[0].outcomes[*].primary",
+    "old": "S1 assignment.preregistered=\"\"; S1-O1, S1-O2, and S1-O3 primary=\"\".",
+    "new": "S1 assignment.preregistered=not_stated; S1-O1, S1-O2, and S1-O3 primary=not_stated. No preregistration or primary outcome designation was found in the full document, including appendices.",
+    "quote": "RQ2. Can CreativeConnect help users generate better quality and quantity of design ideas?",
+    "locator": "PDF p. 9, Section 5 research questions; pp. 10-11, Sections 5.3 and 6; full markdown and appendix review; PDF-wide text check; form-spec.md permitted values."
+   },
+   {
+    "field": "studies[0].outcomes (omitted semantic similarity within participant input sets)",
+    "old": "Not recorded; S1 included only expert creativity, expert sketch-set variety, and sketch counts.",
+    "new": "Added S1-O4, flexibility/with_ai, unit=set and n_units=333, with minimum and mean similarity as variants of one outcome. Recorded all printed sample/exclusion counts, means, SDs, p-values, and t statistics; both variants use two-sample t-tests. The measure implementation is unconfirmed and measure is null. These sets are not people or across-people homogenization.",
+    "quote": "For the remaining 333 input sets (191 from baseline, 142 from CreativeConnect), we computed the semantic similarity between all pairs of phrases within each input set and calculated the mean and minimum similarity.",
+    "locator": "PDF p. 11, Section 6.1.2; p. 12, Table 1."
+   }
+  ],
+  "rejected": []
+ }
+}

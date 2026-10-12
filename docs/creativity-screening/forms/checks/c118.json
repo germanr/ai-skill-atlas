@@ -1,0 +1,79 @@
+{
+ "cid": "c118",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[3].design_class; studies[3].outcomes; eligibility.reason",
+   "form_value": "design_class=model_only; outcomes=[]; No people were assigned to AI; the paper states it collected no new data from human participants (p. 23). Study 1a is an observational before/after and time-series analysis of real corpora with a diversity outcome (variance of writing complexity), so the paper is observational context. Study 1b is an AI-versus-human comparison (authors' LLM rewrites vs original texts); Studies 2 and 3 are model-only trait-prediction analyses.",
+   "source_says": "Study 3 also compares the across-text variance of lexical-category frequencies in original human texts and GPT-3.5 Rephrase rewrites. Add this omitted diversity outcome family and classify its comparisons as ai_vs_human (question=none), rather than describing all of Study 3 as model_only trait prediction. Extended Data Figure 6 uses relative frequencies min-max scaled to [0, 1]; Table C7 supplies original/rewritten variances, category-specific text counts and Levene tests. For example, Essays pronouns: n=2,037, variances 0.0465 / 0.0383, F=12.704, p<.001; Essays sadness words: n=996, variances 0.0539 / 0.0589, F=4.189, p=0.041. Thus directions vary by category. The paper-level observational context classification can remain.",
+   "quote": "We further analyze the distributional shifts and the homogenization of these important linguistic features (see Extended Data Figure 6 and Appendix C in Supplementary Material).",
+   "locator": "PDF p. 35, Methods 1.10; p. 36, Extended Data Figure 6; pp. 57-58 (S5-S6), Appendix C; p. 68 (S16), Table C7, Essays pronoun and emo_sad rows"
+  },
+  {
+   "field": "studies[2].participants.who; studies[3].participants.who; open_questions",
+   "form_value": "Existing corpora that pair texts with independently measured author traits: Essays (n = 2,348, personality), YourMorals (n = 3,641, moral values), Empathic Conversations (n = 711, empathy), US Congressional Record speeches (n = 710, age, gender, party). Texts rewritten by the same three LLMs as Study 1b. / Same corpora as Study 2 (Essays, YourMorals, Empathic Conversations, Congress).; open_questions=[]",
+   "source_says": "Distinguish source authors from texts and concatenated profiles. Methods 1.8 reports 2,348 Essays texts, each from a unique author; 710 congressional speakers, whose utterances are assembled to a target of 4,000 words per speaker; and 711 Empathic Conversations essays from 57 authors, concatenated by author. The 710 is therefore a speaker count, not a count of individual floor speeches, and the 711 is not a people count. YourMorals is internally inconsistent: the methods report 107,798 Facebook posts from 2,691 users, concatenated by author, whereas Extended Data Figure 1 reports n=3,641. Retain these separately labeled source counts and flag the unresolved discrepancy; a reconciled YourMorals analysis count is null. Do not convert the caption counts into randomized or analyzed AI-assisted participants.",
+   "quote": "the dataset comprises 711 essays written by 57 authors, each contributing between 1 and 72 reaction essays.",
+   "locator": "PDF p. 9, Extended Data Figure 1 caption; pp. 31-33, Methods 1.8 (especially final Congress sample on p. 32 and Empathic Conversations/YourMorals counts on p. 33); p. 18, Study 3 reuses Study 2 corpora"
+  },
+  {
+   "field": "studies[0].outcomes[0].name; studies[0].outcomes[0].diversity_detail.metric; studies[0].outcomes[1].diversity_detail.metric",
+   "form_value": "Monthly variance of aggregate writing-complexity score: shift at ChatGPT launch (discontinuous growth model); Variance across texts within a month of the composite writing-complexity score (also used for S1-O2)",
+   "source_says": "Methods 1.3 defines the Study 1a time-series outcome by calculating each of the five features' monthly variances and then averaging those variances. That is different from the variance of a per-text composite. S1-O1.measure_detail already describes the methods correctly, but the outcome name and both diversity_detail.metric strings describe the other operation. Record the methods definition and flag the inconsistent wording in Figure 1, which calls it the monthly variance of an aggregate score. Study 1b explicitly uses the variance of the per-document average in Methods 1.7; do not treat the two definitions as unambiguously identical.",
+   "quote": "we further aggregate the variance of all complexity-related features into a single averaged measure",
+   "locator": "PDF pp. 25-26, Methods 1.3; p. 6, Figure 1 caption; p. 31, Methods 1.7"
+  },
+  {
+   "field": "studies[2].outcomes[0].unit; studies[2].outcomes[0].measure_detail",
+   "form_value": "unit=pair; Mean F1 of trait classifiers (TF-IDF, embeddings, Longformer; several classifier families) on original vs rewritten texts; two-sided paired t-tests. Not a creativity or diversity score: it measures how much author-identity signal survives rewriting.",
+   "source_says": "The F1 comparison uses paired classifier evaluations over test sets across training/evaluation configurations, folds and random seeds. It does not use a pair of individual texts as the statistical observation. Under the codebook definition of pair (two outputs compared), use set and explicitly describe the paired classifier-evaluation runs. Methods 1.9 specifies 5-fold cross-validation and 40 repetitions; Table D9 lists, for example, N=805 paired observations for age, not 805 people or text pairs. There is no single common n_units across all the trait tests, so retaining null for the combined outcome is appropriate.",
+   "quote": "To compare the average predictive performance of classifiers on the LLM-rewritten texts and the original texts, we use paired t-tests.",
+   "locator": "PDF pp. 33-34, Methods 1.9; p. 14, Table 4; p. 69 (S17), Table D9, N column; creativity-codebook.md, Section 6, Unit"
+  },
+  {
+   "field": "studies[1].outcomes[0].contrasts[0].direction",
+   "form_value": "treatment_lower",
+   "source_says": "Use mixed for this combined contrast, with a note that variance is lower in 11 of the 12 Table 3 cells. The included Llama 3 Syntax Grammar comparison on arXiv increases variance from 0.0090 to 0.0111 (F=3.377, p=.066; variance-ratio 95% CI [0.59, 0.85]). The reported string already preserves this exception, but the direction field labels all combined model/prompt comparisons as lower. Alternatively, separate the contrasts and assign each its own direction.",
+   "quote": "0.0090 →0.0111; F = 3.377; p = .066; 95% CI [0.59, 0.85]",
+   "locator": "PDF p. 11, Table 3, all cells and specifically Llama 3 / SG / arXiv"
+  },
+  {
+   "field": "one_line_finding",
+   "form_value": "In Reddit stories, Patch news, and arXiv abstracts, the monthly variance of writing complexity fell after ChatGPT's launch (POST slopes -0.0014, -0.0022, -0.0021, all p < .05; Table 1, p. 7), and LLM rewrites of 1,000 pre-ChatGPT texts per source cut that variance in 11 of 12 model-prompt cells (e.g. Reddit 0.0091 to 0.0045 with Llama 3; Table 3, p. 11), which the abstract summarizes as a 21-50% reduction (p. 2).",
+   "source_says": "Label POST as the post-launch slope change, not the post-launch slope itself. Also explicitly pair each coefficient with its dataset: Reddit -0.0021 (p<.001), Patch News -0.0022 (p=.049), arXiv -0.0014 (p<.001). The existing sentence lists the datasets as Reddit/Patch/arXiv but the coefficients as arXiv/Patch/Reddit. Its Table 3 example, 11-of-12 descriptive count, and attribution of the 21-50% summary to the abstract are supported.",
+   "quote": "POST the post-launch slope change.",
+   "locator": "PDF p. 7, Table 1 caption and POST rows; p. 11, Table 3; p. 2, Abstract"
+  },
+  {
+   "field": "open_questions (inconsistent main-text and supplementary statistics)",
+   "form_value": "[]",
+   "source_says": "Add unresolved source discrepancies without replacing correctly transcribed main-table values. For GPT3.5 Syntax Grammar on Reddit, Table 3 reports F=5.652 and p=.017, while Table B5 reports F=6.652 and p=.018 for the same displayed 0.0091 to 0.0068 variances. Table 4 reports Cohen's d of 0.543 for age, 0.431 for gender and 0.433 for affiliation; Table D9 gives 0.776, 0.603 and 0.610 respectively with the same corresponding means, t statistics and degrees of freedom. The form matches its cited main tables; the PDF does not reconcile these alternative values or explain a different standardizer.",
+   "quote": "Age group 0.351 0.260 [0.079, 0.102] 0.167 15.397 804 < .001 0.776 805 Moderate 0.250",
+   "locator": "PDF p. 11, Table 3; p. 57 (S5), Table B5, syntax_grammar / Reddit; p. 14, Table 4; p. 69 (S17), Table D9, Age group, Gender and Affiliation rows"
+  },
+  {
+   "field": "data_and_code.code_url",
+   "form_value": "",
+   "source_says": "Populate code_url with https://github.com/zhpinkman/LLMs-effect-on-linguistic-diversity; the permanent code archive is https://doi.org/10.5281/zenodo.21633457. Both are explicitly given in Code availability and already mentioned in source.supplement.where, but the dedicated code field is empty.",
+   "quote": "All custom code used in this article (implemented in Python 3.11.7 and R 4.4.2) is publicly available under the MIT license",
+   "locator": "PDF p. 38, Code availability"
+  }
+ ],
+ "confirmed": [
+  "Read the entire markdown conversion, including all appendices and references, and independently extracted the relevant PDF pages and tables. The PDF is arXiv:2502.11266v2, dated 24 Aug 2026 (p. 1), identified as the author's version of the Nature Human Behaviour article DOI 10.1038/s41562-026-02550-0 (p. 2); 73 PDF pages include Supplementary Information on pp. 53-73 (S1-S21).",
+  "The title and all ten authors in source match the PDF title page (p. 1).",
+  "No study randomly assigns people to generative-AI assistance. The analyses use previously collected corpora (p. 23, Methods); the random selection is of existing texts (pp. 8 and 30, Study 1b/Methods 1.7). The four author-raters evaluating 20 text pairs are an internal semantic-similarity check, not an AI-assistance experiment (p. 30, Methods 1.6). No small randomized people experiment is present.",
+  "Core=no and paper-level context_class=observational are supported: Study 1a analyzes temporal corpus trends, and Study 1b compares authors' automated LLM rewrites with original human texts (pp. 5-8; pp. 29-31, Methods 1.5-1.7).",
+  "The studies were not preregistered (p. 24, opening Methods paragraph).",
+  "Study 1a corpus counts and date ranges match: Reddit 318,490 stories, Jan 2018-Nov 2024; Patch 379,583 articles from 19,584 contributors, Jan 2018-Nov 2023; arXiv 80,238 papers with 161,265 contributing authors, Jan 2018-Nov 2024. The Reddit filter is fewer than 200 words (p. 24, Methods 1.1).",
+  "Figure 1 reports 83 arXiv, 83 Reddit and 71 Patch monthly observations; the form's 237 is their sum, not a people count (p. 6, Figure 1 caption).",
+  "Every coefficient, SE, t statistic, p value and confidence interval quoted in S1-O1.reported matches Table 1; every lag, F statistic, degrees of freedom, edf and p value in S1-O2.reported matches Table 2 (p. 7).",
+  "Study 1b randomly selects 1,000 pre-ChatGPT original texts from each of Reddit and arXiv, rewritten by GPT-3.5, Llama 3 70B and Gemini Pro (pp. 8 and 30). Methods 1.5 lists 12 rewriting prompts (pp. 29-30). These are text samples and automated rewrite conditions, not randomized people.",
+  "Every variance, F statistic, p value and interval quoted in S2-O1.reported matches Table 3, including the arXiv Llama 3 SG increase and the nonsignificant Reddit Gemini R result. The intervals concern the original/rewritten variance ratio and use 10,000 bootstrap resamples (p. 11, Table 3). The abstract prints the 21-50% claim (p. 2), and p. 8 reports 87% of semantic-similarity scores above 0.95.",
+  "Every mean F1, age-group mean difference and CI, age t and df, and Cohen's d quoted in S3-O1.reported matches Table 4; its caption states all six p values are <.001 (p. 14). The average 6% absolute-F1 decline is printed in Study 2 (p. 12). These are classifier performance measures, not human creativity scores; supplementary conflicts are flagged in corrections.",
+  "This is primary corpus/rewrite research, not a review or meta-analysis, so synthesis defaults and the absence of pooled estimates are appropriate (pp. 4-5, study overview; pp. 23-35, Methods).",
+  "No company involvement is reported: affiliations are at USC (p. 1), the listed funding is governmental (p. 38), and the authors declare no competing interests (p. 39)."
+ ],
+ "summary": "The source version and cited main-table statistics are confirmed, and no study randomized people to AI assistance. Eight corrections are needed for outcome coverage, counts and units, metric and direction labels, the one-line finding, unresolved source discrepancies, and the code URL."
+}

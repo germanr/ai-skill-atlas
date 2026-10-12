@@ -1,0 +1,160 @@
+{
+  "cid": "c011",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liang et al (2024) - Monitoring AI-Modified Content Peer Reviews.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Liang et al (2024) - Monitoring AI-Modified Content Peer Reviews.pdf",
+    "version": "arXiv:2403.07183v4 [cs.CL], margin stamp dated 19 May 2026; page 1 footnote reads 'Proceedings of the 41st International Conference on Machine Learning, Vienna, Austria. PMLR 235, 2024.' The markdown conversion stops at PDF page 21; pages 21-46 were read from the PDF.",
+    "title_on_document": "Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews",
+    "authors_on_document": [
+      "Weixin Liang",
+      "Zachary Izzo",
+      "Yaohui Zhang",
+      "Haley Lepp",
+      "Hancheng Cao",
+      "Xuandong Zhao",
+      "Lingjiao Chen",
+      "Haotian Ye",
+      "Sheng Liu",
+      "Zhi Huang",
+      "Daniel A. McFarland",
+      "James Y. Zou"
+    ],
+    "pages": 46
+  },
+  "paper_design_summary": "The authors build a maximum-likelihood estimator of the share of sentences in a corpus that an LLM substantially modified, using human-written reviews and GPT-4-generated reviews as reference texts. They apply it to public peer reviews from ICLR, NeurIPS, CoRL, and EMNLP before and after ChatGPT's release and to Nature portfolio reviews. They then compare the estimated AI share across groups of reviews, including the review closest to and farthest from the embedding centroid of each paper's reviews. No person is assigned to AI and no human participants are recruited.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Corpus analysis of ML conference and Nature portfolio peer reviews, before and after ChatGPT",
+      "design_class": "observational",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "Nothing was assigned. The paper compares existing public peer-review corpora across years (before vs after ChatGPT's release on November 30, 2022) and across groups of reviews within the post-ChatGPT corpora.",
+        "unit": "other",
+        "structure": "between",
+        "quote": "We collect review data for all major ML conferences available on OpenReview, including ICLR, NeurIPS, CoRL, and EMNLP, as detailed in Table 1.",
+        "locator": "p. 6, Sec. 4.1 and Table 1",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        {
+          "name": "Pre-ChatGPT reviews",
+          "description": "Official reviews written before November 30, 2022 (e.g., ICLR 2018-2023, NeurIPS 2017-2022, CoRL 2021-2022, Nature portfolio 2019-2022). Counts are reviews (e.g., ICLR 2023: 18,564 reviews), not people.",
+          "ai": "none",
+          "n_randomized": null,
+          "n_analyzed": null
+        },
+        {
+          "name": "Post-ChatGPT reviews",
+          "description": "Official reviews written after ChatGPT's release: ICLR 2024 (27,992 reviews), NeurIPS 2023 (14,389), CoRL 2023 (759), EMNLP 2023 (6,419), Nature portfolio 2022-2023 (6,200). AI use by any individual reviewer is not observed; only a corpus-level share is estimated.",
+          "ai": "generative_ai",
+          "n_randomized": null,
+          "n_analyzed": null
+        }
+      ],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "Sentences with fewer than 2 words are excluded; blank review sections add no sentences (p. 42, App. G). Technical keywords self-reported by authors on OpenReview are removed from the vocabulary (p. 4, Sec. 3.1).",
+        "population": "professionals",
+        "who": "Anonymous peer reviewers of ICLR, NeurIPS, CoRL, and EMNLP submissions and of papers in 15 Nature portfolio journals. The paper counts reviews and papers, never reviewers.",
+        "country": "not_stated",
+        "quote": "In total, our dataset comprises 25,382 peer reviews from 10,242 papers.",
+        "locator": "p. 6, Table 1 (ML conference review counts); p. 42, App. G and Table 31 (Nature portfolio: 25,382 reviews from 10,242 papers)"
+      },
+      "ai_tool": {
+        "name_model": "ChatGPT; the AI reference corpus was generated with GPT-4 snapshot gpt-4-0613 (p. 42, App. F). Robustness checks use GPT-3.5, LLaMA-2 Chat (70B), and Claude 2.1 (pp. 37-44).",
+        "role": "other",
+        "how_used": "Reviewers' own AI use is unobserved. The authors prompt GPT-4 with paper text to generate AI-written reviews that serve as the reference distribution Q for the estimator."
+      },
+      "task": {
+        "type": "other",
+        "description": "Writing scientific peer reviews of ML conference submissions and Nature portfolio papers.",
+        "duration": "not_stated"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Estimated share of AI-modified sentences (alpha) in each paper's most convergent review vs its most divergent review (the 'homogenization effect')",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "For each paper, the authors embed all reviews with OpenAI text embeddings, compute the centroid, and label the review closest to it 'convergent' and the farthest 'divergent'. They then estimate alpha (MLE share of AI-modified sentences, adjective vocabulary) separately in the convergent and divergent corpora. The compared quantity is the AI share, not a diversity level: similarity defines the groups. Table 26 labels the groups 'Homogeneous Reviews' and 'Heterogeneous Reviews'; Figure 10 labels them 'Most Convergent Review' and 'Most Divergent Review'.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Most convergent (homogeneous) review per paper, post-ChatGPT corpora",
+              "control_arm": "Most divergent (heterogeneous) review per paper, post-ChatGPT corpora",
+              "comparison_type": "other",
+              "direction": "treatment_higher",
+              "statistics_available": [
+                "confidence_interval"
+              ],
+              "reported": "Table 26, alpha (CI ±), Heterogeneous vs Homogeneous Reviews: ICLR2024 7.2% (0.4%) vs 13.1% (0.4%); NeurIPS2023 6.1% (0.4%) vs 11.6% (0.5%); CoRL2023 5.1% (1.5%) vs 7.6% (1.4%); EMNLP2023 12.8% (0.8%) vs 19.6% (0.8%). Direction refers to the estimated AI share, which is higher in the convergent group.",
+              "locator": "p. 9, Sec. 4.7 'Homogenization Effect' and Figure 10; p. 35, Table 26"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Binary label per review: closest to (convergent) or farthest from (divergent) the embedding centroid of the same paper's reviews; the outcome compared across the two labels is the estimated AI-modified share alpha.",
+            "embedding_model": "\"OpenAI's text-embeddings\" (specific model not named)",
+            "computed_over": "Each review against the centroid (average embedding) of all reviews of the same paper; one convergent and one divergent review kept per paper.",
+            "uncertainty": "CI (±) reported per group in Table 26. Sec. 4.4 states that error bars for the main estimates are 95% confidence intervals over 30,000 bootstrap samples (p. 7); the paper does not restate the method for Table 26.",
+            "notes": "Direction is the reverse of the codebook's diversity contrast: AI use is not observed per review, so the paper reports AI share by similarity group rather than similarity by AI use. The number of papers or reviews in the convergent and divergent corpora is not stated. The paper calls this a correlation."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [
+      {
+        "comparison": "",
+        "estimate": "",
+        "interval": "",
+        "what_it_standardizes": "",
+        "locator": ""
+      }
+    ]
+  },
+  "sample_overlap": {
+    "shares_participants_with": "",
+    "quote": "",
+    "locator": ""
+  },
+  "company_involvement": {
+    "any": true,
+    "description": "One co-first author (Zachary Izzo) lists NEC Labs America, an industry research lab. No AI vendor is listed as a funder or partner; funding listed is NSF, Chan-Zuckerberg Initiative, and Stanford HAI.",
+    "locator": "p. 1, affiliation footnote; p. 11, Acknowledgments"
+  },
+  "data_and_code": {
+    "data_url": "",
+    "code_url": "https://github.com/Weixin-Liang/Mapping-the-Increasing-Use-of-LLMs-in-Scientific-Papers"
+  },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "not_met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "unclear",
+    "context_class": "observational",
+    "reason": "Corpus study of public peer reviews with no human participants and no assignment of AI; the unit is reviews and sentences, and the number of reviewers is never stated. The main outcome is the estimated share of AI-modified text, which the codebook excludes when there is no diversity outcome. The paper does include one embedding-based homogenization analysis (AI share higher in each paper's most convergent review, p. 9 and p. 35, Table 26), so it could serve as observational context. Peer review is also not clearly a creative or ideation task."
+  },
+  "one_line_finding": "Estimated AI-modified sentence share in ICLR reviews rose from 1.6% (2023) to 10.6% (2024) (p. 21, Table 7), and in ICLR 2024 it was 13.1% among each paper's most convergent reviews vs 7.2% among the most divergent (p. 35, Table 26).",
+  "open_questions": [
+    "Does the homogenization analysis qualify as observational diversity context? The paper compares AI share across similarity groups, the reverse of a diversity-by-AI-use comparison, and the task (peer review) may fall outside the creativity scope.",
+    "Should the record carry context_class 'observational' or 'none' (screening-report-only as an AI-text-prevalence study)?"
+  ],
+  "notes": "Other estimates in the paper concern AI-text prevalence, not creativity or diversity, and are not listed as outcomes: post-ChatGPT alpha of 10.6% (ICLR 2024), 9.1% (NeurIPS 2023), 6.5% (CoRL 2023), 16.9% (EMNLP 2023), with Nature portfolio 2023 at 1.6% (p. 21, Tables 7-8); deadline, reference ('et al.'), reply-rate, and low-confidence correlates (pp. 8-10, Figures 7-9 and 11; pp. 35-36, Tables 23-25 and 27); validation on semi-synthetic mixtures (p. 20, Tables 5-6); robustness with adverbs, verbs, nouns, document level, other LLMs (pp. 25-44). Data are public reviews accessed via the OpenReview API (p. 42, App. G); the paper gives no dataset URL beyond the API documentation link. The markdown conversion ends partway through PDF page 21."
+}

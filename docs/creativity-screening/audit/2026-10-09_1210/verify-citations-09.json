@@ -1,0 +1,20 @@
+[
+  {
+    "id": "citations-09-1",
+    "cid": "c548",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py::short_cite (c548 author label)",
+    "correct_value": "Avita Salsabila and Siti Maysarah (2025)",
+    "evidence": "creativity-screening-2026-10-04.md:1394 and report-generated.md:1342 print \"None and None (2025)\". C:/Dropbox/Research/ai-lab/literature/creativity/Salsabila and Maysarah (2025) - IMPLEMENTASI PEMBELAJARAN MATEMATIKA BERBANTUAN GEMINIAI TERHADAP PENINGKATAN KE.pdf, PDF p. 1 (printed p. 185), independently read with PyMuPDF, gives the byline \"Avita Salsabila\" and \"Siti Maysarah\" and year 2025. forms/citations/c548.json correctly records these full names, authors_family=[null, null], and the unresolved family-name splits. The Crossref DOI endpoint https://api.crossref.org/works/10.26877/jipmat.v10i2.2771 returned HTTP 200 and only family=\"Avita\" and family=\"Siti\", with no given-name fields. tools/build_report.py:46 accepts the nonempty null list as truthy, and line 66 formats its elements as None; executing only the in-memory label functions reproduced the erroneous label. The builder should handle the null entries by displaying the verified full names above, without guessing their family-name splits."
+  },
+  {
+    "id": "citations-09-2",
+    "cid": "c153",
+    "verdict": "confirmed",
+    "fix_target": "citation",
+    "field": "latest_version.authors_family[0]",
+    "correct_value": "de Vicente-Yagüe-Jara",
+    "evidence": "creativity-screening-2026-10-04.md:1407 and report-generated.md:1355 print \"Vicente-Yagüe-Jara et al. (2023)\". C:/Dropbox/Research/ai-lab/literature/creativity/de Vicente-Yague-Jara et al (2023) - Writing, creativity, and artificial intelligence ChatGPT in the university conte.pdf, PDF p. 1, independently read with PyMuPDF, prints \"Dr. María-Isabel de Vicente-Yagüe-Jara\", followed by three other authors, and year 2023. tools/codex_audit.py:95-99 explicitly requires retaining family-name particles such as de and van. forms/citations/c153.json preserves de in latest_version.authors[0] but omits it from latest_version.authors_family[0], which tools/build_report.py:46 and :70 use for the label. Changing that citation field in memory produces exactly \"de Vicente-Yagüe-Jara et al. (2023)\". Crossref (https://api.crossref.org/works/10.3916/C77-2023-04, HTTP 200) and the publisher's How to cite entry (https://www.revistacomunicar.com/index.php?contenido=detalles&numero=77&articulo=77-2023-04&idioma=en, HTTP 200) both omit de. This finding is confirmed specifically under the project's explicit particle-retention rule and the PDF byline; the shorter label does have support in those external citation records."
+  }
+]

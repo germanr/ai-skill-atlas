@@ -1,0 +1,114 @@
+{
+ "findings": 5,
+ "confirmed": 4,
+ "refuted": 1,
+ "cannot_tell": 0,
+ "by_lane": {
+  "prose": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "coverage": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "links": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "tables": {
+   "findings": 0,
+   "confirmed": 0
+  },
+  "classes": {
+   "findings": 1,
+   "confirmed": 0
+  },
+  "sources": {
+   "findings": 2,
+   "confirmed": 2
+  },
+  "citations": {
+   "findings": 2,
+   "confirmed": 2
+  }
+ },
+ "confirmed_items": [
+  {
+   "id": "sources-21-1",
+   "cid": "c116",
+   "section": "Notes on each recommended paper",
+   "location": "Shin et al. (2025), Finding bullet (report line 1050): \"Of 456 designers randomized\"; citation \"p. 8, Figure 5; pp. 8-9, Section 5.2\".",
+   "claim": "The finding reports 456 randomized designers and cites PDF pages 8-9.",
+   "problem": "The cited pages do not contain the count of 456 randomized participants. The count is supported on PDF page 6, which should be added to the citation; the numerical value itself is correct.",
+   "evidence": "C:/Dropbox/Research/ai-lab/literature/creativity/Shin et al (2025) - No Evidence for LLMs Being Useful in Problem Reframing.pdf; PDF p. 6, Figure 4, labels the randomized designers N = 456 and states that each participant was randomly assigned an approach. Section 4.2 on the same page reports 456 recruited individuals and 280 retained participants. PDF pp. 8-9 present the outcome results and do not report 456.",
+   "severity": "minor",
+   "verdict": {
+    "id": "sources-21-1",
+    "cid": "c116",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "one_line_finding",
+    "correct_value": "Of 456 designers randomized to reframe a design problem without an LLM or with GPT-4o in three ways, 280 were analyzed, and rater-scored novelty and usefulness of the frame each person picked as best did not differ between MANUAL (62 analyzed) and LLM-ALL (218 analyzed) or among the four approaches (all p > 0.05), reported only as box plots (p. 6, Figure 4 and Section 4.2; p. 8, Figure 5; pp. 8-9, Section 5.2).",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1050 reports 456 randomized designers but cites only PDF pp. 8-9. Independently opened C:/Dropbox/Research/ai-lab/literature/creativity/Shin et al (2025) - No Evidence for LLMs Being Useful in Problem Reframing.pdf with PyMuPDF and read PDF pages 6, 8, and 9; also visually checked page 9 because its Figure 8 table text has an encoding problem. PDF p. 6, Figure 4 labels Designers N = 456 and Randomized; its caption reports 456 participants and says each was randomly assigned an approach. Section 4.2 on p. 6 reports 456 recruited and 280 retained. PDF pp. 8-9 report the outcome comparisons and analyzed sample, but not 456. The numerical value is correct; the defect is the missing p. 6 locator. C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/forms/c116.json, one_line_finding, contains the same incomplete citation. tools/build_report.py:220-222 and :275 reproduce that field in report-generated.md:1003, so the fix belongs in the form, not in the citation metadata, builder, or report-prose.md."
+   }
+  },
+  {
+   "id": "sources-27-1",
+   "cid": "c012",
+   "section": "Notes on each recommended paper",
+   "location": "c012, Needs journal version bullet beginning 'Figures 2a and 2b have error bars' (report line 1312)",
+   "claim": "Figures 2a and 2b have error bars the paper does not define, and no SDs or SEs are printed anywhere.",
+   "problem": "The blanket statement that no SDs are printed anywhere is false: the PDF prints standard deviations of semantic-embedding dispersion. Narrow the statement to the missing participant-level SDs or SEs for creativity scores.",
+   "evidence": "C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2024) - When ChatGPT is Gone Creativity Reverts and Homogeneity Persists.pdf, PDF p. 17, Table 4a, 'Standard Deviation' columns: Day 2 Control 0.40 and GPT 0.33; Day 30 Control 0.39 and GPT 0.32. PDF pp. 16-17 describe these as dispersion measures for the semantic embeddings.",
+   "severity": "minor",
+   "verdict": {
+    "id": "sources-27-1",
+    "cid": "c012",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "final.open_items[10].item",
+    "correct_value": "Figures 2a and 2b have error bars the paper does not define; participant-level arm SDs or SEs for the creativity scores are not printed (pp. 8-12 and 28-30). Tables 4a and 4b do report standard deviations of the projected semantic embeddings (pp. 16-17). Participant-level arm SDs of creativity scores are the preferred standardizer (codebook section 9).",
+    "evidence": "C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, line 1312, contains the blanket statement that no SDs or SEs are printed anywhere. Directly inspected C:/Dropbox/Research/ai-lab/literature/creativity/Liu et al (2024) - When ChatGPT is Gone Creativity Reverts and Homogeneity Persists.pdf using PyMuPDF: PDF p. 17, Table 4a, explicitly labels Standard Deviation columns for Control and GPT, with Day 2 values 0.40 and 0.33 and Day 30 values 0.39 and 0.32. PDF pp. 16-17 describe the SBERT embeddings, PCA/UMAP projection, normalization and dispersion analysis underlying these values; Table 4b also prints standard deviations. These are distinct from SDs of participant creativity scores. The creativity tables on pp. 8 and 11-12 give scores and test results without score SDs or SEs, and the Figure 2a/2b captions on pp. 9-10 and 28-30 do not define the error bars. forms/c012.json, final.open_items[10].item, contains the erroneous sentence; tools/build_report.py, lines 290-292, copies that field into the generated notes, present in report-generated.md at line 1265. The correction therefore belongs in the form. creativity-codebook.md, section 9, specifies participant-level control-arm and pooled-arm SDs as the preferred standardizers."
+   }
+  },
+  {
+   "id": "citations-10-1",
+   "cid": "c115",
+   "section": "Experiments with full text not obtained",
+   "location": "c432 row, middle cell, report line 1513: \"included in Shi 2026 meta-analysis\"",
+   "claim": "The meta-analysis is cited as \"Shi 2026\".",
+   "problem": "The cited meta-analysis has five authors. The author label \"Shi\" breaks the required four-or-more-author rule; it should be \"Shi et al.\".",
+   "evidence": "forms/citations/c115.json, latest_version.authors_family = [\"Shi\", \"Zheng\", \"Wei\", \"Ji\", \"Zhu\"], latest_version.year = 2026. https://api.crossref.org/works/10.1080/10400419.2026.2726242 independently confirms these five authors and the 2026 publication year; message.reference includes DOI 10.1037/aca0000750 (key e_1_3_5_54_1), the c432 paper whose row contains this citation.",
+   "severity": "serious",
+   "verdict": {
+    "id": "citations-10-1",
+    "cid": "c115",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py::main.finding; inline citation to c115 in the c432 middle cell, copied from triage/decisions.json[cid=c432].note_a",
+    "correct_value": "Shi et al. 2026",
+    "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1513: the c432 middle cell says \"included in Shi 2026 meta-analysis\"; report-generated.md:1462 has the same text. Independently fetched https://api.crossref.org/works/10.1080/10400419.2026.2726242 using Python: message.author lists Yafei Shi, Yuxian Zheng, Yantao Wei, Xiang Ji, and Ke Zhu; message.published-online is 2026-09-07. Its reference e_1_3_5_54_1 names DOI 10.1037/aca0000750, matching c432. forms/citations/c115.json latest_version.authors_family and year agree with Crossref. tools/codex_audit.py:98-100 specifies first-family-name plus et al. for four or more authors, and tools/build_report.py:46-53 implements that rule. The main c115 label at report line 1784 already reads \"Shi et al. (2026)\". There is no forms/c432.json: the incomplete inline label originates in triage/decisions.json note_a, which tools/build_report.py:220-226 copies without citation formatting. Fix the builder rendering of this inline reference using the existing correct citation metadata; replace \"Shi 2026\" with \"Shi et al. 2026\". The citation record itself needs no correction."
+   }
+  },
+  {
+   "id": "citations-10-2",
+   "cid": "c102",
+   "section": "Experiments with full text not obtained",
+   "location": "c454 row, middle cell, report line 1521: \"cited in Peng 2025 and Ozkan 2026 meta-analyses\"",
+   "claim": "The Peng meta-analysis is cited as \"Peng 2025\".",
+   "problem": "The cited meta-analysis has eight authors. The author label \"Peng\" breaks the required four-or-more-author rule; it should be \"Peng et al.\".",
+   "evidence": "forms/citations/c102.json, latest_version.authors_family = [\"Peng\", \"Wang\", \"Chen\", \"Wang\", \"Dong\", \"Wang\", \"Lyu\", \"Wang\"], latest_version.year = 2025. https://api.crossref.org/works/10.1080/15391523.2025.2557392 independently confirms these eight authors and the 2025 publication year; message.reference includes DOI 10.1016/j.tsc.2024.101649 (key e_1_3_6_69_1), the c454 paper whose row contains this citation.",
+   "severity": "serious",
+   "verdict": {
+    "id": "citations-10-2",
+    "cid": "c102",
+    "verdict": "confirmed",
+    "fix_target": "builder",
+    "field": "tools/build_report.py::main.finding; inline citation to c102 in the c454 middle cell, copied from triage/decisions.json[cid=c454].note_a",
+    "correct_value": "Peng et al. 2025",
+    "evidence": "Independently read C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md:1521: the c454 middle cell says \"cited in Peng 2025 and Ozkan 2026 meta-analyses\"; report-generated.md:1470 has the same text. Independently fetched https://api.crossref.org/works/10.1080/15391523.2025.2557392 using Python: message.author lists Yan Peng, Xudong Wang, Jiahua Chen, Yiting Wang, Zhenxuan Dong, Yifei Wang, Shaobo Lyu, and Wenxuan Wang; message.published-online is 2025-09-25. Its reference e_1_3_6_69_1 names DOI 10.1016/j.tsc.2024.101649, matching c454. forms/citations/c102.json latest_version.authors_family and year agree with Crossref. tools/codex_audit.py:98-100 specifies first-family-name plus et al. for four or more authors, and tools/build_report.py:46-53 implements that rule. The main c102 label at report line 1782 already reads \"Peng et al. (2025)\". There is no forms/c454.json: the incomplete inline label originates in triage/decisions.json note_a, which tools/build_report.py:220-226 copies without citation formatting. Fix the builder rendering of this inline reference using the existing correct citation metadata; replace \"Peng 2025\" with \"Peng et al. 2025\". The citation record itself needs no correction."
+   }
+  }
+ ]
+}

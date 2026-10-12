@@ -1,0 +1,406 @@
+{
+ "cid": "c146",
+ "screener": "single_fixed",
+ "source": {
+  "md_file": "",
+  "pdf_file": "",
+  "version": "Journal version of record (Science Advances 11(36): eadu5800, published 3 Sep 2025, CC BY), read in full as Europe PMC main-text XML (PMC12407059), including all figure captions, acknowledgments, supplementary-material listing, and references: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12407059/fullTextXML. No local markdown or PDF was on file. Main and supplementary PDF requests to the publisher, PMC, and Europe PMC were blocked or returned HTML instead of PDF; the Europe PMC supplementaryFiles API timed out. The supplementary PDF and figure images were not read. Locators therefore identify XML sections and figures, and numerical values are retained only where the main text states them.",
+  "title_on_document": "Who expands the human creative frontier with generative AI: Hive minds or masterminds?",
+  "authors_on_document": [
+   "Eric B. Zhou",
+   "Dokyun Lee",
+   "Bin Gu"
+  ],
+  "pages": null,
+  "supplement": {
+   "exists": "yes",
+   "in_this_pdf": false,
+   "where": "Supplementary Materials PDF sciadv.adu5800_sm.pdf on the Science Advances / PMC article page; replication code at Dryad https://doi.org/10.5061/dryad.xpnvx0ksf",
+   "holds": "Supplementary Text (implementation details of matching, estimation, and the control-group contamination sensitivity analysis), Figs. S1 to S6, Tables S1 to S4"
+  }
+ },
+ "paper_design_summary": "Observational study of a corpus of 31,076 unique creators on an online digital-art platform from August 2021 to December 2023 (Introduction, paragraph 4). Creators with publications identified as AI assisted through tags and/or AI art communities are compared with matched observed nonadopters in an event-study difference-in-differences analysis with bootstrapped matching and a Synthetic Control robustness check (Materials and Methods, 'Identifying AI adopters'; Results, 'Robustness checks'). BLIP-2 captions, BERT-based semantic embeddings, and UMAP define cohort convex hulls; outcomes describe frontier breadth, novel-artwork counts, contributors, productivity-adjusted discovery rates, contribution concentration, and raw artwork productivity (Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; Figs. 1 to 5).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Online art platform panel: AI adopters vs matched nonadopters, Aug 2021 to Dec 2023",
+   "design_class": "observational",
+   "assignment": {
+    "randomized": "no",
+    "what_was_assigned": "No assignment occurred. Individual creators self-selected into AI use; observed adopter and nonadopter cohorts were followed over time and compared using bootstrapped matching.",
+    "unit": "individual",
+    "structure": "between",
+    "quote": "Users with any of their publications identified as AI assisted is considered a treatment unit, whereas any user who has never published an artifact with AI assistance is then a control unit.",
+    "locator": "Journal main-text XML (PMC12407059), Materials and Methods, 'Identifying AI adopters'; Introduction, paragraph 4",
+    "preregistered": "not_stated",
+    "prereg_locator": ""
+   },
+   "arms": [
+    {
+     "name": "AI-assisted creators (adopters)",
+     "description": "Observed users with at least one publication identified as AI assisted by an AI-related tag and/or publication in an AI art community. Materials and Methods, 'Identifying AI adopters'.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Matched nonadopters",
+     "description": "Observed users with no publication identified as AI assisted, matched to adopters. Undisclosed AI use may contaminate this group. Materials and Methods, 'Identifying AI adopters'; Results, 'Robustness checks'.",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": null,
+    "counts_are": "people",
+    "exclusions": "The matching procedure may drop users who are not successfully matched; the number dropped is not stated. The 31,076 unique creators describe the corpus, not an explicitly reported final matched analysis sample. No final matched total or per-arm creator counts are given in the main text, and the supplement could not be read. Introduction, paragraph 4; Results, 'Robustness checks', paragraph beginning 'For each of the main outcome variables'.",
+    "population": "general_public",
+    "who": "Corpus of digital artworks by 31,076 unique creators on a digital art platform catering to hobbyists, 27 months (August 2021 to December 2023). Treated creators are users with any artwork tagged as AI-assisted or posted in an AI art community; controls are matched users who never did. The number of treated and matched control creators and the number of artworks are not stated in the main text. Each idea space is seeded with 21,384 SemArt fine-art image-description pairs.",
+    "country": "not_stated",
+    "quote": "Our study uses data from a prominent artist platform, including 31,076 unique creators producing digital art over 27 months from August 2021 to December 2023.",
+    "locator": "Introduction, para. 4; Materials and Methods, 'Identifying AI adopters' and 'Operationalizing the idea frontier'"
+   },
+   "ai_tool": {
+    "name_model": "Text-to-image models (Midjourney, Stable Diffusion incl. 1.5, DALL-E), identified from artwork tags and AI art communities",
+    "role": "image_generation",
+    "how_used": "Creators self-selected text-to-image tools for their artwork workflow. AI-assisted publications were identified through an AI-related tag and/or publication in an AI art community. Adoption date is the earliest identified AI-assisted publication for that creator. Materials and Methods, 'Identifying AI adopters'."
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Digital artworks posted to an online art platform; the idea content of each artwork is extracted as a BLIP-2 caption and embedded.",
+    "duration": "27 months (Aug 2021 to Dec 2023)"
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Idea frontier volume: volume of the convex hull of a cohort's artwork idea embeddings (UMAP 5-D), relative to baseline",
+     "construct": "diversity",
+     "question": "across_people",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Cohort-level convex-hull volume of artwork idea vectors measures expansion of idea-space breadth; surface area is mentioned as a robustness variant. BLIP-2 captions are embedded with a BERT-based model fine-tuned for semantic similarity (Sentence-BERT, reference 43; exact checkpoint not stated), then reduced from 384 dimensions to five with UMAP. Each hull includes cohort artworks and the common SemArt baseline of 21,384 image-description pairs. Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; Results, 'Robustness checks'.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted creators (adopters)",
+       "control_arm": "Matched nonadopters",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only",
+        "confidence_interval"
+       ],
+       "reported": "Figure only (event-study DiD estimates as a proportion over baseline, 95% CIs). Text: no significant pre-Midjourney differences; Midjourney V1 (Feb 2022) 'did not immediately lead to expansion'; after Stable Diffusion 1.5 (Oct 2022) the AI-assisted idea frontier 'undergoes accelerated expansion'. Synthetic Control check (Fig. 6) consistent.",
+       "locator": "Results, 'Idea frontier expansion following text-to-image releases', Fig. 1A; Robustness checks, Fig. 6"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "Convex-hull volume of artwork idea embeddings; surface area mentioned as a robustness variant.",
+      "embedding_model": "BLIP-2 image-to-text descriptions embedded by a BERT-based semantic-similarity model (Sentence-BERT, reference 43; exact checkpoint not stated); UMAP reduces 384 dimensions to five.",
+      "computed_over": "Each cohort idea space contains its users’ artwork idea vectors concatenated with the shared SemArt baseline of 21,384 historical fine-art image-description pairs, followed over time.",
+      "uncertainty": "Event-study difference-in-differences estimates with bootstrapped matching; Fig. 1A shows 95% confidence intervals. Numeric endpoints and standard errors are not supplied in the accessible text, and the supplement’s detailed variance procedure could not be read. Synthetic Control robustness results are described in Fig. 6 and adjacent text.",
+      "notes": "Set-level novelty/breadth measure, not an assessment of artistic value. Fig. 1 expresses estimates relative to the starting-period baseline (intercept plus treatment fixed effect), not as standardized mean differences. Methods: Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; uncertainty: Introduction, paragraph 4, Fig. 1 caption, and Results, 'Robustness checks'; value limitation: Discussion."
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Number of vertices of the idea frontier (frontier-defining, H-creative artworks), relative to baseline",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Count of convex-hull vertices, interpreted as frontier-defining H-creative artworks, for each cohort over time. Fig. 1B reports event-study estimates relative to the starting baseline. Fig. 2 is a contribution-decile variant: across 1000 cohort permutations, users are ranked by total vertex contributions over the full observation period, and monthly vertex counts are aggregated by rank decile and contrasted between adopters and nonadopters. Most post-Midjourney contributions are concentrated among the top 10 to 20% of adopters; contributions among the lower 80% are less persistent. Results, 'AI-assisted creativity as a stochastic versus persistent process', Fig. 2 and caption.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted creators (adopters)",
+       "control_arm": "Matched nonadopters",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only",
+        "confidence_interval"
+       ],
+       "reported": "Figure only (event-study DiD estimates, 95% CIs). Text: 'compared to the nonadopters, the AI-assisted idea frontier is composed of many more artworks post–Stable Diffusion.'",
+       "locator": "Results, 'Idea frontier expansion following text-to-image releases', para. 3, Fig. 1B"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Number of unique creators owning a vertex of the idea frontier (breadth of who contributes novel artworks)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted creators (adopters)",
+       "control_arm": "Matched nonadopters",
+       "comparison_type": "other",
+       "direction": "mixed",
+       "statistics_available": [
+        "figure_only",
+        "confidence_interval"
+       ],
+       "reported": "Figure only. Text: larger among AI-assisted creators before any model release; 'Between 2022 and 2023, the composition of H-creative artists becomes more concentrated among AI-assisted creators'; trend reverses in 2023; 'By the end of 2023, the number of H-creative AI-assisted creators exceeds the nonadopter baseline'.",
+       "locator": "Results, 'Attributing expansion to the hive mind or masterminds', Fig. 1C"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Vertex discovery rate after equalizing AI adopters' post-Midjourney output to nonadopters' output (productivity-equalized hulls)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "Post-Midjourney adopter artworks are randomly subsampled to match nonadopters' production, reducing adopter artwork quantity by approximately 48% on average. The procedure uses 200 matching draws/permutations and bootstraps convex-hull vertex counts to compare discovery rates across cohorts and time. Fig. 4 compares observed, production-equalized, and hypothetical productivity-only discovery rates. Fig. 5B repeats the hypothetical productivity-only, no-dilution analysis for masterminds versus hive minds and for low- versus high-exploration adopters before AI; the text describes greater gains for masterminds and low-initial-exploration creators, with no evident productivity benefit for highly exploratory creators. These subgroup analyses are variants of this outcome, not randomized AI configurations. Results, 'Productivity effects, human-AI effects, and dilution effects', Figs. 4 and 5B; Materials and Methods, 'Production equalization for AI-assisted creators'.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted creators, production-equalized (random subsample of post-Midjourney artifacts, about 48% fewer)",
+       "control_arm": "Matched nonadopters",
+       "comparison_type": "other",
+       "direction": "treatment_lower",
+       "statistics_available": [],
+       "reported": "After productivity equalization, adopters contribute an average 2.1% fewer frontier-defining artifacts after Midjourney V1. The text reports average gains of 2.2% without productivity adjustment and attributes a net increase of approximately 4.3% to the productivity effect, with a maximum gain of 6.6% in new vertices by the end of 2023 (Fig. 4). The procedure uses 200 permutations; numerical confidence-interval endpoints are not stated in the text.",
+       "locator": "Results, 'Productivity effects, human-AI effects, and dilution effects', para. 5, Fig. 4; Materials and Methods, 'Production equalization for AI-assisted creators'"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Market share of frontier vertices held by the top 10% of vertex contributors (concentration of novel contributions; lower = more dispersed)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted creators (adopters)",
+       "control_arm": "Matched nonadopters",
+       "comparison_type": "other",
+       "direction": "mixed",
+       "statistics_available": [],
+       "reported": "Among AI-assisted creators, the top 10% initially hold nearly 35% of vertex artworks and gain share after Midjourney; by the end of 2023 they hold approximately 23%, described by the authors as 'a decrease of 12%'. Nonadopters' top 10% maintain more than 30% throughout. Relative to nonadopters, the top 10% of AI-assisted creators gain share following Midjourney, then lose share after Stable Diffusion 1.5 and by the end of 2023 (Fig. 3A-C).",
+       "locator": "Results, 'AI-assisted creativity as a stochastic versus persistent process', paras. 4-5, Fig. 3A-C"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O6",
+     "name": "Raw artwork productivity within AI adopters",
+     "construct": "fluency",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "category_count",
+     "measure_detail": "Number of artworks produced, summarized as average raw productivity over time for creator subgroups in Fig. 5A. Masterminds are the top 20% of total vertex contributors, and hive minds are the remaining bottom 80%; these are observed subgroups of AI adopters, not assigned conditions. Fig. 5A also compares adopters with low and high exploration before adoption: the text describes a larger production increase for initially less exploratory creators, while highly exploratory creators' production remains largely unchanged. Materials and Methods classifies pre-AI exploration using the average within-user distance ECDF relative to the mean distance ECDF.",
+     "unit": "set",
+     "n_units": null,
+     "ai_available_when_produced": "mixed",
+     "timing": null,
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "AI-assisted masterminds (top 20% of total vertex contributors)",
+       "control_arm": "AI-assisted hive minds (bottom 80% of total vertex contributors)",
+       "comparison_type": "other",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "figure_only"
+       ],
+       "reported": "Descriptive comparison within AI adopters: masterminds produce 4.4 times more artifacts on average than hive minds, as stated in the text accompanying Fig. 5A. This is not an AI-versus-no-AI effect. The main text provides no numerical subgroup means, SDs, standardized effect, or interval endpoints for this comparison.",
+       "locator": "Journal main-text XML (PMC12407059), Results, 'Productivity effects, human-AI effects, and dilution effects', paragraph beginning 'We next focus our analysis', Fig. 5A and caption; subgroup definition and exploration classification: Materials and Methods, 'Production equalization for AI-assisted creators'"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "",
+  "quote": "",
+  "locator": ""
+ },
+ "company_involvement": {
+  "any": false,
+  "description": "",
+  "locator": ""
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": "https://doi.org/10.5061/dryad.xpnvx0ksf"
+ },
+ "eligibility": {
+  "core": "no",
+  "criterion_1_random_assignment_of_ai": "not_met",
+  "criterion_2_at_least_50_people": "unclear",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "observational",
+  "reason": "No random assignment occurred: creators self-selected into AI use, identified through AI-related tags and/or AI art communities (Materials and Methods, 'Identifying AI adopters'). The corpus contains 31,076 unique creators (Introduction, paragraph 4), but matching may drop users and the final matched number analyzed is not stated in the accessible main text (Results, 'Robustness checks'); the strict analyzed-people criterion is therefore unclear. Novelty and idea-space breadth are computed on published artwork content (Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'), satisfying the output criterion. This is observational context and is ineligible for the randomized core."
+ },
+ "one_line_finding": "On an online art platform, text-to-image AI adopters' idea frontier expanded faster than matched nonadopters' after Stable Diffusion 1.5 (Fig. 1A-B), driven by higher output: with output equalized, adopters found an average 2.1% fewer frontier-defining artworks after Midjourney V1, while the productivity effect gave a net 4.3% more (6.6% at most by end of 2023) (Results, Fig. 4).",
+ "open_questions": [
+  "The main text does not report the final matched creator total, per-arm creator counts, or number of unmatched creators dropped; these remain null or unstated pending the inaccessible supplement.",
+  "Numerical point estimates, confidence-interval endpoints, standard errors, and the detailed matching and variance procedure require the figures/PDF or supplement, which could not be inspected."
+ ],
+ "notes": "AI availability is mixed across pre-AI periods, observed adopters, and observed nonadopters. Timing is null because this retrospective artwork panel has no experimental immediate/delayed assessment schedule. No outcome is explicitly designated primary. All reported numerical findings were verified in the journal main-text XML; the PDFs, supplement contents, and figure images were inaccessible. The source's stated 27-month period is retained as printed rather than recomputed from its dates.",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].assignment; studies[0].arms; eligibility.criterion_1_random_assignment_of_ai",
+    "old": "{\"studies[0].assignment\": {\"randomized\": \"no\", \"what_was_assigned\": \"\", \"unit\": \"individual | team | class | session | within_person_order | other\", \"structure\": \"between | within | crossover | mixed\", \"quote\": \"\", \"locator\": \"\", \"preregistered\": \"yes | no | not_stated\", \"prereg_locator\": \"\"}, \"studies[0].arms\": [{\"name\": \"\", \"description\": \"\", \"ai\": \"none | generative_ai | other_aid\", \"n_randomized\": null, \"n_analyzed\": null}], \"eligibility.criterion_1_random_assignment_of_ai\": \"met | not_met | unclear\"}",
+    "new": "{\"studies[0].assignment\": {\"randomized\": \"no\", \"what_was_assigned\": \"No assignment occurred. Individual creators self-selected into AI use; observed adopter and nonadopter cohorts were followed over time and compared using bootstrapped matching.\", \"unit\": \"individual\", \"structure\": \"between\", \"quote\": \"Users with any of their publications identified as AI assisted is considered a treatment unit, whereas any user who has never published an artifact with AI assistance is then a control unit.\", \"locator\": \"Journal main-text XML (PMC12407059), Materials and Methods, 'Identifying AI adopters'; Introduction, paragraph 4\", \"preregistered\": \"not_stated\", \"prereg_locator\": \"\"}, \"studies[0].arms\": [{\"name\": \"AI-assisted creators (adopters)\", \"description\": \"Observed users with at least one publication identified as AI assisted by an AI-related tag and/or publication in an AI art community. Materials and Methods, 'Identifying AI adopters'.\", \"ai\": \"generative_ai\", \"n_randomized\": null, \"n_analyzed\": null}, {\"name\": \"Matched nonadopters\", \"description\": \"Observed users with no publication identified as AI assisted, matched to adopters. Undisclosed AI use may contaminate this group. Materials and Methods, 'Identifying AI adopters'; Results, 'Robustness checks'.\", \"ai\": \"none\", \"n_randomized\": null, \"n_analyzed\": null}], \"eligibility.criterion_1_random_assignment_of_ai\": \"not_met\"}",
+    "quote": "Users with any of their publications identified as AI assisted is considered a treatment unit, whereas any user who has never published an artifact with AI assistance is then a control unit.",
+    "locator": "Journal main-text XML (PMC12407059), Materials and Methods, 'Identifying AI adopters'; Introduction, paragraph 4"
+   },
+   {
+    "field": "studies[0].participants.counts_are; studies[0].participants.exclusions; eligibility.criterion_2_at_least_50_people; source.version; open_questions",
+    "old": "{\"studies[0].participants.counts_are\": \"people | teams | other\", \"studies[0].participants.exclusions\": \"\", \"eligibility.criterion_2_at_least_50_people\": \"met | not_met | unclear\", \"source.version\": \"Journal version of record (Science Advances 11(36): eadu5800, published 3 Sep 2025, CC BY), read as Europe PMC full-text XML (PMC12407059) through the Europe PMC REST API. The XML carries no page numbers, so locators give section and figure. Figure images were not read; figure values are cited only where the text states them.\", \"open_questions\": []}",
+    "new": "{\"studies[0].participants.counts_are\": \"people\", \"studies[0].participants.exclusions\": \"The matching procedure may drop users who are not successfully matched; the number dropped is not stated. The 31,076 unique creators describe the corpus, not an explicitly reported final matched analysis sample. No final matched total or per-arm creator counts are given in the main text, and the supplement could not be read. Introduction, paragraph 4; Results, 'Robustness checks', paragraph beginning 'For each of the main outcome variables'.\", \"eligibility.criterion_2_at_least_50_people\": \"unclear\", \"source.version\": \"Journal version of record (Science Advances 11(36): eadu5800, published 3 Sep 2025, CC BY), read in full as Europe PMC main-text XML (PMC12407059), including all figure captions, acknowledgments, supplementary-material listing, and references: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12407059/fullTextXML. No local markdown or PDF was on file. Main and supplementary PDF requests to the publisher, PMC, and Europe PMC were blocked or returned HTML instead of PDF; the Europe PMC supplementaryFiles API timed out. The supplementary PDF and figure images were not read. Locators therefore identify XML sections and figures, and numerical values are retained only where the main text states them.\", \"open_questions\": [\"The main text does not report the final matched creator total, per-arm creator counts, or number of unmatched creators dropped; these remain null or unstated pending the inaccessible supplement.\", \"Numerical point estimates, confidence-interval endpoints, standard errors, and the detailed matching and variance procedure require the figures/PDF or supplement, which could not be inspected.\"]}",
+    "quote": "the matching procedure may drop a few users who are not successfully matched",
+    "locator": "Journal main-text XML (PMC12407059), Introduction, paragraph 4; Results, 'Robustness checks', paragraph beginning 'For each of the main outcome variables'"
+   },
+   {
+    "field": "studies[0].ai_tool.how_used; paper_design_summary",
+    "old": "{\"studies[0].ai_tool.how_used\": \"Creators' own self-selected use of text-to-image tools in their artwork workflow; adoption date is the first AI-tagged publication.\", \"paper_design_summary\": \"Observational study of 31,076 creators on an online digital-art platform from August 2021 to December 2023. Creators who tagged any artwork as AI-generated (Midjourney, Stable Diffusion, DALL-E) are compared with matched nonadopters in an event-study difference-in-differences with bootstrapped matching and a Synthetic Control robustness check. Artworks are captioned with BLIP-2, embedded with Sentence-BERT, reduced by UMAP to five dimensions, and each cohort's idea frontier is the convex hull; outcomes are hull volume, number of hull vertices (novel, H-creative artworks), number of creators owning vertices, vertex discovery rate after equalizing output, and market shares of vertices.\"}",
+    "new": "{\"studies[0].ai_tool.how_used\": \"Creators self-selected text-to-image tools for their artwork workflow. AI-assisted publications were identified through an AI-related tag and/or publication in an AI art community. Adoption date is the earliest identified AI-assisted publication for that creator. Materials and Methods, 'Identifying AI adopters'.\", \"paper_design_summary\": \"Observational study of a corpus of 31,076 unique creators on an online digital-art platform from August 2021 to December 2023 (Introduction, paragraph 4). Creators with publications identified as AI assisted through tags and/or AI art communities are compared with matched observed nonadopters in an event-study difference-in-differences analysis with bootstrapped matching and a Synthetic Control robustness check (Materials and Methods, 'Identifying AI adopters'; Results, 'Robustness checks'). BLIP-2 captions, BERT-based semantic embeddings, and UMAP define cohort convex hulls; outcomes describe frontier breadth, novel-artwork counts, contributors, productivity-adjusted discovery rates, contribution concentration, and raw artwork productivity (Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; Figs. 1 to 5).\"}",
+    "quote": "We use the earliest identified publication date for each treatment user as the adoption date.",
+    "locator": "Journal main-text XML (PMC12407059), Materials and Methods, 'Identifying AI adopters'"
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing; studies[0].outcomes[*].primary; eligibility.criterion_3_outcome_scored_on_output; eligibility.reason; notes",
+    "old": "{\"studies[0].outcomes[0].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[0].timing\": \"immediate | delayed\", \"studies[0].outcomes[0].primary\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"studies[0].outcomes[1].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[1].timing\": \"immediate | delayed\", \"studies[0].outcomes[1].primary\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"studies[0].outcomes[2].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[2].timing\": \"immediate | delayed\", \"studies[0].outcomes[2].primary\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"studies[0].outcomes[3].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[3].timing\": \"immediate | delayed\", \"studies[0].outcomes[3].primary\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"studies[0].outcomes[4].ai_available_when_produced\": \"yes | no | mixed\", \"studies[0].outcomes[4].timing\": \"immediate | delayed\", \"studies[0].outcomes[4].primary\": \"preregistered_primary | paper_primary | secondary | not_stated\", \"eligibility.criterion_3_outcome_scored_on_output\": \"met | not_met | unclear\", \"eligibility.reason\": \"Observational platform data: creators self-select into text-to-image AI use (identified from tags) and are compared with matched nonadopters by event-study difference-in-differences and Synthetic Control. No one is randomly assigned to AI. Outcomes are embedding-based novelty and idea-space breadth of real artworks, so the paper fits observational context.\", \"notes\": \"\"}",
+    "new": "{\"studies[0].outcomes[0].ai_available_when_produced\": \"mixed\", \"studies[0].outcomes[0].timing\": null, \"studies[0].outcomes[0].primary\": \"not_stated\", \"studies[0].outcomes[1].ai_available_when_produced\": \"mixed\", \"studies[0].outcomes[1].timing\": null, \"studies[0].outcomes[1].primary\": \"not_stated\", \"studies[0].outcomes[2].ai_available_when_produced\": \"mixed\", \"studies[0].outcomes[2].timing\": null, \"studies[0].outcomes[2].primary\": \"not_stated\", \"studies[0].outcomes[3].ai_available_when_produced\": \"mixed\", \"studies[0].outcomes[3].timing\": null, \"studies[0].outcomes[3].primary\": \"not_stated\", \"studies[0].outcomes[4].ai_available_when_produced\": \"mixed\", \"studies[0].outcomes[4].timing\": null, \"studies[0].outcomes[4].primary\": \"not_stated\", \"eligibility.criterion_3_outcome_scored_on_output\": \"met\", \"eligibility.reason\": \"No random assignment occurred: creators self-selected into AI use, identified through AI-related tags and/or AI art communities (Materials and Methods, 'Identifying AI adopters'). The corpus contains 31,076 unique creators (Introduction, paragraph 4), but matching may drop users and the final matched number analyzed is not stated in the accessible main text (Results, 'Robustness checks'); the strict analyzed-people criterion is therefore unclear. Novelty and idea-space breadth are computed on published artwork content (Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'), satisfying the output criterion. This is observational context and is ineligible for the randomized core.\", \"notes\": \"AI availability is mixed across pre-AI periods, observed adopters, and observed nonadopters. Timing is null because this retrospective artwork panel has no experimental immediate/delayed assessment schedule. No outcome is explicitly designated primary. All reported numerical findings were verified in the journal main-text XML; the PDFs, supplement contents, and figure images were inaccessible. The source's stated 27-month period is retained as printed rather than recomputed from its dates.\"}",
+    "quote": "Thus, we operationalize creative expansion as the expansion of the convex hull of artworks’ core ideas over time.",
+    "locator": "Journal main-text XML (PMC12407059), Introduction, paragraph 4; Materials and Methods, 'Identifying AI adopters', 'Idea feature extraction', and 'Operationalizing the idea frontier'"
+   },
+   {
+    "field": "studies[0].outcomes[0].measure_detail; studies[0].outcomes[0].diversity_detail",
+    "old": "{\"studies[0].outcomes[0].measure_detail\": \"\", \"studies[0].outcomes[0].diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}",
+    "new": "{\"studies[0].outcomes[0].measure_detail\": \"Cohort-level convex-hull volume of artwork idea vectors measures expansion of idea-space breadth; surface area is mentioned as a robustness variant. BLIP-2 captions are embedded with a BERT-based model fine-tuned for semantic similarity (Sentence-BERT, reference 43; exact checkpoint not stated), then reduced from 384 dimensions to five with UMAP. Each hull includes cohort artworks and the common SemArt baseline of 21,384 image-description pairs. Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; Results, 'Robustness checks'.\", \"studies[0].outcomes[0].diversity_detail\": {\"metric\": \"Convex-hull volume of artwork idea embeddings; surface area mentioned as a robustness variant.\", \"embedding_model\": \"BLIP-2 image-to-text descriptions embedded by a BERT-based semantic-similarity model (Sentence-BERT, reference 43; exact checkpoint not stated); UMAP reduces 384 dimensions to five.\", \"computed_over\": \"Each cohort idea space contains its users’ artwork idea vectors concatenated with the shared SemArt baseline of 21,384 historical fine-art image-description pairs, followed over time.\", \"uncertainty\": \"Event-study difference-in-differences estimates with bootstrapped matching; Fig. 1A shows 95% confidence intervals. Numeric endpoints and standard errors are not supplied in the accessible text, and the supplement’s detailed variance procedure could not be read. Synthetic Control robustness results are described in Fig. 6 and adjacent text.\", \"notes\": \"Set-level novelty/breadth measure, not an assessment of artistic value. Fig. 1 expresses estimates relative to the starting-period baseline (intercept plus treatment fixed effect), not as standardized mean differences. Methods: Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; uncertainty: Introduction, paragraph 4, Fig. 1 caption, and Results, 'Robustness checks'; value limitation: Discussion.\"}}",
+    "quote": "Thus, we operationalize creative expansion as the expansion of the convex hull of artworks’ core ideas over time.",
+    "locator": "Journal main-text XML (PMC12407059), Materials and Methods, 'Idea feature extraction' and 'Operationalizing the idea frontier'; Fig. 1 caption; Results, 'Robustness checks'; Discussion, limitations"
+   },
+   {
+    "field": "studies[0].outcomes[0:3].contrasts[0].statistics_available",
+    "old": "{\"studies[0].outcomes[0].contrasts[0].statistics_available\": [], \"studies[0].outcomes[1].contrasts[0].statistics_available\": [], \"studies[0].outcomes[2].contrasts[0].statistics_available\": []}",
+    "new": "{\"studies[0].outcomes[0].contrasts[0].statistics_available\": [\"figure_only\", \"confidence_interval\"], \"studies[0].outcomes[1].contrasts[0].statistics_available\": [\"figure_only\", \"confidence_interval\"], \"studies[0].outcomes[2].contrasts[0].statistics_available\": [\"figure_only\", \"confidence_interval\"]}",
+    "quote": "The error bars represent 95% confidence intervals.",
+    "locator": "Journal main-text XML (PMC12407059), Fig. 1 caption, panels A-C"
+   },
+   {
+    "field": "studies[0].outcomes[4].contrasts[0].direction; studies[0].outcomes[4].contrasts[0].reported",
+    "old": "{\"studies[0].outcomes[4].contrasts[0].direction\": \"treatment_lower\", \"studies[0].outcomes[4].contrasts[0].reported\": \"AI-assisted: 'the top 10% of creators hold nearly 35% of all vertex artworks in the pre-AI period', rising after Midjourney; 'By the end of 2023, the top 10% hold approximately 23% of the total vertex share, a decrease of 12% from their initial market share'. Nonadopters: 'the top 10% of users maintain more than 30% of all vertex contributions throughout the observation window'.\"}",
+    "new": "{\"studies[0].outcomes[4].contrasts[0].direction\": \"mixed\", \"studies[0].outcomes[4].contrasts[0].reported\": \"Among AI-assisted creators, the top 10% initially hold nearly 35% of vertex artworks and gain share after Midjourney; by the end of 2023 they hold approximately 23%, described by the authors as 'a decrease of 12%'. Nonadopters' top 10% maintain more than 30% throughout. Relative to nonadopters, the top 10% of AI-assisted creators gain share following Midjourney, then lose share after Stable Diffusion 1.5 and by the end of 2023 (Fig. 3A-C).\"}",
+    "quote": "However, the top 10% creators lose a large portion of their market share with Stable Diffusion 1.5 and by the end of 2023 relative to the nonadopters.",
+    "locator": "Journal main-text XML (PMC12407059), Results, 'AI-assisted creativity as a stochastic versus persistent process', paragraph beginning 'We plot the difference in interperiod gains'; Fig. 3C"
+   },
+   {
+    "field": "studies[0].outcomes",
+    "old": "{\"studies[0].outcomes[1].measure_detail\": \"\", \"studies[0].outcomes[3].measure_detail\": \"\", \"studies[0].outcomes[3].contrasts[0].reported\": \"'The reduction in found vertices after the release of Midjourney V1 corresponds to an average 2.1% fewer frontier-defining artifacts'; 'The gains from the productivity effect correspond to 2.2% gains in the number of found vertices on average post-Midjourney V1'; 'the net increase in vertex discoveries attributable to the productivity effect is approximately 4.3% greater vertex artifacts contributed after Midjourney V1, with a maximum gain of 6.6% in new vertices found by the end of 2023.' Bootstrapped from 200 permutations; no CIs stated in text.\", \"studies[0].outcomes[5]\": null}",
+    "new": "{\"studies[0].outcomes[1].measure_detail\": \"Count of convex-hull vertices, interpreted as frontier-defining H-creative artworks, for each cohort over time. Fig. 1B reports event-study estimates relative to the starting baseline. Fig. 2 is a contribution-decile variant: across 1000 cohort permutations, users are ranked by total vertex contributions over the full observation period, and monthly vertex counts are aggregated by rank decile and contrasted between adopters and nonadopters. Most post-Midjourney contributions are concentrated among the top 10 to 20% of adopters; contributions among the lower 80% are less persistent. Results, 'AI-assisted creativity as a stochastic versus persistent process', Fig. 2 and caption.\", \"studies[0].outcomes[3].measure_detail\": \"Post-Midjourney adopter artworks are randomly subsampled to match nonadopters' production, reducing adopter artwork quantity by approximately 48% on average. The procedure uses 200 matching draws/permutations and bootstraps convex-hull vertex counts to compare discovery rates across cohorts and time. Fig. 4 compares observed, production-equalized, and hypothetical productivity-only discovery rates. Fig. 5B repeats the hypothetical productivity-only, no-dilution analysis for masterminds versus hive minds and for low- versus high-exploration adopters before AI; the text describes greater gains for masterminds and low-initial-exploration creators, with no evident productivity benefit for highly exploratory creators. These subgroup analyses are variants of this outcome, not randomized AI configurations. Results, 'Productivity effects, human-AI effects, and dilution effects', Figs. 4 and 5B; Materials and Methods, 'Production equalization for AI-assisted creators'.\", \"studies[0].outcomes[3].contrasts[0].reported\": \"After productivity equalization, adopters contribute an average 2.1% fewer frontier-defining artifacts after Midjourney V1. The text reports average gains of 2.2% without productivity adjustment and attributes a net increase of approximately 4.3% to the productivity effect, with a maximum gain of 6.6% in new vertices by the end of 2023 (Fig. 4). The procedure uses 200 permutations; numerical confidence-interval endpoints are not stated in the text.\", \"studies[0].outcomes[5]\": {\"outcome_id\": \"S1-O6\", \"name\": \"Raw artwork productivity within AI adopters\", \"construct\": \"fluency\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"category_count\", \"measure_detail\": \"Number of artworks produced, summarized as average raw productivity over time for creator subgroups in Fig. 5A. Masterminds are the top 20% of total vertex contributors, and hive minds are the remaining bottom 80%; these are observed subgroups of AI adopters, not assigned conditions. Fig. 5A also compares adopters with low and high exploration before adoption: the text describes a larger production increase for initially less exploratory creators, while highly exploratory creators' production remains largely unchanged. Materials and Methods classifies pre-AI exploration using the average within-user distance ECDF relative to the mean distance ECDF.\", \"unit\": \"set\", \"n_units\": null, \"ai_available_when_produced\": \"mixed\", \"timing\": null, \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"AI-assisted masterminds (top 20% of total vertex contributors)\", \"control_arm\": \"AI-assisted hive minds (bottom 80% of total vertex contributors)\", \"comparison_type\": \"other\", \"direction\": \"treatment_higher\", \"statistics_available\": [\"figure_only\"], \"reported\": \"Descriptive comparison within AI adopters: masterminds produce 4.4 times more artifacts on average than hive minds, as stated in the text accompanying Fig. 5A. This is not an AI-versus-no-AI effect. The main text provides no numerical subgroup means, SDs, standardized effect, or interval endpoints for this comparison.\", \"locator\": \"Journal main-text XML (PMC12407059), Results, 'Productivity effects, human-AI effects, and dilution effects', paragraph beginning 'We next focus our analysis', Fig. 5A and caption; subgroup definition and exploration classification: Materials and Methods, 'Production equalization for AI-assisted creators'\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}}",
+    "quote": "Figure 5A shows that the AI-assisted masterminds are inherently much more productive compared to the hive minds, producing 4.4 times more artifacts on average.",
+    "locator": "Journal main-text XML (PMC12407059), Results, 'AI-assisted creativity as a stochastic versus persistent process', Fig. 2; 'Productivity effects, human-AI effects, and dilution effects', Fig. 5A-B and adjacent paragraphs"
+   },
+   {
+    "field": "data_and_code.code_url",
+    "old": "",
+    "new": "https://doi.org/10.5061/dryad.xpnvx0ksf",
+    "quote": "Replication archive with code is available at Dryad at https://doi.org/10.5061/dryad.xpnvx0ksf.",
+    "locator": "Journal main-text XML (PMC12407059), Acknowledgments, 'Data and materials availability'"
+   },
+   {
+    "field": "studies[0].outcomes[1].contrasts[0].reported",
+    "old": "Figure only (event-study DiD estimates, 95% CIs). Text: 'compared to the nonadopters, the AI-assisted idea frontier is composed of many more artworks post-Stable Diffusion.'",
+    "new": "Figure only (event-study DiD estimates, 95% CIs). Text: 'compared to the nonadopters, the AI-assisted idea frontier is composed of many more artworks post–Stable Diffusion.'",
+    "quote": "compared to the nonadopters, the AI-assisted idea frontier is composed of many more artworks post–Stable Diffusion.",
+    "locator": "Journal main-text XML (PMC12407059), Results, 'Idea frontier expansion following text-to-image releases', paragraph discussing Fig. 1B"
+   }
+  ],
+  "rejected": []
+ }
+}

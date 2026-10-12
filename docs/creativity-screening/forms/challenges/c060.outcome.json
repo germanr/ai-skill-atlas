@@ -1,0 +1,47 @@
+{
+  "cid": "c060",
+  "lens": "outcome",
+  "refuted": true,
+  "eligibility_holds": "yes",
+  "problems": [
+    {
+      "where": "S2-O1",
+      "field": "measure; unit; scored_on_output",
+      "form_value": "measure 'automated_score' (measure_detail: 'Presumably the S1 automated creativity index'); unit 'output'; scored_on_output true",
+      "source_says": "The main text gives only the direction of the S2 comparison and sends the reader to Online Appendix E2, which is not on file. It does not say how the ChatGPT-sample ideas were scored (the S1 index, raters, or something else), what one observation is, or how many ideas or people the comparison uses. So 'automated_score' and 'output' are inferences, which form-spec rule 1 does not allow, and the form's own measure_detail says 'Presumably'. scored_on_output rests only on the words 'ideas ... were less creative'. Fix: leave measure and unit empty and say they are not stated (the spec has no 'not_stated' code for these two fields) until E2 is read. S2 is non-randomized context, so eligibility does not change.",
+      "quote": "we asked a separate Prolific sample to complete the same ideation task while freely using ChatGPT (see Online Appendix E2). The ideas produced with unguided ChatGPT use were less creative than those generated with our textual and visual concretizations.",
+      "locator": "PDF p. 12 (article p. 11), Section 5, second robustness check; form-spec rule 1"
+    },
+    {
+      "where": "S1-O1, contrast Visual concretization vs Control (no concretization), and contrast Textual concretization vs Visual concretization",
+      "field": "contrasts[].reported",
+      "form_value": "Under Visual vs Control: 'Bootstrap (Online Appendix E1): visual concretizations significantly increased idea creativity for ideas more than one SD below mean maturity.' Under Textual vs Visual: no mention of this result.",
+      "source_says": "The paper ran the bootstrap because, for less mature ideas, 'differences between the two types of concretizations were almost negligible', and it describes the test as whether 'visual and textual concretizations led to significant differences in idea creativity and ideator effort at low levels of idea maturity'. The Discussion states the result as visual versus textual. No sentence names the no-AI control as the comparator. Under Visual vs Control, the note implies a significant gain over the control that the main text does not report. The result belongs under Textual vs Visual, where it shows that the sign reverses for ideas more than one SD below mean maturity.",
+      "quote": "However, for very immature ideas, visual concretizations outperformed textual concretizations without increasing effort.",
+      "locator": "PDF p. 12 (article p. 11), Section 6, first paragraph; PDF p. 11 (article p. 10), Section 5, the Figure 4 paragraph and the first robustness check"
+    },
+    {
+      "where": "S1-O1, contrast Textual concretization vs Control (no concretization)",
+      "field": "statistics_available",
+      "form_value": "[\"p_value_only\", \"figure_only\"]",
+      "source_says": "The paper prints no p-value for this contrast. It gives a '30% increase' with no stated basis and the words 'statistically significant'. The form's own reported field says 'No coefficient, SE, or p-value printed.' So 'p_value_only' names a statistic that is not printed. The spec's list has no code for a bare significance statement, so this is a small vocabulary gap, and the reported field already describes what exists. 'figure_only' holds: Figure 4 plots all three arms with 95% CIs.",
+      "quote": "Textual concretizations produced a 30% increase in idea creativity compared with the control condition, which is a statistically significant difference.",
+      "locator": "PDF p. 10 (article p. 9), Section 5, second paragraph; PDF p. 11 (article p. 10), Figure 4; form-spec field note on statistics_available"
+    }
+  ],
+  "confirmed": [
+    "S1-O1 is scored on the output by a computed measure. Each idea refinement gets an embedding novelty score (all-mpnet-base-v2, three-nearest-neighbor similarity among ideas at the same iteration stage) and a gpt-4o-2024-05-13 usefulness score (feasibility, elaboration, inclusivity, scored three times and averaged). Idea creativity is their average. No self-report enters it (PDF p. 9, article p. 8, Section 4.3.2; PDF p. 14, article p. 13, endnote 4).",
+    "The measure_detail numbers match the PDF: Llama 70B r = 0.73, p <= 0.01 (PDF p. 9, Section 4.3.2); 88 Prolific raters, 158 ideas, at least six ratings each, ICC 0.6, Pearson r = 0.27, Spearman r = 0.24, Kendall's tau = 0.16 (PDF p. 14, endnote 3); scores standardized at the iteration level (endnote 4).",
+    "AI was available when the scored output was produced. Participants described an initial idea, received the AI concretization (step 4), then refined the idea text and could keep iterating. So ai_available_when_produced 'yes', timing 'immediate', and question 'with_ai' (creativity construct, AI available) follow the codebook rule. No output is produced after AI is removed, so no after_ai record is missing (PDF p. 8, article p. 7, Section 4.1; PDF p. 9, Figure 3; codebook section 1).",
+    "Construct overall_creativity holds. The paper's 'idea creativity' is the average of novelty and usefulness, and its novelty part is the rarity of each single idea, which the codebook files under novelty, not diversity. The main text reports no similarity or homogenization measure across people and no within-person variety measure, so no across_people or flexibility outcome is missing (PDF p. 9, Section 4.3.2; codebook section 6).",
+    "Unit 'output' and n_units 428 match the paper's own analysis: 'our unit of analysis referred to the iteration level rather than the ideator level', Table 2 notes 'N = 428', and endnote 5 says N is the number of idea refinements (PDF p. 10, article p. 9, Section 5 and Table 2; PDF p. 14, endnote 5).",
+    "The Table 2 idea-creativity columns match the form exactly on the page image: Visual Concretization 0.13 (0.10), 0.17† (0.10), 0.14 (0.10); Textual Concretization 0.29** (0.11), 0.23* (0.10), 0.20* (0.08); Visual x Maturity 0.04 (0.13); Textual x Maturity 0.24** (0.09); significance key as quoted (PDF p. 10, article p. 9, Table 2).",
+    "The contrast arm pairs follow the paper's backward-difference coding: 'textual concretization' compares textual with visual, and 'visual concretization' compares visual with the control (PDF p. 9, article p. 8, Section 4.3.1).",
+    "Endnote 6 matches the form: 0.29 SDs, visual 0.06 SDs below the mean (51st percentile), textual 0.23 SDs above the mean (60th percentile), 'approximately 18% ((60 − 51)/51)'. The text gives beta = 0.29, p <= 0.01, and 'an improvement in creativity of 18%' (PDF p. 14, endnote 6; PDF p. 10, Section 5).",
+    "Visual vs control: the text gives 'a slight improvement for visual concretizations relative to the control group (beta = 0.17, p <= 0.1)' after controls, and the Discussion says visual concretizations 'generated more creative ideas with less effort' than no GenAI support. Direction no_clear_difference fits the printed estimates (PDF p. 11, article p. 10, Section 5; PDF p. 12, article p. 11, Section 6).",
+    "Textual vs control: the text reports a statistically significant '30% increase' with no coefficient or SE, and Figure 4 plots marginal means of idea creativity in SDs with 95% CIs for all three arms over idea maturity from -1 to 1 SD (PDF p. 10, Section 5; PDF p. 11, Figure 4).",
+    "The omissions are right. Ideator effort (log mean of scaled keystrokes and time) measures the process, not the output. Idea maturity is a moderator. The endnote 3 rating study validates the measure and compares no conditions. The initial-idea comparison is a pre-treatment balance check (PDF p. 9, Sections 4.3.3 and 4.3.4; PDF p. 10, Section 5; PDF p. 14, endnote 3).",
+    "S2-O1: the separate sample used ChatGPT freely while doing the same task, so AI was available and question with_ai holds. The direction (concretization arms more creative than unguided ChatGPT) matches the text (PDF p. 12, article p. 11, Section 5)."
+  ],
+  "summary": "S1-O1 is coded correctly in substance: idea creativity is a computed score (embedding novelty plus GPT-4o usefulness) of each of the 428 idea refinements written after the AI concretization, its question, construct, unit, and AI availability follow the codebook, and every Table 2 and endnote number matches the PDF. The conclusion is still refuted on details, because S2-O1's measure and unit are inferred while the main text defers to Online Appendix E2, the bootstrap result for very immature ideas sits under the visual-vs-control contrast although the paper states it as visual versus textual, and the textual-vs-control contrast is coded p_value_only although no p-value is printed."
+}

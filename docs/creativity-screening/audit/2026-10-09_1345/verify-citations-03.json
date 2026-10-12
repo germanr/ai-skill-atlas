@@ -1,0 +1,11 @@
+[
+  {
+    "id": "citations-03-1",
+    "cid": "c012",
+    "verdict": "confirmed",
+    "fix_target": "form",
+    "field": "source.version; final.open_items[0].item",
+    "correct_value": "In source.version, replace 'Zhou, Liu, Huang & Li (2026)' with 'Zhou et al. (2026)'. In final.open_items[0].item, replace '(Zhou, Liu, Huang & Li, 84, 103087)' with '(Zhou et al., 84, 103087)'.",
+    "evidence": "The assembled report C:/Users/German/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening-2026-10-04.md, lines 1334 and 1339, contains the two flagged strings. tools/codex_audit.py, lines 96-100, explicitly requires 'A et al.' for four or more authors. Independently fetched https://api.crossref.org/works/10.1016/j.techsoc.2025.103087 (HTTP 200): the journal article has Yiyong Zhou, Qinghan Liu, Jihao Huang, and Guiquan Li, in that order; published-print is March 2026, volume 84, article 103087. This agrees with forms/citations/c012.json, latest_version. PDF p. 1 of the retrieved preprint lists Qinghan Liu first, followed by Yiyong Zhou, Jihao Huang, and Guiquan Li; the flagged report strings explicitly identify the later journal article, whose author order is established by Crossref. This is an author-label formatting violation, not an incorrect author list or year. The offending strings originate in forms/c012.json at source.version and final.open_items[0].item; tools/build_report.py, lines 263-265 and 281-283, prints these fields directly. The citation file and the report's main 'Zhou et al. (2026)' label are correct."
+  }
+]

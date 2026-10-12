@@ -1,0 +1,65 @@
+{
+ "cid": "c743",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "source.supplement",
+   "form_value": "{\"exists\": \"not_stated\", \"in_this_pdf\": false, \"where\": \"\", \"holds\": \"\"}",
+   "source_says": "Set exists to 'yes' and in_this_pdf to true: Appendix A contains prompt templates; Appendix B and Table 1 give participant details; Appendix C and Table 2 give complete survey means, standard deviations, and p-values; Appendix D and Figure 3 show generated-image examples. These appendices are included in the supplied PDF.",
+   "quote": "Full survey results are shown in Appendix C.",
+   "locator": "PDF p. 5, Section 6; Appendix A, pp. 7-8; Appendices B-D, p. 8; Tables 1-2, p. 9; Figure 3, p. 10"
+  },
+  {
+   "field": "studies (omitted formative study); paper_design_summary",
+   "form_value": "Only S1, the within-subjects comparative evaluation with N=8, is recorded and summarized.",
+   "source_says": "Add the formative study required by the form's one-entry-per-study rule. Six design students or graduates were recruited for a 40-minute mascot-design session using image generation models, followed by a 15-minute interview. It is a qualitative formative study (design_class='other'), with no randomized AI comparison or scored creativity/diversity outcome reported. The paper does not give a separate post-exclusion count or say whether these people overlap with the later evaluation; do not add the two study counts to obtain a unique-person total.",
+   "quote": "To better understand the underlying causes of these limitations, we conducted a formative study with 6 participants to investigate the challenges of using T2I models during exploration,",
+   "locator": "PDF p. 2, Section 1; pp. 2-3, Section 3 (Formative Study) and Section 3.1"
+  },
+  {
+   "field": "company_involvement",
+   "form_value": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+   "source_says": "Set any to true and record company-affiliated authorship: coauthor Hyunjoon Jung is affiliated with Adobe in San Jose, CA, United States. The affiliation is printed on the first page.",
+   "quote": "Adobe San Jose, CA, United States",
+   "locator": "PDF p. 1, Hyunjoon Jung author affiliation"
+  },
+  {
+   "field": "studies[0].participants.who",
+   "form_value": "8 participants familiar with graphic design and the T2I model (6 female, 2 male; age M=23.75, SD=1.67), each with experience in three design projects and regular use of image generation models; the paper does not say whether they are students or professionals",
+   "source_says": "The stated 6 female / 2 male breakdown matches Section 5, but the source is internally inconsistent: Table 1 labels P1-P6 and P8 Female and P7 Male. Flag this discrepancy and attribute the 6/2 figures specifically to the main text; the actual sex breakdown cannot be resolved from this PDF. N=8 and age M=23.75, SD=1.67 are printed in Section 5.",
+   "quote": "All 8 participants (6 females, 2 males; age M=23.75 and SD=1.67)",
+   "locator": "PDF p. 4, Section 5, versus p. 9, Table 1, Sex column"
+  },
+  {
+   "field": "studies[0].outcomes[0].measure",
+   "form_value": "embedding_similarity",
+   "source_says": "The paper reports average semantic similarity but does not identify an embedding-based method, the similarity function, or a similarity model. Set the unconfirmed measure code to null and retain the authors' description in measure_detail. The BERT model described in Section 4.2.1 estimates word concreteness; it is not identified as the model for this outcome.",
+   "quote": "lower average semantic similarity between prompts (M=0.476, SD=0.10) compared to the baseline (M=0.666, SD=0.10; p=0.0032).",
+   "locator": "PDF p. 5, Section 6.2; p. 4, Sections 4.2.1-4.2.2; Appendix A, pp. 7-8"
+  },
+  {
+   "field": "studies[0].outcomes[0].measure_detail (implications for construct, question, and unit)",
+   "form_value": "Average semantic similarity between the prompts a participant used in a condition; the paper does not name the similarity model. Lower similarity means more diverse prompts (sign reversed). Compared within one person's prompts, not across people.",
+   "source_says": "The source does not explicitly define which prompt pairs enter the mean or how similarities are aggregated. It says prompts in the Expandora condition had lower average semantic similarity, and names a paired t-test for usage logs. Within-person computation is plausible but unconfirmed; remove the categorical claim that it compares only one person's prompts and excludes across-person comparisons, and record the missing comparison-set/aggregation details as unknown. The resulting flexibility/with_ai classification and participant unit should be flagged as uncertain rather than presented as source-confirmed.",
+   "quote": "By analyzing what prompts users used to generate images, it was shown that prompts in the Expandora condition were more diverse with lower average semantic similarity between prompts",
+   "locator": "PDF p. 5, Sections 6 and 6.2; no further outcome-computation definition in Appendices A-D, pp. 7-10"
+  }
+ ],
+ "confirmed": [
+  "Source version is arXiv:2503.00791v1 dated 2 Mar 2025, carrying the CHI EA 2025 copyright block and DOI 10.1145/3706599.3720189; the supplied PDF has 10 pages. The full markdown and all PDF pages, including Appendices A-D, were read (PDF pp. 1-10; version stamp on p. 1).",
+  "The title and author list DaEun Choi, Kihoon Son, Hyunjoon Jung, and Juho Kim match the document (PDF pp. 1-2, title/author block and ACM reference).",
+  "The evaluation reports eight people, with the same participants completing both conditions; the arm counts of eight must not be summed into sixteen people. No randomized count or exclusions are reported, so n_randomized=null remains appropriate (PDF p. 4, Section 5; p. 5, procedure; p. 9, Table 1).",
+  "The paper says system and topic order was counterbalanced, without stating random allocation of participants or condition order. No randomized people study is established by either study; retaining assignment.randomized='not_stated', design_class='other', and context_class='none' for the incompletely specified small evaluation is supported (PDF pp. 2-3, Section 3; pp. 4-5, Section 5).",
+  "Expandora uses GPT-4o for prompt suggestions and DALL-E 2 for image generation, offering four prompt suggestions; the comparator is ChatGPT with image generation (PDF p. 3, Section 4.1.2; p. 4, Sections 4.2 and 5).",
+  "Each of the two mascot-design tasks lasted 25 minutes, preceded by a 5-minute tutorial; the interview after both sessions lasted 15 minutes (PDF p. 5, Section 5 continuation).",
+  "S1-O2 reported values match exactly: Expandora prompt count M=30.88, SD=9.16; baseline M=14, SD=4.72; p=0.0007. These are prompt-count means for the eight-person evaluation, not participant counts (PDF p. 5, Section 6.1; N=8 on p. 4, Section 5).",
+  "S1-O1 reported values match exactly: Expandora average semantic similarity M=0.476, SD=0.10; baseline M=0.666, SD=0.10; p=0.0032. The authors describe lower similarity as more diverse prompts (PDF p. 5, Section 6.2).",
+  "The usage-log test is described as a two-sample paired t-test; survey data use a Wilcoxon signed-rank test and a 7-point Likert scale (PDF p. 5, Section 6).",
+  "S1-O3 reported values match Table 2: aggregated CSI baseline M=5.06, STD=0.81; Expandora M=5.53, STD=0.80; P=0.383. This is a survey measure, correctly marked self_report and not scored_on_output (PDF p. 5, Sections 6 and 6.2; p. 9, Table 2).",
+  "Every number in the one_line_finding is reproduced in Section 6.1, Section 6.2, or Table 2; the CSI result supports no statistically significant difference (PDF pp. 4-5 and p. 9, Table 2).",
+  "The evaluation is below the 50-person eligibility threshold; core=no and criterion_2_at_least_50_people=not_met remain supported. The paper does not provide an image-creativity rating or a clearly defined across-person diversity analysis; Appendix D presents image examples (PDF p. 4, Section 5; p. 5, Section 6.2; p. 8, Appendix D; p. 10, Figure 3).",
+  "This is an empirical system paper with a formative study and a comparative evaluation, not a synthesis; there are no pooled estimates to extract (PDF pp. 2-6, Sections 3-8)."
+ ],
+ "summary": "The eight-person comparison and all three reported outcome-statistic strings match the PDF, but random assignment is not stated. Corrections cover the omitted formative study and included appendices, Adobe affiliation, conflicting sex counts, and unsupported specificity in the prompt-similarity method."
+}

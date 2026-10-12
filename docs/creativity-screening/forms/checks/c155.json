@@ -1,0 +1,110 @@
+{
+ "cid": "c155",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "source.version; source.pages",
+   "form_value": "{\"version\": \"abstract only (OpenAlex W4396584060; Semantic Scholar gives the same record). Journal article, International Journal of Human-Computer Interaction, DOI 10.1080/10447318.2024.2345430, published online 2024-05-02. Full text not read: the publisher page and the Utupub repository copy returned bot checks or 403 errors.\", \"pages\": null}",
+   "source_says": "The original abstract-only provenance accurately describes the screener's restricted reading, but the checker obtained the complete publisher-formatted journal article from UTUPub. Updated source.version: journal version published online 2024-05-02, read in memory from the UTUPub PDF; all 13 PDF pages read, comprising the publisher cover and 12 article pages, including references and author biographies; no appendix appears. source.pages = 13. No local markdown conversion or PDF is on file, and neither was created. Repository PDF: https://www.utupub.fi/server/api/core/bitstreams/4535eedd-413a-4058-a360-1eca16442860/content",
+   "quote": "Published online: 02 May 2024.",
+   "locator": "PDF p. 1, publisher cover; PDF pp. 2-13, complete article; https://www.utupub.fi/server/api/core/bitstreams/4535eedd-413a-4058-a360-1eca16442860/content"
+  },
+  {
+   "field": "studies[0].participants",
+   "form_value": "{\"n_randomized\": null, \"n_analyzed\": null, \"counts_are\": \"\", \"exclusions\": \"\", \"population\": \"\", \"who\": \"Human participants (number and population not given in the abstract) and ChatGPT-4, each giving creative interpretations of ambiguous abstract figures; independent evaluators rated creativity.\", \"country\": \"\", \"quote\": \"Participants, including both ChatGPT-4 and humans, were asked to provide creative interpretations for a set of ambiguous, abstract figures.\", \"locator\": \"abstract\"}",
+   "source_says": "Set n_analyzed = 246 and counts_are = people; retain n_randomized = null because there was no random assignment of people to AI assistance. The reported sequence is 310 accessing the study link, 279 completing it, 256 passing attention checks, 247 remaining after exclusions for empty or more-than-three-word responses, and 246 after SemDis could not calculate one participant's score. Table 1 uses 246 humans for both outcomes. The 247 AI observations are separate ChatGPT-4 test sessions, and the 11 evaluators are raters, not additional creative-task participants. Population = online_panel: native English speakers recruited through Prolific. Countries reported for the 256-person post-attention-check sample are UK (166), USA (79), Canada (9), and Ireland (2); final-sample country counts are not given.",
+   "quote": "Data from the remaining 246 participants were analyzed according to the pre-registered data analysis protocol.",
+   "locator": "PDF p. 5 (article p. 4), section 2.1; PDF p. 6 (article p. 5), section 2.3; PDF p. 7 (article p. 6), Results and Table 1 with note a"
+  },
+  {
+   "field": "eligibility.criterion_2_at_least_50_people",
+   "form_value": "unclear",
+   "source_says": "met: 246 human participants were analyzed, so this is not a fewer-than-50-person study. Update eligibility.reason to use the full-text count. eligibility.core remains no because the study compares separate human and AI outputs without assigning people to AI assistance.",
+   "quote": "Data from the remaining 246 participants were analyzed according to the pre-registered data analysis protocol.",
+   "locator": "PDF p. 7 (article p. 6), Results and Table 1; PDF pp. 5-6 (article pp. 4-5), sections 2.1-2.2"
+  },
+  {
+   "field": "studies[0].assignment.preregistered; studies[0].assignment.prereg_locator",
+   "form_value": "{\"preregistered\": \"\", \"prereg_locator\": \"\"}",
+   "source_says": "Set preregistered = yes and record https://osf.io/xv3n2/?view_only=1d9a96705c3c4b79aa9207ba52295ee9. The paper explicitly preregistered hypotheses and the data-analysis process; it reports deviations, including expansion of the rater sample. This is not evidence of randomized assignment to AI assistance.",
+   "quote": "The study hypotheses and data analysis process were pre-registered using Open Science Framework",
+   "locator": "PDF p. 4 (article p. 3), section 2 Method; PDF p. 6 (article p. 5), section 2.3"
+  },
+  {
+   "field": "studies[0].task.description; studies[0].task.duration",
+   "form_value": "{\"description\": \"Figural Interpretation Quest (FIQ): give creative interpretations of ambiguous, abstract figures.\", \"duration\": \"\"}",
+   "source_says": "The task used four FIQ figures in the same fixed order for humans and AI. Humans supplied two interpretations per figure, aiming to make them semantically different, with 30 seconds per figure. ChatGPT-4 was tested separately with the same images and task instructions, without the human practice image, and response word limits chosen to match human response lengths.",
+   "quote": "Human participants were given 30 seconds to enter the two interpretations for each of the figures.",
+   "locator": "PDF p. 5 (article p. 4), section 2.2; PDF p. 6 (article p. 5), continuation of section 2.2"
+  },
+  {
+   "field": "studies[0].outcomes[0].measure_detail; studies[0].outcomes[0].unit",
+   "form_value": "{\"measure_detail\": \"Subjective creativity ratings from independent evaluators; rater type and scale not given in the abstract.\", \"unit\": \"\"}",
+   "source_says": "Retain measure = human_raters. Eleven psychology students from the University of Bergen or University of Turku, blinded to human/AI origin, scored interpretations on a 0-2 creativity scale; the initial three raters were supplemented by eight. For the mixed models, unit = output (each single interpretation), with random intercepts for human participant or AI session; Table 1 instead summarizes scores averaged across each participant/session's responses. Do not count individual ratings as creative-task participants; the total number of analyzed output observations is not explicitly reported, so n_units remains null.",
+   "quote": "The raters were psychology students from the University of Bergen (Norway) or the University of Turku (Finland), and they were blind to the origin of the texts they evaluated.",
+   "locator": "PDF p. 6 (article p. 5), sections 2.3 Scoring and 2.4 Statistical analyses; PDF p. 7 (article p. 6), Table 1"
+  },
+  {
+   "field": "studies[0].outcomes[1].measure; studies[0].outcomes[1].measure_detail; studies[0].outcomes[1].unit",
+   "form_value": "{\"measure\": \"not_stated\", \"measure_detail\": \"The abstract says the study measured flexibility and links it to generating semantically diverse ideas; it does not say how flexibility was scored.\", \"unit\": \"\"}",
+   "source_says": "Set measure = automated_score and unit = pair. Flexibility is the SemDis semantic distance between the two interpretations of the same figure by a participant/session, averaged over five semantic spaces, using the multiplicative compositional model and remove-filler-and-clean preprocessing. It measures within-person/session flexibility, not diversity across people. Mixed models analyze single semantic-distance scores with participant/session random intercepts; the total analyzed pair count is not explicitly reported, so n_units remains null.",
+   "quote": "For each pair of two interpretations of a figure, the mean semantic distance was computed across five semantic spaces",
+   "locator": "PDF p. 6 (article p. 5), sections 2.3 Scoring and 2.4 Statistical analyses"
+  },
+  {
+   "field": "studies[0].outcomes[0].contrasts[0].reported; studies[0].outcomes[0].contrasts[0].statistics_available; studies[0].outcomes[0].contrasts[0].locator",
+   "form_value": "{\"reported\": \"No numbers in the abstract. Abstract: human participants excelled in subjectively perceived creativity; the most creative human responses were higher than those of AI.\", \"statistics_available\": [], \"locator\": \"abstract\"}",
+   "source_says": "The abstract-only direction is correct, but the full text supplies quantitative results. Table 1 creativity: GPT-4 N = 247 sessions, mean = 0.632, SD = 0.0795, 95% CI [0.622, 0.642]; humans N = 246 people, mean = 0.738, SD = 0.0827, 95% CI [0.728, 0.749]. The overall mixed-model contrast is human minus GPT-4: B = 0.107, SE = 0.008, 95% CI [0.090, 0.124], t(1946) = 12.64, p < .001. Three humans (1.2%) had a total creativity score above the best GPT-4 session. Available statistics include arm_means_sds_ns, regression_coefficient_se, confidence_interval, and test_statistic; no standardized effect needs to be computed.",
+   "quote": "Overall, humans’ creativity scores (Figure 2(A)) were higher than those of GPT-4,",
+   "locator": "PDF p. 7 (article p. 6), Table 1, section 3.1 Descriptive statistics and correlations, and Overall performance"
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts[0].reported; studies[0].outcomes[1].contrasts[0].statistics_available; studies[0].outcomes[1].contrasts[0].locator",
+   "form_value": "{\"reported\": \"No numbers in the abstract. Abstract: AI, on average, demonstrated higher flexibility; the most creative human responses were higher than those of AI in flexibility.\", \"statistics_available\": [], \"locator\": \"abstract\"}",
+   "source_says": "The abstract-only summary is correct, but the full text supplies quantitative results. Table 1 flexibility: GPT-4 N = 247 sessions, mean = 0.934, SD = 0.0231, 95% CI [0.931, 0.937]; humans N = 246 people, mean = 0.899, SD = 0.0626, 95% CI [0.891, 0.906]. The overall mixed-model contrast is human minus GPT-4: B = −0.036, SE = 0.004, 95% CI [-0.044, −0.027], t(484.04) = −8.493, p < .001. Thirteen humans (5.3%) exceeded the best GPT-4 session in total flexibility. The mean comparison favors AI, while the highest observed human score exceeds the highest AI score; those are different summaries. Available statistics include arm_means_sds_ns, regression_coefficient_se, confidence_interval, and test_statistic.",
+   "quote": "However, flexibility (i.e. semantic distance between the responses) (Figure 2(B)) was higher for GPT-4 than humans,",
+   "locator": "PDF p. 7 (article p. 6), Table 1, section 3.1 Descriptive statistics and correlations, and Overall performance"
+  },
+  {
+   "field": "studies[0].outcomes (omitted descriptive response-diversity result)",
+   "form_value": "Only subjectively perceived creativity and flexibility are recorded.",
+   "source_says": "Add the descriptive corpus-level range of responses: humans produced 794 unique responses versus 385 for ChatGPT-4. These are response counts, not people, ratings, or AI sessions. This is distinct from semantic distance within a participant's response pair. It can be recorded as diversity, category_count, unit = set, question = none, comparison_type = ai_vs_human, direction = treatment_lower. The paper gives no uncertainty estimate or detailed deduplication procedure for this comparison; do not invent either or interpret it as an effect of AI assistance on humans.",
+   "quote": "In total, humans produced 794 unique responses to the task, while ChatGPT-4 produced only 385 responses, showing an overall smaller range of responses for AI compared to humans.",
+   "locator": "PDF p. 7 (article p. 6), section 3.1 Descriptive statistics and correlations; PDF pp. 9-10 (article pp. 8-9), Discussion"
+  },
+  {
+   "field": "one_line_finding",
+   "form_value": "On the Figural Interpretation Quest, ChatGPT-4 showed higher average flexibility than humans, while humans received higher subjective creativity ratings and the best human responses beat AI on both (abstract; no numbers there).",
+   "source_says": "The direction is confirmed; a full-text replacement with the main numbers is: Among 246 humans and 247 ChatGPT-4 sessions, humans had higher mean rated creativity (0.738 vs 0.632), whereas ChatGPT-4 had higher mean flexibility (0.934 vs 0.899), and the highest human scores exceeded the highest AI scores on both measures (PDF p. 7, article p. 6, Table 1 and section 3.1).",
+   "quote": "Table 1 shows the descriptive statistics for GPT-4 and humans, averaged across all the four FIQ objects.",
+   "locator": "PDF p. 7 (article p. 6), Table 1 and section 3.1 Descriptive statistics and correlations"
+  },
+  {
+   "field": "sample_overlap",
+   "form_value": "{\"shares_participants_with\": \"\", \"quote\": \"\", \"locator\": \"\"}",
+   "source_says": "The human data were collected as part of another study, preregistered at https://osf.io/fy3mn/?view_only=f1cf960d0170433dba9d31df68a6eaf7. Record this reuse and the linked registration. The article does not identify another publication or an atlas cid for the shared sample; leave that identity unresolved.",
+   "quote": "Human participant data were collected as part of another study, and such data collection was previously pre-registered at OSF.io",
+   "locator": "PDF p. 6 (article p. 5), end of section 2.2"
+  },
+  {
+   "field": "data_and_code",
+   "form_value": "{\"data_url\": \"\", \"code_url\": \"\"}",
+   "source_says": "The article supplies both links. data_url = https://osf.io/download/ap3ur/?view_only=214c1de69fb146e099968e75382b0515 ; code_url = https://osf.io/download/9pj4s/?view_only=214c1de69fb146e099968e75382b0515 . These are the printed data and R-script locations; their contents were not downloaded for this check.",
+   "quote": "Data supporting the findings of the present article can be found following this url:",
+   "locator": "PDF p. 11 (article p. 10), Data availability and Code availability"
+  }
+ ],
+ "confirmed": [
+  "Checked the complete UTUPub publisher PDF in memory, all 13 PDF pages including the cover, references, and author biographies; no appendix appears and no supplementary document is cited (PDF pp. 1-13; repository URL in the source correction).",
+  "The title, authors Simone Grassini and Mika Koivisto, DOI 10.1080/10447318.2024.2345430, and online publication date 2024-05-02 match the form (PDF pp. 1-2, cover and title page).",
+  "One AI-versus-human comparison is reported: humans and ChatGPT-4 independently interpreted the same FIQ figures, with AI sessions collected separately from previously collected human data; design_class and context_class = ai_vs_human, criterion_1 = not_met, and core = no are correct (PDF pp. 5-6, sections 2.1-2.2).",
+  "The randomization described is the order of interpretations presented to each rater, not assignment of creative-task participants to AI assistance; figures were presented in the same fixed order (PDF p. 5, section 2.2; PDF p. 6, section 2.3).",
+  "There are 246 analyzed creative-task participants, distinct from 247 AI test sessions and 11 raters; this is not a fewer-than-50-person experiment, and n_randomized should remain null (PDF pp. 5-7, sections 2.1 and 2.3, Results, and Table 1 note a).",
+  "Creativity is scored on produced interpretations, and flexibility is semantic distance within a participant/session's pair of interpretations; criterion_3 = met, task.type = divergent_test, and question = none for the AI-versus-human contrasts are appropriate (PDF pp. 5-6, sections 2.2-2.4).",
+  "Both original reported strings faithfully summarize the abstract: higher average AI flexibility, higher average human rated creativity, and the best humans exceeding AI on both; the abstract itself contains no sample sizes or effect estimates (PDF p. 2, Abstract; PDF p. 7, Table 1 and Overall performance).",
+  "The document is an empirical comparison, not a synthesis; leaving study-count and pooled-effect synthesis fields empty is appropriate (PDF pp. 4-8, Method and Results).",
+  "The paper reports no potential conflict of interest; no company research involvement is disclosed (PDF p. 2, academic affiliations; PDF p. 11, Acknowledgements, Author contributions, and Disclosure statement)."
+ ],
+ "summary": "The AI-versus-human classification and directional findings are confirmed, but the newly accessible full text supplies missing counts, methods, statistics, response diversity, and provenance. The study analyzed 246 humans alongside 247 ChatGPT-4 sessions and contains no randomized assignment of people to AI assistance."
+}

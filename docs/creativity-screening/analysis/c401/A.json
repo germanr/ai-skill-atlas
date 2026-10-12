@@ -1,0 +1,206 @@
+{
+ "cid": "c401",
+ "analyst": "A",
+ "script": "C:/Dropbox/Admin/website/ai-skill-atlas/docs/creativity-screening/analysis/c401/A.py",
+ "data_files": [
+  "D:/projects/ai-skill-atlas/creativity-data/manifest.json",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/codebook.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/processed/creativity_df_CI.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/processed/campaign_text_overlap.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/supplementary/human_expertise_campaigns.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/supplementary/all_campaigns.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/processed/Batch_5322742_batch_results.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/human/human_campaign_evaluations.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/elo_ratings/elo_ratings_gpt-4o-mini.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/elo_ratings/elo_real_vs_simulated.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/supplementary/creativity_df_evaluated_scored.csv",
+  "D:/projects/ai-skill-atlas/creativity-data/osf-kzuge/osf_package/data/evaluations/llm_scores/campaign_evaluations_gpt-4o-mini.csv"
+ ],
+ "results": [
+  {
+   "slug": "s1_campaign_word_count_personalized_vs_generic",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 114,
+     "computed": 114,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 116,
+     "computed": 116,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed",
+     "printed": 331,
+     "computed": 331,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": 1.5,
+     "computed": 1.4944041137326298,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.94,
+     "computed": 0.9390804150107245,
+     "match": true
+    },
+    {
+     "statistic": "all_three_arms_mean_PDF_p19",
+     "printed": 355.4,
+     "computed": 355.41389728096675,
+     "match": true
+    },
+    {
+     "statistic": "all_three_arms_sd_PDF_p19",
+     "printed": 148.0,
+     "computed": 148.0326980267137,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 114,
+    "n_control": 116,
+    "treatment_mean": 362.67543859649123,
+    "treatment_sd": 127.01700085596062,
+    "control_mean": 361.1810344827586,
+    "control_sd": 208.12791213841177,
+    "difference": 1.494404113732628,
+    "difference_se": 22.69239333912722,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Source: creativity_df_CI.csv; one final campaign per unique participant_id; campaign_wc is the final submitted campaign word count (data/codebook.csv; compute_CI_measures.R lines 266-268). All 331 rows already satisfy the published attention-check, external-AI-use, engagement and >=30-minute duration exclusions (preprocessing.R lines 45-93); no additional exclusions or missing word counts. basegpt=Generic AI, creativegpt=Personalized AI, creativegpt_rand=Partially personalized AI. Counts: PDF pp.19,52/Table S2. The printed coefficients and p-values (PDF p.19) reproduce with unadjusted OLS campaign_wc ~ arm using all three arms and conventional t tests (328 residual degrees of freedom). The pooled descriptive mean/SD also reproduce, but that pooled SD is not used as either arm's SD. The computed object uses only the named two arms, averages within participant first (one observation here), uses sample SDs with n-1 denominators, and fits OLS on an intercept plus treatment indicator with HC2 robust covariance. Individual randomization; no clusters or paired rounds. Difference is treatment minus generic, in words; more words does not necessarily imply greater creativity. Both length contrasts share the same generic control."
+  },
+  {
+   "slug": "s1_campaign_word_count_partially_personalized_vs_generic",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment",
+     "printed": 101,
+     "computed": 101,
+     "match": true
+    },
+    {
+     "statistic": "n_control",
+     "printed": 116,
+     "computed": 116,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed",
+     "printed": 331,
+     "computed": 331,
+     "match": true
+    },
+    {
+     "statistic": "regression.coef",
+     "printed": -20.6,
+     "computed": -20.58697507681804,
+     "match": true
+    },
+    {
+     "statistic": "p_value",
+     "printed": 0.31,
+     "computed": 0.3079918891893508,
+     "match": true
+    },
+    {
+     "statistic": "all_three_arms_mean_PDF_p19",
+     "printed": 355.4,
+     "computed": 355.41389728096675,
+     "match": true
+    },
+    {
+     "statistic": "all_three_arms_sd_PDF_p19",
+     "printed": 148.0,
+     "computed": 148.0326980267137,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 101,
+    "n_control": 116,
+    "treatment_mean": 340.5940594059406,
+    "treatment_sd": 62.84237077288249,
+    "control_mean": 361.1810344827586,
+    "control_sd": 208.12791213841177,
+    "difference": -20.58697507681802,
+    "difference_se": 20.310711632828436,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "Source: creativity_df_CI.csv; one final campaign per unique participant_id; campaign_wc is the final submitted campaign word count (data/codebook.csv; compute_CI_measures.R lines 266-268). All 331 rows already satisfy the published attention-check, external-AI-use, engagement and >=30-minute duration exclusions (preprocessing.R lines 45-93); no additional exclusions or missing word counts. basegpt=Generic AI, creativegpt=Personalized AI, creativegpt_rand=Partially personalized AI. Counts: PDF pp.19,52/Table S2. The printed coefficients and p-values (PDF p.19) reproduce with unadjusted OLS campaign_wc ~ arm using all three arms and conventional t tests (328 residual degrees of freedom). The pooled descriptive mean/SD also reproduce, but that pooled SD is not used as either arm's SD. The computed object uses only the named two arms, averages within participant first (one observation here), uses sample SDs with n-1 denominators, and fits OLS on an intercept plus treatment indicator with HC2 robust covariance. Individual randomization; no clusters or paired rounds. Difference is treatment minus generic, in words; more words does not necessarily imply greater creativity. Both length contrasts share the same generic control."
+  },
+  {
+   "slug": "s1_final_campaign_word_changes_personalized_vs_generic",
+   "round": "all",
+   "reproduced": [
+    {
+     "statistic": "n_treatment_from_Table_S2",
+     "printed": 114,
+     "computed": 114,
+     "match": true
+    },
+    {
+     "statistic": "n_control_from_Table_S2",
+     "printed": 116,
+     "computed": 116,
+     "match": true
+    },
+    {
+     "statistic": "study_n_analyzed",
+     "printed": 331,
+     "computed": 331,
+     "match": true
+    },
+    {
+     "statistic": "adjusted_treatment_level_at_zero_messages",
+     "printed": 64.5,
+     "computed": 64.50667946207139,
+     "match": true
+    },
+    {
+     "statistic": "adjusted_control_level_at_zero_messages",
+     "printed": 80.5,
+     "computed": 80.54665312600221,
+     "match": true
+    }
+   ],
+   "computed": {
+    "n_treatment": 114,
+    "n_control": 116,
+    "treatment_mean": 51.20245519082224,
+    "treatment_sd": 37.92577409278649,
+    "control_mean": 61.20965129727296,
+    "control_sd": 42.51580058718652,
+    "difference": -10.00719610645072,
+    "difference_se": 5.310360808429096,
+    "se_type": "HC2",
+    "n_clusters": null
+   },
+   "notes": "IMPORTANT EXTRACTION CORRECTION: the printed 64.5% personalized and 80.5% generic values (PDF p.51) are not observed arm means. They reproduce as arm coefficients at msg_count=0 from the Gaussian identity model 100*(1-overlap_score) ~ randomization + msg_count - 1, fit to all 331 people (extract_campaign_edits.R lines 373-378). The message-count coefficient is -2.660844854250 percentage points per message. msg_count is post-treatment: extraction-spec rule 5 excludes the paper's adjusted comparison. Flag the reconciled extraction for correction. As explicitly requested by the data-analysis brief, the computed object supplies the UNADJUSTED participant-level replacement, not the adjusted printed levels. Construct other is descriptive and must never be pooled as creativity. Source: campaign_text_overlap.csv joined by one-based row_index to the original row order of creativity_df_CI.csv, as in the authors' code; row_index is not participant_id. All 331 mappings agree with the saved generic-arm flags. The saved participant outcome is 100*(1-maximum Jaccard overlap) between final campaign and identified AI campaign responses, using unique lowercase word sets; it is not a token edit distance or pooled fraction of individual words changed. There is one saved maximum-overlap score per participant. The authors assign overlap zero when no AI campaign is identified; preserve these rows as 100% difference (14 personalized, 53 generic). No new exclusions; counts reproduce Table S2's general analyzed sample because every participant has a stored outcome (no editing-specific counts are printed). The final campaign and AI response texts are not available to re-audit the original LLM campaign detection or tokenization. Participant-level sample SDs and two-arm OLS HC2 standard errors are computed only after reproducing the printed adjusted levels. Difference is personalized minus generic in percentage points, with no sign reversal. Individual between-person design; only round all applies."
+  }
+ ],
+ "skipped": [
+  {
+   "slug": "s1_quality_expert_elo_personalized_vs_generic",
+   "reason": "Cannot reproduce the expert-human Elo coefficient 158.2 (p=0.14; PDF p.32). human_expertise_campaigns.csv contains 100 campaign records (50 personalized, 50 generic), but only metadata and marketing_score (6-8), with no expert Elo scores or pairwise judgments/order. all_campaigns.csv likewise has no expert Elo. The available Batch_5322742_batch_results.csv has 1,655 Likert ratings across 331 participants (five ratings per campaign on five 1-5 dimensions), and human_campaign_evaluations.csv has their participant summaries; these are not the reported 100-campaign Prolific expert pairwise validation. The saved Elo rating runs are from LLM judges. The paper also omits the complete expert regression specification. No outcome or standard error is substituted."
+  },
+  {
+   "slug": "s1_theme_diversity_personalized_vs_generic",
+   "reason": "Cannot reproduce the same GPT-4o theme extraction and text-embedding-3-large pooled-centroid procedure. The downloaded data lack the human final campaign texts, saved campaign_themes.rds, theme embeddings, the referenced personalized_campaigns_simulated.csv, and main Creativity_Data.csv. Author creativity_analysis.R lines 160-212 pools human and 100 simulated campaigns, computes 1-cosine similarity, and converts to 0-100 percentile ranks. elo_real_vs_simulated.csv supplies a different sensitivity-analysis empirical CDF score (sensitivity_elo_creativity.R lines 175-192). Multiplying that stored CDF by 100 gives treatment/control means 53.160744087597/58.176654132331, not the printed 52.3/53.7 (PDF p.10), despite matching the arm counts. These are diagnostic checks of the available cache, not a re-estimation of the published diversity measure. Per task rule 5, no replacement embeddings, participant SDs, or HC2 diversity effect are calculated."
+  },
+  {
+   "slug": "s1_theme_diversity_partially_personalized_vs_generic",
+   "reason": "Cannot reproduce the same GPT-4o theme extraction and text-embedding-3-large pooled-centroid procedure. The downloaded data lack the human final campaign texts, saved campaign_themes.rds, theme embeddings, the referenced personalized_campaigns_simulated.csv, and main Creativity_Data.csv. Author creativity_analysis.R lines 160-212 pools human and 100 simulated campaigns, computes 1-cosine similarity, and converts to 0-100 percentile ranks. elo_real_vs_simulated.csv supplies a different sensitivity-analysis empirical CDF score (sensitivity_elo_creativity.R lines 175-192). Multiplying that stored CDF by 100 gives treatment/control means 57.614114079621/58.176654132331, not the printed 56.5/53.7 (PDF p.10), despite matching the arm counts. These are diagnostic checks of the available cache, not a re-estimation of the published diversity measure. Per task rule 5, no replacement embeddings, participant SDs, or HC2 diversity effect are calculated."
+  }
+ ]
+}

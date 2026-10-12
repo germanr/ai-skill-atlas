@@ -1,0 +1,69 @@
+{
+ "cid": "c104",
+ "agrees": false,
+ "has_randomized_people_study": false,
+ "corrections": [
+  {
+   "field": "studies[0].participants.n_analyzed; studies[0].arms[0].n_analyzed; studies[0].arms[1].n_analyzed; studies[0].arms[2].n_analyzed",
+   "form_value": "{\"participants.n_analyzed\": 32, \"arms.n_analyzed\": [32, 32, 32]}",
+   "source_says": "Set the study and per-condition analyzed counts to null. The abstract gives study N = 32, without identifying the count as randomized or analyzed, reporting exclusions, or giving per-condition completion counts. Preserve N = 32 as the reported within-subjects sample in prose; the form itself acknowledges that the analyzed counts were inferred.",
+   "quote": "We conducted a mixed-methods within-subjects study (N = 32) comparing three conditions: baseline, low-semantic-similarity inspiration, and high-semantic-similarity inspiration.",
+   "locator": "OpenAlex W7214572596, abstract, sentence 3 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1."
+  },
+  {
+   "field": "studies[0].arms[0].ai",
+   "form_value": "none",
+   "source_says": "Set to null pending the baseline description. The abstract names a baseline but does not state whether it used no AI, another AI configuration, or another aid; the arm description already acknowledges this uncertainty.",
+   "quote": "We conducted a mixed-methods within-subjects study (N = 32) comparing three conditions: baseline, low-semantic-similarity inspiration, and high-semantic-similarity inspiration.",
+   "locator": "OpenAlex W7214572596, abstract, sentence 3 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1."
+  },
+  {
+   "field": "studies[0].outcomes[0].scored_on_output; studies[0].outcomes[0].question; studies[0].outcomes[0].unit; studies[0].outcomes[0].ai_available_when_produced; studies[0].outcomes[0].timing",
+   "form_value": "{\"scored_on_output\": true, \"question\": \"with_ai\", \"unit\": \"participant\", \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\"}",
+   "source_says": "These fields should remain null rather than assert a confirmed output score, with-AI outcome, participant-level analysis, AI availability during the scored task, or immediate assessment. The abstract reports increased divergent thinking but supplies no scoring method, analysis unit, or assessment schedule. It cannot distinguish an outcome assessed during assisted drawing from one assessed after assistance; criterion 3 correctly remains unclear.",
+   "quote": "Notably, environment-grounded inspirations increased divergent thinking relative to baseline, contrasting with prior work showing GenAI typically hinders divergent thinking.",
+   "locator": "OpenAlex W7214572596, abstract, sentence 6 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1."
+  },
+  {
+   "field": "studies[0].outcomes[1].measure; studies[0].outcomes[1].unit; studies[0].outcomes[1].ai_available_when_produced; studies[0].outcomes[1].timing",
+   "form_value": "{\"measure\": \"self_report\", \"unit\": \"participant\", \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\"}",
+   "source_says": "Perceived usefulness is named, but the abstract does not identify the instrument, respondents, analysis unit, or assessment timing. Use measure = not_stated and null for the unconfirmed unit, AI availability at assessment, and timing. The description that this appears to be participants’ own rating is an inference, not verified measurement information.",
+   "quote": "Quantitative measures showed no significant differences in perceived usefulness.",
+   "locator": "OpenAlex W7214572596, abstract, sentence 4 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1."
+  },
+  {
+   "field": "studies[0].outcomes[1].contrasts[0].treatment_arm; studies[0].outcomes[1].contrasts[0].control_arm",
+   "form_value": "{\"treatment_arm\": \"Low- and high-semantic-similarity inspiration\", \"control_arm\": \"Baseline\"}",
+   "source_says": "The statement of no significant differences does not identify a specific test or a pooled low-/high-similarity-versus-baseline comparison. Leave the contrast arms unspecified (null), while retaining the verbatim finding and the three conditions in the study description.",
+   "quote": "Quantitative measures showed no significant differences in perceived usefulness.",
+   "locator": "OpenAlex W7214572596, abstract, sentence 4 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1."
+  },
+  {
+   "field": "company_involvement.any",
+   "form_value": "false",
+   "source_says": "Set to null: company involvement is not established by the accessible abstract or bibliographic metadata. University author affiliations cannot establish the absence of company funding or other involvement; the full acknowledgments were not available.",
+   "quote": "We contribute a novel system and empirical evidence that semantic similarity distance can influence how people interpret and incorporate opportunistic inspiration.",
+   "locator": "OpenAlex W7214572596, complete abstract (no funding or acknowledgment statement; quote from sentence 7), https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832; Crossref author affiliations, https://api.crossref.org/works/10.1145/3829807.3829832"
+  },
+  {
+   "field": "notes",
+   "form_value": "design_class is 'other' because the abstract describes a within-subjects experiment (likely a supervised session with a tangible device) but does not state that condition order was randomized; if the full text confirms randomized or counterbalanced order, it becomes lab_rct. population is 'not_stated' because the abstract does not describe the participants.",
+   "source_says": "Counterbalancing alone does not establish random assignment of condition order. Keep design_class = other and assignment.randomized = not_stated unless randomization is documented; lab_rct additionally requires confirmation of a supervised setting. The abstract establishes neither randomized order nor the study setting.",
+   "quote": "A within-person design qualifies when the order of conditions is randomized.",
+   "locator": "creativity-codebook.md, section 3, eligibility criterion 1, and section 4, design definitions; OpenAlex abstract, sentence 3 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832)."
+  }
+ ],
+ "confirmed": [
+  "Source actually read: abstract only, independently retrieved in full through OpenAlex abstract_inverted_index (W7214572596) and Semantic Scholar (6520f08761cedec69830498dc50c020554615af1); the abstracts match. No markdown or PDF is on file for c104 (retrieval.json: status = not_obtained). ACM’s publisher landing page returned HTTP 403 during this check, and an arXiv API title query for Magic Easel returned zero results; no full-text, appendix, or supplement was read.",
+  "The title and five authors in the form match Crossref’s deposited metadata. Crossref also confirms Proceedings of the 14th Nordic Conference on Human-Computer Interaction, publication year 2026, CC BY 4.0, and page range 1-28; source.pages = 28 is supported as bibliographic metadata, not as a PDF inspected in this check. Locator: https://api.crossref.org/works/10.1145/3829807.3829832 (title, author, container-title, published, license, and page fields).",
+  "The abstract describes Magic Easel detecting environmental objects and semantically matching them with users’ in-progress drawings to generate visual inspirations, supporting a human drawing task and generative visual inspiration. Locator: OpenAlex W7214572596, abstract, sentence 2 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1.",
+  "The reported design is a mixed-methods within-subjects study with N = 32 and three named conditions: baseline, low-semantic-similarity inspiration, and high-semantic-similarity inspiration. This is a reported subject sample below 50, not a count of texts, ideas, or ratings; an explicit post-exclusion analyzed count is unavailable. The three conditions reuse the within-subjects sample. Locator: OpenAlex W7214572596, abstract, sentence 3 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1.",
+  "No random assignment of people or condition order is stated, and no creativity/diversity scoring procedure is given. design_class = other, assignment.randomized = not_stated, criterion 1 = unclear, and criterion 3 = unclear are supportable provisional classifications. has_randomized_people_study = false here means no qualifying randomized study could be verified from the accessible source, not that randomization was disproved. Locator: complete OpenAlex/Semantic Scholar abstract, especially sentences 3 and 6.",
+  "Core exclusion on the reported N = 32 is supportable: criterion 2 = not_met and core = no. context_class = none is provisionally appropriate because the accessible source does not establish an observational output comparison, AI-versus-human output study, or synthesis; it also cannot establish a randomized study for the two-screener pipeline. Locator: abstract, sentence 3; creativity-codebook.md, sections 3-4.",
+  "S1-O1 reported text is an exact substring of the abstract: environment-grounded inspirations increased divergent thinking relative to baseline. The positive direction is supported, but no effect size, test statistic, p value, or interval is provided. Locator: OpenAlex W7214572596, abstract, sentence 6 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1.",
+  "S1-O2 reported text exactly matches the abstract sentence stating no significant differences in perceived usefulness. The no-clear-difference direction is supported; the abstract gives no numerical result or identified test. Locator: OpenAlex W7214572596, abstract, sentence 4 (https://api.openalex.org/works/https://doi.org/10.1145/3829807.3829832); identical abstract independently retrieved from Semantic Scholar, paper 6520f08761cedec69830498dc50c020554615af1.",
+  "The one-line finding accurately paraphrases the reported study N = 32 and both qualitative result directions, provided it remains labeled abstract-only and does not establish an analyzed count, output-based score, or specific usefulness contrast. Locator: abstract, sentences 3, 4, and 6.",
+  "This is a system/user-study report in the accessible abstract, not a synthesis; the default null study/effect counts and empty pooled-estimate fields are appropriate. Locator: abstract, sentences 2-3 and 7."
+ ],
+ "summary": "The matching OpenAlex and Semantic Scholar abstracts report a within-subjects study with N = 32, increased divergent thinking relative to baseline, and no significant differences in perceived usefulness; no full text was available to this check. The form requires corrections for unsupported analyzed counts, baseline and outcome details, company involvement, and the counterbalancing rule; random assignment with creativity or diversity scored on participants’ output cannot be confirmed."
+}

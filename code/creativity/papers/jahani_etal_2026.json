@@ -1,0 +1,523 @@
+{
+ "schema": 1,
+ "paper_key": "jahani_etal_2026",
+ "cid": "c383",
+ "status": "verified",
+ "status_reason": null,
+ "paper": {
+  "authors_short": "Jahani et al.",
+  "authors_full": "Eaman Jahani, Benjamin S. Manning, Joe Zhang, Hong-Yi TuYe, Mohammed Alsobay, Christos Nicolaides, Siddharth Suri, David Holtz",
+  "year": 2026,
+  "title": "Prompt Adaptation as a Dynamic Complement in Generative AI Systems",
+  "venue": "Information Systems Research",
+  "doi": "10.1287/isre.2025.2029",
+  "url": "https://doi.org/10.1287/isre.2025.2029",
+  "pdf_filename": "Jahani et al (2026) - Prompt Adaptation as a Dynamic Complement in Generative AI Systems.pdf",
+  "version_read": "arXiv:2407.14333v7 [cs.HC], stamped 7 Jan 2026; manuscript title page dated January 8, 2026 (PDF p. 1).",
+  "is_own_paper": false,
+  "one_line_finding": "In the logo experiment (1,857 people analyzed; p. 47, Appendix C.5), DALL-E 3 (Verbatim) improved quality over DALL-E 2 by 0.8075 Bradley–Terry β (95% CI [0.7120, 0.9030], p < 10^−10; p. 18, section 4.2.1), with replay attributing approximately 92.7% to model capability and 7.2% to prompt adaptation (prompting p = 0.101; p. 19, section 4.2.2).",
+  "shared_samples": "not_stated"
+ },
+ "provenance": {
+  "source_document": "Jahani et al (2026) - Prompt Adaptation as a Dynamic Complement in Generative AI Systems.pdf",
+  "source_url": "https://doi.org/10.1287/isre.2025.2029",
+  "source_version": "arXiv:2407.14333v7 [cs.HC], stamped 7 Jan 2026; manuscript title page dated January 8, 2026 (PDF p. 1).; PDF SHA-256 da302eeea9880473382386273764bf7a9913cc67cfd3c6fd371c1179843afb5a",
+  "extraction_date": "2026-10-11",
+  "review_date": "2026-10-11",
+  "review_basis": "primary_source",
+  "checked_by": "two Codex extractors, a reconciler, a mechanical check, a verifier, and, where flagged, a fixer and a second verifier",
+  "statement": "Extracted and checked by Codex jobs (gpt-6-astra): two independent extractions, a reconciliation against the source PDF, a script that matched every number to its quote and every quote to the cited page, and a verifier; not yet verified by a human research assistant."
+ },
+ "studies": [
+  {
+   "study_id": "S2",
+   "label": "Experiment 2: open-ended logo generation",
+   "design_class": "online_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": {},
+   "cluster_se_treatment": "Individuals were randomized. Repeated output observations were handled with standard errors clustered by participant; PDF p. 58, Appendix F.2.1.",
+   "n_randomized": null,
+   "n_analyzed": 1857,
+   "counts_source": {
+    "locator": "PDF p. 47, Appendix C.5 (final analyzed total); PDF p. 36, Table A.2, sample-size note (final analyzed arms)",
+    "quote": "Our final sample thus included 1,857 participants and 18,425 prompts.\nSample sizes: DALL-E 2 (D2) = 628, DALL-E 3 Revised (D3r) = 612, DALL-E 3 Verbatim (D3v) = 617."
+   },
+   "arms": [
+    {
+     "name": "DALL-E 2",
+     "description": "Earlier image-generation model, with participant prompts passed directly without intermediate rewriting; PDF p. 9, section 3.1. Analyzed count: PDF p. 36, Table A.2.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 628
+    },
+    {
+     "name": "DALL-E 3 (Verbatim)",
+     "description": "Same image model as Revised, with a hidden prefix asking GPT-4 to leave the participant prompt unchanged. Rewriting was reduced but not eliminated; PDF pp. 9 and 38, sections 3.1 and B.2. Analyzed count: PDF p. 36, Table A.2.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 617
+    },
+    {
+     "name": "DALL-E 3 (Revised)",
+     "description": "Default DALL-E 3 endpoint behavior: hidden GPT-4 rewriting adds or restructures details before image generation; PDF pp. 9 and 38, sections 3.1 and B.2. Analyzed count: PDF p. 36, Table A.2.",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": 612
+    }
+   ],
+   "population": "online_panel",
+   "country": "United States",
+   "task_type": "design_visual",
+   "task": "Iteratively prompt the assigned image generator to create the best original logo for a randomly assigned hypothetical client brief, with at least 10 attempts within 25 minutes (PDF p. 41, Appendix B.5.1–B.5.2).",
+   "ai_role": "image_generation",
+   "ai_tool": {
+    "name": "OpenAI DALL-E 2; DALL-E 3 (Verbatim); DALL-E 3 (Revised), with GPT-4 used for hidden prompt rewriting",
+    "year": null,
+    "locator": "PDF p. 9, section 3.1; PDF p. 38, Appendix B.2. Model release years are not stated in the source."
+   },
+   "preregistration": {
+    "exists": "yes",
+    "where": "PDF p. 43, Appendix B.5.4: the preregistration URL is replaced by 'URL removed to maintain anonymity'. PDF p. 66, Appendix I introduction, says the logo-task preregistered hypotheses were limited to analyses in the main text.",
+    "primary_outcome": null
+   },
+   "shared_sample": null,
+   "sample_id": "jahani_etal_2026__s2"
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s2_logo_quality_verbatim_vs_dalle2",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O1",
+   "outcome": "Logo design quality / fulfillment of the client brief (Bradley–Terry strength)",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "automated_score",
+   "measure_detail": "Image-level Bradley–Terry β strength, fitted by maximum likelihood to sampled within-brief pairwise judgments by gpt-4.1-nano of which logo better fulfills the client requirements. Image presentation order was randomized. Pairwise judgments create the score; the treatment-effect analysis uses the resulting output scores, with repeated observations clustered by participant. The logo task did not use repeated-generation averaging per prompt. PDF pp. 11–12, section 3.3.1; PDF pp. 49–50, Appendix D.2; PDF p. 58, Appendix F.2.1.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "DALL-E 3 (Verbatim)",
+   "control_arm": "DALL-E 2",
+   "within_person": null,
+   "n_treatment": 617,
+   "n_control": 628,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "The adjusted treatment-minus-control ATE is recorded in regression.coef; an unadjusted arm-mean difference is not separately printed.",
+    "difference_se": null,
+    "ci_lower": 0.712,
+    "ci_upper": 0.903,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": {
+     "coef": 0.8075,
+     "se": null,
+     "se_type": "clustered_participant",
+     "outcome_scale": "raw",
+     "model": "Pairwise treatment-indicator regression with iteration and logo-brief fixed effects; participant-clustered standard errors. PDF p. 58, Appendix F.2.1, and PDF pp. 55 and 57, Appendices F.1.1 and F.1.3."
+    },
+    "test": null,
+    "p_value": "<1e-10",
+    "paper_effect": {
+     "type": "other",
+     "value": 0.57,
+     "se": null,
+     "ci_lower": null,
+     "ci_upper": null,
+     "standardizer": "The main text describes an approximate improvement in standard deviations. Appendix E.2 describes output-score normalization within logo-brief/attempt cells across the compared arms; a participant-mean control or pooled SD is not printed. The separately reported normalized regression is retained in the Z-score robustness record."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 36, Table A.2, sample-size note",
+     "quote": "Sample sizes: DALL-E 2 (D2) = 628, DALL-E 3 Revised (D3r) = 612, DALL-E 3 Verbatim (D3v) = 617."
+    },
+    {
+     "fields": [
+      "regression",
+      "ci_lower",
+      "ci_upper",
+      "ci_level",
+      "p_value",
+      "paper_effect"
+     ],
+     "locator": "PDF p. 18, section 4.2.1",
+     "quote": "with an estimated average treatment effect of 0.8075 in Bradley–Terry β (95% CI: [0.7120, 0.9030], p < 10−10), corresponding to an improvement of approximately 0.57 standard deviations."
+    }
+   ],
+   "notes": "Main overall contrast across retained attempts and logo briefs. The paper uses DALL-E 3 as shorthand for Verbatim (PDF p. 9, section 3.1; PDF p. 55, footnote 12). The confidence interval is for the adjusted raw-scale ATE, not for paper_effect. The paper_effect value is explicitly approximate and is not labeled Cohen’s d. Arm means and their uncertainty are shown graphically in Figure 3B without numeric labels and were not read off the plot. No participant-level SD or numeric SE for this ATE is printed. The pairwise participant total and output count are not separately printed and are left null rather than summed or taken from the whole-study totals. The Z-score record uses the same participants and is not independent evidence.",
+   "named_primary": "paper",
+   "primary_override": true,
+   "primary_override_reason": "Rule 2: Rule 1 retains the two Verbatim-versus-DALL-E-2 analyses because the paper describes Revised as a \"secondary, diagnostic condition\" that is not central to its \"primary treatment contrasts\". Rule 2 selects the main-text raw BT specification summarized in the introduction over the Z-score version, explicitly identified as a robustness check in Appendix E.2. (PDF pp. 3–4, section 1 (quoted sentence); p. 9, section 3.1 (DALL-E 3 denotes Verbatim); p. 34, Appendix B.1.1 (Revised arm is secondary); p. 18, section 4.2.1 (raw BT main-text estimate); p. 54, Appendix E.2 (Z-scoring is a robustness check).: \"Across both tasks, we find that participants assigned to DALL-E 3 produced significantly better outputs than those assigned to DALL-E 2, but that the sources of these gains depend on task structure.\")"
+  },
+  {
+   "slug": "s2_logo_quality_revised_vs_dalle2",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O1",
+   "outcome": "Logo design quality / fulfillment of the client brief (Bradley–Terry strength)",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "automated_score",
+   "measure_detail": "Image-level Bradley–Terry β strength, fitted by maximum likelihood to sampled within-brief pairwise judgments by gpt-4.1-nano of which logo better fulfills the client requirements. Image presentation order was randomized. Pairwise judgments create the score; the treatment-effect analysis uses the resulting output scores, with repeated observations clustered by participant. The logo task did not use repeated-generation averaging per prompt. PDF pp. 11–12, section 3.3.1; PDF pp. 49–50, Appendix D.2; PDF p. 58, Appendix F.2.1.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "DALL-E 3 (Revised)",
+   "control_arm": "DALL-E 2",
+   "within_person": null,
+   "n_treatment": 612,
+   "n_control": 628,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "The adjusted treatment-minus-control ATE is recorded in regression.coef; an unadjusted arm-mean difference is not separately printed.",
+    "difference_se": null,
+    "ci_lower": 0.7358,
+    "ci_upper": 0.9316,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": {
+     "coef": 0.8337,
+     "se": null,
+     "se_type": "clustered_participant",
+     "outcome_scale": "raw",
+     "model": "Pairwise treatment-indicator regression with iteration and logo-brief fixed effects; participant-clustered standard errors. PDF p. 58, Appendix F.2.1, and PDF pp. 55 and 57, Appendices F.1.1 and F.1.3."
+    },
+    "test": null,
+    "p_value": "<1e-10",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 36, Table A.2, sample-size note",
+     "quote": "Sample sizes: DALL-E 2 (D2) = 628, DALL-E 3 Revised (D3r) = 612, DALL-E 3 Verbatim (D3v) = 617."
+    },
+    {
+     "fields": [
+      "regression",
+      "p_value"
+     ],
+     "locator": "PDF p. 20, section 4.2.4",
+     "quote": "with an average treatment effect of 0.8337 in BT β (p < 10−10)."
+    },
+    {
+     "fields": [
+      "ci_lower",
+      "ci_upper",
+      "ci_level"
+     ],
+     "locator": "PDF p. 58, Appendix F.2.1",
+     "quote": "Similarly, the estimate comparing DALL-E 3 with revision and DALL-E 2 is 0.834 (95% CI: [0.7358, 0.9316], p < 10−10)."
+    }
+   ],
+   "notes": "The main-text ATE is retained at its printed precision. Appendix F.2.1 reports the same comparison with a rounded point estimate and supplies the confidence interval transcribed here. No arm means, SDs, or numeric SE for this overall ATE are printed. Pairwise people and output totals are not printed separately; their fields remain null. This contrast shares the DALL-E 2 control arm with the Verbatim-versus-DALL-E-2 records.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s2_logo_quality_verbatim_vs_revised_reported_percent",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O1",
+   "outcome": "Logo design quality / fulfillment of the client brief (reported percentage comparison)",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "automated_score",
+   "measure_detail": "Image-level Bradley–Terry β strength, fitted by maximum likelihood to sampled within-brief pairwise judgments by gpt-4.1-nano of which logo better fulfills the client requirements. Image presentation order was randomized. Pairwise judgments create the score; the treatment-effect analysis uses the resulting output scores, with repeated observations clustered by participant. The logo task did not use repeated-generation averaging per prompt. PDF pp. 11–12, section 3.3.1; PDF pp. 49–50, Appendix D.2; PDF p. 58, Appendix F.2.1.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "DALL-E 3 (Verbatim)",
+   "control_arm": "DALL-E 3 (Revised)",
+   "within_person": null,
+   "n_treatment": 617,
+   "n_control": 612,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "No absolute treatment-minus-control difference is printed. The paper_effect preserves the reported percentage increase for Revised relative to Verbatim, which is control relative to treatment under the required arm ordering.",
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": 95,
+    "ci_of": "paper_effect",
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": {
+     "type": "other",
+     "value": 3.2,
+     "se": null,
+     "ci_lower": -5.6,
+     "ci_upper": 12.1,
+     "standardizer": "Reported percentage increase in BT beta under Revised relative to Verbatim, in percentage units. The precise denominator and formula are not stated."
+    }
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 36, Table A.2, sample-size note",
+     "quote": "Sample sizes: DALL-E 2 (D2) = 628, DALL-E 3 Revised (D3r) = 612, DALL-E 3 Verbatim (D3v) = 617."
+    },
+    {
+     "fields": [
+      "paper_effect",
+      "ci_level"
+     ],
+     "locator": "PDF p. 20, section 4.2.4",
+     "quote": "it is associated with a 3.2% increase in BT β on average (95% CI: [−5.6%, 12.1%])."
+    }
+   ],
+   "notes": "Verbatim is the tested modification and Revised is the default endpoint configuration (PDF p. 38, Appendix B.2), so the arm ordering follows codebook section 5. The printed percentage and its confidence interval describe the opposite direction: control (Revised) relative to treatment (Verbatim). They have not been negated, inverted, converted to proportions, or used to calculate an absolute difference. A positive printed paper_effect therefore favors the named control, and the interval includes zero. The general pairwise inference procedure uses participant-clustered standard errors (PDF p. 55, Appendix F.1.1; PDF p. 58, Appendix F.2.1); a separate formula for this percentage interval is not supplied. No p-value, arm means, SDs, or numeric SE is printed for this comparison.",
+   "named_primary": "paper"
+  },
+  {
+   "slug": "s2_logo_quality_zscore_verbatim_vs_dalle2",
+   "study_id": "S2",
+   "form_outcome_id": "S2-O1",
+   "outcome": "Logo design quality / fulfillment of the client brief (within-brief/attempt Z-score)",
+   "question": "with_ai",
+   "construct": "usefulness",
+   "measure": "automated_score",
+   "measure_detail": "Image-level Bradley–Terry β strength, fitted by maximum likelihood to sampled within-brief pairwise judgments by gpt-4.1-nano of which logo better fulfills the client requirements. Image presentation order was randomized. Pairwise judgments create the score; the treatment-effect analysis uses the resulting output scores, with repeated observations clustered by participant. The logo task did not use repeated-generation averaging per prompt. PDF pp. 11–12, section 3.3.1; PDF pp. 49–50, Appendix D.2; PDF p. 58, Appendix F.2.1. For this robustness analysis, BT strengths are standardized within each logo-brief/attempt cell using the mean and SD across the compared arms. PDF pp. 53–54, Appendix E.2; PDF p. 64, Appendix H.3.",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_design",
+   "treatment_arm": "DALL-E 3 (Verbatim)",
+   "control_arm": "DALL-E 2",
+   "within_person": null,
+   "n_treatment": 617,
+   "n_control": 628,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": "The adjusted treatment-minus-control ATE is recorded in regression.coef; an unadjusted arm-mean difference is not separately printed.",
+    "difference_se": null,
+    "ci_lower": 0.502,
+    "ci_upper": 0.636,
+    "ci_level": 95,
+    "ci_of": "difference",
+    "regression": {
+     "coef": 0.569,
+     "se": null,
+     "se_type": "clustered_participant",
+     "outcome_scale": "standardized",
+     "model": "Pairwise treatment-indicator regression with iteration and logo-brief fixed effects; participant-clustered standard errors. PDF p. 58, Appendix F.2.1, and PDF pp. 55 and 57, Appendices F.1.1 and F.1.3. The dependent variable is the within-logo-brief/attempt Z-score of BT strength; PDF pp. 53–54, Appendix E.2, and PDF p. 64, Appendix H.3.1."
+    },
+    "test": null,
+    "p_value": "<1e-10",
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "n_treatment",
+      "n_control"
+     ],
+     "locator": "PDF p. 36, Table A.2, sample-size note",
+     "quote": "Sample sizes: DALL-E 2 (D2) = 628, DALL-E 3 Revised (D3r) = 612, DALL-E 3 Verbatim (D3v) = 617."
+    },
+    {
+     "fields": [
+      "regression",
+      "ci_lower",
+      "ci_upper",
+      "ci_level",
+      "p_value"
+     ],
+     "locator": "PDF p. 64, Appendix H.3.1",
+     "quote": "z = 0.569 standard deviations higher in BT strength than those produced by DALL-E 2 users (95% CI = [0.502, 0.636], p < 10−10)."
+    }
+   ],
+   "notes": "Robustness transformation of the same output-quality outcome, comparison, and participants as s2_logo_quality_verbatim_vs_dalle2. The printed z denotes an effect on a standardized outcome, not a z-test statistic and not a participant-level Cohen’s d. The standardizer is the SD of output scores within brief/attempt cells across the compared arms, rather than the SD of each participant’s mean across attempts. The raw and normalized records must not be treated as independent samples. No standardized arm means, SDs, numeric coefficient SE, or separate pairwise people/output totals are printed.",
+   "named_primary": "paper"
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "S1 / S1-O1: Experiment 1, fixed-target image replication, including every direct-arm fidelity contrast, CLIP/DreamSim rescalings, first/average/best-attempt summaries, replay decompositions, and additional analyses",
+   "reason": "This is a fixed-reference replication task rather than the eligible open-ended creative task. The reconciled screening decision excludes S1 from creativity estimates. The task and fidelity scoring are confirmed in PDF p. 10, sections 3.2–3.2.1; PDF p. 11 contrasts this task with open-ended logo creation. Appendix I is explicitly scoped to image replication (PDF p. 66). Target fidelity is not across-person output diversity."
+  },
+  {
+   "what": "S2: Replay-based model effect, in raw and Z-scored logo quality",
+   "reason": "Researcher replay holds the same participants’ prompts fixed and changes the evaluation model after the task; this is the direct/model component of a mediation-like decomposition, not a contrast between separately randomized human working conditions. Excluded under the replay/model-only and mediation rules (PDF p. 19, section 4.2.2; PDF pp. 56–57, Appendix F.1.3; PDF p. 59, Appendix F.2.3; PDF p. 65, Appendix H.3.3)."
+  },
+  {
+   "what": "S2: Replay-based prompting effect, in raw and Z-scored logo quality",
+   "reason": "This indirect/prompting component compares original Verbatim-arm outputs with researcher replays of DALL-E 2 prompts on Verbatim. It is a decomposition of the treatment effect through prompting, rather than the original full treatment contrast, and mediation analyses are excluded (PDF p. 19, section 4.2.2; PDF pp. 56–57, Appendix F.1.3; PDF p. 59, Appendix F.2.3; PDF p. 65, Appendix H.3.3)."
+  },
+  {
+   "what": "S2: Reverse replay of Verbatim participants’ prompts on DALL-E 2, in raw and Z-scored logo quality",
+   "reason": "One side consists of counterfactual images generated by the researchers after human participation. Participants were not assigned to work in this replay configuration, so it is not an additional eligible AI-assistance contrast (PDF p. 13, section 3.4; PDF p. 19, section 4.2.2; PDF p. 65, Appendix H.3.3)."
+  },
+  {
+   "what": "S2: Distributional/quantile effects and interactions in Table 2",
+   "reason": "These estimate heterogeneity by realized outcome percentile, a post-treatment rank, and include decomposition components. The un-interacted coefficient is conditional on the lowest percentile rather than a full-sample ATE. They measure dispersion of quality, not content similarity across people (PDF p. 21, Table 2 and note; PDF pp. 57–58, Appendix F.1.4; PDF p. 59, Appendix F.2.4)."
+  },
+  {
+   "what": "S2: Attempt-by-model trajectory regressions, raw and Z-scored logo quality",
+   "reason": "The interaction coefficients assess moderation by attempt number. Their model-indicator coefficients are conditional on iteration zero and are not overall ATEs. The full-sample ATEs are extracted separately; no effect was calculated from trajectory coefficients (PDF p. 55, Equation 12; PDF p. 58, Appendix F.2.1; PDF p. 65, Appendix H.3.2)."
+  },
+  {
+   "what": "Prompt length, in words or characters",
+   "reason": "Measures the input supplied to the model, not elaboration or creativity of the generated logo (PDF p. 50, Appendix D.3; PDF p. 59, Appendix F.2.2)."
+  },
+  {
+   "what": "Successive prompt embedding similarity",
+   "reason": "Measures similarity between one participant’s successive input prompts, not creativity of produced images or similarity between different people’s outputs (PDF p. 50, Appendix D.4; PDF p. 59, Appendix F.2.2)."
+  },
+  {
+   "what": "Aggregate prompt similarity / dispersion around a participant’s own prompt centroid",
+   "reason": "A within-person input-strategy measure; it is neither diversity across people’s creative outputs nor output-scored flexibility (PDF pp. 50–51, Appendix D.4; PDF p. 59, Appendix F.2.2)."
+  },
+  {
+   "what": "Successive prompt token sort ratio",
+   "reason": "String similarity between successive input prompts, not a scored creative-output outcome (PDF p. 51, Appendix D.5)."
+  },
+  {
+   "what": "Successive prompt contains-previous-prompt indicator",
+   "reason": "An input-reuse behavior, not creativity or diversity scored on generated outputs (PDF p. 51, Appendix D.6)."
+  },
+  {
+   "what": "Prompt composition / parts of speech",
+   "reason": "Describes input text, including the proportion of nouns and adjectives, rather than the quality or originality of generated logos (PDF p. 51, Appendix D.7; PDF p. 59, Appendix F.2.2)."
+  },
+  {
+   "what": "Strategic shifts / topical transitions in prompting",
+   "reason": "Measures changes in a participant’s input strategy. Cross-prompt similarities define a threshold for that behavior; they are not an across-person creative-output diversity outcome (PDF pp. 51–52, Appendix D.8)."
+  },
+  {
+   "what": "Prompt-rewriting compliance and original-to-rewritten prompt similarity",
+   "reason": "Manipulation/compliance measures of system-side rewriting, not creativity scored on the produced images (PDF p. 38, Appendix B.2)."
+  },
+  {
+   "what": "Self-reported proficiency, frequency of skill use, opinions, and attitudes toward generative AI",
+   "reason": "Survey self-reports and attitudes are excluded; they are not scored creative outputs (PDF p. 44, Appendix C.1)."
+  },
+  {
+   "what": "Human-rated logo-quality validation",
+   "reason": "The paper describes human pairwise judgments and agreement for validating the automated scoring, but reports no human-rated full-sample treatment contrast (PDF p. 12, footnote 9)."
+  },
+  {
+   "what": "GPT-4V-generated image-replication prompts and target-difficulty calibration",
+   "reason": "Model-only prompting and image-difficulty calibration, not a further randomized experiment in which people receive AI assistance (PDF p. 81, Appendix I.1, H8)."
+  },
+  {
+   "what": "S2: individual illustrative logo scores in Figure 4B",
+   "reason": "Selected examples illustrate the replay mechanism; they are not full-sample contrasts or arm means (PDF p. 20, Figure 4B and caption)."
+  },
+  {
+   "what": "S2 / S2-O1: attempt-specific graphical logo-quality contrasts and arm trajectories in Figure 3B",
+   "reason": "The figure plots the Verbatim-versus-DALL-E-2 contrast across attempts without printing numerical arm levels or attempt-specific effect labels. Rule 1 prohibits reading values from plotted positions. The printed overall raw-scale ATE and standardized robustness ATE are retained. These repeated attempts under the same assigned configuration are not randomized-order within-person conditions (PDF p. 18, Figure 3B and section 4.2.1; PDF p. 58, Appendix F.2.1)."
+  }
+ ],
+ "open_items": [
+  "Assignment-stage total and per-arm randomized counts are not explicitly printed. The recruited/raw-data count in Appendix C.5 and the intermediate sample in Table A.3 are not substituted for n_randomized (PDF pp. 43, 46–47 and 37).",
+  "No pairwise analysis totals or output observation counts are printed for the extracted contrasts. Arm sizes are available, but pair totals were not calculated (PDF p. 36, Table A.2; PDF p. 47, Appendix C.5).",
+  "Arm means, arm SDs/SEs, and SDs of participant-average logo quality are not printed; arm levels in Figure 3B are unlabeled. Numerical SEs for the overall ATEs are not supplied and were not derived (PDF p. 18, Figure 3B; PDF p. 58, Appendix F.2.1).",
+  "The direct configuration comparison is reported only as a percentage in Revised-relative-to-Verbatim orientation. Its denominator and CI calculation are not specified, and an absolute Verbatim-minus-Revised coefficient is not printed (PDF p. 20, section 4.2.4).",
+  "The preregistration URL is redacted, preventing confirmation of a formal primary-outcome hierarchy (PDF p. 43, Appendix B.5.4; PDF p. 66, Appendix I).",
+  "The paper promises anonymized data and replication code upon publication but provides no usable repository URL (PDF p. 8, footnote 4).",
+  "AI model release years are not stated in the paper; ai_tool.year is null. The collection year is not treated as a release year (PDF p. 38, Appendix B.2; PDF p. 43, Appendix B.5.3).",
+  "The citation record supplied with the brief identifies a later journal version. The extracted evidence is from the saved arXiv v7 PDF; differences from the journal full text have not been checked."
+ ],
+ "chain": {
+  "mech_problems": 0,
+  "verify_problems": 0,
+  "n_estimates": 4,
+  "finished_at": "2026-10-11T12:24:27"
+ },
+ "review_corrections": [
+  {
+   "date": "2026-10-11",
+   "by": "Claude (main session)",
+   "slug": "s2_logo_quality_verbatim_vs_dalle2",
+   "field": "stats.p_value",
+   "old": "<10^-10",
+   "new": "<1e-10",
+   "basis": "Same printed bound (p < 10^-10, PDF p. 18, section 4.2.1) in the number format the extraction file requires."
+  },
+  {
+   "date": "2026-10-11",
+   "by": "Claude (main session)",
+   "slug": "s2_logo_quality_revised_vs_dalle2",
+   "field": "stats.p_value",
+   "old": "<10^-10",
+   "new": "<1e-10",
+   "basis": "Same printed bound (p < 10^-10, PDF p. 18, section 4.2.1) in the number format the extraction file requires."
+  },
+  {
+   "date": "2026-10-11",
+   "by": "Claude (main session)",
+   "slug": "s2_logo_quality_zscore_verbatim_vs_dalle2",
+   "field": "stats.p_value",
+   "old": "<10^-10",
+   "new": "<1e-10",
+   "basis": "Same printed bound (p < 10^-10, PDF p. 18, section 4.2.1) in the number format the extraction file requires."
+  }
+ ],
+ "review_resolutions": []
+}

@@ -1,0 +1,906 @@
+{
+ "cid": "c127",
+ "extractor": "B",
+ "source": {
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wadinambiarachchi et al (2024) - The Effects of Generative AI on Design Fixation and Divergent Thinking.pdf",
+  "version": "arXiv:2403.11164v1 [cs.HC], 17 Mar 2024 (PDF p. 1 side stamp); author manuscript typeset for CHI '24, May 11-16, 2024, DOI 10.1145/3613904.3642919. Extraction uses this saved version, not an independently obtained ACM version.",
+  "supplement_used": "Appendix A, Table A.1, PDF p. 18, reviewed for exclusions. The separate full study protocol mentioned in Section 3.1 (PDF p. 4) was not found among the local paper files and is not embedded in the PDF."
+ },
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "Lab experiment: chatbot-avatar sketching with no support, Google Image Search, or Midjourney V4",
+   "design_class": "lab_rct",
+   "assignment_unit": "individual",
+   "clusters_per_arm": null,
+   "cluster_se_treatment": null,
+   "n_randomized": 60,
+   "n_analyzed": null,
+   "counts_source": {
+    "locator": "PDF p. 5, Section 3.2 Participants; random assignment in PDF p. 6, Section 3.3",
+    "quote": "We recruited 60 participants through digital student notice boards, mailing lists of university student clubs, and word of mouth."
+   },
+   "arms": [
+    {
+     "name": "GenAI",
+     "description": "Paid Midjourney V4 through a private Discord server; participants entered text prompts and used the generated images as inspiration while sketching by hand. Tool tutorial before the task (PDF pp. 4 and 6).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Image Search",
+     "description": "Google Images through an incognito web browser, with a tool tutorial before the task (PDF pp. 4 and 6).",
+     "ai": "other_aid",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Baseline (No support)",
+     "description": "No inspiration support beyond the common design brief and example chatbot avatar; identical drawing materials and time limit (PDF pp. 4 and 6).",
+     "ai": "none",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "population": "students",
+   "country": "not_stated",
+   "task_type": "design_visual",
+   "task": "Sketch as many different chatbot-avatar ideas as possible on paper in 20 minutes after viewing the same example avatar intended to induce fixation (PDF p. 4, Section 3.1).",
+   "ai_role": "image_generation",
+   "ai_tool": {
+    "name": "Midjourney V4 (paid version, via the Midjourney bot in Discord)",
+    "year": null,
+    "locator": "PDF p. 4, Section 3.1: Midjourney V4 was the default model when the study was conducted (May 2023); its release year is not stated."
+   },
+   "preregistration": {
+    "exists": "not_stated",
+    "where": "No preregistration identified in the full document.",
+    "primary_outcome": null
+   },
+   "shared_sample": null
+  }
+ ],
+ "estimates": [
+  {
+   "slug": "s1_fixation_genai_vs_baseline",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Design fixation score: features copied from the example avatar",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "expert_raters",
+   "measure_detail": "Independent HCI researchers with design teaching/evaluation experience counted features copied from the example avatar. The normalized score divides copied features by the number of salient features in the example. The model uses the feature count with a binomial probit link (PDF pp. 5, 7-8).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "GenAI",
+   "control_arm": "Baseline (No support)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "less_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": 0.11,
+    "ci_upper": 0.54,
+    "ci_level": 89,
+    "ci_of": "difference",
+    "regression": {
+     "coef": 0.32,
+     "se": 0.13,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Bayesian binomial model with a probit link: DFS|trials(14) ~ Stimulus + (1|Participant ID) + (1|Image ID); GenAI coefficient relative to Baseline. Coefficient and interval are on the probit scale."
+    },
+    "test": {
+     "type": "other",
+     "value": 124,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 8, Table 1, GenAI row",
+     "quote": "GenAI .32 (0.13) [.11, .54]"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 8, Section 4.1 Statistical Analysis",
+     "quote": "the boundaries of the 89% compatibility interval, often referred to as the credible interval."
+    },
+    {
+     "fields": [
+      "test.value",
+      "notes"
+     ],
+     "locator": "PDF p. 8, Section 4.2",
+     "quote": "The model suggests that the effect of GenAI has a 100% prob- ability of leading to higher Design Fixation (mean = .32, 89% CI [.11, .55]), and a Bayes Factor of 124"
+    }
+   ],
+   "notes": "The coefficient is the posterior mean. The regression.se field stores the printed posterior SD of that coefficient, not a frequentist SE and not an outcome SD; se_type is not_stated because the available categories do not describe Bayesian posterior uncertainty. The interval is the paper’s Bayesian compatibility/credible interval for the coefficient. outcome_scale=raw means unstandardized: the model field identifies the link or response scale. No participant-level outcome SD, standardized effect, or arm mean is printed. Design fixation is copying of a common supplied example, not similarity between different participants within an arm. It is retained as other, following the screening form; higher scores indicate greater fixation and less creative independence. The prose reports a 100% posterior probability of greater fixation and gives [.11, .55], while the table gives [.11, .54]. The tabulated interval is retained. test.value is the Bayes Factor supporting increased fixation. Participant and image random effects account for repeated sketches; the paper does not clarify whether raters were combined before modeling. Figure 6 has no printed values for the arm predictions or their error bars. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_fluency_genai_vs_baseline_total",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Fluency: number of sketches per participant (total effect)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Count of sketches produced by each participant during the design task. Bayesian negative-binomial models use a log link; the paper models both the mean and the shape as functions of inspiration stimulus (PDF pp. 5, 8-9).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "GenAI",
+   "control_arm": "Baseline (No support)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": -0.66,
+    "ci_upper": 0.26,
+    "ci_level": 89,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -0.21,
+     "se": 0.3,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Bayesian negative-binomial total-effects model with log link: Fluency ~ Stimulus; shape also depends on Stimulus. GenAI coefficient relative to Baseline, on the log scale."
+    },
+    "test": {
+     "type": "other",
+     "value": 3.2,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 9, Table 2, GenAI row, Total Effects columns",
+     "quote": "GenAI .10 (.31) [-.39, .58] -.21 (.30) [-.66, .26]"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 8, Section 4.1 Statistical Analysis",
+     "quote": "the boundaries of the 89% compatibility interval, often referred to as the credible interval."
+    },
+    {
+     "fields": [
+      "test.value",
+      "notes"
+     ],
+     "locator": "PDF p. 9, Section 4.3",
+     "quote": "(89% CI [-.7, .28]) and a Bayes factor of 3.20, suggesting a 76% poste- rior probability of a negative effect."
+    }
+   ],
+   "notes": "The coefficient is the posterior mean. The regression.se field stores the printed posterior SD of that coefficient, not a frequentist SE and not an outcome SD; se_type is not_stated because the available categories do not describe Bayesian posterior uncertainty. The interval is the paper’s Bayesian compatibility/credible interval for the coefficient. outcome_scale=raw means unstandardized: the model field identifies the link or response scale. No participant-level outcome SD, standardized effect, or arm mean is printed. The direct model includes a time-on-task offset, a variable measured after assignment. The exact fluency response coding needs clarification because the printed sketch totals and model levels are inconsistent; no count transformation or arm mean has been inferred. The prose gives [-.7, .28] and a 76% posterior probability of a negative effect; the tabulated interval [-.66, .26] is retained. test.value is the Bayes factor for a negative effect. This is the unadjusted total effect, retained separately from the direct effect. Figure 7 has no printed arm predictions or error-bar values. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_fluency_genai_vs_baseline_direct",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Fluency: number of sketches per participant (direct effect)",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Count of sketches produced by each participant during the design task. Bayesian negative-binomial models use a log link; the paper models both the mean and the shape as functions of inspiration stimulus (PDF pp. 5, 8-9).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "GenAI",
+   "control_arm": "Baseline (No support)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": -0.39,
+    "ci_upper": 0.58,
+    "ci_level": 89,
+    "ci_of": "difference",
+    "regression": {
+     "coef": 0.1,
+     "se": 0.31,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Bayesian negative-binomial direct-effects model with log link: Fluency ~ Stimulus + offset(log(Time on Task)); shape also depends on Stimulus. GenAI coefficient relative to Baseline, on the log scale. The table caption omits Stimulus from the direct formula, but the table rows and Section 4.3 specify it."
+    },
+    "test": {
+     "type": "other",
+     "value": 0.61,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 9, Table 2, GenAI row, Direct Effects columns",
+     "quote": "GenAI .10 (.31) [-.39, .58] -.21 (.30) [-.66, .26]"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 8, Section 4.1 Statistical Analysis",
+     "quote": "the boundaries of the 89% compatibility interval, often referred to as the credible interval."
+    },
+    {
+     "fields": [
+      "test.value",
+      "notes"
+     ],
+     "locator": "PDF p. 9, Section 4.3",
+     "quote": "GenAI shows a relatively neutral direct effect on Fluency (mean = .10, 89% CI [-.41, .60]) with a Bayes factor of .61, implying only a 38% posterior probability of a negative effect."
+    }
+   ],
+   "notes": "The coefficient is the posterior mean. The regression.se field stores the printed posterior SD of that coefficient, not a frequentist SE and not an outcome SD; se_type is not_stated because the available categories do not describe Bayesian posterior uncertainty. The interval is the paper’s Bayesian compatibility/credible interval for the coefficient. outcome_scale=raw means unstandardized: the model field identifies the link or response scale. No participant-level outcome SD, standardized effect, or arm mean is printed. The direct model includes a time-on-task offset, a variable measured after assignment. The exact fluency response coding needs clarification because the printed sketch totals and model levels are inconsistent; no count transformation or arm mean has been inferred. The prose gives [-.41, .60] and a 38% posterior probability of a negative effect; the tabulated interval [-.39, .58] is retained. test.value is the Bayes factor for a negative effect. This is a full-sample adjusted specification, not an independent sample or a subgroup result. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_variety_genai_vs_baseline_total",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Variety: categories covered by one participant’s sketches (total effect)",
+   "question": "with_ai",
+   "construct": "flexibility",
+   "measure": "category_count",
+   "measure_detail": "Raters blind to condition grouped similar sketches into mutually exclusive clusters. The normalized variety score is the number of clusters represented by one participant minus one, divided by the total number of clusters minus one. The model response is the participant’s cluster count minus one, with a negative-binomial log link (PDF pp. 5 and 9).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "GenAI",
+   "control_arm": "Baseline (No support)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": -0.74,
+    "ci_upper": 0.17,
+    "ci_level": 89,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -0.29,
+     "se": -0.28,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Bayesian negative-binomial total-effects model with log link: Variety ~ Stimulus. The modeled response is the number of clusters represented by the participant minus one. GenAI coefficient relative to Baseline, on the log scale."
+    },
+    "test": {
+     "type": "other",
+     "value": 5.93,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 9, Table 3, GenAI row, Total Effects columns",
+     "quote": "GenAI -.15 (0.24) [-.53, .23] -.29 (-.28) [-.74, .17]"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 8, Section 4.1 Statistical Analysis",
+     "quote": "the boundaries of the 89% compatibility interval, often referred to as the credible interval."
+    },
+    {
+     "fields": [
+      "test.value",
+      "notes"
+     ],
+     "locator": "PDF p. 9, Section 4.4",
+     "quote": "The model suggests that the effect of GenAI has only an 86% probability of being negative (mean = -.29, 89% CI [-.75, .16]), and a Bayes Factor of 5.93"
+    }
+   ],
+   "notes": "The coefficient is the posterior mean. The regression.se field stores the printed posterior SD of that coefficient, not a frequentist SE and not an outcome SD; se_type is not_stated because the available categories do not describe Bayesian posterior uncertainty. The interval is the paper’s Bayesian compatibility/credible interval for the coefficient. outcome_scale=raw means unstandardized: the model field identifies the link or response scale. No participant-level outcome SD, standardized effect, or arm mean is printed. This is variety among one person’s own sketches, coded flexibility. It does not measure diversity across different people. The direct model conditions on fluency, which is measured after assignment. Figure normalization is not used to reconstruct means. Table 3 prints the posterior SD as (-.28). The negative sign is preserved in regression.se solely as a literal transcription; this is not a valid uncertainty value and must not be used without correction from the source. The prose gives [-.75, .16] and an 86% posterior probability of a negative effect; the tabulated interval [-.74, .17] is retained. test.value is the Bayes Factor for a negative effect. Figure 8 has no printed arm predictions or error-bar values. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_variety_genai_vs_baseline_direct",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Variety: categories covered by one participant’s sketches (direct effect)",
+   "question": "with_ai",
+   "construct": "flexibility",
+   "measure": "category_count",
+   "measure_detail": "Raters blind to condition grouped similar sketches into mutually exclusive clusters. The normalized variety score is the number of clusters represented by one participant minus one, divided by the total number of clusters minus one. The model response is the participant’s cluster count minus one, with a negative-binomial log link (PDF pp. 5 and 9).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "GenAI",
+   "control_arm": "Baseline (No support)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": -0.53,
+    "ci_upper": 0.23,
+    "ci_level": 89,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -0.15,
+     "se": 0.24,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Bayesian negative-binomial direct-effects model with log link: Variety ~ Stimulus + Fluency. The modeled response is the number of clusters represented by the participant minus one. GenAI coefficient relative to Baseline, on the log scale."
+    },
+    "test": {
+     "type": "other",
+     "value": 2.64,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 9, Table 3, GenAI row, Direct Effects columns",
+     "quote": "GenAI -.15 (0.24) [-.53, .23] -.29 (-.28) [-.74, .17]"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 8, Section 4.1 Statistical Analysis",
+     "quote": "the boundaries of the 89% compatibility interval, often referred to as the credible interval."
+    },
+    {
+     "fields": [
+      "test.value",
+      "notes"
+     ],
+     "locator": "PDF p. 10, Section 4.4",
+     "quote": "However, GenAI still had a negative effect (mean = -.15 [-55, .24]), with a Bayes Factor of 2.64 suggesting anecdotal evidence for this effect being negative."
+    }
+   ],
+   "notes": "The coefficient is the posterior mean. The regression.se field stores the printed posterior SD of that coefficient, not a frequentist SE and not an outcome SD; se_type is not_stated because the available categories do not describe Bayesian posterior uncertainty. The interval is the paper’s Bayesian compatibility/credible interval for the coefficient. outcome_scale=raw means unstandardized: the model field identifies the link or response scale. No participant-level outcome SD, standardized effect, or arm mean is printed. This is variety among one person’s own sketches, coded flexibility. It does not measure diversity across different people. The direct model conditions on fluency, which is measured after assignment. Figure normalization is not used to reconstruct means. The prose on the following page prints the interval as [-55, .24], with no decimal in the lower bound. It is not silently repaired. The table gives [-.53, .23], which is retained in stats. test.value is the Bayes Factor for a negative direct effect. This is a full-sample adjusted specification, not an independent sample or a subgroup result. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_originality_genai_vs_baseline_total",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Originality: rarity of each sketch’s category (total effect)",
+   "question": "with_ai",
+   "construct": "novelty",
+   "measure": "category_count",
+   "measure_detail": "For each sketch, originality is the complement of the proportion of other participants with a sketch in the same rater-defined cluster. This normalized rarity score is analyzed with Bayesian linear regression and a participant random intercept; plotted predictions are averaged per participant (PDF pp. 5 and 10).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "GenAI",
+   "control_arm": "Baseline (No support)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": -0.06,
+    "ci_upper": -0.01,
+    "ci_level": 89,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -0.03,
+     "se": 0.02,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Bayesian linear total-effects model: Originality ~ Stimulus + (1|Participant ID). GenAI coefficient relative to Baseline on the normalized originality-score scale; participant random intercepts account for multiple sketches."
+    },
+    "test": {
+     "type": "other",
+     "value": 35.0,
+     "df": null
+    },
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 10, Table 4, GenAI row, Total Effects columns",
+     "quote": "GenAI -.03 (0.02) [-.05, -.01] -.03 (.02) [-.06, -.01]"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 8, Section 4.1 Statistical Analysis",
+     "quote": "the boundaries of the 89% compatibility interval, often referred to as the credible interval."
+    },
+    {
+     "fields": [
+      "test.value",
+      "notes"
+     ],
+     "locator": "PDF p. 10, Section 4.5",
+     "quote": "The model suggests that the effect of GenAI has a 97% probability of being negative (mean = -.03, 89% CI [-.06, .00]), and a Bayes Factor of 35."
+    }
+   ],
+   "notes": "The coefficient is the posterior mean. The regression.se field stores the printed posterior SD of that coefficient, not a frequentist SE and not an outcome SD; se_type is not_stated because the available categories do not describe Bayesian posterior uncertainty. The interval is the paper’s Bayesian compatibility/credible interval for the coefficient. outcome_scale=raw means unstandardized: the model field identifies the link or response scale. No participant-level outcome SD, standardized effect, or arm mean is printed. Coded novelty because the score is rarity of a single sketch in the total pool. The paper does not report a separate within-arm across-people diversity outcome. The direct model conditions on variety, measured after assignment. The prose gives [-.06, .00] and a 97% posterior probability of a negative effect, while Table 4 gives [-.06, -.01]. The tabulated interval is retained. test.value is the reported Bayes Factor for a negative effect. Figure 9 shows averaged participant predictions without numerical labels; these are not transcribed as arm means. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_originality_genai_vs_baseline_direct",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Originality: rarity of each sketch’s category (direct effect)",
+   "question": "with_ai",
+   "construct": "novelty",
+   "measure": "category_count",
+   "measure_detail": "For each sketch, originality is the complement of the proportion of other participants with a sketch in the same rater-defined cluster. This normalized rarity score is analyzed with Bayesian linear regression and a participant random intercept; plotted predictions are averaged per participant (PDF pp. 5 and 10).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_bau",
+   "treatment_arm": "GenAI",
+   "control_arm": "Baseline (No support)",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": -0.05,
+    "ci_upper": -0.01,
+    "ci_level": 89,
+    "ci_of": "difference",
+    "regression": {
+     "coef": -0.03,
+     "se": 0.02,
+     "se_type": "not_stated",
+     "outcome_scale": "raw",
+     "model": "Bayesian linear direct-effects model: Originality ~ Stimulus + Variety + (1|Participant ID). GenAI coefficient relative to Baseline on the normalized originality-score scale; participant random intercepts account for multiple sketches."
+    },
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "participant",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [
+      "regression.coef",
+      "regression.se",
+      "ci_lower",
+      "ci_upper"
+     ],
+     "locator": "PDF p. 10, Table 4, GenAI row, Direct Effects columns",
+     "quote": "GenAI -.03 (0.02) [-.05, -.01] -.03 (.02) [-.06, -.01]"
+    },
+    {
+     "fields": [
+      "ci_level"
+     ],
+     "locator": "PDF p. 8, Section 4.1 Statistical Analysis",
+     "quote": "the boundaries of the 89% compatibility interval, often referred to as the credible interval."
+    }
+   ],
+   "notes": "The coefficient is the posterior mean. The regression.se field stores the printed posterior SD of that coefficient, not a frequentist SE and not an outcome SD; se_type is not_stated because the available categories do not describe Bayesian posterior uncertainty. The interval is the paper’s Bayesian compatibility/credible interval for the coefficient. outcome_scale=raw means unstandardized: the model field identifies the link or response scale. No participant-level outcome SD, standardized effect, or arm mean is printed. Coded novelty because the score is rarity of a single sketch in the total pool. The paper does not report a separate within-arm across-people diversity outcome. The direct model conditions on variety, measured after assignment. No separate Bayes factor, posterior directional probability, or prose interval is reported for this direct-effects specification. The total-effects test is not copied into this record. This is a full-sample adjusted specification, not an independent sample or a subgroup result. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_fixation_genai_vs_image_search",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O1",
+   "outcome": "Design fixation score: features copied from the example avatar",
+   "question": "with_ai",
+   "construct": "other",
+   "measure": "expert_raters",
+   "measure_detail": "Independent HCI researchers with design teaching/evaluation experience counted features copied from the example avatar. The normalized score divides copied features by the number of salient features in the example. The model uses the feature count with a binomial probit link (PDF pp. 5, 7-8).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "GenAI",
+   "control_arm": "Image Search",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "less_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 8, Section 4.2 and Figure 6",
+     "quote": "on av- erage, both stimuli led to more features in common with the example avatar, and GenAI led to even more design fixation than Image Search."
+    }
+   ],
+   "notes": "Design fixation is copying of a common supplied example, not similarity between different participants within an arm. It is retained as other, following the screening form; higher scores indicate greater fixation and less creative independence. The paper discusses these arms and plots posterior predictions, but gives no numerical GenAI-minus-Image-Search coefficient, uncertainty interval, Bayes factor, or labeled arm mean for this contrast. All stats therefore remain null. The separate coefficients against Baseline are not subtracted, and figure positions and error bars are not digitized. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_fluency_genai_vs_image_search",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O2",
+   "outcome": "Fluency: number of sketches per participant",
+   "question": "with_ai",
+   "construct": "fluency",
+   "measure": "category_count",
+   "measure_detail": "Count of sketches produced by each participant during the design task. Bayesian negative-binomial models use a log link; the paper models both the mean and the shape as functions of inspiration stimulus (PDF pp. 5, 8-9).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "GenAI",
+   "control_arm": "Image Search",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_ideas",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 16, Section 6 Conclusion; compare PDF p. 9, Table 2 and Figure 7",
+     "quote": "led to higher design fixation on an initial example and lower fluency, variety, and originality of ideas compared to using a conventional image search or no inspiration support."
+    }
+   ],
+   "notes": "The direct model includes a time-on-task offset, a variable measured after assignment. The exact fluency response coding needs clarification because the printed sketch totals and model levels are inconsistent; no count transformation or arm mean has been inferred. The paper discusses these arms and plots posterior predictions, but gives no numerical GenAI-minus-Image-Search coefficient, uncertainty interval, Bayes factor, or labeled arm mean for this contrast. All stats therefore remain null. The separate coefficients against Baseline are not subtracted, and figure positions and error bars are not digitized. The conclusion describes GenAI as lower than Image Search, but the ordering of the separately printed baseline-relative total-effect coefficients is opposite. This inconsistency is retained for reconciliation; no difference is calculated from those coefficients. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_variety_genai_vs_image_search",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O3",
+   "outcome": "Variety: categories covered by one participant’s sketches",
+   "question": "with_ai",
+   "construct": "flexibility",
+   "measure": "category_count",
+   "measure_detail": "Raters blind to condition grouped similar sketches into mutually exclusive clusters. The normalized variety score is the number of clusters represented by one participant minus one, divided by the total number of clusters minus one. The model response is the participant’s cluster count minus one, with a negative-binomial log link (PDF pp. 5 and 9).",
+   "unit": "participant",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "GenAI",
+   "control_arm": "Image Search",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 16, Section 6 Conclusion; compare PDF p. 9, Table 3 and Figure 8",
+     "quote": "led to higher design fixation on an initial example and lower fluency, variety, and originality of ideas compared to using a conventional image search or no inspiration support."
+    }
+   ],
+   "notes": "This is variety among one person’s own sketches, coded flexibility. It does not measure diversity across different people. The direct model conditions on fluency, which is measured after assignment. Figure normalization is not used to reconstruct means. The paper discusses these arms and plots posterior predictions, but gives no numerical GenAI-minus-Image-Search coefficient, uncertainty interval, Bayes factor, or labeled arm mean for this contrast. All stats therefore remain null. The separate coefficients against Baseline are not subtracted, and figure positions and error bars are not digitized. The conclusion describes GenAI as lower than Image Search, but the ordering of the separately printed baseline-relative total-effect coefficients is opposite. This inconsistency is retained for reconciliation; no difference is calculated from those coefficients. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  },
+  {
+   "slug": "s1_originality_genai_vs_image_search",
+   "study_id": "S1",
+   "form_outcome_id": "S1-O4",
+   "outcome": "Originality: rarity of each sketch’s category",
+   "question": "with_ai",
+   "construct": "novelty",
+   "measure": "category_count",
+   "measure_detail": "For each sketch, originality is the complement of the proportion of other participants with a sketch in the same rater-defined cluster. This normalized rarity score is analyzed with Bayesian linear regression and a participant random intercept; plotted predictions are averaged per participant (PDF pp. 5 and 10).",
+   "unit": "output",
+   "n_units": null,
+   "outcome_timing": "immediate",
+   "delay_days": null,
+   "outcome_with_ai": true,
+   "comparison_type": "ai_vs_active",
+   "treatment_arm": "GenAI",
+   "control_arm": "Image Search",
+   "within_person": null,
+   "n_treatment": null,
+   "n_control": null,
+   "n_total": null,
+   "higher_is": "more_creative",
+   "stats": {
+    "treatment_mean": null,
+    "treatment_sd": null,
+    "treatment_se": null,
+    "control_mean": null,
+    "control_sd": null,
+    "control_se": null,
+    "sd_level": null,
+    "difference": null,
+    "difference_is": null,
+    "difference_se": null,
+    "ci_lower": null,
+    "ci_upper": null,
+    "ci_level": null,
+    "ci_of": null,
+    "regression": null,
+    "test": null,
+    "p_value": null,
+    "paper_effect": null
+   },
+   "se_basis": "not_reported",
+   "preregistered_primary": "not_stated",
+   "sources": [
+    {
+     "fields": [],
+     "locator": "PDF p. 10, Section 4.5, Table 4 and Figure 9",
+     "quote": "The effect of Image Search was slightly less negative but also rather small"
+    }
+   ],
+   "notes": "Coded novelty because the score is rarity of a single sketch in the total pool. The paper does not report a separate within-arm across-people diversity outcome. The direct model conditions on variety, measured after assignment. The paper discusses these arms and plots posterior predictions, but gives no numerical GenAI-minus-Image-Search coefficient, uncertainty interval, Bayes factor, or labeled arm mean for this contrast. All stats therefore remain null. The separate coefficients against Baseline are not subtracted, and figure positions and error bars are not digitized. Analysis-specific participant counts and contrast-specific observation counts are not printed and are left null. The study-wide recruitment count is not substituted for the number of people in this contrast. "
+  }
+ ],
+ "not_extracted": [
+  {
+   "what": "NASA-TLX overall workload score and the mental demand, physical demand, temporal demand, performance, effort, and frustration scales",
+   "reason": "Self-reported workload and perceived performance, not creativity scored on produced output (PDF p. 6, Section 3.3; Appendix A, Table A.1, PDF p. 18)."
+  },
+  {
+   "what": "Interview reports of fixation, prompting strategies, prior experience, and perceived usefulness of AI; qualitative fixation-displacement case studies",
+   "reason": "Qualitative reports and illustrative individual cases, not a full-sample randomized contrast on a scored output (PDF pp. 6-7 and 11-14)."
+  },
+  {
+   "what": "GenAI prompt counts, prompt lengths, word frequencies, and overlap with the brief or example",
+   "reason": "Process descriptions within the GenAI arm, without a randomized comparison; not creativity scores of the target sketches (PDF p. 11, Section 4.6.1 and Table 5)."
+  },
+  {
+   "what": "Similarity of generated AI images to the example avatar",
+   "reason": "Scored on AI-generated inspiration images, not the human-produced sketches; a model-output description without an arm contrast (PDF p. 12, Section 4.6.2)."
+  },
+  {
+   "what": "Correlation between sketch design fixation and the fixation of the preceding AI images",
+   "reason": "An observational association within the GenAI arm, not the randomized GenAI-versus-comparison contrast (PDF pp. 11-12, Section 4.6.2 and Figure 10)."
+  },
+  {
+   "what": "Design fixation: Image Search versus Baseline",
+   "reason": "Neither arm receives generative AI (PDF p. 8, Table 1)."
+  },
+  {
+   "what": "Fluency: Image Search versus Baseline, total and direct effects",
+   "reason": "Neither arm receives generative AI (PDF p. 9, Table 2)."
+  },
+  {
+   "what": "Variety: Image Search versus Baseline, total and direct effects",
+   "reason": "Neither arm receives generative AI (PDF p. 9, Table 3)."
+  },
+  {
+   "what": "Originality: Image Search versus Baseline, total and direct effects",
+   "reason": "Neither arm receives generative AI (PDF p. 10, Table 4)."
+  },
+  {
+   "what": "Negative-binomial shape coefficients in the fluency models",
+   "reason": "Dispersion parameters, not effects on the mean number of sketches. The primary mean-response coefficients are extracted; the shape coefficients are not separate creativity-outcome estimates (PDF p. 9, Table 2)."
+  },
+  {
+   "what": "Fluency coefficient in the variety model and variety coefficient in the originality model",
+   "reason": "Associations with post-assignment covariates, not randomized AI-arm contrasts (PDF pp. 9-10, Tables 3-4)."
+  }
+ ],
+ "open_items": [
+  "The paper does not print an analysis-specific participant N, explicit total arm counts, or a two-arm contrast N. Section 3.2 reports recruitment and a gender composition for each condition, but the required analysis counts are not inferred from these or from degrees of freedom.",
+  "No participant-level outcome SD or standardized effect is printed. The table SDs quantify posterior uncertainty in model coefficients, not dispersion of participants’ outcomes.",
+  "Table 3 prints a negative posterior SD for the GenAI total effect on variety. It is preserved with its sign in regression.se for audit, but is unusable as uncertainty until the printing error is resolved.",
+  "Intervals differ between tables and results prose. The extraction uses the tabulated intervals and preserves the prose values in notes and quotes. The direct-variety prose interval also has a malformed lower bound.",
+  "No numerical GenAI-versus-Image-Search contrast is printed. Arm-level predictions and error bars are figure-only; no values have been digitized or obtained by subtracting fitted coefficients.",
+  "The exact fluency response coding and normalization used for the variety figure require clarification. The screening form flags conflicts involving the printed sketch totals and plotted/model levels; no derived or digitized values from that form are imported.",
+  "The fixation model includes participant and image random effects, but the paper does not say whether the two ratings per sketch were combined before fitting it, and it does not print the fitted observation count.",
+  "Originality is a per-sketch rarity score referenced to other participants. The paper does not explicitly define whether its reference pool spans all conditions. It is coded novelty as in the screening form, without inventing a within-arm diversity estimate.",
+  "The separate supplementary study protocol mentioned in Section 3.1 is not among the located local files. The exact randomization procedure beyond the reported random assignment is not described in the available PDF.",
+  "Country of data collection and the Midjourney V4 release year are not stated. Author affiliations are not substituted for participant location, and the study year is not substituted for the model release year."
+ ],
+ "notes": "One individually randomized, between-participants laboratory experiment; no unassisted later outcome is reported. The complete markdown conversion, including the appendix and references, was read in chunks. Tables, figures, and Appendix A were checked in the saved PDF, and all extracted numerical statistics were verified with pymupdf page text. No separate local supplement was located. Inventory of eligible results: the design-fixation GenAI-versus-Baseline model; total and direct GenAI-versus-Baseline effects for fluency, variety, and originality; and qualitative/figure-only GenAI-versus-Image-Search comparisons for each outcome. The direct specifications adjust for variables measured after assignment and are retained separately from total effects. All numeric coefficients come from one shared study and are not independent samples. Bayesian uncertainty mapping: regression.se retains the exact printed posterior SD, explicitly distinguished from a frequentist SE in every numeric record. No posterior SD is placed in an arm outcome-SD field. The reported compatibility intervals are preserved at their stated level without conversion. Bayes factors are stored as test.type=other, with test.value identified in notes; they are not p-values or standardized effects. Table rows in sources retain printed precision, including trailing zeros. Counts: PDF p. 5, Section 3.2 states: Each condition had an equal num- ber of participants and was gender-balanced, with 10 women and 10 men per condition (gender was self-described by participants). The numeric arm counts are null because their totals are not printed, and analyzed counts are not assumed from recruitment. No attrition or exclusion of people is reported, but no creativity model supplies its N. Output corpus: PDF p. 5, Section 3.1 states \"all the sketches (N=277)\" and \"The process resulted in 83 clusters.\" These are the whole-study corpus and category counts, not participant counts or explicit model Ns. PDF p. 12, Section 4.6.2 states: For this analysis, we begin with the total set of sketches produced by participants in the AI condition (92 in total). This arm sketch total is not converted to a mean. Intercepts, shape parameters, and covariate coefficients are not treated as additional randomized arm outcomes. The tables are preferred over conflicting prose for the structured coefficient intervals. The prior screening form’s computed or digitized quantities were not copied. There is no identified shared sample in the screening form or paper. For specification selection, the total-effects originality record is the unadjusted novelty result; the direct-effects originality record is an adjusted alternative from the same sample. No outcome is explicitly preregistered or designated primary in the available paper."
+}

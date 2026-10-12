@@ -1,0 +1,240 @@
+{
+  "cid": "c107",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Radensky et al (2026) - Scideator.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Radensky et al (2026) - Scideator.pdf",
+    "version": "arXiv:2409.14634v7 dated 16 May 2026 (arXiv stamp, p. 1); camera-ready text for ACM CAIS '26 with copyright block and DOI 10.1145/3786335.3813161 on p. 1",
+    "title_on_document": "Scideator: Human-LLM Compound System for Scientific Ideation through Facet Recombination and Novelty Evaluation",
+    "authors_on_document": ["Marissa Radensky", "Simra Shahid", "Raymond Fok", "Pao Siangliulue", "Tom Hope", "Daniel S. Weld"],
+    "pages": 27,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendices A to H inside this PDF (pp. 10-27); no separate online supplement is referenced",
+      "holds": "Full user-study design and procedure (A), extended results on remaining CSI factors and self-rated idea qualities (B.1), annotation study (C), extra ablation table (D), sample ideas (E), implementation details (F), UI figures (G), prompt pseudocode (H)"
+    }
+  },
+  "paper_design_summary": "Twenty-two computer-science researchers each did two 20-minute research-ideation sessions, one with Scideator (a facet-based LLM ideation system) and one with a baseline tool using the same LLM (gpt-4o) with paper-level free-text prompting, in randomized order and with randomized topics. Outcomes are self-reports: the Creativity Support Index after each session and participants' own 7-point ratings of their two favorite ideas (newness, feasibility, specificity, impact, imaginativeness). Separate model-only ablations evaluate the novelty-checker module against expert labels.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Within-subjects user study (Scideator vs same-LLM baseline, research ideation)",
+      "design_class": "lab_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Order of the two tool conditions (Scideator vs baseline) and which of two preset topics went with each condition",
+        "unit": "within_person_order",
+        "structure": "within",
+        "quote": "We conducted a within-subjects study, in which each participant completed tasks for the treatment and baseline conditions in randomized order. The ideation topics for the treatment and baseline conditions were also randomized.",
+        "locator": "p. 11, Appendix A.2; also p. 6, Section 4.1",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [
+        { "name": "Scideator (treatment)", "description": "Facet-based human-LLM ideation system: retrieves analogous papers, extracts purpose/mechanism/evaluation facets, generates ideas by recombining selected facets; novelty checker in a separate evaluation tab. Some functions disabled for the study (Appendix A.4).", "ai": "generative_ai", "n_randomized": 22, "n_analyzed": 22 },
+        { "name": "Baseline (paper-level interaction)", "description": "Same LLM (gpt-4o-2024-08-06); participants select input papers and give optional free-text instructions; LLM generates ideas directly; no novelty-checker output.", "ai": "generative_ai", "n_randomized": 22, "n_analyzed": 22 }
+      ],
+      "participants": {
+        "n_randomized": 22,
+        "n_analyzed": 22,
+        "counts_are": "people",
+        "exclusions": "No exclusions stated for the CSI and idea-rating analyses (contributions list N=22). The RQ3 novelty-assessment analysis uses 17 participants: one did not receive the full allotted time and four saw a different novelty-checker version due to an API issue (p. 7, fn. 6). Two participants saved only one idea in a session and were asked to pick a next favorite (p. 12, A.5).",
+        "population": "mixed",
+        "who": "Computer-science researchers: 16 PhD students, 5 master's students, 1 industry researcher; 12 HCI and 10 NLP; all had authored at least one paper; paid a $60 Amazon gift card",
+        "country": "not_stated",
+        "quote": "We recruited 22 computer-science researchers (W: 7, M: 15) through institutional mailing lists and academic social networks. We compensated them with a $60 Amazon gift card.",
+        "locator": "p. 11, Appendix A.1; p. 6, Section 4.1; p. 3, contributions list (N=22)"
+      },
+      "ai_tool": {
+        "name_model": "Scideator built on gpt-4o-2024-08-06 (gpt-4o for re-ranking, o3-mini for novelty assessment); baseline uses gpt-4o-2024-08-06",
+        "role": "other",
+        "how_used": "In both conditions the LLM generates research ideas that the participant selects and saves. Scideator structures the interaction around selectable facets from retrieved analogous papers; the baseline takes input-paper selection plus free-text custom instructions. A novelty-evaluation tab (with Scideator's novelty checker in treatment only, plus a ChatGPT-like chat) followed idea generation."
+      },
+      "task": {
+        "type": "idea_generation",
+        "description": "Generate and save as many research ideas as possible on an assigned topic (HCI: human-AI collaboration in art, AI tools for education; NLP: LLM hallucinations, LLM explainability) starting from three input papers; then pick two favorite ideas, rate them, and evaluate their novelty",
+        "duration": "20-minute idea-generation task per condition plus 5-minute novelty evaluation; 105-minute session overall"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Self-rated newness of favorite ideas",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": false,
+          "measure": "self_report",
+          "measure_detail": "Participants rated their own two favorite ideas on a 7-point scale for how different/new the idea was; no external raters or computed score",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "not_stated",
+          "contrasts": [
+            {
+              "treatment_arm": "Scideator (treatment)",
+              "control_arm": "Baseline (paper-level interaction)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["none"],
+              "reported": "\"rated their favorite ideas' newness on a 7-point scale, showing only a slight advantage for Scideator (median difference: 0.5 points)\"; no test statistic or p-value reported",
+              "locator": "p. 6, Section 4.1.1 (Exploration Factor)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Self-rated imaginativeness of favorite ideas",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": false,
+          "measure": "self_report",
+          "measure_detail": "7-point Likert-type self-rating of each of two favorite ideas; reported as treatment-minus-baseline difference in participants' average ratings",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Scideator (treatment)",
+              "control_arm": "Baseline (paper-level interaction)",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["none"],
+              "reported": "imaginativeness (M=0.00, Q1=-0.50, Q3=0.38); no test reported",
+              "locator": "p. 12, Appendix B.1 (Results-Worth-Effort)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Self-rated feasibility, specificity, and impact of favorite ideas",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": false,
+          "measure": "self_report",
+          "measure_detail": "Three 7-point Likert-type self-ratings of each of two favorite ideas; reported as treatment-minus-baseline differences in participants' average ratings",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Scideator (treatment)",
+              "control_arm": "Baseline (paper-level interaction)",
+              "comparison_type": "ai_design",
+              "direction": "mixed",
+              "statistics_available": ["none"],
+              "reported": "feasibility (M=0.00, Q1=-0.50, Q3=0.50), specificity (M=0.00, Q1=-0.88, Q3=0.50); \"the baseline tool performed slightly better with respect to generating impactful ideas (M=-0.25, Q1=-0.50, Q3=0.00)\"; no tests reported",
+              "locator": "p. 12, Appendix B.1 (Results-Worth-Effort)"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Creativity Support Index (CSI)",
+          "construct": "other",
+          "question": "none",
+          "scored_on_output": false,
+          "measure": "self_report",
+          "measure_detail": "Validated questionnaire on the tool's creativity support (exploration, expressiveness, enjoyment, immersion, results worth effort), 0-100 scale; rates the experience, not the ideas. Factor-level differences in Figure 5b.",
+          "unit": "participant",
+          "n_units": null,
+          "ai_available_when_produced": "yes",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "paper_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Scideator (treatment)",
+              "control_arm": "Baseline (paper-level interaction)",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["test_statistic"],
+              "reported": "CSI scores: Scideator median=70.50 (Q1=57.50, Q3=79.00), baseline median=61.00 (Q1=42.25, Q3=71.50). Wilcoxon signed-rank test, V=208.50, p<.01.",
+              "locator": "p. 6, Section 4.1.1 and footnote 5; p. 13, Figure 5"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        }
+      ]
+    },
+    {
+      "study_id": "S2",
+      "label": "Novelty-checker ablations (retrieval and classifier), model only",
+      "design_class": "model_only",
+      "assignment": {
+        "randomized": "no",
+        "what_was_assigned": "",
+        "unit": "other",
+        "structure": "between",
+        "quote": "",
+        "locator": "pp. 7-8, Section 4.2, Tables 1-2",
+        "preregistered": "not_stated",
+        "prereg_locator": ""
+      },
+      "arms": [],
+      "participants": {
+        "n_randomized": null,
+        "n_analyzed": null,
+        "counts_are": "other",
+        "exclusions": "",
+        "population": "mixed",
+        "who": "No human participants; test sets of 58 ideas (retrieval) and 43 held-out ideas (classifier) labeled by the first two authors",
+        "country": "",
+        "quote": "",
+        "locator": "pp. 7-8, Sections 4.2.1-4.2.2"
+      },
+      "ai_tool": {
+        "name_model": "o3-mini (classification), gpt-4o (re-ranking)",
+        "role": "other",
+        "how_used": "Pipeline variants compared on accuracy of retrieving overlapping papers and classifying idea novelty"
+      },
+      "task": {
+        "type": "other",
+        "description": "Automated novelty classification of research ideas",
+        "duration": ""
+      },
+      "outcomes": []
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "Co-first author Simra Shahid lists Microsoft (Delhi) as affiliation; Pao Siangliulue, Tom Hope, and Daniel S. Weld list the Allen Institute for AI (a non-profit). Both conditions use OpenAI's gpt-4o; no funding statement found.",
+    "locator": "p. 1, author block"
+  },
+  "data_and_code": {
+    "data_url": "",
+    "code_url": ""
+  },
+  "eligibility": {
+    "core": "no",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "not_met",
+    "criterion_3_outcome_scored_on_output": "not_met",
+    "context_class": "none",
+    "reason": "Within-person design with randomized order of two AI configurations (Scideator vs same-LLM baseline), which satisfies criterion 1 as an ai_design contrast. Only 22 participants (well below 50). All creativity outcomes are self-reports: the Creativity Support Index and participants' own ratings of their favorite ideas; no raters or computed measures score the ideas. The ablations are model-only."
+  },
+  "one_line_finding": "With 22 CS researchers in a randomized-order within-subjects study, Scideator beat a same-LLM baseline on the self-reported Creativity Support Index (median 70.5 vs 61.0; Wilcoxon V=208.50, p<.01; p. 6, fn. 5), while self-rated newness of favorite ideas differed little (median difference 0.5; p. 6).",
+  "open_questions": [
+    "The paper does not state explicitly that all 22 participants enter the CSI test; the contributions list says N=22 (p. 3) and Figure 5a shows one point per participant.",
+    "Whether 'M' in Appendix B.1 is the median or the mean of within-person differences is not stated."
+  ],
+  "notes": "No arm works without AI; the contrast is ai_design. RQ3 (p. 7, Figure 4) compares participants' perceived novelty of their favorite ideas before and after the novelty-evaluation step for 17 participants (sign test on confidence, S=5.00, p=n.s.); this is self-assessment of novelty, not a creativity outcome, so it is not listed as an outcome. The expert annotation study (51 ideas, two authors, Cohen's kappa 0.64 then 0.68; p. 5) built the classifier's in-context examples. Code release is promised 'upon acceptance of the paper' (p. 18, Appendix H); no URL. The markdown renders the specificity Q1 as 0.88; the PDF (p. 12) shows -0.88. Sessions were run with a coordinator and recorded through Google Meet (p. 12, A.5), so coded lab_rct (supervised session)."
+}

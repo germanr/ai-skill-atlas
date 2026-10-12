@@ -1,0 +1,400 @@
+{
+ "cid": "c894",
+ "screener": "single_unstated_fixed",
+ "source": {
+  "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rick et al (2025) - How far afield should you go when being creative.md",
+  "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Rick et al (2025) - How far afield should you go when being creative.pdf",
+  "version": "Undated full-text ICCC proceedings PDF on file (PDF metadata identifies Proceedings of ICCC).",
+  "title_on_document": "How far afield should you go when being creative? Semantic area as a metric of AI’s effects on creative ideation",
+  "authors_on_document": [
+   "Steven R. Rick",
+   "Jennifer L. Heyman",
+   "Pablo Paredes",
+   "Matthew Hong",
+   "Thomas W. Malone"
+  ],
+  "pages": 9,
+  "supplement": {
+   "exists": "not_stated",
+   "in_this_pdf": false,
+   "where": "",
+   "holds": ""
+  }
+ },
+ "paper_design_summary": "This reanalysis of DesignAID uses 111 participants who each created two moodboards depicting a chair for children, using Direct input and LLM-expanded Diverse (New Idea) input to generate images (p. 3, Data preparation and Results). It compares the semantic breadth of each participant’s selected ideas across modes and relates exploration and selection to external ratings of the final moodboards (pp. 3-6). The original study is described as a 2x2 factorial with a within-subject mode comparison, but this paper does not state how condition order was allocated (p. 3, Evaluating Creative Ideation with Semantic Area and Results; p. 5, Figure 6).",
+ "studies": [
+  {
+   "study_id": "S1",
+   "label": "DesignAID moodboard dataset reanalysis",
+   "design_class": "other",
+   "assignment": {
+    "randomized": "not_stated",
+    "what_was_assigned": "Each participant used both Direct input and Diverse (New Idea) modes for moodboard creation. The paper calls the original design a 2x2 factorial but does not describe the other factor or how mode order was allocated.",
+    "unit": "individual",
+    "structure": "within",
+    "quote": "All participants were exposed to two treatments: the Diverse (New Idea) mode where the input they provided was semantically expanded by a Large Language Model, and the Direct input mode where the input they provided remained unchanged.",
+    "locator": "p. 3, Evaluating Creative Ideation with Semantic Area and Results; p. 5, Figure 6 (Within-Subjects T-Test). No allocation or randomized-order statement appears in the full text.",
+    "preregistered": "yes",
+    "prereg_locator": "p. 3, Semantic Area and Mode of Interaction, opening sentence and footnote 1: https://doi.org/10.17605/OSF.IO/KM2ZQ; pp. 4-5, continuation. The authors preregistered a hypothesis before this reanalysis; this does not establish preregistration of the original experiment or randomized assignment or condition order."
+   },
+   "arms": [
+    {
+     "name": "Direct input mode",
+     "description": "The participant’s text input remained unchanged and was used to generate images for selection into a moodboard. All participants used this mode; a separate per-mode analyzed count is not reported (p. 3, Results).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    },
+    {
+     "name": "Diverse (New Idea) mode",
+     "description": "A Large Language Model semantically expanded the participant’s input into new ideas; texts were used to generate images for selection into a moodboard. All participants used this mode; a separate per-mode analyzed count is not reported (p. 3, Results).",
+     "ai": "generative_ai",
+     "n_randomized": null,
+     "n_analyzed": null
+    }
+   ],
+   "participants": {
+    "n_randomized": null,
+    "n_analyzed": 111,
+    "counts_are": "people",
+    "exclusions": "The reanalysis retained users who provided at least 3 unique inputs, allowing a minimum of 3 points for area calculations: N = 111 from the original 115 (p. 3, Data preparation). The original 115 is not identified as a randomized count.",
+    "population": null,
+    "who": "Users from the DesignAID study (Cai et al., 2023), restricted to those providing at least 3 unique inputs; the paper reports 111 users from the original 115. Recruitment source and demographic population are not stated.",
+    "country": "",
+    "quote": "we first subset the DesignAID dataset for users who provided at least 3 unique inputs in order to have a minimum of 3 points available for running area calculations (N = 111, from the original 115).",
+    "locator": "p. 3, Evaluating Creative Ideation with Semantic Area and Data preparation"
+   },
+   "ai_tool": {
+    "name_model": "DesignAID; the LLM and image-generation model names are not stated in this paper.",
+    "role": "ideas_supplied",
+    "how_used": "In Diverse mode, a Large Language Model semantically expanded users’ text into new ideas. In Direct mode, text remained unchanged. Texts in both modes were used to create images, from which participants selected their final moodboards (p. 3, Calculating and Using Semantic Area and Results)."
+   },
+   "task": {
+    "type": "design_visual",
+    "description": "Create two moodboards depicting a chair for children using text input to generate images and selecting images for the final boards (p. 3, Results).",
+    "duration": ""
+   },
+   "outcomes": [
+    {
+     "outcome_id": "S1-O1",
+     "name": "Selected semantic area (breadth within each participant’s selected ideas)",
+     "construct": "flexibility",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "embedding_similarity",
+     "measure_detail": "For each participant in each mode, selected text strings are embedded with Google’s Universal Sentence Encoder v4 into 512-dimensional vectors, then clustered and reduced with UMAP using cosine similarity to a shared 2D coordinate space. Selected semantic area is the area of the convex hull of the participant’s selected points; the hull uses SciPy’s quick hull implementation and its area uses the shoelace formula (p. 2, Semantic Area; p. 3, Calculating and Using Semantic Area). Comparisons require the same embedding model and the same corpus for clustering and dimensionality reduction, so area is a relative measure (p. 8, Limitations and Future Work). This measures within-person semantic breadth (flexibility), not similarity across different people.",
+     "unit": "participant",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "Diverse (New Idea) mode",
+       "control_arm": "Direct input mode",
+       "comparison_type": "ai_design",
+       "direction": "treatment_higher",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Diverse versus Direct mode, selected semantic area: t = −8.54, p < .0001, MDiff = −8.54. The text states that semantic areas in Diverse conditions were significantly greater than in Direct conditions. The negative statistics are reproduced exactly as printed; the subtraction order is not explicitly labeled. This measures breadth within a participant’s selections, not similarity across different people.",
+       "locator": "p. 4, Semantic Area and Mode of Interaction; p. 5, Figure 6; pp. 2-3, Semantic Area and Calculating and Using Semantic Area (embedding, dimensionality reduction, and convex-hull measure)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O2",
+     "name": "Innovation of final moodboard (external rating)",
+     "construct": "novelty",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "A separate group of evaluators rated the final moodboards for innovation on a 1-5 scale: M = 4.19, SD = 0.88 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "",
+       "direction": "",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Indirect effect of Seen area through pulled focus (distance between Input and Selected centroids) on objective innovation: b = −.01, z = −2.33, p = .02. This is a reported mediation association, not a Diverse-versus-Direct arm contrast.",
+       "locator": "p. 6, Effects Between What People Do, What People See, and What People Select, Figure 8a; p. 3, Evaluating Creative Ideation with Semantic Area (external artifact ratings)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O3",
+     "name": "Fit of final moodboard to the prompt (external rating)",
+     "construct": "usefulness",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "A separate group of evaluators rated the final moodboards for fit to the prompt of a chair for children on a 1-5 scale: M = 4.34, SD = 1.32 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "",
+       "direction": "",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Indirect effect of Seen area through pulled focus (distance between Input and Selected centroids) on objective fit: b = −.01, z = −2.44, p = .02. This is a reported mediation association, not a Diverse-versus-Direct arm contrast.",
+       "locator": "p. 6, Effects Between What People Do, What People See, and What People Select, Figure 8b; p. 3, Evaluating Creative Ideation with Semantic Area (external artifact ratings)"
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O4",
+     "name": "Inspiration of final moodboard (external rating)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "A separate group of evaluators rated the final moodboards for inspiration on a 1-7 scale: M = 3.65, SD = 0.77 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "other",
+       "direction": "",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Indirect effect of Seen area through pulled focus (distance between Input and Selected centroids) on objective inspiration: b = −.01, z = −2.40, p = .02. This is a reported mediation association, not a Diverse-versus-Direct arm contrast.",
+       "locator": "p. 6, Effects Between What People Do, What People See, and What People Select, Figure 8c; p. 3, Evaluating Creative Ideation with Semantic Area (external artifact ratings)."
+      },
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "other",
+       "direction": "",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Separate linear regressions predicting objective inspiration: Input Area b = 0.01, se = .01, p = .12; Seen Area b = -0.00, se = .00, p = .51; Select Area b = -0.01, se = .01, p = .21. None was significant. These are associations with semantic area, not treatment-arm contrasts; rounded coefficients and standard errors are reproduced as printed.",
+       "locator": "p. 5, Table 1, Objective Measures, Inspiration rows under Input Area, Seen Area, and Select Area; Semantic Area and Evaluated Outcomes."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    },
+    {
+     "outcome_id": "S1-O5",
+     "name": "Liking of final moodboard (external rating)",
+     "construct": "other",
+     "question": "with_ai",
+     "scored_on_output": true,
+     "measure": "human_raters",
+     "measure_detail": "A separate group of evaluators rated the final moodboards for liking on a 1-7 scale: M = 4.00, SD = 0.77 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.",
+     "unit": "output",
+     "n_units": null,
+     "ai_available_when_produced": "yes",
+     "timing": "immediate",
+     "delay": "",
+     "primary": "not_stated",
+     "contrasts": [
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "other",
+       "direction": "",
+       "statistics_available": [
+        "test_statistic"
+       ],
+       "reported": "Indirect effect of Seen area through pulled focus (distance between Input and Selected centroids) on objective liking: b = −.01, z = −2.65, p = .01. This is a reported mediation association, not a Diverse-versus-Direct arm contrast.",
+       "locator": "p. 6, Effects Between What People Do, What People See, and What People Select, Figure 8d; p. 3, Evaluating Creative Ideation with Semantic Area (external artifact ratings)."
+      },
+      {
+       "treatment_arm": "",
+       "control_arm": "",
+       "comparison_type": "other",
+       "direction": "",
+       "statistics_available": [
+        "regression_coefficient_se"
+       ],
+       "reported": "Separate linear regressions predicting objective liking: Input Area b = 0.01, se = .01, p = .29; Seen Area b = -0.00, se = .00, p = .28; Select Area b = -0.01, se = .01, p = .10. None was significant. These are associations with semantic area, not treatment-arm contrasts; rounded coefficients and standard errors are reproduced as printed.",
+       "locator": "p. 5, Table 1, Objective Measures, Liking rows under Input Area, Seen Area, and Select Area; Semantic Area and Evaluated Outcomes."
+      }
+     ],
+     "diversity_detail": {
+      "metric": "",
+      "embedding_model": "",
+      "computed_over": "",
+      "uncertainty": "",
+      "notes": ""
+     }
+    }
+   ]
+  }
+ ],
+ "synthesis": {
+  "k_studies": null,
+  "n_effect_sizes": null,
+  "search_end": "",
+  "inclusion": "",
+  "pooled": [
+   {
+    "comparison": "",
+    "estimate": "",
+    "interval": "",
+    "what_it_standardizes": "",
+    "locator": ""
+   }
+  ]
+ },
+ "sample_overlap": {
+  "shares_participants_with": "Cai et al. (2023), DesignAID: Using generative AI and semantic diversity for design inspiration, Proceedings of The ACM Collective Intelligence Conference. This paper reanalyzes a subset of that study and does not report a new independent participant sample.",
+  "quote": "we obtained a copy of the dataset from the DesignAID study (Cai et al. 2023).",
+  "locator": "p. 3, Evaluating Creative Ideation with Semantic Area and Data preparation; p. 8, References, Cai et al. (2023)."
+ },
+ "company_involvement": {
+  "any": true,
+  "description": "Toyota Research Institute supported the research in part. Authors Pablo Paredes and Matthew Hong are affiliated with Toyota Research Institute; the author-contribution statement says they helped interpret the results and develop the research plan. All authors wrote and reviewed the manuscript.",
+  "locator": "p. 1, author names and affiliations; p. 8, Author Contributions and Acknowledgments."
+ },
+ "data_and_code": {
+  "data_url": "",
+  "code_url": ""
+ },
+ "eligibility": {
+  "core": "unclear",
+  "criterion_1_random_assignment_of_ai": "unclear",
+  "criterion_2_at_least_50_people": "met",
+  "criterion_3_outcome_scored_on_output": "met",
+  "context_class": "none",
+  "reason": "Criterion 1 is unclear: all participants used both generative-AI configurations, but the paper does not state random assignment or randomized condition order (p. 3, Evaluating Creative Ideation with Semantic Area and Results; p. 5, Figure 6). The design is coded other because neither randomized nor explicitly non-random allocation is established. Criterion 2 is met: N = 111 users were analyzed from the original 115 (p. 3, Data preparation). Criterion 3 is met: a separate group of evaluators scored the final moodboards for innovation and fit, and a computed semantic-area measure scores the breadth of selected ideas (p. 3, Evaluating Creative Ideation with Semantic Area and Calculating and Using Semantic Area; pp. 4-6, Results). With assignment unclear, at least 50 people analyzed, and an output-scored outcome, core remains unclear and the paper goes to the two-screener pipeline. Semantic area here is within-person flexibility rather than across-person diversity."
+ },
+ "one_line_finding": "Among 111 analyzed DesignAID users, selected semantic area was larger with Diverse than Direct mode (reported t = −8.54, p < .0001, MDiff = −8.54; p. 3, Data preparation; p. 4, Semantic Area and Mode of Interaction).",
+ "open_questions": [],
+ "notes": "",
+ "fix": {
+  "applied": [
+   {
+    "field": "studies[0].assignment.preregistered; studies[0].assignment.prereg_locator",
+    "old": "{\"preregistered\": \"not_stated\", \"prereg_locator\": \"\"}",
+    "new": "{\"preregistered\": \"yes\", \"prereg_locator\": \"p. 3, Semantic Area and Mode of Interaction, opening sentence and footnote 1: https://doi.org/10.17605/OSF.IO/KM2ZQ; pp. 4-5, continuation. The authors preregistered a hypothesis before this reanalysis; this does not establish preregistration of the original experiment or randomized assignment or condition order.\"}",
+    "quote": "Before conducting any analysis, we pre-registered a hypothesis on OSF",
+    "locator": "PDF p. 3, Semantic Area and Mode of Interaction, opening sentence and footnote 1; pp. 4-5, continuation confirming the registered hypothesis."
+   },
+   {
+    "field": "studies[0].participants.exclusions",
+    "old": "",
+    "new": "The reanalysis retained users who provided at least 3 unique inputs, allowing a minimum of 3 points for area calculations: N = 111 from the original 115 (p. 3, Data preparation). The original 115 is not identified as a randomized count.",
+    "quote": "users who provided at least 3 unique inputs in order to have a minimum of 3 points available for running area calculations (N = 111, from the original 115).",
+    "locator": "PDF p. 3, Data preparation."
+   },
+   {
+    "field": "sample_overlap",
+    "old": "{\"shares_participants_with\": \"\", \"quote\": \"\", \"locator\": \"\"}",
+    "new": "{\"shares_participants_with\": \"Cai et al. (2023), DesignAID: Using generative AI and semantic diversity for design inspiration, Proceedings of The ACM Collective Intelligence Conference. This paper reanalyzes a subset of that study and does not report a new independent participant sample.\", \"quote\": \"we obtained a copy of the dataset from the DesignAID study (Cai et al. 2023).\", \"locator\": \"p. 3, Evaluating Creative Ideation with Semantic Area and Data preparation; p. 8, References, Cai et al. (2023).\"}",
+    "quote": "we obtained a copy of the dataset from the DesignAID study (Cai et al. 2023).",
+    "locator": "PDF p. 3, Evaluating Creative Ideation with Semantic Area and Data preparation; p. 8, References, Cai et al. (2023)."
+   },
+   {
+    "field": "company_involvement",
+    "old": "{\"any\": false, \"description\": \"\", \"locator\": \"\"}",
+    "new": "{\"any\": true, \"description\": \"Toyota Research Institute supported the research in part. Authors Pablo Paredes and Matthew Hong are affiliated with Toyota Research Institute; the author-contribution statement says they helped interpret the results and develop the research plan. All authors wrote and reviewed the manuscript.\", \"locator\": \"p. 1, author names and affiliations; p. 8, Author Contributions and Acknowledgments.\"}",
+    "quote": "This research was supported in part by the Toyota Research Institute and also as part of the Collective Intelligence Mission of the MIT Quest for Intelligence.",
+    "locator": "PDF p. 1, author affiliations; p. 8, Author Contributions and Acknowledgments."
+   },
+   {
+    "field": "studies[0].outcomes[0].measure_detail",
+    "old": "",
+    "new": "For each participant in each mode, selected text strings are embedded with Google’s Universal Sentence Encoder v4 into 512-dimensional vectors, then clustered and reduced with UMAP using cosine similarity to a shared 2D coordinate space. Selected semantic area is the area of the convex hull of the participant’s selected points; the hull uses SciPy’s quick hull implementation and its area uses the shoelace formula (p. 2, Semantic Area; p. 3, Calculating and Using Semantic Area). Comparisons require the same embedding model and the same corpus for clustering and dimensionality reduction, so area is a relative measure (p. 8, Limitations and Future Work). This measures within-person semantic breadth (flexibility), not similarity across different people.",
+    "quote": "For this we used Google’s Universal Sentence Encoder v4 (Cer et al. 2018), but any sufficiently rich embedding model could be used.",
+    "locator": "PDF p. 2, Semantic Area; p. 3, Calculating and Using Semantic Area; p. 8, Limitations and Future Work (common corpus and relative scale)."
+   },
+   {
+    "field": "studies[0].outcomes[1].measure_detail",
+    "old": "",
+    "new": "A separate group of evaluators rated the final moodboards for innovation on a 1-5 scale: M = 4.19, SD = 0.88 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.",
+    "quote": "innovation (1-5, M = 4.19, SD = 0.88)",
+    "locator": "PDF p. 3, Evaluating Creative Ideation with Semantic Area, paragraph describing external evaluations."
+   },
+   {
+    "field": "studies[0].outcomes[2].measure_detail",
+    "old": "",
+    "new": "A separate group of evaluators rated the final moodboards for fit to the prompt of a chair for children on a 1-5 scale: M = 4.34, SD = 1.32 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.",
+    "quote": "fit (1-5, M = 4.34, SD = 1.32)",
+    "locator": "PDF p. 3, Evaluating Creative Ideation with Semantic Area, paragraph describing external evaluations."
+   },
+   {
+    "field": "studies[0].outcomes[0].contrasts[0]",
+    "old": "{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"\", \"direction\": \"\", \"statistics_available\": [], \"reported\": \"Diverse versus Direct mode, selected semantic area: t = −8.54, p < .0001, MDiff = −8.54. The text states that semantic areas in Diverse conditions were significantly greater than in Direct conditions. The negative statistics are reproduced exactly as printed; the subtraction order is not explicitly labeled. This measures breadth within a participant’s selections, not similarity across different people.\", \"locator\": \"p. 4, Semantic Area and Mode of Interaction; p. 5, Figure 6; pp. 2-3, Semantic Area and Calculating and Using Semantic Area (embedding, dimensionality reduction, and convex-hull measure)\"}",
+    "new": "{\"treatment_arm\": \"Diverse (New Idea) mode\", \"control_arm\": \"Direct input mode\", \"comparison_type\": \"ai_design\", \"direction\": \"treatment_higher\", \"statistics_available\": [\"test_statistic\"], \"reported\": \"Diverse versus Direct mode, selected semantic area: t = −8.54, p < .0001, MDiff = −8.54. The text states that semantic areas in Diverse conditions were significantly greater than in Direct conditions. The negative statistics are reproduced exactly as printed; the subtraction order is not explicitly labeled. This measures breadth within a participant’s selections, not similarity across different people.\", \"locator\": \"p. 4, Semantic Area and Mode of Interaction; p. 5, Figure 6; pp. 2-3, Semantic Area and Calculating and Using Semantic Area (embedding, dimensionality reduction, and convex-hull measure)\"}",
+    "quote": "Specifically, the semantic areas for the Diverse conditions were significantly greater than the semantic areas for the Direct conditions (Fig 6).",
+    "locator": "PDF p. 3, Results; p. 4, Semantic Area and Mode of Interaction; p. 5, Figure 6."
+   },
+   {
+    "field": "studies[0].outcomes[*].ai_available_when_produced; studies[0].outcomes[*].timing",
+    "old": "[{\"outcome_id\": \"S1-O1\", \"ai_available_when_produced\": \"\", \"timing\": \"\"}, {\"outcome_id\": \"S1-O2\", \"ai_available_when_produced\": \"\", \"timing\": \"\"}, {\"outcome_id\": \"S1-O3\", \"ai_available_when_produced\": \"\", \"timing\": \"\"}]",
+    "new": "[{\"outcome_id\": \"S1-O1\", \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\"}, {\"outcome_id\": \"S1-O2\", \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\"}, {\"outcome_id\": \"S1-O3\", \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\"}]",
+    "quote": "Those texts were then used to create images and participants designed their final moodboards by selecting from the images they produced during the task.",
+    "locator": "PDF p. 3, Results and description of external artifact evaluations; p. 8, Limitations and Future Work."
+   },
+   {
+    "field": "studies[0].outcomes[1].contrasts[0].statistics_available; studies[0].outcomes[2].contrasts[0].statistics_available",
+    "old": "{\"S1-O2\": [], \"S1-O3\": []}",
+    "new": "{\"S1-O2\": [\"test_statistic\"], \"S1-O3\": [\"test_statistic\"]}",
+    "quote": "objective innovation (b = −.01, z = −2.33, p = .02, Fig 8a), fit (b = −.01, z = −2.44, p = .02, Fig 8b)",
+    "locator": "PDF p. 6, Effects Between What People Do, What People See, and What People Select, paragraph accompanying Figures 8a and 8b."
+   },
+   {
+    "field": "studies[0].outcomes",
+    "old": "{\"outcomes\": [{\"outcome_id\": \"S1-O1\", \"name\": \"Selected semantic area (breadth within each participant’s selected ideas)\"}, {\"outcome_id\": \"S1-O2\", \"name\": \"Innovation of final moodboard (external rating)\"}, {\"outcome_id\": \"S1-O3\", \"name\": \"Fit of final moodboard to the prompt (external rating)\"}], \"missing\": [\"external inspiration\", \"external liking\"]}",
+    "new": "{\"retained\": [\"S1-O1\", \"S1-O2\", \"S1-O3\"], \"added\": [{\"outcome_id\": \"S1-O4\", \"name\": \"Inspiration of final moodboard (external rating)\", \"construct\": \"other\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"human_raters\", \"measure_detail\": \"A separate group of evaluators rated the final moodboards for inspiration on a 1-7 scale: M = 3.65, SD = 0.77 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.\", \"unit\": \"output\", \"n_units\": null, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"other\", \"direction\": \"\", \"statistics_available\": [\"test_statistic\"], \"reported\": \"Indirect effect of Seen area through pulled focus (distance between Input and Selected centroids) on objective inspiration: b = −.01, z = −2.40, p = .02. This is a reported mediation association, not a Diverse-versus-Direct arm contrast.\", \"locator\": \"p. 6, Effects Between What People Do, What People See, and What People Select, Figure 8c; p. 3, Evaluating Creative Ideation with Semantic Area (external artifact ratings).\"}, {\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"other\", \"direction\": \"\", \"statistics_available\": [\"regression_coefficient_se\"], \"reported\": \"Separate linear regressions predicting objective inspiration: Input Area b = 0.01, se = .01, p = .12; Seen Area b = -0.00, se = .00, p = .51; Select Area b = -0.01, se = .01, p = .21. None was significant. These are associations with semantic area, not treatment-arm contrasts; rounded coefficients and standard errors are reproduced as printed.\", \"locator\": \"p. 5, Table 1, Objective Measures, Inspiration rows under Input Area, Seen Area, and Select Area; Semantic Area and Evaluated Outcomes.\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}, {\"outcome_id\": \"S1-O5\", \"name\": \"Liking of final moodboard (external rating)\", \"construct\": \"other\", \"question\": \"with_ai\", \"scored_on_output\": true, \"measure\": \"human_raters\", \"measure_detail\": \"A separate group of evaluators rated the final moodboards for liking on a 1-7 scale: M = 4.00, SD = 0.77 (p. 3, Evaluating Creative Ideation with Semantic Area, external artifact evaluations). These are overall descriptive statistics, not arm-specific means or standard deviations. This is an external artifact rating, distinct from participants’ self-reports; evaluator count and expertise are not stated.\", \"unit\": \"output\", \"n_units\": null, \"ai_available_when_produced\": \"yes\", \"timing\": \"immediate\", \"delay\": \"\", \"primary\": \"not_stated\", \"contrasts\": [{\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"other\", \"direction\": \"\", \"statistics_available\": [\"test_statistic\"], \"reported\": \"Indirect effect of Seen area through pulled focus (distance between Input and Selected centroids) on objective liking: b = −.01, z = −2.65, p = .01. This is a reported mediation association, not a Diverse-versus-Direct arm contrast.\", \"locator\": \"p. 6, Effects Between What People Do, What People See, and What People Select, Figure 8d; p. 3, Evaluating Creative Ideation with Semantic Area (external artifact ratings).\"}, {\"treatment_arm\": \"\", \"control_arm\": \"\", \"comparison_type\": \"other\", \"direction\": \"\", \"statistics_available\": [\"regression_coefficient_se\"], \"reported\": \"Separate linear regressions predicting objective liking: Input Area b = 0.01, se = .01, p = .29; Seen Area b = -0.00, se = .00, p = .28; Select Area b = -0.01, se = .01, p = .10. None was significant. These are associations with semantic area, not treatment-arm contrasts; rounded coefficients and standard errors are reproduced as printed.\", \"locator\": \"p. 5, Table 1, Objective Measures, Liking rows under Input Area, Seen Area, and Select Area; Semantic Area and Evaluated Outcomes.\"}], \"diversity_detail\": {\"metric\": \"\", \"embedding_model\": \"\", \"computed_over\": \"\", \"uncertainty\": \"\", \"notes\": \"\"}}]}",
+    "quote": "inspiration (b = −.01, z = −2.40, p = .02, Fig 8c), and liking (b = −.01, z = −2.65, p = .01, Fig 8d).",
+    "locator": "PDF p. 3, Evaluating Creative Ideation with Semantic Area (scales and descriptive statistics); p. 5, Table 1; p. 6, Effects Between What People Do, What People See, and What People Select, Figures 8c and 8d."
+   }
+  ],
+  "rejected": []
+ }
+}

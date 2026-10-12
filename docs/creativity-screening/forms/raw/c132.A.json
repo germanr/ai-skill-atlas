@@ -1,0 +1,381 @@
+{
+  "cid": "c132",
+  "screener": "A",
+  "source": {
+    "md_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu et al (2026) - The Role of Human Agency in Human-AI Co-Creativity.md",
+    "pdf_file": "C:/Dropbox/Research/ai-lab/literature/creativity/Wu et al (2026) - The Role of Human Agency in Human-AI Co-Creativity.pdf",
+    "version": "PsyArXiv preprint tbvq2_v1 (posted 2026-07-03 per retrieval.json); the document itself carries an 'UNDER PEER REVIEW' watermark and no date. The version of record is the ACM Creativity & Cognition 2026 paper (doi 10.1145/3803784.3816857), not on file.",
+    "title_on_document": "The role of human agency in human-AI co-creativity",
+    "authors_on_document": ["Sarah H. Wu", "Yuewen Yang", "Angela Y. Lee", "Alex Liebscher", "Kristina Rapuano", "Kate G. Niederhoffer", "Jeffrey T. Hancock"],
+    "pages": 42,
+    "supplement": {
+      "exists": "yes",
+      "in_this_pdf": true,
+      "where": "Appendix A (pp. 33-37) and Appendix B (pp. 38-42) are inside this PDF. The paper also links an OSF preregistration (p. 10). No separate online supplement is mentioned.",
+      "holds": "Table A2 (p. 35: mixed-model coefficients and SEs for creativity, originality, usefulness) and Table A3 (p. 36: mixed-model coefficients and SEs for cosine similarity to centroid); participant-AI similarity (p. 37); prompt coding and noncompliance (Appendix B)."
+    }
+  },
+  "paper_design_summary": "Community college students in the San Francisco Bay Area were randomly assigned to one of three conditions: a high-agency instruction with access to a GPT-3.5 chatbot, a low-agency instruction with the same chatbot, or a human-only control told not to use AI. Each submitter generated five alternative uses for each of three objects (brick, bubble wrap, frisbee). Separate online evaluators rated ideas for creativity, originality, and usefulness, and homogeneity was measured by embedding similarity to the leave-one-out condition-object centroid and by an exploratory HDBSCAN cluster analysis.",
+  "studies": [
+    {
+      "study_id": "S1",
+      "label": "Alternative Uses Task with high-agency AI, low-agency AI, or no AI",
+      "design_class": "online_rct",
+      "assignment": {
+        "randomized": "yes",
+        "what_was_assigned": "Instruction framing plus AI access: high-agency guidance with chatbot, low-agency guidance with chatbot, or no-AI control",
+        "unit": "individual",
+        "structure": "between",
+        "quote": "After consenting, participants were randomly assigned to one of three conditions that varied whether they completed the idea-generation task with or without access to an AI chatbot",
+        "locator": "p. 11, Method, Submission Phase",
+        "preregistered": "yes",
+        "prereg_locator": "p. 10, Preregistration (https://osf.io/2d7fe/overview?view_only=c34f80bd046e4c85aafdee3d2c33a74e); deviations p. 14, Statistical Approach"
+      },
+      "arms": [
+        { "name": "High-agency", "description": "Chatbot access (custom web app on gpt-3.5); told to use AI to expand on their own ideas: 'Instead of asking AI to come up with ideas for you, use it to expand upon your own ideas to generate ones that are even more creative.' (Figure A1, p. 33)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Low-agency", "description": "Same chatbot access; told to let AI do the heavy lifting: 'Let the AI's creative power work for you. Trust in its ability to generate creative ideas and don't hesitate to use its suggestions directly.' (Figure A1, p. 33)", "ai": "generative_ai", "n_randomized": null, "n_analyzed": null },
+        { "name": "Control (human only)", "description": "No chatbot; told 'We value your individual human creativity, so please do NOT use AI during the task.' Copy-paste disabled (p. 11)", "ai": "none", "n_randomized": null, "n_analyzed": null }
+      ],
+      "participants": {
+        "n_randomized": 150,
+        "n_analyzed": null,
+        "counts_are": "people",
+        "exclusions": "N = 150 submitters is the 'final sample' (p. 14) after 'An additional three submitters were excluded for failing an initial attention check' (p. 10); the paper does not say whether that check came before or after assignment. After assignment, 12 high-agency and 10 low-agency participants who did not use the AI tool were 'completely excluded from the analysis' (pp. 13-14); object trials without chat data were also dropped for other AI-arm participants. The paper never prints the analyzed count or per-arm counts (150 - 22 = 128 by subtraction, not printed). Not intention-to-treat. Preregistered target was N = 450 (p. 14). Separate evaluator sample (raters, not experimental participants): N = 142 CloudResearch Connect adults; six excluded for attention check and five for idea logging issues (p. 10), unclear whether 142 is before or after these exclusions.",
+        "population": "students",
+        "who": "Community college students in the San Francisco Bay Area, age M = 25.1 (SD = 9.2), 72% female, participating for research credits",
+        "country": "United States",
+        "quote": "Submitters were community college students in the San Francisco Bay Area (N = 150; age: M = 25.1 years, SD = 9.2; 72% female, 24% male, 1.3% non-binary, 2.7% self-described) who participated for research credits.",
+        "locator": "p. 10, Participants; exclusions pp. 13-14, Manipulation Checks and Statistical Approach"
+      },
+      "ai_tool": {
+        "name_model": "Custom chatbot web app (Vercel) built on gpt-3.5, temperature 0.7, generic helpful-assistant system prompt, embedded in Qualtrics",
+        "role": "open_chat",
+        "how_used": "AI-arm participants chatted freely with the embedded chatbot (one conversation per object) and typed their five uses into fields below it; the arms differed only in the agency instructions (pp. 11-12; Appendix A p. 33)."
+      },
+      "task": {
+        "type": "divergent_test",
+        "description": "Alternative Uses Task: five non-standard uses for each of three objects (bubble wrap, frisbee, brick), counterbalanced order; 2,250 ideas in total",
+        "duration": "One session, average completion 30 minutes, untimed task (p. 12)"
+      },
+      "outcomes": [
+        {
+          "outcome_id": "S1-O1",
+          "name": "Overall creativity rated by evaluators",
+          "construct": "overall_creativity",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "CloudResearch Connect evaluators rated a random stratified subset of 15 ideas each on a rubric (Table A1, p. 34); linear mixed model with condition fixed effect and random effects for submitters and objects; Low-Agency is the reference level.",
+          "unit": "rating",
+          "n_units": 1709,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Low-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only", "figure_only"],
+              "reported": "Table A2 (reference Low-Agency): Control -0.082 (0.081), intercept 2.537 (0.103), Num.Obs. 1709; text: no significant differences in creativity across treatment conditions relative to control, ps > .60",
+              "locator": "p. 35, Table A2; p. 15, Results; p. 30, Figure 1a"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "No direct coefficient; Table A2 gives High-Agency -0.040 (0.091) and Control -0.082 (0.081) relative to Low-Agency; text: ps > .60",
+              "locator": "p. 15, Results; p. 35, Table A2; p. 30, Figure 1a"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Low-agency",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table A2 (reference Low-Agency): High-Agency -0.040 (0.091)",
+              "locator": "p. 35, Table A2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O2",
+          "name": "Originality rated by evaluators",
+          "construct": "novelty",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same evaluators and mixed model as S1-O1; rubric defines originality as new, uncommon, or unique (Table A1).",
+          "unit": "rating",
+          "n_units": 1709,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Low-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "p_value_only", "figure_only"],
+              "reported": "Table A2 (reference Low-Agency): Control -0.077 (0.098), intercept 2.514 (0.136); text: ps > .60",
+              "locator": "p. 35, Table A2; p. 15, Results; p. 30, Figure 1b"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "No direct coefficient; Table A2 gives High-Agency -0.010 (0.110) and Control -0.077 (0.098) relative to Low-Agency; text: ps > .60",
+              "locator": "p. 15, Results; p. 35, Table A2"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Low-agency",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table A2 (reference Low-Agency): High-Agency -0.010 (0.110)",
+              "locator": "p. 35, Table A2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O3",
+          "name": "Usefulness rated by evaluators",
+          "construct": "usefulness",
+          "question": "with_ai",
+          "scored_on_output": true,
+          "measure": "human_raters",
+          "measure_detail": "Same evaluators and mixed model as S1-O1; rubric defines usefulness as effective, appropriate, or valuable (Table A1).",
+          "unit": "rating",
+          "n_units": 1709,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Low-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "p_value_only", "figure_only"],
+              "reported": "Text: 'Ideas from participants in the low-agency condition were rated as significantly more useful, beta = 0.20, p = .04'. Table A2 (reference Low-Agency): Control -0.162 (0.090), no star; intercept 2.955 (0.087). Text and table disagree.",
+              "locator": "p. 15, Results; p. 35, Table A2; p. 30, Figure 1c"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["figure_only"],
+              "reported": "No direct coefficient or test; Table A2 gives High-Agency -0.026 (0.101) and Control -0.162 (0.090) relative to Low-Agency",
+              "locator": "p. 35, Table A2; p. 30, Figure 1c"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Low-agency",
+              "comparison_type": "ai_design",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se"],
+              "reported": "Table A2 (reference Low-Agency): High-Agency -0.026 (0.101)",
+              "locator": "p. 35, Table A2"
+            }
+          ],
+          "diversity_detail": { "metric": "", "embedding_model": "", "computed_over": "", "uncertainty": "", "notes": "" }
+        },
+        {
+          "outcome_id": "S1-O4",
+          "name": "Cosine similarity of each idea to the leave-one-out condition-object centroid (homogeneity)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "embedding_similarity",
+          "measure_detail": "One randomly sampled idea per participant per object; all-MiniLM-L6-v2 embeddings (384 dimensions); similarity to the average embedding of all other ideas in the same condition and object. Higher = more homogeneous, so the diversity sign is the reverse of the printed coefficient. Linear mixed model with condition fixed effect and random effects for participants and objects; Tukey HSD pairwise tests. Text on p. 15 says it computed 1 - cosine (a distance), but Table A3 and Figure 2 report cosine similarity.",
+          "unit": "output",
+          "n_units": 337,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "preregistered_primary",
+          "contrasts": [
+            {
+              "treatment_arm": "Low-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["regression_coefficient_se", "figure_only"],
+              "reported": "Table A3 (reference Low-Agency, outcome cosine similarity): Control -0.014 (0.019), intercept 0.441 (0.015), Num.Obs. 337; text: low-agency and control 'produced ideas that were similarly homogeneous'. Direction stated for diversity (sign reversed from similarity).",
+              "locator": "p. 36, Table A3; p. 16, Results, Homogeneity; p. 31, Figure 2"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "no_clear_difference",
+              "statistics_available": ["test_statistic", "figure_only"],
+              "reported": "Tukey HSD: t(122) = 1.87, p = .15 (no difference in homogeneity); Table A3 gives High-Agency -0.050 (0.021) and Control -0.014 (0.019) relative to Low-Agency",
+              "locator": "p. 16, Results, Homogeneity; p. 36, Table A3; p. 31, Figure 2"
+            },
+            {
+              "treatment_arm": "High-agency",
+              "control_arm": "Low-agency",
+              "comparison_type": "ai_design",
+              "direction": "treatment_higher",
+              "statistics_available": ["regression_coefficient_se", "test_statistic", "standardized_effect", "figure_only"],
+              "reported": "Table A3: High-Agency -0.050* (0.021) in cosine similarity (high-agency less similar, so more diverse); Tukey HSD t(125) = -2.45, p < .05; omnibus condition effect F(2, 121.67) = 3.15, p < .05, partial eta squared = .07. Direction stated for diversity (sign reversed from similarity).",
+              "locator": "p. 16, Results, Homogeneity; p. 36, Table A3; p. 31, Figure 2"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Cosine similarity of an idea's embedding to the leave-one-out centroid of the other ideas in the same condition and object (higher = more homogeneous)",
+            "embedding_model": "all-MiniLM-L6-v2 (Reimers & Gurevych, 2019), 384 dimensions",
+            "computed_over": "Each output against the centroid of all other sampled ideas in its condition and object; one randomly sampled idea per participant per object",
+            "uncertainty": "Linear mixed model on output-level scores with participant and object random effects (lme4); Tukey HSD pairwise comparisons; Figure 2 shows bootstrapped 95% CIs of condition means",
+            "notes": "Preregistered H2 outcome. Text (p. 15) describes 1 - cosine but results are reported as cosine similarity. Condition means appear only in Figure 2 (p. 31)."
+          }
+        },
+        {
+          "outcome_id": "S1-O5",
+          "name": "Number of unique HDBSCAN clusters per condition (exploratory)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "HDBSCAN on sentence embeddings, run separately for each object-condition combination; minimum cluster size 6, minimum samples 1, cluster selection epsilon 0.25. More clusters = more diverse.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Low-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Permutation test (5,000 permutations) of max minus min condition means: observed difference 3.33, 'driven by the statistically higher number of clusters in the control condition relative to the low-agency condition, p = .04'. Per-condition counts not printed.",
+              "locator": "p. 17, Results; p. 32, Figure 3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Number of unique clusters",
+            "embedding_model": "Sentence embeddings, presumably all-MiniLM-L6-v2 as in the centroid analysis (the cluster section does not name the model)",
+            "computed_over": "All ideas in each condition-object set (Figure 3 shows one panel per condition and object)",
+            "uncertainty": "Permutation test with 5,000 permutations comparing the maximum and minimum condition means",
+            "notes": "Exploratory. The paper does not state whether all five ideas per participant or one sampled idea entered the clustering."
+          }
+        },
+        {
+          "outcome_id": "S1-O6",
+          "name": "Noise ratio of HDBSCAN clustering (share of ideas in no cluster; exploratory)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "Proportion of ideas HDBSCAN labels as noise, treated as a proxy for 'outlier' ideas; higher = more diverse.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Low-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Permutation test: observed difference 0.22, 'driven by a higher noise ratio in the control condition relative to the low-agency, condition p = .02'. Per-condition values not printed.",
+              "locator": "p. 17, Results; p. 32, Figure 3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Noise ratio (share of ideas not assigned to any cluster)",
+            "embedding_model": "Sentence embeddings (model not restated in this section)",
+            "computed_over": "All ideas in each condition-object set",
+            "uncertainty": "Permutation test with 5,000 permutations comparing the maximum and minimum condition means",
+            "notes": "Exploratory."
+          }
+        },
+        {
+          "outcome_id": "S1-O7",
+          "name": "Coefficient of variation of cluster sizes (exploratory)",
+          "construct": "diversity",
+          "question": "across_people",
+          "scored_on_output": true,
+          "measure": "category_count",
+          "measure_detail": "SD of cluster sizes divided by mean cluster size; higher CV = more imbalance (ideas piling into one cluster), so higher = less diverse.",
+          "unit": "set",
+          "n_units": null,
+          "ai_available_when_produced": "mixed",
+          "timing": "immediate",
+          "delay": "",
+          "primary": "secondary",
+          "contrasts": [
+            {
+              "treatment_arm": "Low-agency",
+              "control_arm": "Control (human only)",
+              "comparison_type": "ai_vs_bau",
+              "direction": "treatment_lower",
+              "statistics_available": ["p_value_only", "figure_only"],
+              "reported": "Permutation test: observed difference 0.75, 'driven by the low-agency condition having a significantly higher coefficient of variation than the control condition, p = .005'. Direction stated for diversity (higher CV = less diverse).",
+              "locator": "p. 17, Results; p. 32, Figure 3"
+            }
+          ],
+          "diversity_detail": {
+            "metric": "Coefficient of variation of cluster sizes",
+            "embedding_model": "Sentence embeddings (model not restated in this section)",
+            "computed_over": "Cluster sizes within each condition-object set",
+            "uncertainty": "Permutation test with 5,000 permutations comparing the maximum and minimum condition means",
+            "notes": "Exploratory. The Discussion (p. 18) says low-agency CV was significantly greater than both high-agency and control, but the Results (p. 17) report only the low-agency vs control comparison."
+          }
+        }
+      ]
+    }
+  ],
+  "synthesis": {
+    "k_studies": null,
+    "n_effect_sizes": null,
+    "search_end": "",
+    "inclusion": "",
+    "pooled": [ { "comparison": "", "estimate": "", "interval": "", "what_it_standardizes": "", "locator": "" } ]
+  },
+  "sample_overlap": { "shares_participants_with": "", "quote": "", "locator": "" },
+  "company_involvement": {
+    "any": true,
+    "description": "Four authors list BetterUp Labs affiliation; authors with BetterUp affiliations are paid employees of BetterUp Inc., and A. Lee and J. Hancock are paid consultants within BetterUp Labs. Funding source not stated.",
+    "locator": "p. 1, affiliations; p. 22, Competing Interests"
+  },
+  "data_and_code": { "data_url": "", "code_url": "" },
+  "eligibility": {
+    "core": "yes",
+    "criterion_1_random_assignment_of_ai": "met",
+    "criterion_2_at_least_50_people": "met",
+    "criterion_3_outcome_scored_on_output": "met",
+    "context_class": "none",
+    "reason": "Individuals were randomly assigned to a GPT-3.5 chatbot under two instruction framings or to a no-AI control (p. 11). The final sample is N = 150 submitters (p. 10, p. 14); 22 AI-arm noncompliers were excluded after assignment (pp. 13-14), leaving well above 50 people analyzed (128 by subtraction; the analyzed and per-arm counts are not printed). Outcomes are evaluator ratings of creativity, originality, and usefulness and embedding-based homogeneity of the ideas. Caveat: excluding AI-arm participants who did not use the AI breaks randomization for the AI vs control contrasts (the authors say it 'somewhat compromised the random assignment', p. 20)."
+  },
+  "one_line_finding": "Evaluator-rated creativity and originality did not differ by condition (ps > .60, p. 15; Table A2, p. 35), while high-agency ideas were less similar to their condition centroid than low-agency ideas (-0.050, SE 0.021; Tukey t(125) = -2.45, p < .05; Table A3, p. 36, and p. 16), and low-agency ideas formed fewer and more unequal clusters than control ideas (permutation ps = .04, .02, .005; p. 17).",
+  "open_questions": [
+    "Analyzed and per-arm participant counts are never printed; 128 analyzed is only implied by 150 - 22.",
+    "Usefulness: the text reports low-agency rated significantly more useful (beta = 0.20, p = .04, p. 15), but Table A2 shows Control -0.162 (0.090) relative to Low-Agency with no significance star; which number is correct?",
+    "Did the three attention-check exclusions happen before or after random assignment (p. 10)?",
+    "The centroid text says the score was 1 - cosine (p. 15), yet Table A3 and Figure 2 report cosine similarity; the direction of the reported coefficients is read here as similarity.",
+    "Figure 1's note (p. 30) describes cosine similarity scores, apparently copied from Figure 2; the points in Figure 1 are presumably participant-level rating means.",
+    "Whether the ACM Creativity & Cognition 2026 version of record changes the sample or statistics."
+  ],
+  "notes": "Excluded from outcomes: submitter self-ratings of their own ideas (creativity, originality, value, perceived uniqueness; p. 12), self-reported AI helpfulness and intrinsic motivation (p. 13), prompt-type classification and chat behavior (Appendix B), and participant-to-AI-suggestion similarity (p. 37, ps > .05 between the AI arms), because none is a creativity or across-people diversity outcome scored on the output. Evaluator ratings: 1709 observations per model in Table A2; each evaluator rated 15 ideas on three dimensions (p. 13), and unrated ideas were excluded. The low-agency arm, not the control, is the reference level in Tables A2 and A3. For the codebook's primary-record rule, the AI arm closest to free chatbot use is ambiguous because both arms had the same open chatbot and differed only in instructions. Noncompliance was 24% of low-agency trials and 38% of high-agency trials (p. 13)."
+}

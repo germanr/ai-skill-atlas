@@ -1,0 +1,52 @@
+[
+  {
+    "id": "prose-1",
+    "cid": "c044",
+    "section": "Results at a glance; Experiments with full text not obtained",
+    "location": "Line 33: '224 experiments have no full text on file'; line 1056: 'neither the retrieval script nor the retrieval agents could obtain a full text through a legitimate route'",
+    "claim": "All 224 papers in this group lack an obtained full text.",
+    "problem": "The total includes c044, whose publisher article text is already saved. Its missing PDF was treated as missing full text. The prose needs to distinguish this text-only retrieval from papers for which only an abstract is available.",
+    "evidence": "report-data.json.status_by_cid.c044 is 'no_fulltext'. retrieval.json.c044 has fulltext_text_available=true, last_retry_status='fulltext_text_only', pdf_downloaded=false, and text_fallback.version_saved='Version of record, publisher HTML text export'. I opened text_fallback.md_path, C:/Dropbox/Research/ai-lab/literature/creativity/Cui et al (2026) - Can Gen AI Improve Creativity in Students with Low Academic Performance - publisher HTML text.md: it contains 76,240 characters, including Methods, Results, Discussion, appendices A-C, and references. Its SHA-256 matches the retrieval record. The file explicitly notes that figure graphics and the downloaded PDF are absent.",
+    "severity": "blocker"
+  },
+  {
+    "id": "prose-2",
+    "cid": "c614",
+    "section": "Decisions for Review 1",
+    "location": "Line 52, item 2: '27 randomized experiments with 9 to 48 people analyzed'",
+    "claim": "The largest analyzed sample among the small randomized experiments is 48 people.",
+    "problem": "The upper endpoint is a randomized count, not a confirmed analyzed count. The source form expressly leaves the analyzed count unknown. The largest non-null analyzed count in the small randomized studies is 47; the 48-person trial can be described as below the threshold without asserting that all 48 were analyzed.",
+    "evidence": "report-data.json.small_n.c614='48'. In forms/c614.json, study S2 has participants.n_randomized=48 and participants.n_analyzed=null; both arms also have n_analyzed=null. forms/checks/c614.json, corrections[0], explicitly instructs replacing analyzed counts 48/24/24 with null because those are allocation counts and post-task survey denominators, not confirmed idea-score analysis counts. I read the PDF named in retrieval.json.c614.pdf_path, p. 8: 'The 48 participants were equally divided into six groups at random'. forms/c134.json, study S1, participants.n_analyzed=47 is the largest confirmed analyzed count among the small randomized studies.",
+    "severity": "serious"
+  },
+  {
+    "id": "prose-3",
+    "cid": "c148",
+    "section": "Recommended for the core dataset / Notes on each recommended paper",
+    "location": "Line 959, Zhou and Kim (2027), Finding bullet: 'p = .009, ?? = .096'",
+    "claim": "The creativity result includes a statistic labeled '??' with value .096.",
+    "problem": "The statistic's symbol is corrupted, leaving the number unidentified. The source identifies it as eta squared.",
+    "evidence": "I read the c148 PDF at retrieval.json.c148.pdf_path, p. 12, Table 5: the Group / Creativity row is F=7.216, p=.009, η²=.096. forms/c148.json, studies[0].outcomes[0].contrasts[0].reported, also records 'η² = .096'; the corruption is in one_line_finding and propagates into the report.",
+    "severity": "minor"
+  },
+  {
+    "id": "prose-4",
+    "cid": null,
+    "section": "The diversity measure",
+    "location": "Line 1588: 'reported by 47 recommended or unsettled papers, 103 outcomes in all'",
+    "claim": "The diversity table covers 47 papers.",
+    "problem": "It covers 48 distinct paper IDs. The total merges c051 and c052 because both display as Dell'Acqua et al. (2026), although they are different papers. The 103-outcome total is correct.",
+    "evidence": "Filtering report-data.json.status_by_cid to core/clarify and counting distinct CIDs whose forms have a studies[].outcomes[] with construct='diversity' and question in with_ai/across_people/after_ai yields 48 papers and 103 outcomes. forms/c051.json, S1-O4, and forms/c052.json, S1-O3, both qualify. Their citation files identify separate titles and DOIs: Navigating the Jagged Technological Frontier (10.1287/orsc.2025.21838) and The Cybernetic Teammate (10.1287/orsc.2025.20702). tools/build_report.py:368 computes papers_with_diversity from unique display labels, yielding report-data.json.papers_with_diversity=47.",
+    "severity": "serious"
+  },
+  {
+    "id": "prose-5",
+    "cid": null,
+    "section": "Outcomes measured after AI was removed",
+    "location": "Line 1706: 'measured by 21 recommended or unsettled papers, 81 outcomes in all'",
+    "claim": "The after-AI table covers 21 papers.",
+    "problem": "It covers 22 distinct paper IDs. The total merges c072 and c387 because both display as Jin et al. (2026), although they are different papers. The 81-outcome total is correct.",
+    "evidence": "Filtering report-data.json.status_by_cid to core/clarify and counting distinct CIDs with studies[].outcomes[].question='after_ai' yields 22 papers and 81 outcomes. forms/c072.json has six after_ai outcomes (S1-O1 through S1-O6), and forms/c387.json has S1-O1. Their citation files identify separate titles and DOIs: Can large language models teach creativity? (10.1016/j.chbah.2026.100288) and Emergent Learner Agency in Implicit Human-AI Collaboration (10.1002/jcal.70310). tools/build_report.py:369 computes papers_with_after_ai from unique display labels, yielding report-data.json.papers_with_after_ai=21.",
+    "severity": "serious"
+  }
+]
