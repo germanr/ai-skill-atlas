@@ -561,11 +561,10 @@ async function main() {
     }
     assert.doesNotMatch(await page.locator('meta[property="og:description"]').getAttribute("content"), /Every effect size, standardized/i);
     await page.goto(new URL("about/", homeURL).href, { waitUntil: "domcontentloaded" });
-    await page.getByText(`${estimates.length} estimate records`, { exact: true }).waitFor();
-    await page.getByText(`${standardizedCount} standardized effects`, { exact: true }).waitFor();
-    await page.getByText(/^Research on how generative AI affects learning/).filter({ hasText: /randomized or observational/ }).waitFor();
+    await page.getByText(/^Studies of how generative AI affects learning/)
+      .filter({ hasText: `covers ${papers.length} studies and ${estimates.length} estimate records, including ${standardizedCount} standardized effects` })
+      .waitFor();
     await page.getByText("At least 50 participants across all arms, counting people rather than sessions or outcome observations.", { exact: true }).waitFor();
-    if (!paperByKey.has("kalam_etal_2025")) await page.getByText(/Kalam et al\. \(2025\) randomized 33 participants and is therefore excluded/).waitFor();
   });
 
   await test("study reports distinguish missing standardized effects and missing intervals", async () => {
@@ -655,12 +654,12 @@ async function main() {
     await page.goto(new URL("about/", homeURL).href, { waitUntil: "domcontentloaded" });
     await page.getByRole("heading", { name: "About the Atlas", exact: true }).waitFor();
     const aboutText = await page.locator("body").innerText();
-    for (const phrase of ["descriptive by design", "not a leaderboard", "Read the spread", "closer to the skills education targets", "Unchanged legacy estimates", "Snapshot taken before this implementation"]) {
+    for (const phrase of ["descriptive by design", "not a leaderboard", "Read the spread", "closer to the skills education targets", "Unchanged legacy estimates", "Snapshot taken before this implementation", "Wording-only corrections", "first went online in July 2026"]) {
       assert.ok(!aboutText.includes(phrase), `About copy restored: ${phrase}`);
     }
     await page.getByText("Snapshot captured on September 23, 2026. It does not reconstruct the July 2026 release.", { exact: true }).waitFor();
     assert.match(aboutText, /It does not test whether effects differ across studies/);
-    assert.match(aboutText, /Wording-only corrections are recorded separately/);
+    assert.match(aboutText, /We do not release a new estimate, or a change to an existing number, until we have reviewed/);
 
     for (const paper of papers) {
       const url = new URL(homeURL);
