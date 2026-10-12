@@ -971,7 +971,6 @@ function NotesBand() {
           to AI against a no-AI control (or rely on plausibly exogenous variation in access to AI)
           and report at least <strong style={{ color: C.ink }}>50 participants</strong>.
           Inclusion never depends on what a study found.
-          {" "}<a href={`${import.meta.env.BASE_URL}about/`} style={{ color: C.accent, textDecoration: "underline" }}>Some existing records still need denominator or inclusion checks.</a>
         </p>
       </div>
       <div style={cell}>
