@@ -91,6 +91,46 @@ def reader_estimate_notes(notes: str | None) -> str | None:
 # papers_for_website.xlsx export, to make a change survive regeneration.
 
 PAPER_META = {
+    # October 5, 2026 additions.
+    "Heldreth et al. (2026)": dict(
+        authors_full="Courtney Heldreth, Diana Akrong, Laura M. Vardoulakis, Nicole E. Miller, Yael Haramaty, Lior Belinsky, Lidan Hackmon, Abraham Ortiz Tapia, Lucy Tootill, Scott Siebert",
+        venue="Frontiers in Artificial Intelligence, 9, article 1783117",
+        country="USA",
+        country_emoji="🇺🇸",
+        population_category="High school",
+        lab_vs_field="Lab",
+        incentives="USD 115 to 160 for study time, travel, and the follow-up survey; no performance-based pay reported",
+        learning_domain_primary="Science",
+        summary="Lab experiment with 60 Chicago-area high school students randomly assigned to study a neuroscience textbook chapter with Learn Your Way, a Google Research platform that uses generative AI to turn the chapter into interactive text with quizzes, slides, narrated video, an audio lesson, and a mind map, or with the same chapter in a PDF reader. Learn Your Way students scored higher on a recall test right after studying and on a follow-up test three to seven days later. Google built the platform and funded the study.",
+        image_keywords="high school student laptop interactive textbook",
+        pdf_filename="Heldreth et al (2026) - AI-Powered Interactive Learning Platform.pdf",
+    ),
+    "Rismanchian et al. (2026)": dict(
+        authors_full="Sina Rismanchian, Hasan Uzun, Jeffrey Matayoshi, Eric Cosyn, Eyad Kurd-Misto",
+        venue="arXiv preprint 2605.21629 (v3, July 2026)",
+        country="USA",
+        country_emoji="🇺🇸",
+        population_category="Undergraduate",
+        lab_vs_field="Field",
+        incentives="High-stakes placement test: the score decides placement into credit-bearing college mathematics courses",
+        learning_domain_primary="Math",
+        summary="Observational study of ten years of logs from the ALEKS mathematics platform. It compares word problems that a chatbot can solve from pasted text with graph problems that it cannot, before and after ChatGPT's release; no student's AI use is observed. After the release, study time on word problems fell relative to graph problems among college and high school students. On randomly assigned retention items in proctored college placement tests, the odds of a correct answer on word problems fell by 25 percent relative to graph problems over eleven quarters.",
+        image_keywords="college math placement test computer lab",
+        pdf_filename="Rismanchian et al (2026) - Faster Completion Less Learning.pdf",
+    ),
+    "Barrera-Osorio and Muñoz-Morales (2026)": dict(
+        authors_full="Felipe Barrera-Osorio, Juan Muñoz-Morales",
+        venue="Working paper (preliminary results, June 19, 2026)",
+        country="Colombia",
+        country_emoji="🇨🇴",
+        population_category="Middle school",
+        lab_vs_field="Field",
+        incentives="None reported for students; school and teacher participation was voluntary",
+        learning_domain_primary="Math",
+        summary="School-randomized trial in low-income public secondary schools in Bogotá that offered grade 6 to 9 mathematics teachers ShaIA, a lesson-planning platform built on a large language model, together with a training program. Preliminary midline results from a non-random subsample of 29 schools show math scores about 0.2 SD higher in treated schools after about three months. The authors call the estimates suggestive until the endline at the end of 2026.",
+        image_keywords="Bogota public school mathematics teacher classroom",
+        pdf_filename="Barrera-Osorio and Munoz-Morales (2026) - Complementing Teachers.pdf",
+    ),
     "Franco et al. (2026)": dict(
         authors_full="Catalina Franco, Natalie Irmert, Siri Isaksson",
         venue="Working paper (SSRN)",
@@ -646,6 +686,11 @@ DESIGN_CLASS = {
     "shen_and_tamkin_2026": "online_rct",
     "maier_etal_2026": "online_rct",
     "cruces_etal_2026": "online_rct",
+    "heldreth_etal_2026": "lab_rct",
+    # Item-type by time comparison around ChatGPT's release; AI use not observed.
+    "rismanchian_etal_2026": "observational",
+    # barrera_osorio_and_munoz_morales_2026: field_rct (default). Schools were
+    # randomized; the midline rows rest on a non-random subsample (coding notes).
     "hausman_etal_2025": "observational",
     "kim_etal_2025": "observational",
     "xu_etal_2025": "observational",
@@ -665,6 +710,21 @@ PAPER_CORRECTIONS = {
     # October 2026 additions. Study-level counts are pinned so the card does not
     # inherit the first estimate row's contrast count. Not yet verified by a
     # human research assistant (see docs/ra-verification-queue.md).
+    "heldreth_etal_2026": dict(
+        pdf_url="https://doi.org/10.3389/frai.2026.1783117",
+        n_total=60,  # randomized and analyzed on the immediate test; 58 on the follow-up
+        quality_flags="Two-arm lab experiment with 30 students per arm. The atlas computes Cohen's d from the printed arm means and SDs; the paper reports one-sided Wilcoxon-Mann-Whitney tests. The Learn Your Way arm studied longer on average (30:49 versus 22:05 minutes), and the textbook arm had no quizzes or feedback. Google LLC built the platform, funded the study, and took part in its design, analysis, and writing. Numbers extracted by Claude from the journal version of record on 2026-10-05; not yet verified by a human research assistant.",
+    ),
+    "rismanchian_etal_2026": dict(
+        pdf_url="https://arxiv.org/abs/2605.21629",
+        n_total=6698,  # item-level responses in the primary (proctored) retention analysis; students not reported
+        quality_flags="Observational: a comparison of AI-susceptible word problems with AI-resistant graph problems before and after ChatGPT's release. No student's AI use is observed. Effects are odds ratios from a logistic model and are not converted to SD units. The sample count is item-level responses in the proctored retention analysis; the paper does not report the number of students. Four of the five authors are employees of McGraw Hill, which owns ALEKS. Numbers extracted by Claude from the arXiv v3 PDF on 2026-10-05; not yet verified by a human research assistant.",
+    ),
+    "barrera_osorio_and_munoz_morales_2026": dict(
+        pdf_url="https://juansmunoz.github.io/AI_Evaluation_Bogota.pdf",
+        n_total=2264,  # students in the preferred midline regression (28 schools); 2,432 tested in 29 schools; 158 schools randomized
+        quality_flags="Preliminary midline results. Schools were randomized (158 schools in 52 blocks), but the midline covers a non-random subsample of 29 schools, and the authors' preferred estimate compares treated and control schools across blocks. The pre-analysis plan specifies within-block comparisons and tests at baseline and endline only, so the midline analysis is outside that plan. The treatment combines the AI platform with a teacher training program, so the rows are coded as AI bundled with other changes and stay out of the AI-versus-business-as-usual pool. Numbers extracted by Claude from the June 19, 2026 working paper on 2026-10-05; not yet verified by a human research assistant.",
+    ),
     "maier_etal_2026": dict(
         pdf_url="https://arxiv.org/abs/2609.20143",
         n_total=704,  # analyzed; 720 recruited, 5 non-completers, 11 honesty-check exclusions
@@ -882,6 +942,21 @@ PAPER_CORRECTIONS = {
 # ── 3-part paper summaries (setup / empirical strategy / key results) ──────
 # From 24 subagents that read each paper and produced structured summaries.
 PAPER_SUMMARIES = {
+    "heldreth_etal_2026": {
+        "setup": "Lab experiment with 60 Chicago-area high school students (grades 9 to 12) recruited through a research vendor. In one 90-minute in-person session, students were randomly assigned to study a neuroscience textbook chapter on adolescent brain development for 20 to 40 minutes with Learn Your Way (30 students) or with the same chapter in a web-based PDF reader (30 students). Learn Your Way is an experimental Google Research platform that uses generative AI to turn the chapter into interactive text with quizzes and feedback, slides, narrated video, an audio lesson, and a mind map. Students took a 12-point recall test in the session. Three days later they were emailed a 6-point follow-up test, which 58 of them completed within 3 to 7 days. Students were paid $115 to $160 for their time, travel, and the follow-up.",
+        "empirical_strategy": "The authors compare the two arms with one-sided Wilcoxon-Mann-Whitney tests and report Z, p, and an effect size r. Generalized additive models check whether learning time or the length of the delay explains scores. The atlas computes Cohen's d from the printed arm means and SDs with the pooled SD of the two arms, and the SE from the large-sample formula for d.",
+        "key_results": "Learn Your Way students scored higher on the immediate test (9.2 versus 8.2 of 12 points; one-sided p = .029; d = 0.48, SE 0.26) and on the follow-up test (4.7 versus 4.0 of 6 points; one-sided p = .03; d = 0.54, SE 0.27). They also studied longer on average (30:49 versus 22:05 minutes) and rated their tool as more useful. The textbook arm had no quizzes or feedback, so the design does not separate the content transformations from those features. Google LLC built the platform, funded the study, and took part in its design, analysis, and writing.",
+    },
+    "rismanchian_etal_2026": {
+        "setup": "Observational study of ALEKS, an adaptive mathematics platform owned by McGraw Hill. The authors compare AI-susceptible items (text-based word problems that can be pasted into a chatbot) with AI-resistant items (graph-based problems that require working with a plot in the ALEKS interface) before and after ChatGPT's release in late 2022. Study time comes from 3,197,803 learning interactions in courses from Grade 5 through College Algebra (2015 Q3 to 2025 Q3). Response times come from 12.2 million observations on the ALEKS PPL college placement test, taken with or without a proctor. Learning is measured on randomly assigned retention items in PPL sessions from 2020 Q3 to 2025 Q4: 6,698 responses in proctored sessions and 3,223 in non-proctored sessions. ALEKS added no generative AI features in this period, and no student's AI use is observed.",
+        "empirical_strategy": "Item and quarter fixed-effects models with a linear post-ChatGPT ramp interacted with the AI-susceptible indicator, and SEs clustered by item or topic. The retention models are logistic and use only the randomly assigned items, which bypass the platform's adaptive item selection. Identification rests on parallel trends across item types. AI access is not randomly assigned. The paper reports event studies, placebo break dates, randomization inference, alternative clustering, and two falsification tests that compare proctored with non-proctored sessions. The atlas keeps the odds ratios and does not convert them to SD units.",
+        "key_results": "After ChatGPT's release, study time on word problems fell relative to graph problems by 26.9 percent among college students and 31.3 percent among high school students over eleven quarters, and by 9.0 percent in middle school, with no detectable change in Grade 5. On placement tests, response times diverged only in non-proctored sessions. On proctored retention items, the odds of a correct answer on word problems fell by 25 percent relative to graph problems over eleven quarters (odds ratio 0.75, 95 percent CI 0.56 to 0.98; p = .037). In non-proctored sessions the same model shows an 85 percent increase in the odds (p = .021), which the authors attribute to AI use during the test. The college and high school study-time series show a small pre-trend in the opposite direction; the retention series passes the pre-trend test.",
+    },
+    "barrera_osorio_and_munoz_morales_2026": {
+        "setup": "School-randomized trial in low-income public secondary schools in Bogotá, Colombia, run with the city's education authority and the startup MentuLabs (AEA RCT Registry AEARCTR-0017147). In August 2025, 158 schools were grouped into 52 blocks and 70 were assigned to treatment. Mathematics teachers of grades 6 to 9 in treated schools were offered ShaIA, a platform that uses a large language model to generate lesson plans, activities, and rubrics adapted to a class profile, together with a training program: a bootcamp, three workshops, four school visits, and three webinars. Participation was voluntary; some treatment schools declined, and some control schools were reassigned to treatment. This working paper reports preliminary midline results from November 2025 for a non-random subsample of 29 schools (15 treated, 14 control) with 2,432 students, who took a paper-based mathematics test aligned with the curriculum.",
+        "empirical_strategy": "Intent-to-treat regressions of standardized test scores on school assignment, with SEs clustered by school and wild cluster bootstrap p-values. Few midline schools share a randomization block, so the authors' preferred midline specification compares treated and control schools across blocks, after dropping the blocks where a control school was reassigned. They report block fixed-effects estimates as a robustness check. A second sample keeps only the blocks where assignment was implemented as designed. Treatment-on-the-treated estimates instrument training attendance and platform use with assignment. The atlas codes the contrast as AI bundled with other changes because the platform came with a training program.",
+        "key_results": "In the preferred specification, midline math scores were 0.207 SD higher in treated schools (SE 0.098; wild bootstrap p = .056; 2,264 students in 28 schools), against a baseline difference of -0.030 SD in the same schools. In the blocks with intact randomization the estimate is 0.133 SD (SE 0.119; 20 schools). Block fixed-effects estimates are larger (0.52 and 0.78), and the authors read them as upper bounds. The effect is concentrated in probability and statistics and in problem solving. About 76 percent of teachers in treated schools used the platform at least once, and fewer than one third met the 70 percent training-attendance threshold. The authors call the estimates suggestive and plan an endline before November 2026.",
+    },
     "maier_etal_2026": {
         "setup": "Preregistered online experiment (August 2026) with 720 UK adults recruited on Prolific, of whom 704 were analyzed after five non-completions and eleven honesty-check exclusions. Participants reviewed fraction rules, worked ten practice items, and then took a six-item unaided test with new operands. Five arms: no AI; an LLM assistant (GPT-OSS-120B) that gave guidance by default and complete answers only on request; the assistant plus metacognitive feedback on the learner's own requests; the assistant plus an effort-based point reward; and both interventions. Pay did not depend on performance.",
         "empirical_strategy": "Preregistered one-sided item-level mixed-effects logistic regressions with participant random intercepts and item fixed effects for the three confirmatory hypotheses, plus participant-level t-tests and two-factor ANOVAs as robustness checks (Appendix H, Table 8). The atlas standardizes the participant-level percentage-point differences by the pooled SD of the relevant arms from Table 2.",
@@ -1120,6 +1195,12 @@ ESTIMATE_OVERRIDES = {
     "oreopoulos_and_low_2026__est107": {"study_label": "Oreopoulos and Low, MAP math (Khan Academy + Khanmigo)"},
     "cruces_etal_2026__est108": {"study_label": "Cruces et al., follow-up, lower-education adults"},
     "cruces_etal_2026__est109": {"study_label": "Cruces et al., follow-up, higher-education adults"},
+    # October 5, 2026 additions
+    "heldreth_etal_2026__est110": {"study_label": "Heldreth et al., immediate recall"},
+    "heldreth_etal_2026__est111": {"study_label": "Heldreth et al., recall after 3 to 7 days"},
+    "rismanchian_etal_2026__est112": {"study_label": "Rismanchian et al., proctored retention items"},
+    "rismanchian_etal_2026__est113": {"study_label": "Rismanchian et al., non-proctored retention items (with AI)"},
+    "barrera_osorio_and_munoz_morales_2026__est114": {"study_label": "Barrera-Osorio and Muñoz-Morales, midline math (ShaIA + training)"},
 
     # Bastani: PNAS version uses SD-standardized SEs throughout; current xlsx
     # has Table 1 raw SEs for the practice estimates. Override to SD units.
@@ -1979,6 +2060,14 @@ ADDITIONAL_ESTIMATES = [
         "End-of-year MAP mathematics score, control-SD units (both years stacked)",
         timing="immediate", domain="Math", comparison="ai_bundled", n=2759, subgroup="Stacked school years",
         notes="Table 7, Panel A (RTI control SD), stacked Base column: 0.066 (SE 0.043); 0.062 (SE 0.035) in full-population SD; 2,759 student-years, 53 clusters."),
+
+    # ── October 5, 2026 additions (secondary records; never pooled) ───────
+    _ce("Barrera-Osorio and Muñoz-Morales (2026), Blocks with intact randomization",
+        "barrera_osorio_and_munoz_morales_2026", 0.133, 0.119,
+        "Schools whose mathematics teachers were offered ShaIA with a training program", "Schools with business-as-usual instruction",
+        "Midline mathematics test score (standardized), schools in blocks where assignment was implemented as designed",
+        timing="immediate", domain="Math", comparison="ai_bundled", n=1604, subgroup="Sample: blocks with intact randomization",
+        notes="Table 5, Panel B, column (5): 0.133 SD (school-clustered SE 0.119; wild cluster bootstrap p = .311) on 1,604 students in 20 midline schools (11 treated, 9 control) from blocks where assignment was implemented as designed. Without controls the coefficient is 0.063 (SE 0.142). The schools come from the same non-random midline subsample as the main row."),
 ]
 
 
@@ -2015,6 +2104,9 @@ OUTCOME_WITH_AI = {
     "ates_2026__est101": True,
     "ates_2026__est102": True,
     "ates_2026__est103": True,
+    # Rismanchian: non-proctored placement sessions, where students could use AI
+    "rismanchian_etal_2026__est113": True,
+    # est112 (proctored sessions) → False
 }
 
 
@@ -2075,6 +2167,11 @@ COMPARISON_TYPES = {
     # oreopoulos_etal_2026: ai_vs_bau (same platform without the tutor)
     "oreopoulos_and_low_2026__est107": "ai_bundled",  # Khan Academy + Khanmigo vs usual remediation
     # cruces_etal_2026: ai_vs_bau
+    # October 5, 2026 additions
+    # heldreth_etal_2026: ai_vs_bau (the quizzes and other formats are generated
+    #   by the AI platform itself; the control reads the same chapter as a PDF)
+    # rismanchian_etal_2026: ai_vs_bau (observational, before vs after ChatGPT)
+    "barrera_osorio_and_munoz_morales_2026__est114": "ai_bundled",  # ShaIA + teacher training vs usual instruction
 }
 
 

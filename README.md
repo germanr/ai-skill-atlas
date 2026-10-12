@@ -79,6 +79,8 @@ Five papers from the [September 2026 screening](docs/literature-screening-2026-0
 
 The Khanmigo trial introduced a fourth comparison type, `ai_bundled`, for programs that introduce a platform or curriculum together with its AI tutor. Those rows never enter the AI-versus-business-as-usual pool; they appear only under the "AI bundled with other changes" filter.
 
+Three more papers entered on October 5, 2026. Heldreth et al. (2026) is a lab experiment with Google's Learn Your Way platform. Rismanchian et al. (2026) is an observational study that compares ALEKS item types before and after ChatGPT's release; its effects are odds ratios and have no SD conversion. Barrera-Osorio and Muñoz-Morales (2026) is a school-randomized trial in Bogotá of an AI lesson-planning platform for teachers. Its rows are preliminary midline results from a non-random subsample of schools, and they are coded `ai_bundled` because the platform came with a teacher training program. Claude extracted the numbers for all three, and all three are in the verification queue.
+
 ## Shareable views and outcome timing
 
 Filters, search, chart/table choice, and both sort orders are stored in the URL. “Copy view link” opens the same selection on another device, including the chosen chart/table view. If clipboard access fails, a selectable link appears. Browser Back/Forward and returning from a study preserve the selection. Invalid URL values fall back to valid choices with a notice. Filter changes replace the current history entry rather than adding one entry per keystroke.

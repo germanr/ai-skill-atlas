@@ -164,9 +164,10 @@ near(row("liu_etal_2026__sg1").ci_upper, -.17, "Liu reported direct-user upper C
 check(!byPaper.has("kalam_etal_2025") && !estimates.some(item => item.paper_key === "kalam_etal_2025"),
   "Kalam study N=33 falls below the stated study-level minimum of 50");
 // Dataset counts: 34 papers / 137 rows / 110 standardized after the September 23
-// audit, plus five papers (27 rows, 26 standardized) added on October 3, 2026.
-check(papers.length === 39 && estimates.length === 164, "Dataset counts changed: expected 39 papers and 164 estimate rows");
-check(estimates.filter(item => Number.isFinite(item.effect_size_sd)).length === 136,
+// audit, plus five papers (27 rows, 26 standardized) added on October 3, 2026,
+// plus three papers (6 rows, 4 standardized) added on October 5, 2026.
+check(papers.length === 42 && estimates.length === 170, "Dataset counts changed: expected 42 papers and 170 estimate rows");
+check(estimates.filter(item => Number.isFinite(item.effect_size_sd)).length === 140,
   "Available standardized effects must be counted separately from estimate records");
 for (const [id, annotation] of Object.entries(metadata.estimates)) {
   if (annotation.provenance?.review_status !== "reviewed") continue;
@@ -215,14 +216,50 @@ check(row("oreopoulos_and_low_2026__est107").comparison_type === "ai_bundled" &&
 near(row("oreopoulos_and_low_2026__est107").effect_size_sd, .05, "Khanmigo pooled ITT in control SD", 1e-9);
 check(!filterEstimates(estimates, { paperKeys: new Set(papers.map(item => item.paper_key)) }).some(item => item.paper_key === "oreopoulos_and_low_2026"),
   "Bundled Khanmigo rows must not enter the AI-versus-business-as-usual pool");
-check(filterEstimates(estimates, { paperKeys: new Set(papers.map(item => item.paper_key)), comparisonType: "ai_bundled" }).map(item => item.estimate_id).join() === "oreopoulos_and_low_2026__est107",
-  "The bundled view holds exactly the Khanmigo main row");
+check(filterEstimates(estimates, { paperKeys: new Set(papers.map(item => item.paper_key)), comparisonType: "ai_bundled" }).map(item => item.estimate_id).join() ===
+  "oreopoulos_and_low_2026__est107,barrera_osorio_and_munoz_morales_2026__est114",
+  "The bundled view holds exactly the Khanmigo and Bogota main rows");
 for (const [suffix, effect, se, n] of [["est108", .171, .087, 520], ["est109", .071, .080, 654]]) {
   const actual = row(`cruces_etal_2026__${suffix}`);
   near(actual.effect_size_sd, effect, `Cruces ${suffix} follow-up effect`, 1e-9);
   near(actual.se, se, `Cruces ${suffix} SE`, 1e-9);
   check(actual.n_total === n && actual.is_subgroup !== true, `Cruces ${suffix}: stratum row count or main-row status changed`);
 }
+
+// October 5, 2026 additions: values recomputed from the printed statistics
+// (see docs/ra-verification-queue.md for the checks awaiting human review).
+const pooledSd = (n1, s1, n2, s2) => Math.sqrt(((n1 - 1) * s1 ** 2 + (n2 - 1) * s2 ** 2) / (n1 + n2 - 2));
+const dSe = (d, n1, n2) => Math.sqrt((n1 + n2) / (n1 * n2) + d ** 2 / (2 * (n1 + n2)));
+const heldrethNow = (9.2 - 8.2) / pooledSd(30, 2.2, 30, 2.0);
+const heldrethLater = (4.7 - 4.0) / pooledSd(29, 1.2, 29, 1.4);
+near(row("heldreth_etal_2026__est110").effect_size_sd, heldrethNow, "Heldreth immediate recall d from the printed means and SDs", 1e-4);
+near(row("heldreth_etal_2026__est110").se, dSe(heldrethNow, 30, 30), "Heldreth immediate recall SE", 1e-4);
+near(row("heldreth_etal_2026__est111").effect_size_sd, heldrethLater, "Heldreth follow-up recall d from the printed means and SDs", 1e-4);
+near(row("heldreth_etal_2026__est111").se, dSe(heldrethLater, 29, 29), "Heldreth follow-up recall SE", 1e-4);
+check(row("heldreth_etal_2026__est110").n_total === 60 && row("heldreth_etal_2026__est111").n_total === 58 &&
+  row("heldreth_etal_2026__est111").outcome_timing === "delayed", "Heldreth analyzed counts or follow-up timing changed");
+check(filterEstimates(estimates, { paperKeys: new Set(papers.map(item => item.paper_key)) }).filter(item => item.paper_key === "heldreth_etal_2026").length === 2,
+  "Both Heldreth rows belong to the AI-versus-business-as-usual view");
+for (const [suffix, n, withAi, oddsRatio] of [["est112", 6698, false, /0\.75/], ["est113", 3223, true, /85 percent/]]) {
+  const actual = row(`rismanchian_etal_2026__${suffix}`);
+  check(actual.effect_size_sd === null && actual.se === null && actual.ci_lower === null && actual.ci_upper === null,
+    `Rismanchian ${suffix}: odds ratios stay raw with no SD conversion`);
+  check(actual.n_total === n && actual.outcome_with_ai === withAi && actual.design_class === "observational" && oddsRatio.test(actual.notes || ""),
+    `Rismanchian ${suffix}: response count, AI-at-test flag, design class, or reported odds changed`);
+}
+const bogota = row("barrera_osorio_and_munoz_morales_2026__est114");
+near(bogota.effect_size_sd, .207, "Bogota midline ITT (Table 5, Panel B, column 2)", 1e-9);
+near(bogota.se, .098, "Bogota midline SE", 1e-9);
+check(bogota.comparison_type === "ai_bundled" && bogota.n_total === 2264 && bogota.is_subgroup !== true,
+  "Bogota main row must be ai_bundled with 2,264 students");
+const bogotaIntact = row("barrera_osorio_and_munoz_morales_2026__sg1");
+near(bogotaIntact.effect_size_sd, .133, "Bogota intact-randomization sample (Table 5, Panel B, column 5)", 1e-9);
+near(bogotaIntact.se, .119, "Bogota intact-randomization SE", 1e-9);
+check(bogotaIntact.is_subgroup === true && bogotaIntact.comparison_type === "ai_bundled" && bogotaIntact.n_total === 1604,
+  "Bogota intact-randomization row stays secondary and bundled");
+check(!filterEstimates(estimates, { paperKeys: new Set(papers.map(item => item.paper_key)) })
+  .some(item => ["barrera_osorio_and_munoz_morales_2026", "rismanchian_etal_2026"].includes(item.paper_key)),
+  "Bundled Bogota rows and observational Rismanchian rows must not enter the default pool");
 
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(`All ${checks} numerical audit checks passed (${papers.length} papers, ${estimates.length} estimates).`);
