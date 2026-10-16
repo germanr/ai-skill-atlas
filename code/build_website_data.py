@@ -2468,7 +2468,7 @@ def build(*, json_only: bool = False, output_dir: Path | None = None):
             authors_full="Zara Contractor and Germán Reyes",
             year=2026,
             title="Experimental Evidence on the Learning Impact of Generative AI",
-            venue="IZA WP #18055",
+            venue="IZA DP #18792",
             pdf_filename="Contractor & Reyes (2026) - AI Learning RCT.pdf",
             pdf_url="https://www.germanr.com/ai-learning",
             country="USA",
