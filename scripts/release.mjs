@@ -19,6 +19,8 @@ const CODE_PATHS = [
   "code/sources/contractor-reyes-2026-09.json", "code/audit/bassner_gain_precision.do",
   "code/audit/bassner_gain_precision.csv", "code/audit/bassner_arm_statistics.csv",
   "code/audit/editorial-reviews.json",
+  "code/sources/asirvatham-2026-08.json", "code/audit/asirvatham_learning.do",
+  "code/audit/asirvatham_learning_input.csv", "code/audit/asirvatham_learning_calculations.csv",
   "package.json", "package-lock.json", "vite.config.js", "index.html", "about/index.html",
   "README.md", ".gitattributes",
 ];

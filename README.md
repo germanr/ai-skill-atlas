@@ -40,6 +40,7 @@ The learning builder reads these inputs:
 - `code/audit/bassner_gain_precision.csv`: gain effects and SEs calculated in Stata from the pinned three-arm statistics in `code/audit/bassner_arm_statistics.csv`.
 - `code/build_website_data.py`: paper metadata, summaries, verified corrections, exclusions, additional estimates, and classification rules.
 - `code/estimand_method.json`: estimation-method and estimand labels, keyed by estimate ID.
+- `code/sources/asirvatham-2026-08.json`: reviewed source coefficients, sample definitions, and 14 learning-section estimates from the August 2026 paper. `code/audit/asirvatham_learning.do` calculates the two AI contrasts for each outcome and divides them by the reported full-sample SDs. The builder checks these against the appended workbook rows and the PDF hash.
 
 `papers_for_website.xlsx` is an output, not an input. The builder overwrites its `papers` and `estimates` sheets, along with `src/papers.json` and `src/estimates.json`. Edits made only to that workbook or to generated JSON will not survive a rebuild.
 
@@ -82,6 +83,8 @@ The Khanmigo trial introduced a fourth comparison type, `ai_bundled`, for progra
 Three more papers entered on October 5, 2026. Heldreth et al. (2026) is a lab experiment with Google's Learn Your Way platform. Rismanchian et al. (2026) is an observational study that compares ALEKS item types before and after ChatGPT's release; its effects are odds ratios and have no SD conversion. Barrera-Osorio and Muñoz-Morales (2026) is a school-randomized trial in Bogotá of an AI lesson-planning platform for teachers. Its rows are preliminary midline results from a non-random subsample of schools, and they are coded `ai_bundled` because the platform came with a teacher training program. Claude extracted the numbers for all three, and all three are in the verification queue.
 
 ## Shareable views and outcome timing
+
+Asirvatham et al. (2026) was added on October 24, 2026 with 14 estimates from seven task-performance and reasoning outcomes. All were measured with AI available and are excluded from the default view of unaided outcomes. The records retain standardized point estimates and the reported raw coefficients. Standard errors and confidence intervals are unavailable in the atlas because the paper's reported error groups subdivide the randomized classes. The estimates cannot enter pooled results. Codex checked the primary source; human RA verification remains pending.
 
 Filters, search, chart/table choice, and both sort orders are stored in the URL. “Copy view link” opens the same selection on another device, including the chosen chart/table view. If clipboard access fails, a selectable link appears. Browser Back/Forward and returning from a study preserve the selection. Invalid URL values fall back to valid choices with a notice. Filter changes replace the current history entry rather than adding one entry per keystroke.
 

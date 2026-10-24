@@ -1,6 +1,6 @@
 # Human verification queue
 
-Last updated: October 5, 2026. This file lists the atlas records that no human research assistant has checked against the source documents, and what the next RA should check. It is a working list, not a public page.
+Last updated: October 24, 2026. This file lists the atlas records that no human research assistant has checked against the source documents, and what the next RA should check. It is a working list, not a public page.
 
 ## What has been verified so far
 
@@ -15,6 +15,12 @@ Three human verification rounds covered the atlas as it stood in July 2026. The 
 Two later passes were done by models, not people: the July 24 Codex audit and the September 23 to 24 primary-source audit by Claude. They changed numbers in rows that the RAs had already verified (see Part B).
 
 ## Part A. Papers never verified by a human RA
+
+### Asirvatham et al. (2026), added October 24 by Codex
+
+The learning section includes 14 estimates: two AI-access contrasts for each of seven outcomes in Tables A.9-A.11. Check the coefficients and SDs against the August 2026 PDF, including the sums of the AI and interaction coefficients for the trained-student contrasts. Table A.7 reports full-sample SDs, not control-arm SDs. The Stata calculations are in `code/audit/asirvatham_learning.do`, and the source record is `code/sources/asirvatham-2026-08.json`.
+
+Confirm the distinction between the 1,053-student regression sample and each contrast's two arm counts. All outcomes were measured with AI available. The paper reports no subsequent unaided assessment. Its reported standard-error groups subdivide the randomized classes, so all 14 website SEs and confidence intervals remain null and no row can enter a pooled estimate. Ask the authors for class-clustered precision and the coefficient covariance before changing that treatment. The three reasoning measures score textual features using LLMs, and the three expert-alignment measures use embedding similarity. They are not separate knowledge tests.
 
 | Paper | Added | By | Status |
 | --- | --- | --- | --- |

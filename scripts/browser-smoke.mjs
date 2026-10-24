@@ -589,6 +589,23 @@ async function main() {
     }
   });
 
+  await test("Asirvatham study serves its PDF and shows all AI-assisted estimates without intervals", async () => {
+    const studyURL = new URL(homeURL);
+    studyURL.searchParams.set("paper", "asirvatham_etal_2026");
+    await page.goto(studyURL.href, { waitUntil: "domcontentloaded" });
+    await page.getByRole("heading", { name: paperByKey.get("asirvatham_etal_2026").title, exact: true }).waitFor();
+    await page.getByText("Estimate records (14)", { exact: true }).waitFor();
+    const rows = page.locator('[data-estimate-id^="asirvatham_etal_2026__"]');
+    assert.equal(await rows.count(), 14);
+    assert.equal(await rows.getByText("Uncertainty interval unavailable.", { exact: true }).count(), 14);
+    assert.equal(await rows.locator('[data-statistic="se"], [data-statistic="ci"]').count(), 0);
+    assert.match(await page.locator("body").innerText(), /No subsequent unaided test was administered/);
+    const pdf = page.locator('a[href*="Asirvatham"][href$=".pdf"]').first();
+    const pdfResponse = await page.request.get(new URL(await pdf.getAttribute("href"), homeURL).href);
+    assert.equal(pdfResponse.status(), 200);
+    assert.equal((await pdfResponse.body()).subarray(0, 5).toString(), "%PDF-");
+  });
+
   await test("About identifies the current release and serves archived data and its manifest", async () => {
     const aboutURL = new URL("about/#data-releases", homeURL);
     async function checkReleaseAnchor(target) {

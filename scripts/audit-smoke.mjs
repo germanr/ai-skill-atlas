@@ -165,9 +165,10 @@ check(!byPaper.has("kalam_etal_2025") && !estimates.some(item => item.paper_key 
   "Kalam study N=33 falls below the stated study-level minimum of 50");
 // Dataset counts: 34 papers / 137 rows / 110 standardized after the September 23
 // audit, plus five papers (27 rows, 26 standardized) added on October 3, 2026,
-// plus three papers (6 rows, 4 standardized) added on October 5, 2026.
-check(papers.length === 42 && estimates.length === 170, "Dataset counts changed: expected 42 papers and 170 estimate rows");
-check(estimates.filter(item => Number.isFinite(item.effect_size_sd)).length === 140,
+// plus three papers (6 rows, 4 standardized) added on October 5, 2026,
+// plus Asirvatham (14 standardized point estimates) added on October 24, 2026.
+check(papers.length === 43 && estimates.length === 184, "Dataset counts changed: expected 43 papers and 184 estimate rows");
+check(estimates.filter(item => Number.isFinite(item.effect_size_sd)).length === 154,
   "Available standardized effects must be counted separately from estimate records");
 for (const [id, annotation] of Object.entries(metadata.estimates)) {
   if (annotation.provenance?.review_status !== "reviewed") continue;
@@ -260,6 +261,37 @@ check(bogotaIntact.is_subgroup === true && bogotaIntact.comparison_type === "ai_
 check(!filterEstimates(estimates, { paperKeys: new Set(papers.map(item => item.paper_key)) })
   .some(item => ["barrera_osorio_and_munoz_morales_2026", "rismanchian_etal_2026"].includes(item.paper_key)),
   "Bundled Bogota rows and observational Rismanchian rows must not enter the default pool");
+
+// Asirvatham: Appendix Tables A.7, A.9-A.11, August 2026 PDF.
+const asirvatham = estimates.filter(e => e.paper_key === "asirvatham_etal_2026");
+check(asirvatham.length === 14, "Asirvatham must retain both AI contrasts for seven outcomes");
+const sourceCoefficients = [
+  [.862, .082, .843], [-.008, .129, .437], [.029, .203, 1.027],
+  [.214, .228, .478], [.026, .003, .041], [.028, -.007, .045], [.044, -.002, .050],
+];
+for (const [i, [gpt, interaction, sd]] of sourceCoefficients.entries()) {
+  for (const trained of [0, 1]) {
+    const estimate = row(`asirvatham_etal_2026__est${115 + i * 2 + trained}`);
+    near(estimate.effect_size_sd, (gpt + trained * interaction) / sd,
+      `Asirvatham outcome ${i}, trained ${trained}: use the AI contrast, not the interaction alone`, 1e-9);
+    check(estimate.n_total === 1053 && estimate.n_treatment === (trained ? 351 : 197) &&
+      estimate.n_control === (trained ? 256 : 249), "Asirvatham: separate regression N from contrast counts");
+    check(estimate.outcome_with_ai === true && estimate.outcome_timing === "immediate" &&
+      estimate.comparison_type === "ai_vs_bau", "Asirvatham: AI access during assessment and fixed training condition");
+    check(estimate.se === null && estimate.ci_lower === null && estimate.ci_upper === null &&
+      !isPoolableEstimate(estimate) && !isPlottableEstimate(estimate),
+      "Asirvatham: no class-level precision, no interval or pooled weight");
+  }
+}
+const asirvathamKeys = new Set(["asirvatham_etal_2026"]);
+check(filterEstimates(estimates, { paperKeys: asirvathamKeys }).length === 0,
+  "Asirvatham must be excluded from the default unaided-outcome view");
+check(filterEstimates(estimates, { paperKeys: asirvathamKeys, outcomeMode: "all" }).length === 14,
+  "Asirvatham must be available when AI-assisted outcomes are included");
+const asirvathamPdf = readFileSync(join(root, "public/pdfs/Asirvatham et al (2026) - Training Novices to Think or Giving Them LLMs.pdf"));
+check(createHash("sha256").update(asirvathamPdf).digest("hex") ===
+  "5f4873c28ac6b184c6675c603832a9b0da7f90872abfce40e7c37dad995cd721",
+  "Asirvatham PDF must match the primary-source review");
 
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(`All ${checks} numerical audit checks passed (${papers.length} papers, ${estimates.length} estimates).`);

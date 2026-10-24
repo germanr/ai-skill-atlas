@@ -1,0 +1,17 @@
+#delimit;
+clear all;
+set more off;
+args atlas_root;
+import delimited using "`atlas_root'/code/audit/asirvatham_learning_input.csv", clear varnames(1) stringcols(1) asdouble;
+expand 2, generate(trained);
+label values trained;
+generate double effect_raw = gpt + trained * interaction;
+generate double effect_size_sd = effect_raw / outcome_sd;
+generate str40 contrast = cond(trained == 1, "Causal&GPT versus Causal", "GPT versus Control");
+generate int n_treatment = cond(trained == 1, 351, 197);
+generate int n_control = cond(trained == 1, 256, 249);
+generate int n_total = 1053;
+sort outcome_order trained;
+format effect_raw effect_size_sd %21.15g;
+export delimited using "`atlas_root'/code/audit/asirvatham_learning_calculations.csv", replace;
+list outcome_key trained effect_raw effect_size_sd, noobs;

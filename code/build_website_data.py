@@ -37,6 +37,7 @@ PAPERS_JSON = SITE / "src" / "papers.json"
 ESTIMATES_JSON = SITE / "src" / "estimates.json"
 OWN_SOURCE = SITE / "code" / "sources" / "contractor-reyes-2026-09.json"
 BASSNER_PRECISION = SITE / "code" / "audit" / "bassner_gain_precision.csv"
+ASIRVATHAM_SOURCE = SITE / "code" / "sources" / "asirvatham-2026-08.json"
 
 # ── helpers ────────────────────────────────────────────────────────────────
 
@@ -2445,6 +2446,34 @@ def apply_numeric_audit(estimates: list[dict], papers: list[dict], own_source: d
 
 def build(*, json_only: bool = False, output_dir: Path | None = None):
     meta = pd.read_excel(META_XLSX)
+    # Keep the new workbook rows tied to the reviewed source and their IDs.
+    asirvatham = json.loads(ASIRVATHAM_SOURCE.read_text(encoding="utf-8"))
+    pdf = SITE / "public" / "pdfs" / asirvatham["pdf_filename"]
+    if hashlib.sha256(pdf.read_bytes()).hexdigest() != asirvatham["pdf_sha256"]:
+        raise ValueError("Asirvatham PDF differs from the reviewed source")
+    source_rows = asirvatham["estimates"]
+    workbook_rows = meta[meta["paper"] == asirvatham["paper_name"]]
+    if len(workbook_rows) != 14 or len(source_rows) != 14:
+        raise ValueError("Expected 14 Asirvatham learning estimates")
+    PAPER_META[asirvatham["paper_name"]] = asirvatham["paper_metadata"]
+    PAPER_SUMMARIES[asirvatham["paper_key"]] = asirvatham["summary"]
+    PAPER_CORRECTIONS[asirvatham["paper_key"]] = {
+        "avg_effect": None,
+        "quality_flags": "AI available during assessment. No unaided follow-up. Class-level standard errors unavailable; estimates are not pooled. Human RA verification pending.",
+    }
+    for (idx, row), source in zip(workbook_rows.iterrows(), source_rows):
+        estimate_id = f"{asirvatham['paper_key']}__est{idx}"
+        if estimate_id != source["estimate_id"] or row["outcome"] != source["outcome"]:
+            raise ValueError("Asirvatham workbook rows moved or changed outcome")
+        for field in ("effect_size_sd", "effect_size_raw", "n_total", "n_treatment", "n_control"):
+            if abs(float(row[field]) - source[field]) > 1e-9:
+                raise ValueError(f"{estimate_id}: workbook {field} differs from the reviewed source")
+        ESTIMATE_OVERRIDES[estimate_id] = {
+            field: source[field] for field in (
+                "effect_size_sd", "se", "ci_lower", "ci_upper", "study_label",
+                "notes", "outcome_with_ai", "comparison_type",
+            )
+        }
     lit = load_lit_csv()
     curated_studies = set(lit["study"])
 
