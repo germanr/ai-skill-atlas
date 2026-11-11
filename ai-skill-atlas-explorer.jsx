@@ -391,9 +391,10 @@ function Hero({ papers, estimates, defaultEstimates, pooled }) {
                 95% CI {fmtCI(pooled.lo, pooled.hi)}
               </div>
               <p style={{ fontFamily: F.sans, fontSize: 12, lineHeight: 1.6, color: C.ink3, marginTop: 12 }}>
-                Random-effects pooled estimate from {pooled.k} primary estimates in
-                student samples, comparing AI with business-as-usual. Learning is assessed
-                without AI. Use the Sample filter below to view adult and professional samples.
+                Random-effects pooled estimate from {pooled.k} studies with student
+                samples, comparing AI with business-as-usual. A study with several estimates
+                counts once. Learning is assessed without AI. Use the Sample filter below to
+                view adult and professional samples.
               </p>
             </>
           ) : (
@@ -1559,7 +1560,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
         <div style={{ marginTop: 4 }}>
           {[
             ["Standardization.", "Effects are in standard deviations where the source permits. When a paper reports its effect in raw units, we divide by the standard deviation the paper reports or by one we can compute from it, usually the control group's or the pooled standard deviation across arms. The notes say which."],
-            ["Pooling.", "The pooled mean is the DerSimonian and Laird (1986) random-effects estimate. The shaded band in the forest plot is its 95 percent confidence interval, which accounts for between-study heterogeneity."],
+            ["Pooling.", "Each study enters the pooled mean once. When a study has several estimates in the current view, we first combine them into one by inverse-variance weighting, which treats them as independent. The pooled mean is the DerSimonian and Laird (1986) random-effects estimate across studies. The shaded band in the forest plot is its 95 percent confidence interval, which accounts for between-study heterogeneity."],
             ["Default view.", "The default forest plot and pooled estimate include randomized experiments with student samples, outcomes measured without AI access, and the AI vs business-as-usual comparison. The Design, Sample, Outcome, and Comparison filters add the rest."],
             ["Design.", "Each study is a lab, field, or online randomized experiment, or an observational study that relies on plausibly exogenous variation in access to AI."],
             ["Samples.", "The samples include students from elementary school through university, adults from online panels, and professionals."],
@@ -1567,7 +1568,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
             ["Outcome timing.", "Immediate and Delayed follow each study's own timing. The two categories are broad and do not correspond to a common follow-up interval. Comparing the immediate and delayed subsets does not measure how much learning fades, because the two subsets contain different studies."],
             ["Sample counts.", "A study's sample count and an estimate's analyzed count are stored separately, and either can count people, sessions, or other units. We do not sum counts across outcomes or studies, because the units differ and the samples overlap."],
             ["Comparisons.", "AI vs business-as-usual is never pooled with the other three comparisons: AI vs active control, off-the-shelf vs scaffolded AI, and AI bundled with other changes, where a platform or program is introduced together with its AI tutor, so the contrast does not isolate the AI. Each can be viewed on its own."],
-            ["Subgroups.", "Heterogeneity estimates, by gender, prior achievement, or topic, are left out of the forest plot and the pooled estimates. They appear on each study's record."],
+            ["Subgroups and secondary rows.", "Heterogeneity estimates, by gender, prior achievement, or topic, are left out of the forest plot and the pooled estimates. So are rows that repeat data from a study's main rows: an estimate that pools two arms already listed, a treatment-on-the-treated version of an intent-to-treat estimate, or a total score that contains a listed subscore. All of them appear on each study's record."],
           ].map(([t, d]) => (
             <div key={t} style={{ display: "grid", gridTemplateColumns: "10px 1fr", gap: 14, padding: "12px 0", borderBottom: `1px solid ${C.ruleSoft}` }}>
               <span style={{ color: C.accent, fontFamily: F.mono, fontSize: 13, lineHeight: 1.5 }}>—</span>
@@ -1630,7 +1631,7 @@ export function AboutPage({ onBack, nPapers, nEstimates, papers, onSelectPaper, 
               ["comparison_type", "AI vs business-as-usual, AI vs active control, off-the-shelf vs scaffolded AI, or AI bundled with other changes."],
               ["estimand / estimation_method", "The parameter (ITT, LATE, and so on) and how it was estimated."],
               ["outcome_with_ai", "Whether participants had AI access during the assessment."],
-              ["is_subgroup / subgroup", "Whether the row is a heterogeneity estimate, and for which subgroup."],
+              ["is_subgroup / subgroup", "Whether the row is a secondary row, left out of the forest plot and the pooled estimates, and its label: a subgroup, or a row that repeats data from a main row."],
               ["coding_notes", "How we computed derived quantities, such as back-calculated standard errors, and design features that matter for interpretation."],
               ["design_class", "lab_rct, field_rct, or online_rct for randomized experiments by setting, or observational for studies without random assignment."],
             ].map(dictRow)}
@@ -2212,7 +2213,6 @@ function AppInner() {
   const fePlot = randomEffectsMean(filteredEstimates);
   const plottedEstimates = filteredEstimates.filter(isPlottableEstimate);
   const plottedStudyCount = new Set(plottedEstimates.map(e => e.paper_key)).size;
-  const pooledStudyCount = new Set(filteredEstimates.filter(isPoolableEstimate).map(e => e.paper_key)).size;
   const omittedPlotCount = filteredEstimates.length - plottedEstimates.length;
   const selection = {
     designMode, sampleMode, activeDomains: [...activeDomains], activePopulations: [...activePopulations],
@@ -2411,7 +2411,7 @@ function AppInner() {
               <ForestPlot estimates={filteredEstimates} papers={papers} onSelectPaper={openPaper} width={1084} sortMode={plotSort} />
               <p style={{ fontFamily: F.sans, fontSize: 11.5, color: C.ink3, lineHeight: 1.6, marginTop: 10, fontStyle: "italic" }}>
                 {fePlot
-                  ? `Random-effects mean: ${fmtSD(fePlot.mean)} SD (95% CI ${fmtCI(fePlot.lo, fePlot.hi)}), using ${fePlot.k} estimates from ${pooledStudyCount} ${pooledStudyCount === 1 ? "study" : "studies"} (DerSimonian–Laird, τ̂² = ${fePlot.tau2.toFixed(3)}).`
+                  ? `Random-effects mean: ${fmtSD(fePlot.mean)} SD (95% CI ${fmtCI(fePlot.lo, fePlot.hi)}) across ${fePlot.k} ${fePlot.k === 1 ? "study" : "studies"}, from ${fePlot.nEstimates} ${fePlot.nEstimates === 1 ? "estimate" : "estimates"} (DerSimonian–Laird, τ̂² = ${fePlot.tau2.toFixed(3)}). A study with several estimates counts once.`
                   : "No pooled estimate: the matching records lack a standardized effect with a positive standard error."}
                 {" "}Horizontal lines are 95% confidence intervals. Arrows mark intervals or effects beyond ±1 SD; numeric values retain the full estimate.
                 Estimates reporting a CI but no SE are drawn at a fixed size and excluded from pooling.

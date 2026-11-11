@@ -8,6 +8,7 @@ import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "playwright-core";
 import { createServer } from "vite";
 import { CSV_METADATA_COLUMNS, flattenEstimateMetadata } from "../src/evidence-metadata.mjs";
+import { randomEffectsMean } from "../src/shared.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const papers = JSON.parse(readFileSync(join(root, "src/papers.json"), "utf8"));
@@ -163,31 +164,11 @@ async function main() {
     await page.goto(`${homeURL.href}${hash}`, { waitUntil: "domcontentloaded" });
     await page.locator("#evidence").waitFor();
   }
-
-  await test("last-updated month matches the active release", async () => {
-    await home();
-    const month = new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "UTC" })
-      .format(new Date(`${release.date}T00:00:00Z`));
-    await page.getByText(`Last updated · ${month}`, { exact: true }).waitFor();
-  });
-
-  await test("observational plot counts, clipped statistics, and overflow arrows", async () => {
-    await home();
-    await filter("Design", "Observational data");
-    const plotted = observationalRows.filter(hasInterval);
-    const studyCount = new Set(plotted.map(e => e.paper_key)).size;
-    const allStudyCount = new Set(observationalRows.map(e => e.paper_key)).size;
-    await page.getByText(`${plotted.length} plotted estimates · ${studyCount} ${studyCount === 1 ? "study" : "studies"}`, { exact: true }).waitFor();
-    if (observationalRows.length > plotted.length) {
-      await page.getByText(new RegExp(`${observationalRows.length} matching records from ${allStudyCount} stud`)).waitFor();
-    }
-    sameMembers(await plottedIDs(), idsOf(observationalRows.filter(hasInterval)), "Observational plot membership changed");
-    // Isolate the original overflow case so new studies cannot remove it.
-    await search().fill("Stromberg");
-    const overflowRows = observationalRows.filter(e => e.paper_key === "stromberg_etal_2026");
-    await eventually(async () => sameMembers(await plottedIDs(), idsOf(overflowRows.filter(hasInterval)), "Overflow fixture is not isolated"), "Stromberg filter did not update");
+  // Geometry of the pooled row and its clip region in the current forest plot.
+  // (220, 38) lies in the label column, on the pooled row's center line.
+  async function pooledGeometry() {
     await forest().evaluate(svg => svg.scrollIntoView({ block: "center", behavior: "instant" }));
-    const geometry = await forest().evaluate(svg => {
+    return forest().evaluate(svg => {
       const clip = svg.querySelector("clipPath");
       const clipRect = clip.querySelector("rect");
       const bounds = { x: clipRect.x.baseVal.value, width: clipRect.width.baseVal.value };
@@ -211,11 +192,37 @@ async function main() {
         pooledText: pooled.getAttribute("aria-label"),
       };
     });
+  }
+
+  await test("last-updated month matches the active release", async () => {
+    await home();
+    const month = new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "UTC" })
+      .format(new Date(`${release.date}T00:00:00Z`));
+    await page.getByText(`Last updated · ${month}`, { exact: true }).waitFor();
+  });
+
+  await test("observational plot counts, clipped statistics, and overflow arrows", async () => {
+    await home();
+    await filter("Design", "Observational data");
+    const plotted = observationalRows.filter(hasInterval);
+    const studyCount = new Set(plotted.map(e => e.paper_key)).size;
+    const allStudyCount = new Set(observationalRows.map(e => e.paper_key)).size;
+    await page.getByText(`${plotted.length} plotted estimates · ${studyCount} ${studyCount === 1 ? "study" : "studies"}`, { exact: true }).waitFor();
+    if (observationalRows.length > plotted.length) {
+      await page.getByText(new RegExp(`${observationalRows.length} matching records from ${allStudyCount} stud`)).waitFor();
+    }
+    sameMembers(await plottedIDs(), idsOf(observationalRows.filter(hasInterval)), "Observational plot membership changed");
+    // Isolate the original overflow case so new studies cannot remove it.
+    await search().fill("Stromberg");
+    const overflowRows = observationalRows.filter(e => e.paper_key === "stromberg_etal_2026");
+    await eventually(async () => sameMembers(await plottedIDs(), idsOf(overflowRows.filter(hasInterval)), "Overflow fixture is not isolated"), "Stromberg filter did not update");
+    const geometry = await pooledGeometry();
     assert.ok(geometry.hasMatchingAxis && geometry.bounds.x > geometry.labelX, "Clip must match the plot axis and exclude labels");
     for (const field of ["diamondClip", "bandClip", "meanClip"]) assert.equal(geometry[field], geometry.clipReference, `${field} is not clipped to the plot`);
-    assert.ok(geometry.rawDiamondCoversLabelPoint, "Regression no longer exercises a raw diamond extending into labels");
-    assert.ok(geometry.hitInsideSvg && !geometry.hitDiamond, "Pooled diamond is visible over the label area");
-    assert.match(geometry.pooledText, /[−-]1\.40/, "Full pooled confidence interval must remain available");
+    // The three plotted rows belong to one study, so they enter the pooled row once.
+    const strombergPool = randomEffectsMean(overflowRows.filter(hasInterval));
+    assert.equal(strombergPool.k, 1, "Stromberg rows must pool as one study");
+    assert.ok(geometry.pooledText.includes(`${Math.abs(strombergPool.mean).toFixed(2)} SD`), "Pooled row does not show the study-level mean");
 
     const outside = overflowRows.find(e => e.effect_size_sd < -1);
     const inside = overflowRows.find(e => e.effect_size_sd > -1 && e.effect_size_sd < 1 && hasInterval(e));
@@ -240,10 +247,50 @@ async function main() {
     await eventually(async () => sameMembers(await plottedIDs(), idsOf(plotted), "Clearing search did not restore the observational slice"), "Observational filter did not update");
   });
 
+  // Uses the observational view left open by the test above.
   await test("filtered and full CSV downloads preserve source IDs, values, and quoting", async () => {
     checkCSV(await readDownload(page, "↓ CSV (filtered)"), observationalRows);
     checkCSV(await readDownload(page, "↓ CSV (full dataset)"), estimates);
     console.log(`  Full CSV: ${estimates.length} source records`);
+  });
+
+  await test("a pooled interval beyond the axis is clipped to the plot", async () => {
+    // One study with one imprecise estimate: its interval, and so the pooled
+    // diamond, extends below −1. Isolated so new studies cannot remove it.
+    await home();
+    await filter("Sample", "Non-students");
+    await search().fill("Tamkin");
+    const fixture = estimates.filter(e => e.paper_key === "shen_and_tamkin_2026" && !e.is_subgroup && !e.outcome_with_ai &&
+      (e.comparison_type || "ai_vs_bau") === "ai_vs_bau" && e.design_class !== "observational");
+    const expectedPool = randomEffectsMean(fixture);
+    assert.ok(expectedPool && expectedPool.lo < -1, "Pooled-overflow fixture no longer extends below the axis");
+    await eventually(async () => sameMembers(await plottedIDs(), idsOf(fixture.filter(hasInterval)), "Pooled-overflow fixture is not isolated"), "Tamkin filter did not update");
+    const geometry = await pooledGeometry();
+    assert.ok(geometry.hasMatchingAxis && geometry.bounds.x > geometry.labelX, "Clip must match the plot axis and exclude labels");
+    for (const field of ["diamondClip", "bandClip", "meanClip"]) assert.equal(geometry[field], geometry.clipReference, `${field} is not clipped to the plot`);
+    assert.ok(geometry.rawDiamondCoversLabelPoint, "Regression no longer exercises a raw diamond extending into labels");
+    assert.ok(geometry.hitInsideSvg && !geometry.hitDiamond, "Pooled diamond is visible over the label area");
+    assert.ok(geometry.pooledText.includes(Math.abs(expectedPool.lo).toFixed(2)), "Full pooled confidence interval must remain available");
+  });
+
+  await test("default pooled estimate counts each study once", async () => {
+    await home();
+    const pool = randomEffectsMean(defaultRows);
+    const pooledRows = defaultRows.filter(e => e.effect_size_sd != null && e.se > 0);
+    assert.equal(pool.k, new Set(pooledRows.map(e => e.paper_key)).size, "Pooled units differ from the number of studies");
+    assert.ok(pool.nEstimates > pool.k, "Default pool no longer exercises a study with several estimates");
+    await page.locator(forestSelector).waitFor();
+    const homeText = await page.locator("body").innerText();
+    const mean = `${pool.mean >= 0 ? "+" : "−"}${Math.abs(pool.mean).toFixed(2)}`;
+    assert.ok(homeText.includes(`Random-effects pooled estimate from ${pool.k} studies with student samples`), "Hero does not state the number of pooled studies");
+    assert.ok(homeText.includes(`Random-effects mean: ${mean} SD`), "Plot note shows another pooled mean");
+    assert.ok(homeText.includes(`across ${pool.k} studies, from ${pool.nEstimates} estimates`), "Plot note does not state studies and estimates");
+    assert.ok(homeText.includes("A study with several estimates counts once."), "Pooling rule is missing from the home page");
+    for (const id of ["fischer_etal_2025__est69", "learnlm_team_2026__est77", "de_simone_etal_2025__est5"]) {
+      assert.ok(!(await plottedIDs()).includes(id), `${id}: a row that repeats another main row is plotted`);
+    }
+    await page.goto(new URL("about/", homeURL).href, { waitUntil: "domcontentloaded" });
+    await page.getByText(/Each study enters the pooled mean once\./).waitFor();
   });
 
   await test("domain filters select estimate subjects within mixed-subject papers", async () => {

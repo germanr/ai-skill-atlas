@@ -1,6 +1,6 @@
 # Human verification queue
 
-Last updated: October 24, 2026. This file lists the atlas records that no human research assistant has checked against the source documents, and what the next RA should check. It is a working list, not a public page.
+Last updated: November 11, 2026. This file lists the atlas records that no human research assistant has checked against the source documents, and what the next RA should check. It is a working list, not a public page.
 
 ## What has been verified so far
 
@@ -132,6 +132,33 @@ The September 23 to 24, 2026 audit (Claude) changed the stored values of these r
 | Lira et al. (2025) | est38 | SE corrected to 0.049 (Table S20); three-arm N removed |
 | Liu et al. (2026) | sg1, sg4, sg5 | Sign orientation and CI endpoints corrected |
 | Kalam et al. (2025) | both rows removed | Excluded under the 50-participant minimum (33 randomized) |
+
+### Changes of November 11, 2026 (Claude)
+
+Release `2026-11-11.1` changed these rows after the human rounds. Release `2026-10-24.1` holds the earlier values. An RA should confirm each change against the source.
+
+| Paper | Rows changed | What changed |
+| --- | --- | --- |
+| Barcaui (2025) | est0 | SE 0.224 added, back-calculated from the reported 95% CI; the row now enters the pooled mean |
+| Vanzo et al. (2025) | est43 | SE 0.247 added, back-calculated from d and the one-sided P; the row now enters the pooled mean |
+| Fischer et al. (2025) | est69 | Reclassified as a secondary row (it pools the two arm rows); numbers unchanged |
+| LearnLM Team (2026) | est77 | Reclassified as a secondary row (treatment-on-the-treated version of the ITT row); numbers unchanged |
+| De Simone et al. (2025) | est5 | Reclassified as a secondary row (the total score contains the English score); numbers unchanged |
+
+**Barcaui (2025).** Source: local PDF `Barcaui (2025) - ChatGPT as Cognitive Crutch.pdf` (DOI 10.1016/j.ssaho.2025.102287).
+
+1. Table 2 (p. 6): N 42 (traditional) and 43 (AI-assisted), means 6.85 and 5.75, SDs 1.7 and 1.5, t = -3.19, df = 83, p = 0.002, Cohen's d = 0.68, 95% CI [0.24, 1.12].
+2. The derivation: SE = (1.12 - 0.24) / (2 x 1.96) = 0.224. The large-sample formula gives 0.223. The atlas keeps the paper's CI and reverses the sign of d.
+
+**Vanzo et al. (2025).** Source: ACL 2025 version, local PDF `Vanzo et al (2025) - ACL - GPT-4 as Homework Tutor.pdf`.
+
+1. Section 4.4 (pp. 31125-31126): pooled d = 0.251 with a one-sided P = 0.156; third year d = 0.603, P = 0.044; fifth year d = -0.004, P = 0.505. Section 3.1 (p. 31122): 37 treatment and 39 control students assigned.
+2. The derivation: SE = d / t = 0.251 / 1.018 = 0.247, with t the statistic that gives a one-sided P of 0.156 at 74 degrees of freedom.
+3. The number of analyzed students. The paper drops students who did not complete the surveys and does not report the count. The reported P implies about 66. Ask the authors for the analyzed counts and the SD of the learning gains; replace the derived SE if they answer.
+
+**Rows that repeat a main row's data.** Confirm the three reclassifications: Fischer Table 1, column (1) pools the arms of column (2); LearnLM Table C.7 instruments the same assignment as the ITT estimate of Table C.4; De Simone's total score covers the English, AI knowledge, and digital skills sections (Section 2.3).
+
+**Titles and author lists.** The same release replaced 17 working labels with the titles printed on the linked PDFs (Ba, Barcaui, Bassner, Bastani, Dai, De Simone, Fischer, Gan, Henkel, Hou, Huang, Kavadella, Kazemitabaar, Kestin, LearnLM 2025, LearnLM 2026, Wang) and completed five author lists (Fischer, Kim, Kumar, Liu, Shen and Tamkin). The list is `PRINTED_TITLES` in `code/build_website_data.py`. Check each against the first page of its PDF. Henkel's PDF prints "AI- Math Tutor" with a stray space; the atlas uses the title of the published version, "AI-Math Tutor".
 
 ## How to record a verification
 

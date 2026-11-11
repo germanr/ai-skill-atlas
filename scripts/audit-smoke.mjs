@@ -293,5 +293,52 @@ check(createHash("sha256").update(asirvathamPdf).digest("hex") ===
   "5f4873c28ac6b184c6675c603832a9b0da7f90872abfce40e7c37dad995cd721",
   "Asirvatham PDF must match the primary-source review");
 
+// November 2026: two SEs back-calculated from reported statistics, three rows
+// that repeat a main row's data, and titles and author lists as printed.
+const barcaui = row("barcaui_2025__est0");
+near(barcaui.effect_size_sd, -.68, "Barcaui retention effect (Table 2, sign reversed)");
+near(barcaui.se, (1.12 - .24) / (2 * 1.96), "Barcaui SE from the Table 2 CI", 1e-3);
+check(barcaui.ci_lower === -1.12 && barcaui.ci_upper === -.24 && barcaui.n_total === 85 &&
+  barcaui.n_treatment === 43 && barcaui.n_control === 42, "Barcaui must keep the paper's CI and the 85 completers");
+check(isPoolableEstimate(barcaui), "Barcaui enters pooling with its back-calculated SE");
+const vanzo = row("vanzo_etal_2024__est43");
+near(vanzo.effect_size_sd, .251, "Vanzo pooled learning-gain d (Section 4.4)");
+near(vanzo.se, .251 / 1.018, "Vanzo SE from d and the one-sided P = 0.156 (t = 1.018 at 74 df)", 1e-3);
+check(vanzo.ci_lower === null && vanzo.ci_upper === null && isPoolableEstimate(vanzo),
+  "Vanzo reports no CI; the site derives the interval from the SE");
+for (const [id, effect, se, label] of [
+  ["fischer_etal_2025__est69", .227, .106, "Spec: Both AI arms pooled"],
+  ["learnlm_team_2026__est77", .380, .169, "Spec: Treatment on the treated"],
+  ["de_simone_etal_2025__est5", .31, .068, "Composite: Total score"],
+]) {
+  const actual = row(id);
+  near(actual.effect_size_sd, effect, `${id} effect`);
+  near(actual.se, se, `${id} SE`);
+  check(actual.is_subgroup === true && actual.subgroup === label, `${id}: must be the secondary row "${label}"`);
+}
+for (const id of ["fischer_etal_2025__est67", "fischer_etal_2025__est68", "learnlm_team_2026__est76",
+  "de_simone_etal_2025__est6", "de_simone_etal_2025__est7"]) {
+  check(row(id).is_subgroup !== true, `${id}: main row must stay in the default view`);
+}
+const workingLabels = new Set([
+  "ChatGPT-assisted vs. traditional pediatric clinical training", "ChatGPT as Cognitive Crutch",
+  "Iris tutor vs no-AI — knowledge gain", "Generative AI Without Guardrails Can Harm Learning",
+  "How Students Use AI Feedback Matters", "From Chalkboards to Chatbots", "AI Tutoring Enhances Student Learning",
+  "ChatGPT-4 orthopedics review — post-test", "AI Math Tutor Ghana", "Instructional Guidance in GenAI-Assisted Learning",
+  "ChatGPT-3.5 as instructor for dental operative skills", "ChatGPT in Undergraduate Dental Education",
+  "AI Code Generators Novice Learners", "AI Tutoring Outperforms Active Learning", "AI Tutoring UK Classrooms",
+  "Guided Learning (Gemini) in Sierra Leone junior-secondary math", "Tutor CoPilot",
+]);
+check(papers.every(paper => !workingLabels.has(paper.title)), "A workbook working label is shown as a paper title");
+check(byPaper.get("henkel_etal_2024").title === "Effective and Scalable Math Support: Experimental Evidence on the Impact of an AI-Math Tutor in Ghana" &&
+  byPaper.get("gan_etal_2024").title === "Integrating ChatGPT in Orthopedic Education for Medical Undergraduates: Randomized Controlled Trial",
+  "Titles must be the ones printed on the linked PDFs");
+check(papers.every(paper => !/\bet al\b/i.test(paper.authors_full || "")), "authors_full must list the authors, not 'et al.'");
+check(byPaper.get("liu_etal_2026").authors_full === "Grace Liu, Brian Christian, Tsvetomira Dumbalska, Michiel A. Bakker, Rachit Dubey" &&
+  byPaper.get("shen_and_tamkin_2026").authors_full === "Judy Hanwen Shen, Alex Tamkin" &&
+  byPaper.get("kim_etal_2025").authors_full === "Donggwan Kim, Dmitry Mitrofanov, Qingsong Wen, Tianlong Xu" &&
+  byPaper.get("kumar_etal_2023").authors_full === "Harsh Kumar, David M. Rothschild, Daniel G. Goldstein, Jake M. Hofman" &&
+  byPaper.get("fischer_etal_2025").authors_full === "Mira Fischer, Holger A. Rau, Rainer Michael Rilke", "Author lists must match the linked PDFs");
+
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(`All ${checks} numerical audit checks passed (${papers.length} papers, ${estimates.length} estimates).`);

@@ -26,30 +26,54 @@ export function filterEstimates(estimates, {
   });
 }
 
-// DerSimonian–Laird random-effects meta-analysis
-// (same formula as the paper's 4-figures.do)
+// One effect per study: the inverse-variance weighted mean of the study's
+// poolable estimates, with SE = sqrt(1 / sum of weights). This is the
+// within-study step of the paper's 4-figures.do. It treats a study's estimates
+// as independent. The paper makes one exception, the measured covariance
+// between Bastani's two arms, which the site does not store.
+// A row without a paper_key counts as its own study.
+export function aggregateByStudy(estimates) {
+  const studies = new Map();
+  estimates.filter(isPoolableEstimate).forEach((e, i) => {
+    const key = e.paper_key ?? `__row_${i}`;
+    const s = studies.get(key) || { paper_key: e.paper_key ?? null, sumW: 0, sumWE: 0, n: 0 };
+    const w = 1 / (e.se ** 2);
+    s.sumW += w;
+    s.sumWE += w * e.effect_size_sd;
+    s.n += 1;
+    studies.set(key, s);
+  });
+  return [...studies.values()].map(s => ({
+    paper_key: s.paper_key, effect: s.sumWE / s.sumW, se: Math.sqrt(1 / s.sumW), n: s.n,
+  }));
+}
+
+// DerSimonian–Laird random-effects mean across studies. Each study enters
+// once (see aggregateByStudy), as in the paper's 4-figures.do.
+// k counts studies; nEstimates counts the estimates behind them.
 export function randomEffectsMean(estimates) {
-  const valid = estimates.filter(isPoolableEstimate);
-  if (valid.length === 0) return null;
-  if (valid.length === 1) {
-    const e = valid[0];
-    return { mean: e.effect_size_sd, se: e.se, lo: e.effect_size_sd - 1.96 * e.se, hi: e.effect_size_sd + 1.96 * e.se, k: 1, tau2: 0, Q: 0 };
+  const studies = aggregateByStudy(estimates);
+  if (studies.length === 0) return null;
+  const nEstimates = studies.reduce((a, s) => a + s.n, 0);
+  if (studies.length === 1) {
+    const s = studies[0];
+    return { mean: s.effect, se: s.se, lo: s.effect - 1.96 * s.se, hi: s.effect + 1.96 * s.se, k: 1, nEstimates, tau2: 0, Q: 0 };
   }
 
-  const w = valid.map(e => 1 / (e.se ** 2));
+  const w = studies.map(s => 1 / (s.se ** 2));
   const sumW = w.reduce((a, b) => a + b, 0);
-  const muFE = valid.reduce((acc, e, i) => acc + w[i] * e.effect_size_sd, 0) / sumW;
-  const Q = valid.reduce((acc, e, i) => acc + w[i] * (e.effect_size_sd - muFE) ** 2, 0);
-  const k = valid.length;
+  const muFE = studies.reduce((acc, s, i) => acc + w[i] * s.effect, 0) / sumW;
+  const Q = studies.reduce((acc, s, i) => acc + w[i] * (s.effect - muFE) ** 2, 0);
+  const k = studies.length;
   const sumW2 = w.reduce((a, b) => a + b * b, 0);
   const tau2 = Math.max(0, (Q - (k - 1)) / (sumW - sumW2 / sumW));
 
-  const wRE = valid.map(e => 1 / (e.se ** 2 + tau2));
+  const wRE = studies.map(s => 1 / (s.se ** 2 + tau2));
   const sumWRE = wRE.reduce((a, b) => a + b, 0);
-  const grandMean = valid.reduce((acc, e, i) => acc + wRE[i] * e.effect_size_sd, 0) / sumWRE;
+  const grandMean = studies.reduce((acc, s, i) => acc + wRE[i] * s.effect, 0) / sumWRE;
   const grandSE = 1 / Math.sqrt(sumWRE);
 
-  return { mean: grandMean, se: grandSE, lo: grandMean - 1.96 * grandSE, hi: grandMean + 1.96 * grandSE, k, tau2, Q };
+  return { mean: grandMean, se: grandSE, lo: grandMean - 1.96 * grandSE, hi: grandMean + 1.96 * grandSE, k, nEstimates, tau2, Q };
 }
 
 // One CI definition for the whole site: the stored interval when present,

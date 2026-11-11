@@ -82,6 +82,16 @@ The Khanmigo trial introduced a fourth comparison type, `ai_bundled`, for progra
 
 Three more papers entered on October 5, 2026. Heldreth et al. (2026) is a lab experiment with Google's Learn Your Way platform. Rismanchian et al. (2026) is an observational study that compares ALEKS item types before and after ChatGPT's release; its effects are odds ratios and have no SD conversion. Barrera-Osorio and Muñoz-Morales (2026) is a school-randomized trial in Bogotá of an AI lesson-planning platform for teachers. Its rows are preliminary midline results from a non-random subsample of schools, and they are coded `ai_bundled` because the platform came with a teacher training program. Claude extracted the numbers for all three, and all three are in the verification queue.
 
+## Pooling, titles, and standard errors (November 2026)
+
+The pooled mean counts each study once. `aggregateByStudy` in `src/shared.mjs` first combines a study's poolable estimates in the current view by inverse-variance weighting, and `randomEffectsMean` then runs DerSimonian-Laird across the study-level effects. This is the method of the paper's `4-figures.do`. The within-study step treats a study's estimates as independent. The paper adds the measured covariance between Bastani's two arms; the site does not store it. `k` in the result counts studies and `nEstimates` counts the estimates behind them.
+
+Three rows that repeat data from another main row of the same study are secondary rows (`is_subgroup` with a `subgroup` label). They stay on the study record and leave the forest plot and the pooled mean: Fischer's pooled "any AI" row (est69), LearnLM's treatment-on-the-treated row (est77), and De Simone's total score (est5).
+
+Barcaui (est0) and Vanzo (est43) now carry standard errors, back-calculated from the paper's 95% CI and from its d and one-sided P. Both enter the pooled mean. The derivations are in `src/evidence_metadata.json` and in [the verification queue](docs/ra-verification-queue.md).
+
+Paper titles shown on the site are the titles printed on the linked PDFs. The workbook's `title` column holds working labels for some papers, and `PRINTED_TITLES` in `code/build_website_data.py` overrides them. Add a new paper's printed title there when its workbook label differs. `authors_full` holds author names only, because the site exports it as the BibTeX author list.
+
 ## Shareable views and outcome timing
 
 Asirvatham et al. (2026) was added on October 24, 2026 with 14 estimates from seven task-performance and reasoning outcomes. All were measured with AI available and are excluded from the default view of unaided outcomes. The records retain standardized point estimates and the reported raw coefficients. Standard errors and confidence intervals are unavailable in the atlas because the paper's reported error groups subdivide the randomized classes. The estimates cannot enter pooled results. Codex checked the primary source; human RA verification remains pending.

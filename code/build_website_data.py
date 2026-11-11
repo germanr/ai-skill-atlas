@@ -331,7 +331,7 @@ PAPER_META = {
         pdf_filename="Kestin et al (2025) - AI Tutoring Outperforms Active Learning.pdf",
     ),
     "Kim et al. (2025)": dict(
-        authors_full="Kim et al.",
+        authors_full="Donggwan Kim, Dmitry Mitrofanov, Qingsong Wen, Tianlong Xu",
         venue="Working paper",
         country="China",
         country_emoji="🇨🇳",
@@ -357,7 +357,7 @@ PAPER_META = {
         pdf_filename="Kreijkes et al (2026) - LLM Use and Note-Taking Reading Comprehension.pdf",
     ),
     "Kumar et al. (2023)": dict(
-        authors_full="Kumar et al.",
+        authors_full="Harsh Kumar, David M. Rothschild, Daniel G. Goldstein, Jake M. Hofman",
         venue="Working paper",
         country="USA",
         country_emoji="🇺🇸",
@@ -487,7 +487,7 @@ PAPER_META = {
         pdf_filename="Chung et al (2025) - Personalized AI Tutors via LLM-Guided RL.pdf",
     ),
     "Liu et al. (2026)": dict(
-        authors_full="Liu et al.",
+        authors_full="Grace Liu, Brian Christian, Tsvetomira Dumbalska, Michiel A. Bakker, Rachit Dubey",
         venue="Working paper",
         country="USA",
         country_emoji="🇺🇸",
@@ -500,7 +500,7 @@ PAPER_META = {
         pdf_filename="Liu et al (2026) - AI Assistance Reduces Persistence.pdf",
     ),
     "Shen and Tamkin (2026)": dict(
-        authors_full="Shen and Tamkin",
+        authors_full="Judy Hanwen Shen, Alex Tamkin",
         venue="Working paper",
         country="USA",
         country_emoji="🇺🇸",
@@ -551,7 +551,8 @@ PAPER_META = {
         pdf_filename='Dai et al (2025) - How Students Use AI Feedback Matters.pdf',
     ),
     'Fischer et al. (2025)': dict(
-        authors_full='Mira Fischer (BiB, WZB and IZA); Holger A. Rau (Georg-August-Universität Göttingen); Rainer Michael Rilke (WHU)',
+        # [2026-11] Names only: the field is exported as the BibTeX author list.
+        authors_full='Mira Fischer, Holger A. Rau, Rainer Michael Rilke',
         venue='IZA DP #18338',
         country='Germany',
         country_emoji='🇩🇪',
@@ -766,6 +767,7 @@ PAPER_CORRECTIONS = {
         learning_domain_primary="General knowledge",  # AI/ML conceptual content; not coding
         incentives="None (voluntary participation)",
         n_total=120,  # randomized (85 completed the retention test)
+        quality_flags="SE back-calculated from the reported 95% CI",
     ),
     "bastani_etal_2025": dict(
         venue="PNAS, 122(26), e2422633122",
@@ -877,6 +879,8 @@ PAPER_CORRECTIONS = {
         authors_full="Alessandro Vanzo, Sankalan Pal Chowdhury, Mrinmaya Sachan",
         incentives="None",
         pdf_filename="Vanzo et al (2025) - ACL - GPT-4 as Homework Tutor.pdf",
+        # [2026-11] The old "no SE/CI" flag is stale: the SE is now derived.
+        quality_flags="SE back-calculated from the reported one-sided p-value; number of analyzed students not reported",
     ),
     "wiles_etal_2024": dict(
         year=2026,
@@ -938,6 +942,34 @@ PAPER_CORRECTIONS = {
     ),
 
 }
+
+# ── Titles as printed on the linked PDFs (November 2026) ────────────────────
+# The workbook's `title` column holds short working labels for these papers.
+# The site prints the title in quotation marks and exports it in BibTeX, so
+# each entry is the title on the first page of the PDF in public/pdfs. The one
+# exception is Henkel: the PDF prints "AI- Math Tutor" with a stray space, and
+# the entry follows the title registered for the published version.
+PRINTED_TITLES = {
+    "ba_etal_2024": "Enhancing clinical skills in pediatric trainees: a comparative study of ChatGPT-assisted and traditional teaching methods",
+    "barcaui_2025": "ChatGPT as a cognitive crutch: Evidence from a randomized controlled trial on knowledge retention",
+    "bassner_etal_2026": "Less stress, better scores, same learning: The dissociation of performance and learning in AI-supported programming education",
+    "bastani_etal_2025": "Generative AI Without Guardrails Can Harm Learning: Evidence from High School Mathematics",
+    "dai_etal_2025": "How Students Use AI Feedback Matters: Experimental Evidence on Physics Achievement and Autonomy",
+    "de_simone_etal_2025": "From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria",
+    "fischer_etal_2025": "AI Tutoring Enhances Student Learning Without Crowding Out Reading Effort",
+    "gan_etal_2024": "Integrating ChatGPT in Orthopedic Education for Medical Undergraduates: Randomized Controlled Trial",
+    "henkel_etal_2024": "Effective and Scalable Math Support: Experimental Evidence on the Impact of an AI-Math Tutor in Ghana",
+    "hou_etal_2026": "The Role of Instructional Guidance in Generative AI-Assisted Learning: Empirical Evidence from Construction Engineering Education",
+    "huang_etal_2025": "Exploring the Application Capability of ChatGPT as an Instructor in Skills Education for Dental Medical Students: Randomized Controlled Trial",
+    "kavadella_etal_2024": "Evaluation of ChatGPT's Real-Life Implementation in Undergraduate Dental Education: Mixed Methods Study",
+    "kazemitabaar_etal_2023": "Studying the effect of AI Code Generators on Supporting Novice Learners in Introductory Programming",
+    "kestin_etal_2025": "AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting",
+    "learnlm_team_2025": "AI tutoring can safely and effectively support students: An exploratory RCT in UK classrooms",
+    "learnlm_team_2026": "Teaching with Gemini: Measuring the impact of Guided Learning on student mathematics progress in Sierra Leone",
+    "wang_etal_2025": "Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise",
+}
+for _key, _title in PRINTED_TITLES.items():
+    PAPER_CORRECTIONS.setdefault(_key, {})["title"] = _title
 
 
 # ── 3-part paper summaries (setup / empirical strategy / key results) ──────
@@ -1212,7 +1244,18 @@ ESTIMATE_OVERRIDES = {
 
     # [RA-2026-07] Barcaui: analysis is on the 85 completers (43+42), not the
     # 120 randomized (Table 2, p.6-7).
-    "barcaui_2025__est0": {"n_total": 85},
+    # [2026-11] Table 2 reports d = 0.68 with a 95% CI of [0.24, 1.12] in favor
+    # of the traditional group and no SE. SE = (1.12 - 0.24) / (2 x 1.96) =
+    # 0.224, so the row can be pooled like the other back-calculated rows.
+    "barcaui_2025__est0": {
+        "n_total": 85, "se": 0.224,
+        "quality_flags": "SE back-calculated from the reported 95% CI",
+        "notes": "Negative = AI group learned less. 85 of 120 completed retention "
+                 "test. AI group spent 45% less time studying. The paper reports "
+                 "d = 0.68 in favor of the traditional group with a 95% CI of "
+                 "[0.24, 1.12] (Table 2); the SE of 0.224 is back-calculated from "
+                 "that interval.",
+    },
 
     # [RA-2026-07] Kazemitabaar post-test: baseline outscored Codex (62.9% vs
     # 61.3%, Sec 5.2.1), so under the positive-favors-AI convention d = -0.05.
@@ -1227,10 +1270,18 @@ ESTIMATE_OVERRIDES = {
     # [RA-2026-07] De Simone: regression Ns are 654/654/636 (Tables 2-3), not
     # the 759 completers; arm split not reported for the analysis samples.
     # Third-term exam was taken 7/12/24, one day after sessions ended -> immediate.
+    # [2026-11] The total score covers the English, AI knowledge, and digital
+    # skills sections (Section 2.3), so it contains the English score of est6.
+    # Listed as a secondary row: out of the forest plot and the pooled mean.
     "de_simone_etal_2025__est5": {
         "n_total": 654, "n_treatment": None, "n_control": None,
+        "is_subgroup": True, "subgroup": "Composite: Total score",
         "notes": "ITT. 6-week intervention, 12 sessions of 90 min. School FE and "
-                 "baseline controls. Regression N=654 (Table 2); 759 completers.",
+                 "baseline controls. Regression N=654 (Table 2); 759 completers. "
+                 "The total score combines the English, AI knowledge, and digital "
+                 "skills sections of the final assessment, so it contains the "
+                 "English score listed as a main row. It is a secondary row and "
+                 "does not enter the pooled mean.",
     },
     "de_simone_etal_2025__est6": {
         "n_total": 654, "n_treatment": None, "n_control": None,
@@ -1526,11 +1577,33 @@ ESTIMATE_OVERRIDES = {
                  "SE/CI for it). Midpoint ~1.0 shown as the point value. Avoids "
                  "ceiling effect in the post-test.",
     },
+    # [2026-11] Section 4.4 reports d = 0.251 with a one-sided P = 0.156 and no
+    # SE or CI. SE = d / t = 0.251 / 1.018 = 0.247, with t the statistic that
+    # gives that one-sided P at 74 degrees of freedom (0.246 to 0.249 for 60 or
+    # more degrees of freedom and for the rounding of P). The large-sample
+    # formula with the assigned groups (37 and 39) would give 0.230, but the
+    # paper drops students with incomplete surveys and its P implies fewer.
     "vanzo_etal_2024__est43": {
-        "notes": "Not significant. Pooled across 3rd and 5th year. One-sided "
-                 "t-test. ACL 2025 published version.",
+        "se": 0.247,
+        "quality_flags": "SE back-calculated from the reported one-sided p-value; number of analyzed students not reported",
+        "notes": "Not significant (one-sided P = 0.156). Pooled across 3rd and "
+                 "5th year. One-sided t-test. ACL 2025 published version. The "
+                 "paper reports no SE or CI; the SE of 0.247 is back-calculated "
+                 "from d and the one-sided P.",
     },
 }
+
+# [2026-11] Rows that repeat data already held by another main row of the same
+# study. They stay on the study record as secondary rows and leave the forest
+# plot and the pooled mean. Numbers are untouched.
+ESTIMATE_OVERRIDES.setdefault("fischer_etal_2025__est69", {}).update({
+    # Table 1 column (1) pools the two AI arms listed as est67 and est68.
+    "is_subgroup": True, "subgroup": "Spec: Both AI arms pooled",
+})
+ESTIMATE_OVERRIDES.setdefault("learnlm_team_2026__est77", {}).update({
+    # Table C.7 is the treatment-on-the-treated version of the ITT row est76.
+    "is_subgroup": True, "subgroup": "Spec: Treatment on the treated",
+})
 
 # [RA-2026-07 r2] Additions to entries defined above.
 # (De Simone's "third-term exam" label now flows from CURATED_MAP and
